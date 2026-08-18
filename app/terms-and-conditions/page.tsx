@@ -2,7 +2,8 @@ import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
   title: 'Terms and Conditions',
-  description: 'Read the Terms and Conditions for using CollegeDecision.in college research guides and website services.'
+  description: 'Read the Terms and Conditions for using CollegeDecision.in college research guides and website services.',
+  alternates: { canonical: '/terms-and-conditions' }
 };
 
 export default function TermsPage() {

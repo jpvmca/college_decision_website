@@ -1,5 +1,12 @@
 import Link from 'next/link';
+import type { Metadata } from 'next';
 import { api, ArticleList } from '../lib/api';
+
+export const metadata: Metadata = {
+  title: 'College Decision Platform',
+  description: 'Compare college fees, admission routes, placements and total study cost.',
+  alternates: { canonical: '/' }
+};
 
 export default async function HomePage() {
   let popularGuides: ArticleList['data'] = [];

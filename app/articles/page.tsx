@@ -21,20 +21,22 @@ export async function generateMetadata({ searchParams }: { searchParams: Promise
   const query = await searchParams;
   const visibleTypes = getVisibleArticleTypes();
   if (!query.type && !query.budget) {
-    return { title: 'Published college decision guides', description: 'Browse the latest published college guides covering fees, admission, eligibility and outcomes.' };
+    return { title: 'Published college decision guides', description: 'Browse the latest published college guides covering fees, admission, eligibility and outcomes.', alternates: { canonical: '/articles' } };
   }
-  if (query.type === 'admission' && visibleTypes.includes('admission')) return { title: 'Course admission and eligibility guides', description: 'Compare course eligibility, duration and admission routes using active programme data.' };
-  if (query.type === 'fees' && visibleTypes.includes('fees')) return { title: 'Course fees in India guides', description: 'Compare course fees and available programme options using active fee records.' };
+  if (query.type === 'admission' && visibleTypes.includes('admission')) return { title: 'Course admission and eligibility guides', description: 'Compare course eligibility, duration and admission routes using active programme data.', alternates: { canonical: '/articles' } };
+  if (query.type === 'fees' && visibleTypes.includes('fees')) return { title: 'Course fees in India guides', description: 'Compare course fees and available programme options using active fee records.', alternates: { canonical: '/articles' } };
   if (query.type === 'gov-avg-package' && visibleTypes.includes('gov-avg-package')) {
     return {
       title: 'Government colleges by average package',
-      description: 'Compare government colleges by course and state using recorded average package data.'
+      description: 'Compare government colleges by course and state using recorded average package data.',
+      alternates: { canonical: '/articles' }
     };
   }
   const budget = [1, 3, 5, 10].includes(Number(query.budget)) ? Number(query.budget) : 5;
   return {
     title: `Top colleges in India 2026 under ₹${budget} lakh fees`,
-    description: `Compare top course colleges in India in 2026 under ₹${budget} lakh fees, with eligibility and admission options.`
+    description: `Compare top course colleges in India in 2026 under ₹${budget} lakh fees, with eligibility and admission options.`,
+    alternates: { canonical: '/articles' }
   };
 }
 

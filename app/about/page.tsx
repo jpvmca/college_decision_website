@@ -2,7 +2,8 @@ import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
   title: 'About CollegeDecision.in',
-  description: 'Learn how CollegeDecision.in helps students compare college fees, courses, eligibility, admission routes and outcomes.'
+  description: 'Learn how CollegeDecision.in helps students compare college fees, courses, eligibility, admission routes and outcomes.',
+  alternates: { canonical: '/about' }
 };
 
 export default function AboutPage() {

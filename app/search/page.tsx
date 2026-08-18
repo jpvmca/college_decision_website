@@ -7,6 +7,7 @@ type SearchResult = { title: string; slug: string; type: string; description: st
 export const metadata: Metadata = {
   title: 'Search college guides',
   description: 'Search course, fee, admission and college decision guides.',
+  alternates: { canonical: '/search' },
   robots: { index: false, follow: true }
 };
 

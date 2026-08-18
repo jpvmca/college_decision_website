@@ -2,7 +2,8 @@ import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
   title: 'Disclaimer',
-  description: 'Understand the limits of CollegeDecision.in college fees, eligibility, admission and placement information.'
+  description: 'Understand the limits of CollegeDecision.in college fees, eligibility, admission and placement information.',
+  alternates: { canonical: '/disclaimer' }
 };
 
 export default function DisclaimerPage() {
