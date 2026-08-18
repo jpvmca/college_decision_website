@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
+import Image from 'next/image';
 import SearchBox from '../components/SearchBox';
 import MobileNav from '../components/MobileNav';
 import './globals.css';
@@ -31,13 +32,13 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
         <div className="site">
           <nav className="nav">
             <div className="wrap nav-inner">
-              <Link className="brand" href="/" aria-label="College Decision home"><img src="/logo.svg" alt="College Decision" /></Link>
+              <Link className="brand" href="/" aria-label="College Decision home"><Image src="/logo.svg" alt="College Decision" width={188} height={38} priority /></Link>
               <SearchBox />
               <MobileNav />
             </div>
           </nav>
           {children}
-          <footer className="footer"><div className="wrap"><img className="footer-logo" src="/logo.svg" alt="College Decision" /><span>Clear college decisions with practical cost, admission and outcome guidance.</span><nav className="footer-links" aria-label="Footer links"><Link href="/contact">Contact</Link><Link href="/privacy-policy">Privacy</Link><Link href="/terms-and-conditions">Terms</Link><Link href="/disclaimer">Disclaimer</Link></nav></div></footer>
+          <footer className="footer"><div className="wrap"><Image className="footer-logo" src="/logo.svg" alt="College Decision" width={170} height={34} loading="lazy" /><span>Clear college decisions with practical cost, admission and outcome guidance.</span><nav className="footer-links" aria-label="Footer links"><Link href="/contact">Contact</Link><Link href="/privacy-policy">Privacy</Link><Link href="/terms-and-conditions">Terms</Link><Link href="/disclaimer">Disclaimer</Link></nav></div></footer>
           </div>
       </body>
     </html>
