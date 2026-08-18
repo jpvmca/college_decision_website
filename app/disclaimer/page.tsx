@@ -10,7 +10,7 @@ export default function DisclaimerPage() {
   return <main className="section"><div className="wrap prose">
     <p className="eyebrow">READ BEFORE YOU DECIDE</p>
     <h1>Disclaimer</h1>
-    <p className="muted">Last updated: 17 August 2026</p>
+    <p className="muted">Last updated: 18 August 2026</p>
     <div className="notice"><strong>Short version:</strong> CollegeDecision.in is a research and comparison resource. It is not a substitute for the current official information published by a college, university, examination authority or regulator.</div>
     <h2>Fees and total cost</h2>
     <p>Fee values shown on our pages are recorded data points or comparison leads. They may exclude hostel, mess, deposits, development charges, examination fees, transport, taxes, category differences or later academic-year changes. Ask the institution for a current written fee schedule before paying or applying.</p>

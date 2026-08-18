@@ -10,7 +10,7 @@ export default function TermsPage() {
   return <main className="section"><div className="wrap prose">
     <p className="eyebrow">LEGAL INFORMATION</p>
     <h1>Terms and Conditions</h1>
-    <p className="muted">Last updated: 17 August 2026</p>
+    <p className="muted">Last updated: 18 August 2026</p>
     <p>By using CollegeDecision.in, you agree to use the website responsibly and to read these terms. If you do not agree, please do not use the website.</p>
     <h2>Purpose of the website</h2>
     <p>CollegeDecision.in provides college and course research material to help students compare options. It is not an educational institution, admission authority, counselling service, employment agency or legal adviser.</p>

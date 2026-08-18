@@ -10,7 +10,7 @@ export default function PrivacyPolicyPage() {
   return <main className="section"><div className="wrap prose">
     <p className="eyebrow">LEGAL INFORMATION</p>
     <h1>Privacy Policy</h1>
-    <p className="muted">Last updated: 17 August 2026</p>
+    <p className="muted">Last updated: 18 August 2026</p>
     <p>This Privacy Policy explains how CollegeDecision.in handles information when you browse our college guides, use search or contact us. We aim to collect only what is needed to operate, protect and improve the website.</p>
     <h2>Information you provide</h2>
     <p>If you email us, we receive the information you choose to include, such as your name, email address, message, page URL and supporting source. Please do not send passwords, payment information, government identity documents or sensitive student records.</p>
