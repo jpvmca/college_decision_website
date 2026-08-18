@@ -9,6 +9,8 @@ type GeneratedArticle = {
   type: string;
   slug: string;
   title: string;
+  publishedAt?: string | null;
+  publicationUpdatedAt?: string | null;
   course: { name: string; slug: string };
   state?: { name: string; slug: string };
   budgetLakh: number | null;
@@ -196,7 +198,13 @@ export default async function ArticleDetailPage({ params, searchParams }: { para
         description: seo.intro,
         mainEntityOfPage: { '@type': 'WebPage', '@id': `${siteUrl}/articles/${article.slug}` },
         about: { '@type': 'Course', name: article.course.name, keywords: seo.secondaryKeywords },
-        author: { '@type': 'Organization', name: 'College Decision' },
+        datePublished: article.publishedAt || undefined,
+        dateModified: article.publicationUpdatedAt || article.publishedAt || undefined,
+        author: {
+          '@type': 'Organization',
+          name: 'College Decision',
+          url: siteUrl
+        },
         publisher: {
           '@type': 'Organization',
           name: 'College Decision',
