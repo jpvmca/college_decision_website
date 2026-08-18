@@ -24,7 +24,7 @@ export async function generateMetadata({ searchParams }: { searchParams: Promise
     return { title: 'Published college decision guides', description: 'Browse the latest published college guides covering fees, admission, eligibility and outcomes.', alternates: { canonical: '/articles' } };
   }
   if (query.type === 'admission' && visibleTypes.includes('admission')) return { title: 'Course admission and eligibility guides', description: 'Compare course eligibility, duration and admission routes using active programme data.', alternates: { canonical: '/articles' } };
-  if (query.type === 'fees' && visibleTypes.includes('fees')) return { title: 'Course fees in India guides', description: 'Compare course fees and available programme options using active fee records.', alternates: { canonical: '/articles' } };
+  if (query.type === 'fees' && visibleTypes.includes('fees')) return { title: 'Top course colleges in India with fees 2026', description: 'Compare top course colleges in India with fees in 2026 using active fee records.', alternates: { canonical: '/articles' } };
   if (query.type === 'gov-avg-package' && visibleTypes.includes('gov-avg-package')) {
     return {
       title: 'Government colleges by average package',

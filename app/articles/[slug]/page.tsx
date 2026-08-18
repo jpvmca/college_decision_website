@@ -100,17 +100,14 @@ function getSeoContext(article: GeneratedArticle) {
   }
   if (article.type.includes('fees') || article.type.includes('budget')) {
     const budgetText = article.budgetLakh ? ` under ₹${article.budgetLakh} lakh` : '';
-    const primaryKeyword = article.budgetLakh
-      ? `${cleanCourseName} colleges in India under ${article.budgetLakh} lakh fees`
-      : `${cleanCourseName} fees in India`;
     return {
-      primaryKeyword,
+      primaryKeyword: `top ${cleanCourseName} colleges in india with fees 2026`,
       secondaryKeywords: article.budgetLakh
         ? [`${cleanCourseName} course fees in India`, `${cleanCourseName} college fees comparison`, `best ${cleanCourseName} colleges under ${article.budgetLakh} lakh`]
-        : [`${cleanCourseName} course fees in India`, `${cleanCourseName} college fees comparison`, `${cleanCourseName} duration and eligibility`],
+        : [`${cleanCourseName} course fees 2026`, `${cleanCourseName} colleges with fees`, `${cleanCourseName} fee comparison`],
       intro: article.budgetLakh
         ? `This guide compares ${cleanCourseName} colleges in India${budgetText} using recorded fee data. Alongside the fee lead, review course duration, eligibility, location and admission context before treating any option as affordable.`
-        : `This ${cleanCourseName} fees in India guide compares recorded course fees, fee duration, eligibility and location. A displayed amount is a research lead, so confirm the current total cost and additional charges with the institution.`,
+        : `This guide compares top ${cleanCourseName} colleges in India with fees in 2026 using recorded course-fee data. Review fee duration, eligibility and location, then confirm the current total cost and additional charges with each institution.`,
       optionsHeading: article.budgetLakh ? `${cleanCourseName} colleges under ₹${article.budgetLakh} lakh to compare` : `${cleanCourseName} fee options to compare`
     };
   }
