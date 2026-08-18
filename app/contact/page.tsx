@@ -10,7 +10,8 @@ export default function ContactPage() {
     event.preventDefault();
     setSending(true);
     setError('');
-    const form = new FormData(event.currentTarget);
+    const formElement = event.currentTarget;
+    const form = new FormData(formElement);
     try {
       const response = await fetch('/api/enquiries', {
         method: 'POST',
@@ -20,7 +21,7 @@ export default function ContactPage() {
       const body = await response.json();
       if (!response.ok) throw new Error(body.error || 'Could not send your enquiry');
       setSubmitted(true);
-      event.currentTarget.reset();
+      formElement.reset();
     } catch (submitError) {
       setError(submitError instanceof Error ? submitError.message : 'Could not send your enquiry');
     } finally {
