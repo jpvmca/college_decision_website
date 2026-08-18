@@ -184,6 +184,9 @@ export default async function ArticleDetailPage({ params, searchParams }: { para
   const publishedArticleSlugs = await getPublishedArticleSlugs();
   const siteUrl = getSiteUrl();
   const seo = getSeoContext(article);
+  const relatedVisible = relatedGuides
+    .filter((guide) => guide.slug !== article.slug && publishedArticleSlugs.includes(guide.slug))
+    .slice(0, 3);
   const jsonLd = {
     '@context': 'https://schema.org',
     '@graph': [
@@ -223,10 +226,10 @@ export default async function ArticleDetailPage({ params, searchParams }: { para
     {article.candidates.map((candidate, index) => <article className="card" key={`${candidate.institute_name}-${candidate.programme_name}-${index}`}><h3>{index + 1}. {getCandidateHeading(candidate)}</h3><p className="muted">{candidate.institute_type === 'public' ? 'Government or public institution' : 'Private institution'} · {candidate.city || 'Location not listed'}, {candidate.state || 'India'}</p><p className="course-context"><strong>Course:</strong> {getCourseContext(candidate)}</p><p><strong>Duration:</strong> {candidate.duration || 'Check the current programme duration.'}</p><p><strong>Eligibility:</strong> {candidate.eligibility || 'Check the latest college admission notice.'}</p>{isGovAvgPackageArticle(article.type) ? <><p className="price">{formatPackage(candidate.average_package)} average package{candidate.placement_year ? ` · ${candidate.placement_year}` : ''}</p>{candidate.highest_package ? <p><strong>Highest package:</strong> {formatPackage(candidate.highest_package)}</p> : null}</> : article.type.includes('admission') ? <p><strong>Admission route:</strong> {candidate.admission_routes || 'Check the latest official admission notice.'}</p> : <p className="price">{formatFee(candidate.min_total_fee || '')} lowest recorded fee</p>}<div className="card-actions"><small>{isGovAvgPackageArticle(article.type) ? 'Average package ranking uses active placement records for government or public institutes. Verify the latest official report before applying.' : article.type.includes('admission') ? 'Eligibility, duration and admission route are present in the active programme records. Verify the current official notice before applying.' : getCandidateNote(candidate)}</small><CollegeDetailsModal instituteId={candidate.institute_id} courseId={candidate.course_id} courseName={candidate.programme_name} /></div></article>)}
     <h2>How to use this guide</h2>
     <p>{isGovAvgPackageArticle(article.type) ? 'Start with the government colleges that report stronger average packages in your chosen state. Then compare eligibility, fees, admission route, facilities and the latest official placement report before applying.' : 'Start with the colleges that match your preferred location and admission route. Then compare the complete programme cost, duration, eligibility, entrance exam, facilities, learning resources, and recent placement information. A low displayed fee is useful only when it is current and complete.'}</p>
-    <section className="related-guides" aria-labelledby="related-guides-heading">
+    {relatedVisible.length > 0 && <section className="related-guides" aria-labelledby="related-guides-heading">
       <h2 id="related-guides-heading">Related Student Decision Guides</h2>
-      <div className="related-guide-list">{relatedGuides.filter((guide) => guide.slug !== article.slug && publishedArticleSlugs.includes(guide.slug)).slice(0, 3).map((guide) => <Link className="related-guide" href={`/articles/${guide.slug}`} key={guide.slug}><strong>{guide.title}</strong><span>{guide.description}</span></Link>)}</div>
-    </section>
+      <div className="related-guide-list">{relatedVisible.map((guide) => <Link className="related-guide" href={`/articles/${guide.slug}`} key={guide.slug}><strong>{guide.title}</strong><span>{guide.description}</span></Link>)}</div>
+    </section>}
     {isDetailPaginationEnabled() && article.pagination.totalPages > 1 && <nav className="pagination" aria-label="Article result pages">{page > 1 && <a className="page-arrow" href={`/articles/${article.slug}?page=${page - 1}`}>← Previous</a>}<div className="page-numbers">{getPageItems(article.pagination.totalPages, page).map((item, index) => item === 'ellipsis' ? <span className="page-ellipsis" key={`ellipsis-${index}`}>…</span> : <a className={item === page ? 'page-number current' : 'page-number'} aria-current={item === page ? 'page' : undefined} key={item} href={`/articles/${article.slug}?page=${item}`}>{item}</a>)}</div>{page < article.pagination.totalPages && <a className="page-arrow" href={`/articles/${article.slug}?page=${page + 1}`}>Next →</a>}</nav>}
   </div></main>;
 }
