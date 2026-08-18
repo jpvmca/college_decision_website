@@ -52,6 +52,15 @@ async function getArticle(slug: string, page = 1): Promise<GeneratedArticle | nu
   }
 }
 
+async function getPublishedArticleSlugs(): Promise<string[]> {
+  try {
+    const response = await api<{ data: string[] }>('/articles/published-slugs?limit=45000');
+    return response.data;
+  } catch {
+    return [];
+  }
+}
+
 function formatFee(value: string) {
   const amount = Number(value);
   return Number.isFinite(amount)
@@ -175,6 +184,7 @@ export default async function ArticleDetailPage({ params, searchParams }: { para
   const page = isDetailPaginationEnabled() ? Math.max(1, Number(query.page || 1)) : 1;
   const article = await getArticle(slug, page);
   if (!article) notFound();
+  const publishedArticleSlugs = await getPublishedArticleSlugs();
   const siteUrl = getSiteUrl();
   const seo = getSeoContext(article);
   const jsonLd = {
@@ -218,7 +228,7 @@ export default async function ArticleDetailPage({ params, searchParams }: { para
     <p>{isGovAvgPackageArticle(article.type) ? 'Start with the government colleges that report stronger average packages in your chosen state. Then compare eligibility, fees, admission route, facilities and the latest official placement report before applying.' : 'Start with the colleges that match your preferred location and admission route. Then compare the complete programme cost, duration, eligibility, entrance exam, facilities, learning resources, and recent placement information. A low displayed fee is useful only when it is current and complete.'}</p>
     <section className="related-guides" aria-labelledby="related-guides-heading">
       <h2 id="related-guides-heading">Related Student Decision Guides</h2>
-      <div className="related-guide-list">{relatedGuides.filter((guide) => guide.slug !== article.slug).slice(0, 3).map((guide) => <Link className="related-guide" href={`/articles/${guide.slug}`} key={guide.slug}><strong>{guide.title}</strong><span>{guide.description}</span></Link>)}</div>
+      <div className="related-guide-list">{relatedGuides.filter((guide) => guide.slug !== article.slug && publishedArticleSlugs.includes(guide.slug)).slice(0, 3).map((guide) => <Link className="related-guide" href={`/articles/${guide.slug}`} key={guide.slug}><strong>{guide.title}</strong><span>{guide.description}</span></Link>)}</div>
     </section>
     {isDetailPaginationEnabled() && article.pagination.totalPages > 1 && <nav className="pagination" aria-label="Article result pages">{page > 1 && <a className="page-arrow" href={`/articles/${article.slug}?page=${page - 1}`}>← Previous</a>}<div className="page-numbers">{getPageItems(article.pagination.totalPages, page).map((item, index) => item === 'ellipsis' ? <span className="page-ellipsis" key={`ellipsis-${index}`}>…</span> : <a className={item === page ? 'page-number current' : 'page-number'} aria-current={item === page ? 'page' : undefined} key={item} href={`/articles/${article.slug}?page=${item}`}>{item}</a>)}</div>{page < article.pagination.totalPages && <a className="page-arrow" href={`/articles/${article.slug}?page=${page + 1}`}>Next →</a>}</nav>}
   </div></main>;

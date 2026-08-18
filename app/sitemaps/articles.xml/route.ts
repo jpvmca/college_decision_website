@@ -1,16 +1,15 @@
 import { NextResponse } from 'next/server';
 
-type ArticleIndex = { data: Array<{ slug: string }>; pagination: { totalPages: number } };
 const MAX_URLS_PER_FILE = 45_000;
 
 function xml(value: string) {
   return value.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;').replace(/'/g, '&apos;');
 }
 
-async function getPage(backend: string, page: number) {
-  const response = await fetch(`${backend}/articles?type=all&page=${page}&perPage=50`, { cache: 'no-store' });
+async function getPublishedSlugs(backend: string) {
+  const response = await fetch(`${backend}/articles/published-slugs?limit=${MAX_URLS_PER_FILE}`, { cache: 'no-store' });
   if (!response.ok) throw new Error(`Article sitemap API failed: ${response.status}`);
-  return response.json() as Promise<ArticleIndex>;
+  return response.json() as Promise<{ data: string[] }>;
 }
 
 export async function GET() {
@@ -18,14 +17,8 @@ export async function GET() {
   const backend = process.env.BACKEND_API_URL || 'http://127.0.0.1:4000/api/v1';
   let articles: Array<{ slug: string }> = [];
   try {
-    const first = await getPage(backend, 1);
-    articles = [...first.data];
-    const totalPages = Math.min(first.pagination.totalPages || 1, Math.ceil(MAX_URLS_PER_FILE / 50));
-    for (let page = 2; page <= totalPages; page += 1) {
-      const result = await getPage(backend, page);
-      articles.push(...result.data);
-    }
-    articles = articles.slice(0, MAX_URLS_PER_FILE);
+    const result = await getPublishedSlugs(backend);
+    articles = result.data.slice(0, MAX_URLS_PER_FILE).map((slug) => ({ slug }));
   } catch {
     articles = [];
   }
