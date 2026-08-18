@@ -3,6 +3,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 import SearchBox from '../components/SearchBox';
 import MobileNav from '../components/MobileNav';
+import GoogleTagManager from '../components/GoogleTagManager';
 import './globals.css';
 import './modal-overrides.css';
 
@@ -29,6 +30,7 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
   return (
     <html lang="en">
       <body>
+        <GoogleTagManager />
         <div className="site">
           <nav className="nav">
             <div className="wrap nav-inner">
