@@ -62,7 +62,34 @@ export default async function ArticlesPage({ searchParams }: { searchParams: Pro
           : type === 'all'
             ? 'Published guide'
           : `Up to ₹${budget} lakh`;
+  const siteUrl = (process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3001').replace(/\/+$/, '');
+  const jsonLd = {
+    '@context': 'https://schema.org',
+    '@graph': [
+      {
+        '@type': 'BreadcrumbList',
+        itemListElement: [
+          { '@type': 'ListItem', position: 1, name: 'Home', item: siteUrl },
+          { '@type': 'ListItem', position: 2, name: 'Articles', item: `${siteUrl}/articles` }
+        ]
+      },
+      {
+        '@type': 'ItemList',
+        name: 'Published college decision guides',
+        description: 'Published college guides covering fees, admission, eligibility and outcomes.',
+        numberOfItems: result.data.length,
+        itemListElement: result.data.map((article, index) => ({
+          '@type': 'ListItem',
+          position: (page - 1) * result.pagination.perPage + index + 1,
+          name: article.title,
+          url: `${siteUrl}/articles/${article.slug}`
+        }))
+      }
+    ]
+  };
   return <main className="section"><div className="wrap">
+    <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
+    <nav className="breadcrumb" aria-label="Breadcrumb"><Link href="/">Home</Link><span aria-hidden="true">›</span><span aria-current="page">Articles</span></nav>
     <div className="hero-inline"><p className="eyebrow">STUDENT DECISION GUIDES</p><h1>Compare colleges with a clearer plan</h1><p>Explore course-by-course guides that bring fees, admission routes, eligibility and outcomes into one practical comparison.</p></div>
     <p className="muted">Twenty guides appear on each page. Open a guide to see the matching course options and the questions you should verify before applying.</p>
     <div className="budget-tabs" aria-label="Article filters">
