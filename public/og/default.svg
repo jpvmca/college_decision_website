@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630">
+  <rect width="1200" height="630" fill="#f8fafc"/>
+  <rect width="1200" height="630" fill="url(#bg)"/>
+  <defs><linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#172554"/><stop offset="1" stop-color="#2563eb"/></linearGradient></defs>
+  <path fill="#fff" d="m125 254 92-62 92 62v22H125z"/>
+  <path fill="#dbeafe" d="m217 226 54 36H163z"/>
+  <path fill="#fff" d="M171 280h27v75h-27zm39 0h27v75h-27zm-49 78h88v17h-88z"/>
+  <path fill="#10b981" d="m244 324 18 18 51-62 14 14-65 78-37-37z"/>
+  <text x="365" y="315" fill="#fff" font-family="Arial,Helvetica,sans-serif" font-size="78" font-weight="700">CollegeDecision<tspan fill="#34d399">.in</tspan></text>
+  <text x="370" y="385" fill="#dbeafe" font-family="Arial,Helvetica,sans-serif" font-size="30">Evidence-led college choices</text>
+</svg>

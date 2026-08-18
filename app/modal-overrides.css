@@ -1,0 +1,227 @@
+.detail-grid {
+  column-gap: 22px;
+  row-gap: 28px;
+  margin: 18px 0 24px;
+}
+
+.detail-grid > div,
+.modal-block {
+  padding: 18px;
+}
+
+.modal-block + .modal-block {
+  margin-top: 18px;
+}
+
+.college-modal h3 {
+  margin-top: 36px;
+  margin-bottom: 20px;
+  padding-bottom: 8px;
+}
+
+.original-summary {
+  margin-top: 30px;
+  padding: 17px;
+}
+
+@media (max-width: 760px) {
+  .detail-grid {
+    row-gap: 24px;
+  }
+}
+
+.mobile-navigation {
+  position: relative;
+}
+
+.footer-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+  margin-left: auto;
+  font-size: 14px;
+}
+
+.popular-section {
+  background: #fff;
+  border-top: 1px solid var(--line);
+}
+
+.article-card {
+  border: 1px solid #c8d6ea;
+  box-shadow: 0 5px 16px #17255412;
+}
+
+.article-card:hover {
+  border-color: #8fb0e5;
+  box-shadow: 0 8px 22px #1725541c;
+}
+
+.prose > .card {
+  border: 1px solid #c8d6ea;
+  border-left: 5px solid #4f86ea;
+  box-shadow: 0 6px 18px #17255414;
+}
+
+.popular-guides {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 16px;
+  margin-top: 22px;
+}
+
+.popular-guide {
+  display: flex;
+  flex-direction: column;
+}
+
+.popular-guide h3 {
+  line-height: 1.3;
+  margin-bottom: 8px;
+}
+
+.popular-guide p {
+  color: var(--muted);
+  font-size: 14px;
+}
+
+.guide-link {
+  margin-top: auto;
+  padding-top: 10px;
+  font-weight: 750;
+}
+
+.article-backlink {
+  margin: 10px 0 16px;
+  font-weight: 750;
+}
+
+.breadcrumb {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 7px;
+  margin-bottom: 10px;
+  color: var(--muted);
+  font-size: 14px;
+}
+
+.breadcrumb span[aria-current="page"] {
+  color: var(--muted);
+}
+
+.article-intro {
+  max-width: 850px;
+  font-size: 17px;
+  color: #34415a;
+}
+
+.related-guides {
+  margin-top: 34px;
+  padding-top: 8px;
+}
+
+.related-guides h2 {
+  margin-bottom: 16px;
+}
+
+.related-guide-list {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 14px;
+}
+
+.related-guide {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  border: 1px solid #dbe8ff;
+  border-radius: 10px;
+  background: #f8fbff;
+  padding: 15px;
+}
+
+.related-guide span {
+  color: var(--muted);
+  font-size: 14px;
+}
+
+.mobile-menu-toggle {
+  display: none;
+  border: 1px solid #d6e1f4;
+  border-radius: 8px;
+  background: #fff;
+  color: #172554;
+  font-size: 22px;
+  line-height: 1;
+  padding: 7px 10px;
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+@media (max-width: 760px) {
+  .mobile-menu-toggle {
+    display: block;
+  }
+
+  .mobile-navigation .nav-links {
+    display: none;
+    position: absolute;
+    z-index: 12;
+    top: calc(100% + 8px);
+    right: 0;
+    min-width: 150px;
+    padding: 8px;
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    background: #fff;
+    box-shadow: 0 12px 28px #1720331c;
+  }
+
+  .mobile-navigation .nav-links.mobile-open {
+    display: grid;
+    gap: 2px;
+  }
+
+  .mobile-navigation .nav-links a {
+    display: block;
+    padding: 9px 11px;
+    border-radius: 7px;
+  }
+
+  .mobile-navigation .nav-links a:hover {
+    background: #eff6ff;
+    text-decoration: none;
+  }
+
+  .site-search {
+    width: 100%;
+    padding: 0 2px;
+  }
+
+  .search-form {
+    width: 100%;
+  }
+
+  .footer-links {
+    margin-left: 0;
+  }
+
+  .popular-guides {
+    grid-template-columns: 1fr;
+  }
+
+  .related-guide-list {
+    grid-template-columns: 1fr;
+  }
+}
