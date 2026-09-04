@@ -4,6 +4,9 @@ import { api, ArticleList } from '../lib/api';
 import CollegeDecisionFilter from '../components/CollegeDecisionFilter';
 import { ArrowRight, ChartNoAxesCombined, GraduationCap, IndianRupee } from 'lucide-react';
 
+type CourseSummary = { id: number; name: string; institute_count: number; programme_count: number; review_count: number | string | null; average_rating: number | string | null };
+type ExamSummary = { id: number; name: string; course_name: string | null; institute_count: number; programme_count: number; review_count: number | string | null; average_rating: number | string | null };
+
 export const metadata: Metadata = {
   title: 'College Decision Platform',
   description: 'Compare college fees, admission routes, placements and total study cost.',
@@ -18,11 +21,21 @@ function getGuideImageSources(imageUrl: string) {
 
 export default async function HomePage() {
   let popularGuides: ArticleList['data'] = [];
+  let courses: CourseSummary[] = [];
+  let exams: ExamSummary[] = [];
   try {
-    const result = await api<ArticleList>('/articles?type=all&latest=true&perPage=4');
-    popularGuides = result.data.slice(0, 4);
+    const [guidesResult, coursesResult, examsResult] = await Promise.all([
+      api<ArticleList>('/articles?type=all&latest=true&perPage=4'),
+      api<{ data: CourseSummary[] }>('/courses?page=1&perPage=6'),
+      api<{ data: ExamSummary[] }>('/exams?page=1&perPage=6')
+    ]);
+    popularGuides = guidesResult.data.slice(0, 4);
+    courses = coursesResult.data;
+    exams = examsResult.data;
   } catch {
     popularGuides = [];
+    courses = [];
+    exams = [];
   }
   const typeLabel = (type?: string) => type === 'fees' ? 'Course fees' : type === 'admission' ? 'Admission' : type === 'gov-avg-package' ? 'Placement' : type === 'exam-admission' ? 'MBA entrance' : 'Budget';
   return (
@@ -55,6 +68,28 @@ export default async function HomePage() {
             <article className="card feature-card"><div className="feature-label"><IndianRupee className="feature-icon" size={20} aria-hidden="true" /><span className="pill">Fees</span></div><h3>Total cost, not just tuition</h3><p>Separate tuition, hostel, mess, deposits and other charges before comparing colleges.</p></article>
             <article className="card feature-card"><div className="feature-label"><GraduationCap className="feature-icon" size={20} aria-hidden="true" /><span className="pill">Admission</span></div><h3>Route and eligibility</h3><p>Understand entrance exams, counselling, eligibility and the evidence behind each claim.</p></article>
             <article className="card feature-card"><div className="feature-label"><ChartNoAxesCombined className="feature-icon" size={20} aria-hidden="true" /><span className="pill">Outcomes</span></div><h3>Placement context</h3><p>Show placement year and units instead of turning an unverified number into a promise.</p></article>
+          </div>
+        </div>
+      </section>
+      <section className="section home-catalog-section">
+        <div className="wrap">
+          <div className="section-heading-row">
+            <div><p className="eyebrow">EXPLORE STUDY PATHS</p><h2>Popular courses</h2></div>
+            <Link className="popular-guides-view-all" href="/courses">View all courses <ArrowRight size={16} aria-hidden="true" /></Link>
+          </div>
+          <div className="grid">
+            {courses.map((course) => <article className="card" key={course.id}><span className="pill">{course.review_count ? `${course.review_count} reviews` : 'Course guide'}</span><h3>{course.name}</h3><p className="muted">{Number(course.institute_count || 0)} colleges · {Number(course.programme_count || 0)} active programmes</p>{course.average_rating ? <p className="article-facts">{Number(course.average_rating).toFixed(1)}/5 average rating</p> : null}</article>)}
+          </div>
+        </div>
+      </section>
+      <section className="section home-catalog-section">
+        <div className="wrap">
+          <div className="section-heading-row">
+            <div><p className="eyebrow">PLAN YOUR APPLICATION</p><h2>Popular entrance exams</h2></div>
+            <Link className="popular-guides-view-all" href="/exams">View all exams <ArrowRight size={16} aria-hidden="true" /></Link>
+          </div>
+          <div className="grid">
+            {exams.map((exam) => <article className="card" key={exam.id}><span className="pill">{exam.course_name || 'Entrance exam'}</span><h3>{exam.name}</h3><p className="muted">{Number(exam.institute_count || 0)} colleges · {Number(exam.programme_count || 0)} mapped programmes</p>{exam.review_count ? <p className="article-facts">{exam.review_count} course reviews · {Number(exam.average_rating).toFixed(1)}/5 average rating</p> : null}</article>)}
           </div>
         </div>
       </section>

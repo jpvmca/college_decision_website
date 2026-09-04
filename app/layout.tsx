@@ -30,10 +30,31 @@ export const metadata: Metadata = {
 };
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
+  const siteUrl = (process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3001').replace(/\/+$/, '');
+  const websiteJsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'WebSite',
+    '@id': `${siteUrl}/#website`,
+    name: 'CollegeDecision',
+    url: `${siteUrl}/`,
+    potentialAction: {
+      '@type': 'SearchAction',
+      target: {
+        '@type': 'EntryPoint',
+        urlTemplate: `${siteUrl}/search?q={search_term_string}`
+      },
+      'query-input': {
+        '@type': 'PropertyValueSpecification',
+        valueRequired: true,
+        valueName: 'search_term_string'
+      }
+    }
+  };
   return (
     <html lang="en">
       <body>
         <GoogleTagManager />
+        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteJsonLd) }} />
         <div className="site">
           <nav className="nav">
             <div className="wrap nav-inner">
@@ -43,7 +64,7 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
             </div>
           </nav>
           {children}
-          <footer className="footer"><div className="wrap"><Image className="footer-logo" src="/logo.svg" alt="College Decision" width={170} height={34} loading="lazy" /><span>Clear college decisions with practical cost, admission and outcome guidance.</span><nav className="footer-links" aria-label="Footer links"><Link href="/contact">Contact</Link><Link href="/privacy-policy">Privacy</Link><Link href="/terms-and-conditions">Terms</Link><Link href="/disclaimer">Disclaimer</Link></nav></div></footer>
+          <footer className="footer"><div className="wrap"><Image className="footer-logo" src="/logo.svg" alt="College Decision" width={170} height={34} loading="lazy" /><span>Clear college decisions with practical cost, admission and outcome guidance.</span><nav className="footer-links" aria-label="Footer links"><Link href="/about">About</Link><Link href="/contact">Contact</Link><Link href="/privacy-policy">Privacy</Link><Link href="/terms-and-conditions">Terms</Link><Link href="/disclaimer">Disclaimer</Link></nav></div></footer>
           </div>
       </body>
     </html>

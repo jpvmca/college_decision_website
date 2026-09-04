@@ -12,10 +12,11 @@ export default function MobileNav() {
       {open ? <X size={28} aria-hidden="true" /> : <Menu size={30} aria-hidden="true" />}
     </button>
     <div id="site-navigation" className={open ? 'nav-links mobile-open' : 'nav-links'}>
+      <Link href="/colleges" onClick={() => setOpen(false)}>Colleges</Link>
+      <Link href="/exams" onClick={() => setOpen(false)}>Exams</Link>
+      <Link href="/courses" onClick={() => setOpen(false)}>Courses</Link>
       <Link href="/articles" onClick={() => setOpen(false)}>Articles</Link>
       <Link href="/compare-colleges-2026" onClick={() => setOpen(false)}><GitCompareArrows size={16} aria-hidden="true" /> Compare colleges</Link>
-      <Link href="/about" onClick={() => setOpen(false)}>About</Link>
-      <Link href="/contact" onClick={() => setOpen(false)}>Contact</Link>
     </div>
   </div>;
 }
