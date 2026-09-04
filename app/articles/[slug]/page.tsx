@@ -1,9 +1,14 @@
 import type { Metadata } from 'next';
-import { notFound } from 'next/navigation';
+import { notFound, redirect } from 'next/navigation';
 import Link from 'next/link';
+import { ArrowRight } from 'lucide-react';
 import { api } from '../../../lib/api';
 import { getPageItems } from '../../../lib/pagination';
 import CollegeDetailsModal from './CollegeDetailsModal';
+import DecisionActions from './DecisionActions';
+import ExpandableText from '../../../components/ExpandableText';
+import CollegeComparisonArticle from '../../../components/articles/CollegeComparisonArticle';
+import InstituteLogo from '../../../components/InstituteLogo';
 
 type GeneratedArticle = {
   type: string;
@@ -11,16 +16,26 @@ type GeneratedArticle = {
   title: string;
   publishedAt?: string | null;
   publicationUpdatedAt?: string | null;
+  imageUrl?: string | null;
   course: { name: string; slug: string };
+  exam?: { id: number; name: string; slug: string; applyUrl?: string | null };
   state?: { name: string; slug: string };
+  locationType?: 'india' | 'state' | 'city';
+  location?: { name: string; slug: string };
   budgetLakh: number | null;
+  packageThresholdLakh?: number | null;
   candidateCount: number;
+  h1?: string;
+  decisionScore?: { collegeA: number; collegeB: number };
+  collegeA?: Record<string, unknown>;
+  collegeB?: Record<string, unknown>;
   pagination: { page: number; perPage: number; total: number; totalPages: number };
   candidates: Array<{
     institute_id: number;
     course_id: number;
     institute_program_id: number;
     institute_name: string;
+    logo?: string | null;
     institute_type: string;
     city: string | null;
     state: string | null;
@@ -30,8 +45,12 @@ type GeneratedArticle = {
     min_total_fee?: string;
     max_total_fee?: string;
     fee_record_count?: number;
-    admission_routes?: string | null;
+    qualifying_programme_count?: number;
+    average_year_fee?: number | string | null;
     average_package?: number | string | null;
+    nirf_rank?: number | string | null;
+    nirf_out_of?: number | string | null;
+    admission_routes?: string | null;
     highest_package?: number | string | null;
     placement_year?: number | string | null;
   }>;
@@ -41,13 +60,24 @@ function getSiteUrl() {
   return (process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3001').replace(/\/+$/, '');
 }
 
+function getResponsiveImageSources(imageUrl: string, preserveAspectRatio = false) {
+  const widths = [480, 768, 1200, 1600];
+  const quality = preserveAspectRatio ? 89 : 78;
+  const addQuery = (width: number) => `${imageUrl}${imageUrl.includes('?') ? '&' : '?'}w=${width}${preserveAspectRatio ? '' : `&h=${Math.round(width * 0.5625)}`}&q=${quality}&convert=webp`;
+  return {
+    src: addQuery(1200),
+    srcSet: widths.map((width) => `${addQuery(width)} ${width}w`).join(', '),
+    sizes: '(max-width: 760px) calc(100vw - 40px), min(1080px, calc(100vw - 40px))'
+  };
+}
+
 function isDetailPaginationEnabled() {
   return process.env.NEXT_PUBLIC_ARTICLE_DETAIL_PAGINATION !== 'false';
 }
 
 async function getArticle(slug: string, page = 1): Promise<GeneratedArticle | null> {
   try {
-    const response = await api<{ data: GeneratedArticle }>(`/articles/${slug}?page=${page}&perPage=20`);
+    const response = await api<{ data: GeneratedArticle }>(`/articles/${slug}?page=${page}&perPage=20`, { next: { revalidate: 300 } });
     return response.data;
   } catch {
     return null;
@@ -65,7 +95,7 @@ async function getPublishedArticleSlugs(): Promise<string[]> {
 
 function formatFee(value: string) {
   const amount = Number(value);
-  return Number.isFinite(amount)
+  return Number.isFinite(amount) && amount > 0
     ? new Intl.NumberFormat('en-IN', { style: 'currency', currency: 'INR', maximumFractionDigits: 0 }).format(amount)
     : 'Fee available on request';
 }
@@ -80,9 +110,55 @@ function isGovAvgPackageArticle(type: string) {
   return type.includes('government-state-avg-package') || type.includes('gov-avg-package');
 }
 
+function isHighestPackageArticle(type: string) {
+  return type.includes('highest-package-threshold');
+}
+
+function isAveragePackageExceedsFeesArticle(type: string) {
+  return type.includes('average-package-exceeds-fees');
+}
+
+function isExamAdmissionArticle(type: string) {
+  return type.includes('exam-admission');
+}
+
 function getSeoContext(article: GeneratedArticle) {
   const courseName = article.course.name;
   const cleanCourseName = courseName.replace(/\s*\/\s*/g, ' ').replace(/\s+-\s+/g, ' ').trim();
+  if (article.type === 'college-comparison') {
+    const collegeAName = (article.collegeA as { name?: string } | undefined)?.name || 'College A';
+    const collegeBName = (article.collegeB as { name?: string } | undefined)?.name || 'College B';
+    const compactAName = collegeAName.split(',')[0].trim();
+    const compactBName = collegeBName.split(',')[0].trim();
+    const comparisonCourse = /B\.? ?Tech|B\.?E\.?/i.test(cleanCourseName) ? 'B.Tech' : cleanCourseName;
+    const primaryTopic = `${compactAName} vs ${compactBName} for ${comparisonCourse}`;
+    return {
+      primaryKeyword: primaryTopic,
+      secondaryKeywords: [`${compactAName} vs ${compactBName} fees`, `${compactAName} vs ${compactBName} placements`, `${compactAName} vs ${compactBName} admission`, `${compactAName} vs ${compactBName} eligibility`, `${compactAName} vs ${compactBName} B.E. comparison`],
+      intro: `Compare ${compactAName} and ${compactBName} for ${comparisonCourse} and B.E. branches, matched fees, eligibility, JEE Main admission, placements and campus location.`,
+      metaDescription: `Compare ${compactAName} and ${compactBName} for ${comparisonCourse} and B.E. branches, matched fees, eligibility, JEE Main admission, placements and campus location.`,
+      optionsHeading: `${primaryTopic}: quick comparison`
+    };
+  }
+  if (isAveragePackageExceedsFeesArticle(article.type)) {
+    const locationName = article.location?.name || 'India';
+    return {
+      primaryKeyword: `${cleanCourseName} colleges in ${locationName} where average package exceeds fees 2026`,
+      secondaryKeywords: [`${cleanCourseName} fees and average package ${locationName}`, `${cleanCourseName} colleges ${locationName} placement value`, `${cleanCourseName} admission ${locationName}`],
+      intro: `This guide compares ${cleanCourseName} colleges in ${locationName} where the recorded average placement package is higher than the recorded total programme fee. Treat this as a transparent database comparison, not a guaranteed salary or return.`,
+      optionsHeading: `${cleanCourseName} colleges in ${locationName} with package above recorded fees`
+    };
+  }
+  if (isHighestPackageArticle(article.type)) {
+    const stateName = article.state?.name || 'the selected state';
+    const threshold = article.packageThresholdLakh || 15;
+    return {
+      primaryKeyword: `${cleanCourseName} colleges in ${stateName} with ${threshold} lakh highest package`,
+      secondaryKeywords: [`${cleanCourseName} placement ${stateName}`, `${cleanCourseName} colleges ${stateName} highest package`, `${cleanCourseName} admission ${stateName}`],
+      intro: `This guide compares ${cleanCourseName} colleges in ${stateName} with recorded highest placement packages of at least ₹${threshold} lakh. Use the figures as historical evidence, then verify the latest placement report, fees and admission requirements with each college.`,
+      optionsHeading: `${cleanCourseName} colleges in ${stateName} with ₹${threshold} lakh highest package`
+    };
+  }
   if (isGovAvgPackageArticle(article.type)) {
     const stateName = article.state?.name || 'the selected state';
     return {
@@ -90,6 +166,15 @@ function getSeoContext(article: GeneratedArticle) {
       secondaryKeywords: [`${cleanCourseName} colleges ${stateName} placement`, `government ${cleanCourseName} colleges ${stateName} fees`, `${cleanCourseName} average salary ${stateName}`],
       intro: `This guide compares ${cleanCourseName} government colleges in ${stateName} by recorded average package. Use the placement figures as historical comparison points, then verify the latest fee, eligibility, admission and placement information with each institution.`,
       optionsHeading: `${cleanCourseName} government colleges to compare`
+    };
+  }
+  if (isExamAdmissionArticle(article.type)) {
+    const examName = article.exam?.name || 'the selected entrance exam';
+    return {
+      primaryKeyword: `MBA colleges accepting ${examName} 2026`,
+      secondaryKeywords: [`${examName} MBA colleges`, `${examName} eligibility`, `${examName} MBA admission process`],
+      intro: `This guide compares MBA programmes at colleges linked to ${examName}. Review the listed course eligibility and admission routes, then confirm the current exam notice, institution requirements, dates and application process before applying.`,
+      optionsHeading: `MBA colleges accepting ${examName}`
     };
   }
   if (article.type.includes('admission')) {
@@ -121,7 +206,15 @@ function getSeoContext(article: GeneratedArticle) {
   };
 }
 
-function getCandidateNote(candidate: GeneratedArticle['candidates'][number]) {
+function isUniqueCollegeArticle(type: string) {
+  return type.includes('budget') || (type.includes('fees') && !type.includes('exceeds-fees'));
+}
+
+function getCandidateNote(candidate: GeneratedArticle['candidates'][number], uniqueCollege = false) {
+  const programmeCount = Number(candidate.qualifying_programme_count || 0);
+  if (uniqueCollege && programmeCount > 1) {
+    return `${programmeCount} qualifying programmes at this college. Showing the lowest recorded fee. Use View college details for the full programme list.`;
+  }
   if (!candidate.eligibility) {
     return `Eligibility is not listed for this option. Confirm the latest admission notice before applying.`;
   }
@@ -131,16 +224,21 @@ function getCandidateNote(candidate: GeneratedArticle['candidates'][number]) {
   return `${candidate.fee_record_count || 0} fee entries found. Private colleges may add development, hostel and other charges.`;
 }
 
-function getCandidateHeading(candidate: GeneratedArticle['candidates'][number]) {
+function getCandidateHeading(candidate: GeneratedArticle['candidates'][number], uniqueCollege = false) {
+  if (uniqueCollege) return candidate.institute_name;
   return candidate.programme_name
     ? `${candidate.institute_name} — ${candidate.programme_name}`
     : candidate.institute_name;
 }
 
-function getCourseContext(candidate: GeneratedArticle['candidates'][number]) {
+function getCourseContext(candidate: GeneratedArticle['candidates'][number], uniqueCollege = false) {
   const location = [candidate.city, candidate.state].filter(Boolean).join(', ');
   const institute = candidate.institute_name || 'this institute';
-  return `${candidate.programme_name || 'Programme'} at ${institute}${location ? `, ${location}` : ''}`;
+  const programme = candidate.programme_name || 'Programme';
+  if (uniqueCollege) {
+    return `Lowest recorded fee: ${programme} at ${institute}${location ? `, ${location}` : ''}`;
+  }
+  return `${programme} at ${institute}${location ? `, ${location}` : ''}`;
 }
 
 const relatedGuides = [
@@ -162,7 +260,7 @@ export async function generateMetadata({ params, searchParams }: { params: Promi
   const canonical = `${getSiteUrl()}${canonicalPath}`;
   return {
     title: pageTitle,
-    description: `${pageTitle}: ${seo.intro}`,
+    description: 'metaDescription' in seo ? seo.metaDescription : `${pageTitle}: ${seo.intro}`,
     keywords: [seo.primaryKeyword, ...seo.secondaryKeywords, `page ${page}`],
     alternates: { canonical },
     robots: { index: true, follow: true },
@@ -171,7 +269,7 @@ export async function generateMetadata({ params, searchParams }: { params: Promi
       title: pageTitle,
       description: seo.intro,
       url: canonical,
-      images: [{ url: '/og/default.png', width: 1200, height: 630, alt: 'College Decision' }]
+      images: [{ url: article.imageUrl || '/og/default.png', width: 1200, height: 630, alt: article.imageUrl ? article.title : 'College Decision' }]
     },
     twitter: { card: 'summary_large_image', title: pageTitle }
   };
@@ -183,6 +281,28 @@ export default async function ArticleDetailPage({ params, searchParams }: { para
   const page = isDetailPaginationEnabled() ? Math.max(1, Number(query.page || 1)) : 1;
   const article = await getArticle(slug, page);
   if (!article) notFound();
+  if (article.type === 'college-comparison' && article.collegeA && article.collegeB) {
+    if (article.slug !== slug) redirect(`/articles/${article.slug}`);
+    const breadcrumbTitle = article.title.replace(/\s*\|\s*College Decision\s*$/, '');
+    const comparisonJsonLd = {
+      '@context': 'https://schema.org',
+      '@graph': [
+        { '@type': 'Article', headline: article.h1 || article.title, mainEntityOfPage: `${getSiteUrl()}/articles/${article.slug}`, about: { '@type': 'Course', name: article.course.name } },
+        { '@type': 'ItemList', name: `${article.course.name} college comparison`, itemListElement: [article.collegeA, article.collegeB].map((college, index) => ({ '@type': 'ListItem', position: index + 1, name: String((college as { name?: string })?.name || 'College') })) },
+        { '@type': 'BreadcrumbList', itemListElement: [{ '@type': 'ListItem', position: 1, name: 'Home', item: getSiteUrl() }, { '@type': 'ListItem', position: 2, name: 'Articles', item: `${getSiteUrl()}/articles` }, { '@type': 'ListItem', position: 3, name: article.title, item: `${getSiteUrl()}/articles/${article.slug}` }] }
+      ]
+    };
+    return <main className="section"><div className="wrap prose">
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(comparisonJsonLd) }} />
+      <nav className="breadcrumb" aria-label="Breadcrumb"><Link href="/">Home</Link><span aria-hidden="true">›</span><Link href="/articles">Articles</Link><span aria-hidden="true">›</span><span aria-current="page">{breadcrumbTitle}</span></nav>
+      <h1>{article.h1 || article.title}</h1>
+      {article.imageUrl && (() => {
+        const image = getResponsiveImageSources(article.imageUrl, true);
+        return <img className="article-detail-image" src={image.src} srcSet={image.srcSet} sizes={image.sizes} alt={article.h1 || article.title} width="1200" height="800" fetchPriority="high" loading="eager" decoding="async" />;
+      })()}
+      <CollegeComparisonArticle article={article as unknown as Parameters<typeof CollegeComparisonArticle>[0]['article']} />
+    </div></main>;
+  }
   const publishedArticleSlugs = await getPublishedArticleSlugs();
   const siteUrl = getSiteUrl();
   const seo = getSeoContext(article);
@@ -210,7 +330,7 @@ export default async function ArticleDetailPage({ params, searchParams }: { para
           name: 'College Decision',
           logo: { '@type': 'ImageObject', url: `${siteUrl}/logo.svg` }
         },
-        image: `${siteUrl}/og/default.png`
+        image: article.imageUrl || `${siteUrl}/og/default.png`
       },
       {
         '@type': 'BreadcrumbList',
@@ -222,18 +342,25 @@ export default async function ArticleDetailPage({ params, searchParams }: { para
       }
     ]
   };
+  const uniqueCollege = isUniqueCollegeArticle(article.type);
   return <main className="section"><div className="wrap prose">
     <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
     <nav className="breadcrumb" aria-label="Breadcrumb"><Link href="/">Home</Link><span aria-hidden="true">›</span><Link href="/articles">Articles</Link><span aria-hidden="true">›</span><span aria-current="page">{article.title}</span></nav>
     <h1>{article.title}</h1>
+    {article.imageUrl && (() => {
+      const image = getResponsiveImageSources(article.imageUrl);
+      return <img className="article-detail-image" src={image.src} srcSet={image.srcSet} sizes={image.sizes} alt={article.title} width="1200" height="675" fetchPriority="high" loading="eager" decoding="async" />;
+    })()}
     <p className="article-backlink"><Link href="/articles">← Back to all Student Decision Guides</Link></p>
-    <p className="muted">Showing page {article.pagination.page} of {article.pagination.totalPages} · {article.candidateCount} course options found · {isGovAvgPackageArticle(article.type) ? `Government colleges in ${article.state?.name || 'selected state'} ranked by average package` : article.budgetLakh ? `Budget guide: up to ₹${article.budgetLakh} lakh` : article.type.includes('admission') ? 'Course admission and eligibility guide' : 'Course fee guide'}</p>
-    <div className="notice"><strong>Before you apply:</strong> {isGovAvgPackageArticle(article.type) ? 'placement packages are historical leads and can change by batch, role and recruiter mix. Confirm the latest official placement report before deciding.' : article.type.includes('admission') ? 'eligibility and admission routes can change by institution and academic year. Confirm the latest official notice before applying.' : 'treat these figures as fee leads, not final quotes. Confirm the academic year, currency, duration, hostel, mess, deposits and current admission rules with the institution.'}</div>
+    <p><Link className="button primary" href="/compare-colleges-2026">Compare colleges side by side <ArrowRight size={16} aria-hidden="true" /></Link></p>
+    <p className="muted">Showing page {article.pagination.page} of {article.pagination.totalPages} · {article.candidateCount} unique college options found · {isAveragePackageExceedsFeesArticle(article.type) ? `Recorded average package exceeds recorded fees in ${article.location?.name || 'India'}` : isHighestPackageArticle(article.type) ? `Colleges in ${article.state?.name || 'selected state'} with at least ₹${article.packageThresholdLakh || 15} lakh highest package` : isGovAvgPackageArticle(article.type) ? `Government colleges in ${article.state?.name || 'selected state'} ranked by average package` : isExamAdmissionArticle(article.type) ? `MBA colleges accepting ${article.exam?.name || 'the selected entrance exam'}` : article.budgetLakh ? `Budget guide: up to ₹${article.budgetLakh} lakh` : article.type.includes('admission') ? 'Course admission and eligibility guide' : 'Course fee guide'}</p>
+    <div className="notice"><strong>Before you apply:</strong> {isAveragePackageExceedsFeesArticle(article.type) || isHighestPackageArticle(article.type) || isGovAvgPackageArticle(article.type) ? 'placement packages are historical leads and can change by batch, role and recruiter mix. Confirm the latest official fee and placement report before deciding.' : isExamAdmissionArticle(article.type) ? `exam routes and college requirements can change. Confirm the current ${article.exam?.name || 'entrance exam'} notice and each institution's official admission process before applying.` : article.type.includes('admission') ? 'eligibility and admission routes can change by institution and academic year. Confirm the latest official notice before applying.' : 'treat these figures as fee leads, not final quotes. Confirm the academic year, currency, duration, hostel, mess, deposits and current admission rules with the institution.'}</div>
     <p className="article-intro">{seo.intro}</p>
+    {isExamAdmissionArticle(article.type) && article.exam?.applyUrl && <p className="article-backlink"><a href={article.exam.applyUrl} target="_blank" rel="noreferrer">Open official {article.exam.name} information</a></p>}
     <h2>{seo.optionsHeading}</h2>
-    {article.candidates.map((candidate, index) => <article className="card" key={`${candidate.institute_name}-${candidate.programme_name}-${index}`}><h3>{index + 1}. {getCandidateHeading(candidate)}</h3><p className="muted">{candidate.institute_type === 'public' ? 'Government or public institution' : 'Private institution'} · {candidate.city || 'Location not listed'}, {candidate.state || 'India'}</p><p className="course-context"><strong>Course:</strong> {getCourseContext(candidate)}</p><p><strong>Duration:</strong> {candidate.duration || 'Check the current programme duration.'}</p><p><strong>Eligibility:</strong> {candidate.eligibility || 'Check the latest college admission notice.'}</p>{isGovAvgPackageArticle(article.type) ? <><p className="price">{formatPackage(candidate.average_package)} average package{candidate.placement_year ? ` · ${candidate.placement_year}` : ''}</p>{candidate.highest_package ? <p><strong>Highest package:</strong> {formatPackage(candidate.highest_package)}</p> : null}</> : article.type.includes('admission') ? <p><strong>Admission route:</strong> {candidate.admission_routes || 'Check the latest official admission notice.'}</p> : <p className="price">{formatFee(candidate.min_total_fee || '')} lowest recorded fee</p>}<div className="card-actions"><small>{isGovAvgPackageArticle(article.type) ? 'Average package ranking uses active placement records for government or public institutes. Verify the latest official report before applying.' : article.type.includes('admission') ? 'Eligibility, duration and admission route are present in the active programme records. Verify the current official notice before applying.' : getCandidateNote(candidate)}</small><CollegeDetailsModal instituteId={candidate.institute_id} courseId={candidate.course_id} courseName={candidate.programme_name} /></div></article>)}
+    {article.candidates.map((candidate, index) => <article className="card" key={uniqueCollege ? String(candidate.institute_id) : `${candidate.institute_name}-${candidate.programme_name}-${index}`}><div className="institute-heading"><h3>{index + 1}. {getCandidateHeading(candidate, uniqueCollege)}</h3><InstituteLogo src={candidate.logo} alt={`${candidate.institute_name} logo`} /></div><p className="muted">{candidate.institute_type === 'public' ? 'Government or public institution' : 'Private institution'} · {candidate.city || 'Location not listed'}, {candidate.state || 'India'}</p><p className="course-context"><strong>Course:</strong> {getCourseContext(candidate, uniqueCollege)}</p>{(candidate.average_year_fee || candidate.average_package || candidate.highest_package || candidate.nirf_rank) && <div className="article-college-highlights">{candidate.average_year_fee && <span>Average yearly fee: <strong>{formatFee(String(candidate.average_year_fee))}</strong></span>}{candidate.average_package && <span>Average placement: <strong>{formatPackage(candidate.average_package)}</strong></span>}{candidate.highest_package && <span>Highest placement: <strong>{formatPackage(candidate.highest_package)}</strong></span>}{candidate.nirf_rank && <span>NIRF: <strong>Rank {candidate.nirf_rank}{candidate.nirf_out_of ? ` / ${candidate.nirf_out_of}` : ''}</strong></span>}</div>}<p><strong>Duration:</strong> {candidate.duration || 'Check the current programme duration.'}</p><p><strong>Eligibility:</strong> <ExpandableText text={candidate.eligibility || 'Check the latest college admission notice.'} /></p>{isAveragePackageExceedsFeesArticle(article.type) ? <><p className="price">{formatPackage(candidate.average_package)} average package</p><p><strong>Recorded fee:</strong> {formatFee(candidate.min_total_fee || '')}</p></> : isHighestPackageArticle(article.type) ? <><p className="price">{formatPackage(candidate.highest_package)} highest package{candidate.placement_year ? ` · ${candidate.placement_year}` : ''}</p>{candidate.average_package ? <p><strong>Average package:</strong> {formatPackage(candidate.average_package)}</p> : null}</> : isGovAvgPackageArticle(article.type) ? <><p className="price">{formatPackage(candidate.average_package)} average package{candidate.placement_year ? ` · ${candidate.placement_year}` : ''}</p>{candidate.highest_package ? <p><strong>Highest package:</strong> {formatPackage(candidate.highest_package)}</p> : null}</> : article.type.includes('admission') ? <p><strong>Admission route:</strong> {candidate.admission_routes || 'Check the latest official admission notice.'}</p> : <p className="price">{formatFee(candidate.min_total_fee || '')} lowest recorded fee</p>}<div className="card-actions"><small>{isAveragePackageExceedsFeesArticle(article.type) ? 'This comparison uses recorded average package and fee values; verify their years and current official reports before applying.' : isHighestPackageArticle(article.type) ? 'Highest package values are historical placement records. Verify the latest official report before applying.' : isGovAvgPackageArticle(article.type) ? 'Average package ranking uses active placement records for government or public institutes. Verify the latest official report before applying.' : article.type.includes('admission') ? 'Eligibility, duration and admission route are present in the active programme records. Verify the current official notice before applying.' : getCandidateNote(candidate, uniqueCollege)}</small><div className="card-action-buttons"><CollegeDetailsModal instituteId={candidate.institute_id} courseId={candidate.course_id} courseName={candidate.programme_name} /><DecisionActions showCompare={article.pagination.total > 1} instituteId={candidate.institute_id} courseId={candidate.course_id} instituteName={candidate.institute_name} programmeName={candidate.programme_name} duration={candidate.duration} eligibility={candidate.eligibility} fee={formatFee(candidate.min_total_fee || '')} feeRecordCount={candidate.fee_record_count} instituteType={candidate.institute_type} city={candidate.city} state={candidate.state} averagePackage={candidate.average_package} highestPackage={candidate.highest_package} placementYear={candidate.placement_year} admissionRoutes={candidate.admission_routes} /></div></div></article>)}
     <h2>How to use this guide</h2>
-    <p>{isGovAvgPackageArticle(article.type) ? 'Start with the government colleges that report stronger average packages in your chosen state. Then compare eligibility, fees, admission route, facilities and the latest official placement report before applying.' : 'Start with the colleges that match your preferred location and admission route. Then compare the complete programme cost, duration, eligibility, entrance exam, facilities, learning resources, and recent placement information. A low displayed fee is useful only when it is current and complete.'}</p>
+    <p>{isAveragePackageExceedsFeesArticle(article.type) ? 'Use the package-above-fees result as a shortlist signal, then compare programme quality, fee coverage, eligibility, admission route and the latest official placement report.' : isHighestPackageArticle(article.type) ? 'Start with colleges that meet the package threshold, then compare programme quality, fees, eligibility, admission route and the latest official placement report before applying.' : isGovAvgPackageArticle(article.type) ? 'Start with the government colleges that report stronger average packages in your chosen state. Then compare eligibility, fees, admission route, facilities and the latest official placement report before applying.' : 'Start with the colleges that match your preferred location and admission route. Then compare the complete programme cost, duration, eligibility, entrance exam, facilities, learning resources, and recent placement information. A low displayed fee is useful only when it is current and complete.'}</p>
     {relatedVisible.length > 0 && <section className="related-guides" aria-labelledby="related-guides-heading">
       <h2 id="related-guides-heading">Related Student Decision Guides</h2>
       <div className="related-guide-list">{relatedVisible.map((guide) => <Link className="related-guide" href={`/articles/${guide.slug}`} key={guide.slug}><strong>{guide.title}</strong><span>{guide.description}</span></Link>)}</div>

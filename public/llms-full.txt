@@ -1,0 +1,69 @@
+# College Decision — Full Information
+
+## About this website
+
+College Decision is a student decision-support website for comparing Indian colleges and programmes. It organizes structured records into practical guides so students can compare more than a single headline fee or ranking.
+
+The website focuses on:
+
+- College and programme comparisons
+- Total and recorded fee information
+- Programme duration and eligibility
+- Admission routes and entrance exams
+- College location and institution type
+- Placement and package context
+- Budget-focused college discovery
+
+## How to use the website
+
+1. Start with the [college decision tool](/).
+2. Select a course, state, city, budget, college type, branch or programme, and entrance exam where relevant.
+3. Review the matching colleges and programmes.
+4. Open a college profile for additional programme, fee, exam, and placement records.
+5. Compare colleges and review admission information.
+6. Confirm all important details with the institution’s current official notice.
+
+## Content sections
+
+- [Home](/): Decision tool, popular guides, and the platform overview.
+- [All decision guides](/articles): Published guides covering fees, budgets, admission, eligibility, and placement context.
+- [About College Decision](/about): Platform purpose and editorial context.
+- [Contact College Decision](/contact): Contact information and enquiries.
+- [Privacy policy](/privacy-policy): Privacy practices.
+- [Terms and conditions](/terms-and-conditions): Website terms.
+- [Disclaimer](/disclaimer): Important limitations and verification guidance.
+
+## Guide types
+
+### Admission and eligibility guides
+
+These guides summarize programme duration, eligibility wording, and listed admission routes. Requirements can change by institution, course, academic year, entrance exam, and counselling process.
+
+### Fee guides
+
+These guides compare recorded fee data where available. A displayed amount may not include every tuition, hostel, mess, deposit, examination, or one-time charge.
+
+### Budget guides
+
+These guides identify programmes matching a fee threshold. The threshold is a discovery aid, not a final fee quotation.
+
+### Placement context guides
+
+These guides may present recorded average or highest package values. Package figures can vary by year, batch, role, recruiter mix, and reporting method.
+
+## Data verification
+
+College Decision presents structured reference information to help students make better questions and comparisons. It does not replace:
+
+- The official college website
+- The current admission brochure
+- The official prospectus
+- The latest fee notice
+- The latest placement report
+- The applicable entrance examination or counselling authority
+
+Before applying, verify the current academic year, eligibility, seats, fees, documents, entrance requirements, deadlines, counselling process, and refund rules with the relevant institution or authority.
+
+## Responsible use
+
+Do not treat a ranking, fee, placement figure, eligibility statement, or admission route as a guarantee. Use the website to narrow choices and identify information to verify.

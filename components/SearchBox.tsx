@@ -2,6 +2,7 @@
 
 import { FormEvent, useEffect, useRef, useState } from 'react';
 import Link from 'next/link';
+import { Search } from 'lucide-react';
 
 type Result = { title: string; slug: string; type: string; description: string };
 
@@ -56,7 +57,7 @@ export default function SearchBox() {
   return <div className="site-search">
     <form className="search-form" onSubmit={submit} role="search">
       <input value={keyword} onChange={(event) => { setKeyword(event.target.value); setFocused(true); }} onFocus={() => setFocused(true)} onBlur={() => window.setTimeout(() => setFocused(false), 150)} aria-label="Search courses and college guides" placeholder="Search B.Tech, MBA, architecture…" />
-      <button type="submit">Search</button>
+      <button type="submit"><Search size={17} aria-hidden="true" /> <span>Search</span></button>
     </form>
     {focused && keyword.trim().length >= 2 && <div className="search-suggestions">
       {loading ? <p>Searching…</p> : results.length ? results.map((result) => <Link key={result.slug} href={`/articles/${result.slug}`}><span className="search-type">{result.type}</span><strong>{result.title}</strong><small>{result.description}</small></Link>) : <p>No results found for “{keyword.trim()}”. Try another course or college name.</p>}

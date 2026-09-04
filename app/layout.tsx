@@ -6,6 +6,9 @@ import MobileNav from '../components/MobileNav';
 import GoogleTagManager from '../components/GoogleTagManager';
 import './globals.css';
 import './modal-overrides.css';
+import './decision-overrides.css';
+import './compare-overrides.css';
+import './compare-mobile.css';
 
 export const metadata: Metadata = {
   metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3001'),

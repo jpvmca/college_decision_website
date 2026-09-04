@@ -9,6 +9,7 @@ export async function GET() {
   const pages = [
     [`${base}/`, 'weekly', '1.0'],
     [`${base}/articles`, 'daily', '0.9'],
+    [`${base}/compare-colleges-2026`, 'weekly', '0.9'],
     [`${base}/about`, 'monthly', '0.5'],
     [`${base}/contact`, 'monthly', '0.4'],
     [`${base}/privacy-policy`, 'yearly', '0.2'],

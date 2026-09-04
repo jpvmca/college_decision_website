@@ -4,6 +4,10 @@
   margin: 18px 0 24px;
 }
 
+.college-modal {
+  width: min(1100px, calc(100vw - 32px));
+}
+
 .detail-grid > div,
 .modal-block {
   padding: 18px;
@@ -13,10 +17,119 @@
   margin-top: 18px;
 }
 
+.programme-detail {
+  margin-top: 14px;
+  padding-top: 12px;
+  border-top: 1px solid #e5edf8;
+}
+
+.programme-name {
+  display: block;
+  color: #173b77;
+  margin-bottom: 8px;
+}
+
+.detail-label {
+  display: inline-block;
+  margin-right: 8px;
+  color: #41618f;
+  font-size: 0.78rem;
+  font-weight: 800;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  vertical-align: top;
+}
+
+.detail-label::after {
+  content: ':';
+}
+
+.detail-value {
+  color: #172033;
+  font-weight: 600;
+  line-height: 1.6;
+}
+
+.detail-separator {
+  margin: 0 10px;
+  color: #9aabc4;
+}
+
+.profile-two-column {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 22px;
+  margin-top: 22px;
+  margin-bottom: 28px;
+}
+
+.profile-two-column h3 {
+  margin-top: 26px;
+}
+
+.detail-panel {
+  height: auto;
+  box-sizing: border-box;
+  padding: 18px;
+  border: 1px solid #dbe5f2;
+  border-radius: 12px;
+  background: #f8fbff;
+}
+
+.fee-course-row {
+  display: grid;
+  grid-template-columns: minmax(180px, 1.5fr) minmax(180px, 1fr) auto;
+  align-items: center;
+  gap: 10px 16px;
+  margin-top: 14px;
+  padding: 14px 0;
+  border-top: 1px solid #e5edf8;
+}
+
+.fee-course-row > strong {
+  color: #173b77;
+}
+
+.fee-course-row > span {
+  color: #52617d;
+  font-size: 13px;
+}
+
+.fee-course-row > b {
+  color: #172554;
+  white-space: nowrap;
+}
+
+.fee-details-button {
+  border: 0;
+  background: transparent;
+  color: #2563eb;
+  cursor: pointer;
+  font-weight: 800;
+  white-space: nowrap;
+}
+
+.recruiter-list {
+  margin-top: 16px;
+}
+
+.ranking-groups {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.modal-block p,
+.programme-detail p {
+  margin: 10px 0 0;
+}
+
 .college-modal h3 {
   margin-top: 36px;
   margin-bottom: 20px;
   padding-bottom: 8px;
+}
+
+.college-modal .profile-two-column + h3 {
+  margin-top: 34px;
 }
 
 .original-summary {
@@ -25,8 +138,40 @@
 }
 
 @media (max-width: 760px) {
+  .wrap {
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+
+  .nav-inner {
+    gap: 10px;
+  }
+
+  .site-search {
+    padding: 0;
+  }
+
+  .mobile-menu-toggle {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 44px;
+    height: 44px;
+    padding: 0;
+  }
+
   .detail-grid {
     row-gap: 24px;
+  }
+
+  .profile-two-column,
+  .ranking-groups {
+    grid-template-columns: 1fr;
+  }
+
+  .fee-course-row {
+    grid-template-columns: 1fr;
+    gap: 6px;
   }
 }
 
@@ -57,6 +202,22 @@
   box-shadow: 0 8px 22px #1725541c;
 }
 
+.article-college-highlights {
+  display: grid;
+  gap: 7px;
+  padding: 10px 12px;
+  border: 1px solid #dbe5f2;
+  border-radius: 8px;
+  background: #f8fbff;
+  color: #24477e;
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.article-college-highlights span {
+  display: block;
+}
+
 .prose > .card {
   border: 1px solid #c8d6ea;
   border-left: 5px solid #4f86ea;
@@ -66,17 +227,20 @@
 .popular-guides {
   display: grid;
   grid-template-columns: repeat(4, minmax(0, 1fr));
-  gap: 16px;
+  column-gap: 16px;
+  row-gap: 28px;
   margin-top: 22px;
 }
 
 .popular-guide {
   display: flex;
   flex-direction: column;
+  min-height: 250px;
 }
 
 .popular-guide h3 {
   line-height: 1.3;
+  margin-top: 14px;
   margin-bottom: 8px;
 }
 
@@ -89,6 +253,61 @@
   margin-top: auto;
   padding-top: 10px;
   font-weight: 750;
+}
+
+.popular-guide-with-image {
+  display: grid;
+  grid-template-columns: 140px 1fr;
+  gap: 14px;
+  min-height: 0;
+}
+
+.popular-guide-image {
+  display: block;
+  width: 140px;
+  height: 100px;
+  object-fit: cover;
+  border-radius: 9px;
+  border: 1px solid var(--line);
+}
+
+.popular-guide-content {
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.popular-guide-with-image h3 {
+  margin-top: 10px;
+}
+
+@media (max-width: 760px) {
+  .popular-guide-with-image {
+    display: block;
+  }
+
+  .popular-guide-image {
+    width: 100%;
+    height: auto;
+    aspect-ratio: 16 / 9;
+    object-fit: contain;
+    margin-bottom: 14px;
+  }
+}
+
+@media (min-width: 761px) {
+  .popular-guides {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .popular-guide-with-image {
+    grid-template-columns: 180px minmax(0, 1fr);
+  }
+
+  .popular-guide-image {
+    width: 180px;
+    height: 120px;
+  }
 }
 
 .article-backlink {
@@ -194,7 +413,9 @@
   }
 
   .mobile-navigation .nav-links a {
-    display: block;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
     padding: 9px 11px;
     border-radius: 7px;
   }
@@ -206,7 +427,7 @@
 
   .site-search {
     width: 100%;
-    padding: 0 2px;
+    padding: 0;
   }
 
   .search-form {
@@ -219,6 +440,11 @@
 
   .popular-guides {
     grid-template-columns: 1fr;
+    row-gap: 24px;
+  }
+
+  .popular-guide {
+    min-height: 0;
   }
 
   .related-guide-list {

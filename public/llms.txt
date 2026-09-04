@@ -1,0 +1,23 @@
+# College Decision
+
+> College Decision helps students compare colleges using structured information about fees, programmes, eligibility, admission routes, locations, exams, and placement context.
+
+## Main pages
+
+- [Home](/): College decision tools and current decision guides.
+- [Articles](/articles): Published college comparison and admission guides.
+- [About](/about): About the College Decision platform.
+- [Contact](/contact): Contact the College Decision team.
+- [Privacy policy](/privacy-policy): Privacy information.
+- [Terms and conditions](/terms-and-conditions): Terms of use.
+- [Disclaimer](/disclaimer): Data and decision-making disclaimer.
+
+## Decision tool
+
+Use the “Find My Best-Fit College” tool to filter active programme records by course, state, city, budget, college type, branch or programme, and entrance exam.
+
+## Data guidance
+
+Displayed fees, eligibility, admission routes, and placement figures are structured reference data. They may vary by academic year or institution. Students should verify current details with the official college notice before applying.
+
+For expanded page and content information, see [llms-full.txt](/llms-full.txt).
