@@ -262,6 +262,13 @@
   gap: 12px;
 }
 
+.college-card-heading {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+}
+
 .home-college-heading .institute-logo,
 .college-card-title-row .institute-logo {
   width: 48px;
