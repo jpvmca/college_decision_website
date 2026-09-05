@@ -3,7 +3,17 @@ import type { Metadata } from 'next';
 export const metadata: Metadata = {
   title: 'About CollegeDecision.in',
   description: 'Learn how CollegeDecision.in helps students compare college fees, courses, eligibility, admission routes and outcomes.',
-  alternates: { canonical: '/about' }
+  alternates: { canonical: '/about' },
+  openGraph: {
+    title: 'About CollegeDecision.in',
+    description: 'Learn how CollegeDecision.in helps students compare college fees, courses, eligibility, admission routes and outcomes.',
+    url: '/about'
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'About CollegeDecision.in',
+    description: 'Learn how CollegeDecision.in helps students compare college fees, courses, eligibility, admission routes and outcomes.'
+  }
 };
 
 export default function AboutPage() {

@@ -118,7 +118,7 @@ export const decisionCourses: readonly DecisionCourse[] = [
     "slug": "bsw"
   },
   {
-    "name": "Bachelorâ€™s Degree in Hotel, Hospitality and Tourism Management",
+    "name": "Bachelor's Degree in Hotel, Hospitality and Tourism Management",
     "slug": "bachelor-hotel-hospitality-tourism"
   },
   {
@@ -718,10 +718,6 @@ export const decisionCities: readonly DecisionCity[] = [
     "stateSlug": "Mizoram"
   },
   {
-    "name": "Aizwal",
-    "stateSlug": "Mizoram"
-  },
-  {
     "name": "Ajmer",
     "stateSlug": "Rajasthan"
   },
@@ -912,10 +908,6 @@ export const decisionCities: readonly DecisionCity[] = [
   {
     "name": "Banda",
     "stateSlug": "Uttar Pradesh"
-  },
-  {
-    "name": "Bangalore",
-    "stateSlug": "Karnataka"
   },
   {
     "name": "Bankura",

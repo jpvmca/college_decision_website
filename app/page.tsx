@@ -6,11 +6,26 @@ import { ArrowRight, ChartNoAxesCombined, GraduationCap, IndianRupee } from 'luc
 
 type CourseSummary = { id: number; name: string; institute_count: number; programme_count: number; review_count: number | string | null; average_rating: number | string | null };
 type ExamSummary = { id: number; name: string; course_name: string | null; institute_count: number; programme_count: number; review_count: number | string | null; average_rating: number | string | null };
+type CollegeSummary = {
+  id: number;
+  display_name?: string | null;
+  full_name?: string | null;
+  institute_type?: string | null;
+  city?: string | null;
+  state?: string | null;
+  programme_count?: number | null;
+  course_names?: string | null;
+};
+
+const homeTitle = 'Compare College Fees, Admission & Placements in India';
+const homeDescription = 'Compare college fees, courses, entrance exams, admission routes and placements in India with structured programme data.';
 
 export const metadata: Metadata = {
-  title: 'College Decision Platform',
-  description: 'Compare college fees, admission routes, placements and total study cost.',
-  alternates: { canonical: '/' }
+  title: { absolute: homeTitle },
+  description: homeDescription,
+  alternates: { canonical: '/' },
+  openGraph: { title: homeTitle, description: homeDescription, url: '/' },
+  twitter: { card: 'summary_large_image', title: homeTitle, description: homeDescription }
 };
 
 function getGuideImageSources(imageUrl: string) {
@@ -23,19 +38,23 @@ export default async function HomePage() {
   let popularGuides: ArticleList['data'] = [];
   let courses: CourseSummary[] = [];
   let exams: ExamSummary[] = [];
+  let colleges: CollegeSummary[] = [];
   try {
-    const [guidesResult, coursesResult, examsResult] = await Promise.all([
+    const [guidesResult, coursesResult, examsResult, collegesResult] = await Promise.all([
       api<ArticleList>('/articles?type=all&latest=true&perPage=4'),
       api<{ data: CourseSummary[] }>('/courses?page=1&perPage=6'),
-      api<{ data: ExamSummary[] }>('/exams?page=1&perPage=6')
+      api<{ data: ExamSummary[] }>('/exams?page=1&perPage=6'),
+      api<{ data: CollegeSummary[] }>('/colleges?page=1&perPage=6')
     ]);
     popularGuides = guidesResult.data.slice(0, 4);
     courses = coursesResult.data;
     exams = examsResult.data;
+    colleges = collegesResult.data.slice(0, 6);
   } catch {
     popularGuides = [];
     courses = [];
     exams = [];
+    colleges = [];
   }
   const typeLabel = (type?: string) => type === 'fees' ? 'Course fees' : type === 'admission' ? 'Admission' : type === 'gov-avg-package' ? 'Placement' : type === 'exam-admission' ? 'MBA entrance' : 'Budget';
   return (
@@ -43,13 +62,13 @@ export default async function HomePage() {
       <section className="hero">
         <div className="wrap hero-layout">
           <div className="hero-copy">
-            <h1>Choose a college with evidence, not noise.</h1>
+            <h1>Compare College Fees, Admission & Placements in India</h1>
             <p>Compare fees, admission routes, placements, hostel costs and real decision trade-offs from structured college data.</p>
             <div className="hero-actions"><Link className="button primary" href="/compare-colleges-2026">Compare colleges <ArrowRight size={17} aria-hidden="true" /></Link><Link className="button secondary" href="/articles">Explore decision articles <ArrowRight size={17} aria-hidden="true" /></Link></div>
           </div>
           <div className="hero-visual" aria-hidden="true">
             <div className="hero-visual-glow" />
-            <img src="/college-decision-hero.webp" alt="college decision hero" />
+            <img src="/college-decision-hero.webp" alt="" />
             <span className="hero-visual-badge hero-visual-badge-top">Compare with confidence</span>
             <span className="hero-visual-badge hero-visual-badge-bottom">Fees · Exams · Placements</span>
           </div>
@@ -68,6 +87,24 @@ export default async function HomePage() {
             <article className="card feature-card"><div className="feature-label"><IndianRupee className="feature-icon" size={20} aria-hidden="true" /><span className="pill">Fees</span></div><h3>Total cost, not just tuition</h3><p>Separate tuition, hostel, mess, deposits and other charges before comparing colleges.</p></article>
             <article className="card feature-card"><div className="feature-label"><GraduationCap className="feature-icon" size={20} aria-hidden="true" /><span className="pill">Admission</span></div><h3>Route and eligibility</h3><p>Understand entrance exams, counselling, eligibility and the evidence behind each claim.</p></article>
             <article className="card feature-card"><div className="feature-label"><ChartNoAxesCombined className="feature-icon" size={20} aria-hidden="true" /><span className="pill">Outcomes</span></div><h3>Placement context</h3><p>Show placement year and units instead of turning an unverified number into a promise.</p></article>
+          </div>
+        </div>
+      </section>
+      <section className="section home-catalog-section">
+        <div className="wrap">
+          <div className="section-heading-row">
+            <div><p className="eyebrow">START YOUR SHORTLIST</p><h2>Popular colleges</h2></div>
+            <Link className="popular-guides-view-all" href="/colleges">View all colleges <ArrowRight size={16} aria-hidden="true" /></Link>
+          </div>
+          <div className="grid">
+            {colleges.map((college) => (
+              <article className="card" key={college.id}>
+                <span className="pill">{college.institute_type === 'public' ? 'Public' : college.institute_type === 'private' ? 'Private' : 'College'}</span>
+                <h3>{college.display_name || college.full_name}</h3>
+                <p className="muted">{[college.city, college.state].filter(Boolean).join(', ') || 'India'}</p>
+                <p className="article-facts">{Number(college.programme_count || 0)} programmes{college.course_names ? ` · ${college.course_names}` : ''}</p>
+              </article>
+            ))}
           </div>
         </div>
       </section>

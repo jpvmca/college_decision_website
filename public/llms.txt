@@ -1,11 +1,17 @@
 # College Decision
 
-> College Decision helps students compare colleges using structured information about fees, programmes, eligibility, admission routes, locations, exams, and placement context.
+> College Decision helps students compare colleges in India using structured information about fees, programmes, eligibility, admission routes, locations, exams, and placement context.
+
+Last updated: 2026-09-05
 
 ## Main pages
 
-- [Home](/): College decision tools and current decision guides.
+- [Home](/): Compare college fees, admission and placements in India, plus the best-fit college filter.
 - [Articles](/articles): Published college comparison and admission guides.
+- [Colleges](/colleges): Paginated directory of active colleges.
+- [Courses](/courses): Paginated directory of courses with programme coverage.
+- [Exams](/exams): Entrance exams mapped to active college programmes.
+- [Compare colleges 2026](/compare-colleges-2026): Side-by-side college comparison for fees, courses, placements and admission.
 - [About](/about): About the College Decision platform.
 - [Contact](/contact): Contact the College Decision team.
 - [Privacy policy](/privacy-policy): Privacy information.
@@ -14,7 +20,7 @@
 
 ## Decision tool
 
-Use the “Find My Best-Fit College” tool to filter active programme records by course, state, city, budget, college type, branch or programme, and entrance exam.
+Use the “Find My Best-Fit College” tool on the homepage to filter active programme records by course, state, city, budget, college type, branch or programme, and entrance exam.
 
 ## Data guidance
 

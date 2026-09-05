@@ -10,23 +10,25 @@ import './decision-overrides.css';
 import './compare-overrides.css';
 import './compare-mobile.css';
 
+const defaultTitle = 'Compare College Fees, Courses & Exams in India';
+const defaultDescription = 'Compare college fees, courses, entrance exams, admission routes and placements across India before you shortlist.';
+
 export const metadata: Metadata = {
   metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3001'),
-  title: { default: 'College Decision Platform', template: '%s | College Decision Platform' },
-  description: 'Compare college fees, admission routes, placements and total study cost.',
-  keywords: ['college fees', 'college admission', 'college comparison', 'college placements', 'total college cost'],
+  title: { default: defaultTitle, template: '%s | College Decision' },
+  description: defaultDescription,
   authors: [{ name: 'College Decision' }],
   creator: 'College Decision',
   robots: { index: true, follow: true },
   icons: { icon: '/favicon.svg', apple: '/apple-touch-icon.svg' },
   openGraph: {
     type: 'website',
-    siteName: 'College Decision Platform',
-    title: 'College Decision Platform',
-    description: 'Make better college decisions with clear fees, admission and outcome context.',
+    siteName: 'College Decision',
+    title: defaultTitle,
+    description: defaultDescription,
     images: [{ url: '/og/default.png', width: 1200, height: 630, alt: 'College Decision' }]
   },
-  twitter: { card: 'summary_large_image', title: 'College Decision Platform', description: 'Make better college decisions with clear fees, admission and outcome context.' }
+  twitter: { card: 'summary_large_image', title: defaultTitle, description: defaultDescription }
 };
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
@@ -35,7 +37,7 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
     '@context': 'https://schema.org',
     '@type': 'WebSite',
     '@id': `${siteUrl}/#website`,
-    name: 'CollegeDecision',
+    name: 'College Decision',
     url: `${siteUrl}/`,
     potentialAction: {
       '@type': 'SearchAction',

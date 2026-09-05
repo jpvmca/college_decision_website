@@ -10,6 +10,8 @@ import ExpandableText from '../../../components/ExpandableText';
 import CollegeComparisonArticle from '../../../components/articles/CollegeComparisonArticle';
 import InstituteLogo from '../../../components/InstituteLogo';
 
+export const revalidate = 300;
+
 type GeneratedArticle = {
   type: string;
   slug: string;
@@ -86,8 +88,8 @@ async function getArticle(slug: string, page = 1): Promise<GeneratedArticle | nu
 
 async function getPublishedArticleSlugs(): Promise<string[]> {
   try {
-    const response = await api<{ data: string[] }>('/articles/published-slugs?limit=45000');
-    return response.data;
+    const response = await api<{ data: Array<string | { slug: string }> }>('/articles/published-slugs?limit=45000');
+    return response.data.map((item) => typeof item === 'string' ? item : item.slug).filter(Boolean);
   } catch {
     return [];
   }
@@ -261,7 +263,6 @@ export async function generateMetadata({ params, searchParams }: { params: Promi
   return {
     title: pageTitle,
     description: 'metaDescription' in seo ? seo.metaDescription : `${pageTitle}: ${seo.intro}`,
-    keywords: [seo.primaryKeyword, ...seo.secondaryKeywords, `page ${page}`],
     alternates: { canonical },
     robots: { index: true, follow: true },
     openGraph: {

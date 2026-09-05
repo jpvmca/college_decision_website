@@ -1,5 +1,7 @@
 # College Decision — Full Information
 
+Last updated: 2026-09-05
+
 ## About this website
 
 College Decision is a student decision-support website for comparing Indian colleges and programmes. It organizes structured records into practical guides so students can compare more than a single headline fee or ranking.
@@ -20,13 +22,17 @@ The website focuses on:
 2. Select a course, state, city, budget, college type, branch or programme, and entrance exam where relevant.
 3. Review the matching colleges and programmes.
 4. Open a college profile for additional programme, fee, exam, and placement records.
-5. Compare colleges and review admission information.
+5. Use [Compare colleges 2026](/compare-colleges-2026) for side-by-side shortlists.
 6. Confirm all important details with the institution’s current official notice.
 
 ## Content sections
 
-- [Home](/): Decision tool, popular guides, and the platform overview.
+- [Home](/): Decision tool, popular colleges/courses/exams, and published guides.
 - [All decision guides](/articles): Published guides covering fees, budgets, admission, eligibility, and placement context.
+- [Colleges directory](/colleges): Active colleges with programme coverage.
+- [Courses directory](/courses): Courses with linked colleges and programmes.
+- [Exams directory](/exams): Entrance exams ordered by mapped college coverage.
+- [Compare colleges 2026](/compare-colleges-2026): Compare up to four colleges by fees, courses, placements, rankings and admission context.
 - [About College Decision](/about): Platform purpose and editorial context.
 - [Contact College Decision](/contact): Contact information and enquiries.
 - [Privacy policy](/privacy-policy): Privacy practices.
@@ -50,6 +56,14 @@ These guides identify programmes matching a fee threshold. The threshold is a di
 ### Placement context guides
 
 These guides may present recorded average or highest package values. Package figures can vary by year, batch, role, recruiter mix, and reporting method.
+
+### Exam-admission guides
+
+These guides connect MBA / PGDM programmes with listed entrance exams and admission routes.
+
+### College comparison guides
+
+These guides compare two colleges on fees, branches, admission and placement evidence for a selected course.
 
 ## Data verification
 

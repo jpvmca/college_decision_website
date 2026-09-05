@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
+import { notFound } from 'next/navigation';
 import { api, ArticleList } from '../../lib/api';
 import { getPageItems } from '../../lib/pagination';
 import { ArrowLeft, ArrowRight, CheckCircle2, Filter } from 'lucide-react';
@@ -18,6 +19,20 @@ function resolveType(value: string | undefined, visibleTypes: ArticleType[]): Ar
   return 'all';
 }
 
+function pageNumber(value: string | undefined) {
+  const parsed = Number(value || 1);
+  return Number.isInteger(parsed) && parsed > 0 ? parsed : 1;
+}
+
+function articlesHref(page: number, type: ArticleType, budget: number) {
+  const params = new URLSearchParams();
+  if (page > 1) params.set('page', String(page));
+  if (type === 'budget') params.set('budget', String(budget));
+  else if (type !== 'all') params.set('type', type);
+  const query = params.toString();
+  return query ? `/articles?${query}` : '/articles';
+}
+
 function getResponsiveImageSources(imageUrl: string) {
   const widths = [480, 768, 1200, 1600];
   const addQuery = (width: number) => `${imageUrl}?w=${width}&h=${Math.round(width * 0.5625)}&q=78&convert=webp`;
@@ -28,37 +43,73 @@ function getResponsiveImageSources(imageUrl: string) {
   };
 }
 
-export async function generateMetadata({ searchParams }: { searchParams: Promise<{ budget?: string; type?: string }> }): Promise<Metadata> {
+export async function generateMetadata({ searchParams }: { searchParams: Promise<{ page?: string; budget?: string; type?: string }> }): Promise<Metadata> {
   const query = await searchParams;
+  const page = pageNumber(query.page);
   const visibleTypes = getVisibleArticleTypes();
+  const type = resolveType(query.type, visibleTypes);
+  const budget = [1, 3, 5, 10].includes(Number(query.budget)) ? Number(query.budget) : 5;
   const siteUrl = (process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3001').replace(/\/+$/, '');
-  const openGraph = { openGraph: { images: [{ url: `${siteUrl}/articles-hero.webp`, width: 1024, height: 576, alt: 'Students comparing college decision guides' }] } };
-  if (!query.type && !query.budget) {
-    return { ...openGraph, title: 'Published college decision guides', description: 'Browse the latest published college guides covering fees, admission, eligibility and outcomes.', alternates: { canonical: '/articles' } };
+  const openGraphBase = { images: [{ url: `${siteUrl}/articles-hero.webp`, width: 1024, height: 576, alt: 'Students comparing college decision guides' }] };
+
+  let result: ArticleList = { data: [], pagination: { page, perPage: 20, total: 0, totalPages: 0 }, budgetLakh: budget };
+  try {
+    result = await api<ArticleList>(`/articles?page=${page}&perPage=20&budget=${budget}&type=${type}`);
+  } catch {
+    /* keep metadata renderable */
   }
-  if (query.type === 'admission' && visibleTypes.includes('admission')) return { ...openGraph, title: 'Course admission and eligibility guides', description: 'Compare course eligibility, duration and admission routes using active programme data.', alternates: { canonical: '/articles' } };
-  if (query.type === 'fees' && visibleTypes.includes('fees')) return { ...openGraph, title: 'Top course colleges in India with fees 2026', description: 'Compare top course colleges in India with fees in 2026 using active fee records.', alternates: { canonical: '/articles' } };
-  if (query.type === 'gov-avg-package' && visibleTypes.includes('gov-avg-package')) {
+
+  if (page > 1 && result.pagination.totalPages > 0 && page > result.pagination.totalPages) {
+    return { title: 'Published college decision guides', robots: { index: false, follow: false } };
+  }
+
+  const canonical = page === 1 ? '/articles' : `/articles?page=${page}`;
+  const pageSuffix = page > 1 ? ` - Page ${page}` : '';
+
+  if (type === 'all' || (!query.type && !query.budget)) {
+    const title = `Published college decision guides${pageSuffix}`;
+    const description = page > 1
+      ? `Browse published college guides covering fees, admission, eligibility and outcomes — page ${page}.`
+      : 'Browse the latest published college guides covering fees, admission, eligibility and outcomes.';
     return {
-      ...openGraph,
-      title: 'Government colleges by average package',
-      description: 'Compare government colleges by course and state using recorded average package data.',
-      alternates: { canonical: '/articles' }
+      title,
+      description,
+      alternates: { canonical },
+      openGraph: { title, description, url: canonical, ...openGraphBase },
+      twitter: { card: 'summary_large_image', title, description },
+      robots: page > result.pagination.totalPages && page > 1 ? { index: false, follow: false } : { index: true, follow: true }
     };
   }
-  if (query.type === 'exam-admission' && visibleTypes.includes('exam-admission')) return { ...openGraph, title: 'MBA colleges accepting entrance exams', description: 'Compare MBA courses, eligibility and admission routes for colleges accepting listed entrance exams.', alternates: { canonical: '/articles' } };
-  const budget = [1, 3, 5, 10].includes(Number(query.budget)) ? Number(query.budget) : 5;
-  return {
-    ...openGraph,
-    title: `Top colleges in India 2026 under ₹${budget} lakh fees`,
-    description: `Compare top course colleges in India in 2026 under ₹${budget} lakh fees, with eligibility and admission options.`,
-    alternates: { canonical: '/articles' }
-  };
+
+  if (type === 'admission') {
+    const title = `Course admission and eligibility guides${pageSuffix}`;
+    const description = 'Compare course eligibility, duration and admission routes using active programme data.';
+    return { title, description, alternates: { canonical }, openGraph: { title, description, url: canonical, ...openGraphBase }, twitter: { card: 'summary_large_image', title, description } };
+  }
+  if (type === 'fees') {
+    const title = `Top course colleges in India with fees 2026${pageSuffix}`;
+    const description = 'Compare top course colleges in India with fees in 2026 using active fee records.';
+    return { title, description, alternates: { canonical }, openGraph: { title, description, url: canonical, ...openGraphBase }, twitter: { card: 'summary_large_image', title, description } };
+  }
+  if (type === 'gov-avg-package') {
+    const title = `Government colleges by average package${pageSuffix}`;
+    const description = 'Compare government colleges by course and state using recorded average package data.';
+    return { title, description, alternates: { canonical }, openGraph: { title, description, url: canonical, ...openGraphBase }, twitter: { card: 'summary_large_image', title, description } };
+  }
+  if (type === 'exam-admission') {
+    const title = `MBA colleges accepting entrance exams${pageSuffix}`;
+    const description = 'Compare MBA courses, eligibility and admission routes for colleges accepting listed entrance exams.';
+    return { title, description, alternates: { canonical }, openGraph: { title, description, url: canonical, ...openGraphBase }, twitter: { card: 'summary_large_image', title, description } };
+  }
+
+  const title = `Top colleges in India 2026 under ₹${budget} lakh fees${pageSuffix}`;
+  const description = `Compare top course colleges in India in 2026 under ₹${budget} lakh fees, with eligibility and admission options.`;
+  return { title, description, alternates: { canonical }, openGraph: { title, description, url: canonical, ...openGraphBase }, twitter: { card: 'summary_large_image', title, description } };
 }
 
 export default async function ArticlesPage({ searchParams }: { searchParams: Promise<{ page?: string; budget?: string; type?: string }> }) {
   const params = await searchParams;
-  const page = Math.max(1, Number(params.page || 1));
+  const page = pageNumber(params.page);
   const visibleTypes = getVisibleArticleTypes();
   const budget = [1, 3, 5, 10].includes(Number(params.budget)) ? Number(params.budget) : 5;
   const type = resolveType(params.type, visibleTypes);
@@ -68,6 +119,9 @@ export default async function ArticlesPage({ searchParams }: { searchParams: Pro
   } catch {
     // The empty state keeps the website renderable while the backend is unavailable.
   }
+  if (page > 1 && result.pagination.totalPages > 0 && page > result.pagination.totalPages) notFound();
+  if (page > 1 && result.pagination.totalPages === 0) notFound();
+
   const pill =
     type === 'admission'
       ? 'Admission & eligibility'
@@ -159,11 +213,10 @@ export default async function ArticlesPage({ searchParams }: { searchParams: Pro
   </div></main>;
 }
 
-function Pagination({ page, totalPages, budget, type }: { page: number; totalPages: number; budget: number; type: string }) {
-  const query = `&budget=${budget}${type !== 'budget' ? `&type=${type}` : ''}`;
+function Pagination({ page, totalPages, budget, type }: { page: number; totalPages: number; budget: number; type: ArticleType }) {
   return <nav className="pagination" aria-label="Article pages">
-    {page > 1 && <Link className="page-arrow" href={`/articles?page=${page - 1}${query}`}><ArrowLeft size={15} aria-hidden="true" /> Previous</Link>}
-    <div className="page-numbers">{getPageItems(totalPages, page).map((item, index) => item === 'ellipsis' ? <span className="page-ellipsis" key={`ellipsis-${index}`}>…</span> : <Link className={item === page ? 'page-number current' : 'page-number'} aria-current={item === page ? 'page' : undefined} key={item} href={`/articles?page=${item}${query}`}>{item}</Link>)}</div>
-    {page < totalPages && <Link className="page-arrow" href={`/articles?page=${page + 1}${query}`}>Next <ArrowRight size={15} aria-hidden="true" /></Link>}
+    {page > 1 && <Link className="page-arrow" href={articlesHref(page - 1, type, budget)}><ArrowLeft size={15} aria-hidden="true" /> Previous</Link>}
+    <div className="page-numbers">{getPageItems(totalPages, page).map((item, index) => item === 'ellipsis' ? <span className="page-ellipsis" key={`ellipsis-${index}`}>…</span> : <Link className={item === page ? 'page-number current' : 'page-number'} aria-current={item === page ? 'page' : undefined} key={item} href={articlesHref(item, type, budget)}>{item}</Link>)}</div>
+    {page < totalPages && <Link className="page-arrow" href={articlesHref(page + 1, type, budget)}>Next <ArrowRight size={15} aria-hidden="true" /></Link>}
   </nav>;
 }
