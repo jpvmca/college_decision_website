@@ -249,6 +249,51 @@
   font-size: 14px;
 }
 
+.home-college-card {
+  display: flex;
+  flex-direction: column;
+  min-height: 100%;
+}
+
+.home-college-programmes,
+.home-guide-excerpt,
+.article-card-excerpt {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  line-clamp: 2;
+  overflow: hidden;
+  color: var(--muted);
+  font-size: 14px;
+  line-height: 1.45;
+}
+
+.home-college-programmes {
+  margin: 0 0 10px;
+}
+
+.home-card-more {
+  margin-top: auto;
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 13px;
+  font-weight: 750;
+  color: #1d4ed8;
+}
+
+.home-card-more:hover {
+  text-decoration: underline;
+}
+
+.home-guide-excerpt {
+  margin: 0;
+}
+
+.article-card-excerpt {
+  margin: 0 0 12px;
+}
+
 .guide-link {
   margin-top: auto;
   padding-top: 10px;

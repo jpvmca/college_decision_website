@@ -198,7 +198,7 @@ export default async function ArticlesPage({ searchParams }: { searchParams: Pro
             <span className="muted">{article.candidateCount || 0} options</span>
           </div>
           <h2><Link href={`/articles/${article.slug}`}>{article.title}</Link></h2>
-          <p>{article.content || 'Compare fees, eligibility, admission route and outcomes before making a college decision.'}</p>
+          <p className="article-card-excerpt">{article.content || 'Compare fees, eligibility, admission route and outcomes before making a college decision.'}</p>
           <div className="article-facts">
             <span><CheckCircle2 size={15} aria-hidden="true" /> {article.articleType === 'gov-avg-package' ? 'Average package ranked' : article.articleType === 'exam-admission' ? 'Entrance exam matched' : article.articleType === 'admission' ? 'Eligibility checked' : article.articleType === 'fees' ? 'Fee comparison' : 'Budget comparison'}</span>
             <span><CheckCircle2 size={15} aria-hidden="true" /> {article.articleType === 'gov-avg-package' ? 'Government colleges' : 'Admission context'}</span>

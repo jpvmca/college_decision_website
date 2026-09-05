@@ -96,15 +96,23 @@ export default async function HomePage() {
             <div><p className="eyebrow">START YOUR SHORTLIST</p><h2>Popular colleges</h2></div>
             <Link className="popular-guides-view-all" href="/colleges">View all colleges <ArrowRight size={16} aria-hidden="true" /></Link>
           </div>
-          <div className="grid">
-            {colleges.map((college) => (
-              <article className="card" key={college.id}>
-                <span className="pill">{college.institute_type === 'public' ? 'Public' : college.institute_type === 'private' ? 'Private' : 'College'}</span>
-                <h3>{college.display_name || college.full_name}</h3>
-                <p className="muted">{[college.city, college.state].filter(Boolean).join(', ') || 'India'}</p>
-                <p className="article-facts">{Number(college.programme_count || 0)} programmes{college.course_names ? ` · ${college.course_names}` : ''}</p>
-              </article>
-            ))}
+          <div className="grid home-college-grid">
+            {colleges.map((college) => {
+              const programmeCount = Number(college.programme_count || 0);
+              const courseList = (college.course_names || '').trim();
+              return (
+                <article className="card home-college-card" key={college.id}>
+                  <span className="pill">{college.institute_type === 'public' ? 'Public' : college.institute_type === 'private' ? 'Private' : 'College'}</span>
+                  <h3>{college.display_name || college.full_name}</h3>
+                  <p className="muted">{[college.city, college.state].filter(Boolean).join(', ') || 'India'}</p>
+                  <p className="home-college-programmes">
+                    <strong>{programmeCount.toLocaleString('en-IN')} programmes</strong>
+                    {courseList ? <> · {courseList}</> : null}
+                  </p>
+                  <Link className="home-card-more" href="/colleges">View more <ArrowRight size={14} aria-hidden="true" /></Link>
+                </article>
+              );
+            })}
           </div>
         </div>
       </section>
@@ -144,7 +152,7 @@ export default async function HomePage() {
               <div className="popular-guide-content">
               <span className="pill">{typeLabel(guide.articleType)}</span>
               <h3><Link href={`/articles/${guide.slug}`}>{guide.title}</Link></h3>
-              <p>{guide.content || 'Review the latest published course, fee and admission information before applying.'}</p>
+              <p className="home-guide-excerpt">{guide.content || 'Review the latest published course, fee and admission information before applying.'}</p>
               <Link className="guide-link" href={`/articles/${guide.slug}`}>Read guide <ArrowRight size={15} aria-hidden="true" /></Link>
               </div>
             </article>)}
