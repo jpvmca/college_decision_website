@@ -255,6 +255,28 @@
   min-height: 100%;
 }
 
+.home-college-heading,
+.college-card-title-row {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+}
+
+.home-college-heading .institute-logo,
+.college-card-title-row .institute-logo {
+  width: 48px;
+  height: 48px;
+  flex: 0 0 48px;
+}
+
+.home-college-heading h3 {
+  margin: 6px 0 0;
+}
+
+.home-college-heading .pill {
+  margin-bottom: 0;
+}
+
 .home-college-programmes,
 .home-guide-excerpt,
 .article-card-excerpt {

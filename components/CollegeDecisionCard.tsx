@@ -3,6 +3,7 @@
 import ExpandableText from './ExpandableText';
 import CollegeViewDetailsModal from './CollegeViewDetailsModal';
 import DecisionActions from './DecisionActions';
+import InstituteLogo from './InstituteLogo';
 
 export type CollegeDecisionResult = {
   instituteId: number;
@@ -13,6 +14,7 @@ export type CollegeDecisionResult = {
   city: string | null;
   state: string | null;
   programmeName: string;
+  logo?: string | null;
   duration: string | null;
   lowestFee: number | string | null;
   averageYearFee?: number | string | null;
@@ -50,7 +52,13 @@ function packageMoney(value: number | string | null | undefined) {
 
 export default function CollegeDecisionCard({ item, showCompare = true, showReviews = true }: Props) {
   return <article className="decision-result college-decision-card">
-    <div className="college-card-heading"><div><h3>{item.instituteName}</h3><strong>{item.programmeName}</strong></div><span className="college-type-pill">{item.instituteType === 'public' ? 'Public' : 'Private'}</span></div>
+    <div className="college-card-heading">
+      <div className="college-card-title-row">
+        <InstituteLogo src={item.logo} alt={`${item.instituteName} college logo`} />
+        <div><h3>{item.instituteName}</h3><strong>{item.programmeName}</strong></div>
+      </div>
+      <span className="college-type-pill">{item.instituteType === 'public' ? 'Public' : 'Private'}</span>
+    </div>
     <p className="college-location">{item.city || 'Location not listed'}, {item.state || 'India'}</p>
     {(hasAmount(item.lowestFee) || item.duration) && <div className="college-facts">{hasAmount(item.lowestFee) && <span>Lowest fee <b>{money(item.lowestFee)}</b></span>}{item.duration && <span>Duration <b>{durationLabel(item.duration)}</b></span>}</div>}
     {(item.averageYearFee || item.averagePackage || item.highestPackage || item.nirfRank || (showReviews && item.reviewCount)) && <div className="decision-card-highlights">{showReviews && item.reviewCount && <span>Student reviews <b>{item.reviewCount}{item.averageRating ? ` · ${Number(item.averageRating).toFixed(1)}/5` : ''}</b></span>}{item.averageYearFee && <span>Average yearly fee <b>{money(item.averageYearFee)}</b></span>}{item.averagePackage && packageMoney(item.averagePackage) && <span>Average placement <b>{packageMoney(item.averagePackage)}</b></span>}{item.highestPackage && packageMoney(item.highestPackage) && <span>Highest placement <b>{packageMoney(item.highestPackage)}</b></span>}{item.nirfRank && <span>NIRF <b>Rank {item.nirfRank}{item.nirfOutOf ? ` / ${item.nirfOutOf}` : ''}</b></span>}</div>}

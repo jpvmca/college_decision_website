@@ -3,6 +3,7 @@ import type { Metadata } from 'next';
 import { api, ArticleList } from '../lib/api';
 import CollegeDecisionFilter from '../components/CollegeDecisionFilter';
 import ExamLogo from '../components/ExamLogo';
+import InstituteLogo from '../components/InstituteLogo';
 import { ArrowRight, ChartNoAxesCombined, GraduationCap, IndianRupee } from 'lucide-react';
 
 type CourseSummary = { id: number; name: string; institute_count: number; programme_count: number; review_count: number | string | null; average_rating: number | string | null };
@@ -12,6 +13,7 @@ type CollegeSummary = {
   display_name?: string | null;
   full_name?: string | null;
   institute_type?: string | null;
+  logo?: string | null;
   city?: string | null;
   state?: string | null;
   programme_count?: number | null;
@@ -101,10 +103,16 @@ export default async function HomePage() {
             {colleges.map((college) => {
               const programmeCount = Number(college.programme_count || 0);
               const courseList = (college.course_names || '').trim();
+              const collegeName = college.display_name || college.full_name || 'College';
               return (
                 <article className="card home-college-card" key={college.id}>
-                  <span className="pill">{college.institute_type === 'public' ? 'Public' : college.institute_type === 'private' ? 'Private' : 'College'}</span>
-                  <h3>{college.display_name || college.full_name}</h3>
+                  <div className="home-college-heading">
+                    <InstituteLogo src={college.logo} alt={`${collegeName} college logo`} />
+                    <div>
+                      <span className="pill">{college.institute_type === 'public' ? 'Public' : college.institute_type === 'private' ? 'Private' : 'College'}</span>
+                      <h3>{collegeName}</h3>
+                    </div>
+                  </div>
                   <p className="muted">{[college.city, college.state].filter(Boolean).join(', ') || 'India'}</p>
                   <p className="home-college-programmes">
                     <strong>{programmeCount.toLocaleString('en-IN')} programmes</strong>

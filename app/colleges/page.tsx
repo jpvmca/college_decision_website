@@ -11,6 +11,7 @@ type College = {
   display_name: string | null;
   slug: string;
   institute_type: string | null;
+  logo?: string | null;
   city: string | null;
   state: string | null;
   programme_count: number;
@@ -146,6 +147,7 @@ export default async function CollegesPage({ searchParams }: { searchParams: Pro
           programmeId: Number(college.programme_id || 0),
           instituteName: college.display_name || college.full_name,
           instituteType: college.institute_type,
+          logo: college.logo,
           city: college.city,
           state: college.state,
           programmeName: college.programme_name || college.course_names || 'College programmes',
