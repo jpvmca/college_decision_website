@@ -2,10 +2,11 @@ import Link from 'next/link';
 import type { Metadata } from 'next';
 import { api, ArticleList } from '../lib/api';
 import CollegeDecisionFilter from '../components/CollegeDecisionFilter';
+import ExamLogo from '../components/ExamLogo';
 import { ArrowRight, ChartNoAxesCombined, GraduationCap, IndianRupee } from 'lucide-react';
 
 type CourseSummary = { id: number; name: string; institute_count: number; programme_count: number; review_count: number | string | null; average_rating: number | string | null };
-type ExamSummary = { id: number; name: string; course_name: string | null; institute_count: number; programme_count: number; review_count: number | string | null; average_rating: number | string | null };
+type ExamSummary = { id: number; name: string; course_name: string | null; institute_count: number; programme_count: number; review_count: number | string | null; average_rating: number | string | null; logo?: string | null };
 type CollegeSummary = {
   id: number;
   display_name?: string | null;
@@ -134,7 +135,19 @@ export default async function HomePage() {
             <Link className="popular-guides-view-all" href="/exams">View all exams <ArrowRight size={16} aria-hidden="true" /></Link>
           </div>
           <div className="grid">
-            {exams.map((exam) => <article className="card" key={exam.id}><span className="pill">{exam.course_name || 'Entrance exam'}</span><h3>{exam.name}</h3><p className="muted">{Number(exam.institute_count || 0)} colleges · {Number(exam.programme_count || 0)} mapped programmes</p>{exam.review_count ? <p className="article-facts">{exam.review_count} course reviews · {Number(exam.average_rating).toFixed(1)}/5 average rating</p> : null}</article>)}
+            {exams.map((exam) => (
+              <article className="card home-exam-card" key={exam.id}>
+                <div className="home-exam-heading">
+                  <ExamLogo src={exam.logo} examName={exam.name} courseName={exam.course_name} size={48} />
+                  <div>
+                    <span className="pill">{exam.course_name || 'Entrance exam'}</span>
+                    <h3>{exam.name}</h3>
+                  </div>
+                </div>
+                <p className="muted">{Number(exam.institute_count || 0)} colleges · {Number(exam.programme_count || 0)} mapped programmes</p>
+                {exam.review_count ? <p className="article-facts">{exam.review_count} course reviews · {Number(exam.average_rating).toFixed(1)}/5 average rating</p> : null}
+              </article>
+            ))}
           </div>
         </div>
       </section>

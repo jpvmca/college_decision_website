@@ -3,8 +3,20 @@ import Link from 'next/link';
 import { ArrowLeft, ArrowRight } from 'lucide-react';
 import { api } from '../../lib/api';
 import { getPageItems } from '../../lib/pagination';
+import ExamLogo from '../../components/ExamLogo';
 
-type Exam = { id: number; name: string; slug: string; course_name: string | null; course_slug: string | null; programme_count: number; institute_count: number; review_count: number | string | null; average_rating: number | string | null };
+type Exam = {
+  id: number;
+  name: string;
+  slug: string;
+  course_name: string | null;
+  course_slug: string | null;
+  programme_count: number;
+  institute_count: number;
+  review_count: number | string | null;
+  average_rating: number | string | null;
+  logo?: string | null;
+};
 type ExamList = { data: Exam[]; pagination: { page: number; perPage: number; total: number; totalPages: number } };
 const PAGE_SIZE = 20;
 
@@ -40,7 +52,27 @@ export default async function ExamsPage({ searchParams }: { searchParams: Promis
     <nav className="breadcrumb" aria-label="Breadcrumb"><Link href="/">Home</Link><span aria-hidden="true">›</span><span aria-current="page">Exams</span></nav>
     <section className="articles-hero"><div className="articles-hero-copy"><p className="eyebrow">ENTRANCE EXAM GUIDES</p><h1>Entrance Exams in India 2026</h1><p>Browse entrance exams connected with active college programmes. Check the course, college coverage and admission route before planning your application.</p></div><img src="/exams-hero.webp" alt="Students preparing for college entrance exams" width="1200" height="675" fetchPriority="high" loading="eager" decoding="async" /></section>
     <p className="muted">{result.pagination.total.toLocaleString('en-IN')} active exams · 20 per page</p>
-    <div className="article-list">{result.data.length ? result.data.map((exam, index) => <article className="article-card" id={`exam-${index + 1}`} key={exam.id}><div className="article-card-top"><span className="pill">{exam.course_name || 'Entrance exam'}</span>{Number(exam.institute_count || 0) > 0 ? <span className="muted">{Number(exam.institute_count)} colleges</span> : null}</div><h2>{exam.name}</h2><p>{exam.course_name ? `${exam.name} is connected with ${exam.course_name} programmes and admission routes.` : `Explore colleges and programmes connected with ${exam.name}.`}</p><div className="article-facts"><span>{Number(exam.programme_count || 0)} mapped programmes</span>{exam.review_count ? <span>{exam.review_count} reviews · {Number(exam.average_rating).toFixed(1)}/5</span> : <span>Reviews not listed</span>}</div></article>) : <div className="card"><h2>Exam list unavailable</h2><p>Please try again shortly.</p></div>}</div>
+    <div className="article-list">{result.data.length ? result.data.map((exam, index) => (
+      <article className="article-card exam-card" id={`exam-${index + 1}`} key={exam.id}>
+        <div className="exam-card-top">
+          <div className="exam-card-heading">
+            <ExamLogo src={exam.logo} examName={exam.name} courseName={exam.course_name} size={64} />
+            <div className="exam-card-copy">
+              <div className="article-card-top">
+                <span className="pill">{exam.course_name || 'Entrance exam'}</span>
+                {Number(exam.institute_count || 0) > 0 ? <span className="muted">{Number(exam.institute_count)} colleges</span> : null}
+              </div>
+              <h2>{exam.name}</h2>
+            </div>
+          </div>
+        </div>
+        <p>{exam.course_name ? `${exam.name} is connected with ${exam.course_name} programmes and admission routes.` : `Explore colleges and programmes connected with ${exam.name}.`}</p>
+        <div className="article-facts">
+          <span>{Number(exam.programme_count || 0)} mapped programmes</span>
+          {exam.review_count ? <span>{exam.review_count} reviews · {Number(exam.average_rating).toFixed(1)}/5</span> : <span>Reviews not listed</span>}
+        </div>
+      </article>
+    )) : <div className="card"><h2>Exam list unavailable</h2><p>Please try again shortly.</p></div>}</div>
     {result.pagination.totalPages > 1 && <Pagination page={page} totalPages={result.pagination.totalPages} />}
   </div></main>;
 }

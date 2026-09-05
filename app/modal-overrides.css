@@ -286,6 +286,47 @@
   text-decoration: underline;
 }
 
+.exam-card-heading,
+.home-exam-heading {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+}
+
+.exam-card-copy {
+  min-width: 0;
+  flex: 1;
+}
+
+.exam-card-copy .article-card-top {
+  margin-bottom: 4px;
+}
+
+.exam-card-copy h2,
+.home-exam-heading h3 {
+  margin: 0;
+}
+
+.exam-logo {
+  width: 64px;
+  height: 64px;
+  object-fit: contain;
+  background: #fff;
+  border: 1px solid #dce4f0;
+  border-radius: 10px;
+  flex: 0 0 auto;
+}
+
+.home-exam-heading .exam-logo {
+  width: 48px;
+  height: 48px;
+  border-radius: 8px;
+}
+
+.home-exam-heading .pill {
+  margin-bottom: 6px;
+}
+
 .home-guide-excerpt {
   margin: 0;
 }
