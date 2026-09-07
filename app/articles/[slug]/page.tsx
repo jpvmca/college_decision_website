@@ -202,20 +202,21 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   const article = await getArticle(slug, 1);
   if (!article) return { title: 'Article not found', robots: { index: false, follow: false } };
   const seo = getSeoContext(article);
+  const pageTitle = article.title.replace(/\s*\|\s*College Decision\s*$/i, '').trim();
   const canonical = `${getSiteUrl()}/articles/${article.slug}`;
   return {
-    title: article.title,
-    description: 'metaDescription' in seo ? seo.metaDescription : `${article.title}: ${seo.intro}`,
+    title: pageTitle,
+    description: 'metaDescription' in seo ? seo.metaDescription : `${pageTitle}: ${seo.intro}`,
     alternates: { canonical },
     robots: { index: true, follow: true },
     openGraph: {
       type: 'article',
-      title: article.title,
+      title: pageTitle,
       description: seo.intro,
       url: canonical,
-      images: [{ url: article.imageUrl || '/og/default.png', width: 1200, height: 630, alt: article.imageUrl ? article.title : 'College Decision' }]
+      images: [{ url: article.imageUrl || '/og/default.png', width: 1200, height: 630, alt: article.imageUrl ? pageTitle : 'College Decision' }]
     },
-    twitter: { card: 'summary_large_image', title: article.title }
+    twitter: { card: 'summary_large_image', title: pageTitle }
   };
 }
 
