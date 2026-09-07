@@ -46,15 +46,21 @@ function pageNumber(value: string | undefined) {
 
 export async function generateMetadata({ searchParams }: { searchParams: Promise<{ page?: string }> }): Promise<Metadata> {
   const page = pageNumber((await searchParams).page);
-  const title = page === 1
-    ? 'Colleges in India 2026 – Compare Courses, Fees & Placements'
-    : `Colleges in India 2026 – Page ${page}`;
-  const description = 'Browse active colleges in India by name, location, institute type and programme coverage. Compare courses, fees, admissions and placements before you decide.';
+  const baseTitle = 'Colleges in India 2026: Fees, Courses & Placements';
+  const title = page === 1 ? baseTitle : `Colleges in India 2026 – Page ${page}`;
+  const description = 'Browse colleges in India by location, type and programmes. Compare fees, admission routes and placements before you shortlist.';
   return {
     title,
     description,
-    alternates: { canonical: page === 1 ? '/colleges' : `/colleges?page=${page}` },
-    openGraph: { title, description, type: 'website', images: [{ url: '/colleges-hero.webp', width: 1200, height: 675, alt: 'Students comparing colleges in India' }] },
+    alternates: { canonical: '/colleges' },
+    openGraph: {
+      title: baseTitle,
+      description,
+      url: '/colleges',
+      type: 'website',
+      images: [{ url: '/colleges-hero.webp', width: 1200, height: 675, alt: 'Students comparing colleges in India' }]
+    },
+    twitter: { card: 'summary_large_image', title: baseTitle, description },
     robots: { index: true, follow: true }
   };
 }

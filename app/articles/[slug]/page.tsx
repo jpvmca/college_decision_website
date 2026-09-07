@@ -1,14 +1,10 @@
 import type { Metadata } from 'next';
-import { notFound, redirect } from 'next/navigation';
+import { notFound, permanentRedirect, redirect } from 'next/navigation';
 import Link from 'next/link';
 import { ArrowRight } from 'lucide-react';
 import { api } from '../../../lib/api';
-import { getPageItems } from '../../../lib/pagination';
-import CollegeDetailsModal from './CollegeDetailsModal';
-import DecisionActions from './DecisionActions';
-import ExpandableText from '../../../components/ExpandableText';
+import ArticleCollegeList from '../../../components/ArticleCollegeList';
 import CollegeComparisonArticle from '../../../components/articles/CollegeComparisonArticle';
-import InstituteLogo from '../../../components/InstituteLogo';
 
 export const revalidate = 300;
 
@@ -73,9 +69,6 @@ function getResponsiveImageSources(imageUrl: string, preserveAspectRatio = false
   };
 }
 
-function isDetailPaginationEnabled() {
-  return process.env.NEXT_PUBLIC_ARTICLE_DETAIL_PAGINATION !== 'false';
-}
 
 async function getArticle(slug: string, page = 1): Promise<GeneratedArticle | null> {
   try {
@@ -95,18 +88,6 @@ async function getPublishedArticleSlugs(): Promise<string[]> {
   }
 }
 
-function formatFee(value: string) {
-  const amount = Number(value);
-  return Number.isFinite(amount) && amount > 0
-    ? new Intl.NumberFormat('en-IN', { style: 'currency', currency: 'INR', maximumFractionDigits: 0 }).format(amount)
-    : 'Fee available on request';
-}
-
-function formatPackage(value: number | string | null | undefined) {
-  const amount = Number(value);
-  if (!Number.isFinite(amount) || amount <= 0) return 'Package not listed';
-  return `₹${amount} LPA`;
-}
 
 function isGovAvgPackageArticle(type: string) {
   return type.includes('government-state-avg-package') || type.includes('gov-avg-package');
@@ -208,40 +189,6 @@ function getSeoContext(article: GeneratedArticle) {
   };
 }
 
-function isUniqueCollegeArticle(type: string) {
-  return type.includes('budget') || (type.includes('fees') && !type.includes('exceeds-fees'));
-}
-
-function getCandidateNote(candidate: GeneratedArticle['candidates'][number], uniqueCollege = false) {
-  const programmeCount = Number(candidate.qualifying_programme_count || 0);
-  if (uniqueCollege && programmeCount > 1) {
-    return `${programmeCount} qualifying programmes at this college. Showing the lowest recorded fee. Use View college details for the full programme list.`;
-  }
-  if (!candidate.eligibility) {
-    return `Eligibility is not listed for this option. Confirm the latest admission notice before applying.`;
-  }
-  if (candidate.institute_type === 'public') {
-    return `${candidate.fee_record_count || 0} fee entries found. Public fees may vary by category, year and required charges.`;
-  }
-  return `${candidate.fee_record_count || 0} fee entries found. Private colleges may add development, hostel and other charges.`;
-}
-
-function getCandidateHeading(candidate: GeneratedArticle['candidates'][number], uniqueCollege = false) {
-  if (uniqueCollege) return candidate.institute_name;
-  return candidate.programme_name
-    ? `${candidate.institute_name} — ${candidate.programme_name}`
-    : candidate.institute_name;
-}
-
-function getCourseContext(candidate: GeneratedArticle['candidates'][number], uniqueCollege = false) {
-  const location = [candidate.city, candidate.state].filter(Boolean).join(', ');
-  const institute = candidate.institute_name || 'this institute';
-  const programme = candidate.programme_name || 'Programme';
-  if (uniqueCollege) {
-    return `Lowest recorded fee: ${programme} at ${institute}${location ? `, ${location}` : ''}`;
-  }
-  return `${programme} at ${institute}${location ? `, ${location}` : ''}`;
-}
 
 const relatedGuides = [
   { slug: 'animation-ug-fees-in-india', title: 'Animation UG fees in India', description: 'Compare recorded fees, duration and eligibility.' },
@@ -250,37 +197,33 @@ const relatedGuides = [
   { slug: 'top-colleges-in-india-2026-animation-ug-under-1-lakh-fees', title: 'Top Animation UG colleges under ₹1 lakh fees', description: 'Find options matching the ₹1 lakh fee filter.' }
 ];
 
-export async function generateMetadata({ params, searchParams }: { params: Promise<{ slug: string }>; searchParams: Promise<{ page?: string }> }): Promise<Metadata> {
+export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
   const { slug } = await params;
-  const query = await searchParams;
-  const page = isDetailPaginationEnabled() ? Math.max(1, Number(query.page || 1)) : 1;
-  const article = await getArticle(slug, page);
+  const article = await getArticle(slug, 1);
   if (!article) return { title: 'Article not found', robots: { index: false, follow: false } };
   const seo = getSeoContext(article);
-  const pageTitle = page > 1 ? `${article.title} — Page ${page}` : article.title;
-  const canonicalPath = page > 1 ? `/articles/${article.slug}?page=${page}` : `/articles/${article.slug}`;
-  const canonical = `${getSiteUrl()}${canonicalPath}`;
+  const canonical = `${getSiteUrl()}/articles/${article.slug}`;
   return {
-    title: pageTitle,
-    description: 'metaDescription' in seo ? seo.metaDescription : `${pageTitle}: ${seo.intro}`,
+    title: article.title,
+    description: 'metaDescription' in seo ? seo.metaDescription : `${article.title}: ${seo.intro}`,
     alternates: { canonical },
     robots: { index: true, follow: true },
     openGraph: {
       type: 'article',
-      title: pageTitle,
+      title: article.title,
       description: seo.intro,
       url: canonical,
       images: [{ url: article.imageUrl || '/og/default.png', width: 1200, height: 630, alt: article.imageUrl ? article.title : 'College Decision' }]
     },
-    twitter: { card: 'summary_large_image', title: pageTitle }
+    twitter: { card: 'summary_large_image', title: article.title }
   };
 }
 
 export default async function ArticleDetailPage({ params, searchParams }: { params: Promise<{ slug: string }>; searchParams: Promise<{ page?: string }> }) {
   const { slug } = await params;
   const query = await searchParams;
-  const page = isDetailPaginationEnabled() ? Math.max(1, Number(query.page || 1)) : 1;
-  const article = await getArticle(slug, page);
+  if (query.page) permanentRedirect(`/articles/${slug}`);
+  const article = await getArticle(slug, 1);
   if (!article) notFound();
   if (article.type === 'college-comparison' && article.collegeA && article.collegeB) {
     if (article.slug !== slug) redirect(`/articles/${article.slug}`);
@@ -343,7 +286,7 @@ export default async function ArticleDetailPage({ params, searchParams }: { para
       }
     ]
   };
-  const uniqueCollege = isUniqueCollegeArticle(article.type);
+  const summaryLabel = isAveragePackageExceedsFeesArticle(article.type) ? `Recorded average package exceeds recorded fees in ${article.location?.name || 'India'}` : isHighestPackageArticle(article.type) ? `Colleges in ${article.state?.name || 'selected state'} with at least ₹${article.packageThresholdLakh || 15} lakh highest package` : isGovAvgPackageArticle(article.type) ? `Government colleges in ${article.state?.name || 'selected state'} ranked by average package` : isExamAdmissionArticle(article.type) ? `MBA colleges accepting ${article.exam?.name || 'the selected entrance exam'}` : article.budgetLakh ? `Budget guide: up to ₹${article.budgetLakh} lakh` : article.type.includes('admission') ? 'Course admission and eligibility guide' : 'Course fee guide';
   return <main className="section"><div className="wrap prose">
     <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
     <nav className="breadcrumb" aria-label="Breadcrumb"><Link href="/">Home</Link><span aria-hidden="true">›</span><Link href="/articles">Articles</Link><span aria-hidden="true">›</span><span aria-current="page">{article.title}</span></nav>
@@ -354,18 +297,24 @@ export default async function ArticleDetailPage({ params, searchParams }: { para
     })()}
     <p className="article-backlink"><Link href="/articles">← Back to all Student Decision Guides</Link></p>
     <p><Link className="button primary" href="/compare-colleges-2026">Compare colleges side by side <ArrowRight size={16} aria-hidden="true" /></Link></p>
-    <p className="muted">Showing page {article.pagination.page} of {article.pagination.totalPages} · {article.candidateCount} unique college options found · {isAveragePackageExceedsFeesArticle(article.type) ? `Recorded average package exceeds recorded fees in ${article.location?.name || 'India'}` : isHighestPackageArticle(article.type) ? `Colleges in ${article.state?.name || 'selected state'} with at least ₹${article.packageThresholdLakh || 15} lakh highest package` : isGovAvgPackageArticle(article.type) ? `Government colleges in ${article.state?.name || 'selected state'} ranked by average package` : isExamAdmissionArticle(article.type) ? `MBA colleges accepting ${article.exam?.name || 'the selected entrance exam'}` : article.budgetLakh ? `Budget guide: up to ₹${article.budgetLakh} lakh` : article.type.includes('admission') ? 'Course admission and eligibility guide' : 'Course fee guide'}</p>
     <div className="notice"><strong>Before you apply:</strong> {isAveragePackageExceedsFeesArticle(article.type) || isHighestPackageArticle(article.type) || isGovAvgPackageArticle(article.type) ? 'placement packages are historical leads and can change by batch, role and recruiter mix. Confirm the latest official fee and placement report before deciding.' : isExamAdmissionArticle(article.type) ? `exam routes and college requirements can change. Confirm the current ${article.exam?.name || 'entrance exam'} notice and each institution's official admission process before applying.` : article.type.includes('admission') ? 'eligibility and admission routes can change by institution and academic year. Confirm the latest official notice before applying.' : 'treat these figures as fee leads, not final quotes. Confirm the academic year, currency, duration, hostel, mess, deposits and current admission rules with the institution.'}</div>
     <p className="article-intro">{seo.intro}</p>
     {isExamAdmissionArticle(article.type) && article.exam?.applyUrl && <p className="article-backlink"><a href={article.exam.applyUrl} target="_blank" rel="noreferrer">Open official {article.exam.name} information</a></p>}
     <h2>{seo.optionsHeading}</h2>
-    {article.candidates.map((candidate, index) => <article className="card" key={uniqueCollege ? String(candidate.institute_id) : `${candidate.institute_name}-${candidate.programme_name}-${index}`}><div className="institute-heading"><h3>{index + 1}. {getCandidateHeading(candidate, uniqueCollege)}</h3><InstituteLogo src={candidate.logo} alt={`${candidate.institute_name} logo`} /></div><p className="muted">{candidate.institute_type === 'public' ? 'Government or public institution' : 'Private institution'} · {candidate.city || 'Location not listed'}, {candidate.state || 'India'}</p><p className="course-context"><strong>Course:</strong> {getCourseContext(candidate, uniqueCollege)}</p>{(candidate.average_year_fee || candidate.average_package || candidate.highest_package || candidate.nirf_rank) && <div className="article-college-highlights">{candidate.average_year_fee && <span>Average yearly fee: <strong>{formatFee(String(candidate.average_year_fee))}</strong></span>}{candidate.average_package && <span>Average placement: <strong>{formatPackage(candidate.average_package)}</strong></span>}{candidate.highest_package && <span>Highest placement: <strong>{formatPackage(candidate.highest_package)}</strong></span>}{candidate.nirf_rank && <span>NIRF: <strong>Rank {candidate.nirf_rank}{candidate.nirf_out_of ? ` / ${candidate.nirf_out_of}` : ''}</strong></span>}</div>}<p><strong>Duration:</strong> {candidate.duration || 'Check the current programme duration.'}</p><p><strong>Eligibility:</strong> <ExpandableText text={candidate.eligibility || 'Check the latest college admission notice.'} /></p>{isAveragePackageExceedsFeesArticle(article.type) ? <><p className="price">{formatPackage(candidate.average_package)} average package</p><p><strong>Recorded fee:</strong> {formatFee(candidate.min_total_fee || '')}</p></> : isHighestPackageArticle(article.type) ? <><p className="price">{formatPackage(candidate.highest_package)} highest package{candidate.placement_year ? ` · ${candidate.placement_year}` : ''}</p>{candidate.average_package ? <p><strong>Average package:</strong> {formatPackage(candidate.average_package)}</p> : null}</> : isGovAvgPackageArticle(article.type) ? <><p className="price">{formatPackage(candidate.average_package)} average package{candidate.placement_year ? ` · ${candidate.placement_year}` : ''}</p>{candidate.highest_package ? <p><strong>Highest package:</strong> {formatPackage(candidate.highest_package)}</p> : null}</> : article.type.includes('admission') ? <p><strong>Admission route:</strong> {candidate.admission_routes || 'Check the latest official admission notice.'}</p> : <p className="price">{formatFee(candidate.min_total_fee || '')} lowest recorded fee</p>}<div className="card-actions"><small>{isAveragePackageExceedsFeesArticle(article.type) ? 'This comparison uses recorded average package and fee values; verify their years and current official reports before applying.' : isHighestPackageArticle(article.type) ? 'Highest package values are historical placement records. Verify the latest official report before applying.' : isGovAvgPackageArticle(article.type) ? 'Average package ranking uses active placement records for government or public institutes. Verify the latest official report before applying.' : article.type.includes('admission') ? 'Eligibility, duration and admission route are present in the active programme records. Verify the current official notice before applying.' : getCandidateNote(candidate, uniqueCollege)}</small><div className="card-action-buttons"><CollegeDetailsModal instituteId={candidate.institute_id} courseId={candidate.course_id} courseName={candidate.programme_name} /><DecisionActions showCompare={article.pagination.total > 1} instituteId={candidate.institute_id} courseId={candidate.course_id} instituteName={candidate.institute_name} programmeName={candidate.programme_name} duration={candidate.duration} eligibility={candidate.eligibility} fee={formatFee(candidate.min_total_fee || '')} feeRecordCount={candidate.fee_record_count} instituteType={candidate.institute_type} city={candidate.city} state={candidate.state} averagePackage={candidate.average_package} highestPackage={candidate.highest_package} placementYear={candidate.placement_year} admissionRoutes={candidate.admission_routes} /></div></div></article>)}
+    <ArticleCollegeList
+      slug={article.slug}
+      articleType={article.type}
+      initialCandidates={article.candidates}
+      candidateCount={article.candidateCount}
+      initialPage={article.pagination.page}
+      totalPages={article.pagination.totalPages}
+      summaryLabel={summaryLabel}
+    />
     <h2>How to use this guide</h2>
     <p>{isAveragePackageExceedsFeesArticle(article.type) ? 'Use the package-above-fees result as a shortlist signal, then compare programme quality, fee coverage, eligibility, admission route and the latest official placement report.' : isHighestPackageArticle(article.type) ? 'Start with colleges that meet the package threshold, then compare programme quality, fees, eligibility, admission route and the latest official placement report before applying.' : isGovAvgPackageArticle(article.type) ? 'Start with the government colleges that report stronger average packages in your chosen state. Then compare eligibility, fees, admission route, facilities and the latest official placement report before applying.' : 'Start with the colleges that match your preferred location and admission route. Then compare the complete programme cost, duration, eligibility, entrance exam, facilities, learning resources, and recent placement information. A low displayed fee is useful only when it is current and complete.'}</p>
     {relatedVisible.length > 0 && <section className="related-guides" aria-labelledby="related-guides-heading">
       <h2 id="related-guides-heading">Related Student Decision Guides</h2>
       <div className="related-guide-list">{relatedVisible.map((guide) => <Link className="related-guide" href={`/articles/${guide.slug}`} key={guide.slug}><strong>{guide.title}</strong><span>{guide.description}</span></Link>)}</div>
     </section>}
-    {isDetailPaginationEnabled() && article.pagination.totalPages > 1 && <nav className="pagination" aria-label="Article result pages">{page > 1 && <a className="page-arrow" href={`/articles/${article.slug}?page=${page - 1}`}>← Previous</a>}<div className="page-numbers">{getPageItems(article.pagination.totalPages, page).map((item, index) => item === 'ellipsis' ? <span className="page-ellipsis" key={`ellipsis-${index}`}>…</span> : <a className={item === page ? 'page-number current' : 'page-number'} aria-current={item === page ? 'page' : undefined} key={item} href={`/articles/${article.slug}?page=${item}`}>{item}</a>)}</div>{page < article.pagination.totalPages && <a className="page-arrow" href={`/articles/${article.slug}?page=${page + 1}`}>Next →</a>}</nav>}
   </div></main>;
 }
