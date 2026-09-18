@@ -10,6 +10,7 @@ type College = {
   full_name: string;
   display_name: string | null;
   slug: string;
+  published_slug?: string | null;
   institute_type: string | null;
   logo?: string | null;
   city: string | null;
@@ -152,6 +153,7 @@ export default async function CollegesPage({ searchParams }: { searchParams: Pro
           courseId: Number(college.course_id || 0),
           programmeId: Number(college.programme_id || 0),
           instituteName: college.display_name || college.full_name,
+          publishedSlug: college.published_slug,
           instituteType: college.institute_type,
           logo: college.logo,
           city: college.city,

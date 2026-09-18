@@ -15,6 +15,9 @@ export async function GET() {
       `<sitemapindex xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">` +
       `<sitemap><loc>${xml(`${base}/sitemaps/pages.xml`)}</loc><lastmod>${lastmod}</lastmod></sitemap>` +
       `<sitemap><loc>${xml(`${base}/sitemaps/articles.xml`)}</loc><lastmod>${lastmod}</lastmod></sitemap>` +
+      `<sitemap><loc>${xml(`${base}/sitemaps/colleges.xml`)}</loc><lastmod>${lastmod}</lastmod></sitemap>` +
+      `<sitemap><loc>${xml(`${base}/sitemaps/courses.xml`)}</loc><lastmod>${lastmod}</lastmod></sitemap>` +
+      `<sitemap><loc>${xml(`${base}/sitemaps/exams.xml`)}</loc><lastmod>${lastmod}</lastmod></sitemap>` +
       `</sitemapindex>`;
     return new NextResponse(body, {
       headers: {

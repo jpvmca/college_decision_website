@@ -72,7 +72,7 @@ function getResponsiveImageSources(imageUrl: string, preserveAspectRatio = false
 
 async function getArticle(slug: string, page = 1): Promise<GeneratedArticle | null> {
   try {
-    const response = await api<{ data: GeneratedArticle }>(`/articles/${slug}?page=${page}&perPage=20`, { next: { revalidate: 300 } });
+    const response = await api<{ data: GeneratedArticle }>(`/articles/${slug}?page=${page}&perPage=20`, { cache: 'no-store' });
     return response.data;
   } catch {
     return null;

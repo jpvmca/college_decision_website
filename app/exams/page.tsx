@@ -9,6 +9,7 @@ type Exam = {
   id: number;
   name: string;
   slug: string;
+  published_slug?: string | null;
   course_name: string | null;
   course_slug: string | null;
   programme_count: number;
@@ -43,7 +44,7 @@ export default async function ExamsPage({ searchParams }: { searchParams: Promis
     '@graph': [
       { '@type': 'WebPage', '@id': `${pageUrl}#webpage`, url: pageUrl, name: 'Entrance Exams in India 2026', description: 'A paginated list of entrance exams in India.', isPartOf: { '@id': `${siteUrl}/#website` }, breadcrumb: { '@id': `${pageUrl}#breadcrumb` }, mainEntity: { '@id': `${pageUrl}#itemlist` } },
       { '@type': 'CollectionPage', '@id': `${pageUrl}#collectionpage`, url: pageUrl, name: 'Entrance Exams in India 2026', description: 'A paginated collection of entrance exams in India.', isPartOf: { '@id': `${siteUrl}/#website` }, breadcrumb: { '@id': `${pageUrl}#breadcrumb` }, mainEntity: { '@id': `${pageUrl}#itemlist` } },
-      { '@type': 'ItemList', '@id': `${pageUrl}#itemlist`, name: 'Entrance Exams in India', numberOfItems: result.pagination.total, itemListElement: result.data.map((exam, index) => { const examUrl = `${pageUrl}#exam-${index + 1}`; return { '@type': 'ListItem', position: (page - 1) * result.pagination.perPage + index + 1, url: examUrl, item: { '@type': 'Thing', '@id': examUrl, name: exam.name } }; }) },
+      { '@type': 'ItemList', '@id': `${pageUrl}#itemlist`, name: 'Entrance Exams in India', numberOfItems: result.pagination.total, itemListElement: result.data.map((exam, index) => { const examUrl = exam.published_slug ? `${siteUrl}/exams/${exam.published_slug}` : `${pageUrl}#exam-${index + 1}`; return { '@type': 'ListItem', position: (page - 1) * result.pagination.perPage + index + 1, url: examUrl, item: { '@type': 'Thing', '@id': examUrl, name: exam.name } }; }) },
       { '@type': 'BreadcrumbList', '@id': `${pageUrl}#breadcrumb`, itemListElement: [{ '@type': 'ListItem', position: 1, name: 'Home', item: siteUrl }, { '@type': 'ListItem', position: 2, name: 'Exams', item: `${siteUrl}/exams` }] }
     ]
   };
@@ -56,20 +57,23 @@ export default async function ExamsPage({ searchParams }: { searchParams: Promis
       <article className="article-card exam-card" id={`exam-${index + 1}`} key={exam.id}>
         <div className="exam-card-top">
           <div className="exam-card-heading">
-            <ExamLogo src={exam.logo} examName={exam.name} courseName={exam.course_name} size={64} />
+            {exam.published_slug ? <Link href={`/exams/${exam.published_slug}`}><ExamLogo src={exam.logo} examName={exam.name} courseName={exam.course_name} size={64} /></Link> : <ExamLogo src={exam.logo} examName={exam.name} courseName={exam.course_name} size={64} />}
             <div className="exam-card-copy">
               <div className="article-card-top">
                 <span className="pill">{exam.course_name || 'Entrance exam'}</span>
                 {Number(exam.institute_count || 0) > 0 ? <span className="muted">{Number(exam.institute_count)} colleges</span> : null}
               </div>
-              <h2>{exam.name}</h2>
+              <h2>{exam.published_slug ? <Link href={`/exams/${exam.published_slug}`}>{exam.name}</Link> : exam.name}</h2>
             </div>
           </div>
         </div>
         <p>{exam.course_name ? `${exam.name} is connected with ${exam.course_name} programmes and admission routes.` : `Explore colleges and programmes connected with ${exam.name}.`}</p>
-        <div className="article-facts">
-          <span>{Number(exam.programme_count || 0)} mapped programmes</span>
-          {exam.review_count ? <span>{exam.review_count} reviews · {Number(exam.average_rating).toFixed(1)}/5</span> : <span>Reviews not listed</span>}
+        <div className="exam-card-footer">
+          <div className="article-facts">
+            <span>{Number(exam.programme_count || 0)} mapped programmes</span>
+            {exam.review_count ? <span>{exam.review_count} reviews · {Number(exam.average_rating).toFixed(1)}/5</span> : <span>Reviews not listed</span>}
+          </div>
+          {exam.published_slug ? <Link className="home-card-more exam-card-more" href={`/exams/${exam.published_slug}`}>View exam profile <ArrowRight size={14} aria-hidden="true" /></Link> : null}
         </div>
       </article>
     )) : <div className="card"><h2>Exam list unavailable</h2><p>Please try again shortly.</p></div>}</div>

@@ -6,12 +6,13 @@ import ExamLogo from '../components/ExamLogo';
 import InstituteLogo from '../components/InstituteLogo';
 import { ArrowRight, ChartNoAxesCombined, GraduationCap, IndianRupee } from 'lucide-react';
 
-type CourseSummary = { id: number; name: string; institute_count: number; programme_count: number; review_count: number | string | null; average_rating: number | string | null };
-type ExamSummary = { id: number; name: string; course_name: string | null; institute_count: number; programme_count: number; review_count: number | string | null; average_rating: number | string | null; logo?: string | null };
+type CourseSummary = { id: number; name: string; slug?: string; published_slug?: string | null; institute_count: number; programme_count: number; review_count: number | string | null; average_rating: number | string | null };
+type ExamSummary = { id: number; name: string; published_slug?: string | null; course_name: string | null; institute_count: number; programme_count: number; review_count: number | string | null; average_rating: number | string | null; logo?: string | null };
 type CollegeSummary = {
   id: number;
   display_name?: string | null;
   full_name?: string | null;
+  published_slug?: string | null;
   institute_type?: string | null;
   logo?: string | null;
   city?: string | null;
@@ -110,7 +111,7 @@ export default async function HomePage() {
                     <InstituteLogo src={college.logo} alt={`${collegeName} college logo`} />
                     <div>
                       <span className="pill">{college.institute_type === 'public' ? 'Public' : college.institute_type === 'private' ? 'Private' : 'College'}</span>
-                      <h3>{collegeName}</h3>
+                      <h3>{college.published_slug ? <Link href={`/colleges/${college.published_slug}`}>{collegeName}</Link> : collegeName}</h3>
                     </div>
                   </div>
                   <p className="muted">{[college.city, college.state].filter(Boolean).join(', ') || 'India'}</p>
@@ -118,7 +119,7 @@ export default async function HomePage() {
                     <strong>{programmeCount.toLocaleString('en-IN')} programmes</strong>
                     {courseList ? <> · {courseList}</> : null}
                   </p>
-                  <Link className="home-card-more" href="/colleges">View more <ArrowRight size={14} aria-hidden="true" /></Link>
+                  <Link className="home-card-more" href={college.published_slug ? `/colleges/${college.published_slug}` : '/colleges'}>{college.published_slug ? 'View college profile' : 'View more'} <ArrowRight size={14} aria-hidden="true" /></Link>
                 </article>
               );
             })}
@@ -132,7 +133,7 @@ export default async function HomePage() {
             <Link className="popular-guides-view-all" href="/courses">View all courses <ArrowRight size={16} aria-hidden="true" /></Link>
           </div>
           <div className="grid">
-            {courses.map((course) => <article className="card" key={course.id}><span className="pill">{course.review_count ? `${course.review_count} reviews` : 'Course guide'}</span><h3>{course.name}</h3><p className="muted">{Number(course.institute_count || 0)} colleges · {Number(course.programme_count || 0)} active programmes</p>{course.average_rating ? <p className="article-facts">{Number(course.average_rating).toFixed(1)}/5 average rating</p> : null}</article>)}
+            {courses.map((course) => <article className="card" key={course.id}><span className="pill">{course.review_count ? `${course.review_count} reviews` : 'Course guide'}</span><h3>{course.published_slug ? <Link href={`/courses/${course.published_slug}`}>{course.name}</Link> : course.name}</h3><p className="muted">{Number(course.institute_count || 0)} colleges · {Number(course.programme_count || 0)} active programmes</p>{course.average_rating ? <p className="article-facts">{Number(course.average_rating).toFixed(1)}/5 average rating</p> : null}{course.published_slug ? <Link className="home-card-more" href={`/courses/${course.published_slug}`}>View course profile <ArrowRight size={14} aria-hidden="true" /></Link> : null}</article>)}
           </div>
         </div>
       </section>
@@ -149,11 +150,12 @@ export default async function HomePage() {
                   <ExamLogo src={exam.logo} examName={exam.name} courseName={exam.course_name} size={48} />
                   <div>
                     <span className="pill">{exam.course_name || 'Entrance exam'}</span>
-                    <h3>{exam.name}</h3>
+                    <h3>{exam.published_slug ? <Link href={`/exams/${exam.published_slug}`}>{exam.name}</Link> : exam.name}</h3>
                   </div>
                 </div>
                 <p className="muted">{Number(exam.institute_count || 0)} colleges · {Number(exam.programme_count || 0)} mapped programmes</p>
                 {exam.review_count ? <p className="article-facts">{exam.review_count} course reviews · {Number(exam.average_rating).toFixed(1)}/5 average rating</p> : null}
+                {exam.published_slug ? <Link className="home-card-more" href={`/exams/${exam.published_slug}`}>View exam profile <ArrowRight size={14} aria-hidden="true" /></Link> : null}
               </article>
             ))}
           </div>

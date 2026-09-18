@@ -7,7 +7,7 @@ export async function POST(request: NextRequest) {
     return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
   }
 
-  for (const path of ['/', '/articles', '/search', '/sitemap.xml', '/sitemaps/pages.xml', '/sitemaps/articles.xml', '/privacy-policy', '/terms-and-conditions', '/disclaimer']) {
+  for (const path of ['/', '/articles', '/articles/[slug]', '/colleges', '/colleges/[slug]', '/courses', '/courses/[slug]', '/exams', '/exams/[slug]', '/search', '/sitemap.xml', '/sitemaps/pages.xml', '/sitemaps/articles.xml', '/sitemaps/colleges.xml', '/sitemaps/courses.xml', '/sitemaps/exams.xml', '/privacy-policy', '/terms-and-conditions', '/disclaimer']) {
     revalidatePath(path);
   }
   return NextResponse.json({ data: { cleared: true } });

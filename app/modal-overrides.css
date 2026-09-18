@@ -315,6 +315,31 @@
   text-decoration: underline;
 }
 
+.exam-card {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.exam-card-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-top: auto;
+  flex-wrap: wrap;
+}
+
+.exam-card-footer .article-facts {
+  margin: 0;
+}
+
+.exam-card-more {
+  margin-top: 0;
+  margin-left: auto;
+  flex: 0 0 auto;
+}
+
 .exam-card-heading,
 .home-exam-heading {
   display: flex;

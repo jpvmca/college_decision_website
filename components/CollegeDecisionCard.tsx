@@ -4,12 +4,14 @@ import ExpandableText from './ExpandableText';
 import CollegeViewDetailsModal from './CollegeViewDetailsModal';
 import DecisionActions from './DecisionActions';
 import InstituteLogo from './InstituteLogo';
+import Link from 'next/link';
 
 export type CollegeDecisionResult = {
   instituteId: number;
   courseId: number;
   programmeId: number;
   instituteName: string;
+  publishedSlug?: string | null;
   instituteType: string | null;
   city: string | null;
   state: string | null;
@@ -55,7 +57,7 @@ export default function CollegeDecisionCard({ item, showCompare = true, showRevi
     <div className="college-card-heading">
       <div className="college-card-title-row">
         <InstituteLogo src={item.logo} alt={`${item.instituteName} college logo`} />
-        <div><h3>{item.instituteName}</h3><strong>{item.programmeName}</strong></div>
+        <div><h3>{item.publishedSlug ? <Link href={`/colleges/${item.publishedSlug}`}>{item.instituteName}</Link> : item.instituteName}</h3><strong>{item.programmeName}</strong></div>
       </div>
       <span className="college-type-pill">{item.instituteType === 'public' ? 'Public' : 'Private'}</span>
     </div>
@@ -64,6 +66,6 @@ export default function CollegeDecisionCard({ item, showCompare = true, showRevi
     {(item.averageYearFee || item.averagePackage || item.highestPackage || item.nirfRank || (showReviews && item.reviewCount)) && <div className="decision-card-highlights">{showReviews && item.reviewCount && <span>Student reviews <b>{item.reviewCount}{item.averageRating ? ` · ${Number(item.averageRating).toFixed(1)}/5` : ''}</b></span>}{item.averageYearFee && <span>Average yearly fee <b>{money(item.averageYearFee)}</b></span>}{item.averagePackage && packageMoney(item.averagePackage) && <span>Average placement <b>{packageMoney(item.averagePackage)}</b></span>}{item.highestPackage && packageMoney(item.highestPackage) && <span>Highest placement <b>{packageMoney(item.highestPackage)}</b></span>}{item.nirfRank && <span>NIRF <b>Rank {item.nirfRank}{item.nirfOutOf ? ` / ${item.nirfOutOf}` : ''}</b></span>}</div>}
     <p><b>Eligibility:</b> <ExpandableText text={item.eligibility || 'Check the latest official notice.'} /></p>
     <p><b>Admission route:</b> {item.admissionRoutes || 'Not listed'}</p>
-    <div className="decision-result-actions"><CollegeViewDetailsModal instituteId={item.instituteId} courseId={item.courseId} courseName={item.programmeName} /><DecisionActions showCompare={showCompare} instituteId={item.instituteId} courseId={item.courseId} instituteName={item.instituteName} programmeName={item.programmeName} duration={item.duration} eligibility={item.eligibility} fee={money(item.lowestFee)} instituteType={item.instituteType} city={item.city} state={item.state} averagePackage={item.averagePackage} highestPackage={item.highestPackage} admissionRoutes={item.admissionRoutes} /></div>
+    <div className="decision-result-actions">{item.publishedSlug ? <Link className="view-button" href={`/colleges/${item.publishedSlug}`}>View college profile</Link> : <CollegeViewDetailsModal instituteId={item.instituteId} courseId={item.courseId} courseName={item.programmeName} />}<DecisionActions showCompare={showCompare} instituteId={item.instituteId} courseId={item.courseId} instituteName={item.instituteName} programmeName={item.programmeName} duration={item.duration} eligibility={item.eligibility} fee={money(item.lowestFee)} instituteType={item.instituteType} city={item.city} state={item.state} averagePackage={item.averagePackage} highestPackage={item.highestPackage} admissionRoutes={item.admissionRoutes} /></div>
   </article>;
 }
