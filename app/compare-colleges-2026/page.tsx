@@ -2,8 +2,27 @@ import type { Metadata } from 'next';
 import Link from 'next/link';
 import { ArrowRight, CheckCircle2 } from 'lucide-react';
 import CollegeComparePage from '../../components/CollegeComparePage';
+import { api, mediaUrl } from '../../lib/api';
 
 const siteUrl = (process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3001').replace(/\/+$/, '');
+const comparisonImage = '/college-comparison-hero.webp';
+
+type ComparisonArticle = {
+  id: number;
+  slug: string;
+  title: string;
+  imageUrl?: string | null;
+  articleType?: string;
+};
+
+async function getLatestComparisonArticles(): Promise<ComparisonArticle[]> {
+  try {
+    const response = await api<{ data: ComparisonArticle[] }>('/articles?type=college-comparison&page=1&perPage=20', { next: { revalidate: 300 } });
+    return response.data || [];
+  } catch {
+    return [];
+  }
+}
 
 export const metadata: Metadata = {
   title: 'Compare Colleges in India 2026: Fees, Courses, Placements & Admission',
@@ -32,7 +51,8 @@ const applicationSchema = {
   ]
 };
 
-export default function CompareCollegesPage() {
+export default async function CompareCollegesPage() {
+  const comparisonArticles = await getLatestComparisonArticles();
   return (
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(applicationSchema) }} />
@@ -56,6 +76,26 @@ export default function CompareCollegesPage() {
             <CollegeComparePage />
           </div>
         </section>
+        {comparisonArticles.length > 0 && <section className="section latest-comparison-section">
+          <div className="wrap">
+            <p className="eyebrow">LATEST COLLEGE COMPARISON GUIDES</p>
+            <h2>Latest College Comparison Guides: Fees, Courses &amp; Placements</h2>
+            <p>Read the latest college comparison articles to compare fees, courses, placements and admission evidence before you shortlist.</p>
+            <div className="latest-comparison-grid">
+              {comparisonArticles.map((article) => {
+                const image = mediaUrl(article.imageUrl) || comparisonImage;
+                return <Link className="latest-comparison-card" href={`/articles/${article.slug}`} key={article.id}>
+                  <img src={image} alt="" width="640" height="360" loading="lazy" />
+                  <div>
+                    <span className="pill">College comparison</span>
+                    <h3>{article.title}</h3>
+                    <span className="text-link">Read comparison <ArrowRight size={15} aria-hidden="true" /></span>
+                  </div>
+                </Link>;
+              })}
+            </div>
+          </div>
+        </section>}
         <section className="section compare-content-section">
           <div className="wrap compare-content-grid">
             <article>
