@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import Link from 'next/link';
 import { api, instituteLogoUrl } from '../../../lib/api';
+import { toAbsoluteExternalUrl } from '../../../lib/external-url';
 
 type CollegeProfile = {
   institute: {
@@ -156,7 +157,8 @@ export default async function CollegeProfilePage({ params }: { params: Promise<{
   const location = [profile.institute.location.city, profile.institute.location.state].filter(Boolean).join(', ');
   const siteUrl = (process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3001').replace(/\/+$/, '');
   const pageUrl = `${siteUrl}/colleges/${slug}`;
-  const officialUrl = profile.institute.website ? absoluteUrl(profile.institute.website, siteUrl) : pageUrl;
+  const officialWebsite = toAbsoluteExternalUrl(profile.institute.website);
+  const officialUrl = officialWebsite || pageUrl;
   const rating = profile.reviewSummary.averageRating;
   const faqs = profileFaqs(profile, name, location);
   const jsonLd = {
@@ -171,7 +173,7 @@ export default async function CollegeProfilePage({ params }: { params: Promise<{
         logo: profile.institute.logo ? instituteLogoUrl(profile.institute.logo) : undefined,
         email: profile.institute.email || undefined,
         telephone: profile.institute.phone || undefined,
-        sameAs: profile.institute.website ? [officialUrl] : undefined,
+        sameAs: officialWebsite ? [officialWebsite] : undefined,
         address: profile.institute.location.addressLabel || location || undefined,
         foundingDate: profile.institute.establishmentYear ? String(profile.institute.establishmentYear) : undefined,
         aggregateRating: rating && profile.reviewSummary.count ? {
@@ -241,7 +243,7 @@ export default async function CollegeProfilePage({ params }: { params: Promise<{
         <h1>{name}</h1>
         <p className="muted">{profile.institute.instituteType || 'College'} · {location || 'India'}{profile.institute.isUniversity ? ' · University' : ''}</p>
         <p>Review courses, fees, eligibility, admission routes, placements, rankings and student reviews for {name} before making your shortlist.</p>
-        {profile.institute.website && <a className="button primary" href={profile.institute.website} target="_blank" rel="noreferrer">Visit official website</a>}
+        {officialWebsite && <a className="button primary" href={officialWebsite} target="_blank" rel="noreferrer">Visit official website</a>}
       </div>
       <img className="college-profile-logo" src={profile.institute.logo ? instituteLogoUrl(profile.institute.logo) : '/logo.svg'} alt={profile.institute.logo ? `${name} college logo` : 'College Decision logo'} width="160" height="160" />
     </header>

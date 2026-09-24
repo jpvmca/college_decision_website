@@ -1,6 +1,7 @@
 'use client';
 
 import { useEffect, useState, type CSSProperties } from 'react';
+import { toExternalHttpUrl } from '../../../lib/external-url';
 
 type CollegeDetails = {
   institute: {
@@ -149,7 +150,7 @@ export default function CollegeDetailsModal({ instituteId, courseId, courseName 
           <p className="muted">{details.institute.institute_type || 'Institution'} · {[details.institute.city, details.institute.state].filter(Boolean).join(', ') || 'Location not listed'}</p>
           <div className="detail-grid">
             <div><strong>About this college</strong><p>{details.institute.address_line_1 || 'Address not listed'}{details.institute.address_line_2 ? `, ${details.institute.address_line_2}` : ''}</p><p>{details.institute.establishment_year ? `Established ${details.institute.establishment_year}.` : 'Establishment year not listed.'} {details.institute.is_university ? 'Listed as a university.' : ''}</p></div>
-            <div><strong>Contact</strong><p>{details.institute.website ? <a href={details.institute.website} target="_blank" rel="noreferrer">Official website</a> : 'Website not listed'}</p><p>{details.institute.email || details.institute.phone_number_1 || 'Contact details not listed'}</p></div>
+            <div><strong>Contact</strong><p>{(() => { const websiteUrl = toExternalHttpUrl(details.institute.website); return websiteUrl ? <a href={websiteUrl} target="_blank" rel="noreferrer">Official website</a> : 'Website not listed'; })()}</p><p>{details.institute.email || details.institute.phone_number_1 || 'Contact details not listed'}</p></div>
           </div>
           <h3>Programme details</h3>
           {details.programmes.map((programme) => <div className="modal-block" key={programme.id}><strong>{programme.name}</strong><p><span className="detail-label">Duration</span><span className="detail-value">{programme.duration || 'Not listed'}</span><span className="detail-separator">·</span><span className="detail-label">Seats</span><span className="detail-value">{programme.total_seats || 'Not listed'}</span></p><p><span className="detail-label">Eligibility</span><span className="detail-value">{programme.eligibility || 'Check the latest official notice.'}</span></p>{programme.description && <p><span className="detail-label">Admission note</span><span className="detail-value">{programme.description}</span></p>}</div>)}
