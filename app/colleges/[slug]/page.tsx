@@ -3,6 +3,7 @@ import { notFound } from 'next/navigation';
 import Link from 'next/link';
 import { api, instituteLogoUrl } from '../../../lib/api';
 import { toAbsoluteExternalUrl } from '../../../lib/external-url';
+import { getLinkableEntities, findPublishedHref, findPublishedHrefByName } from '../../../lib/linkable-entities';
 
 type CollegeProfile = {
   institute: {
@@ -155,6 +156,8 @@ export default async function CollegeProfilePage({ params }: { params: Promise<{
 
   const name = displayName(profile);
   const location = [profile.institute.location.city, profile.institute.location.state].filter(Boolean).join(', ');
+  const linkableEntities = await getLinkableEntities();
+  const linkedCourseHrefs = new Set<string>();
   const siteUrl = (process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3001').replace(/\/+$/, '');
   const pageUrl = `${siteUrl}/colleges/${slug}`;
   const officialWebsite = toAbsoluteExternalUrl(profile.institute.website);
@@ -259,7 +262,7 @@ export default async function CollegeProfilePage({ params }: { params: Promise<{
     {profile.programmes.length > 0 && <section><h2>{name} courses and programmes</h2><div className="college-programme-grid">
       {profile.programmes.slice(0, 60).map((programme) => <article className="card" key={programme.programme_id}>
         <h3>{text(programme.programme_name, programme.course_name)}</h3>
-        <p className="muted">{text(programme.course_name)}{programme.duration ? ` · ${programme.duration}` : ''}</p>
+        <p className="muted">{(() => { const href = findPublishedHrefByName(linkableEntities, 'course', programme.course_name); const label = text(programme.course_name); if (!href || linkedCourseHrefs.has(href)) return label; linkedCourseHrefs.add(href); return <Link href={href}>{label}</Link>; })()}{programme.duration ? ` · ${programme.duration}` : ''}</p>
         <p><strong>Eligibility:</strong> {text(programme.eligibility, 'Check the latest official admission notice.')}</p>
         <p><strong>Fees:</strong> {programme.min_total_fee ? `${money(programme.min_total_fee)}${programme.max_total_fee && Number(programme.max_total_fee) !== Number(programme.min_total_fee) ? ` – ${money(programme.max_total_fee)}` : ''}` : 'Not listed'}</p>
       </article>)}
@@ -267,7 +270,10 @@ export default async function CollegeProfilePage({ params }: { params: Promise<{
 
     {(profile.fees?.min_total_fee || profile.fees?.max_total_fee || profile.exams.length > 0) && <section className="college-profile-columns">
       {(profile.fees?.min_total_fee || profile.fees?.max_total_fee) && <div><h2>Fees</h2><p>Recorded total fees range from <strong>{money(profile.fees?.min_total_fee)}</strong> to <strong>{money(profile.fees?.max_total_fee)}</strong>. Confirm the current academic year, category, hostel, mess, deposits and other charges with the college.</p></div>}
-      {profile.exams.length > 0 && <div><h2>Admission exams and routes</h2><div className="profile-chips">{profile.exams.map((exam) => <span key={exam.id}>{exam.name}</span>)}</div></div>}
+      {profile.exams.length > 0 && <div><h2>Admission exams and routes</h2><div className="profile-chips">{profile.exams.map((exam) => {
+        const href = findPublishedHref(linkableEntities, 'exam', exam.slug);
+        return href ? <Link key={exam.id} href={href}>{exam.name}</Link> : <span key={exam.id}>{exam.name}</span>;
+      })}</div></div>}
     </section>}
 
     {(profile.placements.length > 0 || profile.reviewSummary.count > 0) && <section className="college-profile-columns">

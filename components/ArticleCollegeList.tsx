@@ -6,6 +6,8 @@ import CollegeDetailsModal from '../app/articles/[slug]/CollegeDetailsModal';
 import DecisionActions from '../app/articles/[slug]/DecisionActions';
 import ExpandableText from './ExpandableText';
 import InstituteLogo from './InstituteLogo';
+import LinkedTextParts from './LinkedTextParts';
+import { linkAdmissionRouteParts, type LinkableEntity } from '../lib/auto-link-entities';
 
 export type ArticleCandidate = {
   institute_id: number;
@@ -41,6 +43,9 @@ type Props = {
   initialPage: number;
   totalPages: number;
   summaryLabel: string;
+  linkableEntities?: LinkableEntity[];
+  /** Primary exam slug to leave plain on Admission route: (avoid 40× CAT). */
+  excludeExamSlugs?: string[];
 };
 
 function formatFee(value: string) {
@@ -108,14 +113,22 @@ function CandidateCard({
   index,
   articleType,
   uniqueCollege,
-  showCompare
+  showCompare,
+  linkableEntities = [],
+  excludeExamSlugs = []
 }: {
   candidate: ArticleCandidate;
   index: number;
   articleType: string;
   uniqueCollege: boolean;
   showCompare: boolean;
+  linkableEntities?: LinkableEntity[];
+  excludeExamSlugs?: string[];
 }) {
+  const admissionLabel = candidate.admission_routes || 'Check the latest official admission notice.';
+  const admissionParts = articleType.includes('admission') && linkableEntities.length
+    ? linkAdmissionRouteParts(admissionLabel, linkableEntities, { excludeSlugs: excludeExamSlugs })
+    : null;
   return (
     <article className="card" key={uniqueCollege ? String(candidate.institute_id) : `${candidate.institute_name}-${candidate.programme_name}-${index}`}>
       <div className="institute-heading">
@@ -150,7 +163,7 @@ function CandidateCard({
           {candidate.highest_package ? <p><strong>Highest package:</strong> {formatPackage(candidate.highest_package)}</p> : null}
         </>
       ) : articleType.includes('admission') ? (
-        <p><strong>Admission route:</strong> {candidate.admission_routes || 'Check the latest official admission notice.'}</p>
+        <p><strong>Admission route:</strong> {admissionParts?.length ? <LinkedTextParts parts={admissionParts} /> : admissionLabel}</p>
       ) : (
         <p className="price">{formatFee(candidate.min_total_fee || '')} lowest recorded fee</p>
       )}
@@ -199,7 +212,9 @@ export default function ArticleCollegeList({
   candidateCount,
   initialPage,
   totalPages,
-  summaryLabel
+  summaryLabel,
+  linkableEntities = [],
+  excludeExamSlugs = []
 }: Props) {
   const [candidates, setCandidates] = useState(initialCandidates);
   const [page, setPage] = useState(initialPage);
@@ -238,6 +253,8 @@ export default function ArticleCollegeList({
           articleType={articleType}
           uniqueCollege={uniqueCollege}
           showCompare={candidateCount > 1}
+          linkableEntities={linkableEntities}
+          excludeExamSlugs={excludeExamSlugs}
         />
       ))}
       {hasMore && (

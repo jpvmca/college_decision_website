@@ -3,6 +3,9 @@ import { notFound } from 'next/navigation';
 import Link from 'next/link';
 import { api, instituteLogoUrl, mediaUrl } from '../../../lib/api';
 import { stripEmbeddedFaqs } from '../../../lib/strip-embedded-faqs';
+import { autoLinkHtml } from '../../../lib/auto-link-entities';
+import { getLinkableEntities } from '../../../lib/linkable-entities';
+import AutoLinkedText from '../../../components/AutoLinkedText';
 import { articleAnchorTitle, buildExamFaqs, buildExamSeo, rankExamArticles } from '../../../lib/exam-seo';
 import ExamLogo from '../../../components/ExamLogo';
 
@@ -140,7 +143,10 @@ export default async function ExamProfilePage({ params }: { params: Promise<{ sl
   const imageUrl = absoluteUrl(profile.exam.logo ? mediaUrl(profile.exam.logo) || '/exams-hero.webp' : '/exams-hero.webp', siteUrl);
   const seo = examSeo(profile);
   const faqs = profileFaqs(profile, name);
-  const guideHtml = stripEmbeddedFaqs(profile.exam.htmlContent);
+  const linkableEntities = await getLinkableEntities();
+  const guideHtml = autoLinkHtml(stripEmbeddedFaqs(profile.exam.htmlContent), linkableEntities, {
+    excludeHrefs: [`/exams/${slug}`]
+  });
   const aboutText = text(profile.exam.longDescription || profile.exam.description, '');
   const jsonLd = {
     '@context': 'https://schema.org',
@@ -192,7 +198,7 @@ export default async function ExamProfilePage({ params }: { params: Promise<{ sl
         <p className="eyebrow">EXAM PROFILE</p>
         <h1>{seo.h1}</h1>
         <p className="muted">{[profile.exam.course?.name, profile.exam.mode, profile.exam.level].filter(Boolean).join(' · ') || 'Entrance exam'} · India</p>
-        <p>{seo.intro}</p>
+        <p><AutoLinkedText text={seo.intro} entities={linkableEntities} options={{ excludeHrefs: [`/exams/${slug}`] }} /></p>
         {profile.exam.applyUrl ? <p><a href={profile.exam.applyUrl} target="_blank" rel="noreferrer">Open official {name} information</a></p> : null}
       </div>
       <ExamLogo src={profile.exam.logo} examName={name} courseName={profile.exam.course?.name} size={120} />
@@ -203,7 +209,15 @@ export default async function ExamProfilePage({ params }: { params: Promise<{ sl
       <div><strong>{profile.instituteCount || '—'}</strong><span>Mapped colleges</span></div>
       <div><strong>{profile.programmeCount || '—'}</strong><span>Mapped programmes</span></div>
       <div><strong>{profile.fees?.programmes_with_fees || '—'}</strong><span>Programmes with fees</span></div>
-      <div><strong>{profile.exam.course?.name || '—'}</strong><span>Primary course</span></div>
+      <div><strong>{(() => {
+        const courseHref = profile.exam.course?.publishedSlug
+          ? `/courses/${profile.exam.course.publishedSlug}`
+          : null;
+        const safeHref = courseHref && linkableEntities.some((entity) => entity.href === courseHref) ? courseHref : null;
+        return safeHref && profile.exam.course?.name
+          ? <a href={safeHref}>{profile.exam.course.name}</a>
+          : (profile.exam.course?.name || '—');
+      })()}</strong><span>Primary course</span></div>
     </section>
 
     {guideHtml ? <section className="course-html-content" aria-label={`${name} exam guide`} dangerouslySetInnerHTML={{ __html: guideHtml }} /> : null}

@@ -4,6 +4,7 @@ import { ArrowLeft, ArrowRight } from 'lucide-react';
 import { api } from '../../lib/api';
 import { getPageItems } from '../../lib/pagination';
 import CollegeDecisionCard from '../../components/CollegeDecisionCard';
+import { getLinkableEntities } from '../../lib/linkable-entities';
 
 type College = {
   id: number;
@@ -74,6 +75,7 @@ export default async function CollegesPage({ searchParams }: { searchParams: Pro
   } catch {
     // Keep the page renderable if the backend is temporarily unavailable.
   }
+  const linkableEntities = await getLinkableEntities();
   const siteUrl = (process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3001').replace(/\/+$/, '');
   const pageUrl = page === 1 ? `${siteUrl}/colleges` : `${siteUrl}/colleges?page=${page}`;
   const jsonLd = {
@@ -170,7 +172,7 @@ export default async function CollegesPage({ searchParams }: { searchParams: Pro
           averageRating: college.average_rating,
           eligibility: college.eligibility,
           admissionRoutes: college.admission_routes
-        }} /></div> : <article className="article-card" id={`college-${result.data.indexOf(college) + 1}`} key={college.id}><div className="article-card-top"><span className="pill">{college.institute_type || 'College'}</span><span className="muted">Programme data pending</span></div><h2>{college.display_name || college.full_name}</h2><p>{[college.city, college.state].filter(Boolean).join(', ') || 'India'}</p><p className="muted">Programme, fee and admission details are not listed yet.</p></article>
+        }} linkableEntities={linkableEntities} /></div> : <article className="article-card" id={`college-${result.data.indexOf(college) + 1}`} key={college.id}><div className="article-card-top"><span className="pill">{college.institute_type || 'College'}</span><span className="muted">Programme data pending</span></div><h2>{college.display_name || college.full_name}</h2><p>{[college.city, college.state].filter(Boolean).join(', ') || 'India'}</p><p className="muted">Programme, fee and admission details are not listed yet.</p></article>
       )) : <div className="card"><h2>College list unavailable</h2><p>Please try again shortly.</p></div>}
     </div>
     {result.pagination.totalPages > 1 && <Pagination page={page} totalPages={result.pagination.totalPages} />}

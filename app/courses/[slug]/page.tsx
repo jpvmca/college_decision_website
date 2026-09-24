@@ -3,6 +3,9 @@ import { notFound } from 'next/navigation';
 import Link from 'next/link';
 import { api, mediaUrl } from '../../../lib/api';
 import { courseDisplayName, courseSeo as buildCourseSeo } from '../../../lib/course-seo';
+import { autoLinkHtml } from '../../../lib/auto-link-entities';
+import { getLinkableEntities } from '../../../lib/linkable-entities';
+import AutoLinkedText from '../../../components/AutoLinkedText';
 
 type CourseProfile = {
   course: {
@@ -169,6 +172,10 @@ export default async function CourseProfilePage({ params }: { params: Promise<{ 
   const pageUrl = `${siteUrl}/courses/${slug}`;
   const imageUrl = absoluteUrl(profile.course.image ? mediaUrl(profile.course.image) || '/courses-hero.webp' : '/courses-hero.webp', siteUrl);
   const seo = courseSeo(profile);
+  const linkableEntities = await getLinkableEntities();
+  const linkedHtmlContent = autoLinkHtml(profile.course.htmlContent, linkableEntities, {
+    excludeHrefs: [`/courses/${slug}`]
+  });
   const rating = profile.reviewSummary.averageRating;
   const faqs = profileFaqs(profile, seo.displayName);
   const programmeNames = uniqueProgrammeNames(profile.programmes, name);
@@ -239,7 +246,7 @@ export default async function CourseProfilePage({ params }: { params: Promise<{ 
         <p className="eyebrow">COURSE PROFILE</p>
         <h1>{seo.h1}</h1>
         <p className="muted">{profile.course.mode || 'Course'} · India</p>
-        <p>{seo.intro}</p>
+        <p><AutoLinkedText text={seo.intro} entities={linkableEntities} options={{ excludeHrefs: [`/courses/${slug}`] }} /></p>
       </div>
       <img className="course-profile-image" src={imageUrl} alt={`${seo.displayName} course`} width="280" height="158" />
     </header>
@@ -252,7 +259,7 @@ export default async function CourseProfilePage({ params }: { params: Promise<{ 
       <div><strong>{profile.reviewSummary.count || '—'}</strong><span>Student reviews</span></div>
     </section>
 
-    {profile.course.htmlContent && <section className="course-html-content" aria-label={`${seo.displayName} course guide`} dangerouslySetInnerHTML={{ __html: profile.course.htmlContent }} />}
+    {profile.course.htmlContent && <section className="course-html-content" aria-label={`${seo.displayName} course guide`} dangerouslySetInnerHTML={{ __html: linkedHtmlContent }} />}
 
     {!profile.course.htmlContent && programmeNames.length > 0 && <section><h2>{name} programme variants</h2><div className="profile-chips">{programmeNames.slice(0, 40).map((item) => <span key={item}>{item}</span>)}</div></section>}
 

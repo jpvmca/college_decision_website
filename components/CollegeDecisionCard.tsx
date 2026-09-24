@@ -4,7 +4,9 @@ import ExpandableText from './ExpandableText';
 import CollegeViewDetailsModal from './CollegeViewDetailsModal';
 import DecisionActions from './DecisionActions';
 import InstituteLogo from './InstituteLogo';
+import LinkedTextParts from './LinkedTextParts';
 import Link from 'next/link';
+import { findPublishedHrefByName, linkAdmissionRouteParts, type LinkableEntity } from '../lib/auto-link-entities';
 
 export type CollegeDecisionResult = {
   instituteId: number;
@@ -30,7 +32,12 @@ export type CollegeDecisionResult = {
   admissionRoutes: string | null;
 };
 
-type Props = { item: CollegeDecisionResult; showCompare?: boolean; showReviews?: boolean };
+type Props = {
+  item: CollegeDecisionResult;
+  showCompare?: boolean;
+  showReviews?: boolean;
+  linkableEntities?: LinkableEntity[];
+};
 
 function money(value: number | string | null) {
   const amount = Number(value);
@@ -52,12 +59,45 @@ function packageMoney(value: number | string | null | undefined) {
   return Number.isFinite(amount) && amount > 0 ? `₹${amount} lakh` : null;
 }
 
-export default function CollegeDecisionCard({ item, showCompare = true, showReviews = true }: Props) {
+function CourseLabel({
+  name,
+  entities
+}: {
+  name: string;
+  entities?: LinkableEntity[];
+}) {
+  if (!entities?.length) return <>{name}</>;
+  // Prefer exact course-name match; also try a leading clean token like "MBA" / "B.Tech".
+  const exact = findPublishedHrefByName(entities, 'course', name);
+  if (exact) return <Link href={exact} className="auto-entity-link">{name}</Link>;
+  const leading = name.split(/[\s/–—-]+/).filter(Boolean)[0];
+  if (leading && leading.length >= 2 && leading.toLowerCase() !== name.toLowerCase()) {
+    const leadHref = findPublishedHrefByName(entities, 'course', leading);
+    if (leadHref) {
+      return (
+        <>
+          <Link href={leadHref} className="auto-entity-link">{leading}</Link>
+          {name.slice(leading.length)}
+        </>
+      );
+    }
+  }
+  return <>{name}</>;
+}
+
+export default function CollegeDecisionCard({ item, showCompare = true, showReviews = true, linkableEntities = [] }: Props) {
+  const admissionParts = linkableEntities.length
+    ? linkAdmissionRouteParts(item.admissionRoutes, linkableEntities)
+    : null;
+
   return <article className="decision-result college-decision-card">
     <div className="college-card-heading">
       <div className="college-card-title-row">
         <InstituteLogo src={item.logo} alt={`${item.instituteName} college logo`} />
-        <div><h3>{item.publishedSlug ? <Link href={`/colleges/${item.publishedSlug}`}>{item.instituteName}</Link> : item.instituteName}</h3><strong>{item.programmeName}</strong></div>
+        <div>
+          <h3>{item.publishedSlug ? <Link href={`/colleges/${item.publishedSlug}`}>{item.instituteName}</Link> : item.instituteName}</h3>
+          <strong><CourseLabel name={item.programmeName} entities={linkableEntities} /></strong>
+        </div>
       </div>
       <span className="college-type-pill">{item.instituteType === 'public' ? 'Public' : 'Private'}</span>
     </div>
@@ -65,7 +105,7 @@ export default function CollegeDecisionCard({ item, showCompare = true, showRevi
     {(hasAmount(item.lowestFee) || item.duration) && <div className="college-facts">{hasAmount(item.lowestFee) && <span>Lowest fee <b>{money(item.lowestFee)}</b></span>}{item.duration && <span>Duration <b>{durationLabel(item.duration)}</b></span>}</div>}
     {(item.averageYearFee || item.averagePackage || item.highestPackage || item.nirfRank || (showReviews && item.reviewCount)) && <div className="decision-card-highlights">{showReviews && item.reviewCount && <span>Student reviews <b>{item.reviewCount}{item.averageRating ? ` · ${Number(item.averageRating).toFixed(1)}/5` : ''}</b></span>}{item.averageYearFee && <span>Average yearly fee <b>{money(item.averageYearFee)}</b></span>}{item.averagePackage && packageMoney(item.averagePackage) && <span>Average placement <b>{packageMoney(item.averagePackage)}</b></span>}{item.highestPackage && packageMoney(item.highestPackage) && <span>Highest placement <b>{packageMoney(item.highestPackage)}</b></span>}{item.nirfRank && <span>NIRF <b>Rank {item.nirfRank}{item.nirfOutOf ? ` / ${item.nirfOutOf}` : ''}</b></span>}</div>}
     <p><b>Eligibility:</b> <ExpandableText text={item.eligibility || 'Check the latest official notice.'} /></p>
-    <p><b>Admission route:</b> {item.admissionRoutes || 'Not listed'}</p>
+    <p><b>Admission route:</b> {admissionParts?.length ? <LinkedTextParts parts={admissionParts} /> : (item.admissionRoutes || 'Not listed')}</p>
     <div className="decision-result-actions">{item.publishedSlug ? <Link className="view-button" href={`/colleges/${item.publishedSlug}`}>View college profile</Link> : <CollegeViewDetailsModal instituteId={item.instituteId} courseId={item.courseId} courseName={item.programmeName} />}<DecisionActions showCompare={showCompare} instituteId={item.instituteId} courseId={item.courseId} instituteName={item.instituteName} programmeName={item.programmeName} duration={item.duration} eligibility={item.eligibility} fee={money(item.lowestFee)} instituteType={item.instituteType} city={item.city} state={item.state} averagePackage={item.averagePackage} highestPackage={item.highestPackage} admissionRoutes={item.admissionRoutes} /></div>
   </article>;
 }
