@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
+  robots: { index: false, follow: true },
   title: 'Disclaimer',
   description: 'Understand the limits of CollegeDecision.in college fees, eligibility, admission and placement information.',
   alternates: { canonical: '/disclaimer' }

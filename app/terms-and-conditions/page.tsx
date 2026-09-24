@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
+  robots: { index: false, follow: true },
   title: 'Terms and Conditions',
   description: 'Read the Terms and Conditions for using CollegeDecision.in college research guides and website services.',
   alternates: { canonical: '/terms-and-conditions' }

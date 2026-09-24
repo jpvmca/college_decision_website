@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import Link from 'next/link';
 import { api, mediaUrl } from '../../../lib/api';
+import { courseDisplayName, courseSeo as buildCourseSeo } from '../../../lib/course-seo';
 
 type CourseProfile = {
   course: {
@@ -47,18 +48,13 @@ async function getCourse(slug: string) {
 }
 
 function courseSeo(profile: CourseProfile) {
-  if (profile.course.slug === 'mba') {
-    return {
-      title: 'MBA After Graduation: Fees, Exams & Careers 2026',
-      description: 'Planning an MBA after graduation? Compare CAT and other exams, fees, cutoff, admission steps, specializations and career options in India for 2026.',
-      keywords: ['MBA after graduation', 'MBA entrance exams', 'CAT cutoff for MBA', 'MBA fees in India', 'jobs after MBA', 'MBA specializations']
-    };
-  }
-  return {
-    title: `${profile.course.name} in India 2026: Fees, Admissions, Placements & Careers`,
-    description: `Explore ${profile.course.name} in India: fees, eligibility, admission exams, placements, rankings and reviews before you shortlist.`,
-    keywords: [`${profile.course.name} course`, `${profile.course.name} syllabus`, `${profile.course.name} fees`, `${profile.course.name} admission`, `jobs after ${profile.course.name}`]
-  };
+  const pack = buildCourseSeo({
+    course: profile.course,
+    programmeCount: profile.programmeCount,
+    fees: profile.fees,
+    exams: profile.exams
+  });
+  return pack;
 }
 
 function money(value: number | string | null | undefined) {
@@ -157,7 +153,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
     keywords: seo.keywords,
     alternates: { canonical: `/courses/${slug}` },
     robots: { index: true, follow: true },
-    openGraph: { type: 'website', title, description, url: `${siteUrl}/courses/${slug}`, siteName: 'College Decision', images: [{ url: imageUrl, width: 1200, height: 630, alt: `${name} course` }] },
+    openGraph: { type: 'website', title, description, url: `${siteUrl}/courses/${slug}`, siteName: 'College Decision', images: [{ url: imageUrl, width: 1200, height: 630, alt: `${seo.displayName} course` }] },
     twitter: { card: 'summary_large_image', title, description, images: [imageUrl] },
     other: { 'og:site_name': 'College Decision' }
   };
@@ -174,7 +170,7 @@ export default async function CourseProfilePage({ params }: { params: Promise<{ 
   const imageUrl = absoluteUrl(profile.course.image ? mediaUrl(profile.course.image) || '/courses-hero.webp' : '/courses-hero.webp', siteUrl);
   const seo = courseSeo(profile);
   const rating = profile.reviewSummary.averageRating;
-  const faqs = profileFaqs(profile, name);
+  const faqs = profileFaqs(profile, seo.displayName);
   const programmeNames = uniqueProgrammeNames(profile.programmes, name);
   const jsonLd = {
     '@context': 'https://schema.org',
@@ -182,11 +178,11 @@ export default async function CourseProfilePage({ params }: { params: Promise<{ 
       {
         '@type': 'Course',
         '@id': `${pageUrl}#course`,
-        name,
+        name: seo.displayName,
         url: pageUrl,
         image: imageUrl,
-        description: `Evidence-based ${name} profile covering fees, admissions, placements and reviews in India.`,
-        educationalCredentialAwarded: name,
+        description: `Evidence-based ${seo.displayName} profile covering fees, admissions, placements and reviews in India.`,
+        educationalCredentialAwarded: seo.displayName,
         about: profile.course.mode || undefined,
         provider: { '@type': 'Organization', name: 'College Decision', url: siteUrl },
         aggregateRating: rating && profile.reviewSummary.count ? {
@@ -203,7 +199,7 @@ export default async function CourseProfilePage({ params }: { params: Promise<{ 
         itemListElement: [
           { '@type': 'ListItem', position: 1, name: 'Home', item: siteUrl },
           { '@type': 'ListItem', position: 2, name: 'Courses', item: `${siteUrl}/courses` },
-          { '@type': 'ListItem', position: 3, name, item: pageUrl }
+          { '@type': 'ListItem', position: 3, name: seo.displayName, item: pageUrl }
         ]
       },
       {
@@ -237,17 +233,17 @@ export default async function CourseProfilePage({ params }: { params: Promise<{ 
 
   return <main className="section college-profile-page"><div className="wrap prose">
     <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
-    <nav className="breadcrumb" aria-label="Breadcrumb"><Link href="/">Home</Link><span aria-hidden="true">›</span><Link href="/courses">Courses</Link><span aria-hidden="true">›</span><span aria-current="page">{name}</span></nav>
+    <nav className="breadcrumb" aria-label="Breadcrumb"><Link href="/">Home</Link><span aria-hidden="true">›</span><Link href="/courses">Courses</Link><span aria-hidden="true">›</span><span aria-current="page">{seo.displayName}</span></nav>
     <header className="college-profile-header">
       <div>
         <p className="eyebrow">COURSE PROFILE</p>
-        <h1>{name}</h1>
+        <h1>{seo.h1}</h1>
         <p className="muted">{profile.course.mode || 'Course'} · India</p>
-        <p>Review fees, eligibility, admission routes, placements, rankings and student reviews for {name} before making your shortlist.</p>
+        <p>{seo.intro}</p>
       </div>
-      <img className="course-profile-image" src={imageUrl} alt={`${name} course`} width="280" height="158" />
+      <img className="course-profile-image" src={imageUrl} alt={`${seo.displayName} course`} width="280" height="158" />
     </header>
-    <section className="college-decision-note"><p className="eyebrow">DECISION NOTE</p><p>{decisionNote(profile, name)}</p></section>
+    <section className="college-decision-note"><p className="eyebrow">DECISION NOTE</p><p>{decisionNote(profile, seo.displayName)}</p></section>
 
     <section className="college-stats" aria-label="Course highlights">
       <div><strong>{profile.programmeCount || profile.programmes.length || '—'}</strong><span>Active programmes</span></div>
@@ -256,13 +252,13 @@ export default async function CourseProfilePage({ params }: { params: Promise<{ 
       <div><strong>{profile.reviewSummary.count || '—'}</strong><span>Student reviews</span></div>
     </section>
 
-    {profile.course.htmlContent && <section className="course-html-content" aria-label={`${name} course guide`} dangerouslySetInnerHTML={{ __html: profile.course.htmlContent }} />}
+    {profile.course.htmlContent && <section className="course-html-content" aria-label={`${seo.displayName} course guide`} dangerouslySetInnerHTML={{ __html: profile.course.htmlContent }} />}
 
     {!profile.course.htmlContent && programmeNames.length > 0 && <section><h2>{name} programme variants</h2><div className="profile-chips">{programmeNames.slice(0, 40).map((item) => <span key={item}>{item}</span>)}</div></section>}
 
     {!profile.course.htmlContent && (profile.fees?.min_total_fee || profile.fees?.max_total_fee || profile.exams.length > 0) && <section className="college-profile-columns">
       {(profile.fees?.min_total_fee || profile.fees?.max_total_fee) && <div><h2>Fees</h2><p>Recorded total fees for {name} range from <strong>{money(profile.fees?.min_total_fee)}</strong> to <strong>{money(profile.fees?.max_total_fee)}</strong>. Confirm the current academic year, category, hostel, mess, deposits and other charges before applying.</p></div>}
-      {profile.exams.length > 0 && <div><h2>Admission exams and routes</h2><div className="profile-chips">{profile.exams.map((exam) => <span key={exam.id}>{exam.name}</span>)}</div></div>}
+      {profile.exams.length > 0 && <div><h2>Admission exams and routes</h2><div className="profile-chips">{profile.exams.map((exam) => <Link key={exam.id} href={`/exams/${exam.slug}`}>{exam.name}</Link>)}</div></div>}
     </section>}
 
     {!profile.course.htmlContent && (profile.placements.length > 0 || profile.reviewSummary.count > 0) && <section className="college-profile-columns">
@@ -275,8 +271,25 @@ export default async function CourseProfilePage({ params }: { params: Promise<{ 
       {profile.recruiters.length > 0 && <div><h2>Recruiters and industry connections</h2><div className="profile-chips">{profile.recruiters.slice(0, 50).map((recruiter) => <span key={recruiter.id}>{recruiter.name}</span>)}</div></div>}
     </section>}
 
-    {!profile.course.htmlContent && <section><h2>About {name}</h2><p>{name} is listed as a study path in India. Use this page as a research starting point and confirm current course fees, eligibility, admission dates and placement outcomes before applying.</p></section>}
-    {profile.articles.length > 0 && <section><h2>{name} guides</h2><div className="college-programme-grid">{profile.articles.map((article) => <Link className="card" href={`/articles/${article.slug}`} key={article.slug}><h3>{text(article.title, article.slug)}</h3><p className="muted">Read the published {article.articleType ? article.articleType.replace(/-/g, ' ') : 'course'} guide</p></Link>)}</div></section>}
+    {!profile.course.htmlContent && <section><h2>About {seo.displayName}</h2><p>{seo.displayName} is listed as a study path in India. Use this page as a research starting point and confirm current course fees, eligibility, admission dates and placement outcomes before applying.</p></section>}
+    
+    {(seo.crossLink || profile.exams.length > 0) && <section className="college-profile-columns" aria-label="Related pathways">
+      {seo.crossLink ? <div><h2>Related course guide</h2><p>{seo.crossLink.note} <Link href={seo.crossLink.href}>{seo.crossLink.anchor}</Link></p></div> : null}
+      {profile.exams.length > 0 ? <div><h2>Entrance exams for {seo.displayName}</h2><div className="profile-chips">{profile.exams.map((exam) => <Link key={`link-${exam.id}`} href={`/exams/${exam.slug}`}>{exam.name} exam guide</Link>)}</div></div> : null}
+    </section>}
+
+    {profile.articles.length > 0 && <section><h2>{seo.displayName} guides</h2>{(() => {
+      const feeArticles = profile.articles.filter((article) => {
+        const type = (article.articleType || '').toLowerCase();
+        const slug = article.slug || '';
+        return type === 'budget' || type.includes('fee') || type.includes('package') || slug.includes('fee') || slug.includes('package') || slug.includes('under-');
+      });
+      const otherArticles = profile.articles.filter((article) => !feeArticles.includes(article));
+      return <>
+        {feeArticles.length > 0 && <div className="college-programme-grid" style={{ marginBottom: '1rem' }}>{feeArticles.map((article) => <Link className="card" href={`/articles/${article.slug}`} key={article.slug}><h3>{text(article.title, article.slug)}</h3><p className="muted">Fee / package guide for {seo.displayName}</p></Link>)}</div>}
+        {otherArticles.length > 0 && <div className="college-programme-grid">{otherArticles.map((article) => <Link className="card" href={`/articles/${article.slug}`} key={article.slug}><h3>{text(article.title, article.slug)}</h3><p className="muted">Read the published {article.articleType ? article.articleType.replace(/-/g, ' ') : 'course'} guide</p></Link>)}</div>}
+      </>;
+    })()}</section>}
     {faqs.length > 0 && <section><h2>Frequently asked questions</h2>{faqs.map((faq) => <article className="faq-item" key={faq.question}><h3>{faq.question}</h3><p>{faq.answer}</p></article>)}</section>}
     <div className="notice"><strong>Data note:</strong> Fees, placements, rankings and reviews are recorded evidence and may change by batch, category, role, recruiter mix or academic year. Verify the latest official information before applying.</div>
   </div></main>;

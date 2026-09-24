@@ -3,6 +3,7 @@ import { notFound } from 'next/navigation';
 import Link from 'next/link';
 import { api, instituteLogoUrl, mediaUrl } from '../../../lib/api';
 import { stripEmbeddedFaqs } from '../../../lib/strip-embedded-faqs';
+import { articleAnchorTitle, buildExamFaqs, buildExamSeo, rankExamArticles } from '../../../lib/exam-seo';
 import ExamLogo from '../../../components/ExamLogo';
 
 type ExamProfile = {
@@ -87,46 +88,13 @@ function absoluteUrl(value: string, siteUrl: string) {
 }
 
 function examSeo(profile: ExamProfile) {
-  const name = profile.exam.name;
-  if (profile.exam.slug === 'jee-main') {
-    return {
-      title: 'JEE Main 2026: Eligibility, Pattern, Colleges & Fees',
-      description: 'Planning JEE Main for B.Tech admission? Check eligibility, exam pattern, application route, mapped colleges, fees range and counselling context for 2026.',
-      keywords: ['JEE Main 2026', 'JEE Main eligibility', 'JEE Main exam pattern', 'colleges accepting JEE Main', 'JEE Main admission']
-    };
-  }
-  return {
-    title: `${name} 2026: Eligibility, Pattern, Colleges & Fees`,
-    description: `Explore ${name} in India: eligibility, exam pattern, application fees, mapped colleges, programme coverage and admission context before you apply.`,
-    keywords: [`${name} exam`, `${name} eligibility`, `${name} pattern`, `colleges accepting ${name}`, `${name} admission`]
-  };
+  const pack = buildExamSeo(profile as any);
+  return { title: pack.title, description: pack.description, keywords: pack.keywords, h1: pack.h1, intro: pack.intro, label: pack.label, year: pack.year, intent: pack.intent, pack };
 }
 
 function profileFaqs(profile: ExamProfile, name: string) {
-  const faqs: Array<{ question: string; answer: string }> = [];
-  const questions = new Set<string>();
-  const addFaq = (question: string, answer: string) => {
-    if (!questions.has(question)) {
-      questions.add(question);
-      faqs.push({ question, answer });
-    }
-  };
-  const courseName = profile.exam.course?.name || 'linked programmes';
-  addFaq(`What is ${name}?`, `${name} is an entrance exam linked with ${courseName}. Use this profile to compare eligibility, pattern and the colleges mapped to the exam.`);
-  if (profile.exam.eligibility) addFaq(`What is the eligibility for ${name}?`, text(profile.exam.eligibility, `Confirm the latest official eligibility notice for ${name}.`));
-  else addFaq(`What is the eligibility for ${name}?`, `Eligibility depends on the academic year, category and target institute. Confirm the latest official ${name} notice before applying.`);
-  if (profile.exam.pattern) addFaq(`What is the exam pattern for ${name}?`, text(profile.exam.pattern));
-  else addFaq(`What is the exam pattern for ${name}?`, `The pattern can change by session. Check the official information bulletin for sections, marking scheme and duration.`);
-  if (profile.exam.applicationFees) addFaq(`What is the application fee for ${name}?`, `Recorded application fee information: ${text(profile.exam.applicationFees)}. Confirm the current category-wise fee on the official portal.`);
-  if (profile.instituteCount) addFaq(`How many colleges accept ${name}?`, `The database currently maps ${Number(profile.instituteCount).toLocaleString('en-IN')} colleges and ${Number(profile.programmeCount || 0).toLocaleString('en-IN')} programmes to ${name}.`);
-  if (profile.fees?.min_total_fee || profile.fees?.max_total_fee) addFaq(`What fees should I expect after ${name}?`, `Across mapped programmes, recorded total fees range from ${money(profile.fees?.min_total_fee)} to ${money(profile.fees?.max_total_fee)}. Confirm hostel, mess and other charges separately.`);
-  if (profile.programmes.length) addFaq(`Which programmes are linked with ${name}?`, `Mapped programme examples include ${profile.programmes.slice(0, 4).map((item) => text(item.programme_name)).join(', ')}.`);
-  if (profile.colleges.length) addFaq(`Which colleges are linked with ${name}?`, `Sample mapped colleges include ${profile.colleges.slice(0, 4).map((item) => item.name).join(', ')}.`);
-  if (profile.exam.conductedBy) addFaq(`Who conducts ${name}?`, `${name} is recorded as conducted by ${text(profile.exam.conductedBy)}.`);
-  addFaq(`How does ${name} admission work?`, `Register on the official portal, check eligibility, appear for the exam, then complete counselling or institute-level applications for mapped colleges.`);
-  addFaq(`What is the cutoff for ${name}?`, `Cutoffs vary by institute, branch, category and year. Use official counselling data rather than a generic estimate.`);
-  addFaq(`How should I use this ${name} profile?`, `Use the mapped colleges, fees range, eligibility and pattern as a research starting point. Confirm current dates and rules on the official exam and institute websites.`);
-  return faqs.slice(0, 12);
+  const seo = buildExamSeo(profile as any);
+  return buildExamFaqs(profile as any, seo, text, money);
 }
 
 function decisionNote(profile: ExamProfile, name: string) {
@@ -222,9 +190,9 @@ export default async function ExamProfilePage({ params }: { params: Promise<{ sl
     <header className="college-profile-header">
       <div>
         <p className="eyebrow">EXAM PROFILE</p>
-        <h1>{name}</h1>
+        <h1>{seo.h1}</h1>
         <p className="muted">{[profile.exam.course?.name, profile.exam.mode, profile.exam.level].filter(Boolean).join(' · ') || 'Entrance exam'} · India</p>
-        <p>Review eligibility, exam pattern, application routes, mapped colleges, programme coverage and fee context for {name} before planning your shortlist.</p>
+        <p>{seo.intro}</p>
         {profile.exam.applyUrl ? <p><a href={profile.exam.applyUrl} target="_blank" rel="noreferrer">Open official {name} information</a></p> : null}
       </div>
       <ExamLogo src={profile.exam.logo} examName={name} courseName={profile.exam.course?.name} size={120} />
@@ -258,11 +226,11 @@ export default async function ExamProfilePage({ params }: { params: Promise<{ sl
 
     {!guideHtml && profile.programmes.length > 0 && <section><h2>Programmes linked with {name}</h2><div className="profile-chips">{profile.programmes.slice(0, 40).map((item) => <span key={`${item.programme_name}-${item.duration}`}>{text(item.programme_name)}</span>)}</div></section>}
 
-    {profile.colleges.length > 0 && <section><h2>Colleges accepting {name}</h2><div className="college-programme-grid">{profile.colleges.map((college) => {
+    {profile.colleges.length > 0 && <section><h2>Colleges accepting {seo.label}: {profile.colleges.length} listed</h2><p className="muted">Browse published college profiles mapped to {seo.label}. Prefer institutes with fees and placement evidence when shortlisting.</p><div className="college-programme-grid">{profile.colleges.map((college) => {
       const href = college.published_slug ? `/colleges/${college.published_slug}` : null;
       const card = <>
         <div className="home-college-heading">
-          {college.logo ? <img className="course-college-logo" src={instituteLogoUrl(college.logo)} alt="" width="48" height="48" loading="lazy" /> : null}
+          {college.logo ? <img className="course-college-logo" src={instituteLogoUrl(college.logo)} alt={`${college.name} logo`} width="48" height="48" loading="lazy" /> : null}
           <div>
             <h3>{college.name}</h3>
             <p className="muted">{[college.city, college.state].filter(Boolean).join(', ') || 'India'} · {Number(college.programme_count || 0)} programmes</p>
@@ -272,8 +240,13 @@ export default async function ExamProfilePage({ params }: { params: Promise<{ sl
       return href ? <Link className="card" href={href} key={college.id}>{card}</Link> : <article className="card" key={college.id}>{card}</article>;
     })}</div></section>}
 
-    {profile.exam.course?.publishedSlug && <p className="article-backlink"><Link href={`/courses/${profile.exam.course.publishedSlug}`}>View {profile.exam.course.name} course profile</Link></p>}
-    {profile.articles.length > 0 && <section><h2>{name} guides</h2><div className="college-programme-grid">{profile.articles.map((article) => <Link className="card" href={`/articles/${article.slug}`} key={article.slug}><h3>{text(article.title, article.slug)}</h3><p className="muted">Read the published {article.articleType ? article.articleType.replace(/-/g, ' ') : 'exam'} guide</p></Link>)}</div></section>}
+    {profile.exam.course?.publishedSlug && <p className="article-backlink"><Link href={`/courses/${profile.exam.course.publishedSlug}`}>{seo.label} for {profile.exam.course.name}: course fees, exams & careers</Link></p>}
+    {(() => {
+      const ranked = rankExamArticles(profile.articles.map((a) => ({ ...a, articleType: a.articleType })), profile.exam.slug);
+      const list = ranked.length ? ranked : profile.articles;
+      if (!list.length) return null;
+      return <section><h2>{seo.label} accepting-colleges & related guides</h2><div className="college-programme-grid">{list.map((article) => <Link className="card" href={`/articles/${article.slug}`} key={article.slug}><h3>{articleAnchorTitle(article, seo.label)}</h3><p className="muted">{(article.articleType || 'exam').replace(/-/g, ' ')} guide for {seo.label}</p></Link>)}</div></section>;
+    })()}
     {faqs.length > 0 && <section><h2>Frequently asked questions</h2>{faqs.map((faq) => <article className="faq-item" key={faq.question}><h3>{faq.question}</h3><p>{faq.answer}</p></article>)}</section>}
     <div className="notice"><strong>Data note:</strong> Exam rules, cutoffs, fees and college mappings can change by year and category. Verify the latest official information before applying.</div>
   </div></main>;

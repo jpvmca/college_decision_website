@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
+  robots: { index: false, follow: true },
   title: 'Privacy Policy',
   description: 'Read the CollegeDecision.in Privacy Policy covering website usage, contact messages and technical data.',
   alternates: { canonical: '/privacy-policy' }
