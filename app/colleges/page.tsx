@@ -148,6 +148,7 @@ export default async function CollegesPage({ searchParams }: { searchParams: Pro
     <div className="article-card-top">
       <p className="muted">{result.pagination.total.toLocaleString('en-IN')} active colleges · 20 per page</p>
     </div>
+    <h2>Browse Colleges</h2>
     <div className="decision-results-list">
       {result.data.length ? result.data.map((college) => (
         college.programme_id && college.course_id ? <div id={`college-${result.data.indexOf(college) + 1}`} key={college.id}><CollegeDecisionCard showReviews={false} showCompare={result.pagination.total > 1} item={{
