@@ -1,5 +1,7 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
+import JsonLd from '../../components/JsonLd';
+import { breadcrumbJsonLd } from '../../lib/structured-data';
 import { ArrowRight } from 'lucide-react';
 import { api } from '../../lib/api';
 import { getLinkableEntities } from '../../lib/linkable-entities';
@@ -57,12 +59,6 @@ export default async function CollegesPage({ searchParams }: { searchParams: Pro
     '@context': 'https://schema.org',
     '@graph': [
       {
-        '@type': 'Organization',
-        '@id': `${siteUrl}/#organization`,
-        name: 'CollegeDecision',
-        url: siteUrl
-      },
-      {
         '@type': ['CollectionPage', 'WebPage'],
         '@id': `${pageUrl}#webpage`,
         url: pageUrl,
@@ -96,20 +92,17 @@ export default async function CollegesPage({ searchParams }: { searchParams: Pro
             }
           };
         })
-      },
-      {
-        '@type': 'BreadcrumbList',
-        '@id': `${pageUrl}#breadcrumb`,
-        itemListElement: [
-          { '@type': 'ListItem', position: 1, name: 'Home', item: siteUrl },
-          { '@type': 'ListItem', position: 2, name: 'Colleges', item: `${siteUrl}/colleges` }
-        ]
       }
     ]
   };
+  const breadcrumbLd = breadcrumbJsonLd([
+    { name: 'Home', url: `${siteUrl}/` },
+    { name: 'Colleges', url: `${siteUrl}/colleges` }
+  ], `${pageUrl}#breadcrumb`);
 
   return <main className="section"><div className="wrap">
-    <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
+    <JsonLd data={jsonLd} />
+    <JsonLd data={breadcrumbLd} />
     <nav className="breadcrumb" aria-label="Breadcrumb"><Link href="/">Home</Link><span aria-hidden="true">›</span><span aria-current="page">Colleges</span></nav>
     <section className="articles-hero">
       <div className="articles-hero-copy">

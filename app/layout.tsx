@@ -4,6 +4,8 @@ import Image from 'next/image';
 import SearchBox from '../components/SearchBox';
 import MobileNav from '../components/MobileNav';
 import GoogleTagManager from '../components/GoogleTagManager';
+import JsonLd from '../components/JsonLd';
+import { organizationId, organizationJsonLd } from '../lib/structured-data';
 import './globals.css';
 import './modal-overrides.css';
 import './decision-overrides.css';
@@ -40,6 +42,7 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
     '@id': `${siteUrl}/#website`,
     name: 'College Decision',
     url: `${siteUrl}/`,
+    publisher: { '@id': organizationId(siteUrl) },
     potentialAction: {
       '@type': 'SearchAction',
       target: {
@@ -57,7 +60,8 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
     <html lang="en">
       <body>
         <GoogleTagManager />
-        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteJsonLd) }} />
+        <JsonLd data={websiteJsonLd} />
+        <JsonLd data={organizationJsonLd(siteUrl)} />
         <div className="site">
           <nav className="nav">
             <div className="wrap nav-inner">
