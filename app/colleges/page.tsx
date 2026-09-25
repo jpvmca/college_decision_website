@@ -1,38 +1,13 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
-import { ArrowLeft, ArrowRight } from 'lucide-react';
+import { ArrowRight } from 'lucide-react';
 import { api } from '../../lib/api';
-import { getPageItems } from '../../lib/pagination';
-import CollegeDecisionCard from '../../components/CollegeDecisionCard';
 import { getLinkableEntities } from '../../lib/linkable-entities';
+import { getCourseFacets } from '../../lib/listings';
+import { CollegeListResults, ListPaginationNav, type ListedCollege } from '../../components/CollegeListResults';
+import { CourseFilterMobileButton, CourseFilterSidebar } from '../../components/CourseFilterPanel';
 
-type College = {
-  id: number;
-  full_name: string;
-  display_name: string | null;
-  slug: string;
-  published_slug?: string | null;
-  institute_type: string | null;
-  logo?: string | null;
-  city: string | null;
-  state: string | null;
-  programme_count: number;
-  course_names: string | null;
-  programme_id: number | null;
-  course_id: number | null;
-  programme_name: string | null;
-  duration: string | null;
-  eligibility: string | null;
-  lowest_fee: number | string | null;
-  average_year_fee: number | string | null;
-  average_package: number | string | null;
-  highest_package: number | string | null;
-  nirf_rank: number | string | null;
-  nirf_out_of: number | string | null;
-  review_count: number | string | null;
-  average_rating: number | string | null;
-  admission_routes: string | null;
-};
+type College = ListedCollege;
 
 type CollegeList = {
   data: College[];
@@ -75,7 +50,7 @@ export default async function CollegesPage({ searchParams }: { searchParams: Pro
   } catch {
     // Keep the page renderable if the backend is temporarily unavailable.
   }
-  const linkableEntities = await getLinkableEntities();
+  const [linkableEntities, facets] = await Promise.all([getLinkableEntities(), getCourseFacets()]);
   const siteUrl = (process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3001').replace(/\/+$/, '');
   const pageUrl = page === 1 ? `${siteUrl}/colleges` : `${siteUrl}/colleges?page=${page}`;
   const jsonLd = {
@@ -145,48 +120,17 @@ export default async function CollegesPage({ searchParams }: { searchParams: Pro
       </div>
       <img src="/colleges-hero.webp" alt="Students comparing colleges and courses" width="1200" height="675" fetchPriority="high" loading="eager" decoding="async" />
     </section>
-    <div className="article-card-top">
-      <p className="muted">{result.pagination.total.toLocaleString('en-IN')} active colleges · 20 per page</p>
+    <div className="listing-layout">
+      <div className="listing-main">
+        <CourseFilterMobileButton facets={facets.data} totalColleges={facets.totalColleges || result.pagination.total} />
+        <div className="article-card-top">
+          <p className="muted">{result.pagination.total.toLocaleString('en-IN')} active colleges · 20 per page</p>
+        </div>
+        <h2>Browse Colleges</h2>
+        <CollegeListResults colleges={result.data} total={result.pagination.total} linkableEntities={linkableEntities} />
+        {result.pagination.totalPages > 1 && <ListPaginationNav page={page} totalPages={result.pagination.totalPages} basePath="/colleges" />}
+      </div>
+      <CourseFilterSidebar facets={facets.data} totalColleges={facets.totalColleges || result.pagination.total} />
     </div>
-    <h2>Browse Colleges</h2>
-    <div className="decision-results-list">
-      {result.data.length ? result.data.map((college) => (
-        college.programme_id && college.course_id ? <div id={`college-${result.data.indexOf(college) + 1}`} key={college.id}><CollegeDecisionCard showReviews={false} showCompare={result.pagination.total > 1} item={{
-          instituteId: college.id,
-          courseId: Number(college.course_id || 0),
-          programmeId: Number(college.programme_id || 0),
-          instituteName: college.display_name || college.full_name,
-          publishedSlug: college.published_slug,
-          instituteType: college.institute_type,
-          logo: college.logo,
-          city: college.city,
-          state: college.state,
-          programmeName: college.programme_name || college.course_names || 'College programmes',
-          duration: college.duration,
-          lowestFee: college.lowest_fee,
-          averageYearFee: college.average_year_fee,
-          averagePackage: college.average_package,
-          highestPackage: college.highest_package,
-          nirfRank: college.nirf_rank,
-          nirfOutOf: college.nirf_out_of,
-          reviewCount: college.review_count,
-          averageRating: college.average_rating,
-          eligibility: college.eligibility,
-          admissionRoutes: college.admission_routes
-        }} linkableEntities={linkableEntities} /></div> : <article className="article-card" id={`college-${result.data.indexOf(college) + 1}`} key={college.id}><div className="article-card-top"><span className="pill">{college.institute_type || 'College'}</span><span className="muted">Programme data pending</span></div><h2>{college.display_name || college.full_name}</h2><p>{[college.city, college.state].filter(Boolean).join(', ') || 'India'}</p><p className="muted">Programme, fee and admission details are not listed yet.</p></article>
-      )) : <div className="card"><h2>College list unavailable</h2><p>Please try again shortly.</p></div>}
-    </div>
-    {result.pagination.totalPages > 1 && <Pagination page={page} totalPages={result.pagination.totalPages} />}
   </div></main>;
-}
-
-function Pagination({ page, totalPages }: { page: number; totalPages: number }) {
-  const href = (value: number) => value === 1 ? '/colleges' : `/colleges?page=${value}`;
-  return <nav className="pagination" aria-label="College pages">
-    {page > 1 && <Link className="page-arrow" href={href(page - 1)}><ArrowLeft size={15} aria-hidden="true" /> Previous</Link>}
-    <div className="page-numbers">{getPageItems(totalPages, page).map((item, index) => item === 'ellipsis'
-      ? <span className="page-ellipsis" key={`ellipsis-${index}`}>…</span>
-      : <Link className={item === page ? 'page-number current' : 'page-number'} aria-current={item === page ? 'page' : undefined} key={item} href={href(item)}>{item}</Link>)}</div>
-    {page < totalPages && <Link className="page-arrow" href={href(page + 1)}>Next <ArrowRight size={15} aria-hidden="true" /></Link>}
-  </nav>;
 }

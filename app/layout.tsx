@@ -9,6 +9,7 @@ import './modal-overrides.css';
 import './decision-overrides.css';
 import './compare-overrides.css';
 import './compare-mobile.css';
+import './listing-filter.css';
 
 const defaultTitle = 'Compare College Fees, Courses & Exams in India';
 const defaultDescription = 'Compare college fees, courses, entrance exams, admission routes and placements across India before you shortlist.';

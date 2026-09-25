@@ -17,6 +17,7 @@ export async function GET() {
       `<sitemap><loc>${xml(`${base}/sitemaps/articles.xml`)}</loc><lastmod>${lastmod}</lastmod></sitemap>` +
       `<sitemap><loc>${xml(`${base}/sitemaps/colleges.xml`)}</loc><lastmod>${lastmod}</lastmod></sitemap>` +
       `<sitemap><loc>${xml(`${base}/sitemaps/courses.xml`)}</loc><lastmod>${lastmod}</lastmod></sitemap>` +
+      `<sitemap><loc>${xml(`${base}/sitemaps/course-colleges.xml`)}</loc><lastmod>${lastmod}</lastmod></sitemap>` +
       `<sitemap><loc>${xml(`${base}/sitemaps/exams.xml`)}</loc><lastmod>${lastmod}</lastmod></sitemap>` +
       `</sitemapindex>`;
     return new NextResponse(body, {
