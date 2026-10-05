@@ -6,7 +6,8 @@ import { ArrowRight } from 'lucide-react';
 import { api } from '../../lib/api';
 import { getLinkableEntities } from '../../lib/linkable-entities';
 import { getCourseFacets } from '../../lib/listings';
-import { CollegeListResults, ListPaginationNav, type ListedCollege } from '../../components/CollegeListResults';
+import { type ListedCollege } from '../../components/CollegeListResults';
+import LoadMoreColleges from '../../components/LoadMoreColleges';
 import { CourseFilterMobileButton, CourseFilterSidebar } from '../../components/CourseFilterPanel';
 
 type College = ListedCollege;
@@ -18,18 +19,11 @@ type CollegeList = {
 
 const PAGE_SIZE = 20;
 
-function pageNumber(value: string | undefined) {
-  const parsed = Number(value || 1);
-  return Number.isInteger(parsed) && parsed > 0 ? parsed : 1;
-}
-
-export async function generateMetadata({ searchParams }: { searchParams: Promise<{ page?: string }> }): Promise<Metadata> {
-  const page = pageNumber((await searchParams).page);
+export async function generateMetadata(): Promise<Metadata> {
   const baseTitle = 'Colleges in India 2026: Fees, Courses & Placements';
-  const title = page === 1 ? baseTitle : `Colleges in India 2026 – Page ${page}`;
   const description = 'Browse colleges in India by location, type and programmes. Compare fees, admission routes and placements before you shortlist.';
   return {
-    title,
+    title: baseTitle,
     description,
     alternates: { canonical: '/colleges' },
     openGraph: {
@@ -44,17 +38,20 @@ export async function generateMetadata({ searchParams }: { searchParams: Promise
   };
 }
 
-export default async function CollegesPage({ searchParams }: { searchParams: Promise<{ page?: string }> }) {
-  const page = pageNumber((await searchParams).page);
+export default async function CollegesPage() {
+  const page = 1;
   let result: CollegeList = { data: [], pagination: { page, perPage: PAGE_SIZE, total: 0, totalPages: 0 } };
   try {
     result = await api<CollegeList>(`/colleges?page=${page}&perPage=${PAGE_SIZE}`);
   } catch {
     // Keep the page renderable if the backend is temporarily unavailable.
   }
-  const [linkableEntities, facets] = await Promise.all([getLinkableEntities(), getCourseFacets()]);
+  const [linkableEntities, facets] = await Promise.all([
+    getLinkableEntities(),
+    getCourseFacets()
+  ]);
   const siteUrl = (process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3001').replace(/\/+$/, '');
-  const pageUrl = page === 1 ? `${siteUrl}/colleges` : `${siteUrl}/colleges?page=${page}`;
+  const pageUrl = `${siteUrl}/colleges`;
   const jsonLd = {
     '@context': 'https://schema.org',
     '@graph': [
@@ -62,8 +59,8 @@ export default async function CollegesPage({ searchParams }: { searchParams: Pro
         '@type': ['CollectionPage', 'WebPage'],
         '@id': `${pageUrl}#webpage`,
         url: pageUrl,
-        name: page === 1 ? 'Colleges in India 2026' : `Colleges in India 2026 — Page ${page}`,
-        description: 'A paginated list of active colleges in India.',
+        name: 'Colleges in India 2026',
+        description: 'A load-more list of active colleges in India.',
         isPartOf: { '@id': `${siteUrl}/#website` },
         breadcrumb: { '@id': `${pageUrl}#breadcrumb` },
         mainEntity: { '@id': `${pageUrl}#itemlist` }
@@ -117,11 +114,10 @@ export default async function CollegesPage({ searchParams }: { searchParams: Pro
       <div className="listing-main">
         <CourseFilterMobileButton facets={facets.data} totalColleges={facets.totalColleges || result.pagination.total} />
         <div className="article-card-top">
-          <p className="muted">{result.pagination.total.toLocaleString('en-IN')} active colleges · 20 per page</p>
+          <p className="muted">{result.pagination.total.toLocaleString('en-IN')} active colleges · load more to continue</p>
         </div>
         <h2>Browse Colleges</h2>
-        <CollegeListResults colleges={result.data} total={result.pagination.total} linkableEntities={linkableEntities} />
-        {result.pagination.totalPages > 1 && <ListPaginationNav page={page} totalPages={result.pagination.totalPages} basePath="/colleges" />}
+        <LoadMoreColleges initial={result.data} total={result.pagination.total} perPage={result.pagination.perPage} query="" linkableEntities={linkableEntities} />
       </div>
       <CourseFilterSidebar facets={facets.data} totalColleges={facets.totalColleges || result.pagination.total} />
     </div>

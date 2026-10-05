@@ -42,8 +42,7 @@ function feeClause(profile: CourseSeoInput) {
 
 /** Fix display casing without changing DB slug/name storage. */
 export function courseDisplayName(slug: string, dbName: string) {
-  if (slug === 'btech') return 'B.Tech (Bachelor of Technology)';
-  if (slug === 'engineering') return 'B.Tech / B.E. (Engineering Degrees)';
+  if (slug === 'engineering') return 'Engineering (B.Tech / B.E.)';
   if (slug === 'mba') return dbName || 'MBA / PGDM';
   return dbName;
 }
@@ -82,53 +81,28 @@ export function courseSeo(profile: CourseSeoInput): CourseSeoPack {
   if (slug === 'engineering') {
     return {
       displayName,
-      h1: 'B.Tech / B.E. Engineering Degrees in India: Branches, Exams & Fees',
-      title: 'B.Tech / B.E. Engineering in India: Branches, Exams, Fees & Careers',
+      h1: 'Engineering Courses in India: B.Tech, B.E., Fees & Careers',
+      title: 'Engineering Courses in India: B.Tech, B.E., Fees & Careers',
       description:
-        'Explore engineering degrees in India (B.Tech and B.E.): branches, state counselling vs national exams, fees, placements and how to shortlist colleges.' +
-        fees,
-      keywords: [
-        'engineering courses in India',
-        'B.Tech vs B.E.',
-        'engineering entrance exams',
-        'engineering college fees',
-        'B.Tech branches',
-        'engineering counselling'
-      ],
-      intro:
-        'This umbrella guide covers B.Tech and B.E. engineering pathways in India — branches, admission exams/counselling, fees and placements — so you can compare options before picking a degree focus.' +
-        examBit,
-      crossLink: {
-        href: '/courses/btech',
-        anchor: 'B.Tech (Bachelor of Technology) degree guide',
-        note: 'Looking for Bachelor of Technology programme details specifically? See the focused B.Tech degree guide.'
-      }
-    };
-  }
-
-  if (slug === 'btech') {
-    return {
-      displayName,
-      h1: 'B.Tech (Bachelor of Technology): Fees, Eligibility, Exams & Careers',
-      title: 'B.Tech Course in India: Fees, Eligibility, Exams & Careers',
-      description:
-        'Bachelor of Technology (B.Tech) course details in India: eligibility, entrance exams, fees, specialisations, placements and careers.' +
+        'Bachelor of Technology (B.Tech) and B.E. engineering degrees in India: eligibility, entrance exams, branches, fees, placements and how to shortlist colleges.' +
         fees,
       keywords: [
         'B.Tech course',
         'Bachelor of Technology',
+        'B.Tech vs B.E.',
         'B.Tech fees in India',
         'B.Tech eligibility',
-        'B.Tech entrance exams',
+        'engineering entrance exams',
+        'B.Tech branches',
         'jobs after B.Tech'
       ],
       intro:
-        'Focus on the Bachelor of Technology (B.Tech) degree: eligibility, entrance routes, fees, specialisations and career outcomes for programme-level decisions.' +
+        'This guide covers engineering courses in India, including Bachelor of Technology (B.Tech) and B.E. degrees — eligibility, branches, admission exams/counselling, fees and placements — so you can compare options before shortlisting colleges.' +
         examBit,
       crossLink: {
-        href: '/courses/engineering',
-        anchor: 'B.Tech / B.E. engineering degrees overview',
-        note: 'Comparing B.Tech with B.E. or broader engineering counselling context? See the umbrella engineering degrees guide.'
+        href: '/engineering-colleges',
+        anchor: 'Compare Engineering colleges by fees & placements',
+        note: 'Ready to shortlist? Browse Engineering colleges, including B.Tech and B.E. programmes, with recorded fees, course focus and placement outcomes.'
       }
     };
   }

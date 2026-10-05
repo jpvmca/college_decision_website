@@ -130,10 +130,6 @@ export const decisionCourses: readonly DecisionCourse[] = [
     "slug": "masscomm"
   },
   {
-    "name": "Bachelors Of Technology",
-    "slug": "btech"
-  },
-  {
     "name": "BBA / BBM / BBS",
     "slug": "bba"
   },

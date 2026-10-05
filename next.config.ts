@@ -33,6 +33,8 @@ const nextConfig: NextConfig = {
   },
   async redirects() {
     return [
+      { source: '/courses/btech', destination: '/courses/engineering', permanent: true },
+      { source: '/btech-colleges', destination: '/engineering-colleges', permanent: true },
       {
         source: '/articles/chandigarh-university-cu-vs-chitkara-university-chandigarh-engineering-decision-guide',
         destination: '/articles/chandigarh-university-vs-chitkara-university-chandigarh-btech-engineering-decision-guide',

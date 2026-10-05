@@ -2,9 +2,11 @@
 
 import { useEffect } from 'react';
 
-const GTM_ID = 'GTM-T47JR276';
+const GTM_ID = process.env.NEXT_PUBLIC_GTM_ID || '';
 
 export default function GoogleTagManager() {
+  if (!GTM_ID) return null;
+
   useEffect(() => {
     const timer = window.setTimeout(() => {
       if (document.querySelector(`script[data-gtm-id="${GTM_ID}"]`)) return;
