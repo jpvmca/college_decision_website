@@ -22,7 +22,7 @@ export default function PrivacyPolicyPage() {
     <h2>Cookies and analytics</h2>
     <p>We may use essential technologies required for security, preferences or basic operation. If analytics or optional cookies are introduced, this policy will be updated with their purpose and controls.</p>
     <h2>Advertising</h2>
-    <p>If we introduce Google AdSense or another advertising partner, those providers and their partners may use cookies or similar technologies to understand visits and show advertisements. Google may use information about visits to this and other websites for personalised advertising. Visitors can manage personalised advertising through <a href="https://adssettings.google.com/" target="_blank" rel="noreferrer">Google Ad Settings</a>. This section will be updated if advertising partners, consent tools or regional requirements change.</p>
+    <p>If we introduce Google AdSense or another advertising partner, those providers and their partners may use cookies or similar technologies to understand visits and show advertisements. Google may use information about visits to this and other websites for personalised advertising. Visitors can manage personalised advertising through <a href="https://adssettings.google.com/" target="_blank" rel="noopener noreferrer">Google Ad Settings</a>. This section will be updated if advertising partners, consent tools or regional requirements change.</p>
     <h2>Sharing and retention</h2>
     <p>We do not sell personal information. Information may be processed by service providers that host, secure or operate the website, subject to appropriate safeguards. We retain correspondence only as long as reasonably necessary for the request, records, security or legal obligations.</p>
     <h2>Your choices</h2>

@@ -199,7 +199,7 @@ export default async function ExamProfilePage({ params }: { params: Promise<{ sl
         <h1>{seo.h1}</h1>
         <p className="muted">{[profile.exam.course?.name, profile.exam.mode, profile.exam.level].filter(Boolean).join(' · ') || 'Entrance exam'} · India</p>
         <p><AutoLinkedText text={seo.intro} entities={linkableEntities} options={{ excludeHrefs: [`/exams/${slug}`] }} /></p>
-        {profile.exam.applyUrl ? <p><a href={profile.exam.applyUrl} target="_blank" rel="noreferrer">Open official {name} information</a></p> : null}
+        {profile.exam.applyUrl ? <p><a href={profile.exam.applyUrl} target="_blank" rel="noopener noreferrer">Open official {name} information</a></p> : null}
       </div>
       <ExamLogo src={profile.exam.logo} examName={name} courseName={profile.exam.course?.name} size={120} />
     </header>
