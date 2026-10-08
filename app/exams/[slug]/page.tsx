@@ -136,10 +136,10 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   if (!profile) return { title: 'Exam not found', robots: { index: false, follow: false } };
   const name = profile.exam.name;
   const siteUrl = (process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3001').replace(/\/+$/, '');
-  const imageUrl = absoluteUrl(profile.exam.logo ? mediaUrl(profile.exam.logo) || '/exams-hero.webp' : '/exams-hero.webp', siteUrl);
   const seo = examSeo(profile);
+  const imageUrl = absoluteUrl(seo.pack.ogImage ? mediaUrl(seo.pack.ogImage) || '/exams-hero.webp' : profile.exam.logo ? mediaUrl(profile.exam.logo) || '/exams-hero.webp' : '/exams-hero.webp', siteUrl);
   return {
-    title: seo.title,
+    title: seo.pack.absoluteTitle ? { absolute: seo.title } : seo.title,
     description: seo.description,
     keywords: seo.keywords,
     alternates: { canonical: `/exams/${slug}` },
@@ -158,8 +158,8 @@ export default async function ExamProfilePage({ params }: { params: Promise<{ sl
   const name = profile.exam.name;
   const siteUrl = (process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3001').replace(/\/+$/, '');
   const pageUrl = `${siteUrl}/exams/${slug}`;
-  const imageUrl = absoluteUrl(profile.exam.logo ? mediaUrl(profile.exam.logo) || '/exams-hero.webp' : '/exams-hero.webp', siteUrl);
   const seo = examSeo(profile);
+  const imageUrl = absoluteUrl(seo.pack.ogImage ? mediaUrl(seo.pack.ogImage) || '/exams-hero.webp' : profile.exam.logo ? mediaUrl(profile.exam.logo) || '/exams-hero.webp' : '/exams-hero.webp', siteUrl);
   const faqs = profileFaqs(profile, name);
   const linkableEntities = await getLinkableEntities();
   const schedule = profile.nextSchedule;
@@ -193,6 +193,7 @@ export default async function ExamProfilePage({ params }: { params: Promise<{ sl
         headline: seo.title,
         description: seo.description,
         mainEntityOfPage: pageUrl,
+        image: seo.pack.ogImage ? imageUrl : undefined,
         author: { '@type': 'Organization', name: 'College Decision', url: siteUrl },
         publisher: { '@type': 'Organization', name: 'College Decision', url: siteUrl, logo: { '@type': 'ImageObject', url: absoluteUrl('/logo.svg', siteUrl) } },
         dateModified: profile.updatedAt || undefined

@@ -34,6 +34,12 @@ export type ExamSeoPack = {
   keywords: string[];
   intro: string;
   intent: 'counselling' | 'cutoff' | 'general';
+  /** Hand-written, source-checked FAQs that replace the generated ones. */
+  faqs?: Array<{ question: string; answer: string }>;
+  /** Page-specific social image path (for example /uploads/exams/nmat/nmat-2026-og.webp). */
+  ogImage?: string;
+  /** Use the title as-is, without the site-wide " | College Decision" suffix (keeps the <title> within ~60 characters). */
+  absoluteTitle?: boolean;
 };
 
 const KEEP_2026 = new Set(['cat', 'snap', 'nmat', 'ibsat', 'mat', 'atma', 'micat', 'gmat']);
@@ -99,7 +105,7 @@ function h1For(label: string, year: number, intent: ExamSeoPack['intent']) {
   return `${label} ${year}: Eligibility, Counselling, Colleges & Fees`;
 }
 
-type Override = Partial<Pick<ExamSeoPack, 'h1' | 'title' | 'description' | 'keywords' | 'intro' | 'intent'>>;
+type Override = Partial<Pick<ExamSeoPack, 'h1' | 'title' | 'description' | 'keywords' | 'intro' | 'intent' | 'faqs' | 'ogImage' | 'absoluteTitle'>>;
 
 function overrides(year: number, institutes: number, feeRange: string | null): Record<string, Override> {
   const colleges = institutes ? `${institutes.toLocaleString('en-IN')} mapped colleges` : 'mapped colleges';
@@ -128,6 +134,56 @@ function overrides(year: number, institutes: number, feeRange: string | null): R
       description: `Planning CAT ${year} for MBA/PGDM? Compare eligibility, percentile/cutoff context, ${colleges}, and programme fees before applications open.${fees}`,
       keywords: [`CAT ${year}`, 'CAT eligibility', 'CAT cutoff', 'MBA colleges accepting CAT', 'CAT admission'],
       intro: `Use CAT ${year} eligibility, cutoff context, and ${colleges} to shortlist MBA/PGDM options, then confirm official IIM and institute notices.`
+    },
+    nmat: {
+      // NMAT 2026 content package (docs/exam-content/nmat-2026.md in the backend repo).
+      // Facts checked on mba.com (GMAC) and the NMIMS Admission Handout, NMAT 2026, on 8 Oct 2026.
+      intent: 'general',
+      h1: 'NMAT 2026: Exam Dates, Registration, Pattern, Syllabus & Colleges',
+      title: 'NMAT 2026: Exam Dates, Registration, Pattern & Syllabus',
+      description: 'NMAT 2026 by GMAC: register by 10 Oct, tests run 2 Nov–20 Dec. Check fees, pattern, syllabus, retake rules and colleges, then book your slot early.',
+      keywords: ['NMAT 2026', 'NMAT 2026 exam date', 'NMAT registration 2026', 'NMAT by GMAC', 'NMAT exam pattern', 'NMAT syllabus', 'NMAT retake rules', 'colleges accepting NMAT'],
+      intro: 'NMAT 2026 by GMAC runs from 2 November to 20 December 2026, and registration closes on 10 October. This guide covers dates, fees, the exam pattern, retake rules and the colleges that accept NMAT, using official GMAC and NMIMS sources.',
+      ogImage: '/uploads/exams/nmat/nmat-2026-og.webp',
+      absoluteTitle: true,
+      faqs: [
+        {
+          question: 'What is NMAT 2026?',
+          answer: 'NMAT by GMAC is a computer-based, adaptive MBA entrance test used by NMIMS and the other business schools on GMAC\'s list. It is run by Graduate Management Global Connection (GMGC), a subsidiary of the Graduate Management Admission Council (GMAC). It is not the Philippine NMAT.'
+        },
+        {
+          question: 'When is the NMAT 2026 exam?',
+          answer: 'NMAT 2026 tests run from 2 November to 20 December 2026, and you choose your own date and slot. Registration is open from 20 August to 10 October 2026, and slot booking closes on 22 October 2026.'
+        },
+        {
+          question: 'What is the NMAT 2026 registration fee?',
+          answer: 'Registration costs ₹3,000 plus taxes and includes sending scores to five schools. Each retake costs ₹3,000 plus taxes, a reschedule ₹1,200 plus taxes and each extra school ₹400 plus taxes. NMIMS charges a separate, non-refundable ₹3,000 for its own application.'
+        },
+        {
+          question: 'Who is eligible for NMAT 2026?',
+          answer: 'GMAC does not set eligibility for taking the test. Each school sets its own rules. NMIMS, for example, asks for a bachelor\'s degree with at least 50% aggregate, and final-year students can apply provisionally.'
+        },
+        {
+          question: 'What is the NMAT 2026 exam pattern?',
+          answer: 'NMAT has 108 questions in 120 minutes: Language Skills (36 questions, 28 minutes), Quantitative Skills (36 questions, 52 minutes) and Logical Reasoning (36 questions, 40 minutes). Each section is scored 12 to 120, the total 36 to 360, and there is no negative marking.'
+        },
+        {
+          question: 'How many times can I take NMAT 2026?',
+          answer: 'Up to three times in the testing cycle (1 July to 30 June), and a no-show counts as an attempt. Retakes can be booked from 3 November to 17 December 2026. GMAC\'s pages give the minimum gap between attempts as 7 days on one page and 15 days on others, so check the dates your dashboard allows.'
+        },
+        {
+          question: 'Does NMIMS accept my best NMAT score?',
+          answer: 'No. The NMIMS Admission Handout for NMAT 2026 says NMIMS accepts only the score of your first NMAT attempt. You must also complete the separate NMIMS application on nmat.nmims.edu by 10 October 2026 and before the day of your test.'
+        },
+        {
+          question: 'When will the NMAT 2026 result be declared?',
+          answer: 'There is no single result date. GMAC sends the official scorecard within 48 hours of your test, or up to 10 working days if the test is audited. Scores are valid for one year.'
+        },
+        {
+          question: 'Which colleges accept NMAT 2026?',
+          answer: 'GMAC\'s list showed 62 schools on 8 October 2026, led by NMIMS. Some accept NMAT for one programme only, such as ISB for AMPBA, SPJIMR for its Global Management Programme and Great Lakes for PGPM. Check each school\'s admission page before applying.'
+        }
+      ]
     },
     gate: {
       intent: 'cutoff',
@@ -211,7 +267,7 @@ export function buildExamSeo(profile: ExamSeoSource): ExamSeoPack {
     `Review ${label} ${year} eligibility, ${
       intent === 'counselling' ? 'counselling and cutoff context' : intent === 'cutoff' ? 'cutoff and counselling context' : 'counselling context'
     }, mapped colleges${institutes ? ` (${institutes.toLocaleString('en-IN')})` : ''}, and fee evidence before you apply.`;
-  return { year, label, h1, title, description, keywords, intro, intent };
+  return { year, label, h1, title, description, keywords, intro, intent, faqs: pack?.faqs, ogImage: pack?.ogImage, absoluteTitle: pack?.absoluteTitle };
 }
 
 export function buildExamFaqs(
@@ -220,6 +276,7 @@ export function buildExamFaqs(
   textFn: (value: unknown, fallback?: string) => string,
   moneyFn: (value: number | string | null | undefined) => string
 ) {
+  if (seo.faqs?.length) return seo.faqs.slice(0, 12);
   const faqs: Array<{ question: string; answer: string }> = [];
   const seen = new Set<string>();
   const add = (q: string, a: string) => {
