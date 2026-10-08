@@ -8,6 +8,7 @@ import { getLinkableEntities } from '../../../lib/linkable-entities';
 import AutoLinkedText from '../../../components/AutoLinkedText';
 import { articleAnchorTitle, buildExamFaqs, buildExamSeo, rankExamArticles } from '../../../lib/exam-seo';
 import ExamLogo from '../../../components/ExamLogo';
+import ExamCountdown from '../../../components/ExamCountdown';
 
 type ExamProfile = {
   exam: {
@@ -54,6 +55,23 @@ type ExamProfile = {
     programmes_with_fees?: number;
   } | null;
   articles: Array<{ slug: string; title: string; articleType?: string; imageUrl?: string | null; publishedAt?: string | null }>;
+  schedules: Array<{
+    id: number;
+    cycle_year: number;
+    application_start_date: string | null;
+    application_end_date: string | null;
+    exam_start_date: string | null;
+    exam_end_date: string | null;
+    result_date: string | null;
+    admission_window: string | null;
+    expected_month: string | null;
+    date_status: string;
+    source_url: string | null;
+    source_verified_at: string | null;
+    state: string;
+    countdownEligible: boolean;
+  }>;
+  nextSchedule?: ExamProfile['schedules'][number] | null;
   updatedAt?: string | null;
 };
 
@@ -144,9 +162,10 @@ export default async function ExamProfilePage({ params }: { params: Promise<{ sl
   const seo = examSeo(profile);
   const faqs = profileFaqs(profile, name);
   const linkableEntities = await getLinkableEntities();
+  const schedule = profile.nextSchedule;
   const guideHtml = autoLinkHtml(stripEmbeddedFaqs(profile.exam.htmlContent), linkableEntities, {
     excludeHrefs: [`/exams/${slug}`]
-  });
+  }).replace(/(<img\b[^>]*\bsrc=")(\/uploads\/[^"]+)"/gi, (_, prefix: string, src: string) => `${prefix}${mediaUrl(src)}"`);
   const aboutText = text(profile.exam.longDescription || profile.exam.description, '');
   const jsonLd = {
     '@context': 'https://schema.org',
@@ -219,6 +238,19 @@ export default async function ExamProfilePage({ params }: { params: Promise<{ sl
           : (profile.exam.course?.name || '—');
       })()}</strong><span>Primary course</span></div>
     </section>
+
+    {schedule && (schedule.exam_start_date || schedule.expected_month || schedule.application_start_date || schedule.result_date) && <section className="exam-schedule-card" aria-labelledby="exam-schedule-heading">
+      <h2 id="exam-schedule-heading">Important {name} dates</h2>
+      <div className="exam-schedule-grid">
+        {schedule.exam_start_date ? <div><strong>Exam date</strong><span>{schedule.exam_start_date}{schedule.exam_end_date && schedule.exam_end_date !== schedule.exam_start_date ? ` to ${schedule.exam_end_date}` : ''}</span>{schedule.countdownEligible ? <ExamCountdown date={schedule.exam_start_date} /> : null}</div> : schedule.expected_month ? <div><strong>Expected exam window</strong><span>{schedule.expected_month}</span></div> : null}
+        {schedule.application_start_date && <div><strong>Registration starts</strong><span>{schedule.application_start_date}</span></div>}
+        {schedule.application_end_date && <div><strong>Registration closes</strong><span>{schedule.application_end_date}</span></div>}
+        {schedule.result_date && <div><strong>Result date</strong><span>{schedule.result_date}</span></div>}
+        {schedule.admission_window && <div><strong>Admission window</strong><span>{schedule.admission_window}</span></div>}
+      </div>
+      {schedule.source_url && <p><a href={schedule.source_url} target="_blank" rel="noopener noreferrer">Verify the official {name} schedule</a></p>}
+      {schedule.date_status === 'not_announced' && <p className="muted">The conducting body has not announced an exact date for this cycle.</p>}
+    </section>}
 
     {guideHtml ? <section className="course-html-content" aria-label={`${name} exam guide`} dangerouslySetInnerHTML={{ __html: guideHtml }} /> : null}
 
