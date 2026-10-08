@@ -32,8 +32,16 @@ type CollegeProfile = {
     description?: string | null;
     min_total_fee?: number | string | null;
     max_total_fee?: number | string | null;
+    min_year_fee?: number | string | null;
+    max_year_fee?: number | string | null;
   }>;
-  fees?: { min_total_fee?: number | string | null; max_total_fee?: number | string | null; average_year_fee?: number | string | null } | null;
+  fees?: {
+    min_total_fee?: number | string | null;
+    max_total_fee?: number | string | null;
+    min_year_fee?: number | string | null;
+    max_year_fee?: number | string | null;
+    average_year_fee?: number | string | null;
+  } | null;
   exams: Array<{ id: number; name: string; slug: string }>;
   cutoffs: Array<{
     course_name?: string | null;
@@ -88,6 +96,23 @@ function money(value: number | string | null | undefined) {
   return Number.isFinite(amount) && amount > 0
     ? new Intl.NumberFormat('en-IN', { style: 'currency', currency: 'INR', maximumFractionDigits: 0 }).format(amount)
     : 'Not listed';
+}
+
+// Fee ranges come only from programme-level rows (Total Fees / Tuition Fees). Annual rows and
+// programme totals are kept apart so each range carries an accurate label.
+function moneyRange(min: number, max: number) {
+  return max > min ? `${money(min)} to ${money(max)}` : money(min);
+}
+
+function feeSentences(fees: CollegeProfile['fees']) {
+  const yearMin = Number(fees?.min_year_fee) || 0;
+  const yearMax = Number(fees?.max_year_fee) || yearMin;
+  const totalMin = Number(fees?.min_total_fee) || 0;
+  const totalMax = Number(fees?.max_total_fee) || totalMin;
+  const parts: string[] = [];
+  if (yearMin) parts.push(`recorded annual fees ${yearMax > yearMin ? 'range from' : 'are'} ${moneyRange(yearMin, yearMax)} per year`);
+  if (totalMin) parts.push(`recorded total programme fees ${totalMax > totalMin ? 'range from' : 'are'} ${moneyRange(totalMin, totalMax)}`);
+  return parts;
 }
 
 function packageValue(value: number | string | null | undefined) {
@@ -196,7 +221,11 @@ function profileFaqs(profile: CollegeProfile, name: string, location: string) {
     faqs.push({ question: `What is ${name} known for?`, answer: `${name} offers ${courseFamilies(profile).map((family) => family.name).join(', ')} across ${profile.programmes.length} active programme records.` });
     faqs.push({ question: `What are the main courses at ${name}?`, answer: `${name} lists ${profile.programmes.slice(0, 5).map((item) => text(item.programme_name, item.course_name)).join(', ')}${profile.programmes.length > 5 ? ', and other programmes' : ''}.` });
   }
-  if (profile.fees?.min_total_fee || profile.fees?.max_total_fee) faqs.push({ question: `What are the fees at ${name}?`, answer: `Recorded total fees range from ${money(profile.fees?.min_total_fee)} to ${money(profile.fees?.max_total_fee)}. Confirm current category and additional charges with the institution.` });
+  const feeParts = feeSentences(profile.fees);
+  if (feeParts.length) {
+    const answer = feeParts.join('; ');
+    faqs.push({ question: `What are the fees at ${name}?`, answer: `${answer.charAt(0).toUpperCase()}${answer.slice(1)}. Hostel, deposits and one-time charges are extra; confirm current category and additional charges with the institution.` });
+  }
   if (profile.exams.length) faqs.push({ question: `Which entrance exams are accepted by ${name}?`, answer: `The active programme mappings list ${profile.exams.slice(0, 6).map((exam) => exam.name).join(', ')}.` });
   if (profile.cutoffs.length) faqs.push({ question: `What are the cutoffs for ${name}?`, answer: `The profile contains ${profile.cutoffs.length} cutoff record(s). Check the programme, category and year before using any cutoff for planning.` });
   if (profile.placements.length) faqs.push({ question: `How are placements at ${name}?`, answer: `Placement records are available for ${profile.placements.filter((item) => item.year).length || profile.placements.length} programme-year record(s), including average and highest package values where reported.` });
@@ -211,9 +240,11 @@ function profileFaqs(profile: CollegeProfile, name: string, location: string) {
 }
 
 function decisionNote(profile: CollegeProfile, name: string) {
-  const fee = Number(profile.fees?.min_total_fee || 0);
+  const yearFee = Number(profile.fees?.min_year_fee || 0);
+  const totalFee = Number(profile.fees?.min_total_fee || 0);
+  const feeText = yearFee ? `annual fees from ${money(yearFee)} per year` : totalFee ? `total programme fees from ${money(totalFee)}` : '';
   const averagePackage = Math.max(...profile.placements.map((item) => Number(item.average_package) || 0), 0);
-  if (fee && averagePackage) return `${name} has recorded total fees from ${money(fee)} and placement records with average packages up to ${packageValue(averagePackage)}. Use these figures to shortlist, then verify the same programme, year, category and placement report before deciding.`;
+  if (feeText && averagePackage) return `${name} has recorded ${feeText} and placement records with average packages up to ${packageValue(averagePackage)}. Use these figures to shortlist, then verify the same programme, year, category and placement report before deciding.`;
   if (profile.placements.length) return `${name} has active placement records, but fee and package values can vary by programme and year. Compare the exact course and latest official placement report before applying.`;
   if (profile.reviewSummary.averageRating) return `${name} has a ${profile.reviewSummary.averageRating.toFixed(1)}/5 aggregate student rating, but current placement and fee evidence is limited. Prioritise official course, fee and outcome information for your decision.`;
   return `Use ${name}'s programme, eligibility and fee records as a shortlist starting point. Confirm current admission dates, total cost and outcomes with the institution before applying.`;
@@ -260,10 +291,13 @@ function groupedProgrammes(profile: CollegeProfile) {
 
 function feeGroups(profile: CollegeProfile) {
   return groupedProgrammes(profile).map((group) => {
-    const fees = group.programmes
-      .flatMap((programme) => [Number(programme.min_total_fee) || 0, Number(programme.max_total_fee) || 0])
+    const collect = (minKey: 'min_year_fee' | 'min_total_fee', maxKey: 'max_year_fee' | 'max_total_fee') => group.programmes
+      .flatMap((programme) => [Number(programme[minKey]) || 0, Number(programme[maxKey]) || 0])
       .filter((fee) => fee > 0);
-    return { ...group, min: fees.length ? Math.min(...fees) : 0, max: fees.length ? Math.max(...fees) : 0 };
+    const yearly = collect('min_year_fee', 'max_year_fee');
+    const fees = yearly.length ? yearly : collect('min_total_fee', 'max_total_fee');
+    const basis: 'annual' | 'total' = yearly.length ? 'annual' : 'total';
+    return { ...group, basis, min: fees.length ? Math.min(...fees) : 0, max: fees.length ? Math.max(...fees) : 0 };
   }).filter((group) => group.min > 0 || group.max > 0);
 }
 
@@ -470,7 +504,7 @@ export default async function CollegeProfilePage({ params }: { params: Promise<{
 
     {recordedFeeGroups.length > 0 && <section>
       <SectionHeading icon={IndianRupee}>Course Fees at {name}</SectionHeading>
-      {recordedFeeGroups.map((group) => <div key={group.name}><h3>{group.heading.replace(' Programmes', '')} Fees</h3><p>Recorded annual fee for most {group.name}: <strong>{money(group.min)}{group.max !== group.min ? ` – ${money(group.max)}` : ''} per year</strong>.</p><p className="muted">Hostel, mess and other charges are additional and not included.</p></div>)}
+      {recordedFeeGroups.map((group) => <div key={group.name}><h3>{group.heading.replace(' Programmes', '')} Fees</h3><p>Recorded {group.basis === 'annual' ? 'annual fee' : 'total programme fee'} for most {group.name}: <strong>{money(group.min)}{group.max !== group.min ? ` – ${money(group.max)}` : ''}{group.basis === 'annual' ? ' per year' : ''}</strong>.</p><p className="muted">Hostel, mess and other charges are additional and not included.</p></div>)}
     </section>}
 
     {(profile.programmes.some((programme) => programme.eligibility) || profile.exams.length > 0) && <section>

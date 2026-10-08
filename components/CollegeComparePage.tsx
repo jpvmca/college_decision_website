@@ -19,7 +19,7 @@ type CollegeSearchResult = {
 type Comparison = {
   institute: CollegeSearchResult & { website?: string | null; establishment_year?: number | null; is_university?: number | boolean | null };
   programmes: Array<{ course_id?: number | string | null; programme_name?: string | null; course_name?: string | null; duration?: string | number | null; min_total_fee?: number | string | null; max_total_fee?: number | string | null }>;
-  fees: { min_total_fee?: number | string | null; max_total_fee?: number | string | null; average_year_fee?: number | string | null } | null;
+  fees: { min_total_fee?: number | string | null; max_total_fee?: number | string | null; min_year_fee?: number | string | null; max_year_fee?: number | string | null; average_year_fee?: number | string | null } | null;
   exams: Array<{ name?: string | null }>;
   placements: Array<{ year?: number | string | null; average_package?: number | string | null; highest_package?: number | string | null }>;
   rankings: Array<{ ranking_body?: string | null; course_name?: string | null; rank?: number | string | null; out_of?: number | string | null; year?: number | string | null }>;
@@ -167,7 +167,7 @@ export default function CollegeComparePage() {
             {item && <div className="comparison-details">
               <div className="comparison-fact"><Building2 size={16} aria-hidden="true" /><span>Type</span><strong>{college.institute_type === 'public' ? 'Government / public' : college.institute_type || 'Not listed'}</strong></div>
               <div className="comparison-fact"><GraduationCap size={16} aria-hidden="true" /><span>Programmes</span><strong>{item.programmes.length || 'Not listed'}</strong></div>
-              <div className="comparison-fact"><IndianRupee size={16} aria-hidden="true" /><span>Recorded fee range</span><strong>{item.fees ? `${money(item.fees.min_total_fee)} – ${money(item.fees.max_total_fee)}` : 'Not listed'}</strong></div>
+              <div className="comparison-fact"><IndianRupee size={16} aria-hidden="true" /><span>Recorded fee range</span><strong>{item.fees?.min_year_fee ? `${money(item.fees.min_year_fee)} – ${money(item.fees.max_year_fee)} per year` : item.fees?.min_total_fee ? `${money(item.fees.min_total_fee)} – ${money(item.fees.max_total_fee)} total` : 'Not listed'}</strong></div>
               <div className="comparison-fact"><IndianRupee size={16} aria-hidden="true" /><span>Average yearly fee</span><strong>{money(item.fees?.average_year_fee)}</strong></div>
               <div className="comparison-fact"><BarChart3 size={16} aria-hidden="true" /><span>Latest placement package</span><strong>{latestPlacement ? `${packageValue(latestPlacement.average_package)} average · ${packageValue(latestPlacement.highest_package)} highest` : 'Not listed'}</strong></div>
               <div className="comparison-fact"><span>Latest ranking</span><strong>{latestRank?.rank ? `${latestRank.ranking_body || 'Ranking'}: ${latestRank.rank}${latestRank.out_of ? ` / ${latestRank.out_of}` : ''}` : 'Not listed'}</strong></div>
