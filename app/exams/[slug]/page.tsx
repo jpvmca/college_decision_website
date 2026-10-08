@@ -51,6 +51,8 @@ type ExamProfile = {
   fees?: {
     min_total_fee?: number | string | null;
     max_total_fee?: number | string | null;
+    min_year_fee?: number | string | null;
+    max_year_fee?: number | string | null;
     average_year_fee?: number | string | null;
     programmes_with_fees?: number;
   } | null;
@@ -125,7 +127,10 @@ function decisionNote(profile: ExamProfile, name: string) {
     return `${name} is currently mapped to ${institutes.toLocaleString('en-IN')} colleges and ${programmes.toLocaleString('en-IN')} programmes. Use these links to shortlist, then verify the latest official exam and counselling rules.`;
   }
   if (profile.fees?.min_total_fee) {
-    return `${name}-linked programmes show recorded total fees from ${money(profile.fees.min_total_fee)}. Confirm current fee schedules before applying.`;
+    return `${name}-linked programmes show recorded total programme fees from ${money(profile.fees.min_total_fee)}. Confirm current fee schedules before applying.`;
+  }
+  if (profile.fees?.min_year_fee) {
+    return `${name}-linked programmes show recorded annual fees from ${money(profile.fees.min_year_fee)} per year. Confirm current fee schedules before applying.`;
   }
   return `Use ${name} eligibility, pattern and mapped college records as a shortlist starting point. Confirm current dates and admission rules before applying.`;
 }
@@ -269,7 +274,10 @@ export default async function ExamProfilePage({ params }: { params: Promise<{ sl
       {profile.exam.howToPrepare && <div><h2>How to prepare</h2><p>{text(profile.exam.howToPrepare)}</p></div>}
     </section>}
 
-    {!guideHtml && (profile.fees?.min_total_fee || profile.fees?.max_total_fee) && <section><h2>Fees for programmes accepting {name}</h2><p>Recorded total fees across mapped programmes range from <strong>{money(profile.fees?.min_total_fee)}</strong> to <strong>{money(profile.fees?.max_total_fee)}</strong>. Confirm the academic year, category, hostel, mess and other charges with each institute.</p></section>}
+    {!guideHtml && (profile.fees?.min_total_fee || profile.fees?.max_total_fee || profile.fees?.min_year_fee || profile.fees?.max_year_fee) && <section><h2>Fees for programmes accepting {name}</h2>
+      {(profile.fees?.min_total_fee || profile.fees?.max_total_fee) ? <p>Recorded total programme fees across mapped programmes range from <strong>{money(profile.fees?.min_total_fee)}</strong> to <strong>{money(profile.fees?.max_total_fee)}</strong>.</p> : null}
+      {(profile.fees?.min_year_fee || profile.fees?.max_year_fee) ? <p>Recorded annual fees range from <strong>{money(profile.fees?.min_year_fee)}</strong> to <strong>{money(profile.fees?.max_year_fee)}</strong> per year.</p> : null}
+      <p>Only active programmes at published colleges are counted. Confirm the academic year, category, hostel, mess and other charges with each institute.</p></section>}
 
     {!guideHtml && profile.programmes.length > 0 && <section><h2>Programmes linked with {name}</h2><div className="profile-chips">{profile.programmes.slice(0, 40).map((item) => <span key={`${item.programme_name}-${item.duration}`}>{text(item.programme_name)}</span>)}</div></section>}
 

@@ -22,6 +22,8 @@ export type ExamSeoSource = {
   fees?: {
     min_total_fee?: number | string | null;
     max_total_fee?: number | string | null;
+    min_year_fee?: number | string | null;
+    max_year_fee?: number | string | null;
   } | null;
 };
 
@@ -58,6 +60,21 @@ function money(value: number | string | null | undefined) {
   return Number.isFinite(amount) && amount > 0
     ? new Intl.NumberFormat('en-IN', { style: 'currency', currency: 'INR', maximumFractionDigits: 0 }).format(amount)
     : null;
+}
+
+function rangeOf(min: number | string | null | undefined, max: number | string | null | undefined) {
+  const lo = money(min);
+  const hi = money(max);
+  if (lo && hi) return lo === hi ? lo : `${lo}–${hi}`;
+  return lo || hi;
+}
+
+/** Fee range text labelled as total programme fees or annual fees (same split as the college fee ranges). */
+export function examFeeRangeText(fees: ExamSeoSource['fees']): string | null {
+  const total = rangeOf(fees?.min_total_fee, fees?.max_total_fee);
+  if (total) return `${total} (total programme fees)`;
+  const year = rangeOf(fees?.min_year_fee, fees?.max_year_fee);
+  return year ? `${year} per year` : null;
 }
 
 export function examLabel(exam: ExamSeoSource['exam']) {
@@ -134,6 +151,60 @@ function overrides(year: number, institutes: number, feeRange: string | null): R
       description: `Planning CAT ${year} for MBA/PGDM? Compare eligibility, percentile/cutoff context, ${colleges}, and programme fees before applications open.${fees}`,
       keywords: [`CAT ${year}`, 'CAT eligibility', 'CAT cutoff', 'MBA colleges accepting CAT', 'CAT admission'],
       intro: `Use CAT ${year} eligibility, cutoff context, and ${colleges} to shortlist MBA/PGDM options, then confirm official IIM and institute notices.`
+    },
+    snap: {
+      // SNAP 2026 content package (docs/exam-content/snap-2026.md in the backend repo).
+      // Facts checked on snaptest.org and the SNAP 2026 Bulletin (Symbiosis International (Deemed University)) on 8 Oct 2026.
+      intent: 'general',
+      h1: 'SNAP 2026: Exam Dates, Registration, Fees, New Pattern & Colleges',
+      title: 'SNAP 2026: Exam Dates, Registration, New Pattern & Fees',
+      description: 'SNAP 2026 for Symbiosis MBA: tests on 13, 19 & 26 Dec, register by 25 Nov. See fees, the new Ethics section, eligibility and all 32 programmes.',
+      keywords: ['SNAP 2026', 'SNAP 2026 exam date', 'SNAP 2026 registration', 'SNAP exam pattern 2026', 'SNAP 2026 fees', 'Symbiosis National Aptitude Test', 'SNAP eligibility', 'Symbiosis MBA colleges'],
+      intro: 'SNAP 2026, the Symbiosis National Aptitude Test for MBA admission at 17 Symbiosis institutes, is held on 13, 19 and 26 December 2026, and registration closes on 25 November. This guide covers dates, fees, the new pattern, eligibility, programmes and selection, checked against snaptest.org and the SNAP 2026 Bulletin.',
+      ogImage: '/uploads/exams/snap/snap-2026-og.webp',
+      absoluteTitle: true,
+      faqs: [
+        {
+          question: 'What is SNAP 2026?',
+          answer: 'SNAP (Symbiosis National Aptitude Test) 2026 is the computer-based entrance test run by Symbiosis International (Deemed University) for 32 MBA programmes at 17 Symbiosis institutes in Pune, Nashik, Nagpur, Hyderabad, NOIDA and Bengaluru. The score is valid only for SIU admissions to the 2027-28 academic year.'
+        },
+        {
+          question: 'When is the SNAP 2026 exam?',
+          answer: 'SNAP 2026 has three test dates: Sunday 13 December, Saturday 19 December and Saturday 26 December 2026. Test timings are printed on the admit card, which goes live on 7, 11 and 18 December respectively.'
+        },
+        {
+          question: 'What is the last date to register for SNAP 2026?',
+          answer: 'Registration and payment close on Wednesday, 25 November 2026. Registration opened on 21 August 2026. Programme registration deadlines can differ by programme, so check each institute before you pay.'
+        },
+        {
+          question: 'What is the SNAP 2026 registration fee?',
+          answer: 'The test fee is ₹2,550 per test, and each MBA programme you apply to costs another ₹1,000. Government taxes are extra. Two tests cost ₹5,100 and three cost ₹7,650 before programme fees. The fee is the same for every category and is non-refundable.'
+        },
+        {
+          question: 'What is the SNAP 2026 exam pattern?',
+          answer: 'SNAP 2026 has 60 questions in 60 minutes: General English (10), Analytical and Logical Reasoning (20), Quantitative, Data Interpretation and Data Sufficiency (20), and a new section, Ethics, Morality and Values (10). Each question carries one mark and you can attempt the sections in any order.'
+        },
+        {
+          question: 'Does SNAP have negative marking?',
+          answer: 'Yes. Each wrong answer costs 25% of the marks for that question, so a wrong answer deducts 0.25 marks. Four wrong answers cancel out one correct answer.'
+        },
+        {
+          question: 'How many times can I take SNAP 2026, and which score counts?',
+          answer: 'You can take up to three tests. If you take more than one, Symbiosis uses your higher score for the final percentile and does not normalise scores between tests. You pay ₹2,550 plus taxes for each test.'
+        },
+        {
+          question: 'Who is eligible for SNAP 2026?',
+          answer: 'You need a bachelor\'s degree from a recognised university with at least 50% marks, or 45% for SC/ST candidates. Some programmes add conditions. For example, SCMHRD\'s MBA in Business Analytics needs two years of full-time work experience, and the SSBF dual degrees need 65%.'
+        },
+        {
+          question: 'When will the SNAP 2026 result be declared?',
+          answer: 'The SNAP 2026 result is due on Tuesday, 12 January 2027 on snaptest.org and stays available until 12 February 2027. Scores are final, with no revaluation.'
+        },
+        {
+          question: 'What happens after the SNAP 2026 result?',
+          answer: 'Each institute shortlists candidates programme by programme on their overall SNAP percentile and calls them for a Group Exercise and Personal Interaction (GE-PI). The merit list is out of 100: your SNAP score scaled to 50, GE 10 and PI 40. Cut-offs are set separately for each programme and published by the institutes, not in the SNAP bulletin.'
+        }
+      ]
     },
     nmat: {
       // NMAT 2026 content package (docs/exam-content/nmat-2026.md in the backend repo).
@@ -245,9 +316,7 @@ export function buildExamSeo(profile: ExamSeoSource): ExamSeoPack {
   const year = detectExamYear(profile);
   const courseName = strip(profile.exam.course?.name);
   const institutes = Number(profile.instituteCount || 0);
-  const minFee = money(profile.fees?.min_total_fee);
-  const maxFee = money(profile.fees?.max_total_fee);
-  const feeRange = minFee && maxFee ? `${minFee}–${maxFee}` : minFee || maxFee;
+  const feeRange = examFeeRangeText(profile.fees);
   let intent = intentOf(profile.exam.slug, label);
   const pack = overrides(year, institutes, feeRange)[profile.exam.slug];
   if (pack?.intent) intent = pack.intent;
@@ -308,7 +377,9 @@ export function buildExamFaqs(
     add(`Which colleges accept ${label}?`, `The database currently maps ${Number(profile.instituteCount).toLocaleString('en-IN')} colleges and ${Number(profile.programmeCount || 0).toLocaleString('en-IN')} programmes to ${label}.`);
   }
   if (profile.fees?.min_total_fee || profile.fees?.max_total_fee) {
-    add(`What fees should I expect after ${label}?`, `Across mapped programmes, recorded total fees range from ${moneyFn(profile.fees?.min_total_fee)} to ${moneyFn(profile.fees?.max_total_fee)}. Confirm hostel, mess and other charges separately.`);
+    add(`What fees should I expect after ${label}?`, `Across mapped programmes at published colleges, recorded total programme fees range from ${moneyFn(profile.fees?.min_total_fee)} to ${moneyFn(profile.fees?.max_total_fee)}. Confirm hostel, mess and other charges separately.`);
+  } else if (profile.fees?.min_year_fee || profile.fees?.max_year_fee) {
+    add(`What fees should I expect after ${label}?`, `Across mapped programmes at published colleges, recorded annual fees range from ${moneyFn(profile.fees?.min_year_fee)} to ${moneyFn(profile.fees?.max_year_fee)} per year. Multiply by the programme length for a rough total, and confirm hostel, mess and other charges separately.`);
   }
   if (profile.programmes.length) {
     add(`Which programmes are linked with ${label}?`, `Mapped programme examples include ${profile.programmes.slice(0, 4).map((item) => textFn(item.programme_name)).join(', ')}.`);
