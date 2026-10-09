@@ -674,6 +674,68 @@ function overrides(year: number, institutes: number, feeRange: string | null): R
         }
       ]
     },
+    'nid-entrance-exam': {
+      // NID DAT 2027 content package (docs/exam-content/nid-dat-2027.md in the backend repo).
+      // Facts from NID only (admissions.nid.edu, the Integrated Pathway/B.Des and M.Des Admissions Handbooks 2027-28 published
+      // 10 Sep 2026 with amendments to 29 Sep 2026, and NID's 2027-28 fee structures), checked on 9 Oct 2026.
+      // "CAT" and "Fashion Design" must not auto-link here; the exam name has no "(DAT)" alias so bare "DAT" never links site-wide.
+      intent: 'general',
+      h1: 'NID DAT 2027: Exam Date, Registration, Fee & Eligibility',
+      title: 'NID DAT 2027: Exam Date, Registration, Fee & Eligibility',
+      description: 'NID DAT 2027 Prelims is on 20 Dec 2026; apply by 30 Nov at admissions.nid.edu. See the ₹3,000 fee, age limits, Prelims and Mains, seats and NID fees.',
+      keywords: ['NID DAT 2027', 'NID entrance exam 2027', 'NID DAT 2027 exam date', 'NID DAT registration 2027 last date', 'NID application fee', 'NID eligibility', 'NID age limit', 'NID DAT Prelims', 'NID DAT Mains', 'NID integrated M.Des', 'NID fees structure', 'NID M.Des 2027'],
+      intro: 'NID DAT 2027, the National Institute of Design\'s Design Aptitude Test for admissions in 2027-28, is open: apply at admissions.nid.edu by 11:59 pm on 30 November 2026 for the DAT Prelims on Sunday, 20 December 2026. This guide covers dates, fees, eligibility, the Prelims and Mains, seats and NID\'s programme fees, all from NID\'s 2027-28 handbooks.',
+      ogImage: '/uploads/exams/nid-entrance-exam/nid-dat-2027-og.webp',
+      absoluteTitle: true,
+      autoLinkExcludeHrefs: ['/exams/cat', '/courses/fashion-design-ug', '/courses/fashion-design-pg'],
+      collegesNote: {
+        text: 'NID DAT is used only by the NIDs (Ahmedabad with Gandhinagar and Bengaluru, Andhra Pradesh, Assam, Haryana and Madhya Pradesh); NID says other institutions cannot use DAT scores without its permission. NID Ahmedabad is the NID campus published on CollegeDecision.in.',
+        linkText: 'See the NID admissions portal',
+        href: 'https://admissions.nid.edu/'
+      },
+      faqs: [
+        {
+          question: 'When is the NID DAT 2027 exam?',
+          answer: 'The DAT Prelims for admissions 2027-28 is on Sunday, 20 December 2026, for both the undergraduate route and M.Des. The Prelims admit card comes out at 4 pm on 10 December 2026. NID has not yet announced the DAT Mains dates.'
+        },
+        {
+          question: 'What is the last date to apply for NID DAT 2027?',
+          answer: 'Apply online at admissions.nid.edu by 11:59 pm (IST) on Monday, 30 November 2026. Applications opened on 10 September 2026. An edit window runs from 4 pm on 1 December to 11:59 pm on 3 December 2026, but your programme, name, date of birth, mobile number and email can\'t be changed.'
+        },
+        {
+          question: 'What is the NID DAT application fee?',
+          answer: 'For 2027-28 it is ₹3,000 for General, Gen-EWS and OBC-NCL candidates, ₹2,000 for female candidates (except SC, ST and PwD), ₹1,500 for SC and ST candidates, ₹500 for PwD and third-gender candidates and US$125 for overseas candidates. Bank charges are extra. For the M.Des at NID Ahmedabad the fee is per discipline.'
+        },
+        {
+          question: 'What is the age limit for NID B.Des and the integrated M.Des?',
+          answer: 'You must be born on or after 1 July 2006 (General, Gen-EWS and overseas), 1 July 2003 (OBC-NCL, SC and ST) or 1 July 2001 (PwD). You also need Class 12 in any stream, passed or being taken in 2026-27, and you must pass in the first attempt.'
+        },
+        {
+          question: 'Does NID Ahmedabad still offer a four-year B.Des?',
+          answer: 'Not for 2027-28 entry. NID Ahmedabad, Gandhinagar and Bengaluru now admit Class 12 students to a 5.5-year Professional Education Master of Design (Integrated Pathway): 11 semesters and 15 disciplines with 9 seats each. NID Andhra Pradesh, Assam, Haryana and Madhya Pradesh list B.Des or the 5.5-year integrated M.Des.'
+        },
+        {
+          question: 'Who can apply for NID M.Des 2027?',
+          answer: 'Graduates in any discipline, and final-year students who submit their result by 31 July 2027. The age limit is birth on or after 1 July 1995 (General and Gen-EWS), 1 July 1992 (OBC-NCL, SC and ST) or 1 July 1990 (PwD). M.Des in Design Education needs a master\'s in design, or a bachelor\'s in design plus any master\'s.'
+        },
+        {
+          question: 'What is the NID DAT exam pattern?',
+          answer: 'There are two stages. The Prelims is a pen-and-paper test in English, common to all NIDs and used only for shortlisting; its marks are not carried forward. NID\'s sample paper mixes objective questions with drawing tasks. The Mains is a Studio Sensitivity Test plus an In-Person Sensitivity Test for the undergraduate route, and a studio test plus interview for M.Des.'
+        },
+        {
+          question: 'How many candidates are shortlisted for the NID DAT Mains?',
+          answer: 'For the integrated M.Des and B.Des, NID calls 2.5 times the available seats in each category to the Mains, in order of Prelims merit. NID will announce the tie-break policy and the Mains weightages later. Only candidates who sit both parts of the Mains make the merit list.'
+        },
+        {
+          question: 'When will the NID DAT 2027 Prelims result come out?',
+          answer: 'The M.Des Prelims result is due at 4 pm on 16 February 2027, and the undergraduate result at 4 pm on 16 March 2027. Scorecards can be downloaded from admissions.nid.edu for only 20 days. Re-totalling costs ₹2,000 and only checks that all answers were marked and added correctly.'
+        },
+        {
+          question: 'What is the fee for NID Ahmedabad\'s programmes?',
+          answer: 'For Indian students joining in 2027-28, tuition is ₹2,41,500 per semester for the 11-semester integrated M.Des and ₹2,80,500 per semester for the 5-semester M.Des. With other charges, that is ₹26,68,500 and ₹14,10,300 without hostel (our sum of NID\'s semester figures). Hostel is ₹15,000 a semester at Ahmedabad and ₹17,500 at Gandhinagar.'
+        }
+      ]
+    },
     tnea: {
       intent: 'counselling',
       h1: `TNEA ${year}: Counselling, Cutoff, Colleges & Fees`,
