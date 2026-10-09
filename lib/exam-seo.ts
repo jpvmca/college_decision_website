@@ -797,6 +797,66 @@ function overrides(year: number, institutes: number, feeRange: string | null): R
         }
       ]
     },
+    'iit-jam': {
+      // IIT JAM 2027 content package (docs/exam-content/iit-jam-2027.md in the backend repo).
+      // Facts from IIT Kharagpur only (jam.iitkgp.ac.in and the JAM 2027 Information Brochure, correct as on 22 Aug 2026), checked on 9 Oct 2026.
+      // The website's extended deadline (19 Oct 2026) overrides the brochure's 12 Oct.
+      intent: 'general',
+      h1: 'IIT JAM 2027: Exam Date, Registration, Fee, Pattern & Result',
+      title: 'IIT JAM 2027: Exam Date, Registration, Fee, Pattern & Result',
+      description: 'IIT JAM 2027 by IIT Kharagpur is on 14 Feb 2027; apply by 19 Oct 2026. See the ₹2,000/₹1,000 fee, 7 papers, pattern, result on 18 Mar and IIT seats.',
+      keywords: ['IIT JAM 2027', 'JAM 2027', 'IIT JAM 2027 exam date', 'JAM 2027 last date', 'JAM application fee', 'JAM eligibility', 'IIT JAM exam pattern', 'IIT JAM syllabus', 'JAM 2027 result date', 'IIT JAM colleges', 'JAM 2027 IIT Kharagpur', 'CCMN'],
+      intro: 'IIT JAM 2027, the Joint Admission Test for Masters organised by IIT Kharagpur, is open until 19 October 2026 (extended) for the exam on Sunday, 14 February 2027. This guide covers dates, fees, eligibility, the seven papers, the marking scheme, results and admission to the IITs and through CCMN, all from the official JAM 2027 brochure and website.',
+      ogImage: '/uploads/exams/iit-jam/iit-jam-2027-og.webp',
+      absoluteTitle: true,
+      collegesNote: {
+        text: 'The 23 IITs admit through JAM scores alone, using one JAM application. IISc, NITs, IIEST Shibpur and other centrally funded institutes fill their JAM seats through CCMN. Colleges listed here have programmes that admit through JAM; check each programme\'s minimum qualifications in the JAM brochure.',
+        linkText: 'See the JAM 2027 Information Brochure',
+        href: 'https://jam.iitkgp.ac.in/docs/Info_Brochure.pdf'
+      },
+      faqs: [
+        {
+          question: 'When is the IIT JAM 2027 exam?',
+          answer: 'JAM 2027 is on Sunday, 14 February 2027, in two sessions: 9:30 am to 12:30 pm for Chemistry, Geology and Mathematics, and 2:30 pm to 5:30 pm for Biotechnology, Economics, Mathematical Statistics and Physics. The result is due on 18 March 2027.'
+        },
+        {
+          question: 'What is the last date to apply for JAM 2027?',
+          answer: 'The JAM 2027 website gives the last date as 19 October 2026, an extension of the brochure\'s 12 October. Registration on JOAPS opened on 11 September 2026. A paid data-correction window is due to open on 10 November 2026 (tentative).'
+        },
+        {
+          question: 'Which institute is conducting JAM 2027?',
+          answer: 'IIT Kharagpur is the organising institute for JAM 2027. The official website is jam.iitkgp.ac.in.'
+        },
+        {
+          question: 'What is the JAM 2027 application fee?',
+          answer: 'One paper costs ₹1,000 for female, SC, ST and PwD candidates and ₹2,000 for everyone else. Two papers cost ₹1,350 and ₹2,700. The fee is not refundable. Correcting your category, gender, exam city or date of birth, or adding or changing a paper, costs ₹300.'
+        },
+        {
+          question: 'Is there an age limit or minimum percentage for JAM?',
+          answer: 'There is no age limit. You can apply if you have finished a bachelor\'s degree or are in its final year in 2027, and candidates of any nationality may apply. Any minimum marks or subject requirements are part of each programme\'s Minimum Educational Qualifications, listed in Annexure II of the brochure.'
+        },
+        {
+          question: 'Can I take two JAM papers?',
+          answer: 'Yes, but only if they fall in different sessions. You can pick one forenoon paper (Chemistry, Geology or Mathematics) and one afternoon paper (Biotechnology, Economics, Mathematical Statistics or Physics). Two papers cost ₹2,700, or ₹1,350 for female, SC, ST and PwD candidates.'
+        },
+        {
+          question: 'Is there negative marking in IIT JAM?',
+          answer: 'Only in Section A, which has 30 MCQs. A wrong answer loses one-third of a mark on a 1-mark question and two-thirds of a mark on a 2-mark question. Section B (10 MSQs) and Section C (20 numerical-answer questions) have no negative marking, and MSQs have no partial marks. Each paper has 60 questions worth 100 marks.'
+        },
+        {
+          question: 'How many seats are available through JAM 2027?',
+          answer: 'The brochure lists about 3,000 seats in postgraduate programmes at 23 IITs for 2027-28, and more than 2,000 seats at IISc, NITs, IIEST Shibpur, IISER Pune and Bhopal, DIAT, IIPE, JNCASR, SLIET and other institutes through CCMN.'
+        },
+        {
+          question: 'How do I get admission to an IIT after JAM?',
+          answer: 'After the result, submit one application through the JAM website, listing all eligible programmes in order of preference. The processing fee is ₹750. There are up to four rounds. If you accept a seat, you pay an advance seat booking fee of ₹15,000 (General, OBC-NCL and EWS) or ₹7,500 (SC, ST and PwD), which is adjusted against your institute fee. The JAM 2027 Admission Brochure is due in the second week of March 2027.'
+        },
+        {
+          question: 'What is CCMN in JAM?',
+          answer: 'CCMN (Centralized Counselling for M.Sc./M.Sc. (Tech)) fills the JAM seats at institutes other than the IITs, including NITs, IIEST Shibpur and other centrally funded institutes, without any extra test or interview. You register separately at ccmn.admissions.nic.in after the JAM result.'
+        }
+      ]
+    },
     tnea: {
       intent: 'counselling',
       h1: `TNEA ${year}: Counselling, Cutoff, Colleges & Fees`,
