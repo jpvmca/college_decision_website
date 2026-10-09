@@ -855,7 +855,10 @@ function overrides(year: number, institutes: number, feeRange: string | null): R
           question: 'What is CCMN in JAM?',
           answer: 'CCMN (Centralized Counselling for M.Sc./M.Sc. (Tech)) fills the JAM seats at institutes other than the IITs, including NITs, IIEST Shibpur and other centrally funded institutes, without any extra test or interview. You register separately at ccmn.admissions.nic.in after the JAM result.'
         }
-      ]
+      ],
+      // Paper codes MA (Mathematics) and MS (Mathematical Statistics) would otherwise link to the MA and Master of Surgery
+      // course pages; M.Tech appears only inside 'M.Sc.-M.Tech dual degree'.
+      autoLinkExcludeHrefs: ['/courses/ma', '/courses/master-of-surgery', '/courses/mtech'],
     },
     tnea: {
       intent: 'counselling',
