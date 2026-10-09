@@ -6,7 +6,7 @@ import { stripEmbeddedFaqs } from '../../../lib/strip-embedded-faqs';
 import { autoLinkHtml } from '../../../lib/auto-link-entities';
 import { getLinkableEntities } from '../../../lib/linkable-entities';
 import AutoLinkedText from '../../../components/AutoLinkedText';
-import { articleAnchorTitle, buildExamFaqs, buildExamSeo, rankExamArticles } from '../../../lib/exam-seo';
+import { articleAnchorTitle, buildExamFaqs, buildExamSeo, examFeeRangeText, examFeeSentence, rankExamArticles, type ExamFeeDisplay } from '../../../lib/exam-seo';
 import ExamLogo from '../../../components/ExamLogo';
 import ExamCountdown from '../../../components/ExamCountdown';
 
@@ -55,6 +55,7 @@ type ExamProfile = {
     max_year_fee?: number | string | null;
     average_year_fee?: number | string | null;
     programmes_with_fees?: number;
+    display?: ExamFeeDisplay | null;
   } | null;
   articles: Array<{ slug: string; title: string; articleType?: string; imageUrl?: string | null; publishedAt?: string | null }>;
   schedules: Array<{
@@ -126,11 +127,9 @@ function decisionNote(profile: ExamProfile, name: string) {
   if (institutes && programmes) {
     return `${name} is currently mapped to ${institutes.toLocaleString('en-IN')} colleges and ${programmes.toLocaleString('en-IN')} programmes. Use these links to shortlist, then verify the latest official exam and counselling rules.`;
   }
-  if (profile.fees?.min_total_fee) {
-    return `${name}-linked programmes show recorded total programme fees from ${money(profile.fees.min_total_fee)}. Confirm current fee schedules before applying.`;
-  }
-  if (profile.fees?.min_year_fee) {
-    return `${name}-linked programmes show recorded annual fees from ${money(profile.fees.min_year_fee)} per year. Confirm current fee schedules before applying.`;
+  const feeRange = examFeeRangeText(profile.fees);
+  if (feeRange) {
+    return `${name}-linked programmes show recorded fees of ${feeRange}. Confirm current fee schedules before applying.`;
   }
   return `Use ${name} eligibility, pattern and mapped college records as a shortlist starting point. Confirm current dates and admission rules before applying.`;
 }
@@ -274,9 +273,8 @@ export default async function ExamProfilePage({ params }: { params: Promise<{ sl
       {profile.exam.howToPrepare && <div><h2>How to prepare</h2><p>{text(profile.exam.howToPrepare)}</p></div>}
     </section>}
 
-    {!guideHtml && (profile.fees?.min_total_fee || profile.fees?.max_total_fee || profile.fees?.min_year_fee || profile.fees?.max_year_fee) && <section><h2>Fees for programmes accepting {name}</h2>
-      {(profile.fees?.min_total_fee || profile.fees?.max_total_fee) ? <p>Recorded total programme fees across mapped programmes range from <strong>{money(profile.fees?.min_total_fee)}</strong> to <strong>{money(profile.fees?.max_total_fee)}</strong>.</p> : null}
-      {(profile.fees?.min_year_fee || profile.fees?.max_year_fee) ? <p>Recorded annual fees range from <strong>{money(profile.fees?.min_year_fee)}</strong> to <strong>{money(profile.fees?.max_year_fee)}</strong> per year.</p> : null}
+    {!guideHtml && examFeeSentence(profile.fees) && <section><h2>Fees for programmes accepting {name}</h2>
+      <p>{examFeeSentence(profile.fees)}</p>
       <p>Only active programmes at published colleges are counted. Confirm the academic year, category, hostel, mess and other charges with each institute.</p></section>}
 
     {!guideHtml && profile.programmes.length > 0 && <section><h2>Programmes linked with {name}</h2><div className="profile-chips">{profile.programmes.slice(0, 40).map((item) => <span key={`${item.programme_name}-${item.duration}`}>{text(item.programme_name)}</span>)}</div></section>}

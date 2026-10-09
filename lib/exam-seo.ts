@@ -24,7 +24,19 @@ export type ExamSeoSource = {
     max_total_fee?: number | string | null;
     min_year_fee?: number | string | null;
     max_year_fee?: number | string | null;
+    programmes_with_fees?: number | null;
+    /** Backend-chosen range (exam.service.ts examFeeDisplay): null means no reliable range, so no fee clause. */
+    display?: ExamFeeDisplay | null;
   } | null;
+};
+
+export type ExamFeeDisplay = {
+  basis: 'total' | 'year';
+  min: number | string;
+  max: number | string;
+  programmes: number;
+  /** True when the range is the 5th-95th percentile rather than the raw min-max. */
+  trimmed: boolean;
 };
 
 export type ExamSeoPack = {
@@ -69,12 +81,41 @@ function rangeOf(min: number | string | null | undefined, max: number | string |
   return lo || hi;
 }
 
-/** Fee range text labelled as total programme fees or annual fees (same split as the college fee ranges). */
-export function examFeeRangeText(fees: ExamSeoSource['fees']): string | null {
+/**
+ * The fee range an exam page should quote. Prefers the backend's `display` pick (totals only when they cover at least
+ * 30% of fee-bearing programmes, otherwise annual fees; 5th-95th percentile when there are 20+ values; null when
+ * neither basis has 3+ programmes). Falls back to the raw ranges only for an older API without `display`.
+ */
+export function examFeeSummary(fees: ExamSeoSource['fees']): { basis: 'total' | 'year'; range: string; programmes: number | null; trimmed: boolean } | null {
+  if (fees && 'display' in fees) {
+    const d = fees.display;
+    if (!d) return null;
+    const range = rangeOf(d.min, d.max);
+    return range ? { basis: d.basis, range, programmes: Number(d.programmes) || null, trimmed: Boolean(d.trimmed) } : null;
+  }
   const total = rangeOf(fees?.min_total_fee, fees?.max_total_fee);
-  if (total) return `${total} (total programme fees)`;
+  if (total) return { basis: 'total', range: total, programmes: null, trimmed: false };
   const year = rangeOf(fees?.min_year_fee, fees?.max_year_fee);
-  return year ? `${year} per year` : null;
+  return year ? { basis: 'year', range: year, programmes: null, trimmed: false } : null;
+}
+
+/** Fee range text labelled as total programme fees or per year. */
+export function examFeeRangeText(fees: ExamSeoSource['fees']): string | null {
+  const summary = examFeeSummary(fees);
+  if (!summary) return null;
+  return summary.basis === 'total' ? `${summary.range} (total programme fees)` : `${summary.range} per year`;
+}
+
+/** One-sentence FAQ / section answer for the chosen fee range. */
+export function examFeeSentence(fees: ExamSeoSource['fees']): string | null {
+  const summary = examFeeSummary(fees);
+  if (!summary) return null;
+  const scope = summary.programmes
+    ? `${summary.trimmed ? 'the middle 90% of ' : ''}${summary.programmes.toLocaleString('en-IN')} mapped programmes at published colleges`
+    : 'mapped programmes at published colleges';
+  return summary.basis === 'total'
+    ? `Across ${scope}, recorded total programme fees range from ${summary.range.replace('–', ' to ')}.`
+    : `Across ${scope}, recorded annual fees range from ${summary.range.replace('–', ' to ')} per year.`;
 }
 
 export function examLabel(exam: ExamSeoSource['exam']) {
@@ -376,10 +417,9 @@ export function buildExamFaqs(
   if (profile.instituteCount) {
     add(`Which colleges accept ${label}?`, `The database currently maps ${Number(profile.instituteCount).toLocaleString('en-IN')} colleges and ${Number(profile.programmeCount || 0).toLocaleString('en-IN')} programmes to ${label}.`);
   }
-  if (profile.fees?.min_total_fee || profile.fees?.max_total_fee) {
-    add(`What fees should I expect after ${label}?`, `Across mapped programmes at published colleges, recorded total programme fees range from ${moneyFn(profile.fees?.min_total_fee)} to ${moneyFn(profile.fees?.max_total_fee)}. Confirm hostel, mess and other charges separately.`);
-  } else if (profile.fees?.min_year_fee || profile.fees?.max_year_fee) {
-    add(`What fees should I expect after ${label}?`, `Across mapped programmes at published colleges, recorded annual fees range from ${moneyFn(profile.fees?.min_year_fee)} to ${moneyFn(profile.fees?.max_year_fee)} per year. Multiply by the programme length for a rough total, and confirm hostel, mess and other charges separately.`);
+  const feeSentence = examFeeSentence(profile.fees);
+  if (feeSentence) {
+    add(`What fees should I expect after ${label}?`, `${feeSentence} ${examFeeSummary(profile.fees)?.basis === 'year' ? 'Multiply by the programme length for a rough total, and confirm' : 'Confirm'} hostel, mess and other charges separately.`);
   }
   if (profile.programmes.length) {
     add(`Which programmes are linked with ${label}?`, `Mapped programme examples include ${profile.programmes.slice(0, 4).map((item) => textFn(item.programme_name)).join(', ')}.`);
