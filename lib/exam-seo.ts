@@ -415,6 +415,70 @@ function overrides(year: number, institutes: number, feeRange: string | null): R
         }
       ]
     },
+    xat: {
+      // XAT 2027 content package (docs/exam-content/xat-2027.md in the backend repo).
+      // Facts from xatonline.in (/, /registration, /faq, /associate) and the XLRI Admission Prospectus 2027, checked on 9 Oct 2026.
+      // Section counts and marking are from the XAT 2026 Overview/Instructions and are expected for 2027. GK weight is not published.
+      intent: 'general',
+      h1: 'XAT 2027: Exam Date, Registration, Fee, Pattern, Marking Scheme & Colleges',
+      title: 'XAT 2027: Exam Date, Registration, Fee, Pattern & Colleges',
+      description: 'XAT 2027 is on 3 Jan 2027, 2 to 5 pm. Register by 6 Dec 2026 for ₹2,300. See eligibility, pattern, the unattempted-question penalty, GK rules and XLRI fees.',
+      keywords: ['XAT 2027', 'XAT 2027 exam date', 'XAT 2027 registration last date', 'XAT application fee', 'XAT exam pattern 2027', 'XAT negative marking unattempted questions', 'XAT GK section', 'XAT admit card 2027', 'XAT result date', 'colleges accepting XAT'],
+      intro: 'XAT 2027, the Xavier Aptitude Test that XLRI Jamshedpur conducts for XAMI, is on Sunday, 3 January 2027 from 2:00 to 5:00 pm, and registration closes on 6 December 2026. This guide covers dates, the ₹2,300 fee, eligibility, the pattern and marking rules, and XLRI\'s 2027 fees, checked against xatonline.in.',
+      ogImage: '/uploads/exams/xat/xat-2027-og.webp',
+      absoluteTitle: true,
+      collegesNote: {
+        text: 'XAT\'s official list has 139 Associate Members and 13 XAMI members. The colleges below are members with published profiles on CollegeDecision.in. Each one runs its own application and selection.',
+        linkText: 'See the official XAT associate list',
+        href: 'https://xatonline.in/associate'
+      },
+      faqs: [
+        {
+          question: 'When is the XAT 2027 exam?',
+          answer: 'XAT 2027 is on Sunday, 3 January 2027, from 2:00 pm to 5:00 pm. It is a single computer-based slot, so everyone takes the same paper and there is no normalisation. The admit card is due on 20 December 2026, which XAT marks tentative.'
+        },
+        {
+          question: 'What is the last date to register for XAT 2027?',
+          answer: 'Registration for XAT and XLRI programmes closes on 6 December 2026. It opened on 15 July 2026 on xatonline.in. Your email ID and mobile number cannot be changed after registration, so check them before you start.'
+        },
+        {
+          question: 'What is the XAT 2027 application fee?',
+          answer: 'The XAT registration fee is ₹2,300 for Indian candidates, the same for every category. Each XLRI programme you add costs ₹200 more. Indian candidates applying to XLRI PGDM (GM) through GMAT or GRE pay ₹2,600, and NRI, foreign, PIO and OCI candidates applying through GMAT pay ₹5,000. The XAT 2026 fee was ₹2,200.'
+        },
+        {
+          question: 'Who is eligible for XAT 2027?',
+          answer: 'You need a recognised bachelor\'s degree of at least three years in any discipline. Final-year students can apply if they complete their final exams by 11 June 2027. XAT\'s FAQ does not mention an age limit or minimum percentage; each institute applies its own rules.'
+        },
+        {
+          question: 'What is the XAT 2027 exam pattern?',
+          answer: 'XAT 2026 had 95 multiple-choice questions in 3 hours. Part 1 (170 minutes) had Verbal Ability and Logical Reasoning (about 26), Decision Making (about 21) and Quantitative Aptitude and Data Interpretation (about 28). Part 2 was General Knowledge (about 20) in 10 minutes. XAT\'s 2027 FAQ confirms 3 hours, no sectional time limits and an on-screen scientific calculator; the section counts are expected to stay the same.'
+        },
+        {
+          question: 'Is there negative marking for unattempted questions in XAT?',
+          answer: 'Yes, in Part 1. Under the 2026 rules, expected to continue, the first 8 questions you leave blank cost nothing and each one after that costs 0.10 marks. A wrong answer costs 0.25 and a correct one earns 1. For example, leaving 12 questions blank costs (12 − 8) × 0.10 = 0.40 marks.'
+        },
+        {
+          question: 'Does the XAT GK section count?',
+          answer: 'The GK section has no negative marking. XAT\'s 2026 overview says GK scores are used exclusively by XLRI for its final selection. XLRI has not published how much weight GK carries, and other institutes decide for themselves how they use each part of XAT.'
+        },
+        {
+          question: 'When will the XAT 2027 result be declared?',
+          answer: 'XAT\'s FAQ says results are announced about three weeks after the exam, which points to late January 2027. The scorecard is downloaded from xatonline.in and no hard copy is sent. In 2026 it could be downloaded until 31 March.'
+        },
+        {
+          question: 'Is there an official XAT mock test?',
+          answer: 'Yes. XAT\'s mock test covers Verbal Ability and Logical Reasoning, Decision Making, Quantitative Aptitude and Data Interpretation, and GK. The link appears in your application dashboard after you submit the XAT 2027 form. XLRI also posts past XAT papers from 2018 to 2024 on xatonline.in.'
+        },
+        {
+          question: 'How many colleges accept XAT?',
+          answer: 'The XAT homepage says 250+ B-schools accept the score. The official associate page lists 139 XAT Associate Members and 13 XAMI members, including XLRI, XIM University, XISS Ranchi and XIME Bengaluru. Registering for XAT does not apply you to these schools; you apply to each one separately.'
+        },
+        {
+          question: 'What are XLRI\'s fees for 2027?',
+          answer: 'XLRI\'s Admission Prospectus 2027 puts PGDM (BM) and PGDM (HRM) at about ₹15.3 lakh a year and the 18-month PGDM (GM) at about ₹25.8 lakh. The FPM charges no fees and pays a fellowship of ₹45,000 a month in years 1 and 2 and ₹50,000 in years 3 and 4. All figures are approximate and subject to revision.'
+        }
+      ]
+    },
     gate: {
       intent: 'cutoff',
       h1: `GATE ${year}: Eligibility, Cutoff, M.Tech Colleges & Fees`,
