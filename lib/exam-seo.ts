@@ -919,6 +919,8 @@ function overrides(year: number, institutes: number, feeRange: string | null): R
           answer: 'Only MICA, Ahmedabad. MICAT is required for all seven MICA programmes for 2027, including the two-year PGDM-C (180 seats) and PGDM (60 seats), with an indicative fee of ₹29.50 lakh each.'
         }
       ],
+      // 'Media' in 'Digital Media and Marketing Communications' would link to the UG media course page.
+      autoLinkExcludeHrefs: ['/courses/media-ug'],
     },
     tnea: {
       intent: 'counselling',
