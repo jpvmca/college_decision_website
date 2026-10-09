@@ -619,6 +619,8 @@ function overrides(year: number, institutes: number, feeRange: string | null): R
       keywords: ['CUET PG 2027', 'CUET PG 2027 exam date', 'CUET PG 2027 registration', 'CUET PG application fee', 'CUET PG paper codes', 'COQP11', 'COQP12', 'CUET PG exam pattern', 'CUET PG negative marking', 'CUET PG participating universities'],
       intro: 'CUET PG 2027, NTA\'s common entrance test for postgraduate admission, is listed for 17 days between 1 and 25 March 2027 in NTA\'s exam calendar (tentative). Registration hasn\'t opened yet. This guide covers the expected fee, eligibility, pattern and marking, paper codes, results and participating universities, checked against NTA\'s own documents.',
       ogImage: '/uploads/exams/cuet-pg/cuet-pg-2027-og.webp',
+      // 'special rescheduled exam' in the normalisation section is not the Special course.
+      autoLinkExcludeHrefs: ['/courses/special'],
       absoluteTitle: true,
       collegesNote: {
         text: 'NTA\'s 2026 list had 198 participating universities and institutions, 45 of them central universities, and NTA says the list is dynamic. The universities below are on that list and have published profiles on CollegeDecision.in, central universities first. Each runs its own admission.',
