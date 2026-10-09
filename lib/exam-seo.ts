@@ -493,6 +493,8 @@ function overrides(year: number, institutes: number, feeRange: string | null): R
       intro: 'GATE 2027, organised by IIT Madras, is on 6, 7, 13, 14, 20 and 21 February 2027, and late-fee registration on GOAPS closes on 12 October 2026. This guide covers dates, fees by category, eligibility, all 30 papers, two-paper combinations, the pattern and marking, normalisation and score use, checked against gate2027.iitm.ac.in.',
       ogImage: '/uploads/exams/gate/gate-2027-og.webp',
       absoluteTitle: true,
+      // "MS" here is MS (Research), not Master of Surgery; "Civil/Chemical Engineering" are GATE paper names, not the B.Tech course pages.
+      autoLinkExcludeHrefs: ['/courses/master-of-surgery', '/courses/civil-engineering', '/courses/b-chem-eng'],
       collegesNote: {
         text: 'GATE scores are used for M.Tech, M.E., MS and PhD admission at IISc, the IITs, NITs, IIITs and many other institutes. The colleges below start with IISc and the IITs, then NITs and IIITs. Each institute runs its own admission (or COAP/CCMT) and sets its own cut-offs.',
         linkText: 'See GATE 2027 opportunities on the official site',
