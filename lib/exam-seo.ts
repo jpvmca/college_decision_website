@@ -54,6 +54,8 @@ export type ExamSeoPack = {
   ogImage?: string;
   /** Use the title as-is, without the site-wide " | College Decision" suffix (keeps the <title> within ~60 characters). */
   absoluteTitle?: boolean;
+  /** Short note under the colleges heading, with an optional link (for example JEE Main: IITs go through JEE Advanced). */
+  collegesNote?: { text: string; linkText?: string; href?: string };
 };
 
 const KEEP_2026 = new Set(['cat', 'snap', 'nmat', 'ibsat', 'mat', 'atma', 'micat', 'gmat']);
@@ -163,19 +165,71 @@ function h1For(label: string, year: number, intent: ExamSeoPack['intent']) {
   return `${label} ${year}: Eligibility, Counselling, Colleges & Fees`;
 }
 
-type Override = Partial<Pick<ExamSeoPack, 'h1' | 'title' | 'description' | 'keywords' | 'intro' | 'intent' | 'faqs' | 'ogImage' | 'absoluteTitle'>>;
+type Override = Partial<Pick<ExamSeoPack, 'h1' | 'title' | 'description' | 'keywords' | 'intro' | 'intent' | 'faqs' | 'ogImage' | 'absoluteTitle' | 'collegesNote'>>;
 
 function overrides(year: number, institutes: number, feeRange: string | null): Record<string, Override> {
   const colleges = institutes ? `${institutes.toLocaleString('en-IN')} mapped colleges` : 'mapped colleges';
   const fees = feeRange ? ` Fees typically range ${feeRange}.` : '';
   return {
     'jee-main': {
-      intent: 'cutoff',
-      h1: `JEE Main ${year}: Eligibility, Cutoff, Colleges & Fees`,
-      title: `JEE Main ${year}: Eligibility, Cutoff, Colleges & Fees`,
-      description: `Planning JEE Main ${year} for B.Tech admission? Check eligibility, exam pattern, counselling context, ${colleges}, and fee ranges before you apply.${fees}`,
-      keywords: [`JEE Main ${year}`, 'JEE Main eligibility', 'JEE Main cutoff', 'colleges accepting JEE Main', 'JEE Main counselling'],
-      intro: `Use this JEE Main ${year} profile to compare eligibility, cutoff context, counselling routes, ${colleges}, and programme fees before shortlisting B.Tech colleges.`
+      // JEE Main 2027 content package (docs/exam-content/jee-main-2027.md in the backend repo).
+      // Facts from NTA only (jeemain.nta.nic.in, nta.ac.in Examination Calendar, JEE (Main) 2026 Information Bulletin),
+      // checked on 9 Oct 2026. The 2027 bulletin is not out, so 2027 items beyond the calendar are expected, on 2026 rules.
+      intent: 'general',
+      h1: 'JEE Main 2027: Exam Dates, Registration, Eligibility, Pattern & Fees',
+      title: 'JEE Main 2027: Exam Dates, Registration, Fees & Eligibility',
+      description: 'JEE Main 2027 Session 1 is tentatively on 22–30 Jan 2027. See what NTA has confirmed, 2026 fees, the 75% rule, exam pattern, percentile and NIT admission.',
+      keywords: ['JEE Main 2027', 'JEE Main 2027 exam date', 'JEE Main 2027 registration', 'JEE Main application fee', 'JEE Main eligibility', 'JEE Main 75% criteria', 'JEE Main exam pattern', 'JEE Main percentile', 'colleges accepting JEE Main', 'NIT admission through JEE Main'],
+      intro: 'JEE Main 2027 Session 1 is tentatively scheduled for 22–24 and 28–30 January 2027 on NTA\'s exam calendar, and Session 2 is expected in April. NTA has not released the 2027 bulletin, registration dates or fees yet, so this guide marks what is confirmed and what is expected from the 2026 rules.',
+      ogImage: '/uploads/exams/jee-main/jee-main-2027-og.webp',
+      absoluteTitle: true,
+      collegesNote: {
+        text: 'NITs, IIITs and other JoSAA institutes are listed first. IITs are not listed here because they admit through JEE Advanced:',
+        linkText: 'see the JEE Advanced guide',
+        href: '/exams/jee-advanced'
+      },
+      faqs: [
+        {
+          question: 'What is JEE Main 2027?',
+          answer: 'JEE Main (Joint Entrance Examination Main) 2027 is the computer-based entrance test conducted by the National Testing Agency (NTA) for B.E./B.Tech, B.Arch and B.Plan admission at NITs, IIITs and other centrally funded technical institutes. Paper 1 is also the qualifying test for JEE Advanced, the route to the IITs.'
+        },
+        {
+          question: 'When is the JEE Main 2027 exam?',
+          answer: 'NTA\'s Examination Calendar lists JEE Main 2027 Session 1 on 22, 23, 24, 28, 29 and 30 January 2027, with 31 January as a buffer day. NTA marks these dates as tentative. Session 2 is not on the calendar yet; in 2026 it ran on 2, 4, 5, 6 and 8 April, so expect April 2027.'
+        },
+        {
+          question: 'When will JEE Main 2027 registration start?',
+          answer: 'NTA has not announced it. For 2026, the Information Bulletin and Session 1 registration opened on 31 October 2025, and Session 2 registration ran from 1 to 25 February 2026, so expect the 2027 Session 1 form in late October or November 2026. Register only on jeemain.nta.nic.in.'
+        },
+        {
+          question: 'What is the JEE Main application fee?',
+          answer: 'NTA has not published 2027 fees yet. In the 2026 bulletin, the fee per session for one paper at a centre in India was ₹1,000 for General male candidates, ₹900 for EWS and OBC-NCL males, ₹800 for all female candidates and ₹500 for SC, ST, PwD and third-gender candidates. Processing charges and GST were extra.'
+        },
+        {
+          question: 'Who is eligible for JEE Main 2027 and how many attempts are allowed?',
+          answer: 'There is no age limit. On the 2026 rules (candidates who passed Class 12 in 2024 or 2025, or were appearing in 2026), JEE Main 2027 is expected to be open to those who passed Class 12 in 2025 or 2026 or are appearing in 2027. That is three consecutive years with two sessions each. NTA will confirm this in the 2027 bulletin.'
+        },
+        {
+          question: 'What is the 75% criterion for JEE Main?',
+          answer: 'It is an admission rule, not an exam rule. For NITs, IIITs and other CFTIs, the 2026 bulletin required at least 75% in Class 12 (65% for SC, ST and PwD candidates) or a place in the top 20 percentile of your board that year. You can sit JEE Main without it, but you cannot take a JoSAA or CSAB seat.'
+        },
+        {
+          question: 'What is the JEE Main exam pattern?',
+          answer: 'In 2026, Paper 1 (B.E./B.Tech) had 75 compulsory questions for 300 marks in 3 hours: 20 multiple-choice and 5 numerical questions each in Mathematics, Physics and Chemistry, marked +4 for a correct answer and −1 for a wrong one. Paper 2A (B.Arch) and 2B (B.Plan) carry 400 marks each. NTA has not announced any change for 2027.'
+        },
+        {
+          question: 'How is the JEE Main percentile calculated?',
+          answer: 'Your NTA score is a percentile within your own shift: 100 × the number of candidates in your shift who scored the same as you or less, divided by the total candidates in that shift, calculated to seven decimal places. If you take both sessions, the better of your two total NTA scores is used for the All India Rank.'
+        },
+        {
+          question: 'How many candidates qualify for JEE Advanced through JEE Main?',
+          answer: 'The top 2,50,000 Paper 1 candidates across all categories become eligible for JEE Advanced. In 2026, NTA\'s result press release put the cut-off NTA score at 93.4123549 for General, 82.4164528 for EWS, 80.9232583 for OBC-NCL, 63.9172792 for SC and 52.0174712 for ST candidates.'
+        },
+        {
+          question: 'Which colleges accept JEE Main?',
+          answer: 'JEE Main ranks are used for B.Tech, B.Arch and B.Plan seats at NITs, IIITs, IIEST Shibpur and other government-funded technical institutes through JoSAA and CSAB counselling. IITs admit through JEE Advanced instead. Many state and private universities also accept JEE Main scores; the college list on this page shows those in our database.'
+        }
+      ]
     },
     neet: {
       intent: 'cutoff',
@@ -377,7 +431,7 @@ export function buildExamSeo(profile: ExamSeoSource): ExamSeoPack {
     `Review ${label} ${year} eligibility, ${
       intent === 'counselling' ? 'counselling and cutoff context' : intent === 'cutoff' ? 'cutoff and counselling context' : 'counselling context'
     }, mapped colleges${institutes ? ` (${institutes.toLocaleString('en-IN')})` : ''}, and fee evidence before you apply.`;
-  return { year, label, h1, title, description, keywords, intro, intent, faqs: pack?.faqs, ogImage: pack?.ogImage, absoluteTitle: pack?.absoluteTitle };
+  return { year, label, h1, title, description, keywords, intro, intent, faqs: pack?.faqs, ogImage: pack?.ogImage, absoluteTitle: pack?.absoluteTitle, collegesNote: pack?.collegesNote };
 }
 
 export function buildExamFaqs(
@@ -412,7 +466,10 @@ export function buildExamFaqs(
   add(`What is the cutoff for ${label} ${year}?`, `Cutoffs for ${label} ${year} vary by institute, branch, category and round. Use official counselling or institute data rather than a generic estimate.`);
   if (profile.exam.pattern) add(`What is the ${label} exam pattern?`, textFn(profile.exam.pattern));
   if (profile.exam.applicationFees) {
-    add(`What is the ${label} application fee?`, `Recorded application fee information: ${textFn(profile.exam.applicationFees)}. Confirm the current category-wise fee on the official portal.`);
+    const rawFee = String(profile.exam.applicationFees).trim();
+    // A bare number in the exams table (for example 1000) is a rupee amount; show it as ₹1,000, not "1000".
+    const feeText = /^\d+(\.\d+)?$/.test(rawFee) ? moneyFn(Number(rawFee)) : textFn(profile.exam.applicationFees);
+    add(`What is the ${label} application fee?`, `Recorded application fee information: ${feeText}. Confirm the current category-wise fee on the official portal.`);
   }
   if (profile.instituteCount) {
     add(`Which colleges accept ${label}?`, `The database currently maps ${Number(profile.instituteCount).toLocaleString('en-IN')} colleges and ${Number(profile.programmeCount || 0).toLocaleString('en-IN')} programmes to ${label}.`);

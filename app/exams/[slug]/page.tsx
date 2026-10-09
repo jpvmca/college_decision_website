@@ -91,6 +91,12 @@ async function getExam(slug: string) {
   }
 }
 
+// exams.level is enum('ai','state'): 'ai' means all-India, so show it as "National level" rather than the raw code.
+function levelLabel(level: string | null | undefined) {
+  if (!level) return null;
+  return level.trim().toLowerCase() === 'ai' ? 'National level' : level;
+}
+
 function money(value: number | string | null | undefined) {
   const amount = Number(value);
   return Number.isFinite(amount) && amount > 0
@@ -221,7 +227,7 @@ export default async function ExamProfilePage({ params }: { params: Promise<{ sl
       <div>
         <p className="eyebrow">EXAM PROFILE</p>
         <h1>{seo.h1}</h1>
-        <p className="muted">{[profile.exam.course?.name, profile.exam.mode, profile.exam.level].filter(Boolean).join(' · ') || 'Entrance exam'} · India</p>
+        <p className="muted">{[profile.exam.course?.name, profile.exam.mode, levelLabel(profile.exam.level)].filter(Boolean).join(' · ') || 'Entrance exam'} · India</p>
         <p><AutoLinkedText text={seo.intro} entities={linkableEntities} options={{ excludeHrefs: [`/exams/${slug}`] }} /></p>
         {profile.exam.applyUrl ? <p><a href={profile.exam.applyUrl} target="_blank" rel="noopener noreferrer">Open official {name} information</a></p> : null}
       </div>
@@ -279,7 +285,7 @@ export default async function ExamProfilePage({ params }: { params: Promise<{ sl
 
     {!guideHtml && profile.programmes.length > 0 && <section><h2>Programmes linked with {name}</h2><div className="profile-chips">{profile.programmes.slice(0, 40).map((item) => <span key={`${item.programme_name}-${item.duration}`}>{text(item.programme_name)}</span>)}</div></section>}
 
-    {profile.colleges.length > 0 && <section><h2>Colleges accepting {seo.label}: {profile.colleges.length} listed</h2><p className="muted">Browse published college profiles mapped to {seo.label}. Prefer institutes with fees and placement evidence when shortlisting.</p><div className="college-programme-grid">{profile.colleges.map((college) => {
+    {profile.colleges.length > 0 && <section><h2>Colleges accepting {seo.label}: {profile.colleges.length} listed</h2><p className="muted">Browse published college profiles mapped to {seo.label}. Prefer institutes with fees and placement evidence when shortlisting.</p>{seo.pack.collegesNote && <p className="muted">{seo.pack.collegesNote.text}{seo.pack.collegesNote.href && seo.pack.collegesNote.linkText ? <> <Link href={seo.pack.collegesNote.href}>{seo.pack.collegesNote.linkText}</Link>.</> : null}</p>}<div className="college-programme-grid">{profile.colleges.map((college) => {
       const href = college.published_slug ? `/colleges/${college.published_slug}` : null;
       const card = <>
         <div className="home-college-heading">
