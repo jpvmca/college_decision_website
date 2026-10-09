@@ -547,6 +547,67 @@ function overrides(year: number, institutes: number, feeRange: string | null): R
         }
       ]
     },
+    cmat: {
+      // CMAT 2027 content package (docs/exam-content/cmat-2027.md in the backend repo).
+      // Facts from cmat.nta.nic.in, NTA's Examination Calendar 2027 (7 Feb 2027, tentative) and NTA's CMAT 2026 documents
+      // (Information Bulletin, city-slip notice, result press release), checked on 9 Oct 2026. Fee, pattern and eligibility are 2026 values, expected for 2027.
+      // No fee range here: the recorded college-fee range is not CMAT data.
+      intent: 'general',
+      h1: 'CMAT 2027: Exam Date, Registration, Fee, Pattern & Colleges',
+      title: 'CMAT 2027: Exam Date, Registration, Fee, Pattern & Colleges',
+      description: 'CMAT 2027 is on 7 Feb 2027 (tentative, NTA calendar). See registration status, the ₹2,500/₹1,250 fee (2026), 100-question pattern, marking and colleges.',
+      keywords: ['CMAT 2027', 'CMAT 2027 exam date', 'CMAT 2027 registration date', 'CMAT application fee', 'CMAT fees for female', 'CMAT exam pattern', 'CMAT negative marking', 'CMAT eligibility', 'CMAT result 2027', 'colleges accepting CMAT score'],
+      intro: 'CMAT 2027, the Common Management Admission Test run by NTA, is listed for Sunday, 7 February 2027 in NTA\'s exam calendar (tentative). Registration hasn\'t opened yet. This guide covers the expected fee, eligibility, the 100-question pattern and marking, results and how colleges use the score, checked against NTA\'s own documents.',
+      ogImage: '/uploads/exams/cmat/cmat-2027-og.webp',
+      absoluteTitle: true,
+      collegesNote: {
+        text: 'NTA says CMAT scores are accepted by all AICTE-approved institutions, university departments and their constituent and affiliated colleges, but publishes no list. The colleges below list CMAT for their MBA or PGDM on CollegeDecision.in. Each sets its own cut-off and GD/PI.',
+        linkText: 'See the official CMAT portal',
+        href: 'https://cmat.nta.nic.in/'
+      },
+      faqs: [
+        {
+          question: 'When is the CMAT 2027 exam?',
+          answer: 'NTA\'s Examination Calendar 2027 lists CMAT on Sunday, 7 February 2027, as a one-day exam. NTA says calendar dates are tentative and may change. In 2026 CMAT was held on 25 January in a single shift from 9:00 am to 12:00 pm.'
+        },
+        {
+          question: 'When will CMAT 2027 registration start?',
+          answer: 'NTA hasn\'t announced it. As of 9 October 2026 the CMAT 2027 Information Bulletin isn\'t out. For the 2026 exam, registration ran from 17 October to 17 November 2025 on cmat.nta.nic.in, with a correction window from 20 to 22 November 2025.'
+        },
+        {
+          question: 'What is the CMAT application fee for female, OBC and SC candidates?',
+          answer: 'In 2026 the fee was ₹1,250 for general female candidates and for Gen-EWS, OBC-NCL, SC, ST, PwD/PwBD and third-gender candidates. Only general (unreserved) male candidates paid ₹2,500. Processing charges and GST were extra. The 2027 fee is expected to follow once NTA confirms it.'
+        },
+        {
+          question: 'Who is eligible for CMAT 2027?',
+          answer: 'Under the 2026 rules, you need a bachelor\'s degree in any discipline, or you must be in the final year with your result due before admissions begin. You must be an Indian citizen. NTA sets no age limit and no minimum percentage for the test.'
+        },
+        {
+          question: 'What is the CMAT exam pattern?',
+          answer: 'CMAT 2026 had 100 multiple-choice questions for 400 marks in 3 hours, in English only. There were five sections of 20 questions each: Quantitative Techniques and Data Interpretation, Logical Reasoning, Language Comprehension, General Awareness, and Innovation and Entrepreneurship. The same pattern is expected for 2027.'
+        },
+        {
+          question: 'Is there negative marking in CMAT?',
+          answer: 'Yes. A correct answer earns 4 marks and a wrong answer costs 1 mark. Unattempted questions get zero. If NTA drops a question, every candidate gets full marks for it. Candidates with the same score are ranked by age, older first.'
+        },
+        {
+          question: 'When will the CMAT 2027 result be declared?',
+          answer: 'NTA hasn\'t announced a date. In 2026 the result came on 17 February, 23 days after the exam, with the scorecard showing marks and percentile because the exam ran in one shift. Scorecards are downloaded from cmat.nta.nic.in; none are posted.'
+        },
+        {
+          question: 'Which colleges accept the CMAT score?',
+          answer: 'NTA says CMAT is accepted by all AICTE-approved institutions, university departments and their constituent and affiliated colleges. It publishes no college list and has no role in counselling. You apply to each college, which sets its own cut-off and runs its own group discussion and interview.'
+        },
+        {
+          question: 'How many candidates took CMAT 2026?',
+          answer: 'NTA\'s result press release says 53,453 candidates registered and 41,872 appeared, a turnout of 78.33%. The exam ran in 110 cities at 259 centres on 25 January 2026, in a single computer-based shift.'
+        },
+        {
+          question: 'Is NTA CMAT the same as the CMAT in Nepal?',
+          answer: 'No. This page is about the Common Management Admission Test conducted by India\'s National Testing Agency for MBA and PGDM admission in India. The CMAT taken in Nepal is a separate test with its own rules and dates.'
+        }
+      ]
+    },
     tnea: {
       intent: 'counselling',
       h1: `TNEA ${year}: Counselling, Cutoff, Colleges & Fees`,
