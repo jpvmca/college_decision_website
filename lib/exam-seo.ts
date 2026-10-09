@@ -427,6 +427,8 @@ function overrides(year: number, institutes: number, feeRange: string | null): R
       intro: 'XAT 2027, the Xavier Aptitude Test that XLRI Jamshedpur conducts for XAMI, is on Sunday, 3 January 2027 from 2:00 to 5:00 pm, and registration closes on 6 December 2026. This guide covers dates, the ₹2,300 fee, eligibility, the pattern and marking rules, and XLRI\'s 2027 fees, checked against xatonline.in.',
       ogImage: '/uploads/exams/xat/xat-2027-og.webp',
       absoluteTitle: true,
+      // "DM" here is Decision Making and "fellowship" is the FPM stipend, not the Digital Marketing or Fellowship course pages.
+      autoLinkExcludeHrefs: ['/courses/digital-marketing', '/courses/fellowship'],
       collegesNote: {
         text: 'XAT\'s official list has 139 Associate Members and 13 XAMI members. The colleges below are members with published profiles on CollegeDecision.in. Each one runs its own application and selection.',
         linkText: 'See the official XAT associate list',
