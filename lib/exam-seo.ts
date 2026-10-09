@@ -922,6 +922,67 @@ function overrides(year: number, institutes: number, feeRange: string | null): R
       // 'Media' in 'Digital Media and Marketing Communications' would link to the UG media course page.
       autoLinkExcludeHrefs: ['/courses/media-ug'],
     },
+    gujcet: {
+      // GUJCET 2027 content package (docs/exam-content/gujcet-2027.md in the backend repo).
+      // Official sources only: GSEB GUJCET 2026 press notes (gseb.org / gsebeservice.com) and ACPC Gujarat 2026-27 advertisements
+      // and seat matrices, checked on 9 Oct 2026. No GUJCET 2027 notice yet, so all 2027 dates are labelled Expected.
+      // Negative marking is deliberately not mentioned (not stated in the notices read).
+      intent: 'general',
+      h1: 'GUJCET 2027: Exam Date, Pattern, Fees, ACPC Merit & Colleges',
+      title: 'GUJCET 2027: Exam Date, Pattern, Fees, ACPC Merit & Colleges',
+      description: 'GUJCET 2027 notice is awaited (2026 exam: 29 Mar). See the ₹350 fee, MCQ pattern, ACPC 50:50 merit rule and Gujarat B.E./B.Pharm colleges.',
+      keywords: ['GUJCET 2027', 'GUJCET 2027 exam date', 'GUJCET registration 2027', 'GUJCET fees', 'GUJCET exam pattern', 'GUJCET syllabus 2027', 'GUJCET result 2027', 'GUJCET admit card', 'ACPC merit', 'GUJCET colleges', 'GSEB GUJCET', 'GUJCET 2027 notification'],
+      intro: 'GUJCET 2027, the Gujarat Common Entrance Test conducted by GSEB Gandhinagar for B.E./B.Tech and pharmacy admission through ACPC, has not been notified yet; the notice is Expected around November–December 2026. GUJCET 2026 was held on 29 March 2026 with a ₹350 fee. This guide covers expected dates, the paper pattern, syllabus, results and ACPC merit, from GSEB and ACPC documents.',
+      ogImage: '/uploads/exams/gujcet/gujcet-2027-og.webp',
+      absoluteTitle: true,
+      collegesNote: {
+        text: 'GUJCET seats are filled by ACPC Gujarat at government, grant-in-aid and self-financed engineering and pharmacy institutes in Gujarat. Colleges listed here offer B.E./B.Tech or B.Pharm programmes that appear in ACPC\'s 2026-27 GUJCET (Home State) seat matrices.',
+        linkText: 'See ACPC Gujarat admissions',
+        href: 'https://acpc.gujarat.gov.in/'
+      },
+      faqs: [
+        {
+          question: 'When is the GUJCET 2027 exam?',
+          answer: 'GSEB has not announced the GUJCET 2027 date yet. GUJCET 2026 was held on Sunday, 29 March 2026, and its exam-date notice came on 8 November 2025, so the 2027 notice is Expected around November 2026 and the exam in late March or early April 2027.'
+        },
+        {
+          question: 'Who conducts GUJCET?',
+          answer: 'The Gujarat Secondary and Higher Secondary Education Board (GSEB), Gandhinagar conducts GUJCET under a Gujarat Education Department resolution of 19 November 2016. Admission to colleges is handled separately by ACPC Gujarat.'
+        },
+        {
+          question: 'What is the GUJCET application fee?',
+          answer: 'For GUJCET 2026 the fee was ₹350, paid online through SBI ePay or at any SBI branch. In the late window (until 16 January 2026) a ₹1,000 late fee applied, making ₹1,350. The 2027 fee will be confirmed in GSEB\'s 2027 notice.'
+        },
+        {
+          question: 'When does GUJCET 2027 registration start?',
+          answer: 'It has not been announced. For GUJCET 2026, online registration ran from 16 to 30 December 2025 at gseb.org and gujcet.gseb.org, was extended to 6 January 2026, and then remained open with a late fee until 16 January 2026.'
+        },
+        {
+          question: 'What is the GUJCET exam pattern?',
+          answer: 'As notified for 2026, GUJCET has multiple-choice papers on OMR sheets: a combined Physics and Chemistry paper (80 questions, 80 marks, 120 minutes), Biology (40 questions, 40 marks, 60 minutes) and Mathematics (40 questions, 40 marks, 60 minutes). Papers are in Gujarati, English and Hindi.'
+        },
+        {
+          question: 'What is the GUJCET syllabus?',
+          answer: 'GUJCET follows the GSEB Class 12 Science syllabus based on NCERT textbooks in Physics, Chemistry, Biology and Mathematics, according to GSEB\'s notice.'
+        },
+        {
+          question: 'How is ACPC merit calculated for GUJCET seats?',
+          answer: 'ACPC gives 50% weightage to your Class 12 board theory percentile in Physics, Chemistry and Mathematics (or Biology for eligible branches) and 50% to your GUJCET percentile in the same subjects. This merit fills 95% of government and grant-in-aid seats and 50% of unaided seats.'
+        },
+        {
+          question: 'Can students from other states use GUJCET?',
+          answer: 'GUJCET-based ACPC seats are for candidates who studied at schools affiliated with boards located in Gujarat. Candidates from schools anywhere in India can compete for the 5% government and grant-in-aid quota through JEE Main (or NEET/JEE Main for pharmacy).'
+        },
+        {
+          question: 'When is the GUJCET result declared?',
+          answer: 'GSEB declares GUJCET results with the Class 12 results. In 2026 they were published on gseb.org at 10:00 am on 4 May 2026, and students could also get them by sending their seat number on WhatsApp to 6357300971.'
+        },
+        {
+          question: 'Which colleges accept GUJCET?',
+          answer: 'Government, grant-in-aid and self-financed B.E./B.Tech and pharmacy institutes in Gujarat that take part in ACPC admissions, such as LD College of Engineering, BVM, Nirma University, CHARUSAT, PDEU and IITRAM. National institutes like IIT Gandhinagar and SVNIT admit through JEE, not GUJCET.'
+        }
+      ],
+    },
     tnea: {
       intent: 'counselling',
       h1: `TNEA ${year}: Counselling, Cutoff, Colleges & Fees`,
