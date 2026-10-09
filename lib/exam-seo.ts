@@ -1045,6 +1045,68 @@ function overrides(year: number, institutes: number, feeRange: string | null): R
       ],
       autoLinkExcludeHrefs: ['/courses/master-of-surgery', '/courses/special'],
     },
+    tancet: {
+      // TANCET 2027 content package (docs/exam-content/tancet-2027.md in the backend repo).
+      // Official sources only: Anna University TANCET/CEETA-PG 2026 Information to Candidates and results press note
+      // (tancet.annauniv.edu), and TN MBA/MCA Admissions 2026-27 documents (DTE via GCT Coimbatore, tn-mbamca.com), checked on 9 Oct 2026.
+      // No 2027 notification yet, so all 2027 dates are labelled Expected.
+      intent: 'general',
+      h1: 'TANCET 2027: MBA/MCA Exam Date, Pattern, Fees & Counselling',
+      title: 'TANCET 2027: MBA/MCA Exam Date, Pattern, Fees & Counselling',
+      description: 'TANCET 2027 notice is awaited (2026 exam: 9 May). See the ₹1,000 fee, MBA/MCA pattern with −¼ marking, CEETA-PG split and TN MBA/MCA counselling.',
+      keywords: ['TANCET 2027', 'TANCET exam date 2027', 'TANCET registration 2027', 'TANCET fees', 'TANCET exam pattern', 'TANCET syllabus', 'TANCET MBA', 'TANCET MCA', 'TANCET result', 'TANCET score card', 'TN MBA MCA counselling', 'CEETA-PG vs TANCET', 'TANCET colleges', 'TANCET cut off'],
+      intro: 'TANCET 2027, conducted by Anna University, Chennai for MBA and MCA admission in Tamil Nadu, has not been notified yet; the notification is Expected around February–March 2027 and the exam in May 2027. In 2026 the exam was held on 9 May for a ₹1,000 fee (₹500 for TN SC/SCA/ST). This guide covers expected dates, the pattern, CEETA-PG and TN MBA/MCA counselling, from official sources.',
+      ogImage: '/uploads/exams/tancet/tancet-2027-og.webp',
+      absoluteTitle: true,
+      collegesNote: {
+        text: 'TANCET scores are used for MBA and MCA admission in Tamil Nadu: Anna University departments, Annamalai University, government and aided colleges and government-quota seats at self-financing colleges through TN MBA/MCA counselling, plus self-financing colleges that opt to use TANCET. Colleges listed here offer MBA or MCA programmes in Tamil Nadu.',
+        linkText: 'See TN MBA/MCA admissions',
+        href: 'https://tn-mbamca.com/'
+      },
+      faqs: [
+        {
+          question: 'When is the TANCET 2027 exam?',
+          answer: 'Anna University has not announced TANCET 2027 dates yet. In 2026 registration ran from 16 March to 10 April and both papers were held on 9 May 2026 (MCA 10 am – 12 noon, MBA 2:30 – 4:30 pm), so TANCET 2027 is Expected in May 2027.'
+        },
+        {
+          question: 'Does TANCET still cover M.E. and M.Tech. admissions?',
+          answer: 'No. Under G.O.(MS) No. 14 of the Higher Education (J2) Department dated 24 January 2023, Anna University conducts TANCET only for MBA and MCA. M.E., M.Tech., M.Arch. and M.Plan. admissions use a separate test, CEETA-PG, which was held on 10 May 2026.'
+        },
+        {
+          question: 'What is the TANCET application fee?',
+          answer: 'For 2026 the fee was ₹1,000 per paper (MBA or MCA), or ₹500 for SC, SCA and ST candidates belonging to Tamil Nadu, paid online. Candidates who wrote both papers paid for each.'
+        },
+        {
+          question: 'What is the TANCET exam pattern?',
+          answer: 'As notified for 2026, the MBA and MCA papers each have 100 four-option multiple-choice questions for 100 marks in 2 hours. Answers are shaded on an OMR sheet with a black ballpoint pen; pencil-shaded sheets are not evaluated.'
+        },
+        {
+          question: 'Is there negative marking in TANCET?',
+          answer: 'Yes. The 2026 brochure deducts 1/4 mark for each wrong answer, and shading more than one box counts as a wrong answer. Unanswered questions carry no deduction.'
+        },
+        {
+          question: 'What is the eligibility for TANCET MBA and MCA?',
+          answer: 'A recognised bachelor\'s degree of at least 3 years with 50% marks, or 45% for BC, BCM, MBC, SC, SCA and ST candidates of Tamil Nadu. For MCA the degree must be BCA or B.Sc. Computer Science/IT, or include Mathematics at 10+2 or degree level. Final-year students may apply.'
+        },
+        {
+          question: 'When was the TANCET 2026 result declared?',
+          answer: 'Anna University declared TANCET/CEETA-PG 2026 results on 22 May 2026. Score cards could be downloaded from 27 May to 26 June 2026. The score card shows a percentile: the share of candidates who scored less than you.'
+        },
+        {
+          question: 'How does TN MBA/MCA counselling work?',
+          answer: 'In 2026 the Directorate of Technical Education ran single-window counselling through Government College of Technology, Coimbatore. Registration ran from 4 to 30 June, the rank list came out on 16 July, MCA and MBA online counselling followed in late July and early August, and counselling ended on 14 August 2026. Rank is by TANCET marks.'
+        },
+        {
+          question: 'Can candidates from other states write TANCET?',
+          answer: 'Yes, other-state candidates can write the test, but the brochure says the admitting authority sets their eligibility. In TN MBA/MCA counselling, only Indian nationals may apply, nativity rules apply, and only Tamil Nadu natives get communal reservation.'
+        },
+        {
+          question: 'Which colleges accept TANCET scores?',
+          answer: 'University departments of Anna University and its regional campuses, Annamalai University, government and government-aided engineering and arts and science colleges, and government-quota or surrendered seats at self-financing colleges through counselling. Other state-Act universities and self-financing colleges in Tamil Nadu may also opt to use TANCET.'
+        }
+      ],
+      autoLinkExcludeHrefs: ['/courses/master-of-surgery', '/courses/special'],
+    },
     tnea: {
       intent: 'counselling',
       h1: `TNEA ${year}: Counselling, Cutoff, Colleges & Fees`,
