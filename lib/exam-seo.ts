@@ -56,6 +56,11 @@ export type ExamSeoPack = {
   absoluteTitle?: boolean;
   /** Short note under the colleges heading, with an optional link (for example JEE Main: IITs go through JEE Advanced). */
   collegesNote?: { text: string; linkText?: string; href?: string };
+  /**
+   * Hrefs the auto-linker must not link to on this exam page, on top of the page itself. Use when a short alias means
+   * something else here (NIFT: "CAT" is the Creative Ability Test, not /exams/cat; "PG" is postgraduate, not NEET PG).
+   */
+  autoLinkExcludeHrefs?: string[];
 };
 
 const KEEP_2026 = new Set(['cat', 'snap', 'nmat', 'ibsat', 'mat', 'atma', 'micat', 'gmat']);
@@ -165,7 +170,7 @@ function h1For(label: string, year: number, intent: ExamSeoPack['intent']) {
   return `${label} ${year}: Eligibility, Counselling, Colleges & Fees`;
 }
 
-type Override = Partial<Pick<ExamSeoPack, 'h1' | 'title' | 'description' | 'keywords' | 'intro' | 'intent' | 'faqs' | 'ogImage' | 'absoluteTitle' | 'collegesNote'>>;
+type Override = Partial<Pick<ExamSeoPack, 'h1' | 'title' | 'description' | 'keywords' | 'intro' | 'intent' | 'faqs' | 'ogImage' | 'absoluteTitle' | 'collegesNote' | 'autoLinkExcludeHrefs'>>;
 
 function overrides(year: number, institutes: number, feeRange: string | null): Record<string, Override> {
   const colleges = institutes ? `${institutes.toLocaleString('en-IN')} mapped colleges` : 'mapped colleges';
@@ -228,6 +233,65 @@ function overrides(year: number, institutes: number, feeRange: string | null): R
         {
           question: 'Which colleges accept JEE Main?',
           answer: 'JEE Main ranks are used for B.Tech, B.Arch and B.Plan seats at NITs, IIITs, IIEST Shibpur and other government-funded technical institutes through JoSAA and CSAB counselling. IITs admit through JEE Advanced instead. Many state and private universities also accept JEE Main scores; the college list on this page shows those in our database.'
+        }
+      ]
+    },
+    nift: {
+      // NIFT 2027 content package (docs/exam-content/nift-2027.md in the backend repo).
+      // Facts from NTA (exams.nta.nic.in/niftee, nta.ac.in Examination Calendar) and NIFT (nift.ac.in: NIFTEE 2026 bulletin,
+      // Admission Prospectus and Guidelines 2026), checked on 9 Oct 2026. Only the 10 Jan 2027 date is official for 2027 (tentative).
+      intent: 'general',
+      h1: 'NIFT 2027: Exam Date, Registration, Eligibility, Pattern, Syllabus & Seats',
+      title: 'NIFT 2027: Exam Date, Registration, Eligibility & Pattern',
+      description: 'NIFT 2027 is tentatively on 10 Jan 2027 (NTA calendar). See 2026 fees, eligibility, age limit, GAT, CAT and situation test pattern, weightage and seats.',
+      keywords: ['NIFT 2027', 'NIFT 2027 exam date', 'NIFT 2027 registration', 'NIFT application fee', 'NIFT eligibility', 'NIFT age limit', 'NIFT exam pattern', 'NIFT syllabus', 'NIFT situation test', 'NIFT seats', 'NIFT fees for 4 years', 'NIFT counselling'],
+      intro: 'NIFT 2027, the NIFTEE entrance exam that NTA conducts for the National Institute of Fashion Technology, is listed on NTA\'s calendar for 10 January 2027 (tentative). The 2027 bulletin, registration dates and fees are not out yet, so this guide separates what is official from what is expected on the 2026 rules.',
+      ogImage: '/uploads/exams/nift/nift-2027-og.webp',
+      absoluteTitle: true,
+      autoLinkExcludeHrefs: ['/exams/cat', '/exams/neet-pg'],
+      collegesNote: {
+        text: 'NIFTEE admits only to NIFT\'s 20 campuses. The profiles below are the NIFT campuses published on CollegeDecision.in.'
+      },
+      faqs: [
+        {
+          question: 'Is the NIFT 2027 exam date confirmed?',
+          answer: 'Only provisionally. NTA\'s Examination Calendar lists the NIFT Entrance Examination on Sunday, 10 January 2027, and notes that calendar dates are tentative and may change. No other 2027 date (registration, result, situation test or counselling) has been announced. The 2026 exam was held on 8 February 2026.'
+        },
+        {
+          question: 'When will NIFT 2027 registration start?',
+          answer: 'NTA has not announced it. For 2026, registration opened on 8 December 2025, 62 days before the exam, and the final last date was 16 January 2026 after two extensions. A similar gap before 10 January 2027 would put the 2027 form in November 2026. Apply only on exams.nta.nic.in/niftee.'
+        },
+        {
+          question: 'What is the NIFT application fee?',
+          answer: 'The 2027 fee is not announced yet. In 2026 it was ₹2,000 for one programme for General, General-EWS and OBC-NCL candidates and ₹500 for SC, ST and PwD candidates. Applying for two programmes (B.Des and B.FTech, or M.Des and MFM) cost ₹3,000 or ₹750. The late fee was ₹5,000 extra.'
+        },
+        {
+          question: 'Is Maths compulsory for NIFT?',
+          answer: 'Only for B.FTech. Under the 2026 rules, B.FTech needs Class 12 (or an equivalent route) with Mathematics, while B.Des accepts Class 12 in any stream. Physics and Chemistry are not required for B.FTech, and the bulletin states no minimum percentage for either programme.'
+        },
+        {
+          question: 'What is the NIFT age limit?',
+          answer: 'For B.Des and B.FTech, the 2026 rule was that you must be under 24 on 1 August of the year of admission, with five years\' relaxation for SC, ST and PwD candidates. On the same rule, NIFT 2027 would mean being born after 1 August 2003 (our arithmetic). There is no age limit for M.Des, MFM or M.FTech.'
+        },
+        {
+          question: 'Is there negative marking in NIFT?',
+          answer: 'Yes, in the General Ability Test. In 2026 GAT was marked +1 for a correct answer, -0.25 for a wrong one and 0 for an unanswered question. The Creative Ability Test is a drawing paper evaluated by examiners, so it has no negative marking.'
+        },
+        {
+          question: 'What is the weightage of the NIFT situation test?',
+          answer: 'The situation test counts for 20% of the final B.Des merit, with GAT at 30% and CAT (Creative Ability Test) at 50% (2026 rules). It is a hands-on model-making test using only the materials provided, judged on the spot, with a short write-up in English. B.FTech has no situation test.'
+        },
+        {
+          question: 'Is there a group discussion for NIFT PG admission?',
+          answer: 'No. In 2026, M.Des, MFM and M.FTech shortlisted candidates had a personal interview only, held in New Delhi from 6 to 11 April 2026. The interview carried 30% of the final merit, scored on five parameters of 20 marks each.'
+        },
+        {
+          question: 'How many seats does NIFT have?',
+          answer: 'NIFT offered 5,076 seats for 2026 across 20 campuses: 3,423 B.Des, 591 B.FTech, 275 M.Des, 719 MFM and 68 M.FTech. That includes 480 state domicile seats. NRI seats are supernumerary. The 2027 seat matrix will come with the 2027 prospectus.'
+        },
+        {
+          question: 'How much is the NIFT fee for 4 years?',
+          answer: 'For the 2026-27 batch, NIFT\'s prospectus lists tuition of ₹1,50,000 per semester in year 1, rising to ₹1,74,000 in year 4. With library, mediclaim, exam and one-time charges, the eight semesters add up to ₹14,09,400 for B.Des or B.FTech (our sum), excluding hostel. NIFT may revise fees each year.'
         }
       ]
     },
@@ -431,7 +495,7 @@ export function buildExamSeo(profile: ExamSeoSource): ExamSeoPack {
     `Review ${label} ${year} eligibility, ${
       intent === 'counselling' ? 'counselling and cutoff context' : intent === 'cutoff' ? 'cutoff and counselling context' : 'counselling context'
     }, mapped colleges${institutes ? ` (${institutes.toLocaleString('en-IN')})` : ''}, and fee evidence before you apply.`;
-  return { year, label, h1, title, description, keywords, intro, intent, faqs: pack?.faqs, ogImage: pack?.ogImage, absoluteTitle: pack?.absoluteTitle, collegesNote: pack?.collegesNote };
+  return { year, label, h1, title, description, keywords, intro, intent, faqs: pack?.faqs, ogImage: pack?.ogImage, absoluteTitle: pack?.absoluteTitle, collegesNote: pack?.collegesNote, autoLinkExcludeHrefs: pack?.autoLinkExcludeHrefs };
 }
 
 export function buildExamFaqs(

@@ -173,8 +173,10 @@ export default async function ExamProfilePage({ params }: { params: Promise<{ sl
   const faqs = profileFaqs(profile, name);
   const linkableEntities = await getLinkableEntities();
   const schedule = profile.nextSchedule;
+  // Per-exam exclusions (exam-seo.ts autoLinkExcludeHrefs) stop short aliases linking to the wrong exam on this page.
+  const autoLinkExclude = [`/exams/${slug}`, ...(seo.pack.autoLinkExcludeHrefs || [])];
   const guideHtml = autoLinkHtml(stripEmbeddedFaqs(profile.exam.htmlContent), linkableEntities, {
-    excludeHrefs: [`/exams/${slug}`]
+    excludeHrefs: autoLinkExclude
   }).replace(/(<img\b[^>]*\bsrc=")(\/uploads\/[^"]+)"/gi, (_, prefix: string, src: string) => `${prefix}${mediaUrl(src)}"`);
   const aboutText = text(profile.exam.longDescription || profile.exam.description, '');
   const jsonLd = {
@@ -228,7 +230,7 @@ export default async function ExamProfilePage({ params }: { params: Promise<{ sl
         <p className="eyebrow">EXAM PROFILE</p>
         <h1>{seo.h1}</h1>
         <p className="muted">{[profile.exam.course?.name, profile.exam.mode, levelLabel(profile.exam.level)].filter(Boolean).join(' · ') || 'Entrance exam'} · India</p>
-        <p><AutoLinkedText text={seo.intro} entities={linkableEntities} options={{ excludeHrefs: [`/exams/${slug}`] }} /></p>
+        <p><AutoLinkedText text={seo.intro} entities={linkableEntities} options={{ excludeHrefs: autoLinkExclude }} /></p>
         {profile.exam.applyUrl ? <p><a href={profile.exam.applyUrl} target="_blank" rel="noopener noreferrer">Open official {name} information</a></p> : null}
       </div>
       <ExamLogo src={profile.exam.logo} examName={name} courseName={profile.exam.course?.name} size={120} />
