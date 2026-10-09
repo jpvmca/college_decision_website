@@ -608,6 +608,70 @@ function overrides(year: number, institutes: number, feeRange: string | null): R
         }
       ]
     },
+    'cuet-pg': {
+      // CUET PG 2027 content package (docs/exam-content/cuet-pg-2027.md in the backend repo).
+      // Facts from exams.nta.nic.in/cuet-pg, NTA's Examination Calendar 2027 (exam window, tentative), the CUET (PG) 2026 Information Bulletin,
+      // NTA's 2026 participating-universities pages and the 14 Jun 2026 results notice, checked on 9 Oct 2026. Fee, pattern and codes are 2026 values, expected for 2027.
+      intent: 'general',
+      h1: 'CUET PG 2027: Exam Dates, Registration, Paper Codes, Fee & Universities',
+      title: 'CUET PG 2027: Exam Dates, Paper Codes, Fee & Universities',
+      description: 'CUET PG 2027 is on 17 days from 1 to 25 March 2027 (tentative). See the ₹1,400 fee for 2 papers (2026), 157 paper codes, marking and 198 universities.',
+      keywords: ['CUET PG 2027', 'CUET PG 2027 exam date', 'CUET PG 2027 registration', 'CUET PG application fee', 'CUET PG paper codes', 'COQP11', 'COQP12', 'CUET PG exam pattern', 'CUET PG negative marking', 'CUET PG participating universities'],
+      intro: 'CUET PG 2027, NTA\'s common entrance test for postgraduate admission, is listed for 17 days between 1 and 25 March 2027 in NTA\'s exam calendar (tentative). Registration hasn\'t opened yet. This guide covers the expected fee, eligibility, pattern and marking, paper codes, results and participating universities, checked against NTA\'s own documents.',
+      ogImage: '/uploads/exams/cuet-pg/cuet-pg-2027-og.webp',
+      absoluteTitle: true,
+      collegesNote: {
+        text: 'NTA\'s 2026 list had 198 participating universities and institutions, 45 of them central universities, and NTA says the list is dynamic. The universities below are on that list and have published profiles on CollegeDecision.in, central universities first. Each runs its own admission.',
+        linkText: 'See NTA\'s participating universities',
+        href: 'https://exams.nta.nic.in/cuet-pg/participating-universities/'
+      },
+      faqs: [
+        {
+          question: 'When is the CUET PG 2027 exam?',
+          answer: 'NTA\'s Examination Calendar 2027 lists CUET (PG) on 1 to 5, 8, 12 to 20, 24 and 25 March 2027, a 17-day window, with 30 and 31 March as buffer days. NTA says the dates are tentative. The subject-wise schedule comes later.'
+        },
+        {
+          question: 'When will CUET PG 2027 registration start?',
+          answer: 'NTA hasn\'t announced it, and the 2027 bulletin isn\'t out as of 9 October 2026. For CUET PG 2026, registration ran from 14 December 2025 to 14 January 2026, with corrections from 18 to 20 January 2026.'
+        },
+        {
+          question: 'What is the CUET PG application fee?',
+          answer: 'In 2026 the fee for up to two papers was ₹1,400 for general candidates, ₹1,200 for Gen-EWS and OBC-NCL, ₹1,100 for SC, ST and third gender, ₹1,000 for PwD/PwBD and ₹7,000 for centres outside India. Each extra paper cost ₹700, ₹600 or ₹3,500. The 2027 fee is expected to be similar.'
+        },
+        {
+          question: 'How many papers can I take in CUET PG?',
+          answer: 'Up to four question paper codes, chosen by the programmes and universities you want. The base fee covers two papers and each extra paper costs more. In 2026, a general candidate taking four papers paid ₹1,400 + 2 × ₹700 = ₹2,800.'
+        },
+        {
+          question: 'What is the CUET PG exam pattern?',
+          answer: 'Under the 2026 bulletin, each paper had 75 multiple-choice questions in 90 minutes, worth 300 marks, in computer-based mode. Papers were bilingual (English and Hindi) except language, M.Tech/higher-science and Acharya papers. The same pattern is expected for 2027.'
+        },
+        {
+          question: 'Is there negative marking in CUET PG?',
+          answer: 'Yes. Each correct answer earns 4 marks and each wrong answer costs 1 mark. Unanswered or marked-for-review questions get zero. If more than one option is correct, anyone who marked a correct option gets 4 marks; a wrong or dropped question gives 4 marks to everyone.'
+        },
+        {
+          question: 'What are COQP11 and COQP12 in CUET PG?',
+          answer: 'They are common paper codes. In the 2026 list, COQP11 is the General paper and COQP12 is General – Management. Universities decide which code each programme needs, so check the admission page of each university before choosing your four codes.'
+        },
+        {
+          question: 'Who is eligible for CUET PG 2027?',
+          answer: 'Under the 2026 rules, anyone who has passed a bachelor\'s degree or equivalent, or is in the final year, can take CUET PG. NTA sets no age limit. Each university sets its own programme eligibility, such as degree subjects, minimum marks and any age rules.'
+        },
+        {
+          question: 'Is CUET PG normalised?',
+          answer: 'NTA\'s bulletin describes percentile-based normalisation for papers held in several shifts. For 2026, NTA clarified on 14 June 2026 that results were prepared on actual marks, including the rescheduled exam held on 29 and 30 March 2026 for affected centres.'
+        },
+        {
+          question: 'How many universities accept CUET PG?',
+          answer: 'NTA\'s 2026 list had 198 participating universities and institutions: 45 central, 40 state, 24 government or government-funded and 89 deemed or private. NTA says the list is dynamic. Each university publishes its own admission notice and merit list.'
+        },
+        {
+          question: 'How long is a CUET PG score valid?',
+          answer: 'Under the 2026 bulletin, the NTA score was valid for admission in the 2026-27 academic year only. CUET PG 2027 scores are expected to count only for 2027-28 admissions. Scorecards are downloaded from the portal or DigiLocker, and there is no re-evaluation.'
+        }
+      ]
+    },
     tnea: {
       intent: 'counselling',
       h1: `TNEA ${year}: Counselling, Cutoff, Colleges & Fees`,
