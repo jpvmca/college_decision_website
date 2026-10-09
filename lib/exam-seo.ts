@@ -983,6 +983,68 @@ function overrides(year: number, institutes: number, feeRange: string | null): R
         }
       ],
     },
+    'mah-mba-cet': {
+      // MAH MBA CET 2027 content package (docs/exam-content/mah-mba-cet-2027.md in the backend repo).
+      // Official sources only: State CET Cell Maharashtra notices + MAH-MBA/MMS CET 2026 Information Brochure (cetcell.mahacet.org)
+      // and the CAP 2026-27 MBA/MMS notices / revised provisional seat distribution (mba2026.mahacet.org.in), checked on 9 Oct 2026.
+      // No 2027 schedule yet, so all 2027 dates are labelled Expected.
+      intent: 'general',
+      h1: 'MAH MBA CET 2027: Exam Date, Pattern, Fees, CAP & Colleges',
+      title: 'MAH MBA CET 2027: Exam Date, Pattern, Fees, CAP & Colleges',
+      description: 'MAH MBA CET 2027 schedule is awaited (2026: 6–8 Apr & 9 May). See the ₹1,500 fee, 200-question pattern, best-of-two percentile and CAP colleges.',
+      keywords: ['MAH MBA CET 2027', 'MAH CET 2027', 'MAH MBA CET exam date', 'MAH MBA CET registration 2027', 'MAH MBA CET fees', 'MAH MBA CET exam pattern', 'MAH MBA CET syllabus', 'MAH MBA CET result', 'MAH MBA CET percentile', 'MBA CAP Maharashtra', 'MAH MBA CET colleges', 'MAH MBA CET cut off'],
+      intro: 'MAH MBA CET 2027 (MAH-MBA/MMS CET), conducted by the State CET Cell, Maharashtra for MBA/MMS admission through CAP, has not been scheduled yet; the schedule is Expected around November 2026 – January 2027. In 2026 the test was held in two attempts, on 6–8 April and 9 May, for a ₹1,500/₹1,300 fee. This guide covers expected dates, the pattern, percentiles and CAP, from CET Cell documents.',
+      ogImage: '/uploads/exams/mah-mba-cet/mah-mba-cet-2027-og.webp',
+      absoluteTitle: true,
+      collegesNote: {
+        text: 'MAH MBA CET seats are filled by the State CET Cell through CAP at government, university and unaided MBA/MMS institutes in Maharashtra. Colleges listed here offer MBA or MMS programmes that appear in the CET Cell\'s 2026-27 CAP seat distribution.',
+        linkText: 'See the CET Cell admission portals',
+        href: 'https://cetcell.mahacet.org/cap-_2026-27/'
+      },
+      faqs: [
+        {
+          question: 'When is the MAH MBA CET 2027 exam?',
+          answer: 'The State CET Cell has not announced MAH MBA CET 2027 dates yet. In 2026 the first attempt was held on 6–8 April and the second on 9 May 2026, after a tentative schedule issued on 21 November 2025, so the 2027 exam is Expected between March and May 2027.'
+        },
+        {
+          question: 'Who conducts MAH MBA CET?',
+          answer: 'The State Common Entrance Test Cell, Maharashtra State, Mumbai conducts the MAH-MBA/MMS CET as the Competent Authority under the Maharashtra Unaided Private Professional Educational Institutions (Regulation of Admissions and Fees) Act, 2015. The same CET Cell runs CAP admissions.'
+        },
+        {
+          question: 'What is the MAH MBA CET application fee?',
+          answer: 'For 2026 the fee was ₹1,500 per attempt for Open candidates from Maharashtra, OMS and J&K migrant candidates, and ₹1,300 for Maharashtra reserved-category, EWS and PwD candidates and orphan and transgender candidates. Taking both attempts cost ₹3,000 or ₹2,600.'
+        },
+        {
+          question: 'What is the MAH MBA CET exam pattern?',
+          answer: 'As notified for 2026, the online test has 200 five-option multiple-choice questions for 200 marks in 150 minutes: Logical Reasoning 75, Abstract Reasoning 25, Quantitative Aptitude 50 and Verbal Ability/Reading Comprehension 50. The medium is English.'
+        },
+        {
+          question: 'Is there negative marking in MAH MBA CET?',
+          answer: 'No. The MAH-MBA/MMS CET 2026 Information Brochure states that there is no negative marking. Each question carries one mark.'
+        },
+        {
+          question: 'Can I take MAH MBA CET twice?',
+          answer: 'In 2026, yes. Candidates could register for one or both attempts. Each attempt gave a normalised percentile, and for candidates who took both, the better of the two percentiles was used for CAP 2026-27.'
+        },
+        {
+          question: 'What is the eligibility for MAH MBA CET?',
+          answer: 'A minimum three-year bachelor\'s degree in any discipline with at least 50% aggregate marks, or 45% for backward-class, EWS and PwD candidates belonging to Maharashtra. Final-year students can also appear, according to the 2026 brochure.'
+        },
+        {
+          question: 'When was the MAH MBA CET 2026 result declared?',
+          answer: 'The CET Cell declared the first-attempt result on 30 May 2026 and the second-attempt result on 12 June 2026. Score cards were made available in the candidate login on the CET Cell portal.'
+        },
+        {
+          question: 'Can All India candidates get MBA seats in Maharashtra through CAP?',
+          answer: 'Yes. Under CAP 2026-27, All India candidates could apply with a non-zero score in MAH-MBA/MMS CET, CAT, CMAT, XAT, ATMA, MAT or GMAT. Candidates who had not registered for MAH CET paid a ₹1,500 or ₹1,300 CAP registration fee.'
+        },
+        {
+          question: 'Which colleges accept MAH MBA CET?',
+          answer: 'Government, university and unaided MBA/MMS institutes in Maharashtra that take part in CAP. The 2026-27 revised provisional seat distribution listed 381 institutes, including JBIMS, PUMBA (Pune University), SIMSREE, Welingkar and SIES. Private and deemed universities and PGDM-only institutes are outside CAP.'
+        }
+      ],
+      autoLinkExcludeHrefs: ['/courses/master-of-surgery', '/courses/special'],
+    },
     tnea: {
       intent: 'counselling',
       h1: `TNEA ${year}: Counselling, Cutoff, Colleges & Fees`,
