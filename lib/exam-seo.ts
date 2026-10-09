@@ -482,12 +482,68 @@ function overrides(year: number, institutes: number, feeRange: string | null): R
       ]
     },
     gate: {
-      intent: 'cutoff',
-      h1: `GATE ${year}: Eligibility, Cutoff, M.Tech Colleges & Fees`,
-      title: `GATE ${year}: Eligibility, Cutoff, Colleges & Fees`,
-      description: `GATE ${year} for M.Tech/ME and PSU routes: eligibility, cutoff context, ${colleges}, and fee ranges to compare before you apply.${fees}`,
-      keywords: [`GATE ${year}`, 'GATE eligibility', 'GATE cutoff', 'colleges accepting GATE', 'M.Tech admission'],
-      intro: `This GATE ${year} profile links eligibility and cutoff context with ${colleges} and recorded fees for postgraduate engineering pathways.`
+      // GATE 2027 content package (docs/exam-content/gate-2027.md in the backend repo).
+      // Facts from gate2027.iitm.ac.in and the GATE 2027 Information Brochure (IIT Madras, revised 27 Sep 2026), checked on 9 Oct 2026.
+      // Admit card date and the free scorecard window are TBA officially. COAP/CCMT are separate portals (no dates given).
+      intent: 'general',
+      h1: 'GATE 2027: Exam Date, Registration, Fee, Papers, Pattern & Eligibility',
+      title: 'GATE 2027: Exam Dates, Fee, Papers, Pattern & Eligibility',
+      description: 'GATE 2027 (IIT Madras) is on 6, 7, 13, 14, 20, 21 Feb 2027. Late-fee registration ends 12 Oct 2026. See fees by category, papers, pattern and eligibility.',
+      keywords: ['GATE 2027', 'GATE 2027 exam date', 'GATE 2027 registration last date', 'GATE 2027 application fee', 'GATE 2027 late fee', 'GATE 2027 eligibility', 'GATE 2027 papers', 'GATE two paper combination', 'GATE 2027 exam pattern', 'GATE normalisation', 'GATE score validity', 'colleges accepting GATE'],
+      intro: 'GATE 2027, organised by IIT Madras, is on 6, 7, 13, 14, 20 and 21 February 2027, and late-fee registration on GOAPS closes on 12 October 2026. This guide covers dates, fees by category, eligibility, all 30 papers, two-paper combinations, the pattern and marking, normalisation and score use, checked against gate2027.iitm.ac.in.',
+      ogImage: '/uploads/exams/gate/gate-2027-og.webp',
+      absoluteTitle: true,
+      collegesNote: {
+        text: 'GATE scores are used for M.Tech, M.E., MS and PhD admission at IISc, the IITs, NITs, IIITs and many other institutes. The colleges below start with IISc and the IITs, then NITs and IIITs. Each institute runs its own admission (or COAP/CCMT) and sets its own cut-offs.',
+        linkText: 'See GATE 2027 opportunities on the official site',
+        href: 'https://gate2027.iitm.ac.in/opportunities'
+      },
+      faqs: [
+        {
+          question: 'When is the GATE 2027 exam?',
+          answer: 'GATE 2027 is on 6, 7, 13, 14, 20 and 21 February 2027, in a forenoon session (9:30 am to 12:30 pm) and an afternoon session (2:30 pm to 5:30 pm). IIT Madras will publish the paper-wise schedule later. Exam cities are notified on 4 January 2027.'
+        },
+        {
+          question: 'What is the last date to register for GATE 2027?',
+          answer: 'Regular registration closed on 5 October 2026. You can still apply on GOAPS with a late fee until 12 October 2026. Changes to category, paper or exam city, adding a second paper and corrections to personal details are allowed until 21 October 2026, with a fee per change.'
+        },
+        {
+          question: 'What is the GATE 2027 application fee?',
+          answer: 'The fee is per paper: ₹1,000 for female, SC, ST and PwD candidates and ₹2,000 for everyone else, including foreign nationals. In the extended period (6 to 12 October 2026) it is ₹1,500 and ₹2,500. Two papers cost double, bank charges are extra and the fee is not refundable.'
+        },
+        {
+          question: 'Who is eligible for GATE 2027?',
+          answer: 'Students in the third or a higher year of any undergraduate degree, and anyone who has completed a government-approved degree in engineering, technology, architecture, science, commerce, arts or humanities. The brochure sets no age limit. Admitting institutes and PSUs apply their own degree and marks rules.'
+        },
+        {
+          question: 'How many papers are there in GATE 2027?',
+          answer: 'There are 30 papers. Robotics and Automation (RA) is new for 2027, Textile Engineering and Fibre Science is now section XE9 of Engineering Sciences, and the section codes of XE, XH and XL have changed. You can take one paper or two from the approved combinations.'
+        },
+        {
+          question: 'Can I appear for two papers in GATE 2027?',
+          answer: 'Yes, if the second paper is on the approved list for your primary paper. For example, CS can be paired with DA, EC, GE, MA, ME, PH, RA or ST, and ME with AE, CS, DA, IN, NM, PI, RA or XE. MN has no second-paper option. You pay the fee for each paper.'
+        },
+        {
+          question: 'What is the GATE 2027 exam pattern?',
+          answer: 'Each paper has 65 questions for 100 marks in 3 hours: General Aptitude (15 marks) plus the subject. In most engineering papers, Engineering Mathematics carries 13 marks and the core subject 72. Questions are MCQ, MSQ or NAT and carry 1 or 2 marks. The test is computer-based and in English.'
+        },
+        {
+          question: 'Is there negative marking in GATE?',
+          answer: 'Only for MCQs. A wrong answer to a 1-mark MCQ costs 1/3 mark and a wrong 2-mark MCQ costs 2/3 mark. MSQs and numerical answer type (NAT) questions have no negative marking, and there is no partial marking for any question.'
+        },
+        {
+          question: 'How is the GATE score calculated?',
+          answer: 'Marks in multi-session papers are first normalised. The score then runs from 350 at the general qualifying mark to 900 at the average of the top 0.1% (or top 10) candidates. The general qualifying mark is max(25, min(40, mean + SD)); OBC-NCL/EWS get 90% of it and SC/ST/PwD two-thirds.'
+        },
+        {
+          question: 'How long is a GATE 2027 score valid?',
+          answer: 'Three years from the date the result is announced. Results are due on 19 March 2027. The scorecard is free to download for a window that is yet to be announced, then costs ₹500 per paper until 31 December 2027. No scorecards are issued after that.'
+        },
+        {
+          question: 'What can I do with a GATE 2027 score?',
+          answer: 'Apply for M.Tech, M.E., MS and PhD programmes (M.Tech students at MoE-supported institutes can get ₹12,400 a month), and for jobs at PSUs that recruit through GATE, such as BHEL, GAIL, IOCL, NTPC, ONGC and POWERGRID. IIT and NIT M.Tech offers run through COAP and CCMT, which are separate from GATE.'
+        }
+      ]
     },
     tnea: {
       intent: 'counselling',
