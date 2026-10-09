@@ -63,7 +63,7 @@ export type ExamSeoPack = {
   autoLinkExcludeHrefs?: string[];
 };
 
-const KEEP_2026 = new Set(['cat', 'snap', 'nmat', 'ibsat', 'mat', 'atma', 'micat', 'gmat']);
+const KEEP_2026 = new Set(['cat', 'snap', 'nmat', 'ibsat', 'mat', 'atma', 'gmat']);
 const COUNSELLING = new Set([
   'tnea', 'upsee', 'kcet', 'keam', 'mht-cet', 'mh-cet', 'wbjee', 'ojee', 'gujcet',
   'ts-eamcet', 'ap-eamcet', 'comedk-uget', 'jac', 'jac-delhi', 'pgcet'
@@ -859,6 +859,66 @@ function overrides(year: number, institutes: number, feeRange: string | null): R
       // Paper codes MA (Mathematics) and MS (Mathematical Statistics) would otherwise link to the MA and Master of Surgery
       // course pages; M.Tech appears only inside 'M.Sc.-M.Tech dual degree'.
       autoLinkExcludeHrefs: ['/courses/ma', '/courses/master-of-surgery', '/courses/mtech'],
+    },
+    micat: {
+      // MICAT 2027 content package (docs/exam-content/micat-2027.md in the backend repo).
+      // Facts from MICA only (mica.ac.in/admissions, PGDM-C/PGDM pages, MICAT Sample Questions 2027 PDF), checked on 9 Oct 2026.
+      // Page switched to the 2027 cycle (micat removed from KEEP_2026): MICA calls this cycle "Admissions '27 / Batch 2027-2028".
+      intent: 'general',
+      h1: 'MICAT 2027: MICAT-I & II Dates, Fee, Pattern & Selection',
+      title: 'MICAT 2027: MICAT-I & II Dates, Fee, Pattern & Selection',
+      description: 'MICAT-I is on 5 Dec 2026 and MICAT-II on 12 Feb 2027. Check the ₹2,500 fee, 3-section CBT pattern, 48 cities, eligibility and MICA PGDM-C/PGDM selection.',
+      keywords: ['MICAT 2027', 'MICAT exam date', 'MICAT 1 exam date', 'MICAT 2 exam date', 'MICAT registration 2027', 'MICAT application fee', 'MICAT exam pattern', 'MICAT sample questions', 'MICAT cutoff', 'MICA admission 2027', 'MICA PGDM-C', 'MICA fees'],
+      intro: 'MICAT 2027, the MICA Admission Test conducted by MICA Ahmedabad for the 2027-28 batch, is held twice: MICAT-I on 5 December 2026 (register by 21 November 2026) and MICAT-II on 12 February 2027 (register by 30 January 2027). This guide covers dates, the ₹2,500 fee, eligibility, the three-section pattern, sample questions, selection and MICA programmes, all from MICA\'s official admissions pages.',
+      ogImage: '/uploads/exams/micat/micat-2027-og.webp',
+      absoluteTitle: true,
+      collegesNote: {
+        text: 'MICAT is MICA\'s own admission test and is used only by MICA, Ahmedabad. PGDM-C, PGDM and PGCM-SM also need a CAT 2026, XAT 2027 or GMAT score; the other programmes use MICAT alone.',
+        linkText: 'See MICA Admissions \'27',
+        href: 'https://www.mica.ac.in/admissions/'
+      },
+      faqs: [
+        {
+          question: 'When is MICAT 2027?',
+          answer: 'For the 2027-28 batch, MICAT-I is on Saturday, 5 December 2026 and MICAT-II is on Friday, 12 February 2027. Scores are declared on 18 December 2026 and 28 February 2027 respectively.'
+        },
+        {
+          question: 'What is the last date to register for MICAT?',
+          answer: 'MICAT-I registration closes on 21 November 2026 at 11:50 pm. MICAT-II registration runs from 25 November 2026 to 30 January 2027.'
+        },
+        {
+          question: 'Can I take both MICAT-I and MICAT-II?',
+          answer: 'Yes. You register and pay the application fee separately for each test. If you take both, MICA may consider your better MICAT performance.'
+        },
+        {
+          question: 'What is the MICAT application fee?',
+          answer: 'The application fee is ₹2,500, plus ₹500 for each additional programme, which is payable only if you are shortlisted for interview. The FPM application fee is ₹2,500 with no add-on.'
+        },
+        {
+          question: 'What is the MICAT exam pattern?',
+          answer: 'MICAT has three sections: Section A, a Psychometric Test; Section B, a Descriptive Test; and Section C, an Aptitude Test covering divergent and convergent thinking, verbal ability, and quantitative ability and data interpretation. MICA does not publish question counts or section timings.'
+        },
+        {
+          question: 'Is there negative marking in MICAT?',
+          answer: 'MICA says the Psychometric Test has no right or wrong answers and no negative marking, and its sample paper says the short-answer quantitative questions carry no negative marking. MICA has not published the marking scheme for the other objective questions.'
+        },
+        {
+          question: 'Can I take MICAT from home?',
+          answer: 'No. MICAT is a computer-based test held at designated test centres in 48 cities. Your centre is pre-assigned and shown on your admit card, and you cannot choose the centre or the computer.'
+        },
+        {
+          question: 'Do I need a CAT, XAT or GMAT score for MICA?',
+          answer: 'Yes for PGDM-C, PGDM and PGCM-SM (Sports Management): you need a CAT 2026, XAT 2027 or GMAT (2025 onwards) score along with MICAT, updated by 30 January 2027. PGCM-AMC, PGCM-DMMC and the Certificate in Strategic Communication need MICAT only.'
+        },
+        {
+          question: 'What is the MICAT cut-off?',
+          answer: 'MICA applies section-wise qualifying criteria to MICAT, which may vary every cycle, and does not publish cut-off scores. It says the quantitative ability and data interpretation cut-off may be higher for PGDM than for PGDM-C.'
+        },
+        {
+          question: 'Which colleges accept MICAT scores?',
+          answer: 'Only MICA, Ahmedabad. MICAT is required for all seven MICA programmes for 2027, including the two-year PGDM-C (180 seats) and PGDM (60 seats), with an indicative fee of ₹29.50 lakh each.'
+        }
+      ],
     },
     tnea: {
       intent: 'counselling',
