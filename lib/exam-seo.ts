@@ -736,6 +736,67 @@ function overrides(year: number, institutes: number, feeRange: string | null): R
         }
       ]
     },
+    uceed: {
+      // UCEED 2027 content package (docs/exam-content/uceed-2027.md in the backend repo).
+      // Facts from IIT Bombay only (uceed.iitb.ac.in/2027 and the UCEED 2027 Information Brochure released 1 Oct 2026), checked on 9 Oct 2026.
+      // Result-sharing institutes are mapped only where the institute's own admissions page confirms it accepts UCEED (see backup NOTES).
+      intent: 'general',
+      h1: 'UCEED 2027: Exam Date, Registration, Fee, Pattern & Result',
+      title: 'UCEED 2027: Exam Date, Registration, Fee, Pattern & Result',
+      description: 'UCEED 2027 is on 17 Jan; register by 31 Oct 2026 (late fee to 6 Nov). See the ₹2,000/₹4,000 fee, eligibility, Part A/B pattern, result and B.Des seats.',
+      keywords: ['UCEED 2027', 'UCEED 2027 exam date', 'UCEED registration 2027', 'UCEED 2027 last date', 'UCEED application fee', 'UCEED eligibility', 'UCEED age limit', 'UCEED exam pattern', 'UCEED syllabus', 'UCEED result 2027', 'UCEED cutoff', 'UCEED result sharing institutes'],
+      intro: 'UCEED 2027, IIT Bombay\'s Undergraduate Common Entrance Examination for Design, is open: register at uceed.iitb.ac.in by 31 October 2026 (late fee until 6 November) for the exam on Sunday, 17 January 2027. This guide covers dates, fees, eligibility, the Part-A/Part-B pattern, qualifying rules, results and B.Des seats, all from the official UCEED 2027 brochure.',
+      ogImage: '/uploads/exams/uceed/uceed-2027-og.webp',
+      absoluteTitle: true,
+      autoLinkExcludeHrefs: ['/exams/cat', '/courses/fashion-design-ug', '/courses/fashion-design-pg'],
+      collegesNote: {
+        text: 'IIT Bombay fills B.Des seats at IIT Bombay, Delhi, Guwahati, Hyderabad, Indore and Roorkee and IIITDM Jabalpur through one joint process. Other colleges listed here use UCEED results under their own admission rules, as stated on their admissions pages; check each school before applying.',
+        linkText: 'See the official UCEED institutes list',
+        href: 'https://www.uceed.iitb.ac.in/2027/institutes.html'
+      },
+      faqs: [
+        {
+          question: 'When is the UCEED 2027 exam?',
+          answer: 'UCEED 2027 is on Sunday, 17 January 2027, from 9:00 am to 12:00 noon, at test centres in 30 Indian cities. Admit cards can be downloaded from 1 pm on 1 January 2027, and the result is due on 6 March 2027.'
+        },
+        {
+          question: 'What is the last date to register for UCEED 2027?',
+          answer: 'The last date with the regular fee is 31 October 2026. After that you can register with a late fee of ₹500 (US$50 for foreign nationals) until 5 pm on 6 November 2026. Registration opened on 1 October 2026 at uceed.iitb.ac.in.'
+        },
+        {
+          question: 'What is the UCEED 2027 application fee?',
+          answer: 'Indian candidates pay ₹2,000 if they are female (any category) or SC, ST or PwD, and ₹4,000 otherwise. Foreign nationals pay US$200 (SAARC countries) or US$250 (other countries). Holders of OCI/PIO cards issued before 4 March 2021 pay the Indian fee. Bank charges are extra and the fee is not refundable.'
+        },
+        {
+          question: 'What is the age limit for UCEED 2027?',
+          answer: 'You must be born on or after 1 October 2002 if you are Open, EWS or OBC-NCL, or on or after 1 October 1997 if you are SC, ST or PwD. You can take UCEED at most twice, in consecutive years, and you must have first appeared for Class 12 in 2026 or 2027.'
+        },
+        {
+          question: 'Can commerce or arts students take UCEED?',
+          answer: 'Yes. Students from all streams may take UCEED 2027. For B.Des admission, IIT Bombay, IIT Delhi, IIT Hyderabad and IIT Indore accept any stream, but IIT Guwahati and IIT Roorkee need Physics, Chemistry and Mathematics in Class 12, and IIITDM Jabalpur needs Physics, Chemistry and Mathematics or Biology.'
+        },
+        {
+          question: 'What is the UCEED 2027 exam pattern?',
+          answer: 'It is one 3-hour paper of 300 marks in English. Part-A (computer-based, 2 hours, 200 marks) has 14 numerical questions worth 4 marks each with no negative marking, 15 multiple-select questions worth 4 marks with partial marks and −1 for a wrong answer, and 28 multiple-choice questions worth 3 marks with −0.71 for a wrong answer. Part-B (1 hour, 100 marks) has one sketching and one design aptitude question, answered on paper.'
+        },
+        {
+          question: 'What is the UCEED cutoff?',
+          answer: 'There is no fixed Part-A pass mark. IIT Bombay sets the Part-A cut-off at the average plus half the standard deviation of all scores (90% of that for OBC-NCL and EWS, 50% for SC, ST and PwD), and shortlists no more than the top 6,400. Shortlisted candidates need at least 15 (Open), 13.5 (OBC-NCL and EWS) or 7.5 (SC, ST and PwD) out of 100 in Part-B to get a rank.'
+        },
+        {
+          question: 'How many B.Des seats are there through UCEED?',
+          answer: 'The 2026-27 seat matrix in the UCEED 2027 brochure lists 245 seats: IIITDM Jabalpur 66, IIT Guwahati 56, IIT Bombay 37, IIT Hyderabad 30, IIT Delhi 20, IIT Roorkee 20 and IIT Indore 16. The 2027-28 matrix will be published when B.Des applications open.'
+        },
+        {
+          question: 'How do I get a B.Des seat after the UCEED result?',
+          answer: 'With a UCEED 2027 rank, fill the common B.Des application on the IIT Bombay admissions portal between 15 March and 12 April 2027, ranking the institutes in order of preference. Seats are allotted over five rounds from 21 April to 9 July 2027, which IIT Bombay calls tentative. To accept a seat you pay ₹65,000 (GEN, EWS and OBC-NCL) or ₹20,000 (SC, ST and PwD), including a ₹5,000 processing fee that is not refunded.'
+        },
+        {
+          question: 'Which other colleges accept UCEED scores?',
+          answer: 'IIT Bombay lists 47 result-sharing institutes for UCEED 2026; the 2027 list is still to come. They admit through their own processes, not the joint seat allotment. Institutes whose admissions pages say they accept UCEED include DTU, FLAME University, Nirma University, MAHE Manipal, Jain University, FDDI, LPU, MIT-WPU, Avantika, Alliance, RV University, Navrachana, JK Lakshmipat and O.P. Jindal Global University.'
+        }
+      ]
+    },
     tnea: {
       intent: 'counselling',
       h1: `TNEA ${year}: Counselling, Cutoff, Colleges & Fees`,
