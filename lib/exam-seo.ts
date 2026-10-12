@@ -1228,6 +1228,67 @@ function overrides(year: number, institutes: number, feeRange: string | null): R
       ],
       autoLinkExcludeHrefs: ['/courses/mba'],
     },
+    'cusat-cat': {
+      // CUSAT CAT 2027 content package (docs/exam-content/cusat-cat-2027.md in the backend repo).
+      // Official sources only: admissions.cusat.ac.in (CAT 2026 Prospectus, Fee Structure 2026-27, notices) and cusat.ac.in,
+      // checked on 12 Oct 2026. CAT 2027 not announced; 2027 dates are Expected.
+      intent: 'general',
+      h1: 'CUSAT CAT 2027: Dates, Eligibility, Pattern, Fees, Seats',
+      title: 'CUSAT CAT 2027: Dates, Eligibility, Pattern, Fees, Seats',
+      description: 'CUSAT CAT 2027 registration is Expected from late January 2027. See the Test 101 pattern, 50% PCM rule, ₹1,500 fee, seat types and B.Tech seats by campus.',
+      keywords: ['CUSAT CAT 2027', 'CUSAT CAT exam date 2027', 'CUSAT CAT registration 2027', 'CUSAT CAT eligibility', 'CUSAT CAT exam pattern', 'CUSAT CAT syllabus', 'CUSAT CAT application fee', 'CUSAT B.Tech admission 2027', 'CUSAT School of Engineering', 'CUCEK Kuttanad', 'CUSAT CAT rank list', 'CUSAT fee structure'],
+      intro: 'CUSAT CAT 2027 is Cochin University of Science and Technology\'s computer-based test for its own B.Tech, integrated M.Sc., five-year law and most PG programmes. CUSAT has not announced the 2027 dates; registration is Expected from late January 2027 and the test in May 2027. In 2026 registration ran from 27 January to 5 March and the test was held on 9–11 May. This guide uses only official CUSAT sources.',
+      ogImage: '/uploads/exams/cusat-cat/cusat-cat-2027-og.webp',
+      absoluteTitle: true,
+      autoLinkExcludeHrefs: ['/exams/cat', '/courses/mba'],
+      collegesNote: {
+        text: 'CUSAT CAT is used only for Cochin University of Science and Technology\'s own programmes: the School of Engineering (Thrikkakara), CUCEK (Kuttanad) and the university departments in Kochi. Other Kerala engineering colleges admit through KEAM.',
+        linkText: 'See CUSAT admissions',
+        href: 'https://admissions.cusat.ac.in/'
+      },
+      faqs: [
+        {
+          question: 'When is CUSAT CAT 2027?',
+          answer: 'CUSAT has not announced CAT 2027. In 2026 registration ran from 27 January to 5 March and the computer-based test was held on 9–11 May, with the B.Tech paper (Test 101) on 10–11 May. Registration for 2027 is Expected from late January 2027 and the test in May 2027.'
+        },
+        {
+          question: 'What is the eligibility for CUSAT B.Tech through CAT?',
+          answer: 'A Class 12 pass with at least 50% in Mathematics and 50% in Physics, Chemistry and Mathematics combined. Kerala SC/ST candidates need only a pass, and Kerala SEBC non-creamy layer candidates get 5% relaxation. You also need a minimum normalised score of 10 in PCM in Test 101, from which SC/ST candidates are exempt.'
+        },
+        {
+          question: 'What is the CUSAT CAT application fee?',
+          answer: 'For 2026 it was ₹1,500 for up to two test codes, or ₹700 for Kerala SC/ST candidates, plus ₹500 (₹250) for each extra test code. NRI seat applicants paid ₹6,500, Children of Gulf Workers ₹6,500 and international candidates US$110. The fee is non-refundable.'
+        },
+        {
+          question: 'What is the CUSAT CAT exam pattern for B.Tech?',
+          answer: 'Test Code 101 has 225 multiple-choice questions in 3 hours: 90 in Mathematics, 75 in Physics and 60 in Chemistry. Each correct answer earns 4 marks and each wrong answer costs 1. Ties are broken by Mathematics marks, then Physics, then Chemistry.'
+        },
+        {
+          question: 'Is CUSAT CAT a state-level or national-level exam?',
+          answer: 'It is a state-level test run by CUSAT, a Kerala state university, for its own seats. Candidates from all over India can apply. CUSAT holds the test in other cities as well as Kerala, and 45% of seats are All India Merit seats.'
+        },
+        {
+          question: 'Does CUSAT CAT admit to KEAM colleges?',
+          answer: 'No. CUSAT CAT fills only CUSAT\'s own seats at the School of Engineering in Thrikkakara, CUCEK in Kuttanad and the university departments. Other government, aided and self-financing engineering colleges in Kerala admit through KEAM.'
+        },
+        {
+          question: 'How many B.Tech seats does CUSAT have?',
+          answer: 'In 2026 the School of Engineering, Thrikkakara offered Civil 90, CSE 143, EEE 60, ECE 90, IT 90, Mechanical 90, Safety & Fire 90 and AI & Data Science 60 seats. CUCEK Kuttanad offered Civil 60, CSE 120, EEE 60, ECE 60 and IT 60. Naval Architecture, Polymer Science and Instrumentation are also offered.'
+        },
+        {
+          question: 'How are CUSAT seats divided?',
+          answer: 'CUSAT splits seats into State Merit (50%, for Keralites only, at the lowest fee), All India Merit (45%, open to all Indian candidates) and NRI (5%). Supernumerary seats for groups such as EWS, differently abled and Lakshadweep candidates are added on top.'
+        },
+        {
+          question: 'What is the CUSAT B.Tech fee?',
+          answer: 'Under the Fee Structure 2026-27, the first-semester amount payable at admission was ₹48,842 for State Merit, ₹75,042 for All India Merit and ₹93,842 for NRI seats. Each figure includes ₹20,042 of common fees. Hostel charges are extra.'
+        },
+        {
+          question: 'Is CUSAT CAT needed for MBA, M.Tech or B.Tech Marine Engineering?',
+          answer: 'No, though you still apply through the CUSAT admissions portal. MBA admission uses a KMAT, CMAT or CAT (IIM) score. M.Tech gives preference to GATE scores and otherwise uses a Departmental Admission Test. B.Tech Marine Engineering admits on the Indian Maritime University CET rank.'
+        }
+      ],
+    },
     tnea: {
       intent: 'counselling',
       h1: `TNEA ${year}: Counselling, Cutoff, Colleges & Fees`,
