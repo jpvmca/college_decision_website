@@ -5,6 +5,7 @@ import { api, mediaUrl } from '../../../lib/api';
 import { courseDisplayName, courseSeo as buildCourseSeo } from '../../../lib/course-seo';
 import { autoLinkHtml } from '../../../lib/auto-link-entities';
 import { getLinkableEntities } from '../../../lib/linkable-entities';
+import { stripEmbeddedFaqs } from '../../../lib/strip-embedded-faqs';
 import AutoLinkedText from '../../../components/AutoLinkedText';
 
 type CourseProfile = {
@@ -90,7 +91,8 @@ function uniqueProgrammeNames(programmes: CourseProfile['programmes'], fallback:
   return names.length ? names : [fallback];
 }
 
-function profileFaqs(profile: CourseProfile, name: string) {
+function profileFaqs(profile: CourseProfile, name: string, curated?: Array<{ question: string; answer: string }>) {
+  if (curated?.length) return curated.slice(0, 12);
   const faqs: Array<{ question: string; answer: string }> = [];
   const questions = new Set<string>();
   const addFaq = (question: string, answer: string) => {
@@ -173,11 +175,11 @@ export default async function CourseProfilePage({ params }: { params: Promise<{ 
   const imageUrl = absoluteUrl(profile.course.image ? mediaUrl(profile.course.image) || '/courses-hero.webp' : '/courses-hero.webp', siteUrl);
   const seo = courseSeo(profile);
   const linkableEntities = await getLinkableEntities();
-  const linkedHtmlContent = autoLinkHtml(profile.course.htmlContent, linkableEntities, {
+  const linkedHtmlContent = autoLinkHtml(seo.faqs?.length ? stripEmbeddedFaqs(profile.course.htmlContent) : profile.course.htmlContent, linkableEntities, {
     excludeHrefs: [`/courses/${slug}`]
-  });
+  }).replace(/(<img\b[^>]*\bsrc=")(\/uploads\/[^"]+)"/gi, (_, prefix: string, src: string) => `${prefix}${mediaUrl(src)}"`);
   const rating = profile.reviewSummary.averageRating;
-  const faqs = profileFaqs(profile, seo.displayName);
+  const faqs = profileFaqs(profile, seo.displayName, seo.faqs);
   const programmeNames = uniqueProgrammeNames(profile.programmes, name);
   const jsonLd = {
     '@context': 'https://schema.org',
