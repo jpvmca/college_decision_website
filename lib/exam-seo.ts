@@ -1301,6 +1301,7 @@ function overrides(year: number, institutes: number, feeRange: string | null): R
       intro: 'GGSIPU CET 2027 (IPU CET) is Guru Gobind Singh Indraprastha University\'s entrance test for programmes such as BBA, BCA, B.Com (Hons), BA (JMC), B.Ed. and lateral entry B.Tech at its University Schools and affiliated Delhi-NCR colleges. CET 2027 is not yet announced; registration is Expected in February–March 2027 and the test in late April–May 2027. In 2026 the CET ran from 25 April to 17 May. Regular B.Tech admits through JEE Main, not the CET.',
       ogImage: '/uploads/exams/ggsipu-cet/ggsipu-cet-2027-og.webp',
       absoluteTitle: true,
+      autoLinkExcludeHrefs: ['/courses/special', '/courses/architecture-diploma', '/courses/media-ug'],
       collegesNote: {
         text: 'GGSIPU CET is used only for GGSIPU\'s University Schools and its affiliated colleges, and only for programmes whose admission route includes the CET. Regular B.Tech (JEE Main), B.Arch (NATA), MBBS (NEET) and BA/BBA LL.B (CLAT) do not use the CET.',
         linkText: 'See GGSIPU admissions 2026-27',
