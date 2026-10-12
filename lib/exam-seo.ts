@@ -1240,7 +1240,7 @@ function overrides(year: number, institutes: number, feeRange: string | null): R
       intro: 'CUSAT CAT 2027 is Cochin University of Science and Technology\'s computer-based test for its own B.Tech, integrated M.Sc., five-year law and most PG programmes. CUSAT has not announced the 2027 dates; registration is Expected from late January 2027 and the test in May 2027. In 2026 registration ran from 27 January to 5 March and the test was held on 9–11 May. This guide uses only official CUSAT sources.',
       ogImage: '/uploads/exams/cusat-cat/cusat-cat-2027-og.webp',
       absoluteTitle: true,
-      autoLinkExcludeHrefs: ['/exams/cat', '/courses/mba'],
+      autoLinkExcludeHrefs: ['/exams/cat', '/courses/mba', '/courses/anm'],
       collegesNote: {
         text: 'CUSAT CAT is used only for Cochin University of Science and Technology\'s own programmes: the School of Engineering (Thrikkakara), CUCEK (Kuttanad) and the university departments in Kochi. Other Kerala engineering colleges admit through KEAM.',
         linkText: 'See CUSAT admissions',
