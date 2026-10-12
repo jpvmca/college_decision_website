@@ -1107,6 +1107,127 @@ function overrides(year: number, institutes: number, feeRange: string | null): R
       ],
       autoLinkExcludeHrefs: ['/courses/master-of-surgery', '/courses/special'],
     },
+    'amrita-entrance-examination-aeee': {
+      // AEEE 2027 content package (docs/exam-content/amrita-entrance-examination-aeee-2027.md in the backend repo).
+      // Official sources only: amrita.edu/btech (mirrored at aeee.amrita.edu) and the Amrita B.Tech CSAP Handbook 2026
+      // (webfiles.amrita.edu), checked on 12 Oct 2026. AEEE 2027 window (15 Apr - 7 May 2027) is official; other 2027 items are Expected.
+      intent: 'general',
+      h1: 'AEEE 2027: Exam Date (Apr–May), Pattern, Fees, CSAP & Slabs',
+      title: 'AEEE 2027: Exam Date (Apr–May), Pattern, Fees, CSAP & Slabs',
+      description: 'AEEE 2027 will be held 15 April – 7 May 2027; applications open November 2026. See the ₹1,300 fee, 100-question pattern, CSAP counselling and fee slabs.',
+      keywords: ['AEEE 2027', 'AEEE exam date 2027', 'Amrita Entrance Exam 2027', 'AEEE registration 2027', 'AEEE application fee', 'AEEE exam pattern', 'AEEE syllabus', 'AEEE eligibility', 'AEEE result', 'Amrita CSAP 2027', 'Amrita B.Tech fees', 'Amrita fee slab', 'AEEE vs JEE Main', 'Amrita B.Tech campuses'],
+      intro: 'AEEE 2027, Amrita Vishwa Vidyapeetham\'s entrance test for B.Tech at its eight engineering campuses, will be held between 15 April and 7 May 2027, with applications opening in November 2026. In 2026 the fee was ₹1,300 and seats were allotted through CSAP on AEEE rank or JEE Main percentile. This guide covers dates, pattern, eligibility, CSAP and fee slabs from official Amrita sources.',
+      ogImage: '/uploads/exams/amrita-entrance-examination-aeee/aeee-2027-og.webp',
+      absoluteTitle: true,
+      collegesNote: {
+        text: 'AEEE is used only for B.Tech admission at Amrita Vishwa Vidyapeetham\'s engineering campuses: Amaravati, Amritapuri, Bengaluru, Chennai, Coimbatore, Faridabad, Haridwar and Nagercoil. Seats are allotted through Amrita\'s CSAP counselling on AEEE rank or JEE Main percentile.',
+        linkText: 'See Amrita B.Tech admissions',
+        href: 'https://www.amrita.edu/btech/'
+      },
+      faqs: [
+        {
+          question: 'When is AEEE 2027?',
+          answer: 'Amrita\'s B.Tech admissions page says AEEE 2027 will be conducted between 15 April and 7 May 2027, and that applications for B.Tech 2027 start in November 2026. Slot-booking, admit card and result dates are not out yet.'
+        },
+        {
+          question: 'What is the AEEE application fee?',
+          answer: 'For 2026 the fee was ₹1,300 for the AEEE route, which also allowed applying with a JEE Main percentile at no extra cost, and ₹500 for the JEE Main-only route. Taking Phase 2 after Phase 1 cost ₹600 more. The 2027 fee is Expected with applications in November 2026.'
+        },
+        {
+          question: 'What is the AEEE exam pattern?',
+          answer: 'As published for 2026, AEEE is a 150-minute computer-based test in English with 100 multiple-choice questions: Mathematics 40, Physics 25, Chemistry 20, Quantitative Aptitude 10 and English 5. Each correct answer earns 3 marks and each wrong answer costs 1 mark.'
+        },
+        {
+          question: 'What is the eligibility for Amrita B.Tech through AEEE?',
+          answer: 'Class 12 or equivalent with Physics, Chemistry and Mathematics and at least 50% in each. Amrita\'s B.Tech page lists a 55% PCM aggregate, while the CSAP Handbook 2026 lists 60%, so aim for 60%. For 2026, candidates had to be born on or after 1 July 2005.'
+        },
+        {
+          question: 'Can I get Amrita B.Tech admission with JEE Main instead of AEEE?',
+          answer: 'Yes. AEEE is not mandatory. In 2026, 70% of CSAP seats were filled through AEEE ranks and 30% through JEE Main percentiles. Candidates who applied through both routes were allotted on their better rank.'
+        },
+        {
+          question: 'How was AEEE conducted in 2026?',
+          answer: 'In two phases: Phase 1 from 29 January to 1 February 2026 and Phase 2 from 25 to 30 April 2026. Candidates could take either or both, and the best score counted for the rank. Amrita has not yet said whether AEEE 2027 will have phases.'
+        },
+        {
+          question: 'What is Amrita CSAP?',
+          answer: 'The Centralised Seat Allotment Process is Amrita\'s online B.Tech counselling. In 2026 it cost ₹5,000 to register. Candidates listed up to 60 campus–branch preferences, each with the highest fee slab they would pay, and seats were allotted in two rounds and a mop-up round from 1 to 24 June 2026.'
+        },
+        {
+          question: 'What are Amrita B.Tech fees after AEEE?',
+          answer: 'Fees depend on campus, branch group and the rank-based fee slab. For 2026-27, annual tuition for CSE-group branches at Coimbatore ran from ₹1.5 lakh in Slab 1 to ₹6 lakh in Slab 5. Slabs 1–3 are scholarship slabs, renewed each year on minimum CGPA.'
+        },
+        {
+          question: 'Does Amrita publish AEEE cut-offs?',
+          answer: 'No. Amrita says it has no cut-off system for AEEE or JEE. Allotment depends on rank, the number of applicants and their preferences, which vary every year. Every candidate with an AEEE rank or JEE Main percentile can register for CSAP.'
+        },
+        {
+          question: 'Which Amrita campuses offer B.Tech?',
+          answer: 'Eight: Amaravati, Amritapuri, Bengaluru, Chennai, Coimbatore, Faridabad, Haridwar and Nagercoil. AI & Data Science is offered at all eight and CSE at seven. Coimbatore has the widest choice, including Aerospace, Civil and Chemical Engineering.'
+        }
+      ],
+    },
+    bitsat: {
+      // BITSAT 2027 content package (docs/exam-content/bitsat-2027.md in the backend repo).
+      // Official sources only: bitsadmission.com (redirects to admissions.bits-pilani.ac.in): BITSAT-2026 brochure, eligibility,
+      // fee 2026-27, scholarship, cut-off and FAQ pages and admission notices, checked on 12 Oct 2026. 2027 dates are Expected.
+      intent: 'general',
+      h1: 'BITSAT 2027: Exam Dates, Eligibility, Pattern, Fees, Cutoffs',
+      title: 'BITSAT 2027: Exam Dates, Eligibility, Pattern, Fees, Cutoffs',
+      description: 'BITSAT 2027 applications open December 2026 (tentative). See the 75% PCM rule, 130-question pattern, ₹3,600 fee, iterations and 2026 cut-offs by campus.',
+      keywords: ['BITSAT 2027', 'BITSAT exam date 2027', 'BITSAT registration 2027', 'BITSAT eligibility', 'BITSAT exam pattern', 'BITSAT syllabus', 'BITSAT application fee', 'BITSAT cut off', 'BITSAT 2026 cut off', 'BITS Pilani admission 2027', 'BITS Goa', 'BITS Hyderabad', 'BITSAT iteration', 'BITS Pilani fees'],
+      intro: 'BITSAT 2027 is BITS Pilani\'s online test for B.E., M.Sc. and B.Pharm. admission at its Pilani, K K Birla Goa and Hyderabad campuses. BITS says the 2027-28 admission cycle opens in December 2026 (tentatively), and the test is Expected in April and May 2027. In 2026 the sessions were held on 15–16 April and 25–27 May. This guide covers eligibility, pattern, fees and cut-offs from official BITS sources.',
+      ogImage: '/uploads/exams/bitsat/bitsat-2027-og.webp',
+      absoluteTitle: true,
+      collegesNote: {
+        text: 'BITSAT is used only for integrated first-degree admission (B.E., M.Sc. and B.Pharm.) at BITS Pilani\'s Pilani, K K Birla Goa and Hyderabad campuses. BITS Pilani, Dubai Campus does not require BITSAT.',
+        linkText: 'See BITS first-degree admissions',
+        href: 'https://admissions.bits-pilani.ac.in/FD/FD.html'
+      },
+      faqs: [
+        {
+          question: 'When is BITSAT 2027?',
+          answer: 'BITS has not announced BITSAT 2027 dates. Its admissions site says the 2027-28 first-degree admission cycle will open in December 2026 (tentatively). In 2026 Session 1 was held on 15–16 April and Session 2 on 25–27 May, so the 2027 sessions are Expected in April and May 2027.'
+        },
+        {
+          question: 'What is the eligibility for BITSAT?',
+          answer: 'Class 12 with at least 75% aggregate in Physics, Chemistry and Mathematics and at least 60% in each subject, with five subjects in total. PCB is accepted for B.Pharm., B.E. Environmental & Sustainability Engineering and M.Sc. Biological Sciences. The FAQ says 74.90% is not rounded up.'
+        },
+        {
+          question: 'What is the BITSAT application fee?',
+          answer: 'For 2026 at Indian and Nepal centres, one session cost ₹3,600 for male and ₹3,100 for female or transgender candidates, and both sessions cost ₹5,600 or ₹4,600. The Dubai centre cost ₹7,250, or ₹9,250 for both sessions. The fee is non-refundable.'
+        },
+        {
+          question: 'What is the BITSAT exam pattern?',
+          answer: 'A 3-hour computer-based test with 130 MCQs worth 390 marks: Physics 30, Chemistry 30, English Proficiency 10, Logical Reasoning 20, and Mathematics or Biology 40. Each correct answer earns 3 marks and each wrong answer costs 1. Candidates who answer all 130 can attempt 12 extra questions.'
+        },
+        {
+          question: 'Can I take BITSAT twice?',
+          answer: 'Yes. In 2026 candidates could appear in Session 1 and Session 2, and the higher of the two scores was used for admission. Choosing both sessions when first applying was cheaper than adding Session 2 later.'
+        },
+        {
+          question: 'Does BITS Pilani accept JEE Main scores?',
+          answer: 'No. The BITSAT FAQ says BITS Pilani does not consider JEE Main scores. Admission is based on BITSAT score, apart from direct admission for state and central board toppers and SAT-based admission for international students.'
+        },
+        {
+          question: 'Is there reservation or a management quota at BITS Pilani?',
+          answer: 'No. According to the official FAQ, BITS Pilani has no reservation of any kind and no management quota. It also does not offer lateral-entry admission.'
+        },
+        {
+          question: 'What were the BITSAT 2026 cut-offs?',
+          answer: 'Final cut-offs for the 2026-27 session, out of 390, for B.E. Computer Science were 308 at Pilani, 274 at Goa and 272 at Hyderabad. B.E. Mathematics and Computing closed at 299, 270 and 268, and B.Pharm. at 200 at Pilani and Hyderabad.'
+        },
+        {
+          question: 'What are BITS Pilani first-degree fees?',
+          answer: 'For students admitted in 2026-27, semester tuition was ₹2,91,500 at all three campuses, plus a one-time ₹64,100 admission fee and ₹36,000 hostel fee per semester. Tuition rises each year. The top 500 BITSAT rankers with family income up to ₹20 lakh get full tuition.'
+        },
+        {
+          question: 'Which programmes can I join through BITSAT?',
+          answer: 'B.E. branches, B.Pharm. and four-year integrated M.Sc. programmes at Pilani, K K Birla Goa and Hyderabad. For 2026 Pilani offered 11 B.E. branches, Goa 9 and Hyderabad 10. M.Sc. students can compete for a B.E. dual degree after the first year.'
+        }
+      ],
+      autoLinkExcludeHrefs: ['/courses/mba'],
+    },
     tnea: {
       intent: 'counselling',
       h1: `TNEA ${year}: Counselling, Cutoff, Colleges & Fees`,
