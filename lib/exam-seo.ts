@@ -1289,6 +1289,66 @@ function overrides(year: number, institutes: number, feeRange: string | null): R
         }
       ],
     },
+    'ggsipu-cet': {
+      // GGSIPU CET 2027 content package (docs/exam-content/ggsipu-cet-2027.md in the backend repo).
+      // Official sources only: ipu.ac.in (UG/PG Admission Brochures 2026-27, CET 2026 notices and results) and ipu.admissions.nic.in,
+      // checked on 12 Oct 2026. CET 2027 not announced; 2027 dates are Expected.
+      intent: 'general',
+      h1: 'GGSIPU CET 2027: Dates, Eligibility, Pattern, Fees, Seats',
+      title: 'GGSIPU CET 2027: Dates, Eligibility, Pattern, Fees, Seats',
+      description: 'GGSIPU CET 2027 registration Expected Feb–Mar 2027. See which IPU courses use CET, the 100-question pattern, ₹2,500 fee, 85% Delhi quota and counselling.',
+      keywords: ['GGSIPU CET 2027', 'IPU CET 2027', 'IPU CET exam date 2027', 'IPU CET registration 2027', 'GGSIPU CET eligibility', 'IPU CET exam pattern', 'IPU CET application fee', 'IPU CET BBA', 'IPU CET BCA', 'IPU counselling 2027', 'GGSIPU admission 2027', 'IPU CET result'],
+      intro: 'GGSIPU CET 2027 (IPU CET) is Guru Gobind Singh Indraprastha University\'s entrance test for programmes such as BBA, BCA, B.Com (Hons), BA (JMC), B.Ed. and lateral entry B.Tech at its University Schools and affiliated Delhi-NCR colleges. CET 2027 is not yet announced; registration is Expected in February–March 2027 and the test in late April–May 2027. In 2026 the CET ran from 25 April to 17 May. Regular B.Tech admits through JEE Main, not the CET.',
+      ogImage: '/uploads/exams/ggsipu-cet/ggsipu-cet-2027-og.webp',
+      absoluteTitle: true,
+      collegesNote: {
+        text: 'GGSIPU CET is used only for GGSIPU\'s University Schools and its affiliated colleges, and only for programmes whose admission route includes the CET. Regular B.Tech (JEE Main), B.Arch (NATA), MBBS (NEET) and BA/BBA LL.B (CLAT) do not use the CET.',
+        linkText: 'See GGSIPU admissions 2026-27',
+        href: 'https://ipu.ac.in/adm2026/adm2026main.php'
+      },
+      faqs: [
+        {
+          question: 'When is GGSIPU CET 2027?',
+          answer: 'GGSIPU has not announced CET 2027. In 2026 registration ran from 2 February to 31 March and the CET was held between 25 April and 17 May, with the first results on 4 May. Registration for 2027 is Expected in February–March 2027 and the test in late April–May 2027.'
+        },
+        {
+          question: 'What is the GGSIPU CET application fee?',
+          answer: 'For 2026 the fee was ₹2,500 per application plus taxes and service charges, and it is non-refundable. Challenging an answer key costs ₹200 per question within three days. There is no fee to take part in counselling.'
+        },
+        {
+          question: 'What is the GGSIPU CET exam pattern?',
+          answer: 'Every CET code has 100 objective multiple-choice questions in 150 minutes, for 400 marks. Each correct answer earns 4 marks and each wrong answer costs 1. The 2026 test was offline on OMR sheets, in English, with B.Ed. also in Hindi. The sections differ by programme.'
+        },
+        {
+          question: 'Is B.Tech at IPU through the CET?',
+          answer: 'No. For regular B.Tech (code 131), the 2026-27 brochure lists JEE Main Paper I first and CUET second. The CET is used for lateral entry to B.Tech (codes 128 and 129) and for B.Tech Biotechnology at the University School of Biotechnology (code 130).'
+        },
+        {
+          question: 'Which programmes admit through GGSIPU CET?',
+          answer: 'The CET is the first route for BBA, BCA, B.Com (Hons), BA JMC, BHMCT, BMS, B.Ed., B.Pharm, B.Sc. Yoga, paramedical courses, three-year LL.B. and several PG courses. MBA uses CAT and CMAT before the CET, MCA uses NIMCET first and M.Tech uses GATE first.'
+        },
+        {
+          question: 'What is the eligibility for IPU CET BBA and BCA?',
+          answer: 'Both need Class 12 with at least 50% aggregate and a pass in English. BCA also requires Mathematics, Computer Science or another listed subject. GGSIPU does not round off percentages, so 49.9% does not count as 50%. You must not be older than 21 on 1 August of the admission year.'
+        },
+        {
+          question: 'Is GGSIPU CET a state-level exam?',
+          answer: 'Yes. GGSIPU is a state university established by the Government of NCT of Delhi. 85% of sanctioned seats are reserved for Delhi Region candidates and 15% for candidates who passed their qualifying exam outside Delhi.'
+        },
+        {
+          question: 'How does IPU counselling work?',
+          answer: 'Most codes have centralised online counselling on ipu.admissions.nic.in. In 2026 Round 1 choice filling ran from 2 to 9 June, Round 2 allotment was on 29 June and the Round 3 sliding allotment on 9 July. Candidates reported to their institutes from 14 to 17 July, and spot rounds followed.'
+        },
+        {
+          question: 'Does GGSIPU use CUET scores?',
+          answer: 'Yes, but mostly as a second step. For many CET programmes the university first fills seats from its CET merit list and then admits through CUET merit if seats are still vacant. CUET-qualified candidates register separately when GGSIPU announces it.'
+        },
+        {
+          question: 'Is there a management quota in IPU colleges?',
+          answer: 'Self-financing affiliated colleges, except minority institutions, include 10% management quota seats in their intake. You must still have qualified in the GGSIPU CET or the relevant national test. University Schools, government institutes and minority institutions have no management quota.'
+        }
+      ],
+    },
     tnea: {
       intent: 'counselling',
       h1: `TNEA ${year}: Counselling, Cutoff, Colleges & Fees`,
