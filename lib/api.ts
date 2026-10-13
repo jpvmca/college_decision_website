@@ -1,6 +1,7 @@
 const apiUrl = process.env.BACKEND_API_URL || 'http://127.0.0.1:4000/api/v1';
 const PUBLIC_MEDIA_ORIGIN = (process.env.NEXT_PUBLIC_MEDIA_URL || '').replace(/\/$/, '');
 const INTERNAL_UPLOADS_ORIGIN = /^(https?:\/\/)(?:127\.0\.0\.1|localhost):9101/i;
+const PRODUCTION_UPLOADS_ORIGIN = /^https?:\/\/api\.collegedecision\.in(?=\/uploads\/)/i;
 
 function mediaOrigin() {
   if (PUBLIC_MEDIA_ORIGIN) return PUBLIC_MEDIA_ORIGIN;
@@ -18,7 +19,8 @@ function mediaOrigin() {
 
 export function mediaUrl(value: string | null | undefined) {
   if (!value || !String(value).trim()) return '';
-  const src = String(value).trim().replace(INTERNAL_UPLOADS_ORIGIN, 'https://api.collegedecision.in');
+  let src = String(value).trim().replace(INTERNAL_UPLOADS_ORIGIN, 'https://api.collegedecision.in');
+  if (PUBLIC_MEDIA_ORIGIN) src = src.replace(PRODUCTION_UPLOADS_ORIGIN, PUBLIC_MEDIA_ORIGIN);
   if (/^https?:\/\//i.test(src)) return src;
   const origin = mediaOrigin();
   return `${origin}${src.startsWith('/') ? src : `/${src}`}`;

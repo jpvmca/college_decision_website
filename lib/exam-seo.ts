@@ -1350,6 +1350,130 @@ function overrides(year: number, institutes: number, feeRange: string | null): R
         }
       ],
     },
+    'ip-university-cet': {
+      // IPU CET BBA 2027 content package (docs/exam-content/ip-university-cet-2027.md in the backend repo).
+      // BBA-focused (CET code 125) to avoid duplicating the general ggsipu-cet page. Official sources only: ipu.ac.in
+      // (Bachelor's Admission Brochure 2026-27 ch. 0-5, 11, 13, 14; admission notices), checked on 13 Oct 2026. 2027 items are Expected.
+      intent: 'general',
+      h1: 'IPU CET BBA 2027: Pattern, Eligibility, Dates & Colleges',
+      title: 'IPU CET BBA 2027: Pattern, Eligibility, Dates & Colleges',
+      description: 'IPU CET BBA 2027 guide: code 125 pattern (4 sections, +4/−1), 50% eligibility, Expected dates, ₹2,500 fee, top BBA intakes and counselling steps.',
+      keywords: ['IPU CET BBA 2027', 'IPU BBA admission 2027', 'GGSIPU BBA CET', 'IPU CET code 125', 'IPU BBA eligibility', 'IPU CET BBA exam pattern', 'IPU BBA colleges', 'IPU BBA counselling', 'IPU BBA through CUET', 'IPU BBA fees'],
+      intro: 'IPU CET BBA 2027 is the GGSIPU entrance test (CET code 125) for BBA and the 5-year BBA-MBA at University Schools and affiliated Delhi-NCR colleges. For 2026-27 seats were filled from CET merit first and CUET UG only for vacant seats. CET 2027 is not yet announced; registration is Expected in February–March 2027.',
+      ogImage: '/uploads/exams/ip-university-cet/ipu-cet-bba-2027-og.webp',
+      absoluteTitle: true,
+      collegesNote: {
+        text: 'IPU CET BBA (code 125) admits only to GGSIPU University Schools and GGSIPU-affiliated colleges. Seat intakes change every year; check chapter 13 of the current GGSIPU admission brochure.',
+        linkText: 'See GGSIPU admissions 2026-27',
+        href: 'https://ipu.ac.in/adm2026/adm2026main.php'
+      },
+      faqs: [
+        { question: 'Is IPU CET BBA 2027 announced?', answer: 'No. As of 13 October 2026 GGSIPU has not released the 2027-28 brochure or dates. In 2026 registration ran from 2 February to 31 March and the CET window was 25 April to 17 May. 2027 registration is Expected in February–March 2027.' },
+        { question: 'Is IPU BBA admission through CET or CUET?', answer: 'For 2026-27 the brochure lists CET first and CUET second for code 125. Seats are filled from CET merit, and CUET UG merit is used only for seats left vacant after the CET list is exhausted.' },
+        { question: 'What is the IPU CET BBA exam pattern?', answer: '100 objective questions in 150 minutes for 400 marks, with +4 for a correct answer and −1 for a wrong one. English, General Awareness, Logical & Analytical Ability and Management Aptitude & Communication carry 25% each. The 2026 test was offline on OMR sheets.' },
+        { question: 'What is the eligibility for IPU BBA?', answer: 'A pass in Class 12 (CBSE or equivalent) with at least 50% aggregate and a pass in English. Percentages are not rounded off, and you must not be older than 21 on 1 August of the admission year. Maths is not required.' },
+        { question: 'What is the IPU CET application fee?', answer: 'In 2026 it was ₹2,500 per CET code plus taxes and service charges, non-refundable. There is no fee to take part in counselling.' },
+        { question: 'How many BBA seats are there in IPU colleges?', answer: 'GGSIPU does not publish one total. Chapter 13 of the 2026-27 brochure lists BBA intake college by college for the 2025-26 session; large colleges such as Maharaja Agrasen Institute of Management Studies list 240 seats plus 180 in the second shift.' },
+        { question: 'What is the BBA fee at an IPU University School?', answer: 'Chapter 14 of the 2026-27 brochure lists a first-year total of ₹1,56,500 for four-year UG programmes such as BBA at University Schools, including tuition of ₹1,21,000. Affiliated college fees are set by the State Fee Regulatory Committee.' }
+      ],
+    },
+    'kcet': {
+      // Content package: docs/exam-content/kcet-2027.md (backend). Official sources only, checked 13 Oct 2026. 2027 items are Expected.
+      intent: 'general',
+      h1: "KCET 2027: Exam Dates, Pattern, Eligibility, Fees & Rank",
+      title: "KCET 2027: Exam Dates, Pattern, Eligibility, Fees & Rank",
+      description: "KCET 2027 guide: Expected dates, 60-mark papers with no negative marking, 45% PCM eligibility, 50:50 rank rule, 2026-27 fees and KEA counselling.",
+      keywords: ["KCET 2027", "KCET 2027 exam date", "KCET exam pattern", "KCET eligibility", "KCET rank calculation", "KCET fees 2026-27", "KEA counselling", "UGCET 2027", "Karnataka CET 2027"],
+      intro: "KCET 2027 (UGCET) is the Karnataka Examinations Authority entrance test for government-quota engineering, farm science, pharmacy and allied seats. Engineering rank uses Class 12 and CET PCM marks in equal proportion. KCET 2027 is not yet announced; the application is Expected from mid-January 2027 and the test in April 2027.",
+      ogImage: '/uploads/exams/kcet/kcet-2027-og.webp',
+      absoluteTitle: true,
+      faqs: [
+        { question: "When is KCET 2027?", answer: "KEA has not announced KCET 2027. In 2026 the application opened on 17 January and the CET was held on 23 and 24 April, with the Kannada language test on 22 April. The 2027 application is Expected from mid-January 2027 and the test in April 2027." },
+        { question: "Is there negative marking in KCET?", answer: "No. Each question carries one mark and wrong answers are not penalised. Marking more than one option for a question gives zero for that question." },
+        { question: "How is the KCET engineering rank calculated?", answer: "KEA prepares engineering merit by taking marks in equal proportion from the qualifying exam (2nd PUC/Class 12) and the CET in Physics, Chemistry and Mathematics." },
+        { question: "What is the KCET exam pattern?", answer: "Four papers – Physics, Chemistry, Mathematics and Biology – each with 60 one-mark questions in 80 minutes. In 2026 Physics and Chemistry were on day one and Mathematics and Biology on day two." },
+        { question: "What is the eligibility for KCET engineering?", answer: "A pass in 2nd PUC/Class 12 with English and at least 45% in Physics and Mathematics along with Chemistry, Biotechnology, Biology, Electronics or Computer Science (40% for SC, ST and Karnataka OBC categories). No minimum CET score is prescribed." },
+        { question: "Can non-Karnataka students get engineering seats through KCET?", answer: "The 2026 bulletin says non-Karnataka candidates are not eligible for engineering stream seats through KEA and cannot claim reservation. Government seats need an eligibility clause such as seven years of study in Karnataka." },
+        { question: "What is the government college engineering fee through KCET?", answer: "KEA's provisional 2026-27 fee for GM category government-quota seats was ₹47,100 a year in government colleges, ₹1,20,320 in Type-1 unaided colleges and ₹1,30,320 in Type-2 unaided colleges." }
+      ],
+    },
+    'keam': {
+      // Content package: docs/exam-content/keam-2027.md (backend). Official sources only, checked 13 Oct 2026. 2027 items are Expected.
+      intent: 'general',
+      h1: "KEAM 2027: Exam Dates, Pattern, Index Mark, Eligibility & Fees",
+      title: "KEAM 2027: Exam Dates, Pattern, Index Mark, Eligibility & Fees",
+      description: "KEAM 2027 guide: Expected dates, 150-question CBT with +4/−1 marking, how the 600-point index mark works, 45% eligibility, ₹925 fee and allotment.",
+      keywords: ["KEAM 2027", "KEAM 2027 exam date", "KEAM exam pattern", "KEAM index mark", "KEAM normalisation", "KEAM eligibility", "KEAM application fee", "KEAM rank list", "CEE Kerala"],
+      intro: "KEAM 2027 is the CEE Kerala admission process for engineering, architecture, pharmacy and medical courses. The engineering CBT has 150 questions in 180 minutes, and rank comes from a 600-point index mark split equally between the entrance score and Class 12 PCM marks. KEAM 2027 is not yet announced; the application is Expected in January 2027.",
+      ogImage: '/uploads/exams/keam/keam-2027-og.webp',
+      absoluteTitle: true,
+      faqs: [
+        { question: "When is KEAM 2027?", answer: "CEE Kerala has not announced KEAM 2027. In 2026 applications ran from 5 to 31 January and the engineering CBT was held from 17 to 23 April. The 2027 application is Expected in January 2027." },
+        { question: "What is the KEAM exam pattern?", answer: "The engineering test is a computer-based test with 150 questions in 180 minutes: 75 Mathematics, 45 Physics and 30 Chemistry. Each correct answer earns 4 marks and each wrong answer loses 1." },
+        { question: "How is the KEAM rank calculated?", answer: "Engineering rank uses an index mark out of 600, giving equal weight to the normalised entrance score and normalised Class 12 marks in Mathematics, Physics and Chemistry in the ratio 5:3:2." },
+        { question: "What is the minimum score to qualify KEAM?", answer: "You need a normalised score of at least 10 in the engineering entrance test to appear on the rank list. SC and ST candidates are exempt, but anyone who answers no question is disqualified." },
+        { question: "What is the KEAM application fee?", answer: "In 2026 it was ₹925 for engineering or B.Pharm (₹400 for SC, nil for ST) and ₹650 for architecture or medical streams only (₹260 for SC). Choosing the UAE centre added ₹16,000." },
+        { question: "Is KEAM needed for MBBS or B.Arch in Kerala?", answer: "You apply through KEAM, but MBBS, BDS and allied courses use NEET-UG scores and B.Arch uses NATA marks with qualifying exam marks." }
+      ],
+    },
+    'mah-ar-cat': {
+      // Content package: docs/exam-content/mah-ar-cat-2027.md (backend). Official sources only, checked 13 Oct 2026. 2027 items are Expected.
+      intent: 'general',
+      h1: "Maharashtra B.Arch Admission 2027: Eligibility, CAP & Seats",
+      title: "Maharashtra B.Arch Admission 2027: Eligibility, CAP & Seats",
+      description: "Maharashtra B.Arch admission 2027: no MAH AR CAT, NATA or JEE B.Arch route, 45% eligibility, tie-break rules, seat shares and CAP steps explained.",
+      keywords: ["Maharashtra B.Arch admission 2027", "MAH AR CAT", "MAH B.Arch CAP 2027", "Maharashtra B.Arch eligibility", "B.Arch CAP Maharashtra", "NATA Maharashtra admission", "JEE Main B.Arch Maharashtra", "B.Arch seat matrix Maharashtra"],
+      intro: "Maharashtra B.Arch admission 2027 runs through the State CET Cell CAP, not a separate state architecture test. For 2026-27 you needed a NATA or JEE Main B.Arch score plus 10+2 with Physics and Mathematics and 45% aggregate. The 2027-28 CAP is Expected in mid-2027, after NATA and JEE Main results.",
+      ogImage: '/uploads/exams/mah-ar-cat/mah-barch-2027-og.webp',
+      absoluteTitle: true,
+      faqs: [
+        { question: "Is there a MAH AR CAT exam in 2027?", answer: "No separate Maharashtra architecture CET was held for 2026-27, and none had been announced for 2027 as of October 2026. B.Arch admission uses NATA or the JEE Main B.Arch paper through State CET Cell CAP." },
+        { question: "What is the eligibility for B.Arch in Maharashtra?", answer: "10+2 with Physics and Mathematics plus one listed subject and at least 45% aggregate (40% for Maharashtra reserved, EWS and PwD candidates), or a 10+3 diploma with Mathematics, and a qualifying score in NATA or the JEE B.Arch paper." },
+        { question: "Is Chemistry compulsory for B.Arch in Maharashtra?", answer: "No. Physics and Mathematics are compulsory, and the third subject can be Chemistry, Biology, a Technical Vocational subject, Computer Science, IT, Informatics Practices, Engineering Graphics or Business Studies." },
+        { question: "How are ties broken in the Maharashtra B.Arch merit list?", answer: "By higher NATA marks first, then higher percentage in SSC Mathematics, then higher SSC aggregate percentage." },
+        { question: "What is the B.Arch CAP fee in Maharashtra?", answer: "For 2026-27 it was ₹1,300 for general and outside-Maharashtra candidates, ₹1,000 for Maharashtra reserved and PwD candidates, and USD 50 for NRI, OCI, PIO and foreign national candidates." },
+        { question: "What was the last date for B.Arch admission in 2026?", answer: "After a Council of Architecture revision, the CET Cell fixed 30 September 2026 as the final cut-off date for B.Arch and M.Arch admissions in 2026-27, up from 15 September." }
+      ],
+    },
+    'mah-mca-cet': {
+      // Content package: docs/exam-content/mah-mca-cet-2027.md (backend). Official sources only, checked 13 Oct 2026. 2027 items are Expected.
+      intent: 'general',
+      h1: "MAH MCA CET 2027: Exam Date, Pattern, Syllabus & Eligibility",
+      title: "MAH MCA CET 2027: Exam Date, Pattern, Syllabus & Eligibility",
+      description: "MAH MCA CET 2027 guide: Expected dates, 100-question 200-mark pattern, full syllabus, 50% eligibility, ₹1,500 fee and how MCA CAP seats are shared.",
+      keywords: ["MAH MCA CET 2027", "MAH MCA CET exam date", "MAH MCA CET pattern", "MAH MCA CET syllabus", "MAH MCA CET eligibility", "MCA CET Maharashtra", "MCA CAP Maharashtra", "MAH MCA CET fee"],
+      intro: "MAH MCA CET 2027 is the State CET Cell, Maharashtra online entrance test for MCA admission through CAP: 100 questions, 200 marks, 90 minutes, no negative marking. MAH MCA CET 2027 is not yet announced; registration is Expected in January–February 2027 and the test in late March 2027. In 2026 the test was on 30 March.",
+      ogImage: '/uploads/exams/mah-mca-cet/mah-mca-cet-2027-og.webp',
+      absoluteTitle: true,
+      faqs: [
+        { question: "When is MAH MCA CET 2027?", answer: "The State CET Cell has not announced MAH MCA CET 2027. In 2026 registration ran from 7 January (extended to 23 February) and the test was held on 30 March 2026." },
+        { question: "What is the MAH MCA CET exam pattern?", answer: "An online test of 100 multiple-choice questions for 200 marks in 90 minutes: Mathematics & Statistics 30, Logical/Abstract Reasoning 30, English 20 and Computer Concepts 20, at two marks each." },
+        { question: "Is there negative marking in MAH MCA CET?", answer: "No. Unanswered questions score zero and wrong answers are not penalised." },
+        { question: "Who is eligible for MAH MCA CET?", answer: "Indian nationals with any bachelor's degree, preferably with Mathematics at 10+2 or graduation, and at least 50% aggregate (45% for Maharashtra reserved, EWS and PwD candidates). Final-year students can apply." },
+        { question: "What is the MAH MCA CET application fee?", answer: "In 2026 it was ₹1,500 for open category, outside-Maharashtra and J&K migrant candidates, and ₹1,300 for Maharashtra reserved categories, PwD, orphan and transgender candidates." },
+        { question: "Can I take MAH MCA CET without Maths in graduation?", answer: "Yes. The brochure says Mathematics is preferred at 10+2 or graduation level, not mandatory. The Mathematics & Statistics section carries 60 of the 200 marks." }
+      ],
+    },
+    'mh-cet': {
+      // Content package: docs/exam-content/mh-cet-2027.md (backend). Official sources only, checked 13 Oct 2026. 2027 items are Expected.
+      intent: 'general',
+      h1: "MHT CET 2027: Exam Dates, Pattern, Eligibility, Fees & CAP",
+      title: "MHT CET 2027: Exam Dates, Pattern, Eligibility, Fees & CAP",
+      description: "MHT CET 2027 guide: Expected dates, the 2026 two-attempt format, PCM/PCB pattern with no negative marking, 45% eligibility, fees and CAP seat rules.",
+      keywords: ["MHT CET 2027", "MHT CET 2027 exam date", "MHT CET exam pattern", "MHT CET eligibility", "MHT CET two attempts", "MHT CET percentile", "MHT CET fees", "MHT CET CAP", "MH CET 2027"],
+      intro: "MHT CET 2027 is the State CET Cell, Maharashtra entrance test for engineering (PCM) and pharmacy (PCB) admissions through CAP. It is a 180-minute CBT with no negative marking. In 2026 students could take each group twice, in April and May. MHT CET 2027 is not yet announced; registration is Expected in January–February 2027.",
+      ogImage: '/uploads/exams/mh-cet/mht-cet-2027-og.webp',
+      absoluteTitle: true,
+      faqs: [
+        { question: "When is MHT CET 2027?", answer: "The State CET Cell has not announced MHT CET 2027. In 2026 registration ran from 10 January to 12 February, the PCM group was held from 11 to 20 April and the PCB group from 21 to 26 April, with second attempts in May." },
+        { question: "Will MHT CET 2027 have two attempts?", answer: "Not confirmed. In 2026 students could take each group twice and the better total percentile counted. Check the 2027 brochure when it is released." },
+        { question: "Is there negative marking in MHT CET?", answer: "No. The 2026 brochure states there is no negative marking for either PCM or PCB." },
+        { question: "What is the MHT CET exam pattern?", answer: "PCM has 150 questions in 180 minutes, with Physics and Chemistry at one mark each and Mathematics at two marks each. PCB has 200 one-mark questions. Physics and Chemistry come first for 90 minutes, then Maths or Biology." },
+        { question: "What is the eligibility for B.E. admission through MHT CET?", answer: "10+2 with Physics and Mathematics plus a listed subject, at least 45% in those subjects (40% for Maharashtra reserved, EWS and PwD) and a non-zero score in every PCM subject of MHT CET." },
+        { question: "What is the MHT CET application fee?", answer: "In 2026 it was ₹1,300 per group per attempt for general and outside-Maharashtra candidates and ₹1,000 for Maharashtra reserved categories; both attempts cost ₹2,600 or ₹2,000." },
+        { question: "How many students take MHT CET?", answer: "For the 2026 PCM first attempt, 4,79,332 candidates registered and 4,54,069 appeared, and 26 scored the 100 percentile." }
+      ],
+    },
     tnea: {
       intent: 'counselling',
       h1: `TNEA ${year}: Counselling, Cutoff, Colleges & Fees`,

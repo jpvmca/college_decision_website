@@ -2,7 +2,7 @@ import type { Metadata } from 'next';
 import { notFound, permanentRedirect, redirect } from 'next/navigation';
 import Link from 'next/link';
 import { ArrowRight } from 'lucide-react';
-import { api } from '../../../lib/api';
+import { api, mediaUrl } from '../../../lib/api';
 import { getLinkableEntities } from '../../../lib/linkable-entities';
 import AutoLinkedText from '../../../components/AutoLinkedText';
 import ArticleCollegeList from '../../../components/ArticleCollegeList';
@@ -61,7 +61,8 @@ function getSiteUrl() {
   return (process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3001').replace(/\/+$/, '');
 }
 
-function getResponsiveImageSources(imageUrl: string, preserveAspectRatio = false) {
+function getResponsiveImageSources(rawImageUrl: string, preserveAspectRatio = false) {
+  const imageUrl = mediaUrl(rawImageUrl);
   const widths = [480, 768, 1200, 1600];
   const quality = preserveAspectRatio ? 89 : 78;
   const addQuery = (width: number) => `${imageUrl}${imageUrl.includes('?') ? '&' : '?'}w=${width}${preserveAspectRatio ? '' : `&h=${Math.round(width * 0.5625)}`}&q=${quality}&convert=webp`;
@@ -217,7 +218,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
       title: pageTitle,
       description: seo.intro,
       url: canonical,
-      images: [{ url: article.imageUrl || '/og/default.png', width: 1200, height: 630, alt: article.imageUrl ? pageTitle : 'College Decision' }]
+      images: [{ url: mediaUrl(article.imageUrl) || '/og/default.png', width: 1200, height: 630, alt: article.imageUrl ? pageTitle : 'College Decision' }]
     },
     twitter: { card: 'summary_large_image', title: pageTitle }
   };
@@ -280,7 +281,7 @@ export default async function ArticleDetailPage({ params, searchParams }: { para
           name: 'College Decision',
           logo: { '@type': 'ImageObject', url: `${siteUrl}/logo.svg` }
         },
-        image: article.imageUrl || `${siteUrl}/og/default.png`
+        image: mediaUrl(article.imageUrl) || `${siteUrl}/og/default.png`
       },
       {
         '@type': 'BreadcrumbList',

@@ -1,6 +1,6 @@
 import Link from 'next/link';
 import type { Metadata } from 'next';
-import { api, ArticleList } from '../lib/api';
+import { api, ArticleList, mediaUrl } from '../lib/api';
 import CollegeDecisionFilter from '../components/CollegeDecisionFilter';
 import ExamLogo from '../components/ExamLogo';
 import InstituteLogo from '../components/InstituteLogo';
@@ -32,7 +32,8 @@ export const metadata: Metadata = {
   twitter: { card: 'summary_large_image', title: homeTitle, description: homeDescription }
 };
 
-function getGuideImageSources(imageUrl: string) {
+function getGuideImageSources(rawImageUrl: string) {
+  const imageUrl = mediaUrl(rawImageUrl);
   const widths = [320, 480, 640];
   const addQuery = (width: number) => `${imageUrl}?w=${width}&h=${Math.round(width * 0.5625)}&q=78&convert=webp`;
   return { src: addQuery(480), srcSet: widths.map((width) => `${addQuery(width)} ${width}w`).join(', ') };

@@ -92,6 +92,62 @@ export function courseDisplayName(slug: string, dbName: string) {
   if (slug === 'hotel-management-pg') return 'Hotel Management PG';
   if (slug === 'animation-pg') return 'Animation (PG)';
   if (slug === 'hotel-management-diploma') return 'Diploma in Hotel Management';
+  if (slug === 'polytechnic-diploma') return 'Polytechnic Diploma (Lateral Entry)';
+  if (slug === 'online-emba') return 'Online Executive MBA (EMBA)';
+  if (slug === 'online-programmes') return 'Online Learning Programmes';
+  if (slug === 'mass-communication-pg') return 'Mass Communication (PG)';
+  if (slug === 'digital-marketing') return 'Digital Marketing (PG)';
+  if (slug === 'bftech') return 'B.FTech (Bachelor of Fashion Technology)';
+  if (slug === 'bfa') return 'BFA';
+  if (slug === 'bvoc') return 'B.Voc';
+  if (slug === 'bped') return 'B.P.Ed';
+  if (slug === 'bms') return 'BMS';
+  if (slug === 'mms') return 'MMS';
+  if (slug === 'masters') return 'Master\'s Degree';
+  if (slug === 'master-of-physiotherapy-mpt') return 'MPT (Master of Physiotherapy)';
+  if (slug === 'msw') return 'MSW';
+  if (slug === 'm-lib') return 'Master of Library Science (M.Lib)';
+  if (slug === 'mlibsc') return 'M.Lib.Sc';
+  if (slug === 'b-lib') return 'Bachelor of Library Science (B.Lib)';
+  if (slug === 'blisc') return 'B.Li.Sc';
+  if (slug === 'bplan') return 'B.Plan';
+  if (slug === 'mechatronics') return 'Mechatronics';
+  if (slug === 'b-chem-eng') return 'B.Chem.Engg';
+  if (slug === 'm-chem-eng') return 'M.Chem.Engg';
+  if (slug === 'master-of-civil-engineering') return 'Master of Civil Engineering';
+  if (slug === 'master-of-mechanical-engineering') return 'Master of Mechanical Engineering';
+  if (slug === 'master-in-hospital-management') return 'Master of Hospital Management';
+  if (slug === 'master-of-surgery') return 'MS (Master of Surgery)';
+  if (slug === 'dcs') return 'DCA (Diploma in Computer Applications)';
+  if (slug === 'diploma-design') return 'Design Diploma';
+  if (slug === 'diploma-media') return 'Media Diploma';
+  if (slug === 'media-ug') return 'Media (UG)';
+  if (slug === 'media-pg') return 'Media (PG)';
+  if (slug === 'bachelor-of-tourism-studies') return 'BTS (Bachelor of Tourism Studies)';
+  if (slug === 'diploma-fashion') return 'Fashion Diploma';
+  if (slug === 'cfd') return 'Certificate in Fashion Design';
+  if (slug === 'diploma-fine-arts') return 'Fine Arts Diploma';
+  if (slug === 'diploma-culinary-arts-patisserie') return 'Culinary Arts & Patisserie Diploma';
+  if (slug === 'bachelors') return 'Bachelor\'s Degree';
+  if (slug === 'bca-1') return 'Bachelor of Computer Applications';
+  if (slug === 'advance-certificate') return 'Advanced Certificate';
+  if (slug === 'advance-course') return 'Advanced Course';
+  if (slug === 'advance-diploma') return 'Advanced Diploma';
+  if (slug === 'certificate-program') return 'Certificate Programmes';
+  if (slug === 'certification') return 'Certification';
+  if (slug === 'animation-diploma') return 'Animation Diploma';
+  if (slug === 'architecture-diploma') return 'Architecture Diploma';
+  if (slug === 'maslp') return 'MASLP';
+  if (slug === 'aviation-pg') return 'Aviation (PG)';
+  if (slug === 'blit') return 'B.Lit';
+  if (slug === 'bmus') return 'B.Mus';
+  if (slug === 'bpa') return 'BPA';
+  if (slug === 'bpmt') return 'B.P.M.T';
+  if (slug === 'bva') return 'BVA';
+  if (slug === 'bsw') return 'BSW';
+  if (slug === 'bachelor-hotel-hospitality-tourism') return 'Hotel, Hospitality and Tourism (UG)';
+  if (slug === 'beauty') return 'Beauty and Wellness';
+  if (slug === 'dped') return 'D.P.Ed';
   if (slug === 'diploma-hotel-hospitality') return 'International Diploma in Hotel & Hospitality Management';
   if (slug === 'pharmacy') return 'Pharmacy Courses';
   if (slug === 'aviation') return 'Aviation (UG)';
@@ -3420,6 +3476,1694 @@ export function courseSeo(profile: CourseSeoInput): CourseSeoPack {
         {
           question: 'Which diplomas does NCHMCT offer?',
           answer: 'NCHMCT lists five 1½-year diplomas: Food Production, Food & Beverage Service, Front Office Operations, Housekeeping Operations, and Bakery & Confectionery. It also lists craftsmanship certificates in food production, F&B service and professional bartending.'
+        }
+      ]
+    },
+    'polytechnic-diploma': {
+      h1: 'Polytechnic Diploma After 12th or ITI: 2-Year Lateral Entry Guide',
+      title: 'Polytechnic Diploma After 12th or ITI: Lateral Entry Guide',
+      description:
+        'Join a polytechnic diploma in year 2 after 12th or ITI: AICTE eligibility, subjects by branch, Haryana 2026-27 dates, private fees, B.Tech next.',
+      keywords: ['polytechnic diploma after 12th', 'lateral entry diploma', 'polytechnic lateral entry eligibility', 'diploma after ITI', '2 year polytechnic diploma', 'lateral entry diploma fees'],
+      intro:
+        'With Class 12 or a 2-year ITI you can join a polytechnic diploma in the second year and finish in 2 years. Check your subjects against the branch, your state\'s admission process and fees first.',
+      crossLink: {
+        href: '/polytechnic-colleges',
+        anchor: 'Compare polytechnic colleges',
+        note: 'Shortlisting? Browse polytechnic colleges and check which ones offer lateral entry in your branch.'
+      },
+      faqs: [
+        {
+          question: 'Can I do a polytechnic diploma after 12th?',
+          answer: 'Yes. AICTE allows students who passed 10+2 with subjects matching the branch to join the diploma directly in the second year, so the course takes 2 years instead of 3.'
+        },
+        {
+          question: 'Can I join a polytechnic diploma after ITI?',
+          answer: 'Yes. Under AICTE rules, Class 10 plus a 2-year ITI certificate makes you eligible for the second year of an engineering diploma. Haryana\'s 2026-27 prospectus asks for an ITI in an engineering trade for engineering branches.'
+        },
+        {
+          question: 'Can a commerce or arts student join a lateral-entry diploma?',
+          answer: 'Only in branches with no mandatory science subject. In the HSTES 2026-27 table, Fashion Design and Packaging Technology have none, and non-engineering diplomas accept 10+2 arts or commerce. Civil and Mechanical need Physics, Chemistry and Maths.'
+        },
+        {
+          question: 'Is there an entrance exam for lateral entry to a diploma?',
+          answer: 'There is no national test. States decide. Haryana filled 2026-27 lateral-entry seats through online counselling ranked on the percentage in the qualifying exam, with no test.'
+        },
+        {
+          question: 'How many lateral-entry seats does a polytechnic have?',
+          answer: 'AICTE allows up to 10% of a course\'s approved intake as extra lateral-entry seats, plus any first-year seats left unfilled.'
+        },
+        {
+          question: 'Is a lateral-entry diploma the same as a regular diploma?',
+          answer: 'You study years 2 and 3 with the regular batch and receive the diploma from the same board or university, but you may have to clear bridge or additional courses set by the board.'
+        },
+        {
+          question: 'Can I do B.Tech after a 2-year lateral-entry diploma?',
+          answer: 'Yes. AICTE lets holders of a 3-year or a 2-year lateral-entry diploma with at least 45% (40% for reserved categories) join B.E./B.Tech in the second year.'
+        }
+      ]
+    },
+    'online-emba': {
+      h1: 'Online Executive MBA in India: Eligibility, Validity, Fees and How to Check',
+      title: 'Online Executive MBA: Eligibility, Validity and Fees',
+      description:
+        'Online EMBA for working professionals: 3-year work rule, UGC validity checks, IIM Udaipur and NMIMS fees (₹4 lakh to ₹14.2 lakh) and checks before paying.',
+      keywords: ['online executive MBA', 'online EMBA India', 'executive MBA for working professionals', 'online EMBA eligibility', 'is online executive MBA valid', 'online EMBA fees'],
+      intro:
+        'An online Executive MBA is a two-year MBA for people with about three years of work. Check who awards the degree, the UGC-DEB list and the full fee before you apply.',
+      crossLink: {
+        href: '/online-mba-colleges',
+        anchor: 'Compare online MBA colleges',
+        note: 'Shortlisting? Compare universities offering online MBA and executive MBA programmes.'
+      },
+      faqs: [
+        {
+          question: 'What is the eligibility for an online Executive MBA?',
+          answer: 'Usually a bachelor\'s degree and about three years of work. IIM Udaipur asks for three years of full-time work after graduation and a CAT, GMAT, GRE or IIMU Test score; NMIMS asks for 55% (50% reserved) and 3+ years of experience.'
+        },
+        {
+          question: 'Is an online Executive MBA valid in India?',
+          answer: 'It is valid when a recognised university or institute awards an MBA and, for universities, is entitled by UGC to run that programme online. Check the UGC-DEB list for your session.'
+        },
+        {
+          question: 'Is an Executive MBA a different degree from an MBA?',
+          answer: 'No. UGC\'s Specification of Degrees lists MBA as the degree name. "Executive" describes a programme for working professionals; IIM Udaipur, for example, awards the degree Master of Business Administration.'
+        },
+        {
+          question: 'How much does an online Executive MBA cost?',
+          answer: 'Published examples: ₹4,00,000 for the NMIMS MBA (Working Executive) if paid in full, and ₹14,20,800 for the IIM Udaipur EMBA 2027-29, paid in seven instalments.'
+        },
+        {
+          question: 'Do online EMBA programmes offer placements?',
+          answer: 'Not always. IIM Udaipur states that placement support is not offered for its EMBA, though career advisory is part of the programme. Ask each institute in writing.'
+        },
+        {
+          question: 'How much time does an online EMBA need each week?',
+          answer: 'IIM Udaipur holds about seven 90-minute live sessions a week on weekends and two weekday evenings, plus two one-week campus modules.'
+        }
+      ]
+    },
+    'online-programmes': {
+      h1: 'Online Degree Programmes in India: Validity, Rules and How to Check',
+      title: 'Online Degree Programmes: Are They Valid? UGC Rules',
+      description:
+        'Are online degrees valid in India? UGC rules on who can offer them, subjects not allowed online, SWAYAM credits vs certificates, and a 5-step check.',
+      keywords: ['online degree programmes India', 'is online degree valid', 'UGC approved online courses', 'UGC DEB online list', 'online degree vs certificate', 'SWAYAM credit transfer'],
+      intro:
+        'Online degrees from UGC-entitled universities count the same as regular degrees. Check the university, programme and session on the UGC-DEB list before you pay.',
+      crossLink: {
+        href: '/online-mba-colleges',
+        anchor: 'Compare online universities',
+        note: 'Looking for an online degree? Compare universities offering online programmes.'
+      },
+      faqs: [
+        {
+          question: 'Are online degrees valid in India?',
+          answer: 'Yes, when a university entitled by UGC for that programme awards them. Regulation 22 of the UGC ODL and Online Regulations, 2020 treats them as equal to regular-mode degrees.'
+        },
+        {
+          question: 'Which universities can offer online degrees?',
+          answer: 'Universities with NAAC 3.26 or more, or a NIRF university top-100 rank at least twice in three cycles, can start online degrees without prior approval. Others need UGC recognition first.'
+        },
+        {
+          question: 'Which courses cannot be done online?',
+          answer: 'UGC prohibits online degrees in engineering, medical, dental, pharmacy, nursing, physiotherapy and other paramedical subjects, architecture, law, agriculture, horticulture, hotel management, catering, culinary sciences, aircraft maintenance, visual arts, sports, M.Phil and Ph.D.'
+        },
+        {
+          question: 'How do I check if an online programme is UGC approved?',
+          answer: 'Open the UGC-DEB website, find the online list for your session, and check that the university and exact programme name are listed for that period.'
+        },
+        {
+          question: 'Can SWAYAM courses count towards my degree?',
+          answer: 'Yes, if your university has adopted SWAYAM credit transfer. UGC allows up to 40% of the courses in a programme in a semester to be taken through SWAYAM.'
+        },
+        {
+          question: 'Is an online certificate the same as an online degree?',
+          answer: 'No. A certificate is set and issued by the provider and is not a degree. Only UGC-entitled universities can award online degrees.'
+        }
+      ]
+    },
+    'mass-communication-pg': {
+      h1: 'Mass Communication PG: MA vs PG Diploma, Eligibility, IIMC and Fees',
+      title: 'Mass Communication PG Courses: MA, PG Diploma and Fees',
+      description:
+        'Mass communication after graduation: MA vs PG diploma, IIMC 2026-27 CUET-PG admission, 320 MA seats, fees from ₹1.15 lakh, and fees across 53 colleges.',
+      keywords: ['mass communication PG course', 'MA mass communication', 'MJMC', 'PG diploma in mass communication', 'IIMC admission 2026', 'mass communication after graduation'],
+      intro:
+        'After graduation you can take a master\'s (MA or MJMC) or a one-year PG diploma in mass communication. Check eligibility, CUET-PG, age limits and total fees first.',
+      crossLink: {
+        href: '/mass-communication-colleges',
+        anchor: 'Compare mass communication colleges',
+        note: 'Shortlisting? Compare colleges offering MA, MJMC and PG diplomas in mass communication.'
+      },
+      faqs: [
+        {
+          question: 'What is the eligibility for MA in mass communication?',
+          answer: 'Usually a bachelor\'s degree in any discipline. IIMC asks for at least 55% for its MA programmes in 2026-27, plus a valid CUET-PG score in Mass Communication and Journalism.'
+        },
+        {
+          question: 'How long is a PG course in mass communication?',
+          answer: 'A master\'s takes 2 years after a 3-year bachelor\'s degree, or 1 year after a 4-year honours degree under UGC\'s PG framework. IIMC\'s PG diplomas take one year over two semesters.'
+        },
+        {
+          question: 'How do I get admission to IIMC?',
+          answer: 'For 2026-27, IIMC admitted MA and most PG diploma students through the CUET-PG score in Mass Communication and Journalism (COQP17), followed by e-counselling.'
+        },
+        {
+          question: 'Is there an age limit for IIMC courses?',
+          answer: 'There is no age limit for IIMC MA programmes. For PG diplomas in 2026-27, General candidates had to be born on or after 1 August 2001, with later limits for OBC, SC, ST and PwD.'
+        },
+        {
+          question: 'What is the fee for IIMC courses?',
+          answer: 'For 2026-27, IIMC PG diplomas cost ₹1,15,000 to ₹1,75,000 and MA programmes ₹2,82,000 to ₹3,42,000 for the full course, excluding hostel.'
+        },
+        {
+          question: 'MA or PG diploma: which is better?',
+          answer: 'Choose an MA for a degree that leads to research or teaching; choose a PG diploma for a shorter, practical route into journalism, broadcasting or advertising jobs.'
+        }
+      ]
+    },
+    'digital-marketing': {
+      h1: 'PG Course in Digital Marketing: Diploma, NSQF or MBA?',
+      title: 'PG Diploma in Digital Marketing: Options, Syllabus and Fees',
+      description:
+        'Digital marketing after graduation: a 1-year university PG diploma (GTU, ₹25,000), NSQF Level 6 Digital Marketing Manager, or MBA. Syllabus and checks.',
+      keywords: ['PG diploma in digital marketing', 'digital marketing course after graduation', 'digital marketing syllabus', 'NSQF digital marketing manager', 'one year digital marketing course'],
+      intro:
+        'Digital marketing PG courses are mostly one-year diplomas or skill certificates. Compare who awards the course, the syllabus and the total cost before you pay.',
+      crossLink: {
+        href: '/mba-colleges',
+        anchor: 'Compare MBA colleges',
+        note: 'Thinking of a two-year route? Compare MBA and PGDM colleges with marketing specialisations.'
+      },
+      faqs: [
+        {
+          question: 'Is a PG diploma in digital marketing a degree?',
+          answer: 'No. It is a diploma. For example, Gujarat Technological University\'s PGDDM is a one-year postgraduate diploma for graduates.'
+        },
+        {
+          question: 'What is the eligibility for a PG diploma in digital marketing?',
+          answer: 'Usually any graduate. GTU\'s PGDDM is open to any eligible graduate, as well as marketing professionals and entrepreneurs.'
+        },
+        {
+          question: 'What subjects are taught in digital marketing?',
+          answer: 'At GTU: basics of marketing, fundamentals of digital marketing, SEO, search engine marketing, social media marketing, content and email marketing, web analytics or e-commerce, and a project.'
+        },
+        {
+          question: 'What is the NSQF Digital Marketing Manager qualification?',
+          answer: 'An NCVET-approved NSQF Level 6 certificate (NQR 2022/ME/MESC/05446) with 840 hours of training. Postgraduates can enrol directly; graduates need relevant work experience.'
+        },
+        {
+          question: 'How much does a digital marketing PG diploma cost?',
+          answer: 'It varies by provider. GTU lists tuition of ₹25,000 for its entire one-year PGDDM for Indian students.'
+        },
+        {
+          question: 'Should I do an MBA instead of a digital marketing diploma?',
+          answer: 'Choose an MBA or PGDM if you want a broader management qualification over two years; choose a diploma or NSQF course for a shorter, skill-focused route.'
+        }
+      ]
+    },
+    'bftech': {
+      h1: 'B.FTech Course: NIFT Eligibility, GAT Pattern, Fees and Careers',
+      title: 'B.FTech at NIFT: Eligibility, Exam Pattern and Fees',
+      description:
+        'NIFT B.FTech (Apparel Production): 10+2 with Maths, GAT-only selection (30:70), 591 seats in 2026, ₹13.81 lakh four-year fee, internships and roles.',
+      keywords: ['BFTech course', 'BFTech NIFT', 'BFTech eligibility', 'NIFT BFTech exam pattern', 'NIFT BFTech fees', 'bachelor of fashion technology'],
+      intro:
+        'B.FTech is NIFT\'s four-year apparel production degree for Class 12 students with Maths. Check the age limit, GAT pattern and full four-year fee before applying.',
+      crossLink: {
+        href: '/exams/nift',
+        anchor: 'NIFT entrance exam guide',
+        note: 'Preparing for NIFT? See exam dates, pattern and updates for the NIFT entrance test.'
+      },
+      faqs: [
+        {
+          question: 'What is the eligibility for B.FTech at NIFT?',
+          answer: '10+2 with Mathematics from a recognised board (or NIOS with five subjects including Maths), or a 3/4-year engineering diploma. You must be under 24 on 1 August, with 5 years\' relaxation for SC, ST and PwD.'
+        },
+        {
+          question: 'Is there a creative test or interview for B.FTech?',
+          answer: 'No. NIFT selects B.FTech candidates on the General Ability Test only: Section A carries 30% and Section B 70%.'
+        },
+        {
+          question: 'What is the NIFT B.FTech exam pattern?',
+          answer: 'For 2026: GAT Section A had 100 questions in 120 minutes and Section B 50 questions in 60 minutes. Each wrong answer costs 0.25 marks.'
+        },
+        {
+          question: 'How many B.FTech seats does NIFT have?',
+          answer: 'NIFT listed 591 B.FTech seats for 2026: 542 regular and 49 state-domicile seats.'
+        },
+        {
+          question: 'What is the total fee for B.FTech at NIFT?',
+          answer: 'For the 2026 non-NRI batch, academic fees total ₹13,81,300 over four years, plus a ₹6,200 alumni fee and a ₹12,600 refundable deposit. Hostel is extra.'
+        },
+        {
+          question: 'What jobs can I get after B.FTech?',
+          answer: 'NIFT lists roles such as production merchandiser, quality assurance manager, product developer, retail and e-commerce merchandiser, supply chain manager and sample coordinator.'
+        }
+      ]
+    },
+    'bfa': {
+      h1: 'BFA (Bachelor of Fine Arts): Admission, Specialisations, Fees and Careers',
+      title: 'BFA Course 2026: Eligibility, Entrance Tests, Fees, Careers',
+      description:
+        'BFA is a 4-year studio degree after Class 12. See eligibility, DU and Maharashtra entrance routes, specialisations, typical fees and art careers.',
+      keywords: ['BFA course', 'Bachelor of Fine Arts', 'BFA admission 2026', 'BFA eligibility', 'BFA fees', 'BFA entrance exam', 'BFA applied art', 'BFA painting'],
+      intro:
+        'A four-year studio degree in painting, applied art, sculpture or print making, usually entered through a practical test after Class 12.',
+      crossLink: {
+        href: '/courses/mfa',
+        anchor: 'MFA course guide',
+        note: 'for postgraduate study after BFA'
+      },
+      faqs: [
+        {
+          question: 'Is BFA a 3-year or 4-year course?',
+          answer: 'At the University of Delhi, in Maharashtra and at Government College of Art, Chandigarh, BFA is a four-year, eight-semester degree.'
+        },
+        {
+          question: 'Can a science or commerce student do BFA?',
+          answer: 'Yes. These institutions accept Class 12 in any stream; selection depends mainly on the practical or aptitude test.'
+        },
+        {
+          question: 'What is the fee for BFA?',
+          answer: 'Among 43 institutes publishing annual fees, the middle value is about ₹60,000 a year; most fall between ₹40,000 and ₹1,04,000.'
+        },
+        {
+          question: 'Which entrance exam is needed for BFA?',
+          answer: 'It depends on the university: DU uses CUET plus its own practical test, Maharashtra uses the state Fine Art CET, and many colleges run their own aptitude test.'
+        }
+      ]
+    },
+    'bvoc': {
+      h1: 'B.Voc (Bachelor of Vocation): Structure, Exit Options, Fees and Jobs',
+      title: 'B.Voc Course 2026: Eligibility, NSQF Levels, Fees, Careers',
+      description:
+        'B.Voc is a 3-year skill degree with exits at diploma and advanced diploma. See UGC rules, NSQF levels, credit split, typical fees and jobs.',
+      keywords: ['B.Voc course', 'Bachelor of Vocation', 'B.Voc eligibility', 'B.Voc fees', 'B.Voc NSQF', 'B.Voc jobs', 'B.Voc vs BSc', 'UGC B.Voc guidelines'],
+      intro:
+        'A three-year UGC skill degree mapped to NSQF levels 5 to 7, with a diploma after one year and an advanced diploma after two.',
+      crossLink: {
+        href: '/courses/diploma',
+        anchor: 'Diploma courses',
+        note: 'if you want a shorter skill programme'
+      },
+      faqs: [
+        {
+          question: 'Is B.Voc a valid degree?',
+          answer: 'Yes. B.Voc is a UGC bachelor\'s degree at NSQF Level 7, awarded by universities and autonomous colleges.'
+        },
+        {
+          question: 'Can I leave B.Voc after one year?',
+          answer: 'Yes. Under the UGC scheme you get a Diploma (NSQF Level 5) after one year and an Advanced Diploma (Level 6) after two.'
+        },
+        {
+          question: 'How much of B.Voc is practical?',
+          answer: 'At least 60% of credits are skill credits, and the revised UGC guidelines allow up to 70%.'
+        },
+        {
+          question: 'What is the fee for B.Voc?',
+          answer: 'Among 38 institutes publishing annual fees, the middle value is about ₹50,000 a year.'
+        }
+      ]
+    },
+    'bped': {
+      h1: 'B.P.Ed (Bachelor of Physical Education): Eligibility, Fitness Test and Careers',
+      title: 'B.P.Ed Course 2026: NCTE Eligibility, Admission, Careers',
+      description:
+        'B.P.Ed is a 2-year NCTE teacher programme after graduation. See eligibility, sports participation rules, fitness tests and PE teacher careers.',
+      keywords: ['B.P.Ed course', 'Bachelor of Physical Education', 'B.P.Ed eligibility', 'B.P.Ed admission', 'B.P.Ed NCTE', 'PE teacher course', 'B.P.Ed duration', 'B.P.Ed jobs'],
+      intro:
+        'A two-year, NCTE-regulated teacher education programme that trains graduates to teach physical education in schools.',
+      crossLink: {
+        href: '/courses/dped',
+        anchor: 'D.P.Ed course guide',
+        note: 'for the diploma route after Class 12'
+      },
+      faqs: [
+        {
+          question: 'What is the duration of B.P.Ed?',
+          answer: 'Two academic years (four semesters), with a maximum of three years to complete at many universities.'
+        },
+        {
+          question: 'Can I do B.P.Ed after 12th?',
+          answer: 'No, the standard B.P.Ed needs a bachelor\'s degree. After Class 12 you can consider the 4-year integrated programme, BPES or D.P.Ed.'
+        },
+        {
+          question: 'What marks are required for B.P.Ed?',
+          answer: 'The common NCTE route is 50% in graduation plus sports participation; some routes allow 45%.'
+        },
+        {
+          question: 'Is there a physical test for B.P.Ed?',
+          answer: 'Most universities hold a physical fitness test along with a written test and marks for sports achievements.'
+        }
+      ]
+    },
+    'bms': {
+      h1: 'BMS (Bachelor of Management Studies): Admission, CUET and MAH CET Routes',
+      title: 'BMS Course 2026: Eligibility, CUET, MAH CET, Careers',
+      description:
+        'BMS is an undergraduate management degree. See DU CUET subject rules, Mumbai routes via MAH BBA/BMS CET, what you study and career options.',
+      keywords: ['BMS course', 'Bachelor of Management Studies', 'BMS admission 2026', 'BMS CUET', 'BMS eligibility', 'BMS vs BBA', 'DU BMS', 'MAH BMS CET'],
+      intro:
+        'An undergraduate management degree, best known at Delhi University (via CUET with Maths) and Mumbai University (via MAH BBA/BMS CET).',
+      crossLink: {
+        href: '/courses/bba',
+        anchor: 'BBA course guide',
+        note: 'to compare the BBA route'
+      },
+      faqs: [
+        {
+          question: 'Is Maths compulsory for BMS?',
+          answer: 'At the University of Delhi, yes: you must pass Maths or Applied Maths in Class 12 and take it in CUET (UG) 2026.'
+        },
+        {
+          question: 'Which entrance exam is needed for BMS?',
+          answer: 'DU uses CUET (UG); in Maharashtra, many BMS admissions use the MAH BBA/BMS/BBM CET.'
+        },
+        {
+          question: 'Is BMS better than BBA?',
+          answer: 'The content is similar. Choose based on college quality, internships and placements.'
+        },
+        {
+          question: 'Can I do an MBA after BMS?',
+          answer: 'Yes. Any graduate can take CAT, XAT, CMAT or MAH MBA/MMS CET for MBA or MMS.'
+        }
+      ]
+    },
+    'mms': {
+      h1: 'MMS (Master of Management Studies): MAH MBA/MMS CET, Eligibility and Careers',
+      title: 'MMS Course 2026: MAH CET Pattern, Eligibility, Careers',
+      description:
+        'MMS is a 2-year management master\'s in Maharashtra. See MAH MBA/MMS CET 2026 eligibility, exam pattern, how MMS compares with MBA, and careers.',
+      keywords: ['MMS course', 'Master of Management Studies', 'MAH MBA CET', 'MMS eligibility', 'MMS vs MBA', 'MMS admission 2026', 'MAH CET exam pattern', 'JBIMS MMS'],
+      intro:
+        'A two-year management master\'s, mainly offered by University of Mumbai institutes, with admission through MAH MBA/MMS CET.',
+      crossLink: {
+        href: '/courses/mba',
+        anchor: 'MBA course guide',
+        note: 'to compare national MBA routes'
+      },
+      faqs: [
+        {
+          question: 'Is MMS equal to MBA?',
+          answer: 'Yes. MMS is the name used by the University of Mumbai and some Maharashtra institutes for a two-year management master\'s, equivalent to an MBA.'
+        },
+        {
+          question: 'What is the eligibility for MAH MBA/MMS CET?',
+          answer: 'A three-year bachelor\'s degree with 50% (45% for Maharashtra reserved, EWS and PwD candidates); final-year students may apply.'
+        },
+        {
+          question: 'Is there negative marking in MAH CET?',
+          answer: 'No. It has 200 one-mark questions in 150 minutes with no negative marking.'
+        },
+        {
+          question: 'How many sections are in MAH MBA CET?',
+          answer: 'Four: Logical Reasoning (75), Abstract Reasoning (25), Quantitative Aptitude (50) and Verbal Ability/RC (50).'
+        }
+      ]
+    },
+    'masters': {
+      h1: 'Master\'s Degree in India: 1-Year vs 2-Year PG, Credits and Admission',
+      title: 'Master\'s Degree in India 2026: Duration, Credits, CUET-PG',
+      description:
+        'How master\'s degrees work in India under the UGC 2024 PG framework: 1-year vs 2-year PG, credit rules, CUET-PG admission and how to pick a programme.',
+      keywords: ['masters degree India', '1 year PG UGC', '2 year masters', 'UGC PG framework 2024', 'CUET PG', 'masters after 4 year UG', 'MA MSc MCom duration', 'postgraduate course India'],
+      intro:
+        'A plain guide to how postgraduate degrees are structured in India after the UGC 2024 PG framework, and how admission works.',
+      crossLink: {
+        href: '/courses/ma',
+        anchor: 'MA course guide',
+        note: 'for arts and humanities master\'s'
+      },
+      faqs: [
+        {
+          question: 'Is a 1-year master\'s valid in India?',
+          answer: 'Yes. The UGC 2024 PG framework allows a 1-year, 40-credit master\'s for students who hold a 4-year bachelor\'s degree.'
+        },
+        {
+          question: 'Can I do a 1-year master\'s after a 3-year degree?',
+          answer: 'No. After a 3-year bachelor\'s, the framework provides a 2-year, 80-credit master\'s.'
+        },
+        {
+          question: 'Which exam is needed for a master\'s?',
+          answer: 'It depends: CUET-PG for many universities, CAT and others for MBA, GATE for M.Tech, NEET-PG for MD/MS.'
+        },
+        {
+          question: 'How many credits is a master\'s degree?',
+          answer: '40 credits for a 1-year programme and 80 credits for a 2-year programme.'
+        }
+      ]
+    },
+    'master-of-physiotherapy-mpt': {
+      h1: 'MPT (Master of Physiotherapy): Eligibility, Specialisations and Fees',
+      title: 'MPT Course 2026: Eligibility, Specialisations, Fees, Careers',
+      description:
+        'MPT is a 2-year physiotherapy master\'s after BPT. See eligibility (BPT 50% + internship), specialisations, entrance routes, fees and careers.',
+      keywords: ['MPT course', 'Master of Physiotherapy', 'MPT eligibility', 'MPT specialisation', 'MPT fees', 'MPT admission 2026', 'MPT after BPT', 'MPT musculoskeletal'],
+      intro:
+        'A two-year clinical master\'s for BPT graduates, specialising in areas such as musculoskeletal, neuro, cardiopulmonary or sports physiotherapy.',
+      crossLink: {
+        href: '/courses/bpt',
+        anchor: 'BPT course guide',
+        note: 'for the undergraduate physiotherapy route'
+      },
+      faqs: [
+        {
+          question: 'What is the eligibility for MPT?',
+          answer: 'A BPT from a recognised university, typically with 50% aggregate, and a completed six-month internship.'
+        },
+        {
+          question: 'How long is MPT?',
+          answer: 'Two years, full-time.'
+        },
+        {
+          question: 'Which MPT specialisation is best?',
+          answer: 'It depends on your goal: musculoskeletal and sports suit private practice; neuro and cardiopulmonary suit hospital work.'
+        },
+        {
+          question: 'What is the fee for MPT?',
+          answer: 'Published annual fees in a small sample of six institutes range from ₹60,000 to ₹3,50,000, with a middle value near ₹1,10,000.'
+        }
+      ]
+    },
+    'msw': {
+      h1: 'MSW (Master of Social Work): Eligibility, Fieldwork, Fees and Careers',
+      title: 'MSW Course 2026: Eligibility, Fieldwork, Fees, Careers',
+      description:
+        'MSW is a 2-year social work master\'s open to any graduate. See eligibility, entrance and interview, fieldwork, typical fees and social work careers.',
+      keywords: ['MSW course', 'Master of Social Work', 'MSW eligibility', 'MSW admission 2026', 'MSW fees', 'MSW fieldwork', 'MSW jobs', 'MA Social Work'],
+      intro:
+        'A two-year professional master\'s in social work, open to graduates of any discipline, built around supervised fieldwork.',
+      crossLink: {
+        href: '/courses/bsw',
+        anchor: 'BSW course guide',
+        note: 'for the undergraduate social work route'
+      },
+      faqs: [
+        {
+          question: 'Can I do MSW after BCom or BSc?',
+          answer: 'Yes. MSW is open to graduates of any discipline.'
+        },
+        {
+          question: 'Is MSW the same as MA Social Work?',
+          answer: 'The content is equivalent; some universities, such as the University of Delhi, name it MA Social Work.'
+        },
+        {
+          question: 'What is fieldwork in MSW?',
+          answer: 'Supervised practice with an agency for part of each week, plus camps and a block placement.'
+        },
+        {
+          question: 'What is the fee for MSW?',
+          answer: 'Among 30 institutes publishing annual fees, the middle value is about ₹37,100 a year.'
+        }
+      ]
+    },
+    'm-lib': {
+      h1: 'Master of Library Science (M.Lib / MLISc): What You Study and Careers',
+      title: 'Master of Library Science: Syllabus, Fees, Library Careers',
+      description:
+        'Master of Library Science (MLISc) is a 1-year course after BLISc. See what you study, fees, and careers in academic, public and digital libraries.',
+      keywords: ['Master of Library Science', 'M.Lib course', 'MLISc syllabus', 'library science master\'s', 'MLISc fees', 'librarian career', 'MLISc jobs', 'library science UGC NET'],
+      intro:
+        'A one-year master\'s after BLISc that prepares you for professional librarian, information manager and library teaching roles.',
+      crossLink: {
+        href: '/courses/mlibsc',
+        anchor: 'M.Lib.Sc admission guide',
+        note: 'for entrance routes and regular vs distance options'
+      },
+      faqs: [
+        {
+          question: 'How long is the Master of Library Science?',
+          answer: 'One year (two semesters) at the University of Delhi and IGNOU; some universities run a two-year integrated version.'
+        },
+        {
+          question: 'Can I do MLISc without BLISc?',
+          answer: 'Not for the one-year course; BLISc is the entry qualification. Integrated two-year programmes accept graduates directly.'
+        },
+        {
+          question: 'Is UGC-NET needed to be a college librarian?',
+          answer: 'Generally yes, along with a master\'s in library science, as per UGC rules for library posts.'
+        }
+      ]
+    },
+    'mlibsc': {
+      h1: 'M.Lib.Sc Admission: CUET-PG, Open University and Distance Routes',
+      title: 'M.Lib.Sc Admission 2026: CUET-PG, DU SOL, IGNOU Routes',
+      description:
+        'How to get into M.Lib.Sc: DU admission via CUET-PG paper COQP13, DU SOL online eligibility, IGNOU MLIS, and how to choose between them.',
+      keywords: ['M.Lib.Sc admission', 'MLISc admission 2026', 'CUET PG library science', 'COQP13', 'DU MLISc', 'IGNOU MLIS', 'MLISc distance', 'MLISc eligibility'],
+      intro:
+        'An admission-focused guide to M.Lib.Sc: regular, open and distance routes, and what each asks for.',
+      crossLink: {
+        href: '/courses/m-lib',
+        anchor: 'Master of Library Science guide',
+        note: 'for syllabus, fees and careers'
+      },
+      faqs: [
+        {
+          question: 'Which CUET-PG paper is needed for DU M.Lib.I.Sc?',
+          answer: 'Paper code COQP13, as listed by the DU Department of Library and Information Science.'
+        },
+        {
+          question: 'How many seats does DU have for M.Lib.I.Sc?',
+          answer: '58 seats, divided equally between two applicant categories.'
+        },
+        {
+          question: 'Can I do M.Lib.Sc by distance?',
+          answer: 'Yes. IGNOU offers the MLIS, and DU SOL offers M.Lib.I.Sc for 2026-27.'
+        }
+      ]
+    },
+    'b-lib': {
+      h1: 'Bachelor of Library Science (B.Lib / BLISc): What You Study, Fees and Jobs',
+      title: 'Bachelor of Library Science: Syllabus, Fees, Library Jobs',
+      description:
+        'Bachelor of Library Science (BLISc) is a 1-year course after graduation. See what you study, eligibility, typical fees and library careers.',
+      keywords: ['Bachelor of Library Science', 'B.Lib course', 'BLISc syllabus', 'library science course', 'BLISc fees', 'library assistant job', 'BLISc after graduation', 'BLISc eligibility'],
+      intro:
+        'A one-year professional course after graduation that teaches how libraries organise, find and manage information.',
+      crossLink: {
+        href: '/courses/blisc',
+        anchor: 'B.Li.Sc admission guide',
+        note: 'for CUET-PG, DU SOL and IGNOU routes'
+      },
+      faqs: [
+        {
+          question: 'Is BLISc a one-year course?',
+          answer: 'Yes, at the University of Delhi and IGNOU it is one year (two semesters at DU).'
+        },
+        {
+          question: 'Can I do BLISc after 12th?',
+          answer: 'No. It is taken after a bachelor\'s degree.'
+        },
+        {
+          question: 'What is the fee for BLISc?',
+          answer: 'Among 17 institutes publishing annual fees, the middle value is about ₹25,000.'
+        }
+      ]
+    },
+    'blisc': {
+      h1: 'B.Li.Sc Admission: CUET-PG at DU, DU SOL and IGNOU Routes',
+      title: 'B.Li.Sc Admission 2026: CUET-PG COQP11, DU SOL, IGNOU',
+      description:
+        'How to get into B.Li.Sc: DU admission via CUET-PG paper COQP11 with 78 seats, DU SOL online entry, IGNOU distance BLIS, and which suits you.',
+      keywords: ['B.Li.Sc admission', 'BLISc admission 2026', 'CUET PG COQP11', 'DU BLISc seats', 'IGNOU BLIS', 'BLISc distance', 'DU SOL BLISc', 'library science admission'],
+      intro:
+        'An admission guide to B.Li.Sc: the CUET-PG route at Delhi University, DU\'s School of Open Learning and IGNOU distance study.',
+      crossLink: {
+        href: '/courses/b-lib',
+        anchor: 'Bachelor of Library Science guide',
+        note: 'for syllabus, fees and jobs'
+      },
+      faqs: [
+        {
+          question: 'Which CUET-PG paper is for DU BLISc?',
+          answer: 'Paper code COQP11.'
+        },
+        {
+          question: 'How many BLISc seats does DU have?',
+          answer: '78 seats, plus up to 5 for international students.'
+        },
+        {
+          question: 'Can engineering graduates do BLISc at DU?',
+          answer: 'Yes, a B.E./B.Tech with science and mathematics is accepted.'
+        }
+      ]
+    },
+    'bplan': {
+      h1: 'B.Plan (Bachelor of Planning): JEE Main Paper 2B, Eligibility and Careers',
+      title: 'B.Plan Course 2026: JEE Main Paper 2B Pattern, Eligibility',
+      description:
+        'B.Plan is a 4-year urban planning degree. See JEE Main 2026 Paper 2B pattern, JoSAA eligibility, SPA Delhi seats, and planning careers.',
+      keywords: ['B.Plan course', 'Bachelor of Planning', 'JEE Main Paper 2B', 'B.Planning eligibility', 'B.Plan admission 2026', 'SPA Delhi B.Plan', 'urban planning course', 'B.Plan syllabus'],
+      intro:
+        'A four-year degree in urban and regional planning, entered through JEE Main Paper 2B and JoSAA counselling.',
+      crossLink: {
+        href: '/courses/architecture',
+        anchor: 'B.Arch course guide',
+        note: 'if you are deciding between architecture and planning'
+      },
+      faqs: [
+        {
+          question: 'Which exam is needed for B.Plan?',
+          answer: 'JEE Main Paper 2B for SPAs, NITs and other JoSAA institutes; some state and private universities use their own process.'
+        },
+        {
+          question: 'Is Maths compulsory for B.Plan?',
+          answer: 'Yes, Class 12 with Mathematics is required.'
+        },
+        {
+          question: 'How many questions are in JEE Main Paper 2B?',
+          answer: '100 questions for 400 marks: Maths 25, Aptitude 50, Planning 25.'
+        },
+        {
+          question: 'How long is B.Plan?',
+          answer: 'Four years (eight semesters) at SPA New Delhi.'
+        }
+      ]
+    },
+    'mechatronics': {
+      h1: 'Mechatronics (M.Tech): GATE Admission, What You Study and Careers',
+      title: 'M.Tech Mechatronics 2026: GATE, CCMT, Syllabus, Careers',
+      description:
+        'Mechatronics at postgraduate level: M.Tech admission through GATE and CCMT, eligible B.Tech branches, what you study, and robotics and automation careers.',
+      keywords: ['M.Tech Mechatronics', 'mechatronics course', 'mechatronics GATE', 'mechatronics admission 2026', 'CCMT mechatronics', 'mechatronics syllabus', 'robotics automation career', 'mechatronics eligibility'],
+      intro:
+        'A two-year M.Tech that combines mechanical, electrical, electronics and control engineering for robotics and automation.',
+      crossLink: {
+        href: '/courses/mtech',
+        anchor: 'M.Tech course guide',
+        note: 'for other M.Tech specialisations'
+      },
+      faqs: [
+        {
+          question: 'Which GATE paper is needed for M.Tech Mechatronics?',
+          answer: 'It depends on the institute; mechanical, electrical, electronics and instrumentation papers are commonly accepted. Check the programme table.'
+        },
+        {
+          question: 'How long is M.Tech Mechatronics?',
+          answer: 'Two years, with the second year focused on a thesis or project.'
+        },
+        {
+          question: 'Can an electronics graduate do mechatronics?',
+          answer: 'Usually yes; electronics and instrumentation graduates are commonly eligible.'
+        }
+      ]
+    },
+    'b-chem-eng': {
+      h1: 'B.Chem.Engg: ICT Mumbai Admission, Eligibility and Careers',
+      title: 'B.Chem.Engg 2026: ICT Mumbai Seats, MHT-CET, JEE Main',
+      description:
+        'B.Chem.Engg is a 4-year chemical engineering degree best known at ICT Mumbai. See 2026-27 eligibility, MHT-CET and JEE Main seats, and careers.',
+      keywords: ['B.Chem.Engg', 'B.Chem Eng', 'ICT Mumbai chemical engineering', 'B.Chem.Engg admission 2026', 'MHT CET chemical engineering', 'chemical engineering eligibility', 'ICT Mumbai seats', 'chemical engineer career'],
+      intro:
+        'A four-year chemical engineering degree, best known at the Institute of Chemical Technology, Mumbai, with seats through MHT-CET and JEE Main.',
+      crossLink: {
+        href: '/courses/m-chem-eng',
+        anchor: 'M.Chem.Engg course guide',
+        note: 'for the postgraduate route'
+      },
+      faqs: [
+        {
+          question: 'Is B.Chem.Engg the same as B.Tech Chemical Engineering?',
+          answer: 'Yes, it is the same discipline; ICT Mumbai uses the name B.Chem.Engg.'
+        },
+        {
+          question: 'How many B.Chem.Engg seats does ICT Mumbai have?',
+          answer: '75 in 2026: 52 through MHT-CET and 23 all-India through JEE Main.'
+        },
+        {
+          question: 'What marks are needed for B.Chem.Engg?',
+          answer: '45% in PCM (40% for Maharashtra reserved, EWS and PwD candidates) plus an MHT-CET or JEE Main score.'
+        }
+      ]
+    },
+    'm-chem-eng': {
+      h1: 'M.Chem.Engg: ICT Mumbai Admission Levels, GATE and Eligibility',
+      title: 'M.Chem.Engg 2026: ICT Mumbai Eligibility, GATE Levels',
+      description:
+        'M.Chem.Engg is a 2-year chemical engineering master\'s. See ICT Mumbai 2026-27 eligibility (60%), GATE Level 1 and Level 2 admission, and careers.',
+      keywords: ['M.Chem.Engg', 'M.Chem Eng', 'ICT Mumbai M.Chem.Engg', 'M.Chem.Engg admission 2026', 'chemical engineering masters GATE', 'ICT Mumbai GATE', 'M.Tech chemical engineering', 'M.Chem.Engg eligibility'],
+      intro:
+        'A two-year chemical engineering master\'s, best known at ICT Mumbai, admitted through GATE with a two-level process.',
+      crossLink: {
+        href: '/courses/b-chem-eng',
+        anchor: 'B.Chem.Engg course guide',
+        note: 'for the undergraduate route'
+      },
+      faqs: [
+        {
+          question: 'What is the eligibility for M.Chem.Engg at ICT?',
+          answer: 'A four-year chemical or related engineering degree with 60% (55% for backward class).'
+        },
+        {
+          question: 'Is GATE compulsory for ICT M.Chem.Engg?',
+          answer: 'Yes. Level 1 uses relevant GATE; Level 2 uses GATE in another specialisation plus ICT\'s test.'
+        },
+        {
+          question: 'How long is M.Chem.Engg?',
+          answer: 'Two years: two semesters of papers and two of thesis.'
+        }
+      ]
+    },
+    'master-of-civil-engineering': {
+      h1: 'Master of Civil Engineering: M.E./M.Tech Admission Through GATE, Specialisations and Careers',
+      title: 'Master of Civil Engineering 2026: GATE, CCMT, Specialisations, Careers',
+      description:
+        'Master of Civil Engineering (M.E./M.Tech) is a 2-year PG degree. See GATE CE and CCMT admission, popular specialisations, eligibility and careers.',
+      keywords: ['Master of Civil Engineering', 'M.Tech Civil Engineering', 'M.E. Civil', 'GATE CE', 'civil engineering masters', 'CCMT civil', 'M.Tech civil specialisation', 'civil engineering PG'],
+      intro:
+        'A two-year M.E./M.Tech in civil engineering, mostly admitted through GATE, with specialisation from the first semester.',
+      crossLink: {
+        href: '/courses/mtech',
+        anchor: 'M.Tech course guide',
+        note: 'for all M.Tech specialisations'
+      },
+      faqs: [
+        {
+          question: 'Which GATE paper is needed?',
+          answer: 'Usually GATE CE; some specialisations accept other papers. Check each brochure.'
+        },
+        {
+          question: 'How long is it?',
+          answer: 'Two years, with the second year mainly a dissertation.'
+        },
+        {
+          question: 'Can I get admission without GATE?',
+          answer: 'Some state and private universities admit through their own test or merit; IITs and NITs use GATE.'
+        }
+      ]
+    },
+    'master-of-mechanical-engineering': {
+      h1: 'Master of Mechanical Engineering: M.E./M.Tech Admission Through GATE, Specialisations and Careers',
+      title: 'Master of Mechanical Engineering 2026: GATE, CCMT, Specialisations, Careers',
+      description:
+        'Master of Mechanical Engineering (M.E./M.Tech) is a 2-year PG degree. See GATE ME and CCMT admission, popular specialisations, eligibility and careers.',
+      keywords: ['Master of Mechanical Engineering', 'M.Tech Mechanical Engineering', 'M.E. Mechanical', 'GATE ME', 'mechanical engineering masters', 'CCMT mechanical', 'M.Tech mechanical specialisation', 'mechanical engineering PG'],
+      intro:
+        'A two-year M.E./M.Tech in mechanical engineering, mostly admitted through GATE, with specialisation from the first semester.',
+      crossLink: {
+        href: '/courses/mtech',
+        anchor: 'M.Tech course guide',
+        note: 'for all M.Tech specialisations'
+      },
+      faqs: [
+        {
+          question: 'Which GATE paper is needed?',
+          answer: 'Usually GATE ME; some specialisations accept other papers. Check each brochure.'
+        },
+        {
+          question: 'How long is it?',
+          answer: 'Two years, with the second year mainly a dissertation.'
+        },
+        {
+          question: 'Can I get admission without GATE?',
+          answer: 'Some state and private universities admit through their own test or merit; IITs and NITs use GATE.'
+        }
+      ]
+    },
+    'master-in-hospital-management': {
+      h1: 'Master of Hospital Management (MHA): Eligibility, Entrance and Careers',
+      title: 'Hospital Management Master\'s 2026: MHA Eligibility, Entrance',
+      description:
+        'Hospital management master\'s (MHA) is a 2-year PG course. See TISS (CAT) and SGPGIMS (MBBS/BDS) routes, AIIMS MD Hospital Administration and careers.',
+      keywords: ['Master of Hospital Management', 'MHA course', 'hospital administration masters', 'MHA eligibility', 'TISS MHA', 'MHA admission 2026', 'MD hospital administration', 'hospital management career'],
+      intro:
+        'A two-year postgraduate course that trains managers for hospitals and health systems, with routes for any graduate and for doctors.',
+      crossLink: {
+        href: '/courses/mba',
+        anchor: 'MBA course guide',
+        note: 'for general management routes'
+      },
+      faqs: [
+        {
+          question: 'Can a non-medical graduate do MHA?',
+          answer: 'Yes, at programmes like TISS that accept any graduate; some MHAs, like SGPGIMS, are only for MBBS/BDS.'
+        },
+        {
+          question: 'Which entrance is used for TISS MHA?',
+          answer: 'For the 2026 batch, TISS used CAT 2025 scores.'
+        },
+        {
+          question: 'How long is MHA?',
+          answer: 'Two years at TISS and SGPGIMS.'
+        }
+      ]
+    },
+    'master-of-surgery': {
+      h1: 'MS (Master of Surgery): NEET-PG, Duration and Surgical Specialities',
+      title: 'MS Master of Surgery 2026: NEET-PG, Duration, Specialities',
+      description:
+        'MS (Master of Surgery) is a 3-year NMC postgraduate degree after MBBS. See NEET-PG and INI-CET admission, MS specialities and what residency involves.',
+      keywords: ['Master of Surgery', 'MS course', 'MS after MBBS', 'MS duration', 'NEET PG MS', 'MS specialities', 'MS General Surgery', 'MS Orthopaedics'],
+      intro:
+        'A three-year NMC-regulated surgical postgraduate degree for MBBS doctors, admitted through NEET-PG or INI-CET.',
+      crossLink: {
+        href: '/courses/md',
+        anchor: 'MD course guide',
+        note: 'for non-surgical postgraduate degrees'
+      },
+      faqs: [
+        {
+          question: 'How many years is MS after MBBS?',
+          answer: 'Three years under NMC PGMER 2023; two years for holders of a recognised two-year PG diploma in the same subject.'
+        },
+        {
+          question: 'Which exam is needed for MS?',
+          answer: 'NEET-PG, or INI-CET for AIIMS and other INIs.'
+        },
+        {
+          question: 'Can colleges admit MS students directly?',
+          answer: 'No. Admission is only through online common counselling by the central or state authority.'
+        }
+      ]
+    },
+    'dcs': {
+      h1: 'DCA (Diploma in Computer Applications): Syllabus, Eligibility and Jobs',
+      title: 'DCA Course 2026: One-Year Syllabus, Eligibility, Jobs',
+      description:
+        'DCA is a one-year computer diploma after Class 12. See real university syllabi, eligibility (40-45%), regular vs open-university options and entry-level jobs.',
+      keywords: ['DCA course', 'Diploma in Computer Applications', 'DCA syllabus', 'DCA eligibility', 'DCA after 12th', 'DCA jobs', 'DCA open university', 'DCA vs BCA'],
+      intro:
+        'A one-year, two-semester diploma that teaches office software, programming basics, DBMS and web skills after Class 12.',
+      crossLink: {
+        href: '/courses/bca',
+        anchor: 'BCA course guide',
+        note: 'if you want a full computer applications degree'
+      },
+      faqs: [
+        {
+          question: 'What is the duration of DCA?',
+          answer: 'One year, in two semesters, at the universities checked; BAOU allows up to two years to finish.'
+        },
+        {
+          question: 'What is the eligibility for DCA?',
+          answer: 'Class 12 in any stream; some universities set a minimum of 40% or 45%.'
+        },
+        {
+          question: 'Is DCA better than BCA?',
+          answer: 'They serve different goals: DCA is a one-year skills diploma, BCA is a three-year degree for developer careers.'
+        },
+        {
+          question: 'Is there an entrance test for DCA?',
+          answer: 'Usually not; most universities admit directly.'
+        }
+      ]
+    },
+    'diploma-design': {
+      h1: 'Design Diploma Courses: Who They Suit, Fees and the B.Des Alternative',
+      title: 'Design Diploma 2026: Fees, Skills, vs B.Des at NID',
+      description:
+        'Design diplomas are short, studio-based courses. See typical fees, what you learn, and how they compare with B.Des routes such as NID DAT.',
+      keywords: ['design diploma', 'diploma in design', 'diploma in interior design', 'diploma in graphic design', 'design diploma fees', 'design diploma vs B.Des', 'NID DAT 2026', 'design course after 12th'],
+      intro:
+        'Short, practical design courses in areas like interior, graphic, product or fashion design, mostly at private institutes.',
+      crossLink: {
+        href: '/courses/design-ug',
+        anchor: 'Design (UG) course guide',
+        note: 'for B.Des routes'
+      },
+      faqs: [
+        {
+          question: 'How long is a design diploma?',
+          answer: 'Most are about one year, though the length is set by each institute.'
+        },
+        {
+          question: 'What is the fee for a design diploma?',
+          answer: 'Among 10 private institutes publishing annual fees, the middle value is about ₹1,32,500.'
+        },
+        {
+          question: 'Is a design diploma equal to B.Des?',
+          answer: 'No. A B.Des is a four-year degree; a diploma is a shorter skills course.'
+        },
+        {
+          question: 'Can I do a design diploma after 12th in any stream?',
+          answer: 'Many institutes accept Class 12 in any stream; check each one.'
+        }
+      ]
+    },
+    'diploma-media': {
+      h1: 'Media Diploma (DJMC): One-Year Journalism and Mass Communication Courses',
+      title: 'Media Diploma 2026: DJMC Syllabus, Eligibility, Careers',
+      description:
+        'A one-year media diploma (DJMC) after Class 12: what universities teach, eligibility, campus vs open university, and first jobs in media.',
+      keywords: ['media diploma', 'Diploma in Journalism and Mass Communication', 'DJMC', 'DJMC syllabus', 'journalism diploma after 12th', 'DJMC eligibility', 'media course one year', 'mass communication diploma'],
+      intro:
+        'A one-year, two-semester diploma in journalism and mass communication, open to Class 12 pass students.',
+      crossLink: {
+        href: '/courses/media-ug',
+        anchor: 'Media (UG) course guide',
+        note: 'for bachelor\'s degrees in media'
+      },
+      faqs: [
+        {
+          question: 'How long is a media diploma?',
+          answer: 'Usually one year in two semesters.'
+        },
+        {
+          question: 'Can I do a DJMC after 12th?',
+          answer: 'Yes, most require a Class 12 pass in any stream.'
+        },
+        {
+          question: 'Is a DJMC enough to become a journalist?',
+          answer: 'It can get you entry-level roles, but many national newsrooms prefer a degree or PG diploma.'
+        }
+      ]
+    },
+    'media-ug': {
+      h1: 'Media Degrees After 12th: BJMC, BA JMC and Mass Communication',
+      title: 'Media UG Courses 2026: BJMC Eligibility, CUET, Fees',
+      description:
+        'Undergraduate media degrees (BJMC, BA JMC, mass communication): eligibility, GGSIPU and CUET routes, 3 or 4-year options, fees and careers.',
+      keywords: ['media course after 12th', 'BJMC', 'BA JMC', 'mass communication degree', 'BJMC eligibility', 'GGSIPU BA JMC', 'CUET mass media', 'media UG fees'],
+      intro:
+        'Bachelor\'s degrees in journalism, mass communication and media, now offered as three-year degrees or four-year honours.',
+      crossLink: {
+        href: '/courses/media-pg',
+        anchor: 'Media (PG) course guide',
+        note: 'for postgraduate options'
+      },
+      faqs: [
+        {
+          question: 'Is BJMC three years or four?',
+          answer: 'It depends on the university: UGC allows a 3-year degree (120 credits) or a 4-year honours (160 credits); GGSIPU\'s BA (JMC) is four years.'
+        },
+        {
+          question: 'What marks are needed for media courses after 12th?',
+          answer: 'GGSIPU asks for 50% in the best four subjects including English; others set their own criteria.'
+        },
+        {
+          question: 'What is the fee for BJMC?',
+          answer: 'Among 22 institutes publishing annual fees, the middle value is about ₹94,500.'
+        }
+      ]
+    },
+    'media-pg': {
+      h1: 'Media PG Courses: IIMC PG Diplomas, MA in Journalism and Mass Communication',
+      title: 'Media PG Courses 2026: IIMC, MA JMC, CUET-PG, Fees',
+      description:
+        'Postgraduate media options: IIMC one-year PG Diplomas via CUET-PG (seats, age limits), two-year MA JMC, typical fees and how to choose.',
+      keywords: ['media PG courses', 'IIMC PG Diploma', 'MA Journalism and Mass Communication', 'CUET PG mass communication', 'COQP17', 'IIMC admission 2026', 'media masters India', 'PG diploma journalism'],
+      intro:
+        'Postgraduate routes into media: one-year PG diplomas such as IIMC\'s, and two-year master\'s degrees in journalism and mass communication.',
+      crossLink: {
+        href: '/courses/media-ug',
+        anchor: 'Media (UG) course guide',
+        note: 'for bachelor\'s options'
+      },
+      faqs: [
+        {
+          question: 'Which CUET-PG paper is needed for IIMC?',
+          answer: 'Mass Communication and Journalism, paper code COQP17.'
+        },
+        {
+          question: 'Is there an age limit for IIMC?',
+          answer: 'Yes. For 2026-27: 25 for general, 28 for OBC and 30 for SC, ST and PwD, as on 1 August 2026.'
+        },
+        {
+          question: 'How many seats does IIMC have in English Journalism?',
+          answer: '256 across six campuses in 2026-27.'
+        },
+        {
+          question: 'Should I do a PG diploma or an MA?',
+          answer: 'A PG diploma is faster for jobs; an MA is better for teaching, research and UGC-NET.'
+        }
+      ]
+    },
+    'bachelor-of-tourism-studies': {
+      h1: 'BTS (Bachelor of Tourism Studies): IGNOU Structure, Fees and Careers',
+      title: 'BTS Course 2026: IGNOU Tourism Degree, Fees, Careers',
+      description:
+        'BTS is a 3-year tourism degree. See IGNOU\'s 96-credit BTS (distance and online), eligibility, low fees, what you study and tourism careers.',
+      keywords: ['BTS course', 'Bachelor of Tourism Studies', 'IGNOU BTS', 'BTS eligibility', 'BTS fees', 'tourism degree India', 'BTS online', 'tourism careers'],
+      intro:
+        'A three-year bachelor\'s in tourism, best known through IGNOU\'s 96-credit distance and online programme.',
+      crossLink: {
+        href: '/courses/travel-tourism-ug',
+        anchor: 'Travel and tourism (UG) guide',
+        note: 'for campus tourism degrees'
+      },
+      faqs: [
+        {
+          question: 'How long is BTS?',
+          answer: 'IGNOU\'s BTS is a three-year, 96-credit degree that can be completed within six years.'
+        },
+        {
+          question: 'What is the fee for IGNOU BTS?',
+          answer: '₹4,900 per year for distance mode and ₹3,400 per year online for Indian students, plus applicable registration fees.'
+        },
+        {
+          question: 'Is there an age limit for BTS?',
+          answer: 'No, IGNOU sets no minimum or maximum age.'
+        },
+        {
+          question: 'Is BTS a BA degree?',
+          answer: 'Yes, IGNOU awards it as a Bachelor of Arts (Tourism Studies).'
+        }
+      ]
+    },
+    'diploma-fashion': {
+      h1: 'Fashion Design Diploma: One-Year Courses, Syllabus, Fees and Jobs',
+      title: 'Fashion Design Diploma 2026: Syllabus, Fees, Careers',
+      description:
+        'A one-year fashion design diploma after Class 12: real university syllabi, admission, typical fees, and jobs in apparel, styling and boutiques.',
+      keywords: ['fashion design diploma', 'diploma in fashion design', 'fashion diploma after 12th', 'fashion diploma fees', 'fashion design syllabus', 'UPRTOU fashion diploma', 'fashion designer course', 'boutique career'],
+      intro:
+        'A one-year diploma that teaches sketching, pattern making, sewing, textiles and portfolio building.',
+      crossLink: {
+        href: '/courses/cfd',
+        anchor: 'Certificate in Fashion Design guide',
+        note: 'for the six-month option'
+      },
+      faqs: [
+        {
+          question: 'How long is a fashion design diploma?',
+          answer: 'Usually one year.'
+        },
+        {
+          question: 'Can I do a fashion diploma after 12th arts or commerce?',
+          answer: 'Yes, most accept Class 12 in any stream.'
+        },
+        {
+          question: 'What is the fee for a fashion diploma?',
+          answer: 'Among 8 private institutes publishing annual fees, the middle value is about ₹62,500.'
+        }
+      ]
+    },
+    'cfd': {
+      h1: 'Certificate in Fashion Design: IGNOU CFDE and Short Fashion Courses',
+      title: 'Certificate in Fashion Design 2026: IGNOU CFDE, Fees',
+      description:
+        'A certificate in fashion design is a short course after Class 12. See IGNOU CFDE (16 credits, 6 months, ₹5,200), what you learn and next steps.',
+      keywords: ['certificate in fashion design', 'IGNOU CFDE', 'fashion design certificate', 'short fashion course', 'fashion course 6 months', 'CFDE fee', 'fashion certificate after 12th', 'online fashion course'],
+      intro:
+        'A short, entry-level fashion course; IGNOU\'s CFDE is a 16-credit, six-month certificate open to Class 12 pass students.',
+      crossLink: {
+        href: '/courses/diploma-fashion',
+        anchor: 'Fashion design diploma guide',
+        note: 'for the one-year option'
+      },
+      faqs: [
+        {
+          question: 'How long is IGNOU\'s Certificate in Fashion Design?',
+          answer: 'Six months minimum, with up to two years to complete.'
+        },
+        {
+          question: 'What is the fee for IGNOU CFDE?',
+          answer: 'IGNOU lists ₹5,200 for the full programme.'
+        },
+        {
+          question: 'Who can apply for CFDE?',
+          answer: 'Anyone who has passed 10+2 from a recognised board.'
+        }
+      ]
+    },
+    'diploma-fine-arts': {
+      h1: 'Fine Arts Diploma: Short Studio Courses, Who They Suit and What Next',
+      title: 'Fine Arts Diploma 2026: Eligibility, Studio Skills, Next Steps',
+      description:
+        'A fine arts diploma is a shorter studio course in drawing, painting and sculpture. See who it suits, an example at GCA Chandigarh, and how it compares with BFA.',
+      keywords: ['fine arts diploma', 'diploma in fine arts', 'painting diploma', 'art diploma after 10th', 'fine arts course', 'DFASA', 'diploma vs BFA', 'art teacher course'],
+      intro:
+        'A shorter studio qualification in drawing, painting, sculpture or applied art, offered by art colleges and universities.',
+      crossLink: {
+        href: '/courses/bfa',
+        anchor: 'BFA course guide',
+        note: 'for the four-year degree'
+      },
+      faqs: [
+        {
+          question: 'Can I do a fine arts diploma after 10th?',
+          answer: 'Some institutes accept Class 10; for example, GCA Chandigarh\'s DFASA admits Class 10 candidates through an aptitude test.'
+        },
+        {
+          question: 'Is a fine arts diploma enough to teach art?',
+          answer: 'It can be enough for hobby centres; colleges and many schools ask for a BFA or higher.'
+        },
+        {
+          question: 'Is a diploma or BFA better?',
+          answer: 'A BFA is the standard route to MFA, UGC-NET and college teaching; a diploma is a shorter studio option.'
+        }
+      ]
+    },
+    'diploma-culinary-arts-patisserie': {
+      h1: 'Culinary Arts and Patisserie Diploma: IHM Routes, Training and Careers',
+      title: 'Culinary & Patisserie Diploma 2026: NCHMCT Courses, Jobs',
+      description:
+        'Culinary and patisserie diplomas: NCHMCT Food Production and Bakery & Confectionery diplomas (1.5 years incl. training), eligibility and careers.',
+      keywords: ['culinary arts diploma', 'patisserie diploma', 'bakery and confectionery diploma', 'diploma in food production', 'IHM diploma', 'NCHMCT diploma', 'chef course after 12th', 'pastry chef course'],
+      intro:
+        'Kitchen-focused diplomas in cooking and pastry; NCHMCT\'s IHM diplomas run 1.5 years including industrial training.',
+      crossLink: {
+        href: '/courses/bachelor-hotel-hospitality-tourism',
+        anchor: 'Hotel and hospitality degree guide',
+        note: 'for the three-year B.Sc route'
+      },
+      faqs: [
+        {
+          question: 'How long is the IHM Diploma in Bakery and Confectionery?',
+          answer: 'One and a half years (three semesters), including 24 weeks of industrial training.'
+        },
+        {
+          question: 'What is the eligibility for NCHMCT culinary diplomas?',
+          answer: 'Class 12 or equivalent with English as a subject.'
+        },
+        {
+          question: 'Can I become a chef after 10th?',
+          answer: 'Yes, through craft courses such as Craftsmanship in Food Production and Patisserie at IHMs.'
+        }
+      ]
+    },
+    'bachelors': {
+      h1: 'Bachelor\'s Degree in India: 3-Year vs 4-Year, Exits and Credits Explained',
+      title: 'Bachelor\'s Degree India 2026: 3 or 4 Years, Exits, Credits',
+      description:
+        'How bachelor\'s degrees now work in India under the UGC framework: 3-year vs 4-year honours, certificate and diploma exits, credits and CUET.',
+      keywords: ['bachelors degree India', '4 year UG programme', 'UGC FYUP', '3 year vs 4 year degree', 'UG certificate diploma exit', 'UGC credit framework', 'honours with research', 'CUET UG'],
+      intro:
+        'A plain guide to how undergraduate degrees are structured in India under the UGC framework, with multiple entry and exit options.',
+      crossLink: {
+        href: '/courses/masters',
+        anchor: 'Master\'s degree guide',
+        note: 'for 1-year vs 2-year PG rules'
+      },
+      faqs: [
+        {
+          question: 'Is a 4-year degree compulsory now?',
+          answer: 'No. The UGC framework allows both a 3-year degree (120 credits) and a 4-year honours degree (160 credits).'
+        },
+        {
+          question: 'Can I leave after one year and get something?',
+          answer: 'Yes, a UG Certificate after 40 credits plus a 4-credit vocational course.'
+        },
+        {
+          question: 'What is Honours with Research?',
+          answer: 'A fourth-year track with a research project for students who meet the university\'s marks threshold.'
+        }
+      ]
+    },
+    'bca-1': {
+      h1: 'Bachelor of Computer Applications Under AICTE: What Changed From 2024-25',
+      title: 'BCA Under AICTE 2026: Approval, 3 vs 4 Years, Admission',
+      description:
+        'Since 2024-25, BCA colleges need AICTE approval. See what that means for students, 3-year vs 4-year BCA, admission routes and how to check a college.',
+      keywords: ['BCA AICTE approval', 'BCA AICTE 2024-25', 'Bachelor of Computer Applications', 'BCA 4 year', 'BCA admission 2026', 'AICTE approved BCA college', 'BCA CUET', 'check AICTE approval'],
+      intro:
+        'How AICTE regulation of BCA from 2024-25 affects students, plus degree length options and admission routes.',
+      crossLink: {
+        href: '/courses/bca',
+        anchor: 'BCA course guide',
+        note: 'for the full course overview'
+      },
+      faqs: [
+        {
+          question: 'Is AICTE approval needed for BCA now?',
+          answer: 'Yes, from 2024-25 AICTE requires institutions offering BCA, BBA and BMS to seek its approval.'
+        },
+        {
+          question: 'Is BCA 3 or 4 years?',
+          answer: 'Universities may offer a 3-year degree (120 credits) or a 4-year honours (160 credits) under the UGC framework.'
+        },
+        {
+          question: 'How do I check if a BCA college is approved?',
+          answer: 'Look for it in AICTE\'s approved-institutions list for the current academic year.'
+        }
+      ]
+    },
+    'advance-certificate': {
+      h1: 'Advanced Certificate Courses: NSQF Levels, Recognition and How to Choose',
+      title: 'Advanced Certificate Courses 2026: NSQF Levels, Recognition',
+      description:
+        'What an advanced certificate is worth: how NSQF levels work, how to verify a course on the National Qualifications Register, and how to choose one.',
+      keywords: ['advanced certificate course', 'advance certificate', 'NSQF level', 'National Qualifications Register', 'skill certificate India', 'certificate course after 12th', 'NCVET approved course', 'short course recognition'],
+      intro:
+        'Short, focused courses that go beyond basics in one skill; this guide explains how to judge their level and recognition.',
+      crossLink: {
+        href: '/courses/certification',
+        anchor: 'Certification guide',
+        note: 'for industry and skill certifications'
+      },
+      faqs: [
+        {
+          question: 'Is an advanced certificate recognised?',
+          answer: 'It depends on who awards it. Check its NSQF level and look it up on the National Qualifications Register.'
+        },
+        {
+          question: 'What is NSQF?',
+          answer: 'The National Skills Qualification Framework, which grades qualifications on levels 1 to 8 with half-levels.'
+        },
+        {
+          question: 'Can a certificate count towards a degree?',
+          answer: 'University certificates with defined credits, such as the UGC UG Certificate, can.'
+        }
+      ]
+    },
+    'advance-course': {
+      h1: 'Advanced Courses and Add-on Courses: Online Credits, SWAYAM and Value',
+      title: 'Advanced and Add-on Courses 2026: SWAYAM Credits, Value',
+      description:
+        'Advanced and add-on courses explained: how SWAYAM credits can count towards your degree (up to 40% per semester), how to judge value, and what to avoid.',
+      keywords: ['advanced course', 'add-on course', 'SWAYAM credit transfer', 'online course credits UGC', 'value added course', 'SWAYAM 40 percent', 'short advanced course', 'skill course for students'],
+      intro:
+        'Short advanced or add-on courses taken alongside a degree or job, including UGC-recognised online courses on SWAYAM.',
+      crossLink: {
+        href: '/courses/advance-certificate',
+        anchor: 'Advanced certificate guide',
+        note: 'for NSQF levels and verification'
+      },
+      faqs: [
+        {
+          question: 'Can an online course count towards my degree?',
+          answer: 'Yes, if your university has adopted the SWAYAM course for credit transfer; up to 40% of a semester’s courses can be online.'
+        },
+        {
+          question: 'Are SWAYAM courses free?',
+          answer: 'Learning is generally free; an exam fee applies for certification.'
+        },
+        {
+          question: 'How do I know if an advanced course is worth it?',
+          answer: 'Check its outcome, assessment, instructor, recognition and time demand.'
+        }
+      ]
+    },
+    'advance-diploma': {
+      h1: 'Advanced Diploma: B.Voc Exit, NSQF Level 6 and Where It Leads',
+      title: 'Advanced Diploma 2026: NSQF Level 6, B.Voc Exit, Value',
+      description:
+        'An advanced diploma is a two-year skill qualification. See how it fits in B.Voc (NSQF level 6, 120 credits), lateral entry, and how to check others.',
+      keywords: ['advanced diploma', 'advance diploma course', 'B.Voc advanced diploma', 'NSQF level 6', 'advanced diploma vs degree', 'advanced diploma after 12th', 'lateral entry B.Voc', 'skill diploma'],
+      intro:
+        'A two-year skill qualification; in the UGC B.Voc scheme it is the NSQF level 6 exit after the second year.',
+      crossLink: {
+        href: '/courses/bvoc',
+        anchor: 'B.Voc course guide',
+        note: 'for the full degree'
+      },
+      faqs: [
+        {
+          question: 'What level is an advanced diploma?',
+          answer: 'In the UGC B.Voc scheme it is NSQF level 6, awarded after two years.'
+        },
+        {
+          question: 'How many credits is an advanced diploma?',
+          answer: '120 credits in the B.Voc scheme.'
+        },
+        {
+          question: 'Can I complete a degree after an advanced diploma?',
+          answer: 'UGC guidelines allow lateral entry to the next level in the same sector, i.e. the B.Voc third year.'
+        }
+      ]
+    },
+    'certificate-program': {
+      h1: 'Certificate Programmes: University, Open University and Skill Certificates',
+      title: 'Certificate Programmes 2026: Types, Credits, How to Choose',
+      description:
+        'Certificate programmes compared: UGC UG certificates (40 credits), B.Voc exits (NSQF 5+), open-university certificates and skill certificates.',
+      keywords: ['certificate programme', 'certificate course', 'UG certificate UGC', 'IGNOU certificate', 'B.Voc diploma', 'short certificate course', 'certificate after 12th', 'certificate course recognition'],
+      intro:
+        'A comparison of the main kinds of certificate programmes in India and what each is worth.',
+      crossLink: {
+        href: '/courses/advance-certificate',
+        anchor: 'Advanced certificate guide',
+        note: 'for NSQF levels and verification'
+      },
+      faqs: [
+        {
+          question: 'What is a UG Certificate?',
+          answer: 'Under the UGC framework, the award for exiting after the first year of a degree with 40 credits plus a 4-credit vocational course.'
+        },
+        {
+          question: 'Are certificate courses recognised?',
+          answer: 'University and NSQF-aligned certificates are; check credits or the NSQF level and the awarding body.'
+        },
+        {
+          question: 'How long is a certificate programme?',
+          answer: 'From a few weeks to one year, depending on the type.'
+        }
+      ]
+    },
+    'certification': {
+      h1: 'Professional and Skill Certifications: NSQF, Awarding Bodies and Value',
+      title: 'Certifications 2026: NSQF Skill Certification, How to Verify',
+      description:
+        'How professional and skill certifications work in India: NCVET-recognised awarding bodies, NSQF levels, verifying on the NQR, and choosing well.',
+      keywords: ['skill certification India', 'NCVET awarding body', 'NSQF certification', 'professional certification', 'National Qualifications Register', 'industry certification', 'Skill India certificate', 'verify certificate'],
+      intro:
+        'How skill and professional certifications are issued and verified in India, and how to pick ones employers value.',
+      crossLink: {
+        href: '/courses/certificate-program',
+        anchor: 'Certificate programmes guide',
+        note: 'for university and open-university certificates'
+      },
+      faqs: [
+        {
+          question: 'How do I verify a skill certificate?',
+          answer: 'Look up the qualification on the National Qualifications Register (nqr.gov.in) using its code.'
+        },
+        {
+          question: 'Who issues NSQF certificates?',
+          answer: 'NCVET-recognised awarding bodies, for qualifications approved by the National Skills Qualification Committee.'
+        },
+        {
+          question: 'Are vendor certifications useful?',
+          answer: 'Often, when they come from established issuers, have proctored exams and appear in job ads for your target role.'
+        }
+      ]
+    },
+    'animation-diploma': {
+      h1: 'Animation Diploma: One-Year 2D and 3D Courses, Syllabus and Careers',
+      title: 'Animation Diploma 2026: 2D/3D Syllabus, Eligibility, Jobs',
+      description:
+        'A one-year animation diploma after Class 12: real university syllabi (2D, 3D, rigging, rendering), eligibility, and first jobs in animation and VFX.',
+      keywords: ['animation diploma', 'diploma in animation', '2D 3D animation course', 'animation course after 12th', 'diploma in multimedia and animation', 'animation syllabus', 'animation jobs', 'VFX course'],
+      intro:
+        'A one-year diploma teaching 2D and 3D animation, modelling, rigging, lighting and rendering after Class 12.',
+      crossLink: {
+        href: '/courses/animation-ug',
+        anchor: 'Animation (UG) course guide',
+        note: 'for degree options'
+      },
+      faqs: [
+        {
+          question: 'How long is an animation diploma?',
+          answer: 'Typically one year; Bharathiar University allows up to two years with re-registration.'
+        },
+        {
+          question: 'What is the eligibility for an animation diploma?',
+          answer: 'Class 12; some universities set a minimum such as 50%.'
+        },
+        {
+          question: 'What matters most for animation jobs?',
+          answer: 'Your showreel.'
+        }
+      ]
+    },
+    'architecture-diploma': {
+      h1: 'Diploma in Architecture (Architectural Assistantship): 3-Year Polytechnic Course',
+      title: 'Architecture Diploma 2026: 3 Years After 10th, Admission',
+      description:
+        'Diploma in Architecture / Architectural Assistantship is a 3-year polytechnic course after Class 10. See eligibility, syllabus, jobs and the path to B.Arch.',
+      keywords: ['diploma in architecture', 'architectural assistantship', 'architecture diploma after 10th', 'D.Arch polytechnic', 'architecture diploma eligibility', 'architecture diploma jobs', 'polytechnic architecture', 'diploma to B.Arch'],
+      intro:
+        'A three-year, six-semester polytechnic diploma after Class 10 that trains architectural assistants and draughtspersons.',
+      crossLink: {
+        href: '/courses/architecture',
+        anchor: 'Architecture course guide',
+        note: 'to become a registered architect'
+      },
+      faqs: [
+        {
+          question: 'How long is the diploma in architecture?',
+          answer: 'Three years (six semesters) after Class 10.'
+        },
+        {
+          question: 'What marks are needed?',
+          answer: 'It depends on the state; Maharashtra asks for 35% in SSC for 2026-27.'
+        },
+        {
+          question: 'Can a diploma holder become an architect?',
+          answer: 'Only after a five-year B.Arch and registration with the Council of Architecture.'
+        }
+      ]
+    },
+    'maslp': {
+      h1: 'MASLP and M.Sc in Speech-Language Pathology: Eligibility, AIISH Entrance, Careers',
+      title: 'MASLP 2026: Eligibility, AIISH Entrance, Seats, Careers',
+      description:
+        'Master’s in audiology and speech-language pathology: BASLP with 55%, AIISH entrance based on the RCI syllabus, 44 seats each in M.Sc Audiology and SLP.',
+      keywords: ['MASLP', 'M.Sc Speech Language Pathology', 'M.Sc Audiology', 'AIISH entrance exam 2026', 'MASLP eligibility', 'BASLP to MASLP', 'speech therapist course', 'RCI audiology'],
+      intro:
+        'Two-year master’s training in audiology and speech-language pathology for BASLP graduates, regulated by the RCI.',
+      crossLink: null,
+      faqs: [
+        {
+          question: 'What is the eligibility for M.Sc SLP at AIISH?',
+          answer: 'A BASLP or B.Sc (Speech and Hearing) from an RCI-approved programme with 55% average (5% relaxation for SC/ST/PwD).'
+        },
+        {
+          question: 'How many seats does AIISH have?',
+          answer: '44 each in M.Sc Audiology and M.Sc SLP for 2026-27.'
+        },
+        {
+          question: 'What is the AIISH entrance syllabus?',
+          answer: 'The RCI B.ASLP syllabus.'
+        }
+      ]
+    },
+    'aviation-pg': {
+      h1: 'Aviation PG Courses: MBA in Aviation Management and Airport Operations Diplomas',
+      title: 'Aviation PG Courses 2026: RGNAU MBA, Eligibility, Careers',
+      description:
+        'Postgraduate aviation courses: RGNAU’s two-year MBA in Aviation Management (50% graduation, age 25), PG Diploma in Airport Operations, careers.',
+      keywords: ['aviation PG course', 'MBA aviation management', 'RGNAU MBA', 'PG diploma airport operations', 'aviation management eligibility', 'airport management course', 'aviation MBA India', 'RGNAU admission 2026'],
+      intro:
+        'Postgraduate management programmes for airlines, airports and aviation logistics, led by Rajiv Gandhi National Aviation University.',
+      crossLink: {
+        href: '/courses/aviation',
+        anchor: 'Aviation course guide',
+        note: 'for undergraduate options'
+      },
+      faqs: [
+        {
+          question: 'What is the eligibility for RGNAU’s MBA in Aviation Management?',
+          answer: 'A bachelor’s degree with 50% (5% relaxation for SC/ST) and age up to 25 as on 30 June 2026.'
+        },
+        {
+          question: 'How long is the aviation MBA?',
+          answer: 'Two years, four semesters.'
+        },
+        {
+          question: 'Does RGNAU accept CAT?',
+          answer: 'Its regulations allow CAT or equivalent scores as one selection input.'
+        }
+      ]
+    },
+    'blit': {
+      h1: 'B.Lit (Bachelor of Literature): Tamil and Language Degrees Explained',
+      title: 'B.Lit Course 2026: Tamil Literature Degree, Eligibility, Careers',
+      description:
+        'B.Lit is a 3-year literature degree, best known in Tamil. See University of Madras B.Lit Tamil eligibility, what you study and careers in teaching and media.',
+      keywords: ['B.Lit', 'Bachelor of Literature', 'B.Lit Tamil', 'University of Madras B.Lit', 'B.Lit eligibility', 'B.Lit vs BA', 'Tamil literature degree', 'B.Lit careers'],
+      intro:
+        'A three-year undergraduate degree focused on one language’s literature, most commonly Tamil.',
+      crossLink: {
+        href: '/courses/bachelors',
+        anchor: 'Bachelor\'s degree guide',
+        note: 'for how UG degrees are structured'
+      },
+      faqs: [
+        {
+          question: 'How long is B.Lit?',
+          answer: 'Three years (six semesters) at the University of Madras.'
+        },
+        {
+          question: 'Who can apply for B.Lit Tamil?',
+          answer: 'Anyone who has passed +2 or an equivalent examination accepted by the University.'
+        },
+        {
+          question: 'Is B.Lit equal to BA?',
+          answer: 'Both are bachelor’s degrees; B.Lit concentrates more on literature and grammar.'
+        }
+      ]
+    },
+    'bmus': {
+      h1: 'B.Mus and BA (Hons) Music: Admission, Practical Tests and Careers',
+      title: 'B.Mus Course 2026: DU Music Admission, CUET, Practical Test',
+      description:
+        'Music degrees after Class 12: how Delhi University admits to BA (Hons) Hindustani and Karnatak Music (CUET 50% + practical 50%), what you study, careers.',
+      keywords: ['B.Mus', 'Bachelor of Music', 'BA Hons Music DU', 'music degree after 12th', 'CUET music', 'music practical test', 'Hindustani music degree', 'Karnatak music degree'],
+      intro:
+        'Undergraduate degrees in Indian classical music (vocal and instrumental), with admission that weighs performance as much as marks.',
+      crossLink: {
+        href: '/courses/bpa',
+        anchor: 'BPA course guide',
+        note: 'for performing arts degrees'
+      },
+      faqs: [
+        {
+          question: 'How does DU admit to BA (Hons) Music?',
+          answer: 'Through CUET (UG) and a practical test, with 50% weight each.'
+        },
+        {
+          question: 'Is a practical test compulsory for music degrees?',
+          answer: 'At DU, yes; most good music departments test performance.'
+        },
+        {
+          question: 'Can I study instrumental music?',
+          answer: 'Yes, where the department offers your instrument.'
+        }
+      ]
+    },
+    'bpa': {
+      h1: 'BPA (Bachelor of Performing Arts): Dance, Music and Theatre Degrees',
+      title: 'BPA Course 2026: Eligibility, Auditions, 3 or 4 Years, Careers',
+      description:
+        'BPA is a performing arts degree in dance, music or theatre. See real eligibility (40% to 60%), audition rules, 3 vs 4-year options and careers.',
+      keywords: ['BPA course', 'Bachelor of Performing Arts', 'BPA dance', 'BPA music', 'BPA theatre', 'BPA eligibility', 'BPA audition', 'performing arts degree India'],
+      intro:
+        'An undergraduate degree in dance, music or theatre, with admission through auditions and practical training throughout.',
+      crossLink: {
+        href: '/courses/bmus',
+        anchor: 'B.Mus course guide',
+        note: 'for music degrees'
+      },
+      faqs: [
+        {
+          question: 'Is BPA three or four years?',
+          answer: 'It varies; Bharati Vidyapeeth and LPU run four-year BPAs.'
+        },
+        {
+          question: 'Is there an audition for BPA?',
+          answer: 'Yes, most institutes audition applicants.'
+        },
+        {
+          question: 'What marks are needed for BPA?',
+          answer: 'From 40% (Somaiya) to 60% (LPU) in Class 12, depending on the institute.'
+        }
+      ]
+    },
+    'bpmt': {
+      h1: 'B.P.M.T (Bachelor of Paramedical Technology): Maharashtra Admission and Careers',
+      title: 'BPMT Course 2026: Eligibility, DMER Admission, Internship',
+      description:
+        'BPMT is a 3-year paramedical technology degree with a 1-year internship at Maharashtra government medical colleges. See eligibility, admission and careers.',
+      keywords: ['BPMT', 'B.P.M.T', 'Bachelor of Paramedical Technology', 'BPMT admission Maharashtra', 'DMER paramedical admission', 'BPMT eligibility', 'BPMT internship', 'MUHS paramedical'],
+      intro:
+        'A three-year paramedical technology degree with a one-year internship, offered at Maharashtra government medical colleges under MUHS.',
+      crossLink: null,
+      faqs: [
+        {
+          question: 'How long is BPMT?',
+          answer: 'Three years plus a one-year compulsory internship.'
+        },
+        {
+          question: 'What is the eligibility for BPMT?',
+          answer: 'HSC with Physics, Chemistry and Biology; Maharashtra domicile for government seats.'
+        },
+        {
+          question: 'Who conducts BPMT admission?',
+          answer: 'DMER Maharashtra, on merit.'
+        }
+      ]
+    },
+    'bva': {
+      h1: 'BVA (Bachelor of Visual Arts): Four-Year Degree, Eligibility and Careers',
+      title: 'BVA Course 2026: 4 Years, Eligibility, Aptitude Test, Careers',
+      description:
+        'BVA is a four-year visual arts degree. See eligibility at real universities (40-45% in 10+2), aptitude tests and portfolios, BVA vs BFA, and careers.',
+      keywords: ['BVA course', 'Bachelor of Visual Arts', 'BVA eligibility', 'BVA vs BFA', 'BVA aptitude test', 'visual arts degree', 'BVA applied art', 'BVA careers'],
+      intro:
+        'A four-year undergraduate degree in painting, applied art, sculpture and related visual arts, entered through an aptitude test.',
+      crossLink: {
+        href: '/courses/bfa',
+        anchor: 'BFA course guide',
+        note: 'for the closely related degree'
+      },
+      faqs: [
+        {
+          question: 'Is BVA four years?',
+          answer: 'Yes, at the universities checked; Mysore’s syllabus runs eight semesters.'
+        },
+        {
+          question: 'What is the difference between BVA and BFA?',
+          answer: 'Very little; both are four-year studio degrees leading to MVA or MFA.'
+        },
+        {
+          question: 'Is there an entrance for BVA?',
+          answer: 'Most universities hold an aptitude test, sometimes with an interview and portfolio.'
+        }
+      ]
+    },
+    'bsw': {
+      h1: 'BSW (Bachelor of Social Work): Fieldwork, Eligibility, Fees and Careers',
+      title: 'BSW Course 2026: Eligibility, Fieldwork, Fees, Careers',
+      description:
+        'BSW is a 3-year social work degree with supervised fieldwork. See IGNOU’s 96-credit structure, eligibility, fees at 15 institutes and NGO/CSR careers.',
+      keywords: ['BSW course', 'Bachelor of Social Work', 'BSW eligibility', 'BSW fees', 'IGNOU BSW', 'BSW fieldwork', 'social work degree', 'BSW careers'],
+      intro:
+        'A three-year undergraduate degree in social work that combines classroom learning with supervised fieldwork.',
+      crossLink: {
+        href: '/courses/msw',
+        anchor: 'MSW course guide',
+        note: 'for the master’s degree'
+      },
+      faqs: [
+        {
+          question: 'How long is BSW?',
+          answer: 'Three years; IGNOU allows up to six.'
+        },
+        {
+          question: 'How much fieldwork is in BSW?',
+          answer: 'At IGNOU, 24 of 96 credits are fieldwork and practicum.'
+        },
+        {
+          question: 'What is the BSW fee?',
+          answer: 'Among 15 institutes publishing annual fees, the middle value is about ₹32,500.'
+        }
+      ]
+    },
+    'bachelor-hotel-hospitality-tourism': {
+      h1: 'Hotel Management Degree After 12th: NCHM JEE and B.Sc Hospitality',
+      title: 'Hotel Management UG 2026: NCHM JEE Pattern, Eligibility',
+      description:
+        'The main hotel management degree route: NCHM JEE 2026 for the 3-year B.Sc Hospitality and Hotel Administration. Exam pattern (120 MCQs), eligibility, careers.',
+      keywords: ['hotel management after 12th', 'NCHM JEE 2026', 'B.Sc Hospitality and Hotel Administration', 'IHM admission', 'NCHM JEE pattern', 'hotel management eligibility', 'hospitality degree', 'IHM counselling'],
+      intro:
+        'Undergraduate hotel and hospitality degrees, led by the three-year B.Sc HHA at IHMs through NCHM JEE.',
+      crossLink: {
+        href: '/courses/diploma-culinary-arts-patisserie',
+        anchor: 'Culinary and patisserie diploma guide',
+        note: 'for shorter kitchen-focused courses'
+      },
+      faqs: [
+        {
+          question: 'What is the NCHM JEE exam pattern?',
+          answer: '120 MCQs: English 45, Service Sector Aptitude 30, and 15 each in numerical, reasoning and GK; +4 correct, -1 wrong.'
+        },
+        {
+          question: 'Is there an age limit for NCHM JEE?',
+          answer: 'No.'
+        },
+        {
+          question: 'How long is the B.Sc HHA?',
+          answer: 'Three years, six semesters.'
+        }
+      ]
+    },
+    'beauty': {
+      h1: 'Beauty and Wellness Courses: NSQF Qualifications, B.Voc and Careers',
+      title: 'Beauty Courses 2026: NSQF Beauty Therapist, B.Voc, Careers',
+      description:
+        'Beauty and wellness training explained: B&WSSC Beauty Therapist (NSQF 4, 510 hours), Cosmetologist (870 hours), the 3-year B.Voc and salon careers.',
+      keywords: ['beauty course', 'beauty and wellness course', 'beauty therapist course', 'cosmetology course', 'B.Voc beauty and wellness', 'NSQF beauty', 'B&WSSC', 'salon career'],
+      intro:
+        'Skill qualifications and degrees in beauty and wellness, from NSQF job-role courses to a three-year B.Voc.',
+      crossLink: {
+        href: '/courses/certification',
+        anchor: 'Certification guide',
+        note: 'for how NSQF certificates are verified'
+      },
+      faqs: [
+        {
+          question: 'How long is a beauty therapist course?',
+          answer: 'The B&WSSC Beauty Therapist qualification is 510 hours (minimum 450).'
+        },
+        {
+          question: 'What NSQF level is a beauty therapist?',
+          answer: 'Level 4.'
+        },
+        {
+          question: 'Is there a degree in beauty?',
+          answer: 'Yes, a three-year B.Voc in Beauty and Wellness at some colleges.'
+        }
+      ]
+    },
+    'dped': {
+      h1: 'D.P.Ed (Diploma in Physical Education): NCTE Rules, Admission and Jobs',
+      title: 'D.P.Ed Course 2026: NCTE Eligibility 50%, 2 Years, Jobs',
+      description:
+        'D.P.Ed is a 2-year NCTE-recognised diploma for school PE teachers. See eligibility (50% in Class 12), admission tests, structure and careers.',
+      keywords: ['D.P.Ed', 'Diploma in Physical Education', 'D.P.Ed eligibility', 'D.P.Ed admission', 'NCTE D.P.Ed', 'PE teacher course', 'D.P.Ed vs B.P.Ed', 'physical education diploma'],
+      intro:
+        'A two-year, NCTE-regulated diploma that trains physical education teachers for schools, after Class 12.',
+      crossLink: {
+        href: '/courses/bped',
+        anchor: 'B.P.Ed course guide',
+        note: 'for the graduate-level PE qualification'
+      },
+      faqs: [
+        {
+          question: 'What is the eligibility for D.P.Ed?',
+          answer: 'At least 50% in Class 12, with relaxation for reserved categories as per rules.'
+        },
+        {
+          question: 'How long is D.P.Ed?',
+          answer: 'Two academic years (four semesters), to be completed within three years.'
+        },
+        {
+          question: 'Is there an entrance test for D.P.Ed?',
+          answer: 'It depends on the State; GJUST uses sports proficiency and fitness tests plus marks.'
         }
       ]
     },

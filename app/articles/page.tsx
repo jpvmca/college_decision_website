@@ -1,7 +1,7 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
-import { api, ArticleList } from '../../lib/api';
+import { api, ArticleList, mediaUrl } from '../../lib/api';
 import { getPageItems } from '../../lib/pagination';
 import { ArrowLeft, ArrowRight, CheckCircle2, Filter } from 'lucide-react';
 
@@ -33,7 +33,8 @@ function articlesHref(page: number, type: ArticleType, budget: number) {
   return query ? `/articles?${query}` : '/articles';
 }
 
-function getResponsiveImageSources(imageUrl: string) {
+function getResponsiveImageSources(rawImageUrl: string) {
+  const imageUrl = mediaUrl(rawImageUrl);
   const widths = [480, 768, 1200, 1600];
   const addQuery = (width: number) => `${imageUrl}?w=${width}&h=${Math.round(width * 0.5625)}&q=78&convert=webp`;
   return {
