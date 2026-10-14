@@ -9,6 +9,8 @@ import AutoLinkedText from '../../../components/AutoLinkedText';
 import { articleAnchorTitle, buildExamFaqs, buildExamSeo, examFeeRangeText, examFeeSentence, rankExamArticles, type ExamFeeDisplay } from '../../../lib/exam-seo';
 import ExamLogo from '../../../components/ExamLogo';
 import ExamCountdown from '../../../components/ExamCountdown';
+import { ExamCutoffs, type ExamCutoffResponse } from '../../../components/Cutoffs';
+import { findPublishedHref } from '../../../lib/linkable-entities';
 
 type ExamProfile = {
   exam: {
@@ -79,6 +81,17 @@ type ExamProfile = {
 };
 
 export const revalidate = 300;
+
+async function getExamCutoffs(slug: string) {
+  try {
+    // Short revalidate + 'cutoffs' tag so newly added cutoff rows are not hidden behind a cached empty result.
+    return await api<ExamCutoffResponse>(`/exams/${encodeURIComponent(slug)}/cutoffs?perPage=25`, {
+      next: { revalidate: 60, tags: [`exam:${slug}`, 'cutoffs'] }
+    });
+  } catch {
+    return null;
+  }
+}
 
 async function getExam(slug: string) {
   try {
@@ -162,7 +175,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
 
 export default async function ExamProfilePage({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params;
-  const profile = await getExam(slug);
+  const [profile, examCutoffs] = await Promise.all([getExam(slug), getExamCutoffs(slug)]);
   if (!profile) notFound();
 
   const name = profile.exam.name;
@@ -232,6 +245,7 @@ export default async function ExamProfilePage({ params }: { params: Promise<{ sl
         <p className="muted">{[profile.exam.course?.name, profile.exam.mode, levelLabel(profile.exam.level)].filter(Boolean).join(' · ') || 'Entrance exam'} · India</p>
         <p><AutoLinkedText text={seo.intro} entities={linkableEntities} options={{ excludeHrefs: autoLinkExclude }} /></p>
         {profile.exam.applyUrl ? <p><a href={profile.exam.applyUrl} target="_blank" rel="noopener noreferrer">Open official {name} information</a></p> : null}
+        {examCutoffs?.data.length ? <p><Link className="button primary" href={`/exams/${slug}/cutoff`}>{name} Cutoff</Link></p> : null}
       </div>
       <ExamLogo src={profile.exam.logo} examName={name} courseName={profile.exam.course?.name} size={120} />
     </header>
@@ -286,6 +300,8 @@ export default async function ExamProfilePage({ params }: { params: Promise<{ sl
       <p>Only active programmes at published colleges are counted. Confirm the academic year, category, hostel, mess and other charges with each institute.</p></section>}
 
     {!guideHtml && profile.programmes.length > 0 && <section><h2>Programmes linked with {name}</h2><div className="profile-chips">{profile.programmes.slice(0, 40).map((item) => <span key={`${item.programme_name}-${item.duration}`}>{text(item.programme_name)}</span>)}</div></section>}
+
+    {(examCutoffs?.data.length || seo.intent === 'cutoff') ? <ExamCutoffs examLabel={seo.label} cutoffs={examCutoffs} collegeHref={(collegeSlug) => findPublishedHref(linkableEntities, 'college', collegeSlug) || `/colleges/${collegeSlug}`} /> : null}
 
     {profile.colleges.length > 0 && <section><h2>Colleges accepting {seo.label}: {profile.colleges.length} listed</h2><p className="muted">Browse published college profiles mapped to {seo.label}. Prefer institutes with fees and placement evidence when shortlisting.</p>{seo.pack.collegesNote && <p className="muted">{seo.pack.collegesNote.text}{seo.pack.collegesNote.href && seo.pack.collegesNote.linkText ? <> <Link href={seo.pack.collegesNote.href}>{seo.pack.collegesNote.linkText}</Link>.</> : null}</p>}<div className="college-programme-grid">{profile.colleges.map((college) => {
       const href = college.published_slug ? `/colleges/${college.published_slug}` : null;

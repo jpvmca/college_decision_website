@@ -1,15 +1,16 @@
 'use client';
+import type { PercentileGroup } from '../lib/percentile';
 
 import { useEffect, useRef, useState } from 'react';
 import Link from 'next/link';
 import { SlidersHorizontal, X } from 'lucide-react';
 import type { CityPageOption, CourseFilterOption, StatePageOption } from './CourseFilterPanel';
 
-type Props = { options: CourseFilterOption[]; totalColleges: number; selectedKey: string | null; selectedLabel: string | null; stateOptions: StatePageOption[]; cityOptions: CityPageOption[]; selectedState: string | null; selectedCity: string | null };
+type Props = { options: CourseFilterOption[]; totalColleges: number; selectedKey: string | null; selectedLabel: string | null; stateOptions: StatePageOption[]; cityOptions: CityPageOption[]; selectedState: string | null; selectedCity: string | null; percentileGroups?: PercentileGroup[]; selectedPercentileHref?: string | null };
 
 const formatCount = (value: number) => value.toLocaleString('en-IN');
 
-export default function CourseFilterMobile({ options, totalColleges, selectedKey, selectedLabel, stateOptions, cityOptions, selectedState, selectedCity }: Props) {
+export default function CourseFilterMobile({ options, totalColleges, selectedKey, selectedLabel, stateOptions, cityOptions, selectedState, selectedCity, percentileGroups = [], selectedPercentileHref = null }: Props) {
   const [open, setOpen] = useState(false);
   const closeRef = useRef<HTMLButtonElement>(null);
   const selectedRef = useRef<HTMLAnchorElement>(null);
@@ -50,6 +51,9 @@ export default function CourseFilterMobile({ options, totalColleges, selectedKey
           </ul>{selectedState && cityOptions.length > 0 && <><h3>Filter by City</h3><ul className="course-filter-list state-filter-list">
             {cityOptions.map((city) => <li key={city.citySlug}><Link prefetch={false} href={`/${selectedKey}-colleges-in-${city.citySlug}-${city.stateSlug}`} onClick={() => setOpen(false)} className="course-filter-option" aria-current={city.citySlug === selectedCity ? 'page' : undefined}><span className="course-filter-radio" aria-hidden="true" /><span className="course-filter-label">{city.cityName}</span><span className="course-filter-count">({formatCount(Number(city.count))})</span></Link></li>)}
           </ul></>}</li>}
+          {percentileGroups.length > 0 && <li className="state-filter-mobile-group"><h3>Cutoff (Percentile / Rank)</h3>{percentileGroups.map((g, gi) => <details key={g.exam} className="cutoff-acc" open={selectedPercentileHref ? g.links.some((l) => l.href === selectedPercentileHref) : gi === 0}><summary className="percentile-filter-exam">{g.examName}<span className="cutoff-acc-count">{g.links.length}</span></summary><ul className="course-filter-list state-filter-list">
+            {g.links.map((l) => <li key={l.level}><Link prefetch={false} href={l.href} onClick={() => setOpen(false)} className="course-filter-option" aria-current={l.href === selectedPercentileHref ? 'page' : undefined}><span className="course-filter-radio" aria-hidden="true" /><span className="course-filter-label">{l.label || `Colleges Accepting ${l.level} Percentile`}</span></Link></li>)}
+          </ul></details>)}</li>}
         </ul>
       </div>
     </div>}

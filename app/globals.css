@@ -87,3 +87,34 @@ a{color:var(--blue);text-decoration:none}a:hover{text-decoration:underline}.site
 .exam-schedule-card{margin:22px 0;padding:18px;border:1px solid #bfdbfe;border-radius:14px;background:#eff6ff}.exam-schedule-card h2{margin-top:0}.exam-schedule-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px}.exam-schedule-grid>div{display:grid;gap:5px;padding:12px;border:1px solid #dbeafe;border-radius:10px;background:#fff}.exam-schedule-grid strong{font-size:13px;color:var(--muted)}.exam-countdown{font-size:13px;font-weight:700;color:#1d4ed8}@media(max-width:760px){.exam-schedule-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
 .course-html-content{margin:30px 0}.course-html-article{max-width:900px}.course-html-article h2{margin:34px 0 12px;padding-bottom:8px;border-bottom:1px solid var(--line);font-size:clamp(24px,3vw,32px);color:var(--navy)}.course-html-article h3{margin:22px 0 8px;font-size:20px;color:var(--navy)}.course-html-article p{line-height:1.75}.course-html-article ul,.course-html-article ol{padding-left:24px;line-height:1.75}.course-html-article li{margin:5px 0}.course-article-intro{font-size:18px;line-height:1.7;padding:18px 20px;border-left:4px solid #2563eb;border-radius:10px;background:#eff6ff}.course-content-note{margin-top:28px;padding:16px 18px;border:1px solid #dbe5f2;border-radius:10px;background:#f8fafc;color:var(--muted)}@media(max-width:760px){.course-html-content{margin:22px 0}.course-html-article h2{margin-top:28px}.course-article-intro{font-size:16px;padding:14px 15px}}
 .course-html-content .exam-guide-figure{margin:24px 0;max-width:900px}.course-html-content .exam-guide-figure img{display:block;width:100%;height:auto;border:1px solid var(--line);border-radius:12px;background:#fff}.course-html-content .exam-guide-figure figcaption{margin-top:8px;font-size:13px;color:var(--muted)}
+/* Cutoff filters/tables (components/Cutoffs.tsx) */
+.cutoff-filters{display:flex;flex-wrap:wrap;align-items:flex-end;gap:10px 12px;margin:12px 0 16px;padding:14px;border:1px solid var(--line);border-radius:12px;background:var(--soft)}
+.cutoff-filter{display:flex;flex-direction:column;gap:4px;font-size:.8rem;font-weight:650;color:var(--muted);min-width:130px;flex:1 1 140px;max-width:260px}
+.cutoff-filter select{padding:8px 10px;border:1px solid #d5deea;border-radius:8px;background:#fff;color:#172033;font-size:.9rem;max-width:100%}
+.cutoff-filters .button{margin-top:0;border:0;cursor:pointer;font:inherit;font-weight:750}
+.cutoff-table td:nth-last-child(-n+2){white-space:nowrap}
+.cutoff-count{margin-top:10px;font-size:.85rem}
+.cutoff-block .pagination button{cursor:pointer;font:inherit}.cutoff-block .pagination button:disabled,.cutoff-filters select:disabled{opacity:.5;cursor:default}
+
+/* Cutoff SEO pages */
+.cutoff-year-links { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 0.75rem; }
+.cutoff-section { margin-top: 2rem; }
+.cutoff-section details { border-bottom: 1px solid var(--line, #e5e7eb); padding: 0.6rem 0; }
+.cutoff-section summary { cursor: pointer; font-weight: 600; }
+
+/* Percentile filter + College Finder */
+.percentile-filter-exam { font-weight: 600; margin: 0.4rem 0 0.2rem; }
+.finder-card { border: 1px solid var(--line, #e5e7eb); border-radius: 12px; padding: 1rem 1.1rem; margin: 1.5rem 0; background: var(--surface, #fff); }
+.finder-card h2 { margin-top: 0; }
+.finder-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); gap: 0.75rem 1rem; }
+.finder-field { display: flex; flex-direction: column; gap: 0.25rem; font-size: 0.92rem; }
+.finder-field span { font-weight: 600; }
+.finder-field input, .finder-field select { width: 100%; min-height: 40px; padding: 0.4rem 0.55rem; border: 1px solid var(--line, #d1d5db); border-radius: 8px; font: inherit; background: #fff; }
+.finder-actions { display: flex; gap: 0.6rem; flex-wrap: wrap; margin-top: 0.9rem; }
+.finder-error { color: #b91c1c; margin: 0.6rem 0 0; }
+.finder-summary { font-weight: 600; }
+.finder-gap-pos { color: #15803d; font-weight: 600; }
+.finder-gap-neg { color: #b91c1c; font-weight: 600; }
+@media (max-width: 560px) { .finder-grid { grid-template-columns: 1fr 1fr; } .finder-actions .button { flex: 1; } }
+.cutoff-branch-list { margin: 0; padding-left: 1rem; }
+.cutoff-branch-list li { margin: 0.1rem 0; }

@@ -2,9 +2,9 @@
 .listing-layout{display:grid;grid-template-columns:minmax(0,1fr) 290px;gap:28px;align-items:start}
 .listing-main{min-width:0}
 .listing-main>h2:first-of-type{margin-top:18px}
-.course-filter-panel{position:sticky;top:16px;max-height:calc(100vh - 32px);display:flex;flex-direction:column;background:#fff;border:1px solid #d5e1f2;border-radius:12px;padding:16px 8px 8px 16px;margin-top:20px}
+.course-filter-panel{position:sticky;top:16px;max-height:calc(100vh - 32px);overflow-y:auto;overscroll-behavior:contain;scrollbar-width:thin;scrollbar-color:#c3d2ea transparent;background:#fff;border:1px solid #d5e1f2;border-radius:12px;padding:16px 8px 8px 16px;margin-top:20px}
 .course-filter-panel h2{font-size:17px;color:#172554;margin:0 0 10px}
-.course-filter-panel nav{overflow-y:auto;padding-right:8px;overscroll-behavior:contain}
+.course-filter-panel nav{padding-right:8px}
 .course-filter-list{list-style:none;margin:0;padding:0;display:grid;gap:2px}
 .state-filter-section{border-top:1px solid #e6edf7;margin-top:12px;padding-top:12px}
 .state-filter-section h3,.state-filter-mobile-group h3{font-size:14px;color:#344054;margin:0 0 7px}
@@ -39,3 +39,10 @@
 /* Keep long unbroken card text (eligibility, programme names) from widening the list on mobile */
 .listing-main .decision-results-list{grid-template-columns:minmax(0,1fr)}
 .listing-main .college-decision-card{min-width:0;overflow-wrap:anywhere}
+
+.course-filter-panel::-webkit-scrollbar{width:6px}.course-filter-panel::-webkit-scrollbar-thumb{background:#c3d2ea;border-radius:6px}.course-filter-panel::-webkit-scrollbar-track{background:transparent}
+.cutoff-acc{border-top:1px solid #e6edf7;padding:2px 0}.cutoff-acc>summary{list-style:none;cursor:pointer;display:flex;align-items:center;justify-content:space-between;gap:8px;padding:6px 8px 6px 0;margin:0;font-weight:600;color:#172554;font-size:14px}
+.cutoff-acc>summary::-webkit-details-marker,.cutoff-more>summary::-webkit-details-marker{display:none}
+.cutoff-acc>summary::after{content:'';width:7px;height:7px;border-right:2px solid #64748b;border-bottom:2px solid #64748b;transform:rotate(45deg);margin:0 4px 3px auto;transition:transform .15s}.cutoff-acc[open]>summary::after{transform:rotate(-135deg);margin-bottom:-3px}
+.cutoff-acc-count{font-size:12px;font-weight:500;color:#64748b;background:#f1f5fb;border-radius:99px;padding:1px 7px}
+.cutoff-more>summary{list-style:none;cursor:pointer;font-size:13px;color:#1d4ed8;padding:4px 0 6px 26px}.cutoff-more[open]>summary{display:none}

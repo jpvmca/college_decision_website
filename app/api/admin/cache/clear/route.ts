@@ -34,5 +34,6 @@ export async function POST(request: NextRequest) {
     revalidatePath(path);
   }
   revalidateTag('listings', { expire: 0 });
+  revalidateTag('cutoffs', { expire: 0 });
   return NextResponse.json({ data: { cleared: true } });
 }

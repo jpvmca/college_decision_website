@@ -6,6 +6,7 @@ import { ArrowLeftRight, BookOpen, BriefcaseBusiness, Building2, ClipboardCheck,
 import { api, instituteLogoUrl } from '../../../lib/api';
 import { toAbsoluteExternalUrl } from '../../../lib/external-url';
 import { getLinkableEntities, findPublishedHref, findPublishedHrefByName } from '../../../lib/linkable-entities';
+import { CollegeCutoffs, type CollegeCutoffResponse } from '../../../components/Cutoffs';
 
 type CollegeProfile = {
   institute: {
@@ -77,6 +78,16 @@ type CollegeProfile = {
   comparisonGuides: Array<{ slug: string; title: string; h1?: string | null; course_name?: string | null; other_college_name?: string | null; image_url?: string | null }>;
   updatedAt?: string | null;
 };
+
+// Default cutoff table only (server-rendered for SEO). Filters run client-side via /api/college-cutoffs;
+// the page URL never carries filter params.
+async function getCollegeCutoffs(slug: string) {
+  try {
+    return await api<CollegeCutoffResponse>(`/colleges/${encodeURIComponent(slug)}/cutoffs?perPage=25`, { cache: 'no-store' });
+  } catch {
+    return null;
+  }
+}
 
 async function getCollege(slug: string) {
   try {
@@ -227,7 +238,7 @@ function profileFaqs(profile: CollegeProfile, name: string, location: string) {
     faqs.push({ question: `What are the fees at ${name}?`, answer: `${answer.charAt(0).toUpperCase()}${answer.slice(1)}. Hostel, deposits and one-time charges are extra; confirm current category and additional charges with the institution.` });
   }
   if (profile.exams.length) faqs.push({ question: `Which entrance exams are accepted by ${name}?`, answer: `The active programme mappings list ${profile.exams.slice(0, 6).map((exam) => exam.name).join(', ')}.` });
-  if (profile.cutoffs.length) faqs.push({ question: `What are the cutoffs for ${name}?`, answer: `The profile contains ${profile.cutoffs.length} cutoff record(s). Check the programme, category and year before using any cutoff for planning.` });
+  if (profile.cutoffs.length) faqs.push({ question: `What are the cutoffs for ${name}?`, answer: `Latest-year, final-round cutoffs are recorded for ${profile.cutoffs.length} programme, category and quota combination(s)${profile.cutoffs[0]?.exam_name ? ` (${String(profile.cutoffs[0].exam_name).replace(/\s+/g, ' ')}${profile.cutoffs[0].year ? ` ${profile.cutoffs[0].year}` : ''})` : ''}. Use the cutoff filters on this page to check your programme, category, quota and round.` });
   if (profile.placements.length) faqs.push({ question: `How are placements at ${name}?`, answer: `Placement records are available for ${profile.placements.filter((item) => item.year).length || profile.placements.length} programme-year record(s), including average and highest package values where reported.` });
   if (profile.placements.some((item) => Number(item.average_package) > 0)) faqs.push({ question: `What is the average package at ${name}?`, answer: `The available placement records include average package values such as ${packageValue(profile.placements.find((item) => Number(item.average_package) > 0)?.average_package)}. Values can vary by year and programme.` });
   if (profile.rankings.length) faqs.push({ question: `What is the ranking of ${name}?`, answer: `The profile contains ${profile.rankings.length} active ranking record(s), including ${profile.rankings.slice(0, 2).map((item) => `${item.ranking_body} rank ${item.rank}`).join(' and ')}.` });
@@ -368,7 +379,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
 
 export default async function CollegeProfilePage({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params;
-  const profile = await getCollege(slug);
+  const [profile, cutoffs] = await Promise.all([getCollege(slug), getCollegeCutoffs(slug)]);
   if (!profile) notFound();
 
   const name = displayName(profile);
@@ -470,6 +481,7 @@ export default async function CollegeProfilePage({ params }: { params: Promise<{
         <p className="muted">{profile.institute.instituteType || 'College'} · {location || 'India'}{profile.institute.isUniversity ? ' · University' : ''}</p>
         <p>Review courses, fees, eligibility, admission routes, placements, rankings and student reviews for {name} before making your shortlist.</p>
         {officialWebsite && <a className="button primary" href={officialWebsite} target="_blank" rel="noopener noreferrer"><Globe2 size={16} aria-hidden="true" /> Visit official website</a>}
+        {cutoffs?.data?.length ? <Link className="button" href={`/colleges/${slug}/cutoff`}>Cutoff</Link> : null}
       </div>
       <img className="college-profile-logo" src={profile.institute.logo ? instituteLogoUrl(profile.institute.logo) : '/logo.svg'} alt={profile.institute.logo ? `${name} college logo` : 'College Decision logo'} width="160" height="160" />
     </header>
@@ -520,11 +532,10 @@ export default async function CollegeProfilePage({ params }: { params: Promise<{
       <h3>How to Apply</h3><p>Check the relevant programme eligibility, follow the mapped entrance-exam or university counselling route, and confirm dates, documents and fees on the official admission notice.</p>
     </section>}
 
-    {(profile.exams.length > 0 || profile.cutoffs.length > 0) && <section>
+    {(profile.exams.length > 0 || profile.cutoffs.length > 0 || (cutoffs?.pagination.total || 0) > 0) && <section>
       <SectionHeading icon={Target}>Cutoffs and Entrance Exams</SectionHeading>
       {profile.exams.length > 0 && <><h3>Entrance Exams for {name}</h3><p>Key entrance exams and routes recorded in the database: {profile.exams.map((exam) => exam.name).join(', ')}.</p></>}
-      <h3>Cutoff Trends</h3>
-      {profile.cutoffs.length > 0 ? <div className="profile-list">{profile.cutoffs.slice(0, 30).map((cutoff, index) => <p key={`${cutoff.course_name}-${cutoff.year}-${index}`}><strong>{cutoff.course_name || 'Programme'}</strong>{cutoff.exam_name ? ` · ${cutoff.exam_name}` : ''}{cutoff.year ? ` · ${cutoff.year}` : ''}: {cutoff.closing_rank || cutoff.cutoff_score || cutoff.cutoff_percentile || 'Recorded cutoff'}</p>)}</div> : <p>Branch-wise and category-wise cutoffs are not published in the current dataset. Check the official university or counselling website for the latest cutoffs.</p>}
+      <CollegeCutoffs slug={slug} collegeName={name} cutoffs={cutoffs} examHref={(examSlug) => findPublishedHref(linkableEntities, 'exam', examSlug)} />
     </section>}
 
     {(recordedPlacements.length > 0 || profile.recruiters.length > 0) && <section>

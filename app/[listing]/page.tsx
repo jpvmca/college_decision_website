@@ -10,6 +10,10 @@ import { getLinkableEntities } from '../../lib/linkable-entities';
 import { LISTINGS_CACHE_VERSION, courseListingHref, getCourseFacets, listingFetchOptions, parseCourseListingSegment, type CourseFacet } from '../../lib/listings';
 import { CollegeListResults, ListPaginationNav, type ListedCollege, type ListPagination } from '../../components/CollegeListResults';
 import LoadMoreColleges from '../../components/LoadMoreColleges';
+import PercentileCollegesPage, { percentileMetadata } from '../../components/PercentileCollegesPage';
+import { cutoffGroupsFor, getPercentileCombos, parsePercentileSegment } from '../../lib/percentile';
+import { getClosingCombos, parseRankSegment } from '../../lib/closing';
+import ClosingCollegesPage, { closingMetadata } from '../../components/ClosingCollegesPage';
 import { CourseFilterMobileButton, CourseFilterSidebar, type CityPageOption, type StatePageOption } from '../../components/CourseFilterPanel';
 
 /**
@@ -19,7 +23,7 @@ import { CourseFilterMobileButton, CourseFilterSidebar, type CityPageOption, typ
  */
 
 type Params = Promise<{ listing: string }>;
-type SearchParams = Promise<{ page?: string }>;
+type SearchParams = Promise<{ page?: string } & Record<string, string | string[] | undefined>>;
 type ListingImage = { path: string; width: number; height: number; updatedAt?: string };
 type CourseListing = { course: CourseFacet; data: ListedCollege[]; pagination: ListPagination; image?: ListingImage | null; cityPage?: CityPageOption | null };
 
@@ -128,6 +132,12 @@ function seoDescription(label: string) {
 }
 
 export async function generateMetadata({ params, searchParams }: { params: Params; searchParams: SearchParams }): Promise<Metadata> {
+  {
+    const [{ listing: seg }, q] = await Promise.all([params, searchParams]);
+    // /{course}-colleges-accepting-{80|90|95}-percentile-{exam}
+    if (parsePercentileSegment(seg)) return (await percentileMetadata(seg, q)) || (await closingMetadata(seg, q, 'percentile')) || { title: 'Page not found', robots: { index: false, follow: false } };
+    if (parseRankSegment(seg)) { const cm = await closingMetadata(seg, q, 'rank'); return cm || { title: 'Page not found', robots: { index: false, follow: false } }; }
+  }
   const [{ listing }, query] = await Promise.all([params, searchParams]);
   const page = pageNumber(query.page);
   const result = await loadListing(listing, page);
@@ -197,20 +207,25 @@ export async function generateMetadata({ params, searchParams }: { params: Param
 
 export default async function CourseCollegesPage({ params, searchParams }: { params: Params; searchParams: SearchParams }) {
   const [{ listing }, query] = await Promise.all([params, searchParams]);
+  if (parsePercentileSegment(listing)) return <PercentileCollegesPage segment={listing} query={query} />;
+  if (parseRankSegment(listing)) return <ClosingCollegesPage segment={listing} query={query} kind="rank" />;
   if (listing.includes('-colleges-in-') && query.page !== undefined) {
     permanentRedirect(`/${listing}`);
   }
   const page = pageNumber(query.page);
-  const [result, linkableEntities, facets, statePages, cityPages] = await Promise.all([
+  const [result, linkableEntities, facets, statePages, cityPages, percentileCombos, closingCombos] = await Promise.all([
     loadListing(listing, page),
     getLinkableEntities(),
     getCourseFacets(),
     getStatePages(),
-    getCityPages()
+    getCityPages(),
+    getPercentileCombos(),
+    getClosingCombos()
   ]);
   if (!result) notFound();
 
   const { course, pagination } = result;
+  const percentileGroups = cutoffGroupsFor(facets.data.find((f) => f.key === course.key) || null, percentileCombos, closingCombos);
   const cityPage = cityCoursePage(listing, facets.data, cityPages.data)?.page || null;
   const statePage = cityPage ? null : stateCourseSegment(listing);
   const label = course.label;
@@ -297,7 +312,7 @@ export default async function CourseCollegesPage({ params, searchParams }: { par
     </section> : <section className="hero-inline">{heroCopy}</section>}
     <div className="listing-layout">
       <div className="listing-main">
-        <CourseFilterMobileButton facets={facets.data} totalColleges={facets.totalColleges} selectedKey={course.key} selectedState={cityPage?.stateSlug || statePage?.stateSlug || null} selectedCity={cityPage?.citySlug || null} statePages={statePages.data} cityPages={cityPages.data} />
+        <CourseFilterMobileButton percentileGroups={percentileGroups} facets={facets.data} totalColleges={facets.totalColleges} selectedKey={course.key} selectedState={cityPage?.stateSlug || statePage?.stateSlug || null} selectedCity={cityPage?.citySlug || null} statePages={statePages.data} cityPages={cityPages.data} />
         <div className="article-card-top">
           <p className="muted">{totalLabel} {label} colleges · 20 per page{page > 1 ? ` · Page ${page} of ${pagination.totalPages}` : ''}</p>
         </div>
@@ -310,7 +325,7 @@ export default async function CourseCollegesPage({ params, searchParams }: { par
           </>}
         <p className="muted">Fees and placement figures are shown only where colleges have reported them; confirm the latest numbers on the official college website before applying.</p>
       </div>
-      <CourseFilterSidebar facets={facets.data} totalColleges={facets.totalColleges} selectedKey={course.key} selectedState={cityPage?.stateSlug || statePage?.stateSlug || null} selectedCity={cityPage?.citySlug || null} statePages={statePages.data} cityPages={cityPages.data} />
+      <CourseFilterSidebar percentileGroups={percentileGroups} facets={facets.data} totalColleges={facets.totalColleges} selectedKey={course.key} selectedState={cityPage?.stateSlug || statePage?.stateSlug || null} selectedCity={cityPage?.citySlug || null} statePages={statePages.data} cityPages={cityPages.data} />
     </div>
   </div></main>;
 }
