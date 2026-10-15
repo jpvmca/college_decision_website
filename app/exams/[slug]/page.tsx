@@ -9,6 +9,7 @@ import AutoLinkedText from '../../../components/AutoLinkedText';
 import { articleAnchorTitle, buildExamFaqs, buildExamSeo, examFeeRangeText, examFeeSentence, rankExamArticles, type ExamFeeDisplay } from '../../../lib/exam-seo';
 import ExamLogo from '../../../components/ExamLogo';
 import ExamCountdown from '../../../components/ExamCountdown';
+import { EVENT_STATUS_BADGE, eventDateLabel, formatShortDate, type ExamEvent } from '../../../lib/examEvents';
 import { ExamCutoffs, type ExamCutoffResponse } from '../../../components/Cutoffs';
 import { findPublishedHref } from '../../../lib/linkable-entities';
 
@@ -77,6 +78,7 @@ type ExamProfile = {
     countdownEligible: boolean;
   }>;
   nextSchedule?: ExamProfile['schedules'][number] | null;
+  events?: ExamEvent[];
   updatedAt?: string | null;
 };
 
@@ -186,6 +188,10 @@ export default async function ExamProfilePage({ params }: { params: Promise<{ sl
   const faqs = profileFaqs(profile, name);
   const linkableEntities = await getLinkableEntities();
   const schedule = profile.nextSchedule;
+  // Important-dates table: only the latest cycle that has events (older exams without events render as before).
+  const eventCycle = profile.events?.length ? Math.max(...profile.events.map((e) => e.cycleYear)) : null;
+  const events = eventCycle ? (profile.events || []).filter((e) => e.cycleYear === eventCycle) : [];
+  const eventSources = Array.from(new Set(events.map((e) => e.sourceUrl).filter((u): u is string => Boolean(u))));
   // Per-exam exclusions (exam-seo.ts autoLinkExcludeHrefs) stop short aliases linking to the wrong exam on this page.
   const autoLinkExclude = [`/exams/${slug}`, ...(seo.pack.autoLinkExcludeHrefs || [])];
   const guideHtml = autoLinkHtml(stripEmbeddedFaqs(profile.exam.htmlContent), linkableEntities, {
@@ -267,16 +273,28 @@ export default async function ExamProfilePage({ params }: { params: Promise<{ sl
     </section>
 
     {schedule && (schedule.exam_start_date || schedule.expected_month || schedule.application_start_date || schedule.result_date) && <section className="exam-schedule-card" aria-labelledby="exam-schedule-heading">
-      <h2 id="exam-schedule-heading">Important {name} dates</h2>
+      <h2 id="exam-schedule-heading">{events.length ? `Key ${name} dates` : `Important ${name} dates`}</h2>
       <div className="exam-schedule-grid">
-        {schedule.exam_start_date ? <div><strong>Exam date</strong><span>{schedule.exam_start_date}{schedule.exam_end_date && schedule.exam_end_date !== schedule.exam_start_date ? ` to ${schedule.exam_end_date}` : ''}</span>{schedule.countdownEligible ? <ExamCountdown date={schedule.exam_start_date} /> : null}</div> : schedule.expected_month ? <div><strong>Expected exam window</strong><span>{schedule.expected_month}</span></div> : null}
-        {schedule.application_start_date && <div><strong>Registration starts</strong><span>{schedule.application_start_date}</span></div>}
-        {schedule.application_end_date && <div><strong>Registration closes</strong><span>{schedule.application_end_date}</span></div>}
-        {schedule.result_date && <div><strong>Result date</strong><span>{schedule.result_date}</span></div>}
+        {schedule.exam_start_date ? <div><strong>Exam date</strong><span>{formatShortDate(schedule.exam_start_date)}{schedule.exam_end_date && schedule.exam_end_date !== schedule.exam_start_date ? ` to ${formatShortDate(schedule.exam_end_date)}` : ''}</span>{schedule.countdownEligible ? <ExamCountdown date={schedule.exam_start_date} /> : null}</div> : schedule.expected_month ? <div><strong>Expected exam window</strong><span>{schedule.expected_month}</span></div> : null}
+        {schedule.application_start_date && <div><strong>Registration starts</strong><span>{formatShortDate(schedule.application_start_date)}</span></div>}
+        {schedule.application_end_date && <div><strong>Registration closes</strong><span>{formatShortDate(schedule.application_end_date)}</span></div>}
+        {schedule.result_date && <div><strong>Result date</strong><span>{formatShortDate(schedule.result_date)}</span></div>}
         {schedule.admission_window && <div><strong>Admission window</strong><span>{schedule.admission_window}</span></div>}
       </div>
       {schedule.source_url && <p><a href={schedule.source_url} target="_blank" rel="noopener noreferrer">Verify the official {name} schedule</a></p>}
       {schedule.date_status === 'not_announced' && <p className="muted">The conducting body has not announced an exact date for this cycle.</p>}
+    </section>}
+
+    {events.length > 0 && <section className="exam-events" aria-labelledby="exam-events-heading">
+      <h2 id="exam-events-heading">Important {name} {eventCycle} dates</h2>
+      <div className="table-wrap"><table className="exam-events-table">
+        <thead><tr><th scope="col">Event</th><th scope="col">Date</th></tr></thead>
+        <tbody>{events.map((e) => <tr key={e.id}>
+          <td>{e.eventName}{e.note ? <small className="muted" style={{ display: 'block' }}>{e.note}</small> : null}</td>
+          <td>{eventDateLabel(e)}{EVENT_STATUS_BADGE[e.status] ? <> <span className={`status-badge status-${e.status}`}>{EVENT_STATUS_BADGE[e.status]}</span></> : null}</td>
+        </tr>)}</tbody>
+      </table></div>
+      {eventSources.length > 0 && <p className="muted">Source{eventSources.length > 1 ? 's' : ''}: {eventSources.map((u, i) => <span key={u}>{i ? ', ' : ''}<a href={u} target="_blank" rel="noopener noreferrer">{(() => { try { return new URL(u).hostname.replace(/^www\./, ''); } catch { return u; } })()}{eventSources.length > 1 ? ` (${i + 1})` : ''}</a></span>)}. Dates can change; confirm on the official website.</p>}
     </section>}
 
     {guideHtml ? <section className="course-html-content" aria-label={`${name} exam guide`} dangerouslySetInnerHTML={{ __html: guideHtml }} /> : null}
