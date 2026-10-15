@@ -28,6 +28,15 @@ const nextConfig: NextConfig = {
       {
         source: '/sitemaps/:path*',
         headers: [{ key: 'Cache-Control', value: 'public, max-age=300, stale-while-revalidate=3600' }]
+      },
+      {
+        // Cutoff sitemaps and the index: cached for an hour by browsers/CDNs (data is also cached in Next).
+        source: '/sitemaps/:name(cutoffs|cutoff-percentile|cutoff-rank|exam-cutoffs).xml',
+        headers: [{ key: 'Cache-Control', value: 'public, max-age=3600, s-maxage=3600, stale-while-revalidate=86400' }]
+      },
+      {
+        source: '/sitemap.xml',
+        headers: [{ key: 'Cache-Control', value: 'public, max-age=3600, s-maxage=3600, stale-while-revalidate=86400' }]
       }
     ];
   },

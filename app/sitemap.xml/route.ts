@@ -27,7 +27,7 @@ export async function GET() {
     return new NextResponse(body, {
       headers: {
         'Content-Type': 'application/xml; charset=utf-8',
-        'Cache-Control': 'public, max-age=300, stale-while-revalidate=3600'
+        'Cache-Control': 'public, max-age=3600, s-maxage=3600, stale-while-revalidate=86400'
       }
     });
   } catch {

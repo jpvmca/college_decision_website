@@ -1,4 +1,10 @@
+import { unstable_cache } from 'next/cache';
 import { NextResponse } from 'next/server';
+
+/** Cutoff sitemaps are rebuilt at most once an hour (or on revalidateTag('cutoffs') from the admin cache clear). */
+export const SITEMAP_REVALIDATE = 3600;
+const SITEMAP_TAGS = ['cutoffs', 'sitemaps'];
+export const SITEMAP_CACHE_CONTROL = `public, max-age=${SITEMAP_REVALIDATE}, s-maxage=${SITEMAP_REVALIDATE}, stale-while-revalidate=86400`;
 
 export type SitemapEntry = { loc: string; lastmod?: string | null; changefreq: string; priority: string };
 
@@ -20,7 +26,7 @@ function backendBase() {
 }
 
 async function getJson<T>(path: string): Promise<T | null> {
-  const res = await fetch(`${backendBase()}${path}`, { cache: 'no-store' });
+  const res = await fetch(`${backendBase()}${path}`, { next: { revalidate: SITEMAP_REVALIDATE, tags: SITEMAP_TAGS } });
   if (!res.ok) throw new Error(`Backend ${path} returned ${res.status}`);
   return (await res.json()) as T;
 }
@@ -49,32 +55,11 @@ function facetFor(facets: Facet[], c: { course_id: number; course_slug: string }
   return facets.find((x) => x.courseIds.includes(c.course_id) || x.courseSlug === c.course_slug);
 }
 
-/** True when the college cutoff page renders (at least one published exam); unpublished-only colleges 404. */
-async function hasPublishedCutoffs(slug: string): Promise<boolean> {
-  try {
-    const raw = await getJson<{ data?: { exams?: Array<{ published?: boolean }> }; exams?: Array<{ published?: boolean }> }>(`/colleges/${encodeURIComponent(slug)}/cutoffs/summary`);
-    const summary = raw?.data || raw;
-    return Boolean(summary?.exams?.some((e) => e.published));
-  } catch {
-    return false;
-  }
-}
-
-/** /colleges/{slug}/cutoff (only pages that return 200). */
-export async function collegeCutoffEntries(payload: Payload): Promise<SitemapEntry[]> {
+/** /colleges/{slug}/cutoff. The backend lists only colleges with a published exam, so every page returns 200. */
+export function collegeCutoffEntries(payload: Payload): SitemapEntry[] {
   const base = siteBase();
   const fallback = latestCutoffUpdate(payload);
-  const colleges = payload.colleges || [];
-  const keep: boolean[] = new Array(colleges.length).fill(false);
-  let next = 0;
-  const worker = async () => {
-    while (next < colleges.length) {
-      const i = next++;
-      keep[i] = await hasPublishedCutoffs(colleges[i].slug);
-    }
-  };
-  await Promise.all(Array.from({ length: 12 }, worker));
-  return colleges.filter((_, i) => keep[i]).map((c) => ({
+  return (payload.colleges || []).map((c) => ({
     loc: `${base}/colleges/${c.slug}/cutoff`,
     lastmod: c.updatedAt ? new Date(c.updatedAt).toISOString() : fallback,
     changefreq: 'monthly',
@@ -127,12 +112,32 @@ export async function finderEntries(kind: 'percentile' | 'rank', payload: Payloa
   return out;
 }
 
-export function urlsetResponse(entries: SitemapEntry[]) {
-  const body = `<?xml version="1.0" encoding="UTF-8"?>` +
+function urlsetXml(entries: SitemapEntry[]) {
+  return `<?xml version="1.0" encoding="UTF-8"?>` +
     `<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">` +
     entries.map((e) => `<url><loc>${xml(e.loc)}</loc>${e.lastmod ? `<lastmod>${e.lastmod}</lastmod>` : ''}<changefreq>${e.changefreq}</changefreq><priority>${e.priority}</priority></url>`).join('') +
     `</urlset>`;
-  return new NextResponse(body, { headers: { 'Content-Type': 'application/xml; charset=utf-8', 'Cache-Control': 'public, max-age=300, stale-while-revalidate=3600' } });
+}
+
+export type CutoffSitemapKind = 'colleges' | 'percentile' | 'rank' | 'exams';
+
+async function buildSitemapXml(kind: CutoffSitemapKind): Promise<string> {
+  const payload = await getCutoffSitemapPayload();
+  if (kind === 'colleges') return urlsetXml(collegeCutoffEntries(payload));
+  if (kind === 'exams') return urlsetXml(examCutoffEntries(payload));
+  return urlsetXml(await finderEntries(kind, payload));
+}
+
+/** Built XML is cached in the Next data cache; a backend error throws, so failures are never cached. */
+const cachedSitemapXml = unstable_cache(buildSitemapXml, ['cutoff-sitemap-xml-v2'], { revalidate: SITEMAP_REVALIDATE, tags: SITEMAP_TAGS });
+
+export async function cutoffSitemapResponse(kind: CutoffSitemapKind) {
+  try {
+    const body = await cachedSitemapXml(kind);
+    return new NextResponse(body, { headers: { 'Content-Type': 'application/xml; charset=utf-8', 'Cache-Control': SITEMAP_CACHE_CONTROL } });
+  } catch {
+    return emptyUrlsetResponse();
+  }
 }
 
 export function emptyUrlsetResponse() {
