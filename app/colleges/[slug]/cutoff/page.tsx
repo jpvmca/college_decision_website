@@ -3,7 +3,7 @@ import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import JsonLd from '../../../../components/JsonLd';
 import CollegeCutoffYearTables from '../../../../components/CollegeCutoffYearTables';
-import { breadcrumbJsonLd, faqJsonLd, formatMetric, examYearNote, getCollegeCutoffSummary, getCollegeYearRows, metricWord, siteUrl, type CollegeCutoffSummary } from '../../../../lib/cutoffs';
+import { breadcrumbJsonLd, cutoffYearHeading, examYearOf, faqJsonLd, formatMetric, examYearNote, getCollegeCutoffSummary, getCollegeYearRows, metricWord, siteUrl, type CollegeCutoffSummary } from '../../../../lib/cutoffs';
 
 export const revalidate = 600;
 
@@ -17,7 +17,8 @@ async function load(slug: string) {
 }
 
 function titleFor(s: NonNullable<Awaited<ReturnType<typeof load>>>) {
-  const latest = Math.max(...s.exams.flatMap((e) => e.years.map((y) => y.year)));
+  // Same logic as exam cutoff pages: label by the latest exam year with data (CAT 2025 data -> "2025", not the 2026 admission year).
+  const latest = Math.max(...s.exams.flatMap((e) => e.years.map((y) => examYearOf(y))));
   const first = s.exams[0];
   const examNames = s.exams.slice(0, 2).map((e) => clean(e.name)).join(' & ');
   const metrics = new Set(s.exams.slice(0, 2).map((e) => e.metric));
@@ -83,7 +84,7 @@ export default async function CollegeCutoffPage({ params }: { params: Promise<{ 
       <p className="muted">{clean(exam.name)} cutoff years: {exam.years.map((y) => <a key={y.year} href={`#${exam.slug}-${y.year}`} style={{ marginRight: '0.6rem' }}>{y.year}</a>)}
         {exam.published && <> · <Link href={`/exams/${exam.slug}/cutoff`}>{clean(exam.name)} cutoff for all colleges</Link></>}</p>
       {sections.filter((x) => x.exam.slug === exam.slug).map(({ y, data }) => <div key={y.year} id={`${exam.slug}-${y.year}`} className="cutoff-section">
-        <h2>{name} {clean(exam.name)} Cutoff {y.year}</h2>
+        <h2>{name} {cutoffYearHeading(clean(exam.name), y)}</h2>
         <p className="muted">{exam.metric === 'rank' ? `Final round (round ${data!.round}) closing ranks for ${y.programmes} programme(s); a lower rank is more competitive.` : exam.metric === 'score' ? `Final round (round ${data!.round}) closing scores for ${y.programmes} programme(s).` : 'Minimum percentiles used to shortlist candidates.'}{' '}{examYearNote(clean(exam.name), y.year, y.exam_year) || ''}</p>
         <CollegeCutoffYearTables rows={data!.rows} metric={exam.metric} />
       </div>)}

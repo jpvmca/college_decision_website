@@ -54,6 +54,12 @@ const nextConfig: NextConfig = {
         destination: '/colleges/narsee-monjee-institute-of-management-studies-nmims-karnataka-bangalore/:path*',
         statusCode: 301
       },
+      // Soft-deleted duplicate IIIT Dharwad (61553) -> canonical 17380
+      {
+        source: '/colleges/indian-institute-of-information-technology-dharwad-c-56451/:path*',
+        destination: '/colleges/indian-institute-of-information-technology-iiit-dharwad-karnataka-dharwad/:path*',
+        statusCode: 301
+      },
       // Inactive duplicate / alias exam slugs -> canonical published exam (duplicates consolidated 15 Oct 2026)
       { source: '/exams/neet-ug/:path*', destination: '/exams/neet/:path*', statusCode: 301 },
       { source: '/exams/neet-ug-1/:path*', destination: '/exams/neet/:path*', statusCode: 301 },
