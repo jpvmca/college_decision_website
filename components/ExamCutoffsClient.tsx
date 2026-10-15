@@ -7,7 +7,7 @@ type Facet = { code: string; label: string };
 type WithFacets = ExamCutoffResponse & { facets?: { categories: Facet[]; quotas: Facet[]; genders: Facet[] } };
 
 /** Exam cutoff table with in-place filters (state + /api/exam-cutoffs); the page URL never changes. */
-export default function ExamCutoffsClient({ slug, examLabel, initial }: { slug: string; examLabel: string; initial: WithFacets }) {
+export default function ExamCutoffsClient({ slug, examLabel, initial, heading }: { slug: string; examLabel: string; initial: WithFacets; heading?: string | null }) {
   const [state, setState] = useState<WithFacets>(initial);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(false);
@@ -47,7 +47,7 @@ export default function ExamCutoffsClient({ slug, examLabel, initial }: { slug: 
     </div>}
     {error && <p role="alert">Could not load cutoffs. Please try again.</p>}
     <div style={loading ? { opacity: 0.55 } : undefined}>
-      <ExamCutoffs examLabel={examLabel} cutoffs={state} collegeHref={(s) => `/colleges/${s}/cutoff`} />
+      <ExamCutoffs examLabel={examLabel} cutoffs={state} heading={heading} collegeHref={(s) => `/colleges/${s}/cutoff`} />
     </div>
     {pagination.totalPages > 1 && <nav className="pagination cutoff-block" aria-label="Cutoff pages">
       <button type="button" className="page-arrow" disabled={loading || pagination.page <= 1} onClick={() => load(current, pagination.page - 1)}>Prev</button>

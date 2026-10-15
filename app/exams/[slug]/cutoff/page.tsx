@@ -1,7 +1,7 @@
 import type { Metadata } from 'next';
 import { examFinderProps } from '../../../../components/PercentileCollegesPage';
 import { notFound } from 'next/navigation';
-import ExamCutoffPage, { examCutoffDescription, examCutoffOverviewTitle } from '../../../../components/ExamCutoffPage';
+import ExamCutoffPage, { examCutoffDescription, examCutoffMetaTitle } from '../../../../components/ExamCutoffPage';
 import { getExamCutoffSummary, getExamYearCutoffs, siteUrl } from '../../../../lib/cutoffs';
 
 export const revalidate = 600;
@@ -10,9 +10,9 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   const { slug } = await params;
   const s = await getExamCutoffSummary(slug);
   if (!s?.years.length) return { title: 'Cutoff not found', robots: { index: false, follow: false } };
-  const title = examCutoffOverviewTitle(s);
+  const { absolute: title } = examCutoffMetaTitle(s);
   const description = examCutoffDescription(s);
-  return { title, description, alternates: { canonical: `/exams/${slug}/cutoff` }, robots: { index: true, follow: true }, openGraph: { type: 'website', title, description, url: `${siteUrl()}/exams/${slug}/cutoff`, siteName: 'College Decision' }, twitter: { card: 'summary', title, description } };
+  return { title: { absolute: title }, description, alternates: { canonical: `/exams/${slug}/cutoff` }, robots: { index: true, follow: true }, openGraph: { type: 'website', title, description, url: `${siteUrl()}/exams/${slug}/cutoff`, siteName: 'College Decision' }, twitter: { card: 'summary', title, description } };
 }
 
 export default async function Page({ params }: { params: Promise<{ slug: string }> }) {

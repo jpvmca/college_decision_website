@@ -28,7 +28,47 @@ export const getCollegeYearRows = (slug: string, exam: string, year: number) =>
   safe(() => api<{ exam: { slug: string; name: string }; year: number; round: number | null; rows: import('../components/CollegeCutoffYearTables').YearRow[] }>(`/colleges/${encodeURIComponent(slug)}/cutoffs/year?exam=${encodeURIComponent(exam)}&year=${year}`, opts(`college:${slug}`)));
 /** "Based on CAT 2025 exam scores" when the admission year differs from the exam year. */
 export function examYearNote(examName: string, year: number, examYear?: number) {
-  return examYear && examYear !== year ? `${examName} ${year} cutoffs are for ${year}–${String(year + 2).slice(-2)} admissions and are based on ${examName} ${examYear} exam scores.` : null;
+  return examYear && examYear !== year ? `These cutoffs are based on ${examName} ${examYear} exam scores and apply to ${batchLabel(year)} admissions (batch starting ${year}).` : null;
+}
+
+type YearLike = { year: number; exam_year?: number };
+/** Years are keyed by admission year when the exam is held the year before (e.g. CAT 2025 -> 2026-28 batch). */
+export const isAdmissionKeyed = (y: YearLike) => Boolean(y.exam_year && y.exam_year !== y.year);
+/** The exam year shown to users (CAT 2025), regardless of how the data is keyed. */
+export const examYearOf = (y: YearLike) => (isAdmissionKeyed(y) ? Number(y.exam_year) : y.year);
+/** "2026–28" for a 2-year programme starting in the admission year. */
+export const batchLabel = (admissionYear: number, length = 2) => `${admissionYear}–${String(admissionYear + length).slice(-2)}`;
+/** Programme admitted through the exam, used in headings ("2026–28 MBA Admissions"). */
+export function examProgrammeWord(slug: string) {
+  return /^(cat|xat|snap|nmat|cmat|mat|micat|mah-mba-cet|tancet|iift|atma|gmat)/.test(slug) ? 'MBA' : null;
+}
+/** Section heading per data year: "CAT 2025 Cutoffs (2026–28 batch)" or "JEE Main 2024 Cutoffs". */
+export function cutoffYearHeading(examName: string, y: YearLike) {
+  return isAdmissionKeyed(y) ? `${examName} ${examYearOf(y)} Cutoffs (${batchLabel(y.year)} batch)` : `${examName} ${y.year} Cutoffs`;
+}
+/**
+ * The next exam cycle with no data yet, for admission-keyed exams only: when the latest exam with data was held last
+ * calendar year, this year's exam has not produced cutoffs yet (e.g. CAT 2026 in late November).
+ */
+export function pendingExamYear(latest: YearLike, now = new Date()) {
+  if (!isAdmissionKeyed(latest)) return null;
+  const currentYear = Number(new Intl.DateTimeFormat('en-IN', { year: 'numeric', timeZone: 'Asia/Kolkata' }).format(now));
+  const next = examYearOf(latest) + 1;
+  return next === currentYear ? { examYear: next, admissionYear: latest.year + 1 } : null;
+}
+/** Pick the first candidate whose final <title> (with the site suffix) is 55–60 chars; else the longest that fits 60. */
+export function fitTitle(candidates: string[], suffix = ' | College Decision') {
+  const forms = candidates.flatMap((c) => [c + suffix, c]);
+  const ok = forms.find((t) => t.length >= 55 && t.length <= 60);
+  if (ok) return ok;
+  const fits = forms.filter((t) => t.length <= 60).sort((a, b) => b.length - a.length);
+  return fits[0] || candidates[candidates.length - 1].slice(0, 60);
+}
+/** Trim a meta description to <= 155 chars on a word boundary. */
+export function fitDescription(text: string, max = 155) {
+  if (text.length <= max) return text;
+  const cut = text.slice(0, max - 1);
+  return `${cut.slice(0, cut.lastIndexOf(' ')).replace(/[,;:]$/, '')}…`;
 }
 export const getExamCutoffSummary = (slug: string) =>
   safe(() => api<ExamCutoffSummary>(`/exams/${encodeURIComponent(slug)}/cutoffs/summary`, opts(`exam:${slug}`)));

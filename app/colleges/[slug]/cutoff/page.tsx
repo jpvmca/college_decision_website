@@ -31,7 +31,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   if (!s) return { title: 'Cutoff not found', robots: { index: false, follow: false } };
   const { title } = titleFor(s);
   const name = clean(s.institute.name);
-  const description = `${name} cutoff for ${s.exams.map((e) => `${clean(e.name)} (${e.years.map((y) => y.year).join(', ')})`).join('; ')}: ${s.exams.some((e) => e.metric === 'rank') ? 'opening and closing ranks by programme, round, category, quota and gender' : 'minimum percentiles by category'}, with official source links.`;
+  const description = `${name} cutoff for ${s.exams.map((e) => `${clean(e.name)} (${e.years.map((y) => (y.exam_year && y.exam_year !== y.year ? y.exam_year : y.year)).join(', ')})`).join('; ')}: ${s.exams.some((e) => e.metric === 'rank') ? 'opening and closing ranks by programme, round, category, quota and gender' : 'minimum percentiles by category'}, with official source links.`;
   const url = `${siteUrl()}/colleges/${slug}/cutoff`;
   return { title, description, alternates: { canonical: `/colleges/${slug}/cutoff` }, robots: { index: true, follow: true }, openGraph: { type: 'website', title, description, url, siteName: 'College Decision' }, twitter: { card: 'summary', title, description } };
 }
@@ -58,7 +58,7 @@ export default async function CollegeCutoffPage({ params }: { params: Promise<{ 
       if (e.metric === 'rank') {
         faqs.push({ question: `What was the ${examName} ${h.year} closing rank for ${clean(h.program_name)} at ${name}?`, answer: `In ${h.year} (round ${h.round}), the closing rank for ${clean(h.program_name)} at ${name} was ${formatMetric(h.value, 'rank')} for the ${cat} category, gender-neutral seat pool${h.quota ? `, ${h.quota} quota` : ''}.` });
       } else {
-        faqs.push({ question: `What is the ${examName} ${h.year} cutoff for ${name}?`, answer: `${name} lists a minimum overall ${examName} ${e.metric === 'percentile' ? 'percentile' : 'score'} of ${Number(h.value)} for the ${cat} category${e.years[0]?.exam_year && e.years[0].exam_year !== h.year ? ` for ${h.year}–${String(h.year + 2).slice(-2)} admissions (based on ${examName} ${e.years[0].exam_year} scores)` : ''}${h.quality_flag === 'source_aggregator' ? '. This figure comes from a secondary (aggregator) source because the official document was not available' : ''}. Meeting it makes a candidate eligible for shortlisting but does not guarantee admission.` });
+        faqs.push({ question: `What is the ${examName} ${e.years.find((y) => y.year === h.year)?.exam_year || h.year} cutoff for ${name}?`, answer: `${name} lists a minimum overall ${examName} ${e.metric === 'percentile' ? 'percentile' : 'score'} of ${Number(h.value)} for the ${cat} category${e.years[0]?.exam_year && e.years[0].exam_year !== h.year ? ` for ${h.year}–${String(h.year + 2).slice(-2)} admissions (based on ${examName} ${e.years[0].exam_year} scores)` : ''}${h.quality_flag === 'source_aggregator' ? '. This figure comes from a secondary (aggregator) source because the official document was not available' : ''}. Meeting it makes a candidate eligible for shortlisting but does not guarantee admission.` });
       }
     }
   }
