@@ -42,6 +42,12 @@ const nextConfig: NextConfig = {
   },
   async redirects() {
     return [
+      // Duplicate college 35726 (IMDR Pune) merged into canonical 1737
+      {
+        source: '/colleges/imdr-pune-maharashtra-pune/:path*',
+        destination: '/colleges/institute-of-management-development-and-research-maharashtra-pune/:path*',
+        statusCode: 301
+      },
       { source: '/courses/btech', destination: '/courses/engineering', permanent: true },
       { source: '/btech-colleges', destination: '/engineering-colleges', permanent: true },
       {
