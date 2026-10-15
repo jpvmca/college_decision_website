@@ -48,6 +48,12 @@ const nextConfig: NextConfig = {
         destination: '/colleges/institute-of-management-development-and-research-maharashtra-pune/:path*',
         statusCode: 301
       },
+      // Soft-deleted duplicate NMIMS Bangalore (3188) -> canonical 20589
+      {
+        source: '/colleges/narsee-monjee-institute-of-management-studies-karnataka-bangalore/:path*',
+        destination: '/colleges/narsee-monjee-institute-of-management-studies-nmims-karnataka-bangalore/:path*',
+        statusCode: 301
+      },
       // Inactive duplicate / alias exam slugs -> canonical published exam (duplicates consolidated 15 Oct 2026)
       { source: '/exams/neet-ug/:path*', destination: '/exams/neet/:path*', statusCode: 301 },
       { source: '/exams/neet-ug-1/:path*', destination: '/exams/neet/:path*', statusCode: 301 },
@@ -55,6 +61,9 @@ const nextConfig: NextConfig = {
       { source: '/exams/mht-cet-1/:path*', destination: '/exams/mh-cet/:path*', statusCode: 301 },
       { source: '/exams/mh-cet-1/:path*', destination: '/exams/mh-cet/:path*', statusCode: 301 },
       { source: '/exams/mh-cet-2/:path*', destination: '/exams/mh-cet/:path*', statusCode: 301 },
+      // TS EAMCET renamed TG EAPCET; eamcet-2's Telangana data moved to ts-eapcet (AP rows to ap-eapcet)
+      { source: '/exams/eamcet-2/:path*', destination: '/exams/ts-eapcet/:path*', statusCode: 301 },
+      { source: '/exams/eamcet-1/:path*', destination: '/exams/ts-eapcet/:path*', statusCode: 301 },
       { source: '/exams/comedk/:path*', destination: '/exams/comedk-uget/:path*', statusCode: 301 },
       { source: '/exams/comedk-uget-3/:path*', destination: '/exams/comedk-uget/:path*', statusCode: 301 },
       { source: '/exams/comedk-uget-4/:path*', destination: '/exams/comedk-uget/:path*', statusCode: 301 },
