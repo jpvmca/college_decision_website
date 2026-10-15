@@ -34,6 +34,10 @@ function articlesHref(page: number, type: ArticleType, budget: number) {
 }
 
 function getResponsiveImageSources(rawImageUrl: string) {
+  // Site-local static assets (e.g. /articles-hero.webp in public/) are served by Next, not the media backend.
+  if (rawImageUrl.startsWith('/') && !rawImageUrl.startsWith('/uploads/')) {
+    return { src: rawImageUrl, srcSet: undefined, sizes: undefined };
+  }
   const imageUrl = mediaUrl(rawImageUrl);
   const widths = [480, 768, 1200, 1600];
   const addQuery = (width: number) => `${imageUrl}?w=${width}&h=${Math.round(width * 0.5625)}&q=78&convert=webp`;
