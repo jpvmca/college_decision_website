@@ -1,6 +1,7 @@
 import Link from 'next/link';
 import JsonLd from './JsonLd';
 import ExamCutoffsClient from './ExamCutoffsClient';
+import CutoffExpand from './CutoffExpand';
 import CollegeFinder, { type AnyFinderCombo } from './CollegeFinder';
 import { ExamCutoffs, type ExamCutoffResponse } from './Cutoffs';
 import { batchLabel, breadcrumbJsonLd, cutoffYearHeading, examProgrammeWord, examYearNote, examYearOf, examTargetPhrase, faqJsonLd, fitDescription, fitTitle, formatMetric, isAdmissionKeyed, metricWord, pendingExamYear, siteUrl, type ExamCutoffSummary } from '../lib/cutoffs';
@@ -108,10 +109,12 @@ export default function ExamCutoffPage({ summary, blocks, activeYear, finder }: 
     </section>}
     {blocks.map((b, i) => { const y = summary.years.find((v) => v.year === b.year) || { year: b.year }; return b.data && b.data.data.length ? <section key={b.year} id={`cutoff-${b.year}`} className="cutoff-section">
       <h2>{cutoffYearHeading(name, y)}</h2>
+      <CutoffExpand label={`View all ${name} ${examYearOf(y)} cutoffs`} total={b.data.data.length} visible={activeYear ? Number.MAX_SAFE_INTEGER : 5}>
       {i === 0
         ? <ExamCutoffsClient slug={slug} examLabel={name} initial={b.data} heading={null} />
         : <><ExamCutoffs examLabel={name} cutoffs={b.data} heading={null} collegeHref={(s) => `/colleges/${s}/cutoff`} />
-            <p><Link href={isMultiYear(summary) ? `/exams/${slug}/cutoff/${b.year}` : `/exams/${slug}/cutoff`}>See all {summary.years.find((v) => v.year === b.year)?.institutes} colleges in the {name} {examYearOf(y)} cutoff</Link></p></>}
+            {!activeYear && isMultiYear(summary) && <p className="cutoff-see-all"><Link href={`/exams/${slug}/cutoff/${b.year}`}>See all {summary.years.find((v) => v.year === b.year)?.institutes} colleges in the {name} {examYearOf(y)} cutoff</Link></p>}</>}
+      </CutoffExpand>
     </section> : null; })}
     <section className="cutoff-section"><h2>{name} Cutoff FAQs</h2>
       {faqs.map((f) => <details key={f.question}><summary>{f.question}</summary><p>{f.answer}</p></details>)}</section>

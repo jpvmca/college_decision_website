@@ -48,6 +48,16 @@ const nextConfig: NextConfig = {
         destination: '/colleges/institute-of-management-development-and-research-maharashtra-pune/:path*',
         statusCode: 301
       },
+      // Inactive duplicate / alias exam slugs -> canonical published exam (duplicates consolidated 15 Oct 2026)
+      { source: '/exams/neet-ug/:path*', destination: '/exams/neet/:path*', statusCode: 301 },
+      { source: '/exams/neet-ug-1/:path*', destination: '/exams/neet/:path*', statusCode: 301 },
+      { source: '/exams/mht-cet/:path*', destination: '/exams/mh-cet/:path*', statusCode: 301 },
+      { source: '/exams/mht-cet-1/:path*', destination: '/exams/mh-cet/:path*', statusCode: 301 },
+      { source: '/exams/mh-cet-1/:path*', destination: '/exams/mh-cet/:path*', statusCode: 301 },
+      { source: '/exams/mh-cet-2/:path*', destination: '/exams/mh-cet/:path*', statusCode: 301 },
+      { source: '/exams/comedk/:path*', destination: '/exams/comedk-uget/:path*', statusCode: 301 },
+      { source: '/exams/comedk-uget-3/:path*', destination: '/exams/comedk-uget/:path*', statusCode: 301 },
+      { source: '/exams/comedk-uget-4/:path*', destination: '/exams/comedk-uget/:path*', statusCode: 301 },
       { source: '/courses/btech', destination: '/courses/engineering', permanent: true },
       { source: '/btech-colleges', destination: '/engineering-colleges', permanent: true },
       {

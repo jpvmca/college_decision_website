@@ -82,14 +82,18 @@ export function ExamCutoffs({ examLabel, cutoffs, collegeHref, heading }: { exam
   const admissionKeyed = Boolean(cutoffs.examYear && cutoffs.examYear !== applied.year);
   const qualifying = cutoffs.data.some((row) => /^qualifying|shortlist/.test(row.best?.cutoff_type || ''));
   if (qualifying) {
-    const cols: Array<[string, string]> = [['EWS', 'EWS'], ['OBC_NCL', 'NC-OBC'], ['SC', 'SC'], ['ST', 'ST']];
+    const isScore = metric === 'score';
+    const unit = isScore ? 'score' : 'percentile';
+    // Category columns only where at least one college publishes that category (NMAT shortlists are General-only).
+    const cols = ([['EWS', 'EWS'], ['OBC_NCL', 'NC-OBC'], ['SC', 'SC'], ['ST', 'ST']] as Array<[string, string]>).filter(([code]) => cutoffs.data.some((r) => r.qualifying?.overall[code] !== undefined));
     const val = (v: number | undefined) => (v === undefined ? NOT_AVAILABLE : v);
     const pwd = (o: Record<string, number>) => o.PWD ?? o.OPEN_PWD;
+    const showPwd = cutoffs.data.some((r) => r.qualifying && pwd(r.qualifying.overall) !== undefined);
     return <section id="cutoffs">
-      {heading !== null && <h2>{heading ?? `${examLabel} ${examYear} cutoffs: minimum percentile by college`}</h2>}
-      <p className="muted">Minimum {examLabel} {examYear} percentiles (overall) that each institute uses for its first shortlist, by category, sorted by the General-category minimum. Clearing these does not guarantee an interview call; final shortlists also weigh academics, work experience, diversity and interviews. {cutoffs.pagination.total} college(s) on record.{admissionKeyed ? ` Used for ${applied.year}–${String((applied.year || 0) + 2).slice(-2)} admissions.` : ''}</p>
+      {heading !== null && <h2>{heading ?? `${examLabel} ${examYear} cutoffs: minimum ${unit} by college`}</h2>}
+      <p className="muted">Minimum {examLabel} {examYear} {isScore ? 'scores (overall' : 'percentiles (overall'}{isScore && examLabel === 'NMAT' ? ', scaled out of 360' : ''}) that each institute uses for its first shortlist{cols.length ? ', by category' : ''}, sorted by the General-category minimum. Clearing these does not guarantee an interview call; final shortlists also weigh academics, work experience, diversity and interviews. {cutoffs.pagination.total} college(s) on record.{admissionKeyed ? ` Used for ${applied.year}–${String((applied.year || 0) + 2).slice(-2)} admissions.` : ''}</p>
       <div className="detail-table-wrap"><table className="detail-table cutoff-table">
-        <thead><tr><th scope="col">College</th><th scope="col">General</th><th scope="col">General sectional</th>{cols.map(([, l]) => <th scope="col" key={l}>{l}</th>)}<th scope="col">PwD</th><th scope="col">Source</th></tr></thead>
+        <thead><tr><th scope="col">College</th><th scope="col">General</th><th scope="col">General sectional</th>{cols.map(([, l]) => <th scope="col" key={l}>{l}</th>)}{showPwd && <th scope="col">PwD</th>}<th scope="col">Source</th></tr></thead>
         <tbody>{cutoffs.data.map((row) => {
           const href = row.published_slug ? collegeHref(row.published_slug) : null;
           const q = row.qualifying;
@@ -99,11 +103,11 @@ export function ExamCutoffs({ examLabel, cutoffs, collegeHref, heading }: { exam
             <td><strong>{row.best_value == null ? NOT_AVAILABLE : Number(row.best_value)}</strong></td>
             <td>{q?.sectional.OPEN || NOT_AVAILABLE}</td>
             {cols.map(([code]) => <td key={code}>{val(q?.overall[code])}</td>)}
-            <td>{val(q ? pwd(q.overall) : undefined)}</td>
+            {showPwd && <td>{val(q ? pwd(q.overall) : undefined)}</td>}
             <td>{src ? <a href={src} target="_blank" rel="noopener nofollow">{q?.source_flag === 'source_aggregator' ? 'Aggregator*' : 'Official'}</a> : '—'}</td>
           </tr>;
         })}</tbody></table></div>
-      <p className="muted">Percentiles, not ranks. * Official {examLabel} {examYear} document not retrievable; values are as reported by a secondary source and marked Aggregator. Colleges not listed: cutoff {NOT_AVAILABLE.toLowerCase()} in our dataset.</p>
+      <p className="muted">{isScore ? 'Scores, not percentiles or ranks.' : 'Percentiles, not ranks.'} * Official {examLabel} {examYear} document not retrievable; values are as reported by a secondary source and marked Aggregator. Colleges not listed: cutoff {NOT_AVAILABLE.toLowerCase()} in our dataset.</p>
     </section>;
   }
   const metricLabel = metric === 'score' ? 'Highest closing score' : metric === 'percentile' ? 'Highest closing percentile' : 'Best closing rank';
