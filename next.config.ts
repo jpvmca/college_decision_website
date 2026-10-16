@@ -60,6 +60,18 @@ const nextConfig: NextConfig = {
         destination: '/colleges/indian-institute-of-information-technology-iiit-dharwad-karnataka-dharwad/:path*',
         statusCode: 301
       },
+      // Soft-deleted duplicate SKNCOE (580, former girls'-only name; co-ed since 2006-07, same AICTE file/address) -> canonical 573
+      {
+        source: '/colleges/smt-kashibai-navale-college-of-engineering-for-girls-maharashtra-pune/:path*',
+        destination: '/colleges/stes-smt-kashibai-navale-college-of-engineering-maharashtra-pune/:path*',
+        statusCode: 301
+      },
+      // AITS Rajkot (227) became a constituent college of Atmiya University in 2018 (GoG letter 06/06/2018) -> 9524
+      {
+        source: '/colleges/atmiya-institute-of-technology-and-science-gujarat-rajkot/:path*',
+        destination: '/colleges/atmiya-university-gujarat-rajkot/:path*',
+        statusCode: 301
+      },
       // Inactive duplicate / alias exam slugs -> canonical published exam (duplicates consolidated 15 Oct 2026)
       { source: '/exams/neet-ug/:path*', destination: '/exams/neet/:path*', statusCode: 301 },
       { source: '/exams/neet-ug-1/:path*', destination: '/exams/neet/:path*', statusCode: 301 },
