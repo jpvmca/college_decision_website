@@ -72,6 +72,18 @@ const nextConfig: NextConfig = {
         destination: '/colleges/atmiya-university-gujarat-rajkot/:path*',
         statusCode: 301
       },
+      // Soft-deleted empty duplicate SKNCOE (71080, same college/address as 573) -> canonical 573
+      {
+        source: '/colleges/sinhgad-technical-education-societys-smt-kashibai-navale-college-of-engineering-vadgaon-bk-sinhgad-road-pune-41-c-41958/:path*',
+        destination: '/colleges/stes-smt-kashibai-navale-college-of-engineering-maharashtra-pune/:path*',
+        statusCode: 301
+      },
+      // Unpublished Surya World (1877; on MRSPTU unapproved list, not in 2025-26 affiliated list) -> Punjab engineering listing
+      {
+        source: '/colleges/surya-world-punjab-patiala/:path*',
+        destination: '/engineering-colleges-in-punjab',
+        statusCode: 301
+      },
       // Inactive duplicate / alias exam slugs -> canonical published exam (duplicates consolidated 15 Oct 2026)
       { source: '/exams/neet-ug/:path*', destination: '/exams/neet/:path*', statusCode: 301 },
       { source: '/exams/neet-ug-1/:path*', destination: '/exams/neet/:path*', statusCode: 301 },
