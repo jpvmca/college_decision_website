@@ -3,6 +3,7 @@
 import { useEffect, useMemo, useState } from 'react';
 import { BarChart3, Building2, GraduationCap, IndianRupee, MapPin, Plus, Search, X } from 'lucide-react';
 import CollegeViewDetailsModal from './CollegeViewDetailsModal';
+import { formatLpa } from '../lib/packages';
 
 type CollegeSearchResult = {
   id: number;
@@ -41,7 +42,7 @@ function money(value: unknown) {
 
 function packageValue(value: unknown) {
   const amount = Number(value);
-  return Number.isFinite(amount) && amount > 0 ? `₹${amount} lakh` : 'Not listed';
+  return formatLpa(amount, 'Not listed', 'lakh');
 }
 
 export default function CollegeComparePage() {

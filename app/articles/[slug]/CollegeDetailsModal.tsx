@@ -2,6 +2,7 @@
 
 import { useEffect, useState, type CSSProperties } from 'react';
 import { toExternalHttpUrl } from '../../../lib/external-url';
+import { formatLpa } from '../../../lib/packages';
 
 type CollegeDetails = {
   institute: {
@@ -50,7 +51,7 @@ function formatMoney(value: number | string | null | undefined) {
 
 function formatPlacement(value: number | string | null | undefined) {
   const amount = Number(value);
-  return Number.isFinite(amount) && amount > 0 ? `₹${amount} lakh` : 'Not listed';
+  return formatLpa(amount, 'Not listed', 'lakh');
 }
 
 function formatDuration(value: number | string | null | undefined) {

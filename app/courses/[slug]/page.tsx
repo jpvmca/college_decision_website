@@ -7,6 +7,7 @@ import { autoLinkHtml } from '../../../lib/auto-link-entities';
 import { getLinkableEntities } from '../../../lib/linkable-entities';
 import { stripEmbeddedFaqs } from '../../../lib/strip-embedded-faqs';
 import AutoLinkedText from '../../../components/AutoLinkedText';
+import { formatLpa } from '../../../lib/packages';
 
 type CourseProfile = {
   course: {
@@ -70,7 +71,7 @@ function money(value: number | string | null | undefined) {
 
 function packageValue(value: number | string | null | undefined) {
   const amount = Number(value);
-  return Number.isFinite(amount) && amount > 0 ? `₹${amount} LPA` : 'Not listed';
+  return formatLpa(amount);
 }
 
 function text(value: unknown, fallback = 'Not listed') {

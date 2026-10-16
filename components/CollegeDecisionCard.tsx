@@ -7,6 +7,7 @@ import InstituteLogo from './InstituteLogo';
 import LinkedTextParts from './LinkedTextParts';
 import Link from 'next/link';
 import { findPublishedHrefByName, linkAdmissionRouteParts, type LinkableEntity } from '../lib/auto-link-entities';
+import { formatLpa } from '../lib/packages';
 
 export type CollegeDecisionResult = {
   instituteId: number;
@@ -56,7 +57,7 @@ function durationLabel(value: string | null) {
 
 function packageMoney(value: number | string | null | undefined) {
   const amount = Number(value);
-  return Number.isFinite(amount) && amount > 0 ? `₹${amount} lakh` : null;
+  return Number.isFinite(amount) && amount > 0 ? formatLpa(amount, '', 'lakh') : null;
 }
 
 function CourseLabel({

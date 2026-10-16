@@ -7,6 +7,7 @@ import { api, instituteLogoUrl } from '../../../lib/api';
 import { toAbsoluteExternalUrl } from '../../../lib/external-url';
 import { getLinkableEntities, findPublishedHref, findPublishedHrefByName } from '../../../lib/linkable-entities';
 import { CollegeCutoffs, type CollegeCutoffResponse } from '../../../components/Cutoffs';
+import { formatLpa } from '../../../lib/packages';
 
 type CollegeProfile = {
   institute: {
@@ -128,7 +129,7 @@ function feeSentences(fees: CollegeProfile['fees']) {
 
 function packageValue(value: number | string | null | undefined) {
   const amount = Number(value);
-  return Number.isFinite(amount) && amount > 0 ? `₹${amount} LPA` : 'Not listed';
+  return formatLpa(amount);
 }
 
 function text(value: unknown, fallback = 'Not listed') {

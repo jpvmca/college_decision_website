@@ -2,6 +2,7 @@
 
 import { useState } from 'react';
 import { GitCompareArrows, GraduationCap, X } from 'lucide-react';
+import { formatLpa } from '../../../lib/packages';
 
 type Props = {
   instituteId: number;
@@ -33,7 +34,7 @@ const STORAGE_KEY = 'college-decision-compare';
 function packageLabel(value: number | string | null | undefined, year: number | string | null | undefined) {
   const amount = Number(value);
   if (!Number.isFinite(amount) || amount <= 0) return 'Not listed';
-  return `₹${amount} LPA${year ? ` (${year})` : ''}`;
+  return `${formatLpa(amount)}${year ? ` (${year})` : ''}`;
 }
 
 export default function DecisionActions(props: Props) {

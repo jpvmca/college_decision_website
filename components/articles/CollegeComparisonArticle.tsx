@@ -37,7 +37,7 @@ const money = (value: number | string | null | undefined) => {
 };
 const packageValue = (value: number | string | null | undefined) => {
   const number = Number(value);
-  return Number.isFinite(number) && number > 0 ? `₹${number.toLocaleString('en-IN')} lakh` : unavailable;
+  return Number.isFinite(number) && number > 0 ? `₹${number.toLocaleString('en-IN', { maximumFractionDigits: 2 })} lakh` : unavailable;
 };
 const firstFee = (college: College) => college.fees?.length ? money(Math.min(...college.fees.map((fee) => Number(fee.fees)).filter((fee) => Number.isFinite(fee) && fee > 0))) : unavailable;
 const latestPlacement = (college: College) => college.placements?.[0];
@@ -183,8 +183,8 @@ export default function CollegeComparisonArticle({
     ['Programmes / branches', a.programmes?.length ? `${a.programmes.length} listed` : unavailable, b.programmes?.length ? `${b.programmes.length} listed` : unavailable],
     ['Recorded fees', firstFee(a), firstFee(b)],
     ['Entrance exams', a.exams?.length ? <LinkedProse key="a-exams" text={a.exams.join(', ')} entities={linkableEntities} options={autoLinkOptions} /> : unavailable, b.exams?.length ? <LinkedProse key="b-exams" text={b.exams.join(', ')} entities={linkableEntities} options={autoLinkOptions} /> : unavailable],
-    ['Average placement', placementA?.average_package ? money(placementA.average_package) : unavailable, placementB?.average_package ? money(placementB.average_package) : unavailable],
-    ['Highest placement', placementA?.highest_package ? money(placementA.highest_package) : unavailable, placementB?.highest_package ? money(placementB.highest_package) : unavailable],
+    ['Average placement', placementA?.average_package ? packageValue(placementA.average_package) : unavailable, placementB?.average_package ? packageValue(placementB.average_package) : unavailable],
+    ['Highest placement', placementA?.highest_package ? packageValue(placementA.highest_package) : unavailable, placementB?.highest_package ? packageValue(placementB.highest_package) : unavailable],
     ['Ranking', a.rankings?.[0] ? `${a.rankings[0].ranking_body || unavailable}: ${a.rankings[0].rank || unavailable}` : unavailable, b.rankings?.[0] ? `${b.rankings[0].ranking_body || unavailable}: ${b.rankings[0].rank || unavailable}` : unavailable]
   ];
   return <section className="college-comparison-article">

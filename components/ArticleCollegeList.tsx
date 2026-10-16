@@ -8,6 +8,7 @@ import ExpandableText from './ExpandableText';
 import InstituteLogo from './InstituteLogo';
 import LinkedTextParts from './LinkedTextParts';
 import { linkAdmissionRouteParts, type LinkableEntity } from '../lib/auto-link-entities';
+import { formatLpa } from '../lib/packages';
 
 export type ArticleCandidate = {
   institute_id: number;
@@ -58,7 +59,7 @@ function formatFee(value: string) {
 function formatPackage(value: number | string | null | undefined) {
   const amount = Number(value);
   if (!Number.isFinite(amount) || amount <= 0) return 'Package not listed';
-  return `₹${amount} LPA`;
+  return formatLpa(amount);
 }
 
 function isGovAvgPackageArticle(type: string) {
