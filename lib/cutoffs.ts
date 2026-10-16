@@ -14,7 +14,7 @@ export type CollegeCutoffSummary = {
 };
 export type ExamCutoffSummary = {
   exam: { id: number; slug: string; name: string };
-  years: Array<{ year: number; exam_year?: number; rows: number; institutes: number; programmes: number; metric: 'rank' | 'score' | 'percentile'; aggregator: boolean }>;
+  years: Array<{ year: number; exam_year?: number; rows: number; institutes: number; programmes: number; metric: 'rank' | 'score' | 'percentile'; aggregator: boolean; categories?: number }>;
 };
 
 async function safe<T>(fn: () => Promise<T>): Promise<T | null> {

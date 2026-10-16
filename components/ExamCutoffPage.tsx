@@ -55,7 +55,7 @@ export function examCutoffDescription(summary: ExamCutoffSummary, year?: number)
   const what = metric === 'rank' ? 'closing ranks' : metric === 'percentile' ? 'published minimum percentiles (overall and sectional)' : 'published cutoff scores';
   const head = isAdmissionKeyed(info) ? `${name} ${examYearOf(info)} cutoffs for ${batchLabel(info.year)} admissions` : `${name} ${info.year} cutoffs`;
   const others = !year && isMultiYear(summary) ? ` Also ${summary.years.slice(1).map((y) => examYearOf(y)).join(', ')}.` : '';
-  return fitDescription(`${head}: ${what} for ${info.institutes} colleges by category${metric === 'rank' ? ', quota and seat pool' : ''}, with source links.${others}`);
+  return fitDescription(`${head}: ${what} for ${info.institutes} colleges ${info.categories === 1 ? '(General category only)' : 'by category'}${metric === 'rank' ? ', quota and seat pool' : ''}, with source links.${others}`);
 }
 
 type Block = { year: number; data: ExamCutoffResponse | null };
@@ -102,7 +102,7 @@ export default function ExamCutoffPage({ summary, blocks, activeYear, finder }: 
       <p className="eyebrow">CUTOFF</p>
       <h1>{activeYear ? examCutoffTitle(summary, activeYear) : examCutoffOverviewTitle(summary)}</h1>
       <p>{isMinimum
-        ? `College-wise ${name} ${shownExamYear} ${metric === 'score' ? 'scores' : 'percentiles'} published for ${isAdmissionKeyed(yearInfo) ? `${batchLabel(yearInfo.year)} ` : ''}admissions, taken from each institute's admission policy wherever it is available: the overall figure and, where given, sectional figures for every category. These are published minimum eligibility or shortlisting criteria, depending on the institute.`
+        ? `College-wise ${name} ${shownExamYear} ${metric === 'score' ? 'scores' : 'percentiles'} published for ${isAdmissionKeyed(yearInfo) ? `${batchLabel(yearInfo.year)} ` : ''}admissions, taken from each institute's admission policy wherever it is available: the overall figure and, where given, sectional figures${yearInfo.categories === 1 ? ' (only General-category figures are published)' : ' for every category'}. These are published minimum eligibility or shortlisting criteria, depending on the institute.`
         : activeYear
           ? `${name} ${shownExamYear} cutoffs for ${shownColleges} colleges.`
           : `${name} cutoffs for ${summary.years.map((y) => examYearOf(y)).join(', ')}, latest year first.`} {metric === 'rank' ? 'Each college shows its lowest final-round closing rank; open a college to see every programme, round, category and quota.' : isMinimum ? '' : 'Figures are the published cutoff scores.'}</p>
