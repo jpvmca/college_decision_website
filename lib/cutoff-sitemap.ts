@@ -142,7 +142,8 @@ export async function cutoffSitemapResponse(kind: CutoffSitemapKind) {
 
 export function emptyUrlsetResponse() {
   return new NextResponse(`<?xml version="1.0" encoding="UTF-8"?><urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"></urlset>`, {
-    status: 200,
-    headers: { 'Content-Type': 'application/xml; charset=utf-8', 'Cache-Control': 'public, max-age=60' }
+    // 503 + no-store: a backend failure must not be served (or cached by Cloudflare/crawlers) as an empty but valid sitemap.
+    status: 503,
+    headers: { 'Content-Type': 'application/xml; charset=utf-8', 'Cache-Control': 'no-store', 'Retry-After': '300' }
   });
 }

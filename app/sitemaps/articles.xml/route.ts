@@ -43,7 +43,11 @@ export async function GET() {
       typeof item === 'string' ? { slug: item } : { slug: item.slug, published_at: item.published_at }
     )).filter((item) => item.slug);
   } catch {
-    articles = [];
+    // Backend unavailable: answer 503 so crawlers retry instead of caching an empty article sitemap.
+    return new NextResponse(`<?xml version="1.0" encoding="UTF-8"?><urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"></urlset>`, {
+      status: 503,
+      headers: { 'Content-Type': 'application/xml; charset=utf-8', 'Cache-Control': 'no-store', 'Retry-After': '300' }
+    });
   }
 
   try {

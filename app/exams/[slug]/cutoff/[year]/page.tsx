@@ -1,6 +1,6 @@
 import type { Metadata } from 'next';
 import { examFinderProps } from '../../../../../components/PercentileCollegesPage';
-import { notFound, permanentRedirect } from 'next/navigation';
+import { notFound, permanentRedirect, redirect } from 'next/navigation';
 import ExamCutoffPage, { examCutoffDescription, examCutoffMetaTitle, isMultiYear } from '../../../../../components/ExamCutoffPage';
 import { examYearOf, getExamCutoffSummary, getExamYearCutoffs, siteUrl } from '../../../../../lib/cutoffs';
 
@@ -33,11 +33,13 @@ export default async function Page({ params }: { params: Promise<{ slug: string;
   // Single-year exams live only at /exams/{slug}/cutoff (canonical); any matching year URL redirects there.
   if (r && !isMultiYear(r.s)) permanentRedirect(`/exams/${slug}/cutoff`);
   if (!r) {
-    // Old admission-year URLs (e.g. /exams/cat/cutoff/2026 for CAT 2025 data) 301 to the exam-year URL. Only reached when no exam
+    // Old admission-year URLs (e.g. /exams/cat/cutoff/2026 for CAT 2025 data) redirect (307) to the exam-year URL. Only reached when no exam
     // year matches, so the target is always a different URL that resolves directly (no self-redirects or loops).
     const s = /^\d{4}$/.test(year) ? await getExamCutoffSummary(slug) : null;
     const target = s?.years.find((y) => y.year === Number(year) && examYearOf(y) !== Number(year));
-    if (target) permanentRedirect(s && !isMultiYear(s) ? `/exams/${slug}/cutoff` : `/exams/${slug}/cutoff/${examYearOf(target)}`);
+    // Temporary (307), not 308: a year without data today (e.g. CAT 2026 before results) may get its own page later, and a
+    // permanent redirect would be cached by browsers and block it.
+    if (target) redirect(s && !isMultiYear(s) ? `/exams/${slug}/cutoff` : `/exams/${slug}/cutoff/${examYearOf(target)}`);
     notFound();
   }
   const data = await getExamYearCutoffs(slug, r.year, 100);
