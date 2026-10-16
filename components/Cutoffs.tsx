@@ -86,7 +86,7 @@ export function ExamCutoffs({ examLabel, cutoffs, collegeHref, heading }: { exam
   // Exams keyed by admission year (CAT) are labelled with the exam year users know: "CAT 2025", not the 2026 intake.
   const examYear = cutoffs.examYear || applied.year;
   const admissionKeyed = Boolean(cutoffs.examYear && cutoffs.examYear !== applied.year);
-  const qualifying = cutoffs.data.some((row) => /^qualifying|shortlist/.test(row.best?.cutoff_type || ''));
+  const qualifying = cutoffs.data.some((row) => /^(qualifying|shortlist|reported)/.test(row.best?.cutoff_type || ''));
   if (qualifying) {
     const isScore = metric === 'score';
     const unit = isScore ? 'score' : 'percentile';

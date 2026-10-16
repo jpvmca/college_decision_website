@@ -2,6 +2,7 @@ import Link from 'next/link';
 import JsonLd from './JsonLd';
 import ExamCutoffsClient from './ExamCutoffsClient';
 import CutoffExpand from './CutoffExpand';
+import CutoffTakeaways from './CutoffTakeaways';
 import CollegeFinder, { type AnyFinderCombo } from './CollegeFinder';
 import { ExamCutoffs, type ExamCutoffResponse } from './Cutoffs';
 import { batchLabel, breadcrumbJsonLd, cutoffYearHeading, examProgrammeWord, examYearNote, examYearOf, examTargetPhrase, faqJsonLd, fitDescription, fitTitle, formatMetric, isAdmissionKeyed, metricWord, pendingExamYear, siteUrl, type ExamCutoffSummary } from '../lib/cutoffs';
@@ -9,6 +10,9 @@ import { batchLabel, breadcrumbJsonLd, cutoffYearHeading, examProgrammeWord, exa
 export const cleanName = (s: string) => s.replace(/\s+/g, ' ').trim();
 
 export const isMultiYear = (summary: ExamCutoffSummary) => summary.years.length > 1;
+
+/** Rows shown per year section on the /exams/{slug}/cutoff overview; the full table lives on the year page. */
+const OVERVIEW_ROWS = 4;
 
 const metricPlural = (m: string) => `${metricWord(m)}s`;
 
@@ -71,7 +75,7 @@ export default function ExamCutoffPage({ summary, blocks, activeYear, finder }: 
   if (activeYear) crumbs.push({ name: String(shownExamYear), path: yearHref(activeYear) });
   // Counts come from the rows actually displayed (same filters as the table), never from a separate total.
   const shownColleges = primary?.pagination.total ?? yearInfo.institutes;
-  const isMinimum = metric !== 'rank' && (primary?.data || []).some((r) => /^qualifying|shortlist/.test(r.best?.cutoff_type || ''));
+  const isMinimum = metric !== 'rank' && (primary?.data || []).some((r) => /^(qualifying|shortlist|reported)/.test(r.best?.cutoff_type || ''));
 
   const faqs: Array<{ question: string; answer: string }> = [];
   faqs.push({ question: `For which years is the ${name} cutoff available?`, answer: `College-wise ${name} cutoffs are available for ${summary.years.map((y) => `${name} ${examYearOf(y)}${isAdmissionKeyed(y) ? ` (${batchLabel(y.year)} batch)` : ''}: ${y.institutes} ${y.institutes === 1 ? 'college' : 'colleges'} with records`).join('; ')}.` });
@@ -111,6 +115,7 @@ export default function ExamCutoffPage({ summary, blocks, activeYear, finder }: 
     </div></header>
     {note && <p className="muted"><strong>Note:</strong> {note}</p>}
     {yearInfo.aggregator && <p className="muted">* Some figures for {name} {shownExamYear} come from a secondary publication because the official document could not be retrieved. They are marked “Secondary source - not independently verified” in the table.</p>}
+    {activeYear && metric === 'percentile' && primary && <CutoffTakeaways name={name} examYear={shownExamYear} rows={primary.data} />}
     {finder && <CollegeFinder combos={finder.combos} initialId={finder.initialId} resetHref={activeYear ? yearHref(activeYear) : `/exams/${slug}/cutoff`} />}
     {pending && <section id={`cutoff-${pending.admissionYear}`} className="cutoff-section">
       <h2>{cutoffYearHeading(name, { year: pending.admissionYear, exam_year: pending.examYear })}</h2>
@@ -118,11 +123,11 @@ export default function ExamCutoffPage({ summary, blocks, activeYear, finder }: 
     </section>}
     {blocks.map((b, i) => { const y = summary.years.find((v) => v.year === b.year) || { year: b.year }; return b.data && b.data.data.length ? <section key={b.year} id={`cutoff-${b.year}`} className="cutoff-section">
       <h2>{cutoffYearHeading(name, y)}</h2>
-      <CutoffExpand label={`View all ${name} ${examYearOf(y)} cutoffs`} total={b.data.data.length} visible={activeYear ? Number.MAX_SAFE_INTEGER : 5}>
+      <CutoffExpand label={`View all ${name} ${examYearOf(y)} cutoffs`} total={b.data.data.length} visible={activeYear ? Number.MAX_SAFE_INTEGER : OVERVIEW_ROWS} href={!activeYear && isMultiYear(summary) ? yearHref(b.year) : undefined}>
       {i === 0
         ? <ExamCutoffsClient slug={slug} examLabel={name} initial={b.data} heading={null} />
         : <><ExamCutoffs examLabel={name} cutoffs={b.data} heading={null} collegeHref={(s) => `/colleges/${s}/cutoff`} />
-            {!activeYear && isMultiYear(summary) && <p className="cutoff-see-all"><Link href={yearHref(b.year)}>See all {summary.years.find((v) => v.year === b.year)?.institutes} colleges in the {name} {examYearOf(y)} cutoff</Link></p>}</>}
+            </>}
       </CutoffExpand>
     </section> : null; })}
     {faqs.some((f) => f.answer.trim()) && <section className="cutoff-section cutoff-faq"><h2>{name} Cutoff FAQs</h2>

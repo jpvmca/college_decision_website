@@ -30,7 +30,7 @@ export default function ExamCutoffsClient({ slug, examLabel, initial, heading }:
     } catch { if (id === req.current) setError(true); } finally { if (id === req.current) setLoading(false); }
   }
   const change = (key: string, value: string) => void load({ ...current, [key]: value }, 1);
-  const qualifying = initial.data.some((r) => /^qualifying|shortlist/.test(r.best?.cutoff_type || ''));
+  const qualifying = initial.data.some((r) => /^(qualifying|shortlist|reported)/.test(r.best?.cutoff_type || ''));
   const sel = (key: string, label: string, options: Array<{ value: string; label: string }>) =>
     <label className="cutoff-filter"><span>{label}</span>
       <select value={current[key]} onChange={(e) => change(key, e.target.value)} disabled={loading}>

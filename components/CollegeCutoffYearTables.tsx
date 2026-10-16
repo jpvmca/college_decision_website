@@ -33,11 +33,11 @@ function PivotTable({ rows, cols, caption }: { rows: YearRow[]; cols: ReadonlyAr
 
 /** Server-rendered tables for one college + exam + year (final round). */
 export default function CollegeCutoffYearTables({ rows, metric }: { rows: YearRow[]; metric: string }) {
-  const qualifying = rows.some((r) => /^qualifying|shortlist/.test(r.cutoff_type || ''));
+  const qualifying = rows.some((r) => /^(qualifying|shortlist|reported)/.test(r.cutoff_type || ''));
   if (qualifying) {
     const cats = [...MAIN, ...PWD].filter(([c]) => rows.some((r) => r.category_code === c));
     const find = (c: string, re: RegExp) => rows.find((r) => r.category_code === c && re.test(r.program_name));
-    const hasSplit = rows.some((r) => /minimum (VARC|DILR|QA) sectional/.test(r.program_name));
+    const hasSplit = rows.some((r) => /(VARC|DILR|QA) sectional/.test(r.program_name));
     const src = rows.find((r) => r.source_url);
     const agg = rows.some((r) => r.quality_flag === 'source_aggregator');
     return <>
@@ -45,9 +45,9 @@ export default function CollegeCutoffYearTables({ rows, metric }: { rows: YearRo
         <thead><tr><th scope="col">Category</th><th scope="col">Overall percentile</th>{hasSplit ? <><th scope="col">VARC</th><th scope="col">DILR</th><th scope="col">QA</th></> : <th scope="col">Sectional (each section)</th>}</tr></thead>
         <tbody>{cats.map(([c, l]) => <tr key={c}><th scope="row">{l}</th>
           <td>{cell(find(c, /overall/))}</td>
-          {hasSplit ? ['VARC', 'DILR', 'QA'].map((s) => <td key={s}>{cell(find(c, new RegExp(`minimum ${s} sectional`)) || find(c, /each of/))}</td>) : <td>{cell(find(c, /each of/))}</td>}
+          {hasSplit ? ['VARC', 'DILR', 'QA'].map((s) => <td key={s}>{cell(find(c, new RegExp(`${s} sectional`)) || find(c, /each of/))}</td>) : <td>{cell(find(c, /each of/))}</td>}
         </tr>)}</tbody></table></div>
-      {src?.source_url && <p className="muted">Source: <a href={src.source_url} target="_blank" rel="noopener nofollow">{agg ? 'secondary (aggregator) source*' : 'official institute admission policy'}</a>. These are minimum percentiles for shortlisting, not final admission cutoffs.</p>}
+      {src?.source_url && <p className="muted">Source: <a href={src.source_url} target="_blank" rel="noopener nofollow">{agg ? 'secondary (aggregator) source*' : 'official institute admission policy'}</a>. {rows.every((r) => r.cutoff_type === 'reported') ? 'These are cutoffs reported by a secondary publication and have not been checked against the institute’s own document.' : 'These are minimum percentiles for shortlisting, not final admission cutoffs.'}</p>}
     </>;
   }
   const label = metric === 'score' ? 'Closing score' : 'Closing rank';

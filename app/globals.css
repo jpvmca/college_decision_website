@@ -119,8 +119,8 @@ a{color:var(--blue);text-decoration:none}a:hover{text-decoration:underline}.site
 .cutoff-branch-list { margin: 0; padding-left: 1rem; }
 .cutoff-branch-list li { margin: 0.1rem 0; }
 
-/* Exam cutoff year sections: top 5 rows until "View all" is clicked (rows stay in the SSR HTML). */
-.cutoff-collapsed .cutoff-table > tbody > tr:nth-child(n+6),
+/* Exam cutoff year sections: top 4 rows; "View all" links to the year page (or expands inline for single-year exams) (rows stay in the SSR HTML). */
+.cutoff-collapsed .cutoff-table > tbody > tr:nth-child(n+5),
 .cutoff-collapsed .pagination,
 .cutoff-collapsed .cutoff-see-all { display: none; }
 
