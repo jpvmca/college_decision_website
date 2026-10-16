@@ -3,7 +3,8 @@ import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import { api, ArticleList, mediaUrl } from '../../lib/api';
 import { getPageItems } from '../../lib/pagination';
-import { ArrowLeft, ArrowRight, CheckCircle2, Filter } from 'lucide-react';
+import ArticleFilters from '../../components/ArticleFilters';
+import { ArrowLeft, ArrowRight, CheckCircle2 } from 'lucide-react';
 
 type ArticleType = 'all' | 'budget' | 'fees' | 'admission' | 'gov-avg-package' | 'exam-admission';
 const ALL_ARTICLE_TYPES: ArticleType[] = ['budget', 'fees', 'admission', 'gov-avg-package', 'exam-admission'];
@@ -24,13 +25,9 @@ function pageNumber(value: string | undefined) {
   return Number.isInteger(parsed) && parsed > 0 ? parsed : 1;
 }
 
-function articlesHref(page: number, type: ArticleType, budget: number) {
-  const params = new URLSearchParams();
-  if (page > 1) params.set('page', String(page));
-  if (type === 'budget') params.set('budget', String(budget));
-  else if (type !== 'all') params.set('type', type);
-  const query = params.toString();
-  return query ? `/articles?${query}` : '/articles';
+/** Pagination URLs carry only ?page= (never type/budget); page 1 is the clean /articles. */
+function articlesHref(page: number, _type?: ArticleType, _budget?: number) {
+  return page > 1 ? `/articles?page=${page}` : '/articles';
 }
 
 function getResponsiveImageSources(rawImageUrl: string) {
@@ -48,12 +45,12 @@ function getResponsiveImageSources(rawImageUrl: string) {
   };
 }
 
-export async function generateMetadata({ searchParams }: { searchParams: Promise<{ page?: string; budget?: string; type?: string }> }): Promise<Metadata> {
+// Only ?page= is a real URL here; every other parameter (type, budget, ...) is 301'd away in proxy.ts and filters work client-side.
+export async function generateMetadata({ searchParams }: { searchParams: Promise<{ page?: string }> }): Promise<Metadata> {
   const query = await searchParams;
   const page = pageNumber(query.page);
-  const visibleTypes = getVisibleArticleTypes();
-  const type = resolveType(query.type, visibleTypes);
-  const budget = [1, 3, 5, 10].includes(Number(query.budget)) ? Number(query.budget) : 5;
+  const type: ArticleType = 'all';
+  const budget = 5;
   const siteUrl = (process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3001').replace(/\/+$/, '');
   const openGraphBase = { images: [{ url: `${siteUrl}/articles-hero.webp`, width: 1024, height: 576, alt: 'Students comparing college decision guides' }] };
 
@@ -71,7 +68,7 @@ export async function generateMetadata({ searchParams }: { searchParams: Promise
   const canonical = page === 1 ? '/articles' : `/articles?page=${page}`;
   const pageSuffix = page > 1 ? ` - Page ${page}` : '';
 
-  if (type === 'all' || (!query.type && !query.budget)) {
+  if (type === 'all') {
     const title = `Published college decision guides${pageSuffix}`;
     const description = page > 1
       ? `Browse published college guides covering fees, admission, eligibility and outcomes — page ${page}.`
@@ -112,12 +109,12 @@ export async function generateMetadata({ searchParams }: { searchParams: Promise
   return { title, description, alternates: { canonical }, openGraph: { title, description, url: canonical, ...openGraphBase }, twitter: { card: 'summary_large_image', title, description } };
 }
 
-export default async function ArticlesPage({ searchParams }: { searchParams: Promise<{ page?: string; budget?: string; type?: string }> }) {
+export default async function ArticlesPage({ searchParams }: { searchParams: Promise<{ page?: string }> }) {
   const params = await searchParams;
   const page = pageNumber(params.page);
   const visibleTypes = getVisibleArticleTypes();
-  const budget = [1, 3, 5, 10].includes(Number(params.budget)) ? Number(params.budget) : 5;
-  const type = resolveType(params.type, visibleTypes);
+  const budget = 5;
+  const type = resolveType(undefined, visibleTypes);
   let result: ArticleList = { data: [], pagination: { page, perPage: 20, total: 0, totalPages: 0 }, budgetLakh: budget };
   try {
     result = await api<ArticleList>(`/articles?page=${page}&perPage=20&budget=${budget}&type=${type}`);
@@ -169,17 +166,7 @@ export default async function ArticlesPage({ searchParams }: { searchParams: Pro
     <nav className="breadcrumb" aria-label="Breadcrumb"><Link href="/">Home</Link><span aria-hidden="true">›</span><span aria-current="page">Articles</span></nav>
     <section className="articles-hero"><div className="articles-hero-copy"><p className="eyebrow">STUDENT DECISION GUIDES</p><h1>Compare colleges with a clearer plan</h1><p>Explore course-by-course guides that bring fees, admission routes, eligibility and outcomes into one practical comparison.</p><p><Link className="button primary" href="/compare-colleges-2026">Compare colleges directly <ArrowRight size={16} aria-hidden="true" /></Link></p></div>{(() => { const image = getResponsiveImageSources('/articles-hero.webp'); return <img src={image.src} srcSet={image.srcSet} sizes={image.sizes} alt="Students comparing college decision guides" width="1200" height="675" fetchPriority="high" loading="eager" decoding="async" />; })()}</section>
     <p className="muted">Twenty guides appear on each page. Open a guide to see the matching course options and the questions you should verify before applying.</p>
-    <div className="budget-tabs" aria-label="Article filters"><span className="filter-label"><Filter size={16} aria-hidden="true" /> Filter guides</span>
-      {visibleTypes.includes('fees') && <Link className={type === 'fees' ? 'budget-tab active' : 'budget-tab'} href="/articles?type=fees">Course fees</Link>}
-      {visibleTypes.includes('admission') && <Link className={type === 'admission' ? 'budget-tab active' : 'budget-tab'} href="/articles?type=admission">Admission & eligibility</Link>}
-      {visibleTypes.includes('gov-avg-package') && <Link className={type === 'gov-avg-package' ? 'budget-tab active' : 'budget-tab'} href="/articles?type=gov-avg-package">Gov by avg package</Link>}
-      {visibleTypes.includes('exam-admission') && <Link className={type === 'exam-admission' ? 'budget-tab active' : 'budget-tab'} href="/articles?type=exam-admission">MBA by entrance exam</Link>}
-      {visibleTypes.includes('budget') && [1, 3, 5, 10].map((value) => (
-        <Link className={type === 'budget' && value === budget ? 'budget-tab active' : 'budget-tab'} key={value} href={`/articles?budget=${value}`}>
-          Top colleges 2026 · Under ₹{value} lakh fees
-        </Link>
-      ))}
-    </div>
+    <ArticleFilters visibleTypes={visibleTypes}>
     <div className="article-list">
       {result.data.length ? result.data.map((article) => (
         <article className={article.imageUrl ? 'article-card article-card-with-image' : 'article-card'} key={article.id}>
@@ -215,6 +202,7 @@ export default async function ArticlesPage({ searchParams }: { searchParams: Pro
       )) : <div className="card"><h2>Guides are being prepared</h2><p>No article passed the current data checks.</p></div>}
     </div>
     {result.pagination.totalPages > 1 && <Pagination page={page} totalPages={result.pagination.totalPages} budget={budget} type={type} />}
+    </ArticleFilters>
   </div></main>;
 }
 

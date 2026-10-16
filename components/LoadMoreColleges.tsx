@@ -9,11 +9,14 @@ type Props = {
   initial: ListedCollege[];
   total: number;
   perPage: number;
-  query: string;
+  /** Extra query for /api/colleges (state/city listings). */
+  query?: string;
+  /** Alternative endpoint returning { data } (e.g. /api/course-listing/{key}); page/perPage are appended. */
+  endpoint?: string;
   linkableEntities: LinkableEntity[];
 };
 
-export default function LoadMoreColleges({ initial, total, perPage, query, linkableEntities }: Props) {
+export default function LoadMoreColleges({ initial, total, perPage, query = '', endpoint, linkableEntities }: Props) {
   const [colleges, setColleges] = useState(initial);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
@@ -25,7 +28,10 @@ export default function LoadMoreColleges({ initial, total, perPage, query, linka
     setLoading(true);
     setError(null);
     try {
-      const response = await fetch(`/api/colleges?page=${page + 1}&perPage=${perPage}${query ? `&${query}` : ''}`);
+      const url = endpoint
+        ? `${endpoint}${endpoint.includes('?') ? '&' : '?'}page=${page + 1}&perPage=${perPage}`
+        : `/api/colleges?page=${page + 1}&perPage=${perPage}${query ? `&${query}` : ''}`;
+      const response = await fetch(url);
       if (!response.ok) throw new Error('Unable to load more colleges');
       const payload = await response.json() as { data?: ListedCollege[] };
       setColleges((current) => {

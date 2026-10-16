@@ -1,6 +1,6 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
-import { notFound, permanentRedirect } from 'next/navigation';
+import { notFound } from 'next/navigation';
 import { cache } from 'react';
 import { ArrowRight } from 'lucide-react';
 import JsonLd from '../../components/JsonLd';
@@ -8,7 +8,7 @@ import { breadcrumbJsonLd } from '../../lib/structured-data';
 import { api, mediaUrl } from '../../lib/api';
 import { getLinkableEntities } from '../../lib/linkable-entities';
 import { LISTINGS_CACHE_VERSION, courseListingHref, getCourseFacets, listingFetchOptions, parseCourseListingSegment, type CourseFacet } from '../../lib/listings';
-import { CollegeListResults, ListPaginationNav, type ListedCollege, type ListPagination } from '../../components/CollegeListResults';
+import { type ListedCollege, type ListPagination } from '../../components/CollegeListResults';
 import LoadMoreColleges from '../../components/LoadMoreColleges';
 import PercentileCollegesPage, { percentileMetadata } from '../../components/PercentileCollegesPage';
 import { cutoffGroupsFor, getPercentileCombos, parsePercentileSegment } from '../../lib/percentile';
@@ -45,11 +45,6 @@ function cityCoursePage(segment: string, facets: CourseFacet[], cityPages: CityP
 
 function humanizeState(slug: string) {
   return slug.split('-').map((part) => part.charAt(0).toUpperCase() + part.slice(1)).join(' ');
-}
-
-function pageNumber(value: string | undefined) {
-  const parsed = Number(value || 1);
-  return Number.isInteger(parsed) && parsed > 0 ? parsed : 1;
 }
 
 const getStatePages = cache(async () => api<{ data: StatePageOption[] }>('/colleges/state-pages', listingFetchOptions(['listings:locations'])).catch(() => ({ data: [] })));
@@ -138,8 +133,9 @@ export async function generateMetadata({ params, searchParams }: { params: Param
     if (parsePercentileSegment(seg)) return (await percentileMetadata(seg, q)) || (await closingMetadata(seg, q, 'percentile')) || { title: 'Page not found', robots: { index: false, follow: false } };
     if (parseRankSegment(seg)) { const cm = await closingMetadata(seg, q, 'rank'); return cm || { title: 'Page not found', robots: { index: false, follow: false } }; }
   }
-  const [{ listing }, query] = await Promise.all([params, searchParams]);
-  const page = pageNumber(query.page);
+  const { listing } = await params;
+  // ?page= is 301'd to the clean URL in proxy.ts; further results load client-side, so only the first batch is a page.
+  const page = 1;
   const result = await loadListing(listing, page);
   if (!result) notFound();
   const cityPage = result.cityPage || null;
@@ -153,7 +149,7 @@ export async function generateMetadata({ params, searchParams }: { params: Param
     : statePage
       ? `${label} Colleges in ${stateName} ${CURRENT_YEAR}: Fees, Admission & Placements`
     : seoTitle(label);
-  const title = page === 1 ? baseTitle : `${baseTitle} – Page ${page}`;
+  const title = baseTitle;
   const description = seoDescription(label);
   const pageDescription = cityPage
     ? `Explore ${result.pagination.total.toLocaleString('en-IN')}+ ${label.toLowerCase()} colleges in ${cityName}, ${stateName}. Compare fees, courses, admission process, cut-offs, placements and rankings. Filter by locality, budget and exam to shortlist the best ${label.toLowerCase()} colleges in ${cityName} for ${CURRENT_YEAR}.`
@@ -191,7 +187,7 @@ export async function generateMetadata({ params, searchParams }: { params: Param
         ])
       ]
     } : {}),
-    // Same rule as the /colleges hub: every paginated page canonicalises to page 1.
+    // One URL per listing; further colleges load client-side ("Load more"), never via ?page=.
     alternates: { canonical: path },
     openGraph: {
       title: baseTitle,
@@ -209,10 +205,7 @@ export default async function CourseCollegesPage({ params, searchParams }: { par
   const [{ listing }, query] = await Promise.all([params, searchParams]);
   if (parsePercentileSegment(listing)) return <PercentileCollegesPage segment={listing} query={query} />;
   if (parseRankSegment(listing)) return <ClosingCollegesPage segment={listing} query={query} kind="rank" />;
-  if (listing.includes('-colleges-in-') && query.page !== undefined) {
-    permanentRedirect(`/${listing}`);
-  }
-  const page = pageNumber(query.page);
+  const page = 1;
   const [result, linkableEntities, facets, statePages, cityPages, percentileCombos, closingCombos] = await Promise.all([
     loadListing(listing, page),
     getLinkableEntities(),
@@ -232,7 +225,7 @@ export default async function CourseCollegesPage({ params, searchParams }: { par
   const path = cityPage || statePage ? `/${listing}` : courseListingHref(course.key);
   const siteUrl = (process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3001').replace(/\/+$/, '');
   const canonicalUrl = `${siteUrl}${path}`;
-  const pageUrl = page === 1 ? canonicalUrl : `${canonicalUrl}?page=${page}`;
+  const pageUrl = canonicalUrl;
   const cityName = cityPage?.cityName || '';
   const stateName = cityPage?.stateName || (statePage ? humanizeState(statePage.stateSlug) : '');
   const heading = cityPage
@@ -260,7 +253,7 @@ export default async function CourseCollegesPage({ params, searchParams }: { par
         '@type': ['CollectionPage', 'WebPage'],
         '@id': `${pageUrl}#webpage`,
         url: pageUrl,
-        name: page === 1 ? heading : `${heading} – Page ${page}`,
+        name: heading,
         description: cityPage
           ? `Explore ${totalLabel}+ ${label.toLowerCase()} colleges in ${cityName}, ${stateName}. Compare fees, courses, admission process, cut-offs, placements and rankings.`
           : seoDescription(label),
@@ -314,15 +307,12 @@ export default async function CourseCollegesPage({ params, searchParams }: { par
       <div className="listing-main">
         <CourseFilterMobileButton percentileGroups={percentileGroups} facets={facets.data} totalColleges={facets.totalColleges} selectedKey={course.key} selectedState={cityPage?.stateSlug || statePage?.stateSlug || null} selectedCity={cityPage?.citySlug || null} statePages={statePages.data} cityPages={cityPages.data} />
         <div className="article-card-top">
-          <p className="muted">{totalLabel} {label} colleges · 20 per page{page > 1 ? ` · Page ${page} of ${pagination.totalPages}` : ''}</p>
+          <p className="muted">{totalLabel} {label} colleges · load more to continue</p>
         </div>
         <h2>Browse {label} Colleges</h2>
         {statePage || cityPage
           ? <LoadMoreColleges initial={result.data} total={pagination.total} perPage={pagination.perPage} query={`course=${encodeURIComponent(course.courseSlug)}&state=${encodeURIComponent(cityPage?.stateSlug || statePage?.stateSlug || '')}${cityPage ? `&city=${encodeURIComponent(cityPage.citySlug)}` : ''}`} linkableEntities={linkableEntities} />
-          : <>
-            <CollegeListResults colleges={result.data} total={pagination.total} linkableEntities={linkableEntities} />
-            {pagination.totalPages > 1 && <ListPaginationNav page={page} totalPages={pagination.totalPages} basePath={path} label={`${label} college pages`} />}
-          </>}
+          : <LoadMoreColleges initial={result.data} total={pagination.total} perPage={pagination.perPage} endpoint={`/api/course-listing/${encodeURIComponent(course.key)}`} linkableEntities={linkableEntities} />}
         <p className="muted">Fees and placement figures are shown only where colleges have reported them; confirm the latest numbers on the official college website before applying.</p>
       </div>
       <CourseFilterSidebar percentileGroups={percentileGroups} facets={facets.data} totalColleges={facets.totalColleges} selectedKey={course.key} selectedState={cityPage?.stateSlug || statePage?.stateSlug || null} selectedCity={cityPage?.citySlug || null} statePages={statePages.data} cityPages={cityPages.data} />

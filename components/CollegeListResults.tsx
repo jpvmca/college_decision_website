@@ -1,9 +1,7 @@
 'use client';
 
 import Link from 'next/link';
-import { ArrowLeft, ArrowRight } from 'lucide-react';
 import CollegeDecisionCard from './CollegeDecisionCard';
-import { getPageItems } from '../lib/pagination';
 import type { LinkableEntity } from '../lib/auto-link-entities';
 
 export type ListedCollege = {
@@ -66,13 +64,3 @@ export function CollegeListResults({ colleges, total, linkableEntities }: { coll
   </div>;
 }
 
-export function ListPaginationNav({ page, totalPages, basePath, label = 'College pages' }: { page: number; totalPages: number; basePath: string; label?: string }) {
-  const href = (value: number) => value === 1 ? basePath : `${basePath}?page=${value}`;
-  return <nav className="pagination" aria-label={label}>
-    {page > 1 && <Link className="page-arrow" href={href(page - 1)}><ArrowLeft size={15} aria-hidden="true" /> Previous</Link>}
-    <div className="page-numbers">{getPageItems(totalPages, page).map((item, index) => item === 'ellipsis'
-      ? <span className="page-ellipsis" key={`ellipsis-${index}`}>…</span>
-      : <Link className={item === page ? 'page-number current' : 'page-number'} aria-current={item === page ? 'page' : undefined} key={item} href={href(item)}>{item}</Link>)}</div>
-    {page < totalPages && <Link className="page-arrow" href={href(page + 1)}>Next <ArrowRight size={15} aria-hidden="true" /></Link>}
-  </nav>;
-}
