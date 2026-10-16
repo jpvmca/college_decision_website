@@ -120,8 +120,14 @@ a{color:var(--blue);text-decoration:none}a:hover{text-decoration:underline}.site
 .cutoff-branch-list li { margin: 0.1rem 0; }
 
 /* Exam cutoff year sections: top 5 rows until "View all" is clicked (rows stay in the SSR HTML). */
-.cutoff-collapsed .cutoff-table tbody tr:nth-child(n+6),
+.cutoff-collapsed .cutoff-table > tbody > tr:nth-child(n+6),
 .cutoff-collapsed .pagination,
 .cutoff-collapsed .cutoff-see-all { display: none; }
 
 .exam-events{margin:22px 0}.exam-events-table{width:100%;border-collapse:collapse}.exam-events-table th,.exam-events-table td{padding:10px 12px;border-bottom:1px solid #e5e7eb;text-align:left;vertical-align:top}.exam-events-table td:last-child{white-space:nowrap}@media(max-width:640px){.exam-events-table td:last-child{white-space:normal}}.status-badge{display:inline-block;margin-left:6px;padding:1px 8px;border-radius:999px;font-size:12px;font-weight:700;background:#f3f4f6;color:#374151}.status-badge.status-extended{background:#dcfce7;color:#166534}.status-badge.status-tentative,.status-badge.status-expected{background:#fef3c7;color:#92400e}.status-badge.status-not_announced{background:#f3f4f6;color:#4b5563}
+
+.cutoff-cats{border:0!important;padding:.25rem 0 0!important;font-weight:400}
+.cutoff-cats summary{font-size:.8rem;font-weight:600;color:var(--accent,#1d4ed8)}
+.cutoff-cats table{margin-top:.4rem;font-size:.85rem}
+.cutoff-cats td,.cutoff-cats th{white-space:nowrap}
+.cutoff-faq h3{font-size:1rem;margin:1rem 0 .25rem}

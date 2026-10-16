@@ -15,6 +15,8 @@ export type CutoffRow = {
   gender_pool?: string | null;
   metric_type?: 'rank' | 'score' | 'percentile' | null;
   cutoff_type?: string | null;
+  cutoff_basis?: string | null;
+  section?: string | null;
   opening_rank?: number | null;
   closing_rank?: number | null;
   cutoff_score?: number | string | null;
@@ -51,8 +53,8 @@ export type ExamCutoffResponse = {
     state?: string | null;
     best_value: number | string | null;
     programmes: number;
-    best: { program_name: string; quota?: string | null; round: number; opening_rank?: number | null; cutoff_type?: string | null; source_url?: string | null } | null;
-    qualifying?: { overall: Record<string, number>; sectional: Record<string, string>; source_url: string | null; source_flag: string | null } | null;
+    best: { program_name: string; quota?: string | null; round: number; opening_rank?: number | null; cutoff_type?: string | null; cutoff_basis?: string | null; source_url?: string | null } | null;
+    qualifying?: { categories: Record<string, Record<string, number>>; sections: string[]; overall: Record<string, number>; basis: string | null; programme: string | null; source_url: string | null; source_flag: string | null } | null;
   }>;
   pagination: { page: number; perPage: number; total: number; totalPages: number };
 };
@@ -60,6 +62,10 @@ export type ExamCutoffResponse = {
 import { NOT_AVAILABLE, rankText, cutoffValue } from './cutoff-format';
 import CollegeCutoffsClient from './CollegeCutoffsClient';
 export { NOT_AVAILABLE, rankText, cutoffValue };
+/** Student-facing label for institute_cutoffs.cutoff_basis. */
+export function basisLabel(basis?: string | null) {
+  return basis === 'eligibility' ? 'Eligibility' : basis === 'shortlist' ? 'Shortlist' : basis === 'final' ? 'Final closing' : basis === 'closing' ? 'Round closing' : basis === 'reported' ? 'Reported' : '—';
+}
 const QUOTA_SHORT: Record<string, string> = { AI: 'All India', HS: 'Home State', OS: 'Other State', JK: 'J&K', LA: 'Ladakh', GO: 'Goa', STATE: 'State', HU: 'Home Univ.', OHU: 'Other Univ.' };
 
 export function CollegeCutoffs({ slug, collegeName, cutoffs, examHref }: { slug: string; collegeName: string; cutoffs: CollegeCutoffResponse | null; examHref?: (examSlug: string) => string | null }) {
@@ -84,30 +90,42 @@ export function ExamCutoffs({ examLabel, cutoffs, collegeHref, heading }: { exam
   if (qualifying) {
     const isScore = metric === 'score';
     const unit = isScore ? 'score' : 'percentile';
-    // Category columns only where at least one college publishes that category (NMAT shortlists are General-only).
-    const cols = ([['EWS', 'EWS'], ['OBC_NCL', 'NC-OBC'], ['SC', 'SC'], ['ST', 'ST']] as Array<[string, string]>).filter(([code]) => cutoffs.data.some((r) => r.qualifying?.overall[code] !== undefined));
-    const val = (v: number | undefined) => (v === undefined ? NOT_AVAILABLE : v);
-    const pwd = (o: Record<string, number>) => o.PWD ?? o.OPEN_PWD;
-    const showPwd = cutoffs.data.some((r) => r.qualifying && pwd(r.qualifying.overall) !== undefined);
+    const cats: Array<[string, string]> = [['OPEN', 'General'], ['EWS', 'EWS'], ['OBC_NCL', 'NC-OBC'], ['SC', 'SC'], ['ST', 'ST'], ['PWD', 'PwD'], ['OPEN_PWD', 'General PwD'], ['EWS_PWD', 'EWS PwD'], ['OBC_NCL_PWD', 'NC-OBC PwD'], ['SC_PWD', 'SC PwD'], ['ST_PWD', 'ST PwD']];
+    const secLabel = (s: string) => (s === 'overall' ? 'Overall' : s === 'sectional' ? 'Each section' : s);
+    const cell = (v: number | undefined) => (v === undefined ? '—' : v);
+    const generalSections = Array.from(new Set(cutoffs.data.flatMap((r) => (r.qualifying?.sections || []).filter((s) => s !== 'overall'))));
+    const shown = cutoffs.data.length;
+    const anyAggregator = cutoffs.data.some((r) => r.qualifying?.source_flag === 'source_aggregator');
     return <section id="cutoffs">
-      {heading !== null && <h2>{heading ?? `${examLabel} ${examYear} cutoffs: minimum ${unit} by college`}</h2>}
-      <p className="muted">Minimum {examLabel} {examYear} {isScore ? 'scores (overall' : 'percentiles (overall'}{isScore && examLabel === 'NMAT' ? ', scaled out of 360' : ''}) that each institute uses for its first shortlist{cols.length ? ', by category' : ''}, sorted by the General-category minimum. Clearing these does not guarantee an interview call; final shortlists also weigh academics, work experience, diversity and interviews. {cutoffs.pagination.total} college(s) on record.{admissionKeyed ? ` Used for ${applied.year}–${String((applied.year || 0) + 2).slice(-2)} admissions.` : ''}</p>
+      {heading !== null && <h2>{heading ?? `${examLabel} ${examYear} cutoffs: published minimum ${unit}s by college`}</h2>}
+      <p className="muted">Published minimum eligibility or shortlisting criteria, depending on the institute, in {examLabel} {examYear} {isScore ? `scores${examLabel === 'NMAT' ? ' (overall out of 360, sections out of 120)' : ''}` : 'percentiles'}. {shown} {shown === 1 ? 'college' : 'colleges'} listed, sorted by the General-category overall figure. The <strong>Type</strong> column says what each figure is; open “All categories” under a college for every category{generalSections.length ? ' and section' : ''}.{admissionKeyed ? ` Used for ${applied.year}–${String((applied.year || 0) + 2).slice(-2)} admissions.` : ''}</p>
+      <p className="muted"><strong>Meeting a published minimum does not guarantee an interview call or admission. Criteria and selection processes vary by institute.</strong></p>
       <div className="detail-table-wrap"><table className="detail-table cutoff-table">
-        <thead><tr><th scope="col">College</th><th scope="col">General</th><th scope="col">General sectional</th>{cols.map(([, l]) => <th scope="col" key={l}>{l}</th>)}{showPwd && <th scope="col">PwD</th>}<th scope="col">Source</th></tr></thead>
+        <thead><tr><th scope="col">College</th><th scope="col">Type</th><th scope="col">General overall</th>{generalSections.map((s) => <th scope="col" key={s}>General {secLabel(s)}</th>)}<th scope="col">Source</th></tr></thead>
         <tbody>{cutoffs.data.map((row) => {
           const href = row.published_slug ? collegeHref(row.published_slug) : null;
           const q = row.qualifying;
           const src = q?.source_url || row.best?.source_url;
+          const gen = q?.categories?.OPEN || {};
+          const rowCats = cats.filter(([code]) => q?.categories?.[code]);
+          const secs = q?.sections || [];
+          const basis = q?.basis || row.best?.cutoff_basis || null;
           return <tr key={row.institute_id}>
-            <th scope="row">{href ? <Link href={href}>{row.institute_name}</Link> : row.institute_name}{row.city ? <small className="muted"> · {row.city}</small> : null}</th>
-            <td><strong>{row.best_value == null ? NOT_AVAILABLE : Number(row.best_value)}</strong></td>
-            <td>{q?.sectional.OPEN || NOT_AVAILABLE}</td>
-            {cols.map(([code]) => <td key={code}>{val(q?.overall[code])}</td>)}
-            {showPwd && <td>{val(q ? pwd(q.overall) : undefined)}</td>}
-            <td>{src ? <a href={src} target="_blank" rel="noopener nofollow">{q?.source_flag === 'source_aggregator' ? 'Aggregator*' : 'Official'}</a> : '—'}</td>
+            <th scope="row">{href ? <Link href={href}>{row.institute_name}</Link> : row.institute_name}{row.city ? <small className="muted"> · {row.city}</small> : null}
+              {isScore && q?.programme ? <small className="muted"><br />{q.programme}</small> : null}
+              {rowCats.length > 0 && <details className="cutoff-cats"><summary>All categories</summary>
+                <table className="detail-table"><thead><tr><th scope="col">Category</th>{secs.map((s) => <th scope="col" key={s}>{secLabel(s)}</th>)}</tr></thead>
+                  <tbody>{rowCats.map(([code, label]) => <tr key={code}><th scope="row">{label}</th>{secs.map((s) => <td key={s}>{cell(q!.categories[code][s])}</td>)}</tr>)}</tbody></table>
+                {!secs.includes('overall') && <p className="muted">This institute publishes sectional minimums only, with no overall {unit} cut-off.</p>}
+              </details>}
+            </th>
+            <td>{basisLabel(basis)}</td>
+            <td><strong>{row.best_value == null ? 'Not published' : Number(row.best_value)}</strong></td>
+            {generalSections.map((s) => <td key={s}>{cell(gen[s])}</td>)}
+            <td>{src ? <a href={src} target="_blank" rel="noopener nofollow">{q?.source_flag === 'source_aggregator' ? 'Secondary source*' : 'Official'}</a> : '—'}</td>
           </tr>;
         })}</tbody></table></div>
-      <p className="muted">{isScore ? 'Scores, not percentiles or ranks.' : 'Percentiles, not ranks.'} * Official {examLabel} {examYear} document not retrievable; values are as reported by a secondary source and marked Aggregator. Colleges not listed: cutoff {NOT_AVAILABLE.toLowerCase()} in our dataset.</p>
+      <p className="muted"><strong>Type:</strong> Eligibility = the minimum to be considered at all; Shortlist = the cut-off the institute says it used for its interview shortlist; Reported = a figure reported after the process rather than a policy minimum. {isScore ? 'Scores, not percentiles or ranks.' : 'Percentiles, not ranks.'}{anyAggregator ? ' * Secondary source - not independently verified: the official document could not be retrieved, so the figures are as published by a secondary source.' : ''}</p>
     </section>;
   }
   const metricLabel = metric === 'score' ? 'Highest closing score' : metric === 'percentile' ? 'Highest closing percentile' : 'Best closing rank';

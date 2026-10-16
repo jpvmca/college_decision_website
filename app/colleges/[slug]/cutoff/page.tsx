@@ -85,7 +85,7 @@ export default async function CollegeCutoffPage({ params }: { params: Promise<{ 
         {exam.published && <> · <Link href={`/exams/${exam.slug}/cutoff`}>{clean(exam.name)} cutoff for all colleges</Link></>}</p>
       {sections.filter((x) => x.exam.slug === exam.slug).map(({ y, data }) => <div key={y.year} id={`${exam.slug}-${y.year}`} className="cutoff-section">
         <h2>{name} {cutoffYearHeading(clean(exam.name), y)}</h2>
-        <p className="muted">{exam.metric === 'rank' ? `Final round (round ${data!.round}) closing ranks for ${y.programmes} programme(s); a lower rank is more competitive.` : exam.metric === 'score' ? `Final round (round ${data!.round}) closing scores for ${y.programmes} programme(s).` : 'Minimum percentiles used to shortlist candidates.'}{' '}{examYearNote(clean(exam.name), y.year, y.exam_year) || ''}</p>
+        <p className="muted">{exam.metric === 'rank' ? `Final round (round ${data!.round}) closing ranks for ${y.programmes} programme(s); a lower rank is more competitive.` : exam.metric === 'score' ? `Final round (round ${data!.round}) closing scores for ${y.programmes} programme(s).` : 'Published minimum eligibility or shortlisting criteria, depending on the institute. Meeting a published minimum does not guarantee an interview call or admission. Criteria and selection processes vary by institute.'}{' '}{examYearNote(clean(exam.name), y.year, y.exam_year) || ''}</p>
         <CollegeCutoffYearTables rows={data!.rows} metric={exam.metric} />
       </div>)}
     </section>)}
