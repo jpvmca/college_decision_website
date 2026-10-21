@@ -84,6 +84,18 @@ const nextConfig: NextConfig = {
         destination: '/engineering-colleges-in-punjab',
         statusCode: 301
       },
+      // MEFGI (11813) faculties were de-affiliated from GTU into Marwadi University (Gujarat Act 9 of 2016) -> canonical 17158
+      {
+        source: '/colleges/marwadi-education-foundations-group-of-institutions-gujarat-rajkot/:path*',
+        destination: '/colleges/marwadi-university-gujarat-rajkot/:path*',
+        statusCode: 301
+      },
+      // DYP-DC Center for Automotive Research (12548) became ADYPU's School of Design in 2015 -> canonical 16773
+      {
+        source: '/colleges/dyp-dc-center-for-automotive-research-and-studies-maharashtra-pune/:path*',
+        destination: '/colleges/ajeenkya-dy-patil-university-maharashtra-pune/:path*',
+        statusCode: 301
+      },
       // Inactive duplicate / alias exam slugs -> canonical published exam (duplicates consolidated 15 Oct 2026)
       { source: '/exams/neet-ug/:path*', destination: '/exams/neet/:path*', statusCode: 301 },
       { source: '/exams/neet-ug-1/:path*', destination: '/exams/neet/:path*', statusCode: 301 },
