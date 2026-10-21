@@ -42,6 +42,54 @@ const nextConfig: NextConfig = {
   },
   async redirects() {
     return [
+      // ITM Business School Bangalore (1522): no official Bengaluru campus -> ITM Business School Navi Mumbai (1728)
+      {
+        source: '/colleges/itm-business-school-karnataka-bangalore/:path*',
+        destination: '/colleges/itm-business-school-maharashtra-mumbai/:path*',
+        statusCode: 301
+      },
+      // KPR School of Business (11778) MBA now runs inside KPRIET -> 13234
+      {
+        source: '/colleges/kpr-school-of-business-tamil-nadu-coimbatore/:path*',
+        destination: '/colleges/kpr-institute-of-engineering-and-technology-tamil-nadu-coimbatore/:path*',
+        statusCode: 301
+      },
+      // SCDL city clone 12513 (one distance-learning institute, HQ Pune) merged into canonical 12506
+      {
+        source: '/colleges/symbiosis-centre-for-distance-learning-karnataka-bangalore/:path*',
+        destination: '/colleges/symbiosis-centre-for-distance-learning-maharashtra-pune/:path*',
+        statusCode: 301
+      },
+      // SCDL city clone 12514 (one distance-learning institute, HQ Pune) merged into canonical 12506
+      {
+        source: '/colleges/symbiosis-centre-for-distance-learning-delhi-delhi-ncr-delhi/:path*',
+        destination: '/colleges/symbiosis-centre-for-distance-learning-maharashtra-pune/:path*',
+        statusCode: 301
+      },
+      // SCDL city clone 12543 (one distance-learning institute, HQ Pune) merged into canonical 12506
+      {
+        source: '/colleges/symbiosis-centre-for-distance-learning-haryana-gurgaon/:path*',
+        destination: '/colleges/symbiosis-centre-for-distance-learning-maharashtra-pune/:path*',
+        statusCode: 301
+      },
+      // SCDL city clone 12516 (one distance-learning institute, HQ Pune) merged into canonical 12506
+      {
+        source: '/colleges/symbiosis-centre-for-distance-learning-maharashtra-nashik/:path*',
+        destination: '/colleges/symbiosis-centre-for-distance-learning-maharashtra-pune/:path*',
+        statusCode: 301
+      },
+      // Unpublished duplicate MRKIT (44103, same Cuddalore college) -> canonical 7564
+      {
+        source: '/colleges/mrk-institute-of-technology-tamil-nadu-other-tamil-nadu-na/:path*',
+        destination: '/colleges/mrk-institute-of-technology-haryana-rewari/:path*',
+        statusCode: 301
+      },
+      // Unpublished duplicate CCET Bhilai (38958) -> canonical 9855
+      {
+        source: '/colleges/christian-college-of-engineering-and-technology-bhilai-chattisgarh-bhilai/:path*',
+        destination: '/colleges/christian-college-of-engineering-and-technology-tamil-nadu-dindigul-9855/:path*',
+        statusCode: 301
+      },
       // Duplicate college 35726 (IMDR Pune) merged into canonical 1737
       {
         source: '/colleges/imdr-pune-maharashtra-pune/:path*',
