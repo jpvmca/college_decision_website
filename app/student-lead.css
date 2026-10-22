@@ -71,4 +71,8 @@
 
 /* Only two Apply buttons on a college profile: the header one and the first (suggested) course group.
    The interest highlight moves the student's course group to the top, so the first group is the suggested one. */
-.programme-groups > .programme-group:not(:first-child) .college-apply.is-compact { display: none; }
+.programme-groups .college-apply.is-compact { display: none; }
+/* No interest course: the first group (in page order) is the suggested one. */
+.programme-groups:not(:has(.is-interest)) > .programme-group:first-child .college-apply.is-compact,
+/* Interest course: its group is moved to the top (CSS order) and becomes the suggested one. */
+.programme-groups > .programme-group.is-interest .college-apply.is-compact { display: inline-flex; }
