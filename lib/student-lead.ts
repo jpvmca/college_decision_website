@@ -107,7 +107,7 @@ export const slugify = (value: string) => value.toLowerCase().replace(/&/g, ' an
 
 let optionsPromise: Promise<FormOptions | null> | null = null;
 export function loadFormOptions() {
-  optionsPromise ||= fetch('/api/students/form-options')
+  optionsPromise ||= fetch('/api/students/form-options?v=3')
     .then((r) => (r.ok ? r.json() : null))
     .then((j) => (j?.data as FormOptions) || null)
     .catch(() => {
