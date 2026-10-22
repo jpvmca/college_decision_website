@@ -6,12 +6,15 @@ import {
   LEAD_TRACKED_KEY, LEAD_UTM_KEY, courseFromContext, geoIsFresh, loadCities, loadFormOptions, locationFromSlug, pageContext, readPrefs, slugify, writePrefs,
   type FormCity, type FormOptions, type GeoInfo
 } from '../lib/student-lead';
+import { suggestEmail, validateEmail, validateMobile, validateName } from '../lib/lead-validation';
 
 const SHOW_AFTER_MS = 5000;
 /** Pages where a popup would get in the way of a task the visitor is already doing. */
 const NO_POPUP = /^\/(contact|privacy-policy|terms-and-conditions|disclaimer)(\/|$)/;
 
-type Errors = Partial<Record<'name' | 'mobile' | 'email' | 'courseId' | 'stateId' | 'form', string>>;
+type Field = 'name' | 'mobile' | 'email' | 'courseId' | 'stateId' | 'cityId';
+type Errors = Partial<Record<Field | 'form', string>>;
+const FIELD_ORDER: Field[] = ['name', 'mobile', 'email', 'courseId', 'stateId', 'cityId'];
 
 export default function StudentLeadPopup() {
   const pathname = usePathname() || '/';
@@ -27,6 +30,8 @@ export default function StudentLeadPopup() {
   const [done, setDone] = useState(false);
   const openedAt = useRef(0);
   const nameRef = useRef<HTMLInputElement>(null);
+  const formRef = useRef<HTMLFormElement>(null);
+  const [touched, setTouched] = useState<Partial<Record<Field, boolean>>>({});
   const inFlight = useRef(new Set<string>());
 
   // First-touch UTM parameters for this browser session.
@@ -166,35 +171,58 @@ export default function StudentLeadPopup() {
   const isIndia = country.code === 'IN';
   const stateName = options?.states.find((s) => String(s.id) === form.stateId)?.name || '';
   const cityName = cities.find((c) => String(c.id) === form.cityId)?.name || '';
-  const showLocationText = isIndia && !editingLocation && Boolean(form.stateId);
+  // Auto-detected location shows as a chip; selects appear when editing or when state/city is missing.
+  const cityRequired = isIndia && Boolean(form.stateId) && cities.length > 0;
+  const showLocationText = isIndia && !editingLocation && Boolean(form.stateId) && (Boolean(form.cityId) || !cityRequired);
+  const emailHint = !errors.email ? suggestEmail(form.email) : null;
 
-  function validate(): Errors {
+  function fieldError(field: Field, f = form): string | undefined {
+    switch (field) {
+      case 'name': return validateName(f.name).error;
+      case 'mobile': return validateMobile(f.mobile, isIndia, country.phoneCode).error;
+      case 'email': return validateEmail(f.email).error;
+      case 'courseId': return f.courseId ? undefined : 'Please select the course you are interested in';
+      case 'stateId': return isIndia && !f.stateId ? 'Please select your state' : undefined;
+      case 'cityId': return isIndia && f.stateId && cities.length && !f.cityId ? 'Please select your city' : undefined;
+    }
+  }
+
+  function validateAll(): Errors {
     const e: Errors = {};
-    if (form.name.trim().length < 2 || !/^[\p{L}][\p{L} .'-]*$/u.test(form.name.trim())) e.name = 'Enter your full name';
-    const mobile = form.mobile.replace(/[\s()-]/g, '');
-    if (isIndia ? !/^(\+?91|0)?[6-9]\d{9}$/.test(mobile) : !/^\+?\d{6,14}$/.test(mobile)) e.mobile = isIndia ? 'Enter a valid 10-digit mobile number' : 'Enter a valid mobile number';
-    if (!/^[^\s@]+@[^\s@]+\.[a-z]{2,}$/i.test(form.email.trim())) e.email = 'Enter a valid email address';
-    if (!form.courseId) e.courseId = 'Select a course';
-    if (isIndia && !form.stateId) { e.stateId = 'Select your state'; setEditingLocation(true); }
+    for (const field of FIELD_ORDER) { const msg = fieldError(field); if (msg) e[field] = msg; }
     return e;
   }
 
+  function focusField(field: string) {
+    if ((field === 'stateId' || field === 'cityId') && !editingLocation) setEditingLocation(true);
+    window.setTimeout(() => formRef.current?.querySelector<HTMLElement>(`[name="${field}"]`)?.focus(), 30);
+  }
+
+  const blur = (field: Field) => () => {
+    setTouched((t) => ({ ...t, [field]: true }));
+    setErrors((er) => ({ ...er, [field]: fieldError(field) }));
+    if (field === 'name') setForm((f) => ({ ...f, name: f.name.trim().replace(/\s+/g, ' ') }));
+    if (field === 'email') setForm((f) => ({ ...f, email: f.email.trim().toLowerCase() }));
+  };
+
   async function submit(event: React.FormEvent) {
     event.preventDefault();
-    const found = validate();
+    if (submitting) return;
+    const found = validateAll();
     setErrors(found);
-    if (Object.keys(found).length) return;
+    setTouched({ name: true, mobile: true, email: true, courseId: true, stateId: true, cityId: true });
+    const first = FIELD_ORDER.find((f) => found[f]);
+    if (first) { focusField(first); return; }
     setSubmitting(true);
     let utm: Record<string, string | null> = {};
     try { utm = JSON.parse(window.sessionStorage.getItem(LEAD_UTM_KEY) || '{}'); } catch { /* ignore */ }
-    const mobile = form.mobile.replace(/[\s()-]/g, '');
     try {
       const res = await fetch('/api/students/register', {
         method: 'POST',
         headers: { 'content-type': 'application/json' },
         body: JSON.stringify({
-          name: form.name.trim(), email: form.email.trim(),
-          mobile: !isIndia && country.phoneCode && !mobile.startsWith('+') ? `${country.phoneCode}${mobile.replace(/^0+/, '')}` : mobile,
+          name: validateName(form.name).value, email: validateEmail(form.email).value,
+          mobile: validateMobile(form.mobile, isIndia, country.phoneCode).value,
           courseId: Number(form.courseId), countryCode: country.code,
           stateId: isIndia ? Number(form.stateId) || null : null, cityId: isIndia ? Number(form.cityId) || null : null,
           collegeSlug: ctx.pageType === 'college_profile' || ctx.pageType === 'college_cutoff' ? ctx.collegeSlug : null,
@@ -204,8 +232,15 @@ export default function StudentLeadPopup() {
       });
       const json = await res.json().catch(() => ({}));
       if (!res.ok) {
-        const field = (json.field as keyof Errors) || 'form';
-        setErrors({ [field]: json.error || 'Something went wrong. Please try again.' });
+        // Map server field errors onto the fields; anything else shows above the button.
+        const serverErrors: Errors = {};
+        if (json.errors && typeof json.errors === 'object') {
+          for (const [k, v] of Object.entries(json.errors as Record<string, string>)) if (FIELD_ORDER.includes(k as Field)) serverErrors[k as Field] = v;
+        } else if (json.field && FIELD_ORDER.includes(json.field)) serverErrors[json.field as Field] = json.error;
+        if (!Object.keys(serverErrors).length) serverErrors.form = res.status === 429 ? (json.error || 'Too many attempts. Please try again later.') : (json.error || 'Something went wrong. Please try again.');
+        setErrors(serverErrors);
+        const firstServer = FIELD_ORDER.find((f) => serverErrors[f]);
+        if (firstServer) focusField(firstServer);
         return;
       }
       const d = json.data || {};
@@ -216,7 +251,7 @@ export default function StudentLeadPopup() {
       });
       setDone(true);
     } catch {
-      setErrors({ form: 'Network error. Please try again.' });
+      setErrors({ form: 'We couldn’t reach the server. Please check your connection and try again.' });
     } finally {
       setSubmitting(false);
     }
@@ -224,9 +259,22 @@ export default function StudentLeadPopup() {
 
   if (!open) return null;
   const set = (key: keyof typeof form) => (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
-    setForm((f) => ({ ...f, [key]: e.target.value }));
-    setErrors((er) => ({ ...er, [key]: undefined, form: undefined }));
+    let value = e.target.value;
+    if (key === 'mobile') {
+      if (isIndia) {
+        // Digits only; a pasted "+91 98765 43210" or "098765..." keeps just the 10-digit number.
+        let digits = value.replace(/\D/g, '');
+        if (digits.length > 10) digits = digits.replace(/^(91|0)/, '');
+        value = digits.slice(0, 10);
+      } else value = value.replace(/[^\d+]/g, '').slice(0, 16);
+    }
+    const next = { ...form, [key]: value };
+    setForm(next);
+    // Once a field has been touched, re-validate it live so the message clears as soon as it's fixed.
+    setErrors((er) => ({ ...er, form: undefined, ...(key in touched || er[key as Field] ? { [key]: fieldError(key as Field, next) } : {}) }));
   };
+  const a11y = (field: Field) => ({ 'aria-invalid': Boolean(errors[field]), 'aria-describedby': errors[field] ? `lead-err-${field}` : undefined, onBlur: blur(field) });
+  const err = (field: Field) => (errors[field] ? <em id={`lead-err-${field}`} role="alert">{errors[field]}</em> : null);
 
   return (
     <div className="lead-overlay" role="presentation" onMouseDown={(e) => { if (e.target === e.currentTarget) close(); }}>
@@ -240,7 +288,7 @@ export default function StudentLeadPopup() {
             <button type="button" className="lead-submit" onClick={() => setOpen(false)}>Continue browsing</button>
           </div>
         ) : (
-          <form onSubmit={submit} noValidate>
+          <form ref={formRef} onSubmit={submit} noValidate>
             <div className="lead-head">
               <span className="lead-badge">Free counselling</span>
               <h2 id="lead-title">Find the right college for you</h2>
@@ -249,29 +297,30 @@ export default function StudentLeadPopup() {
             <div className="lead-grid">
               <label className="lead-field lead-full">
                 <span>Full name</span>
-                <input ref={nameRef} name="name" autoComplete="name" value={form.name} onChange={set('name')} placeholder="Your name" aria-invalid={Boolean(errors.name)} maxLength={120} />
-                {errors.name && <em>{errors.name}</em>}
+                <input ref={nameRef} name="name" autoComplete="name" value={form.name} onChange={set('name')} placeholder="Your name" maxLength={60} {...a11y('name')} />
+                {err('name')}
               </label>
               <label className="lead-field">
                 <span>Mobile</span>
-                <div className="lead-phone">
+                <div className="lead-phone" data-invalid={Boolean(errors.mobile) || undefined}>
                   {country.phoneCode && <b>{country.phoneCode}</b>}
-                  <input name="mobile" type="tel" inputMode="tel" autoComplete="tel-national" value={form.mobile} onChange={set('mobile')} placeholder={isIndia ? '10-digit number' : 'Mobile number'} aria-invalid={Boolean(errors.mobile)} maxLength={16} />
+                  <input name="mobile" type="tel" inputMode="numeric" autoComplete="tel-national" value={form.mobile} onChange={set('mobile')} placeholder={isIndia ? '10-digit number' : 'Number with country code'} maxLength={16} {...a11y('mobile')} />
                 </div>
-                {errors.mobile && <em>{errors.mobile}</em>}
+                {err('mobile')}
               </label>
               <label className="lead-field">
                 <span>Email</span>
-                <input name="email" type="email" inputMode="email" autoComplete="email" value={form.email} onChange={set('email')} placeholder="you@example.com" aria-invalid={Boolean(errors.email)} maxLength={190} />
-                {errors.email && <em>{errors.email}</em>}
+                <input name="email" type="email" inputMode="email" autoComplete="email" value={form.email} onChange={set('email')} placeholder="you@example.com" maxLength={254} {...a11y('email')} />
+                {err('email')}
+                {emailHint && <small className="lead-hint">Did you mean <button type="button" onClick={() => { setForm((f) => ({ ...f, email: emailHint })); setErrors((er) => ({ ...er, email: undefined })); }}>{emailHint}</button>?</small>}
               </label>
               <label className="lead-field lead-full">
                 <span>Interested in</span>
-                <select name="courseId" value={form.courseId} onChange={set('courseId')} aria-invalid={Boolean(errors.courseId)} disabled={!options}>
+                <select name="courseId" value={form.courseId} onChange={set('courseId')} disabled={!options} {...a11y('courseId')}>
                   <option value="">{options ? 'Select course' : 'Loading courses…'}</option>
                   {options?.courses.map((c) => <option key={c.id} value={c.id}>{c.label}</option>)}
                 </select>
-                {errors.courseId && <em>{errors.courseId}</em>}
+                {err('courseId')}
               </label>
               {isIndia && (showLocationText ? (
                 <div className="lead-location lead-full">
@@ -283,25 +332,26 @@ export default function StudentLeadPopup() {
                 <>
                   <label className="lead-field">
                     <span>State</span>
-                    <select name="stateId" value={form.stateId} onChange={(e) => { setErrors((er) => ({ ...er, stateId: undefined })); void selectState(e.target.value); }} aria-invalid={Boolean(errors.stateId)} disabled={!options}>
+                    <select name="stateId" value={form.stateId} onChange={(e) => { setErrors((er) => ({ ...er, stateId: undefined, cityId: undefined, form: undefined })); void selectState(e.target.value); }} disabled={!options} {...a11y('stateId')}>
                       <option value="">Select state</option>
                       {options?.states.map((s) => <option key={s.id} value={s.id}>{s.name}</option>)}
                     </select>
-                    {errors.stateId && <em>{errors.stateId}</em>}
+                    {err('stateId')}
                   </label>
                   <label className="lead-field">
                     <span>City</span>
-                    <select name="cityId" value={form.cityId} onChange={set('cityId')} disabled={!form.stateId || !cities.length}>
+                    <select name="cityId" value={form.cityId} onChange={set('cityId')} disabled={!form.stateId || !cities.length} {...a11y('cityId')}>
                       <option value="">{form.stateId ? 'Select city' : 'Select state first'}</option>
                       {cities.map((c) => <option key={c.id} value={c.id}>{c.name}</option>)}
                     </select>
+                    {err('cityId')}
                   </label>
                 </>
               ))}
               <input className="lead-hp" tabIndex={-1} autoComplete="off" aria-hidden="true" name="website" value={form.website} onChange={set('website')} />
             </div>
             {errors.form && <p className="lead-error" role="alert">{errors.form}</p>}
-            <button type="submit" className="lead-submit" disabled={submitting}>{submitting ? 'Submitting…' : 'Get free counselling'}</button>
+            <button type="submit" className="lead-submit" disabled={submitting} aria-busy={submitting}>{submitting ? 'Submitting…' : 'Get free counselling'}</button>
             <p className="lead-note">By submitting, you agree to be contacted about admissions. See our <a href="/privacy-policy" target="_blank">Privacy Policy</a>.</p>
           </form>
         )}

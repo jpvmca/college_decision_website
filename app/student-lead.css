@@ -49,3 +49,7 @@
 .programme-group.is-interest { order: -1; position: relative; padding: 12px 14px; margin-bottom: 12px; background: #eff6ff; border: 1px solid #bfdbfe; border-radius: 12px; }
 .programme-group.is-interest h3 { margin-top: 0; }
 .interest-tag { display: inline-block; margin-left: 8px; padding: 2px 8px; color: #2563eb; background: #fff; border: 1px solid #bfdbfe; border-radius: 999px; font-size: .72rem; font-weight: 700; vertical-align: middle; }
+
+.lead-phone[data-invalid] { border-color: #c2410c; }
+.lead-hint { color: #526173; font-size: .75rem; }
+.lead-hint button { padding: 0; color: #2563eb; background: none; border: 0; font: inherit; font-weight: 700; text-decoration: underline; cursor: pointer; }
