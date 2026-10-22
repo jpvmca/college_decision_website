@@ -68,3 +68,7 @@
 .apply-confirm em { color: #b91c1c; font-style: normal; font-size: 13px; }
 .apply-confirm-actions { display: flex; gap: 8px; }
 .programme-group h3 .college-apply { margin-left: 10px; }
+
+/* Only two Apply buttons on a college profile: the header one and the first (suggested) course group.
+   The interest highlight moves the student's course group to the top, so the first group is the suggested one. */
+.programme-groups > .programme-group:not(:first-child) .college-apply.is-compact { display: none; }
