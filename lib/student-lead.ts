@@ -20,11 +20,16 @@ export type LeadPrefs = {
   cityName?: string | null;
   geoAt?: number;
   submittedAt?: number;
-  dismissedUntil?: number;
+  /** Signed token returned at registration; identifies the student for college-visit tracking. */
+  token?: string | null;
+  /** Unsubmitted form values, so fields stay filled on the next page. */
+  draft?: Partial<Record<'name' | 'mobile' | 'email' | 'courseId' | 'stateId' | 'cityId', string>>;
 };
 
-export const LEAD_PREFS_KEY = 'cd_lead_prefs_v1';
+// v2: v1 could hold a wrong cached location from the old fixed dev IP; bumping the key forces a fresh lookup.
+export const LEAD_PREFS_KEY = 'cd_lead_prefs_v2';
 export const LEAD_UTM_KEY = 'cd_lead_utm_v1';
+export const LEAD_TRACKED_KEY = 'cd_lead_tracked_v1';
 export const LEAD_PREFS_EVENT = 'cd-lead-prefs';
 const GEO_TTL_MS = 30 * 24 * 60 * 60 * 1000;
 

@@ -3,12 +3,11 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { usePathname } from 'next/navigation';
 import {
-  LEAD_UTM_KEY, courseFromContext, geoIsFresh, loadCities, loadFormOptions, locationFromSlug, pageContext, readPrefs, slugify, writePrefs,
+  LEAD_TRACKED_KEY, LEAD_UTM_KEY, courseFromContext, geoIsFresh, loadCities, loadFormOptions, locationFromSlug, pageContext, readPrefs, slugify, writePrefs,
   type FormCity, type FormOptions, type GeoInfo
 } from '../lib/student-lead';
 
 const SHOW_AFTER_MS = 5000;
-const DISMISS_FOR_MS = 24 * 60 * 60 * 1000;
 /** Pages where a popup would get in the way of a task the visitor is already doing. */
 const NO_POPUP = /^\/(contact|privacy-policy|terms-and-conditions|disclaimer)(\/|$)/;
 
@@ -27,8 +26,8 @@ export default function StudentLeadPopup() {
   const [submitting, setSubmitting] = useState(false);
   const [done, setDone] = useState(false);
   const openedAt = useRef(0);
-  const prefilled = useRef(false);
   const nameRef = useRef<HTMLInputElement>(null);
+  const inFlight = useRef(new Set<string>());
 
   // First-touch UTM parameters for this browser session.
   useEffect(() => {
@@ -52,20 +51,42 @@ export default function StudentLeadPopup() {
     return () => { cancelled = true; };
   }, [ctx]);
 
-  // Show once, 5s after the first page load, unless submitted or recently closed.
+  // Until the student registers: show 5s after every page view (initial load and each client-side navigation).
   useEffect(() => {
-    const prefs = readPrefs();
-    if (prefs.submittedAt || (prefs.dismissedUntil && prefs.dismissedUntil > Date.now())) return;
+    if (readPrefs().submittedAt || NO_POPUP.test(pathname)) return;
     const timer = window.setTimeout(() => {
-      if (NO_POPUP.test(window.location.pathname)) return;
-      const latest = readPrefs();
-      if (latest.submittedAt || (latest.dismissedUntil && latest.dismissedUntil > Date.now())) return;
-      setOpen(true);
+      if (!readPrefs().submittedAt) setOpen(true);
     }, SHOW_AFTER_MS);
-    const manual = () => setOpen(true);
+    return () => window.clearTimeout(timer);
+  }, [pathname]);
+
+  useEffect(() => {
+    const manual = () => { if (!readPrefs().submittedAt) setOpen(true); };
     window.addEventListener('cd-open-lead-form', manual);
-    return () => { window.clearTimeout(timer); window.removeEventListener('cd-open-lead-form', manual); };
+    return () => window.removeEventListener('cd-open-lead-form', manual);
   }, []);
+
+  // Registered students: record interest in each college profile they open (once per college per session).
+  useEffect(() => {
+    if (ctx.pageType !== 'college_profile' || !ctx.collegeSlug) return;
+    const { token } = readPrefs();
+    if (!token) return;
+    let seen: string[] = [];
+    try { seen = JSON.parse(window.sessionStorage.getItem(LEAD_TRACKED_KEY) || '[]'); } catch { /* ignore */ }
+    if (seen.includes(ctx.collegeSlug)) return;
+    const slug = ctx.collegeSlug;
+    if (inFlight.current.has(slug)) return;
+    inFlight.current.add(slug);
+    fetch('/api/students/track-college', { method: 'POST', headers: { 'content-type': 'application/json' }, body: JSON.stringify({ token, collegeSlug: slug }), keepalive: true })
+      .then((r) => {
+        if (r.status === 401) writePrefs({ token: null });
+        if (r.ok) {
+          try { window.sessionStorage.setItem(LEAD_TRACKED_KEY, JSON.stringify([...seen, slug].slice(-200))); } catch { /* ignore */ }
+        }
+      })
+      .catch(() => undefined)
+      .finally(() => inFlight.current.delete(slug));
+  }, [ctx]);
 
   const selectState = useCallback(async (stateId: string, cityId = '') => {
     setForm((f) => ({ ...f, stateId, cityId }));
@@ -78,16 +99,16 @@ export default function StudentLeadPopup() {
     if (!open) return;
     openedAt.current = Date.now();
     window.setTimeout(() => nameRef.current?.focus({ preventScroll: true }), 50);
-    if (prefilled.current) return;
-    prefilled.current = true;
+    let cancelled = false;
     (async () => {
       const prefs = readPrefs();
       const [opts, geo] = await Promise.all([
         loadFormOptions(),
         geoIsFresh(prefs) ? Promise.resolve(null) : fetch('/api/students/geo').then((r) => (r.ok ? r.json() : null)).then((j) => (j?.data as GeoInfo) || null).catch(() => null)
       ]);
-      if (!opts) return;
+      if (!opts || cancelled) return;
       setOptions(opts);
+      const draft = prefs.draft || {};
       let saved = prefs;
       if (geo?.countryId) {
         saved = writePrefs({
@@ -99,8 +120,9 @@ export default function StudentLeadPopup() {
       setCountry({ id: saved.countryId || opts.indiaCountryId, code, name: code === 'IN' ? 'India' : geo?.countryName || code, phoneCode: saved.phoneCode || (code === 'IN' ? '+91' : null) });
 
       const pageCourse = courseFromContext(ctx, opts.courses);
-      const courseId = pageCourse?.id || (saved.courseId && opts.courses.some((c) => c.id === saved.courseId) ? saved.courseId : null);
-      setForm((f) => ({ ...f, courseId: courseId ? String(courseId) : f.courseId }));
+      const known = (id: unknown) => opts.courses.some((c) => String(c.id) === String(id));
+      const courseId = pageCourse?.id || (known(draft.courseId) ? draft.courseId : null) || (known(saved.courseId) ? saved.courseId : null);
+      setForm((f) => ({ ...f, name: f.name || draft.name || '', mobile: f.mobile || draft.mobile || '', email: f.email || draft.email || '', courseId: courseId ? String(courseId) : f.courseId }));
 
       if (code !== 'IN') return;
       // A location listing page (e.g. /mba-colleges-in-pune-maharashtra) wins over the IP location.
@@ -112,18 +134,27 @@ export default function StudentLeadPopup() {
         setForm((f) => ({ ...f, stateId: String(fromPage.state.id), cityId: city ? String(city.id) : '' }));
         return;
       }
-      if (saved.stateId && opts.states.some((s) => s.id === saved.stateId)) {
+      if (draft.stateId && opts.states.some((s) => String(s.id) === draft.stateId)) {
+        await selectState(draft.stateId, draft.cityId || '');
+      } else if (saved.stateId && opts.states.some((s) => s.id === saved.stateId)) {
         await selectState(String(saved.stateId), saved.cityId ? String(saved.cityId) : '');
       } else {
         setEditingLocation(true);
       }
     })();
+    return () => { cancelled = true; };
   }, [open, ctx, selectState]);
 
-  const close = useCallback(() => {
-    setOpen(false);
-    if (!done) writePrefs({ dismissedUntil: Date.now() + DISMISS_FOR_MS });
-  }, [done]);
+  // Keep partially entered details so the form stays filled on the next page.
+  useEffect(() => {
+    if (!open || done) return;
+    const { website: _hp, ...draft } = form;
+    void _hp;
+    const timer = window.setTimeout(() => writePrefs({ draft }), 300);
+    return () => window.clearTimeout(timer);
+  }, [form, open, done]);
+
+  const close = useCallback(() => setOpen(false), []);
 
   useEffect(() => {
     if (!open) return;
@@ -179,7 +210,7 @@ export default function StudentLeadPopup() {
       }
       const d = json.data || {};
       writePrefs({
-        submittedAt: Date.now(), courseId: Number(form.courseId),
+        submittedAt: Date.now(), courseId: Number(form.courseId), token: d.token || null, draft: {},
         ...(isIndia ? { stateId: Number(form.stateId) || null, stateName, cityId: Number(form.cityId) || null, cityName: cityName || null } : {}),
         ...(d.countryId ? { countryId: d.countryId } : {})
       });
