@@ -14,7 +14,7 @@ Last updated: 2026-09-05
 - [Compare colleges 2026](/compare-colleges-2026): Side-by-side college comparison for fees, courses, placements and admission.
 - [About](/about): About the College Decision platform.
 - [Contact](/contact): Contact the College Decision team.
-- [Privacy policy](/privacy-policy): Privacy information.
+- [Privacy policy](/privacy-policy): Privacy information, including what the student registration form collects.
 - [Terms and conditions](/terms-and-conditions): Terms of use.
 - [Disclaimer](/disclaimer): Data and decision-making disclaimer.
 
@@ -27,3 +27,7 @@ Use the “Find My Best-Fit College” tool on the homepage to filter active pro
 Displayed fees, eligibility, admission routes, and placement figures are structured reference data. They may vary by academic year or institution. Students should verify current details with the official college notice before applying.
 
 For expanded page and content information, see [llms-full.txt](/llms-full.txt).
+
+## Student registration
+
+Pages show an optional registration form for free admission counselling. It collects name, mobile number, email, course of interest and approximate location (country, state and city, pre-filled from the IP address), along with the IP address, page URL and campaign (UTM) tags. Details are used to respond to enquiries and provide counselling. See the privacy policy for local storage use and how to request deletion.

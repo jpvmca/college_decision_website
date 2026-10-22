@@ -4,6 +4,7 @@ import Image from 'next/image';
 import SearchBox from '../components/SearchBox';
 import MobileNav from '../components/MobileNav';
 import GoogleTagManager from '../components/GoogleTagManager';
+import StudentLeadPopup from '../components/StudentLeadPopup';
 import JsonLd from '../components/JsonLd';
 import { organizationId, organizationJsonLd } from '../lib/structured-data';
 import './globals.css';
@@ -12,6 +13,7 @@ import './decision-overrides.css';
 import './compare-overrides.css';
 import './compare-mobile.css';
 import './listing-filter.css';
+import './student-lead.css';
 
 const defaultTitle = 'Compare College Fees, Courses & Exams in India';
 const defaultDescription = 'Compare college fees, courses, entrance exams, admission routes and placements across India before you shortlist.';
@@ -73,6 +75,7 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
           {children}
           <footer className="footer"><div className="wrap"><Image className="footer-logo" src="/logo.svg" alt="College Decision" width={170} height={34} loading="lazy" /><span>Clear college decisions with practical cost, admission and outcome guidance.</span><nav className="footer-links" aria-label="Footer links"><Link href="/about">About</Link><Link href="/contact">Contact</Link><Link href="/privacy-policy">Privacy</Link><Link href="/terms-and-conditions">Terms</Link><Link href="/disclaimer">Disclaimer</Link></nav></div></footer>
           </div>
+        <StudentLeadPopup />
       </body>
     </html>
   );

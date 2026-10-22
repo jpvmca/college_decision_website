@@ -1,3 +1,4 @@
+import InterestCourseHighlight from '../../../components/InterestCourseHighlight';
 import type { Metadata } from 'next';
 import type { ReactNode } from 'react';
 import { notFound } from 'next/navigation';
@@ -510,9 +511,10 @@ export default async function CollegeProfilePage({ params }: { params: Promise<{
 
     {profile.programmes.length > 0 && <section>
       <SectionHeading icon={BookOpen}>Courses and Programmes Offered</SectionHeading>
-      {programmeGroups.map((group) => <div key={group.name}><h3>{group.heading}</h3><div className="profile-list">
+      <div className="programme-groups" id="programme-groups">{programmeGroups.map((group) => <div key={group.name} className="programme-group" data-course-ids={[...new Set(group.programmes.map((programme) => programme.course_id))].join(',')}><h3>{group.heading}</h3><div className="profile-list">
         {group.programmes.map((programme) => <p key={programme.programme_id}>- <strong>{text(programme.programme_name, programme.course_name)}</strong>{programme.duration ? ` – ${programme.duration} years` : ''}{programme.eligibility ? ` – ${text(programme.eligibility)}` : ''}{(() => { const href = findPublishedHrefByName(linkableEntities, 'course', programme.course_name); const label = text(programme.course_name); if (!href || linkedCourseHrefs.has(href)) return null; linkedCourseHrefs.add(href); return <> · <Link href={href}>{label} profile</Link></>; })()}</p>)}
-      </div></div>)}
+      </div></div>)}</div>
+      <InterestCourseHighlight containerId="programme-groups" />
     </section>}
 
     {recordedFeeGroups.length > 0 && <section>
