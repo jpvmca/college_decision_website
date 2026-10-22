@@ -6,6 +6,7 @@ import {
   LEAD_TRACKED_KEY, LEAD_UTM_KEY, courseFromContext, geoIsFresh, loadCities, loadFormOptions, locationFromSlug, pageContext, readPrefs, slugify, writePrefs,
   type FormCity, type FormOptions, type GeoInfo
 } from '../lib/student-lead';
+import { APPLY_OPEN_EVENT, markApplied, type ApplyRequest } from '../lib/college-apply';
 import { suggestEmail, validateEmail, validateMobile, validateName } from '../lib/lead-validation';
 
 const SHOW_AFTER_MS = 5000;
@@ -33,6 +34,8 @@ export default function StudentLeadPopup() {
   const formRef = useRef<HTMLFormElement>(null);
   const [touched, setTouched] = useState<Partial<Record<Field, boolean>>>({});
   const inFlight = useRef(new Set<string>());
+  /** Set when opened from an Apply button: limits courses to the college's and records an apply request. */
+  const [apply, setApply] = useState<ApplyRequest | null>(null);
 
   // First-touch UTM parameters for this browser session.
   useEffect(() => {
@@ -67,8 +70,18 @@ export default function StudentLeadPopup() {
 
   useEffect(() => {
     const manual = () => { if (!readPrefs().submittedAt) setOpen(true); };
+    const onApply = (e: Event) => {
+      const req = (e as CustomEvent<ApplyRequest>).detail;
+      if (!req?.collegeSlug) return;
+      setApply(req);
+      setDone(false);
+      setErrors({});
+      setForm((f) => ({ ...f, courseId: req.courseId ? String(req.courseId) : (req.courses[0] ? String(req.courses[0].id) : '') }));
+      setOpen(true);
+    };
     window.addEventListener('cd-open-lead-form', manual);
-    return () => window.removeEventListener('cd-open-lead-form', manual);
+    window.addEventListener(APPLY_OPEN_EVENT, onApply);
+    return () => { window.removeEventListener('cd-open-lead-form', manual); window.removeEventListener(APPLY_OPEN_EVENT, onApply); };
   }, []);
 
   // Registered students: record interest in each college profile they open (once per college per session).
@@ -126,7 +139,8 @@ export default function StudentLeadPopup() {
 
       const pageCourse = courseFromContext(ctx, opts.courses);
       const known = (id: unknown) => opts.courses.some((c) => String(c.id) === String(id));
-      const courseId = pageCourse?.id || (known(draft.courseId) ? draft.courseId : null) || (known(saved.courseId) ? saved.courseId : null);
+      const applyCourse = apply ? (apply.courseId || apply.courses[0]?.id || null) : null;
+      const courseId = applyCourse || pageCourse?.id || (known(draft.courseId) ? draft.courseId : null) || (known(saved.courseId) ? saved.courseId : null);
       setForm((f) => ({ ...f, name: f.name || draft.name || '', mobile: f.mobile || draft.mobile || '', email: f.email || draft.email || '', courseId: courseId ? String(courseId) : f.courseId }));
 
       if (code !== 'IN') return;
@@ -148,7 +162,7 @@ export default function StudentLeadPopup() {
       }
     })();
     return () => { cancelled = true; };
-  }, [open, ctx, selectState]);
+  }, [open, ctx, selectState, apply]);
 
   // Keep partially entered details so the form stays filled on the next page.
   useEffect(() => {
@@ -159,7 +173,7 @@ export default function StudentLeadPopup() {
     return () => window.clearTimeout(timer);
   }, [form, open, done]);
 
-  const close = useCallback(() => setOpen(false), []);
+  const close = useCallback(() => { setOpen(false); setApply(null); }, []);
 
   useEffect(() => {
     if (!open) return;
@@ -225,8 +239,9 @@ export default function StudentLeadPopup() {
           mobile: validateMobile(form.mobile, isIndia, country.phoneCode).value,
           courseId: Number(form.courseId), countryCode: country.code,
           stateId: isIndia ? Number(form.stateId) || null : null, cityId: isIndia ? Number(form.cityId) || null : null,
-          collegeSlug: ctx.pageType === 'college_profile' || ctx.pageType === 'college_cutoff' ? ctx.collegeSlug : null,
-          pageUrl: `${window.location.pathname}`.slice(0, 255), pageType: ctx.pageType, cta: 'popup_auto_5s',
+          collegeSlug: apply ? apply.collegeSlug : ctx.pageType === 'college_profile' || ctx.pageType === 'college_cutoff' ? ctx.collegeSlug : null,
+          apply: Boolean(apply),
+          pageUrl: `${window.location.pathname}`.slice(0, 255), pageType: ctx.pageType, cta: apply ? 'apply_button' : 'popup_auto_5s',
           website: form.website, elapsedMs: Date.now() - openedAt.current, ...utm
         })
       });
@@ -249,6 +264,7 @@ export default function StudentLeadPopup() {
         ...(isIndia ? { stateId: Number(form.stateId) || null, stateName, cityId: Number(form.cityId) || null, cityName: cityName || null } : {}),
         ...(d.countryId ? { countryId: d.countryId } : {})
       });
+      if (apply) markApplied(apply.collegeSlug, [Number(form.courseId)]);
       setDone(true);
     } catch {
       setErrors({ form: 'We couldn’t reach the server. Please check your connection and try again.' });
@@ -283,16 +299,18 @@ export default function StudentLeadPopup() {
         {done ? (
           <div className="lead-done">
             <div className="lead-done-icon" aria-hidden="true">✓</div>
-            <h2 id="lead-title">You&apos;re registered!</h2>
-            <p>Thanks, {form.name.trim().split(' ')[0]}. A College Decision counsellor will reach out to help you shortlist colleges.</p>
-            <button type="button" className="lead-submit" onClick={() => setOpen(false)}>Continue browsing</button>
+            <h2 id="lead-title">{apply ? 'Application submitted!' : 'You\u2019re registered!'}</h2>
+            <p>{apply
+              ? `Thanks, ${form.name.trim().split(' ')[0]}. Your application to ${apply.collegeName} for ${apply.courses.find((c) => String(c.id) === form.courseId)?.name || 'the selected course'} is recorded. A College Decision counsellor will contact you shortly.`
+              : `Thanks, ${form.name.trim().split(' ')[0]}. A College Decision counsellor will reach out to help you shortlist colleges.`}</p>
+            <button type="button" className="lead-submit" onClick={close}>Continue browsing</button>
           </div>
         ) : (
           <form ref={formRef} onSubmit={submit} noValidate>
             <div className="lead-head">
-              <span className="lead-badge">Free counselling</span>
-              <h2 id="lead-title">Find the right college for you</h2>
-              <p>Get fees, cutoffs and admission updates for colleges that match your interest.</p>
+              <span className="lead-badge">{apply ? 'Apply' : 'Free counselling'}</span>
+              <h2 id="lead-title">{apply ? `Apply to ${apply.collegeName}` : 'Find the right college for you'}</h2>
+              <p>{apply ? 'Share your details once. Our counsellor will help you with this application.' : 'Get fees, cutoffs and admission updates for colleges that match your interest.'}</p>
             </div>
             <div className="lead-grid">
               <label className="lead-field lead-full">
@@ -315,10 +333,12 @@ export default function StudentLeadPopup() {
                 {emailHint && <small className="lead-hint">Did you mean <button type="button" onClick={() => { setForm((f) => ({ ...f, email: emailHint })); setErrors((er) => ({ ...er, email: undefined })); }}>{emailHint}</button>?</small>}
               </label>
               <label className="lead-field lead-full">
-                <span>Interested in</span>
-                <select name="courseId" value={form.courseId} onChange={set('courseId')} disabled={!options} {...a11y('courseId')}>
-                  <option value="">{options ? 'Select course' : 'Loading courses…'}</option>
-                  {options?.courses.map((c) => <option key={c.id} value={c.id}>{c.label}</option>)}
+                <span>{apply ? 'Course to apply for' : 'Interested in'}</span>
+                <select name="courseId" value={form.courseId} onChange={set('courseId')} disabled={!options && !apply} {...a11y('courseId')}>
+                  <option value="">{options || apply ? 'Select course' : 'Loading courses…'}</option>
+                  {apply
+                    ? apply.courses.map((c) => <option key={c.id} value={c.id}>{c.name}</option>)
+                    : options?.courses.map((c) => <option key={c.id} value={c.id}>{c.label}</option>)}
                 </select>
                 {err('courseId')}
               </label>
@@ -351,7 +371,7 @@ export default function StudentLeadPopup() {
               <input className="lead-hp" tabIndex={-1} autoComplete="off" aria-hidden="true" name="website" value={form.website} onChange={set('website')} />
             </div>
             {errors.form && <p className="lead-error" role="alert">{errors.form}</p>}
-            <button type="submit" className="lead-submit" disabled={submitting} aria-busy={submitting}>{submitting ? 'Submitting…' : 'Get free counselling'}</button>
+            <button type="submit" className="lead-submit" disabled={submitting} aria-busy={submitting}>{submitting ? 'Submitting…' : apply ? 'Submit application' : 'Get free counselling'}</button>
             <p className="lead-note">By submitting, you agree to be contacted about admissions. See our <a href="/privacy-policy" target="_blank">Privacy Policy</a>.</p>
           </form>
         )}

@@ -1,4 +1,5 @@
 import InterestCourseHighlight from '../../../components/InterestCourseHighlight';
+import CollegeApply from '../../../components/CollegeApply';
 import type { Metadata } from 'next';
 import type { ReactNode } from 'react';
 import { notFound } from 'next/navigation';
@@ -398,6 +399,8 @@ export default async function CollegeProfilePage({ params }: { params: Promise<{
   const faqs = profileFaqs(profile, name, location);
   const currentYear = new Date().getFullYear();
   const programmeGroups = groupedProgrammes(profile);
+  // Courses offered here (unique by course), used by the Apply buttons.
+  const applyCourses = [...new Map(profile.programmes.filter((p) => p.course_id).map((p) => [Number(p.course_id), { id: Number(p.course_id), name: text(p.course_name, p.programme_name) }])).values()];
   const recordedFeeGroups = feeGroups(profile);
   const recordedPlacements = placementGroups(profile);
   const affiliation = affiliationText(profile);
@@ -482,7 +485,8 @@ export default async function CollegeProfilePage({ params }: { params: Promise<{
         <h1>{name}{city ? `, ${city}` : ''} – {currentYear} Overview</h1>
         <p className="muted">{profile.institute.instituteType || 'College'} · {location || 'India'}{profile.institute.isUniversity ? ' · University' : ''}</p>
         <p>Review courses, fees, eligibility, admission routes, placements, rankings and student reviews for {name} before making your shortlist.</p>
-        {officialWebsite && <a className="button primary" href={officialWebsite} target="_blank" rel="noopener noreferrer"><Globe2 size={16} aria-hidden="true" /> Visit official website</a>}
+        <CollegeApply collegeSlug={slug} collegeName={name} courses={applyCourses} label={`Apply to ${name.length > 28 ? 'this college' : name}`} />{' '}
+        {officialWebsite && <a className="button" href={officialWebsite} target="_blank" rel="noopener noreferrer"><Globe2 size={16} aria-hidden="true" /> Visit official website</a>}
         {cutoffs?.data?.length ? <Link className="button" href={`/colleges/${slug}/cutoff`}>Cutoff</Link> : null}
       </div>
       <img className="college-profile-logo" src={profile.institute.logo ? instituteLogoUrl(profile.institute.logo) : '/logo.svg'} alt={profile.institute.logo ? `${name} college logo` : 'College Decision logo'} width="160" height="160" />
@@ -511,7 +515,7 @@ export default async function CollegeProfilePage({ params }: { params: Promise<{
 
     {profile.programmes.length > 0 && <section>
       <SectionHeading icon={BookOpen}>Courses and Programmes Offered</SectionHeading>
-      <div className="programme-groups" id="programme-groups">{programmeGroups.map((group) => <div key={group.name} className="programme-group" data-course-ids={[...new Set(group.programmes.map((programme) => programme.course_id))].join(',')}><h3>{group.heading}</h3><div className="profile-list">
+      <div className="programme-groups" id="programme-groups">{programmeGroups.map((group) => <div key={group.name} className="programme-group" data-course-ids={[...new Set(group.programmes.map((programme) => programme.course_id))].join(',')}><h3>{group.heading}<CollegeApply compact collegeSlug={slug} collegeName={name} courses={applyCourses} courseIds={[...new Set(group.programmes.map((programme) => Number(programme.course_id)))]} label="Apply" /></h3><div className="profile-list">
         {group.programmes.map((programme) => <p key={programme.programme_id}>- <strong>{text(programme.programme_name, programme.course_name)}</strong>{programme.duration ? ` – ${programme.duration} years` : ''}{programme.eligibility ? ` – ${text(programme.eligibility)}` : ''}{(() => { const href = findPublishedHrefByName(linkableEntities, 'course', programme.course_name); const label = text(programme.course_name); if (!href || linkedCourseHrefs.has(href)) return null; linkedCourseHrefs.add(href); return <> · <Link href={href}>{label} profile</Link></>; })()}</p>)}
       </div></div>)}</div>
       <InterestCourseHighlight containerId="programme-groups" />
