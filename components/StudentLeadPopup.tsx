@@ -9,7 +9,12 @@ import {
 import { APPLY_OPEN_EVENT, markApplied, type ApplyRequest } from '../lib/college-apply';
 import { suggestEmail, validateEmail, validateMobile, validateName } from '../lib/lead-validation';
 
-const SHOW_AFTER_MS = 5000;
+// Delay (seconds) before the popup opens; set NEXT_PUBLIC_STUDENT_POPUP_DELAY_SECONDS in .env (default 5, 0 allowed).
+const SHOW_AFTER_MS = (() => {
+  const raw = process.env.NEXT_PUBLIC_STUDENT_POPUP_DELAY_SECONDS;
+  const n = raw == null || raw.trim() === "" ? NaN : Number(raw);
+  return Number.isFinite(n) && n >= 0 ? n * 1000 : 5000;
+})();
 /** Pages where a popup would get in the way of a task the visitor is already doing. */
 const NO_POPUP = /^\/(contact|privacy-policy|terms-and-conditions|disclaimer)(\/|$)/;
 
@@ -59,7 +64,7 @@ export default function StudentLeadPopup() {
     return () => { cancelled = true; };
   }, [ctx]);
 
-  // Until the student registers: show 5s after every page view (initial load and each client-side navigation).
+  // Until the student registers: show after NEXT_PUBLIC_STUDENT_POPUP_DELAY_SECONDS on every page view (initial load and each client-side navigation).
   useEffect(() => {
     if (readPrefs().submittedAt || NO_POPUP.test(pathname)) return;
     const timer = window.setTimeout(() => {
