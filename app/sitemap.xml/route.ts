@@ -1,4 +1,5 @@
 import { NextResponse } from 'next/server';
+import { collegeSitemapPageCount } from '../../lib/sitemap-config';
 
 export const runtime = 'nodejs';
 export const dynamic = 'force-dynamic';
@@ -11,11 +12,13 @@ export async function GET() {
   try {
     const base = (process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3001').replace(/\/+$/, '');
     const lastmod = new Date().toISOString().slice(0, 10);
+    // Google does not follow nested sitemap indexes, so list each college page file directly.
+    const collegePages = await collegeSitemapPageCount().catch(() => 1);
     const body = `<?xml version="1.0" encoding="UTF-8"?>` +
       `<sitemapindex xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">` +
       `<sitemap><loc>${xml(`${base}/sitemaps/pages.xml`)}</loc><lastmod>${lastmod}</lastmod></sitemap>` +
       `<sitemap><loc>${xml(`${base}/sitemaps/articles.xml`)}</loc><lastmod>${lastmod}</lastmod></sitemap>` +
-      `<sitemap><loc>${xml(`${base}/sitemaps/colleges.xml`)}</loc><lastmod>${lastmod}</lastmod></sitemap>` +
+      Array.from({ length: collegePages }, (_, i) => `<sitemap><loc>${xml(`${base}/sitemaps/colleges/${i + 1}.xml`)}</loc><lastmod>${lastmod}</lastmod></sitemap>`).join('') +
       `<sitemap><loc>${xml(`${base}/sitemaps/courses.xml`)}</loc><lastmod>${lastmod}</lastmod></sitemap>` +
       `<sitemap><loc>${xml(`${base}/sitemaps/course-colleges.xml`)}</loc><lastmod>${lastmod}</lastmod></sitemap>` +
       `<sitemap><loc>${xml(`${base}/sitemaps/exams.xml`)}</loc><lastmod>${lastmod}</lastmod></sitemap>` +
@@ -27,7 +30,7 @@ export async function GET() {
     return new NextResponse(body, {
       headers: {
         'Content-Type': 'application/xml; charset=utf-8',
-        'Cache-Control': 'public, max-age=3600, s-maxage=3600, stale-while-revalidate=86400'
+        'Cache-Control': 'public, max-age=300, s-maxage=300, stale-while-revalidate=3600'
       }
     });
   } catch {

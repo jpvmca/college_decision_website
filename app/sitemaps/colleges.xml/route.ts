@@ -1,4 +1,5 @@
 import { NextResponse } from 'next/server';
+import { sitemapPageCount } from '../../../lib/sitemap-config';
 
 export const runtime = 'nodejs';
 export const dynamic = 'force-dynamic';
@@ -14,7 +15,7 @@ export async function GET() {
     const response = await fetch(`${backend}/colleges/published-slugs`, { cache: 'no-store' });
     if (!response.ok) throw new Error(`Backend returned ${response.status}`);
     const payload = await response.json() as { data?: Array<{ slug: string }> };
-    const count = Math.max(1, Math.ceil((payload.data || []).length / 40000));
+    const count = sitemapPageCount((payload.data || []).length);
     const body = `<?xml version="1.0" encoding="UTF-8"?>` +
       `<sitemapindex xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">` +
       Array.from({ length: count }, (_, index) => `<sitemap><loc>${xml(`${base}/sitemaps/colleges/${index + 1}.xml`)}</loc></sitemap>`).join('') +
