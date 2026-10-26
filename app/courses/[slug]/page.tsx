@@ -8,6 +8,7 @@ import { getLinkableEntities } from '../../../lib/linkable-entities';
 import { stripEmbeddedFaqs } from '../../../lib/strip-embedded-faqs';
 import AutoLinkedText from '../../../components/AutoLinkedText';
 import { formatLpa } from '../../../lib/packages';
+import CourseGeoLinks from '../../../components/CourseGeoLinks';
 
 type CourseProfile = {
   course: {
@@ -301,6 +302,7 @@ export default async function CourseProfilePage({ params }: { params: Promise<{ 
       </>;
     })()}</section>}
     {faqs.length > 0 && <section><h2>Frequently asked questions</h2>{faqs.map((faq) => <article className="faq-item" key={faq.question}><h3>{faq.question}</h3><p>{faq.answer}</p></article>)}</section>}
+    <CourseGeoLinks courseSlug={profile.course.slug} />
     <div className="notice"><strong>Data note:</strong> Fees, placements, rankings and reviews are recorded evidence and may change by batch, category, role, recruiter mix or academic year. Verify the latest official information before applying.</div>
   </div></main>;
 }
