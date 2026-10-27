@@ -42,6 +42,18 @@ const nextConfig: NextConfig = {
   },
   async redirects() {
     return [
+      // GGSCET Bathinda (644) is now Guru Kashi University's Faculty of Engineering & Technology (gku.ac.in) -> 14709
+      {
+        source: '/colleges/guru-gobind-singh-college-of-engineering-and-technology-punjab-bhatinda/:path*',
+        destination: '/colleges/guru-kashi-university-punjab-bhatinda/:path*',
+        statusCode: 301
+      },
+      // Soft-deleted duplicate SSGM College Kopargaon (71098) -> canonical 12151
+      {
+        source: '/colleges/rayat-shikshan-sansthas-s-s-g-m-science-gautam-arts-sanjeevani-commerce-college-kopargaon-dist-ahmednagar-423601-c-42027/:path*',
+        destination: '/colleges/ssgms-gautam-arts-and-sanjivani-commerce-college-maharashtra-ahmednagar/:path*',
+        statusCode: 301
+      },
       // ITM Business School Bangalore (1522): no official Bengaluru campus -> ITM Business School Navi Mumbai (1728)
       {
         source: '/colleges/itm-business-school-karnataka-bangalore/:path*',
