@@ -42,6 +42,12 @@ const nextConfig: NextConfig = {
   },
   async redirects() {
     return [
+      // 9278 is SJCET, Bhandana, Dausa (Rajasthan), not Mysuru: approved slug change
+      {
+        source: '/colleges/s-j-college-of-engineering-and-technology-karnataka-mysuru/:path*',
+        destination: '/colleges/s-j-college-of-engineering-and-technology-rajasthan-dausa/:path*',
+        statusCode: 301
+      },
       // GGSCET Bathinda (644) is now Guru Kashi University's Faculty of Engineering & Technology (gku.ac.in) -> 14709
       {
         source: '/colleges/guru-gobind-singh-college-of-engineering-and-technology-punjab-bhatinda/:path*',
