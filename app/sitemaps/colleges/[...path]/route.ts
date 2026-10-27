@@ -22,7 +22,7 @@ export async function GET(_request: NextRequest, { params }: { params: Promise<{
     const payload = await response.json() as { data?: Array<{ slug: string; updatedAt?: string | null }> };
     const all = payload.data || [];
     if (page > sitemapPageCount(all.length)) return new NextResponse('Not Found', { status: 404 });
-    // Backend returns rows ORDER BY id, so pages are stable and new colleges roll into the last page.
+    // Backend returns rows in publish order (colleges_checks.id, then institute id), so earlier pages stay stable and newly published colleges roll into the last page.
     const start = (page - 1) * SITEMAP_PAGE_SIZE;
     const rows = all.slice(start, start + SITEMAP_PAGE_SIZE);
     const body = `<?xml version="1.0" encoding="UTF-8"?>` +
