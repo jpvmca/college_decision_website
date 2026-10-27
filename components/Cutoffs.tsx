@@ -70,7 +70,8 @@ const QUOTA_SHORT: Record<string, string> = { AI: 'All India', HS: 'Home State',
 
 export function CollegeCutoffs({ slug, collegeName, cutoffs, examHref }: { slug: string; collegeName: string; cutoffs: CollegeCutoffResponse | null; examHref?: (examSlug: string) => string | null }) {
   if (!cutoffs || !cutoffs.facets.exams.length) {
-    return <div id="cutoffs"><h3>Cutoff Trends</h3><p>Cutoffs: {NOT_AVAILABLE}. Branch-wise and category-wise cutoffs for {collegeName} are not published in the current dataset. Check the official counselling website for the latest cutoffs.</p></div>;
+    // No cutoff rows: the page shows a 'How Admission Works' line instead of an empty block.
+    return null;
   }
   const examHrefs: Record<string, string> = {};
   cutoffs.facets.exams.forEach((e) => { const h = examHref?.(e.slug); if (h) examHrefs[e.slug] = h; });
