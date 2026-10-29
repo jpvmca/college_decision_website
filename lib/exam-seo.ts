@@ -68,7 +68,7 @@ const COUNSELLING = new Set([
   'tnea', 'upsee', 'kcet', 'keam', 'mht-cet', 'mh-cet', 'wbjee', 'ojee', 'gujcet',
   'ts-eamcet', 'ap-eamcet', 'comedk-uget', 'jac', 'jac-delhi', 'pgcet'
 ]);
-const CUTOFF = new Set(['jee-main', 'jee-advanced', 'neet', 'gate', 'cat', 'bitsat', 'nata', 'clat', 'ailet']);
+const CUTOFF = new Set(['jee-main', 'jee-advanced', 'neet', 'gate', 'cat', 'bitsat', 'nata', 'clat', 'ailet', 'cuet-ug']);
 
 function strip(value: unknown) {
   return String(value || '').replace(/<[^>]+>/g, ' ').replace(/\s+/g, ' ').trim();
@@ -829,6 +829,65 @@ function overrides(year: number, institutes: number, feeRange: string | null): R
         {
           question: 'Is NTA CMAT the same as the CMAT in Nepal?',
           answer: 'No. This page is about the Common Management Admission Test conducted by India\'s National Testing Agency for MBA and PGDM admission in India. The CMAT taken in Nepal is a separate test with its own rules and dates.'
+        }
+      ]
+    },
+    'cuet-ug': {
+      // CUET UG 2027 content package (backups/exam_cuetug_20261029). Facts from the CUET (UG) 2026 Information Bulletin, NTA's June 2026 conduct press note
+      // and 23 Jun 2026 scorecard notice, and DU CSAS (UG) round 1 minimum allocation scores 2025 and 2026, checked on 29 Oct 2026. 2027 dates are expected, not official.
+      intent: 'general',
+      h1: 'CUET UG 2027: Exam Date, Subjects, Syllabus, Pattern & DU Cutoff',
+      title: 'CUET UG 2027: Exam Date, Syllabus, Pattern, Eligibility',
+      description: 'CUET UG 2027 exam date (expected May 2027), 37 subjects, pattern, syllabus, fee, eligibility, DU CSAS and Delhi University cutoffs for 2025 and 2026.',
+      keywords: ['CUET UG 2027', 'CUET UG 2027 exam date', 'CUET UG registration 2027', 'CUET UG syllabus', 'CUET UG exam pattern', 'CUET UG subjects list', 'CUET UG eligibility', 'CUET UG application fee', 'CUET UG cutoff', 'DU CSAS'],
+      intro: 'CUET UG 2027 has not been notified yet. Going by the 2026 cycle, applications should open in January 2027 and the exam should run in May 2027. This guide covers eligibility, the 37 subjects, exam pattern, syllabus, fee, DU CSAS admission and official Delhi University cutoffs, based on NTA and DU documents.',
+      ogImage: '/uploads/exams/cuet-ug/cuet-ug-2027-og.webp',
+      absoluteTitle: true,
+      collegesNote: {
+        text: 'These colleges and universities have published profiles on CollegeDecision.in and admit to at least some UG programmes on CUET UG scores: Delhi University colleges listed in DU\'s official CSAS cutoff lists, and central universities. Each runs its own admission. For master\'s admission see CUET PG.',
+        linkText: 'See CUET PG',
+        href: '/exams/cuet-pg'
+      },
+      faqs: [
+        {
+          question: 'When is the CUET UG 2027 exam?',
+          answer: 'NTA has not announced CUET UG 2027 dates yet. Going by the 2026 cycle, when the exam ran from 11 to 31 May with extra dates on 6 and 7 June, expect it in May 2027. Watch cuet.nta.nic.in for the official schedule.'
+        },
+        {
+          question: 'When will CUET UG 2027 registration start?',
+          answer: 'Expected in January 2027. In 2026 the form was open from 3 to 30 January, with the fee due by 31 January and corrections on 2 to 4 February. NTA will confirm 2027 dates in the new information bulletin.'
+        },
+        {
+          question: 'How many subjects can I choose in CUET UG?',
+          answer: 'Up to five papers from a list of 37: 13 languages, 23 domain subjects and the General Aptitude Test. Pick the papers your target universities and programmes ask for, not just your favourite subjects.'
+        },
+        {
+          question: 'What is the CUET UG exam pattern?',
+          answer: 'Every paper has 50 compulsory multiple-choice questions in 60 minutes. A correct answer earns 5 marks, a wrong one loses 1, and a blank gets 0, so each paper is out of 250. The test is computer-based.'
+        },
+        {
+          question: 'What is the CUET UG application fee?',
+          answer: 'In 2026 it was ₹1,000 for up to three subjects for General candidates, ₹900 for OBC-NCL and EWS, and ₹800 for SC, ST, PwBD and third gender candidates. Each extra subject cost ₹400, ₹375 or ₹350.'
+        },
+        {
+          question: 'Is there an age limit for CUET UG?',
+          answer: 'No. NTA sets no age limit. You need to have passed Class 12 or be appearing in it, but each university can apply its own age and marks rules for a programme.'
+        },
+        {
+          question: 'Is CUET UG based on the NCERT syllabus?',
+          answer: 'Yes for domain subjects, which follow the Class 12 NCERT syllabus. Language papers test reading comprehension and vocabulary, and the General Aptitude Test covers GK, current affairs, numerical ability and reasoning.'
+        },
+        {
+          question: 'What CUET score is needed for Hindu College or SRCC?',
+          answer: 'In DU\'s 2026 round 1, the last General seat for B.A. (Hons.) Political Science at Hindu College went at 958.71 out of 1,000, and B.Com. (Hons.) at SRCC at 924.30. Scores for other categories and later rounds are lower.'
+        },
+        {
+          question: 'How does Delhi University admission through CUET UG work?',
+          answer: 'DU admits through CSAS (UG). You register in Phase I, then choose programmes and colleges in Phase II after the CUET result. DU allocates seats in rounds based on a programme-specific score from your CUET papers.'
+        },
+        {
+          question: 'What is the difference between CUET UG and CUET PG?',
+          answer: 'CUET UG is for undergraduate admission after Class 12 and is usually held in May. CUET PG is a separate NTA test for master\'s programmes, held in March, with its own papers and fee.'
         }
       ]
     },
