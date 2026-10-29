@@ -68,7 +68,7 @@ const COUNSELLING = new Set([
   'tnea', 'upsee', 'kcet', 'keam', 'mht-cet', 'mh-cet', 'wbjee', 'ojee', 'gujcet',
   'ts-eamcet', 'ap-eamcet', 'comedk-uget', 'jac', 'jac-delhi', 'pgcet'
 ]);
-const CUTOFF = new Set(['jee-main', 'jee-advanced', 'neet', 'gate', 'cat', 'bitsat', 'nata', 'clat', 'ailet', 'cuet-ug']);
+const CUTOFF = new Set(['jee-main', 'jee-advanced', 'neet', 'gate', 'cat', 'bitsat', 'nata', 'clat', 'ailet', 'cuet-ug', 'ap-eapcet']);
 
 function strip(value: unknown) {
   return String(value || '').replace(/<[^>]+>/g, ' ').replace(/\s+/g, ' ').trim();
@@ -1658,6 +1658,36 @@ function overrides(year: number, institutes: number, feeRange: string | null): R
         { question: 'What is the IPU CET application fee?', answer: 'In 2026 it was ₹2,500 per CET code plus taxes and service charges, non-refundable. There is no fee to take part in counselling.' },
         { question: 'How many BBA seats are there in IPU colleges?', answer: 'GGSIPU does not publish one total. Chapter 13 of the 2026-27 brochure lists BBA intake college by college for the 2025-26 session; large colleges such as Maharaja Agrasen Institute of Management Studies list 240 seats plus 180 in the second shift.' },
         { question: 'What is the BBA fee at an IPU University School?', answer: 'Chapter 14 of the 2026-27 brochure lists a first-year total of ₹1,56,500 for four-year UG programmes such as BBA at University Schools, including tuition of ₹1,21,000. Affiliated college fees are set by the State Fee Regulatory Committee.' }
+      ],
+    },
+    'ap-eapcet': {
+      // AP EAPCET 2027 content package (backups/exam_apeapcet_20261029 on the dev Mac). Facts from official sources only: AP EAPCET 2026
+      // instruction booklets, syllabus and normalisation procedure (cets.apsche.ap.gov.in), APSCHE local/non-local G.O. and APSCHE
+      // last-rank statements 2023-2024 (apsche.ap.gov.in). Checked 29 Oct 2026. 2027 items are Expected.
+      intent: 'general',
+      h1: 'AP EAPCET 2027: Exam Date, Syllabus, Pattern, Eligibility & Cutoff',
+      title: 'AP EAPCET 2027: Exam Date, Pattern, Eligibility & Cutoff',
+      description: 'AP EAPCET 2027 exam date (Expected May), 160-question pattern with no negative marking, eligibility, fees, 75:25 rank rule and official 2023–2024 cutoffs.',
+      keywords: ['AP EAPCET 2027', 'AP EAPCET exam date', 'AP EAPCET syllabus', 'AP EAPCET exam pattern', 'AP EAPCET eligibility', 'AP EAPCET application fee', 'AP EAPCET cutoff', 'AP EAPCET counselling', 'AP EAPCET rank', 'AP EAMCET 2027'],
+      intro: 'AP EAPCET 2027 is not announced yet. JNTU Kakinada is expected to open applications in February 2027 and hold the exam in May 2027. This guide covers eligibility and local status, the 160-question pattern, how your rank is worked out, fees, counselling and official APSCHE closing ranks for 2023 and 2024.',
+      ogImage: '/uploads/exams/ap-eapcet/ap-eapcet-2027-og.webp',
+      absoluteTitle: true,
+      collegesNote: {
+        text: 'These Andhra Pradesh colleges have published profiles on CollegeDecision.in and fill convener-quota B.Tech seats through AP EAPCET counselling. For branch-wise and category-wise closing ranks from the official APSCHE last-rank statements,',
+        linkText: 'see the AP EAPCET cutoff page',
+        href: '/exams/ap-eapcet/cutoff'
+      },
+      faqs: [
+        { question: 'When is AP EAPCET 2027?', answer: 'JNTU Kakinada has not announced AP EAPCET 2027 yet. It is Expected in May 2027. In 2026 the engineering exam ran on 12–15 and 18 May, and the agriculture and pharmacy exam on 19–20 May.' },
+        { question: 'When will the AP EAPCET 2027 application form come out?', answer: 'Expected in February 2027. For 2026 the notification and online application opened on 4 February and the last date without a late fee was 24 March 2026.' },
+        { question: 'What is the AP EAPCET exam pattern for engineering?', answer: 'One online paper of 160 multiple-choice questions: Mathematics 80, Physics 40 and Chemistry 40. Each question carries one mark and the test lasts three hours.' },
+        { question: 'Is there negative marking in AP EAPCET?', answer: 'No. Wrong answers do not cost you marks, so it makes sense to attempt every question.' },
+        { question: 'What is the eligibility for AP EAPCET engineering?', answer: 'Intermediate (10+2) with Mathematics, Physics and Chemistry, or an engineering diploma from the AP State Board of Technical Education, with at least 45% in the group subjects (40% for reserved categories). You must also meet the local or non-local status rules of Andhra Pradesh.' },
+        { question: 'How is the AP EAPCET rank calculated?', answer: '75% weight goes to your normalised EAPCET marks and 25% to your Intermediate group-subject marks. Ties are broken by total EAPCET marks, then Mathematics, then Physics, and finally age (the older candidate ranks higher).' },
+        { question: 'What is the qualifying mark in AP EAPCET?', answer: '25% of the maximum marks considered for ranking. SC and ST candidates have no minimum qualifying mark.' },
+        { question: 'What is the AP EAPCET application fee?', answer: 'In 2026 the fee was ₹800 for OC, ₹750 for BC and ₹700 for SC/ST candidates, with late fees from ₹1,000 to ₹10,000 for later windows.' },
+        { question: 'What AP EAPCET rank is needed for JNTUK Kakinada CSE?', answer: 'In the official 2024 last-rank statement, the OC seat in Computer Science and Engineering at JNTUK College of Engineering Kakinada closed at rank 2,039, against 2,567 in 2023. Other categories close at different ranks; see our AP EAPCET cutoff page.' },
+        { question: 'Who handles AP EAPCET counselling?', answer: 'The Commissioner of Technical Education, Andhra Pradesh, is the Convener for engineering admissions. Web counselling runs on eapcet-sche.aptonline.in after the results.' }
       ],
     },
     'kcet': {
