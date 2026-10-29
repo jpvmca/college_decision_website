@@ -12,6 +12,7 @@ import { CollegeCutoffs, type CollegeCutoffResponse } from '../../../components/
 import { formatLpa } from '../../../lib/packages';
 import ReadableHtml from '../../../components/ReadableHtml';
 import { readableBlocks, splitLead } from '../../../lib/readable-html';
+import { getLinkResolver } from '../../../lib/internal-link-index';
 
 type CollegeProfile = {
   institute: {
@@ -534,6 +535,14 @@ export default async function CollegeProfilePage({ params }: { params: Promise<{
   const state = profile.institute.location.state || '';
   const location = [city, state].filter(Boolean).join(', ');
   const linkableEntities = await getLinkableEntities();
+  const legacyLinkResolver = await getLinkResolver();
+  const selfPath = `/colleges/${slug}`;
+  // Old About HTML links to the previous site structure; send them to live pages, unwrap dead ones, and make self-links in-page anchors.
+  const resolveAboutLink = (href: string) => {
+    const resolved = legacyLinkResolver(href);
+    if (resolved && (resolved === selfPath || resolved.startsWith(`${selfPath}#`))) return resolved.slice(selfPath.length) || null;
+    return resolved;
+  };
   const linkedCourseHrefs = new Set<string>();
   const siteUrl = (process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3001').replace(/\/+$/, '');
   const pageUrl = `${siteUrl}/colleges/${slug}`;
@@ -676,7 +685,7 @@ export default async function CollegeProfilePage({ params }: { params: Promise<{
     {(profile.about || location || profile.institute.establishmentYear || officialWebsite) && <section id="about">
       <SectionHeading icon={Building2}>About {name}</SectionHeading>
       {profile.about && (() => {
-        const { lead, rest } = splitLead(readableBlocks(profile.about, { headingShift: 1 }));
+        const { lead, rest } = splitLead(readableBlocks(profile.about, { headingShift: 1, resolveLink: resolveAboutLink }));
         if (!lead) return null;
         return <><h3>History and Background</h3><ReadableHtml html={lead} preSanitized />{rest ? <details className="profile-more"><summary>Read more about {name}</summary><ReadableHtml html={rest} preSanitized /></details> : null}</>;
       })()}

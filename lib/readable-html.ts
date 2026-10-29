@@ -74,11 +74,15 @@ function parse(html: string): Node {
       continue;
     }
     // Drop escaped junk tags that scrapers stored as text, e.g. "&lt;error/&gt;" runs.
-    const textToken = token.replace(/&lt;\/?[a-zA-Z][a-zA-Z0-9]*\s*\/?&gt;/g, '').replace(/>/g, '&gt;');
+    // Also drop pathological repeated-character runs (e.g. 5,900 "o"s from a broken font export).
+    const textToken = token.replace(/&lt;\/?[a-zA-Z][a-zA-Z0-9]*\s*\/?&gt;/g, '').replace(REPEATED_RUN, '').replace(/>/g, '&gt;');
     if (textToken) stack[stack.length - 1].children.push(textToken);
   }
   return root;
 }
+
+/** 30+ copies of the same non-space character (or 15+ of the same entity) is never real text. */
+const REPEATED_RUN = /([^\s&])\1{29,}|(&[a-zA-Z0-9#]+;)\2{14,}/g;
 
 const plain = (s: string) => s.replace(/<[^>]+>/g, ' ').replace(/&nbsp;|&#160;/gi, ' ').replace(/\s+/g, ' ').trim();
 
@@ -92,7 +96,10 @@ function safeHref(href: string): string | null {
   return null;
 }
 
-type Opts = { headingShift: number };
+/** Returns the href to use, or null to drop the link and keep its words. */
+export type LinkResolver = (href: string) => string | null;
+
+type Opts = { headingShift: number; resolveLink?: LinkResolver };
 
 /** Serialise inline content (text + allowed inline tags). Block tags inside inline context are flattened to text. */
 function inlineHtml(nodes: Array<Node | string>, opts: Opts): string {
@@ -103,7 +110,8 @@ function inlineHtml(nodes: Array<Node | string>, opts: Opts): string {
     if (n.tag === 'img' || VOID.has(n.tag)) { out += ' '; continue; }
     const inner = inlineHtml(n.children, opts);
     if (n.tag === 'a') {
-      const href = safeHref(n.attrs.href || '');
+      let href = safeHref(n.attrs.href || '');
+      if (href && opts.resolveLink) href = opts.resolveLink(href);
       if (!href || !plain(inner)) { out += inner; continue; }
       const external = /^(https?:)?\/\//i.test(href);
       out += external ? `<a href="${escapeAttr(href)}" target="_blank" rel="noopener noreferrer">${inner}</a>` : `<a href="${escapeAttr(href)}">${inner}</a>`;
@@ -230,12 +238,58 @@ function sentenceBreaks(html: string): number[] {
 
 const TARGET = 320;
 const LONG = 450;
+const VERY_LONG = 700;
+const MIN_PART = 150;
+
+/**
+ * Secondary break points for paragraphs that are still overlong because they are one huge sentence.
+ * Tiers, best first: "; " / missing-space sentence ends ("text.Next") / ": Capital"; then spaced dashes; then
+ * ", and|while|which|but|whereas|where". Only outside tags/inline elements. Positions are after the punctuation.
+ */
+function secondaryBreaks(html: string): number[][] {
+  const tiers: number[][] = [[], [], []];
+  let depth = 0;
+  const re = /<\/?([a-z0-9]+)[^>]*>|(;\s+)|([a-z]{3}[.?!])(?=["“(]?[A-Z][a-z])|(:\s+)(?=["“(]?[A-Z0-9])|(\s[–—-]\s+)|(,\s+)(?=(?:and|while|which|but|whereas|where|with|including)\s)/g;
+  let m: RegExpExecArray | null;
+  while ((m = re.exec(html))) {
+    if (m[1]) {
+      if (m[1].toLowerCase() === 'br') continue;
+      depth += m[0][1] === '/' ? -1 : 1;
+      if (depth < 0) depth = 0;
+      continue;
+    }
+    if (depth > 0) continue;
+    const end = m.index + m[0].length;
+    if (m[2] || m[3] || m[4]) tiers[0].push(end);
+    else if (m[5]) tiers[1].push(end);
+    else if (m[6]) tiers[2].push(end);
+  }
+  return tiers;
+}
+
+/** Split an overlong single-sentence chunk near its middle at the best available secondary boundary. */
+function splitVeryLong(inner: string): string[] {
+  if (plain(inner).length <= VERY_LONG) return [inner];
+  const total = plain(inner).length;
+  for (const tier of secondaryBreaks(inner)) {
+    let best = -1;
+    let bestScore = Infinity;
+    for (const pos of tier) {
+      const left = plain(inner.slice(0, pos)).length;
+      if (left < MIN_PART || total - left < MIN_PART) continue;
+      const score = Math.abs(left - total / 2);
+      if (score < bestScore) { bestScore = score; best = pos; }
+    }
+    if (best > 0) return [...splitVeryLong(inner.slice(0, best).trim()), ...splitVeryLong(inner.slice(best).trim())];
+  }
+  return [inner];
+}
 
 /** Split one paragraph's inner HTML into groups of 2–4 sentences. Text is unchanged; only paragraph boundaries are added. */
 export function splitParagraphInner(inner: string): string[] {
   if (plain(inner).length <= LONG) return [inner];
   const cuts = sentenceBreaks(inner);
-  if (!cuts.length) return [inner];
+  if (!cuts.length) return splitVeryLong(inner);
   const sentences: string[] = [];
   let start = 0;
   for (const c of cuts) { sentences.push(inner.slice(start, c)); start = c; }
@@ -253,7 +307,7 @@ export function splitParagraphInner(inner: string): string[] {
     if (groups.length && plain(cur).length < 120) groups[groups.length - 1] += cur;
     else groups.push(cur);
   }
-  return groups.map((g) => g.trim()).filter((g) => plain(g));
+  return groups.map((g) => g.trim()).filter((g) => plain(g)).flatMap(splitVeryLong);
 }
 
 /** Safety net for already-structured HTML: split only overlong plain <p> elements; leaves every other tag untouched. */
@@ -267,26 +321,53 @@ export function splitLongParagraphs(html: string): string {
   });
 }
 
+const BULLET = /^(?:[•·▪●◦■□►▸✓✔*]|&bull;|&#8226;)(?:\s|&nbsp;|&#160;)*/i;
+
+/**
+ * Turn one overlong paragraph into readable blocks. Line breaks are real boundaries in scraped text:
+ * "<br>• item" lines become a list, other <br>-separated lines are grouped into short paragraphs,
+ * and anything still long is split by sentence. Words are kept; only bullet glyphs become list markup.
+ */
+function paragraphBlocks(inner: string): string[] {
+  const asParas = (x: string) => splitParagraphInner(x).map((p) => `<p>${p}</p>`);
+  if (plain(inner).length <= LONG || !/<br>/.test(inner) || /<(?:strong|b|em|i|a|sub|sup)\b[^>]*>(?:(?!<\/(?:strong|b|em|i|a|sub|sup)>)[\s\S])*<br>/i.test(inner)) return asParas(inner);
+  const lines = inner.split(/\s*<br>\s*/).map(trimInline).filter((l) => plain(l));
+  const out: string[] = [];
+  let group = '';
+  let items: string[] = [];
+  const flushGroup = () => { if (plain(group)) out.push(...asParas(group)); group = ''; };
+  const flushItems = () => { if (items.length) out.push(`<ul>${items.map((i) => `<li>${i}</li>`).join('')}</ul>`); items = []; };
+  for (const line of lines) {
+    if (BULLET.test(line)) { flushGroup(); items.push(line.replace(BULLET, '')); continue; }
+    flushItems();
+    group = group ? `${group}<br>${line}` : line;
+    if (plain(group).length >= TARGET) flushGroup();
+  }
+  flushItems();
+  flushGroup();
+  return out;
+}
+
 const VIDEO_LEFTOVER = /\b(watch|see|check) the (following |given )?video\b|\bvideo (given|shown) below\b/i;
 
 /** Sanitise + restructure stored HTML into readable top-level blocks. */
-export function readableBlocks(html: unknown, options: { headingShift?: number } = {}): string[] {
+export function readableBlocks(html: unknown, options: { headingShift?: number; resolveLink?: LinkResolver } = {}): string[] {
   const source = String(html || '');
   if (!source.trim()) return [];
   const out: string[] = [];
-  blocks(parse(source).children, { headingShift: options.headingShift ?? 0 }, out);
+  blocks(parse(source).children, { headingShift: options.headingShift ?? 0, resolveLink: options.resolveLink }, out);
   const result: string[] = [];
   for (const b of out) {
     const text = plain(b);
     if (!text || /^[\s\u200b\u00a0]*$/.test(text)) continue;
     if (VIDEO_LEFTOVER.test(text) && text.length < 200 && b.startsWith('<p')) continue;
-    if (b.startsWith('<p>')) result.push(...splitParagraphInner(b.slice(3, -4)).map((p) => `<p>${p}</p>`));
+    if (b.startsWith('<p>')) result.push(...paragraphBlocks(b.slice(3, -4)));
     else result.push(b);
   }
   return result;
 }
 
-export function readableHtml(html: unknown, options: { headingShift?: number } = {}): string {
+export function readableHtml(html: unknown, options: { headingShift?: number; resolveLink?: LinkResolver } = {}): string {
   return readableBlocks(html, options).join('');
 }
 
