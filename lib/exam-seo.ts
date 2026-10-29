@@ -1661,23 +1661,33 @@ function overrides(year: number, institutes: number, feeRange: string | null): R
       ],
     },
     'kcet': {
-      // Content package: docs/exam-content/kcet-2027.md (backend). Official sources only, checked 13 Oct 2026. 2027 items are Expected.
+      // KCET 2027 content package (backups/exam_kcet_20261029 on the dev Mac). Facts from KEA only: UGCET-2026 Information Bulletin,
+      // CET-2026 exam schedule, UGCET-2026 Diksuchi, 2026-27 provisional fee notice (1 Jul 2026) and engineering cut-off lists
+      // 2023-2026 (cetonline.karnataka.gov.in). Checked 29 Oct 2026. 2027 items are Expected.
       intent: 'general',
-      h1: "KCET 2027: Exam Dates, Pattern, Eligibility, Fees & Rank",
-      title: "KCET 2027: Exam Dates, Pattern, Eligibility, Fees & Rank",
-      description: "KCET 2027 guide: Expected dates, 60-mark papers with no negative marking, 45% PCM eligibility, 50:50 rank rule, 2026-27 fees and KEA counselling.",
-      keywords: ["KCET 2027", "KCET 2027 exam date", "KCET exam pattern", "KCET eligibility", "KCET rank calculation", "KCET fees 2026-27", "KEA counselling", "UGCET 2027", "Karnataka CET 2027"],
-      intro: "KCET 2027 (UGCET) is the Karnataka Examinations Authority entrance test for government-quota engineering, farm science, pharmacy and allied seats. Engineering rank uses Class 12 and CET PCM marks in equal proportion. KCET 2027 is not yet announced; the application is Expected from mid-January 2027 and the test in April 2027.",
+      h1: 'KCET 2027: Exam Date, Syllabus, Pattern, Eligibility & Cutoff',
+      title: 'KCET 2027: Exam Date, Pattern, Eligibility & Cutoff',
+      description: 'KCET 2027 exam date (Expected April), 60-mark PCM papers with no negative marking, 45% eligibility, 50:50 rank rule, fees and 2023–2026 KEA cutoffs.',
+      keywords: ['KCET 2027', 'KCET 2027 exam date', 'KCET syllabus', 'KCET exam pattern', 'KCET eligibility', 'KCET cutoff', 'KCET rank calculation', 'KCET fees', 'KEA counselling', 'UGCET 2027', 'Karnataka CET 2027'],
+      intro: 'KCET 2027 (UGCET) is not announced yet. KEA is expected to open the application in mid-January 2027 and hold the exam in April 2027. This guide covers eligibility, the four-paper pattern, how your engineering rank is worked out, reservation codes, 2026-27 fees and official KEA cut-offs for 2023 to 2026.',
       ogImage: '/uploads/exams/kcet/kcet-2027-og.webp',
       absoluteTitle: true,
+      collegesNote: {
+        text: 'These Karnataka engineering colleges have published profiles on CollegeDecision.in and fill government-quota B.E./B.Tech seats through KCET and KEA counselling. For branch-wise and category-wise closing ranks from the official KEA lists,',
+        linkText: 'see the KCET cutoff page',
+        href: '/exams/kcet/cutoff'
+      },
       faqs: [
-        { question: "When is KCET 2027?", answer: "KEA has not announced KCET 2027. In 2026 the application opened on 17 January and the CET was held on 23 and 24 April, with the Kannada language test on 22 April. The 2027 application is Expected from mid-January 2027 and the test in April 2027." },
-        { question: "Is there negative marking in KCET?", answer: "No. Each question carries one mark and wrong answers are not penalised. Marking more than one option for a question gives zero for that question." },
-        { question: "How is the KCET engineering rank calculated?", answer: "KEA prepares engineering merit by taking marks in equal proportion from the qualifying exam (2nd PUC/Class 12) and the CET in Physics, Chemistry and Mathematics." },
-        { question: "What is the KCET exam pattern?", answer: "Four papers – Physics, Chemistry, Mathematics and Biology – each with 60 one-mark questions in 80 minutes. In 2026 Physics and Chemistry were on day one and Mathematics and Biology on day two." },
-        { question: "What is the eligibility for KCET engineering?", answer: "A pass in 2nd PUC/Class 12 with English and at least 45% in Physics and Mathematics along with Chemistry, Biotechnology, Biology, Electronics or Computer Science (40% for SC, ST and Karnataka OBC categories). No minimum CET score is prescribed." },
-        { question: "Can non-Karnataka students get engineering seats through KCET?", answer: "The 2026 bulletin says non-Karnataka candidates are not eligible for engineering stream seats through KEA and cannot claim reservation. Government seats need an eligibility clause such as seven years of study in Karnataka." },
-        { question: "What is the government college engineering fee through KCET?", answer: "KEA's provisional 2026-27 fee for GM category government-quota seats was ₹47,100 a year in government colleges, ₹1,20,320 in Type-1 unaided colleges and ₹1,30,320 in Type-2 unaided colleges." }
+        { question: 'When is the KCET 2027 exam?', answer: 'KEA has not announced KCET 2027 yet. It is expected in April 2027. In 2026 Physics and Chemistry were held on 23 April and Mathematics and Biology on 24 April, with the Kannada language test on 22 April.' },
+        { question: 'When will the KCET 2027 application form be released?', answer: 'Expected in mid-January 2027. In 2026 the bulletin and online application opened on 17 January, the last date to apply was 16 February and the fee had to be paid by 18 February.' },
+        { question: 'What is the KCET exam pattern?', answer: 'Four separate papers, Physics, Chemistry, Mathematics and Biology, each with 60 multiple-choice questions for 60 marks in 80 minutes. Engineering candidates need Physics, Chemistry and Mathematics.' },
+        { question: 'Is there negative marking in KCET?', answer: 'No. Each correct answer earns one mark and wrong answers lose nothing. If you shade more than one option for a question, that question scores zero.' },
+        { question: 'What is the KCET syllabus?', answer: 'KCET follows the 1st and 2nd PUC syllabus of Karnataka\'s Department of Pre-University Education. KEA publishes subject-wise syllabus PDFs for Physics, Chemistry, Mathematics and Biology on its website.' },
+        { question: 'What is the eligibility for B.E./B.Tech through KCET?', answer: 'A pass in 2nd PUC/Class 12 with English, and at least 45% in Physics and Mathematics plus one of Chemistry, Bio-Technology, Biology, Electronics or Computer (40% for SC, ST, Category-1, 2A, 2B, 3A and 3B). No minimum CET score is set. For government seats you also need an eligibility clause, usually seven years of study in Karnataka.' },
+        { question: 'How is the KCET engineering rank calculated?', answer: 'KEA uses your CET marks and your qualifying exam marks in Physics, Chemistry and Mathematics in equal proportion. Ties are broken by the higher CET Mathematics score, then Physics.' },
+        { question: 'What do GM, 2AG, 2AR and 2AK mean in KCET cutoffs?', answer: 'GM is General Merit. The rest pair a category (1, 2A, 2B, 3A, 3B, SC, ST) with a seat pool: G for general, R for the 15% rural quota and K for the 5% Kannada medium quota.' },
+        { question: 'What KCET rank is needed for RV College of Engineering CSE?', answer: 'In the last round of 2026, the GM seat in Computer Science and Engineering at RV College of Engineering closed at rank 425, against 499 in 2025. Other categories close at different ranks; see our KCET cutoff page.' },
+        { question: 'What is the fee for a KCET government-quota engineering seat?', answer: 'KEA\'s provisional 2026-27 fee for GM-category students was ₹47,100 a year in government colleges, ₹56,500 at UVCE, ₹1,20,320 in Type-1 unaided colleges and ₹1,30,320 in Type-2 unaided colleges. SC/ST students with family income up to ₹10 lakh pay nothing.' }
       ],
     },
     'keam': {
