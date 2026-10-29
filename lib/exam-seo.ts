@@ -1938,6 +1938,38 @@ function overrides(year: number, institutes: number, feeRange: string | null): R
         { question: 'Is JEE Main needed for engineering admission in Maharashtra?', answer: 'Maharashtra State candidates can get most CAP seats on MHT CET alone. For All India candidates, who can be from any state, the JEE Main score is preferred over MHT CET.' }
       ],
     },
+    srmjeee: {
+      // SRMJEEE content package (backups/exam_srmjeee_20261029 on the dev Mac; docs/exam-content/srmjeee-2027.html in backend).
+      // Official sources only, opened 29 Oct 2026: srmist.edu.in/admission-india/engineering (eligibility 2026-27, fee table, 2026 phase dates),
+      // applications.srmist.edu.in/btech, SRMJEEE 2026 FAQs / exam pattern / syllabus PDFs, SRM admission brochure 2026-27,
+      // SRMJEEE 2026 Phase I & III scholarship PDFs, SRMIST engineering scholarships page. 2027 dates not announced: Expected only.
+      // SRM publishes no official cutoffs, so srmjeee is intentionally NOT in CUTOFF.
+      intent: 'general',
+      h1: 'SRMJEEE 2027: Exam Dates, Eligibility, Pattern, Syllabus & Scholarships',
+      title: 'SRMJEEE 2027: Exam Dates, Pattern, Syllabus & Fees',
+      description: 'SRMJEEE 2027 guide from official SRM sources: phase dates (2026 timeline), 60% eligibility, 130-question pattern, syllabus, ₹1,400 fee, counselling and scholarships.',
+      keywords: ['SRMJEEE 2027', 'SRMJEEE exam date 2027', 'SRMJEEE registration 2027', 'SRMJEEE application form', 'SRMJEEE eligibility', 'SRMJEEE exam pattern', 'SRMJEEE syllabus', 'SRMJEEE application fee', 'SRMJEEE counselling', 'SRMJEEE scholarship', 'SRM B.Tech admission 2027', 'SRM Kattankulathur', 'SRM University AP', 'SRMJEEE vs JEE Main'],
+      intro: 'SRMJEEE is SRM\'s online entrance test for B.Tech admission at the SRMIST campuses (Kattankulathur, Ramapuram, Vadapalani, Tiruchirappalli and Ghaziabad), SRM University Sonepat and SRM University AP. SRM has not announced 2027 dates yet; in 2026 the exam ran in three phases in April, June and July. This guide covers eligibility, pattern, syllabus, fee, counselling and rank-based scholarships from official SRM documents.',
+      ogImage: '/uploads/exams/srmjeee/srmjeee-2027-overview.webp',
+      absoluteTitle: true,
+      collegesNote: {
+        text: 'SRMJEEE is used only for B.Tech admission at SRM\'s own campuses: SRMIST Kattankulathur, Ramapuram, Vadapalani, Tiruchirappalli and Delhi-NCR Ghaziabad, SRM University Sonepat and SRM University AP. Programmes differ by campus.',
+        linkText: 'See the official SRMIST engineering admissions page',
+        href: 'https://www.srmist.edu.in/admission-india/engineering/'
+      },
+      faqs: [
+        { question: 'When is SRMJEEE 2027?', answer: 'SRM has not announced the 2027 dates yet. In 2026 the exam ran in three phases: 24–29 April, 10–15 June and 4–5 July. The 2027 phases are expected around the same months.' },
+        { question: 'How many times can I write SRMJEEE?', answer: 'In 2026 there were three phases. You can write one, two or all three, but you must submit and pay for a separate application for each phase.' },
+        { question: 'What is the SRMJEEE application fee?', answer: 'It was ₹1,400 per phase in 2026, paid online and non-refundable. SRM has not announced the 2027 fee yet.' },
+        { question: 'What is the SRMJEEE exam pattern?', answer: 'SRM\'s 2026 pattern has 130 MCQs in 2 hours 30 minutes: Physics 35, Chemistry 35, Mathematics or Biology 40, and English and Aptitude 20. The paper carries 130 marks and has no negative marking.' },
+        { question: 'Is SRMJEEE held at a test centre?', answer: 'No. In 2026 it was a remote proctored online test that you took from home on a desktop or laptop with a webcam. Mobile phones are not allowed. You book one of two daily slots, then download the hall ticket.' },
+        { question: 'What marks do I need in Class 12 for SRMJEEE?', answer: 'For the SRMIST campuses you need at least 60% aggregate in Physics, Mathematics and one more subject such as Chemistry, Biology, Biotechnology or Computer Science. You must also be at least 16 years and 6 months old on 31 July of your board exam year. SRM AP and SRM Sonepat set their own rules.' },
+        { question: 'How does SRMJEEE counselling work?', answer: 'Counselling is online and held separately for each phase. You choose a campus, programme and specialisation, and SRM allots seats by rank and availability. You must pay the fees in time to get the Provisional Allotment Letter, otherwise the allotment is cancelled.' },
+        { question: 'What SRMJEEE rank gets a scholarship?', answer: 'It depends on the phase and campus. In Phase I 2026, at Kattankulathur, Vadapalani, Ghaziabad and Baburayanpettai, ranks 1–27 got the Founder\'s Scholarship and ranks up to 351 got a 25–100% tuition waiver. Ramapuram, Trichy and SRM AP had wider ranges, and later phases had narrower ones.' },
+        { question: 'Does SRM accept JEE Main scores for B.Tech?', answer: 'For domestic admission SRM uses the SRMJEEE rank. According to its FAQ, JEE Main and SAT scores are considered only for international B.Tech admission. Top 10,000 IIT JEE rankers can also apply for direct admission with a scholarship.' },
+        { question: 'Does SRM publish SRMJEEE cutoffs?', answer: 'No. SRM does not publish official campus-wise or branch-wise closing ranks, so this page lists none. The only official rank figures are the phase-wise scholarship rank ranges.' }
+      ],
+    },
     viteee: {
       // VITEEE 2027 content package (backups/exam_viteee_20261029 on the dev Mac; docs/exam-content/viteee-2027.html in backend).
       // Official sources only, opened 29 Oct 2026: viteee.vit.ac.in, VITEEE 2027 prospectus (vit.ac.in/files/VITEEE/VITEEE_Prospectus.pdf),
