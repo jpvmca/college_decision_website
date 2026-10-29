@@ -176,6 +176,35 @@ function overrides(year: number, institutes: number, feeRange: string | null): R
   const colleges = institutes ? `${institutes.toLocaleString('en-IN')} mapped colleges` : 'mapped colleges';
   const fees = feeRange ? ` Fees typically range ${feeRange}.` : '';
   return {
+    'nata': {
+      // NATA 2027 content package (backups/exam_nata_20261029 on the dev Mac). Facts from CoA only: NATA 2026 Brochure
+      // (Final V2.0, nata.in), nata.in schedule and fee pages; admission examples from DoTE TN B.Arch brochure 2026,
+      // CEE Kerala KEAM 2026 and ACPC Gujarat B.Arch 2026. Checked 29 Oct 2026. NATA 2027 not announced; 2027 items are Expected.
+      intent: 'general',
+      h1: 'NATA 2027: Exam Dates, Pattern, Syllabus, Eligibility & Fees',
+      title: 'NATA 2027: Exam Dates, Pattern, Eligibility & Fees',
+      description: 'NATA 2027 guide from official CoA documents: 2026 test dates and expected 2027 schedule, 200-mark pattern, syllabus, eligibility, fees and attempts.',
+      keywords: ['NATA 2027', 'NATA 2027 exam date', 'NATA exam pattern', 'NATA syllabus', 'NATA eligibility', 'NATA application fee', 'NATA registration', 'NATA result', 'NATA score validity', 'B.Arch admission', 'Council of Architecture'],
+      intro: 'NATA is the Council of Architecture\'s aptitude test for the 5-year B.Arch. In 2026 it ran on Fridays and Saturdays from 4 April to 13 June (Phase 1), with Phase 2 on 7 and 8 August. CoA has not announced NATA 2027 yet, so 2027 dates here are marked Expected.',
+      ogImage: '/uploads/exams/nata/nata-2027-overview.webp',
+      absoluteTitle: true,
+      collegesNote: {
+        text: 'These colleges offer B.Arch and accept NATA scores, usually through state counselling. Some, including NITs and SPAs, admit only through JoSAA using JEE Main Paper 2. For that route,',
+        linkText: 'see the JEE Main page',
+        href: '/exams/jee-main'
+      },
+      faqs: [
+        { question: 'When is NATA 2027?', answer: 'The Council of Architecture has not announced NATA 2027 yet. In 2026, Phase 1 ran every Friday and Saturday from 4 April to 13 June, and Phase 2 was on 7 and 8 August. Expect a similar April to August window in 2027, but wait for the official brochure on nata.in.' },
+        { question: 'What is the NATA exam pattern?', answer: 'NATA has 200 marks. Part A is an offline drawing test of 90 minutes and 80 marks with three questions: composition and colour (25), sketching (25) and 3D composition (30). Part B is a 90-minute online adaptive test of 120 marks with 42 MCQs and 8 numerical questions.' },
+        { question: 'How many times can I take NATA?', answer: 'Under the 2026 rules you could take up to two tests in Phase 1, and your best raw score was used for the percentile. Phase 2 allowed one attempt for vacant seats, and only for those who had not taken Phase 1.' },
+        { question: 'What is the NATA application fee?', answer: 'In 2026 the fee per test was ₹1,750 for General and OBC (NCL), ₹1,250 for SC, ST, EWS and PwD, ₹1,000 for transgender candidates and ₹15,000 for a centre outside India. It is not refundable.' },
+        { question: 'Who is eligible for NATA?', answer: 'You can sit NATA if you have passed or are appearing in 10+2, or a 10+3 Diploma with Mathematics. For a B.Arch seat you need 10+2 with Physics and Mathematics plus one more listed subject and at least 45% aggregate, or a 10+3 Diploma with Mathematics and 45%.' },
+        { question: 'Is there a minimum qualifying score in NATA?', answer: 'No minimum raw score is fixed. A final scorecard with a non-zero percentile counts as a qualifying NATA score. Each college or state authority then applies its own merit rules.' },
+        { question: 'How long is a NATA score valid?', answer: 'The NATA 2026 score is valid for the 2026-27 academic session. The 2026 brochure also let candidates with a valid 2025 score use it if they had not taken a B.Arch admission, but taking two 2026 attempts cancelled the 2025 score.' },
+        { question: 'Is a calculator allowed in NATA?', answer: 'No. Calculators and phones are not allowed. You may carry pencils, erasers, a sharpener, dry colours and a scale of up to 15 cm.' },
+        { question: 'Is NATA or JEE Main Paper 2 better for B.Arch?', answer: 'It depends on the college. State counselling in Tamil Nadu accepts NATA or JEE Paper 2, Kerala uses NATA marks in its B.Arch rank list, and NITs and SPAs admit through JoSAA using JEE Main Paper 2. Many students take both.' }
+      ],
+    },
     'jee-main': {
       // JEE Main 2027 content package (backups/exam_jeemain_20261029 on the dev Mac).
       // Facts from NTA only: JEE (Main) 2027 Information Bulletin (released 24 Oct 2026), syllabus-2027 page,
@@ -1453,12 +1482,13 @@ function overrides(year: number, institutes: number, feeRange: string | null): R
     bitsat: {
       // BITSAT 2027 content package (docs/exam-content/bitsat-2027.md in the backend repo).
       // Official sources only: bitsadmission.com (redirects to admissions.bits-pilani.ac.in): BITSAT-2026 brochure, eligibility,
-      // fee 2026-27, scholarship, cut-off and FAQ pages and admission notices, checked on 12 Oct 2026. 2027 dates are Expected.
+      // fee 2026-27, scholarship, cut-off and FAQ pages and admission notices, checked on 12 Oct 2026 and re-checked 29 Oct 2026
+      // (cut-offs 2022-23 to 2026-27 loaded; BITSAT vs JEE Main uses the NTA JEE (Main) 2027 bulletin). 2027 dates are Expected.
       intent: 'general',
       h1: 'BITSAT 2027: Exam Dates, Eligibility, Pattern, Fees, Cutoffs',
       title: 'BITSAT 2027: Exam Dates, Eligibility, Pattern, Fees, Cutoffs',
       description: 'BITSAT 2027 applications open December 2026 (tentative). See the 75% PCM rule, 130-question pattern, ₹3,600 fee, iterations and 2026 cut-offs by campus.',
-      keywords: ['BITSAT 2027', 'BITSAT exam date 2027', 'BITSAT registration 2027', 'BITSAT eligibility', 'BITSAT exam pattern', 'BITSAT syllabus', 'BITSAT application fee', 'BITSAT cut off', 'BITSAT 2026 cut off', 'BITS Pilani admission 2027', 'BITS Goa', 'BITS Hyderabad', 'BITSAT iteration', 'BITS Pilani fees'],
+      keywords: ['BITSAT 2027', 'BITSAT exam date 2027', 'BITSAT registration 2027', 'BITSAT eligibility', 'BITSAT exam pattern', 'BITSAT syllabus', 'BITSAT application fee', 'BITSAT cut off', 'BITSAT 2026 cut off', 'BITS Pilani admission 2027', 'BITS Goa', 'BITS Hyderabad', 'BITSAT iteration', 'BITS Pilani fees', 'BITSAT cutoff trend', 'BITSAT vs JEE Main'],
       intro: 'BITSAT 2027 is BITS Pilani\'s online test for B.E., M.Sc. and B.Pharm. admission at its Pilani, K K Birla Goa and Hyderabad campuses. BITS says the 2027-28 admission cycle opens in December 2026 (tentatively), and the test is Expected in April and May 2027. In 2026 the sessions were held on 15–16 April and 25–27 May. This guide covers eligibility, pattern, fees and cut-offs from official BITS sources.',
       ogImage: '/uploads/exams/bitsat/bitsat-2027-og.webp',
       absoluteTitle: true,
@@ -1498,7 +1528,7 @@ function overrides(year: number, institutes: number, feeRange: string | null): R
         },
         {
           question: 'What were the BITSAT 2026 cut-offs?',
-          answer: 'Final cut-offs for the 2026-27 session, out of 390, for B.E. Computer Science were 308 at Pilani, 274 at Goa and 272 at Hyderabad. B.E. Mathematics and Computing closed at 299, 270 and 268, and B.Pharm. at 200 at Pilani and Hyderabad.'
+          answer: 'Final cut-offs for the 2026-27 session, out of 390, for B.E. Computer Science were 308 at Pilani, 274 at Goa and 272 at Hyderabad. B.E. Mathematics and Computing closed at 299, 270 and 268, and B.Pharm. at 200 at Pilani and Hyderabad. Pilani CS was 320 in 2022-23, 331 in 2023-24, 327 in 2024-25 and 304 in 2025-26, so cut-offs move by 20 marks or more between years.'
         },
         {
           question: 'What are BITS Pilani first-degree fees?',
