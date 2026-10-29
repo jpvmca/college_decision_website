@@ -68,7 +68,7 @@ const COUNSELLING = new Set([
   'tnea', 'upsee', 'kcet', 'keam', 'mht-cet', 'mh-cet', 'wbjee', 'ojee', 'gujcet',
   'ts-eamcet', 'ap-eamcet', 'comedk-uget', 'jac', 'jac-delhi', 'pgcet'
 ]);
-const CUTOFF = new Set(['jee-main', 'jee-advanced', 'neet', 'gate', 'cat', 'bitsat', 'nata', 'clat']);
+const CUTOFF = new Set(['jee-main', 'jee-advanced', 'neet', 'gate', 'cat', 'bitsat', 'nata', 'clat', 'ailet']);
 
 function strip(value: unknown) {
   return String(value || '').replace(/<[^>]+>/g, ' ').replace(/\s+/g, ' ').trim();
@@ -527,6 +527,65 @@ function overrides(year: number, institutes: number, feeRange: string | null): R
         {
           question: 'Does NLU Delhi accept CLAT scores?',
           answer: 'No. National Law University Delhi is not part of the CLAT Consortium. It admits students through its own entrance test, AILET.'
+        }
+      ]
+    },
+    ailet: {
+      // AILET 2027 content package (backups/exam_ailet_20261029). Facts from nationallawuniversitydelhi.in (notification 23 Jul 2026, admission notice 7 Aug 2026,
+      // exam details, seat matrix, fees, FAQ) and NLU Delhi's 2026 provisional merit lists, checked on 29 Oct 2026.
+      intent: 'general',
+      h1: 'AILET 2027: Exam Date, Syllabus, Pattern, Eligibility & NLU Delhi Cutoff',
+      title: 'AILET 2027: Exam Date, Syllabus, Pattern, Eligibility',
+      description: 'AILET 2027 is on 13 December 2026. Check eligibility, the 150-question pattern, syllabus, ₹3,000 fee, seat matrix and NLU Delhi closing ranks for 2026.',
+      keywords: ['AILET 2027', 'AILET 2027 exam date', 'AILET 2027 registration', 'AILET syllabus', 'AILET exam pattern', 'AILET eligibility', 'AILET cutoff', 'NLU Delhi cutoff', 'AILET vs CLAT', 'AILET LLM 2027'],
+      intro: 'AILET 2027 will be held on Sunday, 13 December 2026, from 2 PM to 4 PM in offline mode, and applications close on 10 November 2026. This guide covers eligibility, the exam pattern, syllabus, fees, seats, counselling and NLU Delhi closing ranks, using official NLU Delhi sources.',
+      ogImage: '/uploads/exams/ailet/ailet-2027-og.webp',
+      absoluteTitle: true,
+      collegesNote: {
+        text: 'AILET scores are used for admission only at National Law University Delhi (BA LLB and LL.M.). The CLAT member NLUs do not accept AILET; see the CLAT page for them.',
+        linkText: 'see NLU Delhi closing ranks',
+        href: '/exams/ailet/cutoff'
+      },
+      faqs: [
+        {
+          question: 'When is AILET 2027?',
+          answer: 'AILET 2027 is on Sunday, 13 December 2026, from 2:00 PM to 4:00 PM. It is an offline, pen-and-paper test with an OMR answer sheet, held in 32 cities.'
+        },
+        {
+          question: 'What is the last date to apply for AILET 2027?',
+          answer: 'Applications opened on 7 August 2026 and close on 10 November 2026. A correction window stays open for 3 days after the last date. You apply only online at nationallawuniversitydelhi.in.'
+        },
+        {
+          question: 'What is the AILET 2027 application fee?',
+          answer: 'The fee is ₹3,000 for General, OBC and EWS candidates and ₹1,000 for SC, ST and PwD candidates. SC/ST and women candidates below the poverty line do not pay any fee.'
+        },
+        {
+          question: 'What is the AILET 2027 exam pattern?',
+          answer: 'The BA LLB paper has 150 one-mark MCQs in 120 minutes: English Language 50, Current Affairs and GK 30, and Logical Reasoning 70. Each wrong answer costs 0.25 marks. The LL.M. paper has 100 law MCQs in 120 minutes.'
+        },
+        {
+          question: 'Who is eligible for AILET 2027 BA LLB?',
+          answer: 'You need Class 12 or equivalent with at least 45% marks, 42% for OBC and 40% for SC, ST and PwD candidates. Students writing Class 12 in 2027 can apply, and there is no age limit.'
+        },
+        {
+          question: 'How many seats does NLU Delhi have through AILET?',
+          answer: 'For 2027–28, NLU Delhi fills 110 BA LLB seats and 70 LL.M. seats on AILET merit. Another 10 seats in each programme go to foreign nationals and OCI/PIO candidates without the test.'
+        },
+        {
+          question: 'Is there a Delhi domicile quota in AILET 2027?',
+          answer: 'No. The 2027 seat matrix splits seats only by category (General, OBC, SC, ST, EWS) with 5% for PwD candidates. There is no Delhi resident quota and no NRI quota.'
+        },
+        {
+          question: 'What AILET rank is needed for NLU Delhi?',
+          answer: 'In the third provisional merit list of 2026, the last General BA LLB seat went to AIR 71. OBC closed at 373, EWS at 346, SC at 1,731 and ST at 2,888. A fourth list was due in May 2026.'
+        },
+        {
+          question: 'Is AILET harder than CLAT?',
+          answer: 'Not harder, but faster. AILET has 150 questions in 120 minutes against CLAT\'s 120, and almost half its marks are logical reasoning. It has no separate legal reasoning or maths section.'
+        },
+        {
+          question: 'Does NLU Delhi accept CLAT scores?',
+          answer: 'No. NLU Delhi admits only through AILET, and an AILET rank is not accepted by the CLAT member NLUs. Students who want both usually write both exams.'
         }
       ]
     },
