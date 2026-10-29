@@ -68,7 +68,7 @@ const COUNSELLING = new Set([
   'tnea', 'upsee', 'kcet', 'keam', 'mht-cet', 'mh-cet', 'wbjee', 'ojee', 'gujcet',
   'ts-eamcet', 'ap-eamcet', 'comedk-uget', 'jac', 'jac-delhi', 'pgcet'
 ]);
-const CUTOFF = new Set(['jee-main', 'jee-advanced', 'neet', 'gate', 'cat', 'bitsat', 'nata', 'clat', 'ailet', 'cuet-ug', 'ap-eapcet', 'tnea', 'keam']);
+const CUTOFF = new Set(['jee-main', 'jee-advanced', 'neet', 'gate', 'cat', 'bitsat', 'nata', 'clat', 'ailet', 'cuet-ug', 'ap-eapcet', 'tnea', 'keam', 'ipmat']);
 
 function strip(value: unknown) {
   return String(value || '').replace(/<[^>]+>/g, ' ').replace(/\s+/g, ' ').trim();
@@ -1968,6 +1968,38 @@ function overrides(year: number, institutes: number, feeRange: string | null): R
         { question: 'What SRMJEEE rank gets a scholarship?', answer: 'It depends on the phase and campus. In Phase I 2026, at Kattankulathur, Vadapalani, Ghaziabad and Baburayanpettai, ranks 1–27 got the Founder\'s Scholarship and ranks up to 351 got a 25–100% tuition waiver. Ramapuram, Trichy and SRM AP had wider ranges, and later phases had narrower ones.' },
         { question: 'Does SRM accept JEE Main scores for B.Tech?', answer: 'For domestic admission SRM uses the SRMJEEE rank. According to its FAQ, JEE Main and SAT scores are considered only for international B.Tech admission. Top 10,000 IIT JEE rankers can also apply for direct admission with a scholarship.' },
         { question: 'Does SRM publish SRMJEEE cutoffs?', answer: 'No. SRM does not publish official campus-wise or branch-wise closing ranks, so this page lists none. The only official rank figures are the phase-wise scholarship rank ranges.' }
+      ],
+    },
+    ipmat: {
+      // IPMAT 2027 content package (backups/exam_ipmat_20261029 on the dev Mac; docs/exam-content/ipmat-2027.html in backend).
+      // Official sources only, opened 29 Oct 2026: iimidr.ac.in IPM admissions page, IPM 2026-31 admission procedure, fee structure
+      // and RTI information 2026-31; iimrohtak.ac.in IPM admission page, Batch 08 prospectus, FAQ, fee structure, IPMAT 2025/2026 summaries;
+      // IIM Ranchi, IIM Shillong, IIM Amritsar IPM pages; NTA JIPMAT. 2027 dates are Expected (no 2027 notice yet).
+      // Official cutoffs loaded: Indore 2026 sectional (RTI), Rohtak 2025 and 2026 interview shortlist (out of 480).
+      intent: 'general',
+      h1: 'IPMAT 2027: Exam Date, Eligibility, Pattern, Cut-off and Fees',
+      title: 'IPMAT 2027: Exam Date, Pattern, Eligibility & Cutoff',
+      description: 'IPMAT 2027 for IIM Indore and IIM Rohtak: expected dates with the 2026 dates, eligibility, exam pattern, official 2026 cut-offs, fees and colleges.',
+      keywords: ['IPMAT 2027', 'IPMAT exam date 2027', 'IPMAT Indore', 'IPMAT Rohtak', 'IPMAT eligibility', 'IPMAT exam pattern', 'IPMAT syllabus', 'IPMAT cutoff', 'IPMAT Indore cutoff 2026', 'IPMAT Rohtak cutoff', 'IIM Indore IPM fees', 'IIM Rohtak IPM', 'IPM after 12th', 'IPMAT vs JIPMAT'],
+      intro: 'IPMAT is the entrance test for the five-year Integrated Programme in Management at the IIMs. IIM Indore and IIM Rohtak each run their own paper, and IIM Ranchi, IIM Shillong and IIM Amritsar use the Indore score. The 2027 dates are not out yet, so this guide shows the expected months next to the official 2026 dates, plus eligibility, pattern, cut-offs and fees from the institutes\' own documents.',
+      ogImage: '/uploads/exams/ipmat/ipmat-2027-indore-vs-rohtak.webp',
+      absoluteTitle: true,
+      collegesNote: {
+        text: 'IPMAT Indore is used by IIM Indore, IIM Ranchi, IIM Shillong and IIM Amritsar; IIM Rohtak uses its own IPMAT. IIM Bodh Gaya and IIM Jammu admit through JIPMAT.',
+        linkText: 'See JIPMAT',
+        href: '/exams/jipmat'
+      },
+      faqs: [
+        { question: 'Is IPMAT conducted by one IIM?', answer: 'No. IIM Indore and IIM Rohtak each conduct a separate IPM Aptitude Test with a different pattern, fee and date. IIM Bodh Gaya and IIM Jammu use JIPMAT, which is run by the NTA.' },
+        { question: 'When is IPMAT 2027?', answer: 'The 2027 dates are not announced. In 2026, IPMAT Indore was held on 4 May and IPMAT Rohtak on 10 May, so May 2027 is the expected window.' },
+        { question: 'What is the IPMAT application fee?', answer: 'In 2026, IIM Indore charged ₹4,130 (₹2,065 for SC/ST/PwD), including GST. IIM Rohtak charged ₹4,937.' },
+        { question: 'Is there negative marking in IPMAT?', answer: 'Yes. Both tests deduct 1 mark for a wrong answer, except IPMAT Indore\'s Quantitative Ability short-answer section, which has no negative marking.' },
+        { question: 'What is the age limit for IPMAT?', answer: 'For IIM Indore\'s 2026-31 batch, you had to be born on or after 1 August 2006 (1 August 2001 for SC/ST/PwD). For IIM Rohtak, the limit was 20 years as on 30 June 2026 (25 for SC/ST).' },
+        { question: 'How many seats are there in IIM Indore and IIM Rohtak IPM?', answer: 'IIM Indore\'s sanctioned domestic intake for the 2026 batch is 150. IIM Rohtak has 198 seats for Batch 08 (2026-31), including 10% EWS seats.' },
+        { question: 'What was the IPMAT Indore cut-off in 2026?', answer: 'For General candidates, the sectional cut-offs were 28 in QA short answer, 27 in QA MCQ and 111 in Verbal Ability, according to IIM Indore\'s RTI disclosure.' },
+        { question: 'What was the IPMAT Rohtak cut-off in 2026?', answer: 'The minimum mark for an interview call was 363 out of 480 for General, 330 for EWS, 307 for NC-OBC, 246 for SC and 168 for ST.' },
+        { question: 'What is the IIM Indore IPM fee?', answer: 'For the 2026-31 batch, the course fee is ₹6,00,000 a year for the first three years, plus deposits. Years 4 and 5 are charged at the PGP fee of that time.' },
+        { question: 'Can I join an IIM after Class 12 without IPMAT?', answer: 'For IIM Bodh Gaya and IIM Jammu, yes, through JIPMAT. IIM Shillong also considers SAT scores, but only for overseas candidates.' }
       ],
     },
     viteee: {
