@@ -365,6 +365,65 @@ function overrides(year: number, institutes: number, feeRange: string | null): R
         }
       ]
     },
+    clat: {
+      // CLAT 2027 content package (docs/exam-content/clat-2027.md in the backend repo).
+      // Facts from consortiumofnlus.ac.in (CLAT 2027 UG/PG instructions, eligibility, question format, syllabus, 22 Jul 2026 press release), checked on 29 Oct 2026.
+      intent: 'general',
+      h1: 'CLAT 2027: Exam Date, Eligibility, Pattern, Syllabus & NLU Cutoffs',
+      title: 'CLAT 2027: Exam Date, Eligibility, Pattern, Syllabus, Cutoff',
+      description: 'CLAT 2027 is on 6 December 2026. Check eligibility, the 120-question pattern, syllabus, ₹4,000 fee, counselling and NLU-wise closing ranks for 2024–2026.',
+      keywords: ['CLAT 2027', 'CLAT 2027 exam date', 'CLAT 2027 registration', 'CLAT eligibility', 'CLAT exam pattern', 'CLAT syllabus', 'CLAT cutoff', 'NLU cutoff', 'CLAT counselling', 'CLAT PG 2027'],
+      intro: 'CLAT 2027 will be held on Sunday, 6 December 2026, from 2 PM to 4 PM in offline mode, and applications close on 31 October 2026. This guide covers eligibility, the exam pattern, syllabus, fees, counselling and NLU-wise closing ranks, using official Consortium of NLUs sources.',
+      ogImage: '/uploads/exams/clat/clat-2027-og.webp',
+      absoluteTitle: true,
+      collegesNote: {
+        text: 'The 26 member National Law Universities admit only through CLAT and are listed first. NLU Delhi is not part of CLAT; it admits through AILET. Private universities that accept CLAT scores run their own admissions, so check with each college.',
+        linkText: 'see NLU-wise CLAT cutoffs',
+        href: '/exams/clat/cutoff'
+      },
+      faqs: [
+        {
+          question: 'When is CLAT 2027?',
+          answer: 'CLAT 2027 is on Sunday, 6 December 2026, from 2:00 PM to 4:00 PM. PwD candidates get time until 4:40 PM. The test is offline (pen and paper).'
+        },
+        {
+          question: 'What is the last date to apply for CLAT 2027?',
+          answer: 'Applications opened on 3 August 2026 and close on 31 October 2026 at 11:59 PM. You apply only online at consortiumofnlus.ac.in.'
+        },
+        {
+          question: 'What is the CLAT 2027 application fee?',
+          answer: 'The fee is ₹4,000 for General and OBC candidates (and NRI candidates for PG), and ₹3,500 for SC, ST, BPL and PwD candidates. Past question papers cost ₹500 extra. The fee is not refunded.'
+        },
+        {
+          question: 'Who is eligible for CLAT 2027 UG?',
+          answer: 'You need Class 12 or equivalent with at least 45% marks, or 40% for SC, ST and PwD candidates. Students writing Class 12 exams in March/April 2027 can apply. There is no upper age limit. Foreign nationals cannot take CLAT.'
+        },
+        {
+          question: 'What is the CLAT 2027 exam pattern?',
+          answer: 'The UG paper has 120 one-mark questions in 2 hours across English Language, Current Affairs including GK, Legal Reasoning, Logical Reasoning and Quantitative Techniques. A correct answer gets 1 mark and a wrong answer loses 0.25 marks.'
+        },
+        {
+          question: 'Has the CLAT 2027 syllabus changed?',
+          answer: 'No. The Consortium\'s Governing Body decided on 18 July 2026 that the syllabus and the pattern of the UG and PG papers will stay the same for CLAT 2027.'
+        },
+        {
+          question: 'Is there an essay in CLAT PG 2027?',
+          answer: 'No. CLAT PG 2027 has 120 objective questions in 2 hours, based on extracts from judgments, statutes and regulations, with 0.25 marks deducted for each wrong answer. There is no descriptive section.'
+        },
+        {
+          question: 'What CLAT rank is needed for NLSIU Bengaluru?',
+          answer: 'In the final 2026 allotment list, the last General category All India seat at NLSIU Bengaluru went to AIR 108. It was AIR 112 in 2025 and AIR 102 in 2024. Reserved categories close at higher ranks.'
+        },
+        {
+          question: 'How does CLAT counselling work?',
+          answer: 'The Consortium runs a single counselling for all member NLUs. In the 2026 cycle, you registered, paid ₹30,000 (₹20,000 for reserved categories), and listed at least 15 NLU preferences for UG. Seats were allotted in rounds, with Freeze and Float options after each round.'
+        },
+        {
+          question: 'Does NLU Delhi accept CLAT scores?',
+          answer: 'No. National Law University Delhi is not part of the CLAT Consortium. It admits students through its own entrance test, AILET.'
+        }
+      ]
+    },
     nmat: {
       // NMAT 2026 content package (docs/exam-content/nmat-2026.md in the backend repo).
       // Facts checked on mba.com (GMAC) and the NMIMS Admission Handout, NMAT 2026, on 8 Oct 2026.
