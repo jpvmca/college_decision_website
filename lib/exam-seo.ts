@@ -68,7 +68,7 @@ const COUNSELLING = new Set([
   'tnea', 'upsee', 'kcet', 'keam', 'mht-cet', 'mh-cet', 'wbjee', 'ojee', 'gujcet',
   'ts-eamcet', 'ap-eamcet', 'comedk-uget', 'jac', 'jac-delhi', 'pgcet'
 ]);
-const CUTOFF = new Set(['jee-main', 'jee-advanced', 'neet', 'gate', 'cat', 'bitsat', 'nata', 'clat', 'ailet', 'cuet-ug', 'ap-eapcet']);
+const CUTOFF = new Set(['jee-main', 'jee-advanced', 'neet', 'gate', 'cat', 'bitsat', 'nata', 'clat', 'ailet', 'cuet-ug', 'ap-eapcet', 'tnea', 'keam']);
 
 function strip(value: unknown) {
   return String(value || '').replace(/<[^>]+>/g, ' ').replace(/\s+/g, ' ').trim();
@@ -1751,22 +1751,33 @@ function overrides(year: number, institutes: number, feeRange: string | null): R
       ],
     },
     'keam': {
-      // Content package: docs/exam-content/keam-2027.md (backend). Official sources only, checked 13 Oct 2026. 2027 items are Expected.
+      // KEAM 2027 content package (backups/exam_keam_20261029 on the dev Mac). Facts from CEE Kerala only: KEAM 2026 Prospectus,
+      // KEAM 2026 notifications (dates, scores, rank list, allotment phases) and engineering last-rank lists, phase 2,
+      // 2025 and 2026 (cee.kerala.gov.in). Checked 29 Oct 2026. 2027 items are Expected.
       intent: 'general',
-      h1: "KEAM 2027: Exam Dates, Pattern, Index Mark, Eligibility & Fees",
-      title: "KEAM 2027: Exam Dates, Pattern, Index Mark, Eligibility & Fees",
-      description: "KEAM 2027 guide: Expected dates, 150-question CBT with +4/−1 marking, how the 600-point index mark works, 45% eligibility, ₹925 fee and allotment.",
-      keywords: ["KEAM 2027", "KEAM 2027 exam date", "KEAM exam pattern", "KEAM index mark", "KEAM normalisation", "KEAM eligibility", "KEAM application fee", "KEAM rank list", "CEE Kerala"],
-      intro: "KEAM 2027 is the CEE Kerala admission process for engineering, architecture, pharmacy and medical courses. The engineering CBT has 150 questions in 180 minutes, and rank comes from a 600-point index mark split equally between the entrance score and Class 12 PCM marks. KEAM 2027 is not yet announced; the application is Expected in January 2027.",
+      h1: 'KEAM 2027: Exam Date, Syllabus, Pattern, Eligibility & Cutoff',
+      title: 'KEAM 2027: Exam Date, Pattern, Syllabus & Cutoff',
+      description: 'KEAM 2027 exam date (Expected April), 150-question CBT with +4/−1 marking, 600-point index mark, eligibility, fees, reservation and 2025–2026 CEE last ranks.',
+      keywords: ['KEAM 2027', 'KEAM 2027 exam date', 'KEAM syllabus', 'KEAM exam pattern', 'KEAM eligibility', 'KEAM cutoff', 'KEAM last rank', 'KEAM index mark', 'KEAM application fee', 'KEAM allotment', 'CEE Kerala'],
+      intro: 'KEAM 2027 is not announced yet. CEE Kerala is expected to open the application in January 2027 and hold the engineering CBT in April 2027. This guide covers eligibility, the 150-question pattern, the 600-point index mark, syllabus, reservation codes, allotment and official CEE last ranks for 2025 and 2026.',
       ogImage: '/uploads/exams/keam/keam-2027-og.webp',
       absoluteTitle: true,
+      collegesNote: {
+        text: 'These Kerala engineering colleges have published profiles on CollegeDecision.in and fill B.Tech seats through KEAM and the CEE Kerala allotment. For branch-wise and category-wise last ranks from the official CEE lists,',
+        linkText: 'see the KEAM cutoff page',
+        href: '/exams/keam/cutoff'
+      },
       faqs: [
-        { question: "When is KEAM 2027?", answer: "CEE Kerala has not announced KEAM 2027. In 2026 applications ran from 5 to 31 January and the engineering CBT was held from 17 to 23 April. The 2027 application is Expected in January 2027." },
-        { question: "What is the KEAM exam pattern?", answer: "The engineering test is a computer-based test with 150 questions in 180 minutes: 75 Mathematics, 45 Physics and 30 Chemistry. Each correct answer earns 4 marks and each wrong answer loses 1." },
-        { question: "How is the KEAM rank calculated?", answer: "Engineering rank uses an index mark out of 600, giving equal weight to the normalised entrance score and normalised Class 12 marks in Mathematics, Physics and Chemistry in the ratio 5:3:2." },
-        { question: "What is the minimum score to qualify KEAM?", answer: "You need a normalised score of at least 10 in the engineering entrance test to appear on the rank list. SC and ST candidates are exempt, but anyone who answers no question is disqualified." },
-        { question: "What is the KEAM application fee?", answer: "In 2026 it was ₹925 for engineering or B.Pharm (₹400 for SC, nil for ST) and ₹650 for architecture or medical streams only (₹260 for SC). Choosing the UAE centre added ₹16,000." },
-        { question: "Is KEAM needed for MBBS or B.Arch in Kerala?", answer: "You apply through KEAM, but MBBS, BDS and allied courses use NEET-UG scores and B.Arch uses NATA marks with qualifying exam marks." }
+        { question: "When is KEAM 2027?", answer: "CEE Kerala has not announced KEAM 2027. It is Expected in April 2027, with applications in January 2027. In 2026 applications ran from 5 January to 6 February and the engineering CBT was held from 17 to 22 April." },
+        { question: "What is the KEAM exam pattern?", answer: "The engineering test is a computer-based test with 150 multiple-choice questions in 180 minutes: 75 Maths, 45 Physics and 30 Chemistry. Each correct answer earns 4 marks and each wrong one loses 1." },
+        { question: "How is the KEAM rank calculated?", answer: "The engineering index mark is out of 600. Half comes from your normalised entrance score and half from normalised Class 12 marks in Maths, Physics and Chemistry in the ratio 5:3:2." },
+        { question: "What is the minimum score to qualify KEAM?", answer: "You need a normalised score of at least 10 in the engineering test to enter the rank list. SC and ST candidates are exempt, but anyone who answers no question is disqualified." },
+        { question: "What is the KEAM eligibility for B.Tech?", answer: "A pass in Class 12 with Physics and Maths and Chemistry (or Computer Science, Biotechnology or Biology), with at least 45% in those three subjects together, and a minimum age of 17 on 31 December of the admission year." },
+        { question: "What is the KEAM application fee?", answer: "In 2026 it was ₹925 for engineering or B.Pharm (₹400 for SC, nil for ST) and ₹650 for architecture or medical streams only (₹260 for SC). A UAE centre added ₹16,000." },
+        { question: "What KEAM rank is needed for CET Trivandrum CSE?", answer: "In phase 2 of 2026 the last State Merit rank allotted for Computer Science at College of Engineering Trivandrum was 584, against 482 in 2025. Reserved categories close at higher ranks." },
+        { question: "What do SM, EZ, MU and EW mean in KEAM cutoffs?", answer: "They are allotment categories: SM is State Merit, EZ is Ezhava, MU is Muslim and EW is Economically Weaker Sections. BH, LA, DV, VK, KN, BX and KU are the other SEBC groups, and SC and ST are Scheduled Castes and Tribes." },
+        { question: "Is KEAM needed for MBBS or B.Arch in Kerala?", answer: "You apply through KEAM, but MBBS, BDS and AYUSH seats use NEET-UG scores and B.Arch uses NATA scores. There is no separate KEAM paper for those courses." },
+        { question: "Can students from other states apply for KEAM?", answer: "Yes, but with limits. NK I candidates (mainly children of central or Kerala government staff who studied in Kerala) compete for State Merit seats. NK II candidates, which covers most students from other states, cannot get government college seats; they can take private self-financing engineering seats, and government cost-sharing colleges only after phase 2 if seats remain. Communal reservation is only for Keralites." }
       ],
     },
     'mah-ar-cat': {
@@ -1838,12 +1849,34 @@ function overrides(year: number, institutes: number, feeRange: string | null): R
       ],
     },
     tnea: {
+      // TNEA 2027 content package (backups/exam_tnea_20261029 on the dev Mac). Facts from DoTE/tneaonline.org only: TNEA 2026
+      // Information Brochure, 2026 tentative schedule, counselling procedure, Information about Colleges 2026 and general academic
+      // provisional allotment lists 2023-2026 (static.tneaonline.org). Checked 29 Oct 2026. 2027 items are Expected.
       intent: 'counselling',
-      h1: `TNEA ${year}: Counselling, Cutoff, Colleges & Fees`,
-      title: `TNEA ${year}: Counselling, Cutoff, Engineering Colleges & Fees`,
-      description: `TNEA ${year} engineering counselling in Tamil Nadu: rank/cutoff context, seat allotment steps, ${colleges}, and fee ranges.${fees}`,
-      keywords: [`TNEA ${year}`, 'TNEA counselling', 'TNEA cutoff', 'TNEA colleges', 'Tamil Nadu engineering admission'],
-      intro: `Plan TNEA ${year} counselling with cutoff context, ${colleges}, and fee evidence for Tamil Nadu B.Tech/B.E. seats.`
+      h1: 'TNEA 2027: Cutoff Calculation, Rank List, Counselling & College Cutoffs',
+      title: 'TNEA 2027: Cutoff, Rank List, Counselling & Dates',
+      description: 'TNEA 2027 guide: cutoff out of 200 from Class 12 PCM, eligibility, Expected dates, 7.5% govt school quota, counselling rounds and 2023–2026 college cutoffs.',
+      keywords: ['TNEA 2027', 'TNEA cutoff', 'TNEA cutoff calculation', 'TNEA rank list', 'TNEA counselling 2027', 'TNEA 2027 registration', 'TNEA 7.5 reservation', 'TNEA choice filling', 'tneaonline', 'Tamil Nadu engineering admission 2027'],
+      intro: 'TNEA 2027 has not been notified yet. DoTE is expected to open registration on tneaonline.org in May 2027 (it opened on 3 May in 2026). There is no entrance exam: your rank comes from Class 12 Maths, Physics and Chemistry, reduced to 200. This guide covers eligibility, the cutoff formula, dates, the 7.5% quota, counselling and official college-wise cutoffs for 2023 to 2026.',
+      ogImage: '/uploads/exams/tnea/tnea-2027-overview.webp',
+      absoluteTitle: true,
+      collegesNote: {
+        text: 'These Tamil Nadu engineering colleges fill B.E./B.Tech seats through TNEA counselling run by DoTE. For branch-wise and community-wise cutoff marks taken from the official allotment lists,',
+        linkText: 'see the TNEA cutoff page',
+        href: '/exams/tnea/cutoff'
+      },
+      faqs: [
+        { question: 'Is there an entrance exam for TNEA?', answer: 'No. TNEA ranks you on your Class 12 marks in Mathematics, Physics and Chemistry, reduced to 200 (Maths 100, Physics 50, Chemistry 50). You register online at tneaonline.org and take part in counselling.' },
+        { question: 'How do I calculate my TNEA cutoff?', answer: 'Cutoff = Maths % + Physics % / 2 + Chemistry % / 2. For example, 96 in Maths, 90 in Physics and 88 in Chemistry gives 96 + 45 + 44 = 185 out of 200. Marks from other boards are first scaled to the Tamil Nadu State Board pattern.' },
+        { question: 'When will TNEA 2027 registration start?', answer: 'DoTE has not announced it yet. It is expected in May 2027. In 2026 registration opened on 3 May and closed on 5 June, the rank list came out on 1 July and general counselling ran from 20 July to 30 August.' },
+        { question: 'What is the minimum mark needed to apply for TNEA?', answer: 'An average of 45% in Maths, Physics and Chemistry for General (OC) candidates and 40% for BC, BCM, MBC&DNC, SC, SCA and ST candidates, as per the 2026 brochure. Improvement exam marks are not considered.' },
+        { question: 'What is the TNEA registration fee?', answer: 'In 2026 it was ₹500 for OC, BC, BCM and MBC&DNC candidates and ₹250 for SC, SCA and ST candidates from Tamil Nadu, paid online.' },
+        { question: 'What is the 7.5% reservation in TNEA?', answer: '7.5% of seats are set aside preferentially for students who studied Classes 6 to 12 in Tamil Nadu government schools. The government pays their tuition, hostel and development fees.' },
+        { question: 'How are TNEA ties broken?', answer: 'By higher Maths marks, then Physics, then the fourth optional subject, then total Class 12 percentage, then date of birth (older first) and finally the random number assigned by DoTE (higher first).' },
+        { question: 'What does Accept and Upward mean in TNEA?', answer: 'You keep the seat you were allotted but stay in line for a higher choice in the upward movement. If nothing better opens, you keep the current seat. You pay the tuition fee and lodge certificates at a TNEA Facilitation Centre.' },
+        { question: 'What was the TNEA 2026 cutoff for CSE at CEG Guindy?', answer: 'In the 2026 general academic allotment lists, the lowest OC aggregate allotted CSE at the CEG campus was 200 out of 200, the same as in 2023, 2024 and 2025. See our TNEA cutoff page for every college, branch and community.' },
+        { question: 'How many rounds are there in TNEA counselling?', answer: 'In 2026 general academic counselling ran in three rounds by mark band: 200 to 171.333, 171 to 135.75 and 135.5 to 77.5. Special reservation counselling came first, and supplementary rounds followed after the +2 supplementary results.' }
+      ],
     },
     'nchmct-jee': {
       intent: 'general',
