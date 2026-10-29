@@ -296,12 +296,59 @@ function overrides(year: number, institutes: number, feeRange: string | null): R
       ]
     },
     neet: {
-      intent: 'cutoff',
-      h1: `NEET ${year}: Eligibility, Cutoff, Colleges & Fees`,
-      title: `NEET ${year}: Eligibility, Cutoff, Medical Colleges & Fees`,
-      description: `Preparing for NEET ${year}? Review eligibility, cutoff context, counselling routes, ${colleges}, and medical/dental fee ranges before you apply.${fees}`,
-      keywords: [`NEET ${year}`, 'NEET eligibility', 'NEET cutoff', 'colleges accepting NEET', 'NEET counselling'],
-      intro: `This NEET ${year} guide summarises eligibility, cutoff and counselling context, plus ${colleges} with recorded fee ranges for medical pathways.`
+      // NEET UG 2027 content package (docs/exam-content/neet-2027.md in the backend repo).
+      // Facts from the NEET (UG) 2026 bulletin, NTA result notices 2023–2026 and the MCC Round 1 2026 allotment list, checked on 29 Oct 2026.
+      intent: 'general',
+      h1: 'NEET UG 2027: Exam Date, Eligibility, Pattern, Syllabus & Cutoff',
+      title: 'NEET UG 2027: Exam Date, Syllabus, Pattern, Eligibility',
+      description: 'NEET UG 2027 dates, eligibility, 720-mark pattern, syllabus, fees, 2023–2026 qualifying cutoff and MCC AIQ MBBS closing ranks for top colleges.',
+      keywords: ['NEET UG 2027', 'NEET 2027 exam date', 'NEET 2027', 'NEET eligibility', 'NEET exam pattern', 'NEET syllabus 2027', 'NEET cutoff', 'NEET 2026 cutoff', 'NEET qualifying marks', 'NEET MBBS cutoff', 'NEET counselling', 'MCC counselling'],
+      intro: 'NTA has not announced the NEET UG 2027 dates yet. Going by the 2026 cycle, applications are expected in February–March 2027 and the exam in May 2027. This guide covers eligibility, the 180-question pattern, syllabus, fees, qualifying cutoffs for 2023–2026, MCC counselling and AIQ MBBS closing ranks, using NTA and MCC documents.',
+      ogImage: '/uploads/exams/neet/neet-ug-2027-og.webp',
+      absoluteTitle: true,
+      collegesNote: {
+        text: 'Every MBBS, BDS and AYUSH college in India admits through NEET UG. Government seats are split between the 15% All India Quota (MCC) and the 85% state quota, so the rank you need depends on the quota you apply under.',
+        linkText: 'see college-wise NEET cutoffs',
+        href: '/exams/neet/cutoff'
+      },
+      faqs: [
+        {
+          question: 'When is NEET UG 2027?',
+          answer: 'NTA has not announced the NEET UG 2027 exam date as of 29 October 2026. Based on past cycles, it is expected in May 2027. The 2026 exam was first held on 3 May 2026, cancelled, and held again on 21 June 2026.'
+        },
+        {
+          question: 'Will NEET UG 2027 be computer-based?',
+          answer: 'The Union Education Minister has said NEET UG will move to a computer-based test from 2027, but NTA has not notified it yet. NEET 2026 was a pen-and-paper (OMR) test. The 2027 information bulletin will confirm the mode.'
+        },
+        {
+          question: 'Who is eligible for NEET UG 2027?',
+          answer: 'You must be at least 17 on or before 31 December 2027, and there is no upper age limit. You need Class 12 with Physics, Chemistry, Biology/Biotechnology and English, with at least 50% in PCB (40% for SC, ST and OBC-NCL, and 45% for General PwBD). Class 12 students can apply.'
+        },
+        {
+          question: 'What is the NEET UG exam pattern?',
+          answer: 'NEET UG has 180 compulsory questions for 720 marks in 3 hours: Physics 45, Chemistry 45 and Biology (Botany and Zoology) 90. A correct answer gets 4 marks and a wrong answer loses 1 mark.'
+        },
+        {
+          question: 'What is the NEET UG application fee?',
+          answer: 'In 2026 the fee was ₹1,700 for General, ₹1,600 for General-EWS and OBC-NCL, ₹1,000 for SC, ST, PwBD and Third Gender candidates, and ₹9,500 for centres outside India. The 2027 fee will be in the new bulletin.'
+        },
+        {
+          question: 'What was the NEET 2026 qualifying cutoff?',
+          answer: 'In 2026, General and EWS candidates needed 213 out of 720 (50th percentile), and SC, ST and OBC candidates needed 177 (40th percentile). General PwBD needed 194. About 11.21 lakh candidates qualified.'
+        },
+        {
+          question: 'What NEET rank is needed for AIIMS Delhi?',
+          answer: 'In MCC Round 1 of 2026, the last General (Open) MBBS seat at AIIMS New Delhi went to AIR 52. It closed at 192 for OBC, 292 for EWS, 793 for SC and 987 for ST.'
+        },
+        {
+          question: 'How does NEET UG counselling work?',
+          answer: 'MCC (mcc.nic.in) fills the 15% All India Quota in government colleges and all seats at AIIMS, JIPMER, central and deemed universities. Each state fills the remaining 85% of government seats and state quota seats in private colleges. In 2026 MCC ran three rounds and a stray vacancy round.'
+        },
+        {
+          question: 'Has the NEET UG syllabus changed for 2027?',
+          answer: 'NMC sets the syllabus. For 2026 it was the same as the previous year, based on NCERT Class 11 and 12. NMC has not announced any change for 2027 yet, so check nmc.org.in when the bulletin comes out.'
+        }
+      ]
     },
     cat: {
       intent: 'cutoff',
