@@ -43,6 +43,7 @@ export default function ExamCutoffsClient({ slug, examLabel, initial, heading }:
       {facets.quotas.length > 1 && sel('quota', 'Quota', [...(facets.quotas.some((q) => q.code === 'AI' || q.code === 'OS') ? [{ value: 'AI_OS', label: 'All India / Other State' }] : []), ...facets.quotas.map((c) => ({ value: c.code, label: c.label }))])}
       {facets.genders.length > 1 && sel('gender', 'Seat pool', facets.genders.map((c) => ({ value: c.code, label: c.label })))}
       {slug === 'jee-main' && sel('paper', 'Programme type', [{ value: 'btech', label: 'B.E./B.Tech (Paper 1)' }, { value: 'barch', label: 'B.Arch / B.Planning (Paper 2)' }])}
+      {slug === 'ailet' && sel('paper', 'Programme', [{ value: 'ballb', label: 'BA LLB (Hons.)' }, { value: 'llm', label: 'LL.M.' }])}
       <button type="button" className="button" onClick={() => { setError(false); setState(initial); }} disabled={loading}>Reset</button>
     </div>}
     {error && <p role="alert">Could not load cutoffs. Please try again.</p>}
