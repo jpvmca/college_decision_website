@@ -1750,6 +1750,36 @@ function overrides(year: number, institutes: number, feeRange: string | null): R
         { question: 'What is a TFW seat in WBJEE counselling?', answer: 'A Tuition Fee Waiver seat waives tuition fees for West Bengal domicile students whose family income is below ₹2.5 lakh a year. Other fees still apply, and TFW seats appear as separate choices during choice filling.' }
       ],
     },
+    'comedk-uget': {
+      // COMEDK UGET 2027 content package (backups/exam_comedk_20261029 on the dev Mac). Facts from comedk.org only: UGET 2026
+      // Information Brochure, counselling notification (29.05.2026), Counselling Process Document 2026, 2026 seat/fee matrix and
+      // official cut-off rank PDFs 2023-2026. Checked 29 Oct 2026. 2027 items are Expected.
+      intent: 'general',
+      h1: 'COMEDK UGET 2027: Exam Date, Syllabus, Pattern, Eligibility & Cutoff',
+      title: 'COMEDK UGET 2027: Exam Date, Pattern, Eligibility & Cutoff',
+      description: 'COMEDK UGET 2027 exam date (Expected May), 180-question CBT with no negative marking, eligibility, fees, counselling and 2023–2026 closing ranks.',
+      keywords: ['COMEDK UGET 2027', 'COMEDK 2027 exam date', 'COMEDK syllabus', 'COMEDK exam pattern', 'COMEDK eligibility', 'COMEDK application fee', 'COMEDK cutoff', 'COMEDK counselling', 'COMEDK closing rank', 'COMEDK vs KCET', 'KKR quota'],
+      intro: 'COMEDK UGET 2027 is not announced yet. COMEDK usually holds the test in May; in 2026 it was on Saturday, 9 May. This guide covers eligibility, the 180-question pattern, syllabus, fees, counselling rounds, the KKR quota and official COMEDK closing ranks for 2023 to 2026.',
+      ogImage: '/uploads/exams/comedk-uget/comedk-uget-og.webp',
+      absoluteTitle: true,
+      collegesNote: {
+        text: 'These Karnataka colleges have published profiles on CollegeDecision.in and fill B.E./B.Tech seats through COMEDK counselling. For branch-wise GM and KKR closing ranks from the official COMEDK cut-off PDFs,',
+        linkText: 'see the COMEDK cutoff page',
+        href: '/exams/comedk-uget/cutoff'
+      },
+      faqs: [
+        { question: 'When is COMEDK UGET 2027?', answer: 'COMEDK has not announced it yet. The exam is Expected in May 2027. It was held on Saturday, 9 May in 2026 and on Saturday, 10 May in 2025.' },
+        { question: 'Is there negative marking in COMEDK UGET?', answer: 'No. Each correct answer gets one mark and wrong answers lose nothing, so you should attempt all 180 questions.' },
+        { question: 'How many questions are there in COMEDK UGET?', answer: 'There are 180 multiple-choice questions: 60 each in Physics, Chemistry and Mathematics, for a total of 180 marks.' },
+        { question: 'What is the COMEDK application fee?', answer: 'In 2026 it was ₹1,950 for COMEDK UGET alone, ₹1,600 for Uni-GAUGE alone and ₹3,200 for both, plus transaction charges.' },
+        { question: 'Can students from outside Karnataka take COMEDK UGET?', answer: 'Yes. General Merit seats are open to candidates from all states on equal terms. Only KKR seats need a Kalyana Karnataka certificate and Karnataka domicile.' },
+        { question: 'What marks do I need in Class 12 to be eligible?', answer: 'You need at least 45% in Physics, Mathematics and your optional subject, or 40% if you are a Karnataka SC, ST or OBC candidate, and you must pass each subject.' },
+        { question: 'What is the KKR quota in COMEDK?', answer: 'It is the reservation for the Kalyana Karnataka Region under Article 371(J). In 2026 there were 3,739 KKR seats, and 70% of seats in colleges in that region go to local candidates.' },
+        { question: 'How many counselling rounds does COMEDK hold?', answer: 'In 2026 there was a mock round and four rounds: Round 1 for GM and KKR, Round 2 for KKR only, and Rounds 3 and 4 for GM only.' },
+        { question: 'What is the COMEDK counselling fee?', answer: 'The counselling registration fee was ₹2,000 in 2026 and it is non-refundable.' },
+        { question: 'What rank is needed for RV College of Engineering CSE through COMEDK?', answer: 'The CSE GM seat at RVCE closed at rank 510 after Round 4 in 2026 and at 692 after all rounds in 2025. Treat these as a guide; cutoffs shift each year.' }
+      ],
+    },
     'keam': {
       // KEAM 2027 content package (backups/exam_keam_20261029 on the dev Mac). Facts from CEE Kerala only: KEAM 2026 Prospectus,
       // KEAM 2026 notifications (dates, scores, rank list, allotment phases) and engineering last-rank lists, phase 2,
