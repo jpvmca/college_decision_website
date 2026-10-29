@@ -13,6 +13,7 @@ import { formatLpa } from '../../../lib/packages';
 import ReadableHtml from '../../../components/ReadableHtml';
 import { readableBlocks, splitLead } from '../../../lib/readable-html';
 import { getLinkResolver } from '../../../lib/internal-link-index';
+import { plainText, readableLines, PROGRAMME_HEADING_START, isShortText, withFullStop } from '../../../lib/readable-text';
 
 type CollegeProfile = {
   institute: {
@@ -294,8 +295,20 @@ function packageValue(value: number | string | null | undefined) {
 }
 
 function text(value: unknown, fallback = 'Not listed') {
-  const clean = String(value || '').replace(/<[^>]+>/g, ' ').replace(/\s+/g, ' ').trim();
-  return clean || fallback;
+  return plainText(value, fallback);
+}
+
+/** Eligibility row for a course group: prefer a regular programme over a lateral-entry one. */
+function groupEligibilitySource<T extends { eligibility?: string | null; programme_name?: string | null }>(programmes: T[]) {
+  const withText = programmes.filter((item) => text(item.eligibility, ''));
+  return withText.find((item) => !/lateral/i.test(String(item.programme_name || ''))) || withText[0];
+}
+
+function EligibilityText({ value, label }: { value: unknown; label?: string }) {
+  const lines = readableLines(value);
+  if (!lines.length) return null;
+  if (isShortText(lines)) return <>{label ? <>{label} </> : null}{withFullStop(lines[0])}</>;
+  return <span className="eligibility-block">{label && <span className="eligibility-label">{label}</span>}<ul className="eligibility-lines">{lines.map((line, index) => { const head = line.match(PROGRAMME_HEADING_START); return <li key={index}>{head ? <><strong className="eligibility-programme">{head[1]}</strong><br />{line.slice(head[0].length)}</> : line}</li>; })}</ul></span>;
 }
 
 function keywordText(value: unknown) {
@@ -408,7 +421,7 @@ function profileFaqs(profile: CollegeProfile, name: string, location: string) {
   const rankings = cleanRankings(profile.rankings).rows;
   if (rankings.length) faqs.push({ question: `What is the ranking of ${name}?`, answer: `${name} is ranked ${rankings.slice(0, 2).map((item) => `${item.rank}${item.course ? ` (${item.course})` : ''} by ${item.label}${item.year ? ` ${item.year}` : ''}`).join(' and ')}.` });
   if (profile.reviewSummary.count && profile.reviewSummary.averageRating) faqs.push({ question: `What is the student rating of ${name}?`, answer: `${name} has an average rating of ${profile.reviewSummary.averageRating.toFixed(1)} out of 5 from ${profile.reviewSummary.count} active review(s).` });
-  if (profile.recruiters.length) faqs.push({ question: `Which recruiters are associated with ${name}?`, answer: `The available records include recruiters such as ${profile.recruiters.slice(0, 6).map((item) => item.name).join(', ')}.` });
+  if (profile.recruiters.length) faqs.push({ question: `Which recruiters are associated with ${name}?`, answer: `The available records include recruiters such as ${profile.recruiters.slice(0, 6).map((item) => plainText(item.name)).join(', ')}.` });
   if (profile.institute.instituteType) faqs.push({ question: `Is ${name} government or private?`, answer: `${name} is recorded as a ${profile.institute.instituteType.toLowerCase()} in the current profile data.` });
   if (location) faqs.push({ question: `Where is ${name} located?`, answer: `${name} is listed in ${location}.` });
   if (profile.institute.website) faqs.push({ question: `Where can I verify ${name} admission details?`, answer: `Use the official ${name} website for current admission dates, eligibility, fees and application instructions.` });
@@ -703,8 +716,9 @@ export default async function CollegeProfilePage({ params }: { params: Promise<{
       <SectionHeading icon={BookOpen}>Courses and Programmes Offered</SectionHeading>
       <div className="programme-groups" id="programme-groups">{programmeGroups.map((group, groupIndex) => <div key={group.name} className="programme-group" data-course-ids={[...new Set(group.programmes.map((programme) => programme.course_id))].join(',')}><h3>{group.heading}<CollegeApply compact collegeSlug={slug} collegeName={name} courses={applyCourses} courseIds={[...new Set(group.programmes.map((programme) => Number(programme.course_id)))]} label="Apply" /></h3><div className="profile-list">
         {(() => {
-          const groupEligibility = text(group.programmes.find((item) => item.eligibility)?.eligibility, '');
-          const renderProgramme = (programme: CollegeProfile['programmes'][number]) => <p key={programme.programme_id}><strong>{text(programme.programme_name, programme.course_name)}</strong>{programme.duration ? ` – ${programme.duration} years` : ''}{programme.eligibility && text(programme.eligibility, '') !== groupEligibility ? ` – ${text(programme.eligibility)}` : ''}{(() => { const href = findPublishedHrefByName(linkableEntities, 'course', programme.course_name); const label = text(programme.course_name); if (!href || linkedCourseHrefs.has(href)) return null; linkedCourseHrefs.add(href); return <> · <Link href={href}>{label} profile</Link></>; })()}</p>;
+          const groupEligibility = text(groupEligibilitySource(group.programmes)?.eligibility, '');
+          const shownEligibility = new Set<string>([groupEligibility]);
+          const renderProgramme = (programme: CollegeProfile['programmes'][number]) => { const ownKey = text(programme.eligibility, ''); const own = ownKey && !shownEligibility.has(ownKey) ? programme.eligibility : null; if (own) shownEligibility.add(ownKey); const long = own ? !isShortText(readableLines(own)) : false; return <div key={programme.programme_id} className={long ? 'programme-row programme-row-long' : 'programme-row'}><strong>{text(programme.programme_name, programme.course_name)}</strong>{programme.duration ? ` – ${programme.duration} years` : ''}{own && !long ? <> – <EligibilityText value={own} /></> : null}{(() => { const href = findPublishedHrefByName(linkableEntities, 'course', programme.course_name); const label = text(programme.course_name); if (!href || linkedCourseHrefs.has(href)) return null; linkedCourseHrefs.add(href); return <> · <Link href={href}>{label} profile</Link></>; })()}{own && long ? <EligibilityText value={own} label="Eligibility:" /> : null}</div>; };
           // Large colleges: the first 8 course groups show up to 10 programmes; later groups start collapsed.
           const visibleCount = groupIndex < 8 ? PROGRAMMES_VISIBLE : 0;
           const visible = group.programmes.slice(0, visibleCount);
@@ -731,8 +745,8 @@ export default async function CollegeProfilePage({ params }: { params: Promise<{
     {(profile.programmes.some((programme) => programme.eligibility) || profile.exams.length > 0) && <section id="admission">
       <SectionHeading icon={ClipboardCheck}>Admission Process and Eligibility</SectionHeading>
       {profile.programmes.some((programme) => programme.eligibility) && <><h3>Eligibility Criteria by Course</h3><div className="profile-list">{programmeGroups.map((group) => {
-        const eligibility = group.programmes.find((programme) => programme.eligibility)?.eligibility;
-        return eligibility ? <p key={group.name}><strong>{group.name}:</strong> {text(eligibility)}.</p> : null;
+        const eligibility = groupEligibilitySource(group.programmes)?.eligibility;
+        return eligibility ? <div key={group.name} className="programme-row"><strong>{group.name}:</strong> <EligibilityText value={eligibility} /></div> : null;
       })}</div></>}
       {profile.exams.length > 0 && <><h3>Entrance Exams Accepted</h3><div className="profile-chips">{profile.exams.map((exam) => {
         const href = findPublishedHref(linkableEntities, 'exam', exam.slug);
@@ -755,7 +769,7 @@ export default async function CollegeProfilePage({ params }: { params: Promise<{
       {(placements.lines.length > 0 || placements.wide.length > 0) && <><h3>Placement Highlights{placements.years.length ? ` (${placements.years.length > 1 ? `${placements.years[placements.years.length - 1]}–${placements.years[0]}` : placements.years[0]})` : ''}</h3><PlacementChart rows={placements.chart} />
         {placements.wide.length > 0 && <div className="profile-list">{placements.wide.map((item) => <p key={`wide-${item.year}`}><strong>{profile.institute.isUniversity ? 'University' : 'Institute'}-wide highest package ({item.year}):</strong> {packageValue(item.highest)}, the same figure listed for {item.programmes} programmes, so it is shown once here.</p>)}</div>}
         {placements.lines.length > 0 && <div className="profile-list">{placements.lines.map((line) => <p key={`${line.course}-${line.year}`}><strong>{line.course} ({line.year}):</strong> {placementLineText(line)}.</p>)}</div>}</>}
-      {profile.recruiters.length > 0 && <><h3>Top Recruiters</h3><p>{profile.recruiters.slice(0, 50).map((recruiter) => recruiter.name).join(', ')}{profile.recruiters.length > 50 ? ` and ${profile.recruiters.length - 50} more` : ''}.</p></>}
+      {profile.recruiters.length > 0 && <><h3>Top Recruiters</h3><p>{profile.recruiters.slice(0, 50).map((recruiter) => plainText(recruiter.name)).join(', ')}{profile.recruiters.length > 50 ? ` and ${profile.recruiters.length - 50} more` : ''}.</p></>}
       {(placements.lines.length > 0 || placements.wide.length > 0) && <><h3>Placement Data Disclaimer</h3><p>Package units, currency and placement percentages are not fully specified in the source. Treat these figures as indicative and verify the latest official placement report.</p></>}
     </section>}
 
@@ -771,7 +785,7 @@ export default async function CollegeProfilePage({ params }: { params: Promise<{
     {profile.faculty.length > 0 && <section id="faculty">
       <SectionHeading icon={Users}>Faculty and Departments</SectionHeading>
       <h3>Key Faculty Members</h3><div className="profile-list">{(() => {
-        const renderMember = (member: CollegeProfile['faculty'][number], index: number) => <p key={`${member.name}-${member.position}-${index}`}><strong>{member.name}</strong>{member.position ? ` – ${member.position}` : ''}{member.education ? ` (${member.education})` : ''}</p>;
+        const renderMember = (member: CollegeProfile['faculty'][number], index: number) => <p key={`${member.name}-${member.position}-${index}`}><strong>{plainText(member.name)}</strong>{member.position ? ` – ${plainText(member.position)}` : ''}{member.education ? ` (${plainText(member.education)})` : ''}</p>;
         const rest = profile.faculty.slice(PROGRAMMES_VISIBLE);
         return <>{profile.faculty.slice(0, PROGRAMMES_VISIBLE).map(renderMember)}{rest.length > 0 && <details className="profile-more"><summary>Show all {profile.faculty.length} faculty members</summary>{rest.map((member, index) => renderMember(member, index + PROGRAMMES_VISIBLE))}</details>}</>;
       })()}</div>

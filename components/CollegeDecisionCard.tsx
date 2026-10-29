@@ -8,6 +8,7 @@ import LinkedTextParts from './LinkedTextParts';
 import Link from 'next/link';
 import { findPublishedHrefByName, linkAdmissionRouteParts, type LinkableEntity } from '../lib/auto-link-entities';
 import { formatLpa } from '../lib/packages';
+import { plainText } from '../lib/readable-text';
 
 export type CollegeDecisionResult = {
   instituteId: number;
@@ -105,7 +106,7 @@ export default function CollegeDecisionCard({ item, showCompare = true, showRevi
     <p className="college-location">{item.city || 'Location not listed'}, {item.state || 'India'}</p>
     {(hasAmount(item.lowestFee) || item.duration) && <div className="college-facts">{hasAmount(item.lowestFee) && <span>Lowest fee <b>{money(item.lowestFee)}</b></span>}{item.duration && <span>Duration <b>{durationLabel(item.duration)}</b></span>}</div>}
     {(item.averageYearFee || item.averagePackage || item.highestPackage || item.nirfRank || (showReviews && item.reviewCount)) && <div className="decision-card-highlights">{showReviews && item.reviewCount && <span>Student reviews <b>{item.reviewCount}{item.averageRating ? ` · ${Number(item.averageRating).toFixed(1)}/5` : ''}</b></span>}{item.averageYearFee && <span>Average yearly fee <b>{money(item.averageYearFee)}</b></span>}{item.averagePackage && packageMoney(item.averagePackage) && <span>Average placement <b>{packageMoney(item.averagePackage)}</b></span>}{item.highestPackage && packageMoney(item.highestPackage) && <span>Highest placement <b>{packageMoney(item.highestPackage)}</b></span>}{item.nirfRank && <span>NIRF <b>Rank {item.nirfRank}{item.nirfOutOf ? ` / ${item.nirfOutOf}` : ''}</b></span>}</div>}
-    <p><b>Eligibility:</b> <ExpandableText text={item.eligibility || 'Check the latest official notice.'} /></p>
+    <p><b>Eligibility:</b> <ExpandableText text={plainText(item.eligibility, 'Check the latest official notice.')} /></p>
     <p><b>Admission route:</b> {admissionParts?.length ? <LinkedTextParts parts={admissionParts} /> : (item.admissionRoutes || 'Not listed')}</p>
     <div className="decision-result-actions">{!item.publishedSlug && <CollegeViewDetailsModal instituteId={item.instituteId} courseId={item.courseId} courseName={item.programmeName} />}<DecisionActions showCompare={showCompare} instituteId={item.instituteId} courseId={item.courseId} instituteName={item.instituteName} programmeName={item.programmeName} duration={item.duration} eligibility={item.eligibility} fee={money(item.lowestFee)} instituteType={item.instituteType} city={item.city} state={item.state} averagePackage={item.averagePackage} highestPackage={item.highestPackage} admissionRoutes={item.admissionRoutes} /></div>
   </article>;

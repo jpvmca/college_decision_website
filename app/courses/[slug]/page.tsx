@@ -10,6 +10,7 @@ import AutoLinkedText from '../../../components/AutoLinkedText';
 import { formatLpa } from '../../../lib/packages';
 import CourseGeoLinks from '../../../components/CourseGeoLinks';
 import { splitLongParagraphs } from '../../../lib/readable-html';
+import { plainText } from '../../../lib/readable-text';
 
 type CourseProfile = {
   course: {
@@ -112,7 +113,7 @@ function profileFaqs(profile: CourseProfile, name: string, curated?: Array<{ que
   if (profile.placements.some((item) => Number(item.average_package) > 0)) addFaq(`What is the average package after ${name}?`, `The available placement records include average package values such as ${packageValue(profile.placements.find((item) => Number(item.average_package) > 0)?.average_package)}. Values can vary by year and specialisation.`);
   if (profile.rankings.length) addFaq(`Is ${name} ranked?`, `The profile contains ${profile.rankings.length} active ranking record(s), including ${profile.rankings.slice(0, 2).map((item) => `${item.ranking_body} rank ${item.rank}`).join(' and ')}.`);
   if (profile.reviewSummary.count && profile.reviewSummary.averageRating) addFaq(`What is the student rating for ${name}?`, `${name} has an average rating of ${profile.reviewSummary.averageRating.toFixed(1)} out of 5 from ${profile.reviewSummary.count} active review(s).`);
-  if (profile.recruiters.length) addFaq(`Which recruiters hire ${name} graduates?`, `The available records include recruiters such as ${profile.recruiters.slice(0, 6).map((item) => item.name).join(', ')}.`);
+  if (profile.recruiters.length) addFaq(`Which recruiters hire ${name} graduates?`, `The available records include recruiters such as ${profile.recruiters.slice(0, 6).map((item) => plainText(item.name)).join(', ')}.`);
   addFaq(`What is the syllabus for ${name}?`, `The syllabus usually combines foundation subjects, practical learning, projects and course-specific electives. Check the target institute's latest semester-wise syllabus.`);
   addFaq(`How does ${name} admission work?`, `Check eligibility, accepted merit or entrance routes, application deadlines, selection stages and the final fee schedule with the target institute.`);
   addFaq(`What is the cutoff for ${name}?`, `Cutoffs vary by institute, exam, category, course format and admission year. Use the latest official notification rather than an old general estimate.`);

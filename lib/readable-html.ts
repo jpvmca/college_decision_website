@@ -206,7 +206,7 @@ function blocks(nodes: Array<Node | string>, opts: Opts, out: string[]) {
 }
 
 /** Find sentence ends in an inline HTML string, only outside tags and outside open inline elements. */
-function sentenceBreaks(html: string): number[] {
+export function sentenceBreaks(html: string): number[] {
   const breaks: number[] = [];
   let depth = 0;
   const re = /<\/?([a-z0-9]+)[^>]*>|([.?!])(["”’)]?)(\s+)(?=(?:<(?:strong|b|em|i)>)?["“(]?[A-Z0-9])/gi;
