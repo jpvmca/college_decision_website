@@ -1738,23 +1738,33 @@ function overrides(year: number, institutes: number, feeRange: string | null): R
       ],
     },
     'mh-cet': {
-      // Content package: docs/exam-content/mh-cet-2027.md (backend). Official sources only, checked 13 Oct 2026. 2027 items are Expected.
+      // MHT CET 2027 content package (backups/exam_mhtcet_20261029 on the dev Mac). Facts from the State CET Cell only: MHT-CET 2026
+      // Information Brochure, 2026 date/result notices, CET Cell circular of 19 Oct 2026 (2027 dates not announced), CAP Information
+      // Brochure 2026-27 and official engineering CAP cut-off lists 2023-2026 (fe2026.mahacet.org). 2027 plan per Indian Express, 10 Oct 2026. Checked 29 Oct 2026.
       intent: 'general',
-      h1: "MHT CET 2027: Exam Dates, Pattern, Eligibility, Fees & CAP",
-      title: "MHT CET 2027: Exam Dates, Pattern, Eligibility, Fees & CAP",
-      description: "MHT CET 2027 guide: Expected dates, the 2026 two-attempt format, PCM/PCB pattern with no negative marking, 45% eligibility, fees and CAP seat rules.",
-      keywords: ["MHT CET 2027", "MHT CET 2027 exam date", "MHT CET exam pattern", "MHT CET eligibility", "MHT CET two attempts", "MHT CET percentile", "MHT CET fees", "MHT CET CAP", "MH CET 2027"],
-      intro: "MHT CET 2027 is the State CET Cell, Maharashtra entrance test for engineering (PCM) and pharmacy (PCB) admissions through CAP. It is a 180-minute CBT with no negative marking. In 2026 students could take each group twice, in April and May. MHT CET 2027 is not yet announced; registration is Expected in January–February 2027.",
+      h1: 'MHT CET 2027: Exam Date, Syllabus, Pattern, Eligibility & Cutoff',
+      title: 'MHT CET 2027: Exam Date, Syllabus, Pattern & Cutoff',
+      description: 'MHT CET 2027 exam date (expected March–May), two attempts, PCM/PCB pattern, syllabus, fees, eligibility, CAP seat types and 2023–2026 college cutoffs.',
+      keywords: ['MHT CET 2027', 'MHT CET 2027 exam date', 'MHT CET syllabus', 'MHT CET exam pattern', 'MHT CET eligibility', 'MHT CET application fee', 'MHT CET cutoff', 'MHT CET CAP', 'MHT CET percentile', 'MHT CET two attempts', 'MH CET 2027'],
+      intro: 'MHT CET 2027 dates are not announced yet. The State CET Cell is expected to open registration in January–February 2027 and hold both attempts after the Class 12 boards, between March and May 2027. This guide covers eligibility, pattern, syllabus, fees, CAP counselling, HU/OHU seat types and official CAP cut-offs for 2023 to 2026.',
       ogImage: '/uploads/exams/mh-cet/mht-cet-2027-og.webp',
       absoluteTitle: true,
+      collegesNote: {
+        text: 'These Maharashtra engineering colleges have published profiles on CollegeDecision.in and fill first-year B.E./B.Tech seats through MHT CET and CAP. For branch-wise closing percentiles and merit numbers from the official CAP lists,',
+        linkText: 'see the MHT CET cutoff page',
+        href: '/exams/mh-cet/cutoff'
+      },
       faqs: [
-        { question: "When is MHT CET 2027?", answer: "The State CET Cell has not announced MHT CET 2027. In 2026 registration ran from 10 January to 12 February, the PCM group was held from 11 to 20 April and the PCB group from 21 to 26 April, with second attempts in May." },
-        { question: "Will MHT CET 2027 have two attempts?", answer: "Not confirmed. In 2026 students could take each group twice and the better total percentile counted. Check the 2027 brochure when it is released." },
-        { question: "Is there negative marking in MHT CET?", answer: "No. The 2026 brochure states there is no negative marking for either PCM or PCB." },
-        { question: "What is the MHT CET exam pattern?", answer: "PCM has 150 questions in 180 minutes, with Physics and Chemistry at one mark each and Mathematics at two marks each. PCB has 200 one-mark questions. Physics and Chemistry come first for 90 minutes, then Maths or Biology." },
-        { question: "What is the eligibility for B.E. admission through MHT CET?", answer: "10+2 with Physics and Mathematics plus a listed subject, at least 45% in those subjects (40% for Maharashtra reserved, EWS and PwD) and a non-zero score in every PCM subject of MHT CET." },
-        { question: "What is the MHT CET application fee?", answer: "In 2026 it was ₹1,300 per group per attempt for general and outside-Maharashtra candidates and ₹1,000 for Maharashtra reserved categories; both attempts cost ₹2,600 or ₹2,000." },
-        { question: "How many students take MHT CET?", answer: "For the 2026 PCM first attempt, 4,79,332 candidates registered and 4,54,069 appeared, and 26 scored the 100 percentile." }
+        { question: 'When is the MHT CET 2027 exam?', answer: 'The State CET Cell has not announced MHT CET 2027 dates, and on 19 October 2026 it warned against dates on social media. Both attempts are expected after the Class 12 boards, likely between March and May 2027. In 2026 the first attempt ran from 11 to 26 April.' },
+        { question: 'When will MHT CET 2027 registration start?', answer: 'Expected in January–February 2027. In 2026 the form was open from 10 January to 12 February on cetcell.mahacet.org. The CET Cell will confirm 2027 dates in its official notice and brochure.' },
+        { question: 'Will MHT CET 2027 have two attempts?', answer: 'Two attempts were allowed in 2026, and the October 2026 reports say they continue. The December 2026 slot was dropped, and both attempts are now planned after the Class 12 boards, at least four weeks apart. If you take both, the better total percentile counts.' },
+        { question: 'What is the MHT CET exam pattern?', answer: 'Each group is a 180-minute computer-based test. Paper II, Physics and Chemistry (50 questions each, 1 mark), comes first for 90 minutes. Then comes Paper I, Mathematics (50 questions, 2 marks each), for PCM or Paper III, Biology (100 questions, 1 mark each), for PCB. There is no negative marking.' },
+        { question: 'What is the MHT CET syllabus?', answer: 'It is based on the SCERT Maharashtra syllabus. About 20% of the weightage is from Class 11 and 80% from Class 12. The whole Class 12 syllabus is covered, but only listed Class 11 chapters, such as Vectors, Laws of Motion, Structure of atom, Straight Line and Biomolecules.' },
+        { question: 'What is the eligibility for B.E./B.Tech admission through MHT CET?', answer: 'You need Class 12 with Physics and Mathematics plus one listed subject, and at least 45% in those subjects (40% for Maharashtra reserved, EWS and PwD candidates). You must also appear in all subjects of PCM MHT CET and get a non-zero score. There is no age limit.' },
+        { question: 'What is the MHT CET application fee?', answer: 'In 2026 it was ₹1,300 per group per attempt for general and outside-Maharashtra candidates, and ₹1,000 for Maharashtra reserved categories. Both attempts cost ₹2,600 or ₹2,000.' },
+        { question: 'What do HU, OHU and State level mean in MHT CET CAP?', answer: 'In non-autonomous government and aided colleges (excluding minority institutes), 70% of seats are Home University (HU) seats for candidates from that university area, and 30% are OHU seats for other Maharashtra candidates. Autonomous institutes fill seats at state level. In cut-off codes such as GOPENH, LOBCO or GOPENS, the last letter shows the seat type.' },
+        { question: 'What MHT CET percentile is needed for COEP or VJTI?', answer: 'In 2026 the open, state-level Computer Engineering seat closed at 99.99 percentile at VJTI and 99.97 at COEP Technological University. Other branches and reserved categories close lower. See our MHT CET cutoff page for every branch.' },
+        { question: 'Is JEE Main needed for engineering admission in Maharashtra?', answer: 'Maharashtra State candidates can get most CAP seats on MHT CET alone. For All India candidates, who can be from any state, the JEE Main score is preferred over MHT CET.' }
       ],
     },
     tnea: {
