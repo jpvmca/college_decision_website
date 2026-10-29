@@ -177,62 +177,62 @@ function overrides(year: number, institutes: number, feeRange: string | null): R
   const fees = feeRange ? ` Fees typically range ${feeRange}.` : '';
   return {
     'jee-main': {
-      // JEE Main 2027 content package (docs/exam-content/jee-main-2027.md in the backend repo).
-      // Facts from NTA only (jeemain.nta.nic.in, nta.ac.in Examination Calendar, JEE (Main) 2026 Information Bulletin),
-      // checked on 9 Oct 2026. The 2027 bulletin is not out, so 2027 items beyond the calendar are expected, on 2026 rules.
+      // JEE Main 2027 content package (backups/exam_jeemain_20261029 on the dev Mac).
+      // Facts from NTA only: JEE (Main) 2027 Information Bulletin (released 24 Oct 2026), syllabus-2027 page,
+      // and NTA's 2026 result notice (20 Apr 2026). JoSAA closing ranks from josaa.admissions.nic.in. Checked 29 Oct 2026.
       intent: 'general',
-      h1: 'JEE Main 2027: Exam Dates, Registration, Eligibility, Pattern & Fees',
-      title: 'JEE Main 2027: Exam Dates, Registration, Fees & Eligibility',
-      description: 'JEE Main 2027 Session 1 is tentatively on 22–30 Jan 2027. See what NTA has confirmed, 2026 fees, the 75% rule, exam pattern, percentile and NIT admission.',
-      keywords: ['JEE Main 2027', 'JEE Main 2027 exam date', 'JEE Main 2027 registration', 'JEE Main application fee', 'JEE Main eligibility', 'JEE Main 75% criteria', 'JEE Main exam pattern', 'JEE Main percentile', 'colleges accepting JEE Main', 'NIT admission through JEE Main'],
-      intro: 'JEE Main 2027 Session 1 is tentatively scheduled for 22–24 and 28–30 January 2027 on NTA\'s exam calendar, and Session 2 is expected in April. NTA has not released the 2027 bulletin, registration dates or fees yet, so this guide marks what is confirmed and what is expected from the 2026 rules.',
+      h1: 'JEE Main 2027: Exam Dates, Registration, Fees, Eligibility & Cutoff',
+      title: 'JEE Main 2027: Exam Dates, Registration, Fees, Cutoff',
+      description: 'JEE Main 2027 Session 1 is on 20–28 Jan 2027; apply by 22 Nov 2026. Official fees, eligibility, pattern, percentile and NIT/IIIT cutoffs.',
+      keywords: ['JEE Main 2027', 'JEE Main 2027 exam date', 'JEE Main 2027 registration', 'JEE Main 2027 application form', 'JEE Main application fee', 'JEE Main eligibility', 'JEE Main exam pattern', 'JEE Main 2027 syllabus', 'JEE Main percentile', 'JEE Main cutoff', 'JEE Main cutoff for NIT', 'JoSAA closing rank'],
+      intro: 'NTA released the JEE Main 2027 Information Bulletin on 24 October 2026. Session 1 registration runs until 22 November 2026 and the exam is on 20, 21, 22, 23, 24 and 28 January 2027; Session 2 is from 2 to 7 April 2027. This guide covers the official dates, fees, eligibility, pattern, percentile, the 2026 result and JoSAA cutoffs.',
       ogImage: '/uploads/exams/jee-main/jee-main-2027-og.webp',
       absoluteTitle: true,
       collegesNote: {
-        text: 'NITs, IIITs and other JoSAA institutes are listed first. IITs are not listed here because they admit through JEE Advanced:',
-        linkText: 'see the JEE Advanced guide',
-        href: '/exams/jee-advanced'
+        text: 'NITs, IIITs and other JoSAA institutes are listed first. IITs admit through JEE Advanced. For institute-wise JoSAA opening and closing ranks,',
+        linkText: 'see the JEE Main cutoff page',
+        href: '/exams/jee-main/cutoff'
       },
       faqs: [
         {
-          question: 'What is JEE Main 2027?',
-          answer: 'JEE Main (Joint Entrance Examination Main) 2027 is the computer-based entrance test conducted by the National Testing Agency (NTA) for B.E./B.Tech, B.Arch and B.Plan admission at NITs, IIITs and other centrally funded technical institutes. Paper 1 is also the qualifying test for JEE Advanced, the route to the IITs.'
-        },
-        {
           question: 'When is the JEE Main 2027 exam?',
-          answer: 'NTA\'s Examination Calendar lists JEE Main 2027 Session 1 on 22, 23, 24, 28, 29 and 30 January 2027, with 31 January as a buffer day. NTA marks these dates as tentative. Session 2 is not on the calendar yet; in 2026 it ran on 2, 4, 5, 6 and 8 April, so expect April 2027.'
+          answer: 'According to the 2027 Information Bulletin, Session 1 is on 20, 21, 22, 23, 24 and 28 January 2027 and Session 2 is from 2 to 7 April 2027. Paper 1 (B.E./B.Tech) runs in two shifts, 9 am to 12 noon and 3 pm to 6 pm IST.'
         },
         {
-          question: 'When will JEE Main 2027 registration start?',
-          answer: 'NTA has not announced it. For 2026, the Information Bulletin and Session 1 registration opened on 31 October 2025, and Session 2 registration ran from 1 to 25 February 2026, so expect the 2027 Session 1 form in late October or November 2026. Register only on jeemain.nta.nic.in.'
+          question: 'What is the last date to apply for JEE Main 2027 Session 1?',
+          answer: 'The Session 1 form opened on 24 October 2026 and closes on 22 November 2026 at jeemain.nta.nic.in. A late-fee window runs from 23 to 26 November, and corrections are allowed from 27 to 29 November 2026. Session 2 registration runs from 5 January to 3 February 2027.'
         },
         {
-          question: 'What is the JEE Main application fee?',
-          answer: 'NTA has not published 2027 fees yet. In the 2026 bulletin, the fee per session for one paper at a centre in India was ₹1,000 for General male candidates, ₹900 for EWS and OBC-NCL males, ₹800 for all female candidates and ₹500 for SC, ST, PwD and third-gender candidates. Processing charges and GST were extra.'
+          question: 'When will the JEE Main 2027 admit card come out?',
+          answer: 'For Session 1, NTA plans to release the exam city slip on 30 December 2026 and the admit card on 13 January 2027. For Session 2, the city slip is due on 12 March 2027 and the admit card on 25 March 2027.'
         },
         {
-          question: 'Who is eligible for JEE Main 2027 and how many attempts are allowed?',
-          answer: 'There is no age limit. On the 2026 rules (candidates who passed Class 12 in 2024 or 2025, or were appearing in 2026), JEE Main 2027 is expected to be open to those who passed Class 12 in 2025 or 2026 or are appearing in 2027. That is three consecutive years with two sessions each. NTA will confirm this in the 2027 bulletin.'
+          question: 'What is the JEE Main 2027 application fee?',
+          answer: 'The per-session fee for one paper at a centre in India is ₹1,000 for General male candidates, ₹900 for EWS and OBC-NCL males, ₹800 for female candidates and ₹500 for SC, ST, PwD and third-gender candidates. These are the same as 2026. Fees are higher for two papers and for centres abroad.'
         },
         {
-          question: 'What is the 75% criterion for JEE Main?',
-          answer: 'It is an admission rule, not an exam rule. For NITs, IIITs and other CFTIs, the 2026 bulletin required at least 75% in Class 12 (65% for SC, ST and PwD candidates) or a place in the top 20 percentile of your board that year. You can sit JEE Main without it, but you cannot take a JoSAA or CSAB seat.'
+          question: 'Who is eligible for JEE Main 2027?',
+          answer: 'Candidates who passed Class 12 or an equivalent exam in 2025 or 2026, or who are appearing in 2027, can apply. There is no age limit. JoSAA institutes set their own Class 12 requirement for admission, so check the JoSAA business rules before counselling.'
         },
         {
-          question: 'What is the JEE Main exam pattern?',
-          answer: 'In 2026, Paper 1 (B.E./B.Tech) had 75 compulsory questions for 300 marks in 3 hours: 20 multiple-choice and 5 numerical questions each in Mathematics, Physics and Chemistry, marked +4 for a correct answer and −1 for a wrong one. Paper 2A (B.Arch) and 2B (B.Plan) carry 400 marks each. NTA has not announced any change for 2027.'
+          question: 'Has the JEE Main 2027 syllabus changed?',
+          answer: 'No. NTA\'s JEE Main 2027 syllabus is the same as 2026. Paper 1 covers Mathematics, Physics and Chemistry from the Class 11 and 12 curriculum, with 75 questions for 300 marks, marked +4 for a correct answer and −1 for a wrong one.'
         },
         {
-          question: 'How is the JEE Main percentile calculated?',
-          answer: 'Your NTA score is a percentile within your own shift: 100 × the number of candidates in your shift who scored the same as you or less, divided by the total candidates in that shift, calculated to seven decimal places. If you take both sessions, the better of your two total NTA scores is used for the All India Rank.'
+          question: 'What is new in the JEE Main 2027 application form?',
+          answer: 'The 2027 bulletin adds sign-in through MeriPehchaan, a live photograph captured during the application, and an upload of the Class 10 marksheet. Candidates should keep Aadhaar and Class 10 details ready before starting the form.'
         },
         {
-          question: 'How many candidates qualify for JEE Advanced through JEE Main?',
-          answer: 'The top 2,50,000 Paper 1 candidates across all categories become eligible for JEE Advanced. In 2026, NTA\'s result press release put the cut-off NTA score at 93.4123549 for General, 82.4164528 for EWS, 80.9232583 for OBC-NCL, 63.9172792 for SC and 52.0174712 for ST candidates.'
+          question: 'What was the JEE Main 2026 cut-off for JEE Advanced?',
+          answer: 'NTA\'s 2026 result notice set the qualifying NTA score at 93.4123549 for General, 82.4164528 for EWS, 80.9232583 for OBC-NCL, 63.9172792 for SC and 52.0174712 for ST candidates. 15,38,468 candidates appeared and 26 scored 100 percentile.'
+        },
+        {
+          question: 'What JEE Main rank is needed for CSE at a top NIT?',
+          answer: 'In JoSAA 2026 final round, the Other State, OPEN, gender-neutral closing rank for CSE was 1,373 at NIT Trichy, 1,954 at NIT Surathkal and 2,581 at NIT Warangal. Home State quota and category ranks are different, so check the full table on our JEE Main cutoff page.'
         },
         {
           question: 'Which colleges accept JEE Main?',
-          answer: 'JEE Main ranks are used for B.Tech, B.Arch and B.Plan seats at NITs, IIITs, IIEST Shibpur and other government-funded technical institutes through JoSAA and CSAB counselling. IITs admit through JEE Advanced instead. Many state and private universities also accept JEE Main scores; the college list on this page shows those in our database.'
+          answer: 'JEE Main ranks are used for B.Tech, B.Arch and B.Plan seats at NITs, IIITs and other government-funded technical institutes through JoSAA and CSAB counselling. IITs admit through JEE Advanced instead. Many state and private universities also accept JEE Main scores.'
         }
       ]
     },
