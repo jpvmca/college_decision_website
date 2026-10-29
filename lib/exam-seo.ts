@@ -1690,6 +1690,36 @@ function overrides(year: number, institutes: number, feeRange: string | null): R
         { question: 'What is the fee for a KCET government-quota engineering seat?', answer: 'KEA\'s provisional 2026-27 fee for GM-category students was ₹47,100 a year in government colleges, ₹56,500 at UVCE, ₹1,20,320 in Type-1 unaided colleges and ₹1,30,320 in Type-2 unaided colleges. SC/ST students with family income up to ₹10 lakh pay nothing.' }
       ],
     },
+    'wbjee': {
+      // WBJEE 2027 content package (backups/exam_wbjee_20261029 on the dev Mac). Facts from WBJEEB only: WBJEE-2026 Information Bulletin,
+      // tentative schedule (13 Mar 2026), result notice, counselling notifications, DCAP notices and official OR-CR reports 2023-2026
+      // (admissions.nic.in/wbjeeb). Checked 29 Oct 2026. 2027 items are Expected.
+      intent: 'general',
+      h1: 'WBJEE 2027: Exam Date, Syllabus, Pattern, Eligibility & Cutoff',
+      title: 'WBJEE 2027: Exam Date, Pattern, Eligibility & Cutoff',
+      description: 'WBJEE 2027 exam date (Expected April–May), 200-mark OMR pattern with negative marking, eligibility, fees, counselling and 2023–2026 closing ranks.',
+      keywords: ['WBJEE 2027', 'WBJEE 2027 exam date', 'WBJEE syllabus', 'WBJEE exam pattern', 'WBJEE eligibility', 'WBJEE application fee', 'WBJEE cutoff', 'WBJEE counselling', 'WBJEE closing rank', 'WBJEEB', 'West Bengal JEE 2027'],
+      intro: 'WBJEE 2027 is not announced yet. WBJEEB usually holds the exam between April and May, preferably on a Sunday; in 2026 it was on 24 May. This guide covers eligibility and domicile rules, the two-paper pattern and marking, fees, counselling and official WBJEEB closing ranks for 2023 to 2026.',
+      ogImage: '/uploads/exams/wbjee/wbjee-og.webp',
+      absoluteTitle: true,
+      collegesNote: {
+        text: 'These West Bengal colleges have published profiles on CollegeDecision.in and fill B.E./B.Tech seats through WBJEE and WBJEEB counselling. For branch-wise and category-wise closing ranks from the official WBJEEB OR-CR reports,',
+        linkText: 'see the WBJEE cutoff page',
+        href: '/exams/wbjee/cutoff'
+      },
+      faqs: [
+        { question: 'When is the WBJEE 2027 exam?', answer: 'WBJEEB has not announced WBJEE 2027 yet. The bulletin says the exam is usually held between April and May, preferably on a Sunday, so it is Expected in April–May 2027. In 2026 it was held on Sunday 24 May.' },
+        { question: 'When will the WBJEE 2027 application form be released?', answer: 'Expected in March–April 2027. In 2026 online registration ran from 10 March to 8 April on the WBJEEB website.' },
+        { question: 'What is the WBJEE exam pattern?', answer: 'Two offline OMR papers on the same day. Paper I is Mathematics (75 questions, 100 marks) and Paper II is Physics and Chemistry (40 questions each, 100 marks). Each paper lasts two hours.' },
+        { question: 'Is there negative marking in WBJEE?', answer: 'Yes, in two of the three question types. Category-1 questions lose a quarter mark and Category-2 questions lose half a mark for a wrong answer. Category-3 questions, which can have more than one correct option, have no negative marking and give partial credit.' },
+        { question: 'What is the eligibility for B.Tech through WBJEE?', answer: 'Class 12 with Physics, Mathematics and one AICTE-listed subject, at least 45% in those three (40% for SC, ST, OBC-A, OBC-B and PwD), at least 30% in English, and a minimum age of 17 on 31 December of the exam year.' },
+        { question: 'Can students from outside West Bengal take WBJEE?', answer: 'Yes, but only for All India seats, mostly in private colleges and universities. Government and government-aided college seats, reserved seats and Tuition Fee Waiver seats are only for West Bengal domicile candidates.' },
+        { question: 'What is the WBJEE application fee?', answer: 'For WBJEE 2026 it was ₹500 for General male, ₹400 for General female and ₹300 for third gender candidates. SC, ST, OBC-A, OBC-B, EWS, PwD and TFW candidates paid ₹400, ₹300 or ₹200. The fee is not refundable.' },
+        { question: 'When was the WBJEE 2026 result declared?', answer: 'WBJEEB published the WBJEE 2026 result and rank cards on 18 June 2026. Counselling Round 1 registration then ran from 30 June to 5 July, with allotments on 7, 21 and 28 July.' },
+        { question: 'What WBJEE rank is needed for Jadavpur University CSE?', answer: 'In the final 2026 round, the Home State Open seat in Computer Science and Engineering at Jadavpur University closed at rank 161, against 238 in 2025 and 309 in 2024. Other categories close at different ranks; see our WBJEE cutoff page.' },
+        { question: 'What is a TFW seat in WBJEE counselling?', answer: 'A Tuition Fee Waiver seat waives tuition fees for West Bengal domicile students whose family income is below ₹2.5 lakh a year. Other fees still apply, and TFW seats appear as separate choices during choice filling.' }
+      ],
+    },
     'keam': {
       // Content package: docs/exam-content/keam-2027.md (backend). Official sources only, checked 13 Oct 2026. 2027 items are Expected.
       intent: 'general',
