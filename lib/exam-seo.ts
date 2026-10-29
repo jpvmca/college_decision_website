@@ -1878,6 +1878,37 @@ function overrides(year: number, institutes: number, feeRange: string | null): R
         { question: 'Is JEE Main needed for engineering admission in Maharashtra?', answer: 'Maharashtra State candidates can get most CAP seats on MHT CET alone. For All India candidates, who can be from any state, the JEE Main score is preferred over MHT CET.' }
       ],
     },
+    viteee: {
+      // VITEEE 2027 content package (backups/exam_viteee_20261029 on the dev Mac; docs/exam-content/viteee-2027.html in backend).
+      // Official sources only, opened 29 Oct 2026: viteee.vit.ac.in, VITEEE 2027 prospectus (vit.ac.in/files/VITEEE/VITEEE_Prospectus.pdf),
+      // VITEEE 2027 syllabus PDFs, vit.ac.in/admissions/ug/fee-structure, and VIT's blog for the 2026 pattern. 2027 dates are tentative.
+      // No official cutoffs are published by VIT, so viteee is intentionally NOT in CUTOFF.
+      intent: 'general',
+      h1: 'VITEEE 2027: Exam Dates, Eligibility, Pattern, Syllabus, Fees',
+      title: 'VITEEE 2027: Exam Dates, Pattern, Syllabus, Fees',
+      description: 'VITEEE 2027 is tentatively on 27 April–2 May 2027. See the new 100-question pattern, 60% PCM eligibility, ₹1,450 fee, fee categories and VIT counselling.',
+      keywords: ['VITEEE 2027', 'VITEEE exam date 2027', 'VITEEE registration 2027', 'VITEEE application form', 'VITEEE eligibility', 'VITEEE exam pattern 2027', 'VITEEE syllabus 2027', 'VITEEE application fee', 'VITEEE counselling', 'VIT fee category', 'VIT Vellore admission', 'VIT Chennai', 'VIT AP', 'VIT Bhopal', 'VITEEE vs JEE Main'],
+      intro: 'VITEEE 2027 is the computer-based entrance test for B.Tech admission at VIT Vellore, Chennai, AP and Bhopal. Applications opened on 20 October 2026, and VIT\'s tentative calendar puts the exam between 27 April and 2 May 2027. The 2027 paper is shorter: 100 questions in 2 hours with +4/-1 marking. This guide covers dates, eligibility, pattern, syllabus, fees and counselling from official VIT sources.',
+      ogImage: '/uploads/exams/viteee/viteee-2027-overview.webp',
+      absoluteTitle: true,
+      collegesNote: {
+        text: 'VITEEE is used only for B.Tech admission at VIT\'s own campuses: Vellore, Chennai, VIT-AP (Amaravati) and VIT Bhopal. Programmes differ by campus.',
+        linkText: 'See the official VITEEE site',
+        href: 'https://viteee.vit.ac.in'
+      },
+      faqs: [
+        { question: 'When is VITEEE 2027?', answer: 'VIT\'s tentative calendar puts VITEEE 2027 between 27 April and 2 May 2027. Admit cards are due on 25–30 April 2027. In 2026 the exam ran from 28 April to 3 May.' },
+        { question: 'What is the last date to apply for VITEEE 2027?', answer: 'Applications opened on 20 October 2026 at viteee.vit.ac.in. The tentative last date is 31 March 2027.' },
+        { question: 'What is the VITEEE 2027 application fee?', answer: 'The fee is ₹1,450, or USD 90 for candidates applying from abroad. It is paid online.' },
+        { question: 'What is the VITEEE 2027 exam pattern?', answer: 'It is a 2-hour computer-based test with 100 MCQs: Maths or Biology 40, Physics 25, Chemistry 25, English 5 and Aptitude 5. A correct answer gets +4, a wrong answer -1 and an unanswered one 0. PwD candidates get 30 extra minutes.' },
+        { question: 'How is the 2027 pattern different from 2026?', answer: 'VITEEE 2026 had 125 questions in 2.5 hours (Physics 35, Chemistry 35, Aptitude 10). The 2027 paper has 100 questions in 2 hours, with Physics and Chemistry cut to 25 each and Aptitude to 5.' },
+        { question: 'What marks do I need in Class 12 for VITEEE?', answer: 'You need 60% aggregate in Physics, Chemistry and Maths with at least 50% in Maths (or PCB with 50% in Biology for the Biology stream). SC/ST candidates and those from J&K, Ladakh and the North-Eastern states need 50%. You must have passed in 2025 or 2026, or be appearing in 2027.' },
+        { question: 'Can I choose my VITEEE exam slot and city?', answer: 'For 2027 VIT allots the test city, centre and slot. In 2026 candidates booked slots through VIT\'s online slot-booking system.' },
+        { question: 'How is the VITEEE result calculated?', answer: 'The exam runs in several sessions a day, so VIT normalises scores into percentiles and ranks candidates on them. The tentative result date is the second week of May 2027.' },
+        { question: 'How does VITEEE counselling work?', answer: 'Counselling is online, by rank, in five phases from the second week of May 2027 (tentative). The counselling fee is ₹5,900. Your campus, branch and fee category depend on your rank and seat availability, and allotments cannot be changed later.' },
+        { question: 'Does VIT publish VITEEE cutoffs?', answer: 'No. VIT does not publish official cutoff ranks or rank ranges for each fee category, so this page does not list any. Tuition depends on the fee category you are allotted at counselling.' }
+      ],
+    },
     tnea: {
       // TNEA 2027 content package (backups/exam_tnea_20261029 on the dev Mac). Facts from DoTE/tneaonline.org only: TNEA 2026
       // Information Brochure, 2026 tentative schedule, counselling procedure, Information about Colleges 2026 and general academic
