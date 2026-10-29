@@ -10,6 +10,8 @@ import { toAbsoluteExternalUrl } from '../../../lib/external-url';
 import { getLinkableEntities, findPublishedHref, findPublishedHrefByName } from '../../../lib/linkable-entities';
 import { CollegeCutoffs, type CollegeCutoffResponse } from '../../../components/Cutoffs';
 import { formatLpa } from '../../../lib/packages';
+import ReadableHtml from '../../../components/ReadableHtml';
+import { readableBlocks, splitLead } from '../../../lib/readable-html';
 
 type CollegeProfile = {
   institute: {
@@ -674,9 +676,9 @@ export default async function CollegeProfilePage({ params }: { params: Promise<{
     {(profile.about || location || profile.institute.establishmentYear || officialWebsite) && <section id="about">
       <SectionHeading icon={Building2}>About {name}</SectionHeading>
       {profile.about && (() => {
-        const about = text(profile.about);
-        const cut = about.length > 900 ? about.indexOf('. ', 600) : -1;
-        return <><h3>History and Background</h3>{cut > 0 && cut < about.length - 120 ? <><p>{about.slice(0, cut + 1)}</p><details className="profile-more"><summary>Read more about {name}</summary><p>{about.slice(cut + 2)}</p></details></> : <p>{about}</p>}</>;
+        const { lead, rest } = splitLead(readableBlocks(profile.about, { headingShift: 1 }));
+        if (!lead) return null;
+        return <><h3>History and Background</h3><ReadableHtml html={lead} preSanitized />{rest ? <details className="profile-more"><summary>Read more about {name}</summary><ReadableHtml html={rest} preSanitized /></details> : null}</>;
       })()}
       {(location || profile.institute.establishmentYear) && <><h3>Campus and Location</h3><p>{profile.institute.establishmentYear ? `Established in ${profile.institute.establishmentYear}. ` : ''}{location ? `Located in ${location}.` : ''} {profile.institute.location.addressLabel || ''}</p></>}
       {affiliation && <><h3>Affiliation and Recognition</h3><p>{affiliation}</p></>}

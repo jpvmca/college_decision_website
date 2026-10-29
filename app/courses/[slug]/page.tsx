@@ -9,6 +9,7 @@ import { stripEmbeddedFaqs } from '../../../lib/strip-embedded-faqs';
 import AutoLinkedText from '../../../components/AutoLinkedText';
 import { formatLpa } from '../../../lib/packages';
 import CourseGeoLinks from '../../../components/CourseGeoLinks';
+import { splitLongParagraphs } from '../../../lib/readable-html';
 
 type CourseProfile = {
   course: {
@@ -263,7 +264,7 @@ export default async function CourseProfilePage({ params }: { params: Promise<{ 
       <div><strong>{profile.reviewSummary.count || '—'}</strong><span>Student reviews</span></div>
     </section>
 
-    {profile.course.htmlContent && <section className="course-html-content" aria-label={`${seo.displayName} course guide`} dangerouslySetInnerHTML={{ __html: linkedHtmlContent }} />}
+    {profile.course.htmlContent && <section className="course-html-content" aria-label={`${seo.displayName} course guide`} dangerouslySetInnerHTML={{ __html: splitLongParagraphs(linkedHtmlContent) }} />}
 
     {!profile.course.htmlContent && programmeNames.length > 0 && <section><h2>{name} programme variants</h2><div className="profile-chips">{programmeNames.slice(0, 40).map((item) => <span key={item}>{item}</span>)}</div></section>}
 

@@ -12,6 +12,7 @@ import ExamCountdown from '../../../components/ExamCountdown';
 import { EVENT_STATUS_BADGE, eventDateLabel, formatShortDate, type ExamEvent } from '../../../lib/examEvents';
 import { ExamCutoffs, type ExamCutoffResponse } from '../../../components/Cutoffs';
 import { findPublishedHref } from '../../../lib/linkable-entities';
+import { splitLongParagraphs } from '../../../lib/readable-html';
 
 type ExamProfile = {
   exam: {
@@ -297,7 +298,7 @@ export default async function ExamProfilePage({ params }: { params: Promise<{ sl
       {eventSources.length > 0 && <p className="muted">Source{eventSources.length > 1 ? 's' : ''}: {eventSources.map((u, i) => <span key={u}>{i ? ', ' : ''}<a href={u} target="_blank" rel="noopener noreferrer">{(() => { try { return new URL(u).hostname.replace(/^www\./, ''); } catch { return u; } })()}{eventSources.length > 1 ? ` (${i + 1})` : ''}</a></span>)}. Dates can change; confirm on the official website.</p>}
     </section>}
 
-    {guideHtml ? <section className="course-html-content" aria-label={`${name} exam guide`} dangerouslySetInnerHTML={{ __html: guideHtml }} /> : null}
+    {guideHtml ? <section className="course-html-content" aria-label={`${name} exam guide`} dangerouslySetInnerHTML={{ __html: splitLongParagraphs(guideHtml) }} /> : null}
 
     {!guideHtml && aboutText && <section><h2>About {name}</h2><p>{aboutText}</p></section>}
     {!guideHtml && !aboutText && <section><h2>About {name}</h2><p>{name} is listed as an entrance exam route in India. Use the mapped college and programme evidence below as a research starting point and confirm the latest official notice before applying.</p></section>}
