@@ -350,6 +350,65 @@ function overrides(year: number, institutes: number, feeRange: string | null): R
         }
       ]
     },
+    'jee-advanced': {
+      // JEE Advanced 2027 content package (docs/exam-content/jee-advanced-2027.html in the backend repo).
+      // Facts from the JEE (Advanced) 2026 brochure, papers and result press releases, JIC reports 2023–2025 and JoSAA ORCR 2022–2026, checked on 29 Oct 2026.
+      intent: 'general',
+      h1: 'JEE Advanced 2027: Exam Date, Eligibility, Pattern, Syllabus & IIT Cutoffs',
+      title: 'JEE Advanced 2027: Exam Date, Syllabus, Pattern, Cutoff',
+      description: 'JEE Advanced 2027 dates, eligibility, 360-mark pattern, syllabus, fees, 2023–2026 qualifying marks and IIT JoSAA closing ranks for CSE and more.',
+      keywords: ['JEE Advanced 2027', 'JEE Advanced 2027 exam date', 'JEE Advanced eligibility', 'JEE Advanced exam pattern', 'JEE Advanced syllabus', 'JEE Advanced cutoff', 'JEE Advanced qualifying marks', 'IIT cutoff', 'JoSAA closing rank', 'IIT CSE cutoff'],
+      intro: 'JEE Advanced 2027 dates have not been announced yet. The 2026 exam was held on 17 May 2026 by IIT Roorkee, so the 2027 exam is expected in May 2027. This guide covers eligibility, the two-paper 360-mark pattern, syllabus, fees, qualifying marks for 2023–2026, the AAT, JoSAA counselling and IIT closing ranks, using jeeadv.ac.in and JoSAA data.',
+      ogImage: '/uploads/exams/jee-advanced/jee-advanced-2027-hero.webp',
+      absoluteTitle: true,
+      collegesNote: {
+        text: 'All 23 IITs fill their BTech, BS, Dual Degree and BArch seats through JEE Advanced ranks in JoSAA counselling, and IISc Bengaluru uses the same ranks for its BTech. Closing ranks differ a lot by IIT, branch, category and gender pool.',
+        linkText: 'see IIT-wise JEE Advanced cutoffs',
+        href: '/exams/jee-advanced/cutoff'
+      },
+      faqs: [
+        {
+          question: 'When is JEE Advanced 2027?',
+          answer: 'JEE Advanced 2027 has not been announced on jeeadv.ac.in as of 29 October 2026. The 2026 exam was held on Sunday 17 May 2026, so the 2027 exam is expected in May 2027. Treat any exact date or organising IIT you see elsewhere as unofficial until the 2027 brochure is out.'
+        },
+        {
+          question: 'Who is eligible for JEE Advanced 2027?',
+          answer: 'You must be in the top 2,50,000 of the JEE Main BE/BTech paper, have first appeared in Class 12 with Physics, Chemistry and Mathematics in 2026 or 2027, and not have been admitted to an IIT before. You get at most two attempts in consecutive years. For 2026 the age rule was born on or after 1 October 2001, with five years of relaxation for SC, ST and PwD.'
+        },
+        {
+          question: 'What is the JEE Advanced exam pattern?',
+          answer: 'There are two compulsory three-hour computer-based papers worth 180 marks each, 360 in total, with 120 marks each for Physics, Chemistry and Mathematics. In 2026 there were 102 questions: single-correct and multi-correct MCQs, numerical-value questions, matching sets and stem-based numericals. The pattern can change every year.'
+        },
+        {
+          question: 'Is there negative marking in JEE Advanced?',
+          answer: 'Yes, in most MCQ sections. In 2026, a wrong single-correct answer cost 1 mark, and a wrong pick in the multi-correct section turned the whole answer into −1, though partially correct answers earned +1 to +3. Numerical-value questions had no negative marking.'
+        },
+        {
+          question: 'What is the JEE Advanced registration fee?',
+          answer: 'For 2026 the fee was ₹3,200 for general candidates and ₹1,600 for female, SC, ST and PwD candidates, with USD 100 to 300 for foreign nationals and centres outside India. The 2027 fee will be in the 2027 brochure.'
+        },
+        {
+          question: 'What were the JEE Advanced 2026 qualifying marks?',
+          answer: 'To get a rank in 2026, Common Rank List candidates needed 8 marks in each subject and 92 out of 360 in total. GEN-EWS and OBC-NCL candidates needed 7 and 82, and SC, ST and PwD candidates needed 4 and 46. Of 1,79,694 candidates who sat both papers, 56,880 qualified.'
+        },
+        {
+          question: 'What JEE Advanced rank is needed for IIT Bombay CSE?',
+          answer: 'In the final JoSAA round of 2026, BTech Computer Science at IIT Bombay closed at rank 67 for OPEN gender-neutral seats, and it has closed between 61 and 68 every year since 2022. IIT Delhi CSE closed at 128 and IIT Madras at 151 in 2026.'
+        },
+        {
+          question: 'Do I need 75% in Class 12 for an IIT?',
+          answer: 'Yes. To take an IIT seat you need at least 75% aggregate in Class 12 (65% for SC, ST and PwD) or a place in the top 20 percentile of your board, along with a JEE Advanced rank. The marks condition does not stop you from writing the exam.'
+        },
+        {
+          question: 'What is the AAT in JEE Advanced?',
+          answer: 'The Architecture Aptitude Test is a separate three-hour test for JEE Advanced qualifiers who want BArch at IIT (BHU) Varanasi, IIT Kharagpur or IIT Roorkee. It is pass or fail; seats are then given by JEE Advanced rank. In 2026 it was held on 4 June.'
+        },
+        {
+          question: 'How are IIT seats allotted after JEE Advanced?',
+          answer: 'Through JoSAA counselling on josaa.nic.in. You register, fill IIT and branch choices in order, and seats are allotted by your JEE Advanced category rank over several rounds. In 2026 there were five rounds between 13 June and 16 July.'
+        }
+      ]
+    },
     cat: {
       intent: 'cutoff',
       h1: `CAT ${year}: Eligibility, Cutoff, MBA Colleges & Fees`,
