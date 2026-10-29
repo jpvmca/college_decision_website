@@ -176,6 +176,36 @@ function overrides(year: number, institutes: number, feeRange: string | null): R
   const colleges = institutes ? `${institutes.toLocaleString('en-IN')} mapped colleges` : 'mapped colleges';
   const fees = feeRange ? ` Fees typically range ${feeRange}.` : '';
   return {
+    'nest': {
+      // NEST 2027 content package (backups/exam_nest_20261029 on the dev Mac). Facts only from the official NEST 2026
+      // brochure, nestexam.in, niser.ac.in/admission + NISER fee notice, and cbs.ac.in admission notice/fees/seat matrix.
+      // Checked 29 Oct 2026. NEST 2027 not announced; 2027 items are Expected. No official closing ranks, so no CUTOFF entry.
+      intent: 'general',
+      h1: 'NEST 2027: Exam Date, Pattern, Syllabus, Eligibility & Cutoff',
+      title: 'NEST 2027: Exam Date, Pattern, Syllabus & Eligibility',
+      description: 'NEST 2027 guide from official NISER and CEBS documents: expected dates, exam pattern, marking, syllabus, eligibility, fee, cutoff (SMAS and MAP), seats and counselling.',
+      keywords: ['NEST 2027', 'NEST exam date', 'NEST exam pattern', 'NEST syllabus', 'NEST eligibility', 'NEST application fee', 'NEST cutoff', 'NEST counselling', 'NISER admission', 'UM-DAE CEBS admission', 'Integrated MSc entrance exam'],
+      intro: 'NEST is the entrance test for the 5-year Integrated M.Sc. at NISER Bhubaneswar and UM-DAE CEBS Mumbai. NEST 2026 was held on 6 June 2026 and results came on 24 June. NEST 2027 has not been announced yet, so 2027 dates here are marked Expected.',
+      ogImage: '/uploads/exams/nest/nest-og.webp',
+      absoluteTitle: true,
+      collegesNote: {
+        text: 'NEST is accepted only by NISER Bhubaneswar and UM-DAE CEBS Mumbai, for their Integrated M.Sc. For other science master\'s options,',
+        linkText: 'see the MSc course page',
+        href: '/courses/msc'
+      },
+      faqs: [
+        { question: 'When is NEST 2027?', answer: 'NEST 2027 has not been announced yet. In 2026 the form opened on 5 January, the exam was on 6 June (2 to 5 PM) and results came on 24 June. Expect a similar January to June cycle in 2027, and check nestexam.in for the official dates.' },
+        { question: 'What is the NEST exam pattern?', answer: 'NEST is a 3-hour computer-based test with four sections: Biology, Chemistry, Mathematics and Physics. Each has 20 MCQs worth 60 marks. You must attempt at least three, and your best three qualifying sections make the total out of 180.' },
+        { question: 'Is there negative marking in NEST?', answer: 'Yes. A correct answer gets 3 marks, a wrong answer loses 1 mark, and an unanswered question gets 0.' },
+        { question: 'Who is eligible for NEST?', answer: 'Under the 2026 rules you need at least three of Biology, Chemistry, Mathematics and Physics in Class 11 and 12, at least 60% in Class 12 (55% for SC, ST and Divyangjan), and a Class 12 pass in the allowed years. There is no age limit.' },
+        { question: 'What is the NEST application fee?', answer: 'For NEST 2026 it was ₹1,400 for male and other applicants in the UR and OBC categories, and ₹700 for all female applicants and for SC, ST, Divyangjan and UR-EWS applicants. It is not refundable.' },
+        { question: 'What was the NEST 2026 cutoff?', answer: 'NEST uses section cutoffs (SMAS) and a minimum percentile (MAP). For UR candidates in 2026 the SMAS was 8.83 in Biology, 11.26 in Chemistry, 9.63 in Mathematics and 9.44 in Physics, out of 60. The MAP was the 80th percentile for UR, EWS and OBC, the 75th for SC and ST, and the 40th for Divyangjan candidates.' },
+        { question: 'How many seats are there through NEST?', answer: 'In 2026 NISER had 200 seats and UM-DAE CEBS had 57, plus two supernumerary seats for Jammu and Kashmir and Ladakh candidates at each institute.' },
+        { question: 'Is there common counselling for NISER and CEBS?', answer: 'No. Both use the NEST merit list but admit separately. NISER asks ranked candidates to submit an Expression of Interest and then calls them to the campus, while CEBS runs its own online registration with stream preferences. Apply to both if you want both.' },
+        { question: 'Do NEST students get a scholarship?', answer: 'Yes. Integrated M.Sc. students are eligible for the DAE DISHA scholarship of ₹60,000 a year, plus ₹20,000 a year for summer internships.' },
+        { question: 'What is the NEST syllabus?', answer: 'The syllabus follows the CBSE curriculum and NCERT books of Class 11 and 12 in Biology, Chemistry, Mathematics and Physics. Some questions can use Class 10 science. The detailed list is in the official brochure on nestexam.in.' }
+      ],
+    },
     'nata': {
       // NATA 2027 content package (backups/exam_nata_20261029 on the dev Mac). Facts from CoA only: NATA 2026 Brochure
       // (Final V2.0, nata.in), nata.in schedule and fee pages; admission examples from DoTE TN B.Arch brochure 2026,
