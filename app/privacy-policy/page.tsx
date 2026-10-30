@@ -11,7 +11,7 @@ export default function PrivacyPolicyPage() {
   return <main className="section"><div className="wrap prose">
     <p className="eyebrow">LEGAL INFORMATION</p>
     <h1>Privacy Policy</h1>
-    <p className="muted">Last updated: 22 October 2026</p>
+    <p className="muted">Last updated: 30 October 2026</p>
     <p>This Privacy Policy explains how CollegeDecision.in handles information when you browse our college guides, use search, register for counselling or contact us. We aim to collect only what is needed to operate, protect and improve the website.</p>
     <h2>Information you provide</h2>
     <p>If you email us, we receive the information you choose to include, such as your name, email address, message, page URL and supporting source. Please do not send passwords, payment information, government identity documents or sensitive student records.</p>
@@ -28,9 +28,11 @@ export default function PrivacyPolicyPage() {
     <h2>How we use information</h2>
     <ul><li>To respond to enquiries and provide admission counselling you request through our forms.</li><li>To respond to questions and data-correction requests.</li><li>To investigate security, reliability and performance problems.</li><li>To improve article structure, search and the student experience.</li><li>To comply with applicable legal obligations.</li></ul>
     <h2>Cookies and analytics</h2>
-    <p>We may use essential technologies required for security, preferences or basic operation. If analytics or optional cookies are introduced, this policy will be updated with their purpose and controls.</p>
+    <p>We use essential technologies needed for security, preferences and basic operation of the site. When ads are shown, Google and its advertising partners may also set cookies, as explained in the Advertising section below. If we add analytics or other optional cookies, we will update this policy with their purpose and how you can control them.</p>
     <h2>Advertising</h2>
-    <p>If we introduce Google AdSense or another advertising partner, those providers and their partners may use cookies or similar technologies to understand visits and show advertisements. Google may use information about visits to this and other websites for personalised advertising. Visitors can manage personalised advertising through <a href="https://adssettings.google.com/" target="_blank" rel="noopener noreferrer">Google Ad Settings</a>. This section will be updated if advertising partners, consent tools or regional requirements change.</p>
+    <p>CollegeDecision.in shows ads to help keep our guides free for students. These ads are served by Google AdSense and its partners. We place each ad ourselves in fixed spots on the page; we do not use Google Auto ads, and every ad is labelled &ldquo;Advertisement&rdquo; so you can tell it apart from our own content.</p>
+    <ul><li>Google and its vendors use cookies, including the DoubleClick cookie, to show ads based on your visits to this website and other websites on the internet.</li><li>Depending on our settings and your consent choices, we may show non-personalised ads, which are based on general context such as the page you are reading rather than your browsing history.</li><li>You can turn off personalised advertising from Google at <a href="https://adssettings.google.com/" target="_blank" rel="noopener noreferrer">Google Ad Settings</a>, and opt out of personalised ads from many other vendors at <a href="https://www.aboutads.info/" target="_blank" rel="noopener noreferrer">www.aboutads.info</a>.</li><li>To learn how Google uses information from sites that use its services, see <a href="https://policies.google.com/technologies/partner-sites" target="_blank" rel="noopener noreferrer">How Google uses information from sites or apps that use our services</a>.</li></ul>
+    <p>We do not sell your personal information to advertisers, and we do not share the details you enter in our registration or contact forms with ad providers. Questions about ads on this site can be sent to <a href="mailto:privacy@collegedecision.in">privacy@collegedecision.in</a>.</p>
     <h2>Sharing and retention</h2>
     <p>We do not sell personal information. Information may be processed by service providers that host, secure or operate the website, subject to appropriate safeguards. We retain correspondence and registration details only as long as reasonably necessary for the enquiry, counselling, records, security or legal obligations.</p>
     <h2>Your choices</h2>
