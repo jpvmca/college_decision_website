@@ -2,7 +2,9 @@ import type { Metadata } from 'next';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import JsonLd from '../../../../components/JsonLd';
+import { Fragment } from 'react';
 import CollegeCutoffYearTables from '../../../../components/CollegeCutoffYearTables';
+import AdSlot from '../../../../components/ads/AdSlot';
 import { breadcrumbJsonLd, cutoffYearHeading, examYearOf, faqJsonLd, formatMetric, examYearNote, getCollegeCutoffSummary, getCollegeYearRows, metricWord, siteUrl, type CollegeCutoffSummary } from '../../../../lib/cutoffs';
 
 export const revalidate = 600;
@@ -80,7 +82,7 @@ export default async function CollegeCutoffPage({ params }: { params: Promise<{ 
     <section className="college-stats" aria-label="Cutoff coverage">
       {s.exams.map((e) => <div key={e.slug}><strong>{e.years.map((y) => y.year).join(', ')}</strong><span>{clean(e.name)} years</span></div>)}
     </section>
-    {s.exams.map((exam) => <section key={exam.slug} id={`${exam.slug}-cutoff`} className="cutoff-section">
+    {s.exams.map((exam, examIndex) => <Fragment key={exam.slug}><section id={`${exam.slug}-cutoff`} className="cutoff-section">
       <p className="muted">{clean(exam.name)} cutoff years: {exam.years.map((y) => <a key={y.year} href={`#${exam.slug}-${y.year}`} style={{ marginRight: '0.6rem' }}>{y.year}</a>)}
         {exam.published && <> · <Link href={`/exams/${exam.slug}/cutoff`}>{clean(exam.name)} cutoff for all colleges</Link></>}</p>
       {sections.filter((x) => x.exam.slug === exam.slug).map(({ y, data }) => <div key={y.year} id={`${exam.slug}-${y.year}`} className="cutoff-section">
@@ -88,8 +90,9 @@ export default async function CollegeCutoffPage({ params }: { params: Promise<{ 
         <p className="muted">{exam.metric === 'rank' ? `Final round (round ${data!.round}) closing ranks for ${y.programmes} programme(s); a lower rank is more competitive.` : exam.metric === 'score' ? `Final round (round ${data!.round}) closing scores for ${y.programmes} programme(s).` : 'Published minimum eligibility or shortlisting criteria, depending on the institute. Meeting a published minimum does not guarantee an interview call or admission. Criteria and selection processes vary by institute.'}{' '}{examYearNote(clean(exam.name), y.year, y.exam_year) || ''}</p>
         <CollegeCutoffYearTables rows={data!.rows} metric={exam.metric} />
       </div>)}
-    </section>)}
+    </section>{examIndex === 0 && <AdSlot slotKey="cutoff_mid" />}</Fragment>)}
     {faqs.length > 0 && <section className="cutoff-section"><h2>{name} Cutoff FAQs</h2>
       {faqs.map((f) => <details key={f.question}><summary>{f.question}</summary><p>{f.answer}</p></details>)}</section>}
+    <AdSlot slotKey="cutoff_end" />
   </div></main>;
 }

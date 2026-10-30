@@ -1,0 +1,16 @@
+/* Ad Manager slots: labelled, reserved height (no layout shift), never sticky. */
+.ad-wrap{display:block;clear:both;margin:32px auto;padding:6px 0 10px;max-width:100%;text-align:center;border-top:1px solid #eef1f6;border-bottom:1px solid #eef1f6;overflow:hidden;contain:layout}
+.ad-label{display:block;margin:0 0 6px;font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#8a94a6;line-height:16px}
+.ad-inner{display:flex;align-items:center;justify-content:center;width:100%}
+.ad-inner ins.adsbygoogle{width:100%}
+.ad-inner img{max-width:100%;height:auto;display:block;margin:0 auto}
+.ad-html{width:100%;display:flex;justify-content:center}
+.ad-format-vertical_banner .ad-inner{max-width:300px;margin:0 auto}
+.ad-format-square .ad-inner{max-width:336px;margin:0 auto}
+.ad-format-in_feed{margin:18px auto}
+.ad-device-desktop{display:none}
+@media (min-width:768px){.ad-device-desktop{display:block}.ad-device-mobile{display:none}}
+.ad-test .ad-placeholder{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;width:100%;border:2px dashed #f59e0b;border-radius:10px;background:repeating-linear-gradient(45deg,#fffbeb,#fffbeb 10px,#fef3c7 10px,#fef3c7 20px);color:#92400e;font-size:13px}
+.ad-test .ad-placeholder strong{font-family:ui-monospace,Menlo,monospace;font-size:14px}
+.decision-results-list>.ad-wrap{grid-column:1/-1}
+@media print{.ad-wrap{display:none}}

@@ -3,6 +3,8 @@ import { notFound } from 'next/navigation';
 import Link from 'next/link';
 import { api, instituteLogoUrl, mediaUrl } from '../../../lib/api';
 import { stripEmbeddedFaqs } from '../../../lib/strip-embedded-faqs';
+import AdSlot from '../../../components/ads/AdSlot';
+import { getAdSlot, splitBeforeNthH2 } from '../../../lib/ads';
 import { autoLinkHtml } from '../../../lib/auto-link-entities';
 import { getLinkableEntities } from '../../../lib/linkable-entities';
 import AutoLinkedText from '../../../components/AutoLinkedText';
@@ -242,6 +244,8 @@ export default async function ExamProfilePage({ params }: { params: Promise<{ sl
     ]
   };
 
+  // exam_mid_2 sits before the guide's 3rd <h2>; split only when that slot can render.
+  const guideSplit = guideHtml && (await getAdSlot('exam_mid_2')) ? splitBeforeNthH2(guideHtml, 3) : null;
   return <main className="section college-profile-page"><div className="wrap prose">
     <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
     <nav className="breadcrumb" aria-label="Breadcrumb"><Link href="/">Home</Link><span aria-hidden="true">›</span><Link href="/exams">Exams</Link><span aria-hidden="true">›</span><span aria-current="page">{name}</span></nav>
@@ -298,7 +302,12 @@ export default async function ExamProfilePage({ params }: { params: Promise<{ sl
       {eventSources.length > 0 && <p className="muted">Source{eventSources.length > 1 ? 's' : ''}: {eventSources.map((u, i) => <span key={u}>{i ? ', ' : ''}<a href={u} target="_blank" rel="noopener noreferrer">{(() => { try { return new URL(u).hostname.replace(/^www\./, ''); } catch { return u; } })()}{eventSources.length > 1 ? ` (${i + 1})` : ''}</a></span>)}. Dates can change; confirm on the official website.</p>}
     </section>}
 
-    {guideHtml ? <section className="course-html-content" aria-label={`${name} exam guide`} dangerouslySetInnerHTML={{ __html: splitLongParagraphs(guideHtml) }} /> : null}
+    <AdSlot slotKey="exam_mid_1" />
+    {guideHtml && guideSplit ? <>
+      <section className="course-html-content" aria-label={`${name} exam guide`} dangerouslySetInnerHTML={{ __html: splitLongParagraphs(guideSplit[0]) }} />
+      <AdSlot slotKey="exam_mid_2" />
+      <section className="course-html-content" aria-label={`${name} exam guide (continued)`} dangerouslySetInnerHTML={{ __html: splitLongParagraphs(guideSplit[1]) }} />
+    </> : guideHtml ? <section className="course-html-content" aria-label={`${name} exam guide`} dangerouslySetInnerHTML={{ __html: splitLongParagraphs(guideHtml) }} /> : null}
 
     {!guideHtml && aboutText && <section><h2>About {name}</h2><p>{aboutText}</p></section>}
     {!guideHtml && !aboutText && <section><h2>About {name}</h2><p>{name} is listed as an entrance exam route in India. Use the mapped college and programme evidence below as a research starting point and confirm the latest official notice before applying.</p></section>}
@@ -343,6 +352,7 @@ export default async function ExamProfilePage({ params }: { params: Promise<{ sl
       if (!list.length) return null;
       return <section><h2>{seo.label} accepting-colleges & related guides</h2><div className="college-programme-grid">{list.map((article) => <Link className="card" href={`/articles/${article.slug}`} key={article.slug}><h3>{articleAnchorTitle(article, seo.label)}</h3><p className="muted">{(article.articleType || 'exam').replace(/-/g, ' ')} guide for {seo.label}</p></Link>)}</div></section>;
     })()}
+    <AdSlot slotKey="exam_end" />
     {faqs.length > 0 && <section><h2>Frequently asked questions</h2>{faqs.map((faq) => <article className="faq-item" key={faq.question}><h3>{faq.question}</h3><p>{faq.answer}</p></article>)}</section>}
     <div className="notice"><strong>Data note:</strong> Exam rules, cutoffs, fees and college mappings can change by year and category. Verify the latest official information before applying.</div>
   </div></main>;

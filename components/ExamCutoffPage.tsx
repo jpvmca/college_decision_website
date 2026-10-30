@@ -4,7 +4,9 @@ import ExamCutoffsClient from './ExamCutoffsClient';
 import CutoffExpand from './CutoffExpand';
 import CutoffTakeaways from './CutoffTakeaways';
 import CollegeFinder, { type AnyFinderCombo } from './CollegeFinder';
+import { Fragment } from 'react';
 import { ExamCutoffs, type ExamCutoffResponse } from './Cutoffs';
+import AdSlot from './ads/AdSlot';
 import { batchLabel, breadcrumbJsonLd, cutoffYearHeading, examProgrammeWord, examYearNote, examYearOf, examTargetPhrase, faqJsonLd, fitDescription, fitTitle, formatMetric, isAdmissionKeyed, metricWord, pendingExamYear, siteUrl, type ExamCutoffSummary } from '../lib/cutoffs';
 
 export const cleanName = (s: string) => s.replace(/\s+/g, ' ').trim();
@@ -121,7 +123,7 @@ export default function ExamCutoffPage({ summary, blocks, activeYear, finder }: 
       <h2>{cutoffYearHeading(name, { year: pending.admissionYear, exam_year: pending.examYear })}</h2>
       <p>To be updated after {name} {pending.examYear} results. Institutes publish {name} {pending.examYear} cutoffs for {batchLabel(pending.admissionYear)} admissions only after the results, so there are no figures yet. Until then, use the {name} {examYearOf(summary.years[0])} cutoffs below as a guide.</p>
     </section>}
-    {blocks.map((b, i) => { const y = summary.years.find((v) => v.year === b.year) || { year: b.year }; return b.data && b.data.data.length ? <section key={b.year} id={`cutoff-${b.year}`} className="cutoff-section">
+    {blocks.map((b, i) => { const y = summary.years.find((v) => v.year === b.year) || { year: b.year }; return b.data && b.data.data.length ? <Fragment key={b.year}><section id={`cutoff-${b.year}`} className="cutoff-section">
       <h2>{cutoffYearHeading(name, y)}</h2>
       <CutoffExpand label={`View all ${name} ${examYearOf(y)} cutoffs`} total={b.data.data.length} visible={activeYear ? Number.MAX_SAFE_INTEGER : OVERVIEW_ROWS} href={!activeYear && isMultiYear(summary) ? yearHref(b.year) : undefined}>
       {i === 0
@@ -129,8 +131,9 @@ export default function ExamCutoffPage({ summary, blocks, activeYear, finder }: 
         : <><ExamCutoffs examLabel={name} cutoffs={b.data} heading={null} collegeHref={(s) => `/colleges/${s}/cutoff`} />
             </>}
       </CutoffExpand>
-    </section> : null; })}
+    </section>{i === 0 && <AdSlot slotKey="cutoff_mid" />}</Fragment> : null; })}
     {faqs.some((f) => f.answer.trim()) && <section className="cutoff-section cutoff-faq"><h2>{name} Cutoff FAQs</h2>
       {faqs.filter((f) => f.answer.trim()).map((f) => <div key={f.question}><h3>{f.question}</h3><p>{f.answer}</p></div>)}</section>}
+    <AdSlot slotKey="cutoff_end" />
   </div></main>;
 }

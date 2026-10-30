@@ -6,6 +6,8 @@ import { api, mediaUrl } from '../../../lib/api';
 import { getLinkableEntities } from '../../../lib/linkable-entities';
 import AutoLinkedText from '../../../components/AutoLinkedText';
 import ArticleCollegeList from '../../../components/ArticleCollegeList';
+import AdSlot from '../../../components/ads/AdSlot';
+import { getAdSlot } from '../../../lib/ads';
 import CollegeComparisonArticle from '../../../components/articles/CollegeComparisonArticle';
 
 export const revalidate = 300;
@@ -251,12 +253,14 @@ export default async function ArticleDetailPage({ params, searchParams }: { para
         return <img className="article-detail-image" src={image.src} srcSet={image.srcSet} sizes={image.sizes} alt={article.h1 || article.title} width="1200" height="800" fetchPriority="high" loading="eager" decoding="async" />;
       })()}
       <CollegeComparisonArticle article={article as unknown as Parameters<typeof CollegeComparisonArticle>[0]['article']} linkableEntities={linkableEntities} />
+      <AdSlot slotKey="article_end" />
     </div></main>;
   }
   const publishedArticleSlugs = await getPublishedArticleSlugs();
   const siteUrl = getSiteUrl();
   const seo = getSeoContext(article);
   const linkableEntities = await getLinkableEntities();
+  const articleAdFeed = await getAdSlot('article_feed');
   const relatedVisible = relatedGuides
     .filter((guide) => guide.slug !== article.slug && publishedArticleSlugs.includes(guide.slug))
     .slice(0, 3);
@@ -307,6 +311,7 @@ export default async function ArticleDetailPage({ params, searchParams }: { para
     <div className="notice"><strong>Before you apply:</strong> {isAveragePackageExceedsFeesArticle(article.type) || isHighestPackageArticle(article.type) || isGovAvgPackageArticle(article.type) ? 'placement packages are historical leads and can change by batch, role and recruiter mix. Confirm the latest official fee and placement report before deciding.' : isExamAdmissionArticle(article.type) ? `exam routes and college requirements can change. Confirm the current ${article.exam?.name || 'entrance exam'} notice and each institution's official admission process before applying.` : article.type.includes('admission') ? 'eligibility and admission routes can change by institution and academic year. Confirm the latest official notice before applying.' : 'treat these figures as fee leads, not final quotes. Confirm the academic year, currency, duration, hostel, mess, deposits and current admission rules with the institution.'}</div>
     <p className="article-intro"><AutoLinkedText text={seo.intro} entities={linkableEntities} /></p>
     {isExamAdmissionArticle(article.type) && article.exam?.applyUrl && <p className="article-backlink"><a href={article.exam.applyUrl} target="_blank" rel="noopener noreferrer">Open official {article.exam.name} information</a></p>}
+    <AdSlot slotKey="article_intro" />
     <h2>{seo.optionsHeading}</h2>
     <ArticleCollegeList
       slug={article.slug}
@@ -318,9 +323,11 @@ export default async function ArticleDetailPage({ params, searchParams }: { para
       summaryLabel={summaryLabel}
       linkableEntities={linkableEntities}
       excludeExamSlugs={isExamAdmissionArticle(article.type) && article.exam?.slug ? [article.exam.slug] : []}
+      adFeed={articleAdFeed}
     />
     <h2>How to use this guide</h2>
     <p>{isAveragePackageExceedsFeesArticle(article.type) ? 'Use the package-above-fees result as a shortlist signal, then compare programme quality, fee coverage, eligibility, admission route and the latest official placement report.' : isHighestPackageArticle(article.type) ? 'Start with colleges that meet the package threshold, then compare programme quality, fees, eligibility, admission route and the latest official placement report before applying.' : isGovAvgPackageArticle(article.type) ? 'Start with the government colleges that report stronger average packages in your chosen state. Then compare eligibility, fees, admission route, facilities and the latest official placement report before applying.' : 'Start with the colleges that match your preferred location and admission route. Then compare the complete programme cost, duration, eligibility, entrance exam, facilities, learning resources, and recent placement information. A low displayed fee is useful only when it is current and complete.'}</p>
+    <AdSlot slotKey="article_end" />
     {relatedVisible.length > 0 && <section className="related-guides" aria-labelledby="related-guides-heading">
       <h2 id="related-guides-heading">Related Student Decision Guides</h2>
       <div className="related-guide-list">{relatedVisible.map((guide) => <Link className="related-guide" href={`/articles/${guide.slug}`} key={guide.slug}><strong>{guide.title}</strong><span>{guide.description}</span></Link>)}</div>

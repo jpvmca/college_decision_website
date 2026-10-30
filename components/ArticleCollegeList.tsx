@@ -1,6 +1,9 @@
 'use client';
 
-import { useState } from 'react';
+import { Fragment, useState } from 'react';
+import AdSlotClient from './ads/AdSlotClient';
+import { feedPositions } from '../lib/ad-feed';
+import type { AdFeed } from '../lib/ads';
 import Link from 'next/link';
 import CollegeDetailsModal from '../app/articles/[slug]/CollegeDetailsModal';
 import DecisionActions from '../app/articles/[slug]/DecisionActions';
@@ -47,6 +50,8 @@ type Props = {
   linkableEntities?: LinkableEntity[];
   /** Primary exam slug to leave plain on Admission route: (avoid 40× CAT). */
   excludeExamSlugs?: string[];
+  /** article_feed ad slot (in-feed after every Nth card); null when ads are off. */
+  adFeed?: AdFeed | null;
 };
 
 function formatFee(value: string) {
@@ -215,13 +220,15 @@ export default function ArticleCollegeList({
   totalPages,
   summaryLabel,
   linkableEntities = [],
-  excludeExamSlugs = []
+  excludeExamSlugs = [],
+  adFeed = null
 }: Props) {
   const [candidates, setCandidates] = useState(initialCandidates);
   const [page, setPage] = useState(initialPage);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const uniqueCollege = isUniqueCollegeArticle(articleType);
+  const adPositions = feedPositions(adFeed, candidates.length, adFeed?.slot.feedEvery || 6);
   const hasMore = page < totalPages;
 
   async function loadMore() {
@@ -247,16 +254,18 @@ export default function ArticleCollegeList({
     <>
       <p className="muted">Showing {candidates.length} of {candidateCount} unique college options · {summaryLabel}</p>
       {candidates.map((candidate, index) => (
-        <CandidateCard
-          key={uniqueCollege ? `${candidate.institute_id}-${index}` : `${candidate.institute_id}-${candidate.institute_program_id}-${index}`}
-          candidate={candidate}
-          index={index}
-          articleType={articleType}
-          uniqueCollege={uniqueCollege}
-          showCompare={candidateCount > 1}
-          linkableEntities={linkableEntities}
-          excludeExamSlugs={excludeExamSlugs}
-        />
+        <Fragment key={uniqueCollege ? `${candidate.institute_id}-${index}` : `${candidate.institute_id}-${candidate.institute_program_id}-${index}`}>
+          <CandidateCard
+            candidate={candidate}
+            index={index}
+            articleType={articleType}
+            uniqueCollege={uniqueCollege}
+            showCompare={candidateCount > 1}
+            linkableEntities={linkableEntities}
+            excludeExamSlugs={excludeExamSlugs}
+          />
+          {adPositions.has(index + 1) && adFeed && <AdSlotClient slot={adFeed.slot} settings={adFeed.settings} className="ad-in-list" />}
+        </Fragment>
       ))}
       {hasMore && (
         <div className="article-load-more">

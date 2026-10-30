@@ -1,6 +1,10 @@
 'use client';
 
+import { Fragment } from 'react';
 import Link from 'next/link';
+import AdSlotClient from './ads/AdSlotClient';
+import { feedPositions } from '../lib/ad-feed';
+import type { AdFeed } from '../lib/ads';
 import CollegeDecisionCard from './CollegeDecisionCard';
 import type { LinkableEntity } from '../lib/auto-link-entities';
 
@@ -34,9 +38,11 @@ export type ListedCollege = {
 
 export type ListPagination = { page: number; perPage: number; total: number; totalPages: number };
 
-export function CollegeListResults({ colleges, total, linkableEntities }: { colleges: ListedCollege[]; total: number; linkableEntities: LinkableEntity[] }) {
+export function CollegeListResults({ colleges, total, linkableEntities, adFeed = null }: { colleges: ListedCollege[]; total: number; linkableEntities: LinkableEntity[]; adFeed?: AdFeed | null }) {
+  // listing_feed: after card 6, then every feedEvery cards (default 12 → cards 6 and 18).
+  const adPositions = feedPositions(adFeed, colleges.length, 6);
   return <div className="decision-results-list">
-    {colleges.length ? colleges.map((college, index) => (
+    {colleges.length ? colleges.map((college, index) => <Fragment key={college.id}>{(
       college.programme_id && college.course_id ? <div id={`college-${index + 1}`} key={college.id}><CollegeDecisionCard showReviews={false} showCompare={total > 1} item={{
         instituteId: college.id,
         courseId: Number(college.course_id || 0),
@@ -60,7 +66,7 @@ export function CollegeListResults({ colleges, total, linkableEntities }: { coll
         eligibility: college.eligibility,
         admissionRoutes: college.admission_routes
       }} linkableEntities={linkableEntities} /></div> : <article className="article-card" id={`college-${index + 1}`} key={college.id}><div className="article-card-top"><span className="pill">{college.institute_type || 'College'}</span><span className="muted">Programme data pending</span></div><h2>{college.display_name || college.full_name}</h2><p>{[college.city, college.state].filter(Boolean).join(', ') || 'India'}</p><p className="muted">Programme, fee and admission details are not listed yet.</p></article>
-    )) : <div className="card"><h2>College list unavailable</h2><p>Please try again shortly.</p></div>}
+    )}{adPositions.has(index + 1) && adFeed && <AdSlotClient slot={adFeed.slot} settings={adFeed.settings} className="ad-in-list" />}</Fragment>) : <div className="card"><h2>College list unavailable</h2><p>Please try again shortly.</p></div>}
   </div>;
 }
 

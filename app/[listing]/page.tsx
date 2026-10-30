@@ -10,6 +10,7 @@ import { getLinkableEntities } from '../../lib/linkable-entities';
 import { LISTINGS_CACHE_VERSION, courseListingHref, getCourseFacets, listingFetchOptions, parseCourseListingSegment, type CourseFacet } from '../../lib/listings';
 import { type ListedCollege, type ListPagination } from '../../components/CollegeListResults';
 import LoadMoreColleges from '../../components/LoadMoreColleges';
+import { getAdSlot } from '../../lib/ads';
 import PercentileCollegesPage, { percentileMetadata } from '../../components/PercentileCollegesPage';
 import { cutoffGroupsFor, getPercentileCombos, parsePercentileSegment } from '../../lib/percentile';
 import { getClosingCombos, parseRankSegment } from '../../lib/closing';
@@ -295,6 +296,7 @@ export default async function CourseCollegesPage({ params, searchParams }: { par
     { name: cityPage ? `${label} Colleges in ${cityName}` : `${label} Colleges`, url: canonicalUrl }
   ], `${pageUrl}#breadcrumb`);
 
+  const listingAdFeed = await getAdSlot('listing_feed', { thin: !result.data.length });
   return <main className="section"><div className="wrap">
     <JsonLd data={jsonLd} />
     <JsonLd data={breadcrumbLd} />
@@ -311,8 +313,8 @@ export default async function CourseCollegesPage({ params, searchParams }: { par
         </div>
         <h2>Browse {label} Colleges</h2>
         {statePage || cityPage
-          ? <LoadMoreColleges initial={result.data} total={pagination.total} perPage={pagination.perPage} query={`course=${encodeURIComponent(course.courseSlug)}&state=${encodeURIComponent(cityPage?.stateSlug || statePage?.stateSlug || '')}${cityPage ? `&city=${encodeURIComponent(cityPage.citySlug)}` : ''}`} linkableEntities={linkableEntities} />
-          : <LoadMoreColleges initial={result.data} total={pagination.total} perPage={pagination.perPage} endpoint={`/api/course-listing/${encodeURIComponent(course.key)}`} linkableEntities={linkableEntities} />}
+          ? <LoadMoreColleges initial={result.data} total={pagination.total} perPage={pagination.perPage} query={`course=${encodeURIComponent(course.courseSlug)}&state=${encodeURIComponent(cityPage?.stateSlug || statePage?.stateSlug || '')}${cityPage ? `&city=${encodeURIComponent(cityPage.citySlug)}` : ''}`} linkableEntities={linkableEntities} adFeed={listingAdFeed} />
+          : <LoadMoreColleges initial={result.data} total={pagination.total} perPage={pagination.perPage} endpoint={`/api/course-listing/${encodeURIComponent(course.key)}`} linkableEntities={linkableEntities} adFeed={listingAdFeed} />}
         <p className="muted">Fees and placement figures are shown only where colleges have reported them; confirm the latest numbers on the official college website before applying.</p>
       </div>
       <CourseFilterSidebar percentileGroups={percentileGroups} facets={facets.data} totalColleges={facets.totalColleges} selectedKey={course.key} selectedState={cityPage?.stateSlug || statePage?.stateSlug || null} selectedCity={cityPage?.citySlug || null} statePages={statePages.data} cityPages={cityPages.data} />

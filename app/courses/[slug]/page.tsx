@@ -9,6 +9,7 @@ import { stripEmbeddedFaqs } from '../../../lib/strip-embedded-faqs';
 import AutoLinkedText from '../../../components/AutoLinkedText';
 import { formatLpa } from '../../../lib/packages';
 import CourseGeoLinks from '../../../components/CourseGeoLinks';
+import AdSlot from '../../../components/ads/AdSlot';
 import { splitLongParagraphs } from '../../../lib/readable-html';
 import { plainText } from '../../../lib/readable-text';
 
@@ -286,6 +287,7 @@ export default async function CourseProfilePage({ params }: { params: Promise<{ 
 
     {!profile.course.htmlContent && <section><h2>About {seo.displayName}</h2><p>{seo.displayName} is listed as a study path in India. Use this page as a research starting point and confirm current course fees, eligibility, admission dates and placement outcomes before applying.</p></section>}
     
+    <AdSlot slotKey="course_mid_1" />
     {(seo.crossLink || profile.exams.length > 0) && <section className="college-profile-columns" aria-label="Related pathways">
       {seo.crossLink ? <div><h2>Related course guide</h2><p>{seo.crossLink.note} <Link href={seo.crossLink.href}>{seo.crossLink.anchor}</Link></p></div> : null}
       {profile.exams.length > 0 ? <div><h2>Entrance exams for {seo.displayName}</h2><div className="profile-chips">{profile.exams.map((exam) => <Link key={`link-${exam.id}`} href={`/exams/${exam.slug}`}>{exam.name} exam guide</Link>)}</div></div> : null}
@@ -303,6 +305,7 @@ export default async function CourseProfilePage({ params }: { params: Promise<{ 
         {otherArticles.length > 0 && <div className="college-programme-grid">{otherArticles.map((article) => <Link className="card" href={`/articles/${article.slug}`} key={article.slug}><h3>{text(article.title, article.slug)}</h3><p className="muted">Read the published {article.articleType ? article.articleType.replace(/-/g, ' ') : 'course'} guide</p></Link>)}</div>}
       </>;
     })()}</section>}
+    <AdSlot slotKey="course_end" />
     {faqs.length > 0 && <section><h2>Frequently asked questions</h2>{faqs.map((faq) => <article className="faq-item" key={faq.question}><h3>{faq.question}</h3><p>{faq.answer}</p></article>)}</section>}
     <CourseGeoLinks courseSlug={profile.course.slug} />
     <div className="notice"><strong>Data note:</strong> Fees, placements, rankings and reviews are recorded evidence and may change by batch, category, role, recruiter mix or academic year. Verify the latest official information before applying.</div>

@@ -11,6 +11,7 @@ import { getLinkableEntities, findPublishedHref, findPublishedHrefByName } from 
 import { CollegeCutoffs, type CollegeCutoffResponse } from '../../../components/Cutoffs';
 import { formatLpa } from '../../../lib/packages';
 import ReadableHtml from '../../../components/ReadableHtml';
+import AdSlot from '../../../components/ads/AdSlot';
 import { readableBlocks, splitLead } from '../../../lib/readable-html';
 import { getLinkResolver } from '../../../lib/internal-link-index';
 import { plainText, readableLines, PROGRAMME_HEADING_START, isShortText, withFullStop } from '../../../lib/readable-text';
@@ -671,6 +672,8 @@ export default async function CollegeProfilePage({ params }: { params: Promise<{
     ]
   };
 
+  // Thin profile (no About and no programmes): never show ads.
+  const adThin = !String(profile.about || '').trim() && profile.programmes.length === 0;
   return <main className="section college-profile-page"><div className="wrap prose">
     <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
     <nav className="breadcrumb" aria-label="Breadcrumb"><Link href="/">Home</Link><span aria-hidden="true">›</span><Link href="/colleges">Colleges</Link><span aria-hidden="true">›</span><span aria-current="page">{name}</span></nav>
@@ -712,6 +715,7 @@ export default async function CollegeProfilePage({ params }: { params: Promise<{
       </div>}
     </section>}
 
+    <AdSlot slotKey="college_mid_1" thin={adThin} />
     {profile.programmes.length > 0 && <section id="courses">
       <SectionHeading icon={BookOpen}>Courses and Programmes Offered</SectionHeading>
       <div className="programme-groups" id="programme-groups">{programmeGroups.map((group, groupIndex) => <div key={group.name} className="programme-group" data-course-ids={[...new Set(group.programmes.map((programme) => programme.course_id))].join(',')}><h3>{group.heading}<CollegeApply compact collegeSlug={slug} collegeName={name} courses={applyCourses} courseIds={[...new Set(group.programmes.map((programme) => Number(programme.course_id)))]} label="Apply" /></h3><div className="profile-list">
@@ -764,6 +768,7 @@ export default async function CollegeProfilePage({ params }: { params: Promise<{
       <p>Admission to {name} is based on {examLinks()}{profile.exams.length > 1 ? ', depending on the programme' : ''}. Qualify in the relevant exam, then take part in the college or counselling process announced on the official admission notice.</p>
     </section> : null}
 
+    <AdSlot slotKey="college_mid_2" thin={adThin} />
     {(placements.lines.length > 0 || placements.wide.length > 0 || profile.recruiters.length > 0) && <section id="placements">
       <SectionHeading icon={BriefcaseBusiness}>Placements and Recruiters</SectionHeading>
       {(placements.lines.length > 0 || placements.wide.length > 0) && <><h3>Placement Highlights{placements.years.length ? ` (${placements.years.length > 1 ? `${placements.years[placements.years.length - 1]}–${placements.years[0]}` : placements.years[0]})` : ''}</h3><PlacementChart rows={placements.chart} />
@@ -797,6 +802,7 @@ export default async function CollegeProfilePage({ params }: { params: Promise<{
     </section>}
     {profile.comparisonGuides.length > 0 && <section id="compare"><SectionHeading icon={ArrowLeftRight}>Compare {name}</SectionHeading><div className="college-programme-grid">{profile.comparisonGuides.map((guide) => <Link className="card" href={`/articles/${guide.slug}`} key={guide.slug}><h3>{stripSiteSuffix(text(guide.title, guide.h1 || 'College comparison guide'))}</h3><p className="muted">{guide.other_college_name ? `Compare ${name} with ${guide.other_college_name}` : 'Read the published comparison guide'}</p></Link>)}</div></section>}
     {faqs.length > 0 && <section id="faq"><SectionHeading icon={HelpCircle}>Frequently asked questions</SectionHeading>{faqs.map((faq) => <article className="faq-item" key={faq.question}><h3>{faq.question}</h3><p>{faq.answer}</p></article>)}</section>}
+    <AdSlot slotKey="college_end" thin={adThin} />
     <div className="notice"><strong>Data note:</strong> Fees, placements, rankings and reviews are recorded evidence and may change by batch, category, role, recruiter mix or academic year. Verify the latest official information before applying.</div>
   </div></main>;
 }
