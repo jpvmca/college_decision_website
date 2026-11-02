@@ -4,6 +4,7 @@ import { api, ArticleList, mediaUrl } from '../lib/api';
 import CollegeDecisionFilter from '../components/CollegeDecisionFilter';
 import ExamLogo from '../components/ExamLogo';
 import InstituteLogo from '../components/InstituteLogo';
+import AdSlot from '../components/ads/AdSlot';
 import { ArrowRight, ChartNoAxesCombined, GraduationCap, IndianRupee } from 'lucide-react';
 
 type CourseSummary = { id: number; name: string; slug?: string; published_slug?: string | null; institute_count: number; programme_count: number; review_count: number | string | null; average_rating: number | string | null };
@@ -163,7 +164,8 @@ export default async function HomePage() {
         </div>
       </section>
       <section className="section popular-section">
-        <div className="wrap">
+        <div className="wrap popular-layout">
+          <div className="popular-main">
           <p className="eyebrow">START WITH A USEFUL QUESTION</p>
           <div className="section-heading-row">
             <h2>Popular decision guides</h2>
@@ -182,6 +184,12 @@ export default async function HomePage() {
             </article>)}
             {!popularGuides.length && <p className="muted">New decision guides will appear here after they are published.</p>}
           </div>
+          </div>
+          <aside className="home-ad-rail" aria-label="Advertisements">
+            <AdSlot slotKey="home_side_1" />
+            <AdSlot slotKey="home_side_2" />
+            <AdSlot slotKey="home_side_3" />
+          </aside>
         </div>
       </section>
     </>

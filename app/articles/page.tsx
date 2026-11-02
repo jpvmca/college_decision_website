@@ -4,6 +4,7 @@ import { notFound } from 'next/navigation';
 import { api, ArticleList, mediaUrl } from '../../lib/api';
 import { getPageItems } from '../../lib/pagination';
 import ArticleFilters from '../../components/ArticleFilters';
+import AdSlot from '../../components/ads/AdSlot';
 import { ArrowLeft, ArrowRight, CheckCircle2 } from 'lucide-react';
 
 type ArticleType = 'all' | 'budget' | 'fees' | 'admission' | 'gov-avg-package' | 'exam-admission';
@@ -165,6 +166,7 @@ export default async function ArticlesPage({ searchParams }: { searchParams: Pro
     <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
     <nav className="breadcrumb" aria-label="Breadcrumb"><Link href="/">Home</Link><span aria-hidden="true">›</span><span aria-current="page">Articles</span></nav>
     <section className="articles-hero"><div className="articles-hero-copy"><p className="eyebrow">STUDENT DECISION GUIDES</p><h1>Compare colleges with a clearer plan</h1><p>Explore course-by-course guides that bring fees, admission routes, eligibility and outcomes into one practical comparison.</p><p><Link className="button primary" href="/compare-colleges-2026">Compare colleges directly <ArrowRight size={16} aria-hidden="true" /></Link></p></div>{(() => { const image = getResponsiveImageSources('/articles-hero.webp'); return <img src={image.src} srcSet={image.srcSet} sizes={image.sizes} alt="Students comparing college decision guides" width="1200" height="675" fetchPriority="high" loading="eager" decoding="async" />; })()}</section>
+    <AdSlot slotKey="articles_listing" />
     <p className="muted">Twenty guides appear on each page. Open a guide to see the matching course options and the questions you should verify before applying.</p>
     <ArticleFilters visibleTypes={visibleTypes}>
     <div className="article-list">

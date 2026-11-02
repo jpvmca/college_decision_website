@@ -37,6 +37,7 @@ function pickUnit(units: AdUnit[]): AdUnit | null {
 }
 
 function track(unitId: number, event: 'impression' | 'click') {
+  if (unitId <= 0) return;
   try {
     const body = JSON.stringify({ unitId, event });
     if (!navigator.sendBeacon?.('/api/ads/track', new Blob([body], { type: 'application/json' }))) {
@@ -114,7 +115,7 @@ export default function AdSlotClient({ slot, settings, className }: { slot: AdSl
     {mode === 'live' && unit && <div className="ad-inner" style={{ minHeight: reserve }}>
       {visible && unit.codeType === 'adsense_ins' && unit.ins && <ins
         className="adsbygoogle"
-        style={{ display: 'block', ...styleObject(unit.ins.style) }}
+        style={{ ...styleObject(unit.ins.style), display: 'block', width: '100%', minHeight: reserve }}
         data-ad-client={unit.ins['data-ad-client']}
         data-ad-slot={unit.ins['data-ad-slot']}
         data-ad-format={unit.ins['data-ad-format']}

@@ -5,7 +5,7 @@
 .ad-inner ins.adsbygoogle{width:100%}
 .ad-inner img{max-width:100%;height:auto;display:block;margin:0 auto}
 .ad-html{width:100%;display:flex;justify-content:center}
-.ad-format-vertical_banner .ad-inner{max-width:300px;margin:0 auto}
+.ad-format-vertical .ad-inner,.ad-format-vertical_banner .ad-inner{max-width:300px;margin:0 auto}
 .ad-format-square .ad-inner{max-width:336px;margin:0 auto}
 .ad-format-in_feed{margin:18px auto}
 .ad-device-desktop{display:none}
@@ -13,4 +13,13 @@
 .ad-test .ad-placeholder{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;width:100%;border:2px dashed #f59e0b;border-radius:10px;background:repeating-linear-gradient(45deg,#fffbeb,#fffbeb 10px,#fef3c7 10px,#fef3c7 20px);color:#92400e;font-size:13px}
 .ad-test .ad-placeholder strong{font-family:ui-monospace,Menlo,monospace;font-size:14px}
 .decision-results-list>.ad-wrap{grid-column:1/-1}
+.popular-layout{display:block}
+.home-ad-rail{display:none}
+@media (min-width:1100px){
+  .popular-layout{display:grid;grid-template-columns:minmax(0,1fr) 320px;gap:32px;align-items:start}
+  .home-ad-rail{display:block;min-width:0}
+  .home-ad-rail>.ad-wrap{margin:0 0 24px}
+  .home-ad-rail>.ad-wrap .ad-format-vertical .ad-inner,
+  .home-ad-rail>.ad-wrap .ad-format-vertical_banner .ad-inner{max-width:300px}
+}
 @media print{.ad-wrap{display:none}}

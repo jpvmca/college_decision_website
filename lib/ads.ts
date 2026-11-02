@@ -1,55 +1,83 @@
 import { cache } from 'react';
 import { api } from './api';
 
-/** Ad Manager config (admin → backend /ads/config). Manual slots only; Auto ads are never enabled. */
+/** Three global responsive AdSense codes; Auto ads and per-slot code are not used. */
 export type AdUnit = {
-  id: number; variant: string; format: string; sizeHint: string | null; codeType: 'adsense_ins' | 'html_script' | 'image_link' | string;
-  ins?: Record<string, string> | null; html?: string; imageUrl?: string | null; linkUrl?: string | null; alt?: string | null; device: string; weight: number;
+  id: number;
+  variant: string;
+  format: string;
+  sizeHint: string | null;
+  codeType: 'adsense_ins' | 'html_script' | 'image_link';
+  ins?: Record<string, string> | null;
+  html?: string;
+  imageUrl?: string | null;
+  linkUrl?: string | null;
+  alt?: string | null;
+  device: 'all';
+  weight: number;
 };
-export type AdSlotConfig = { key: string; pageType: string; format: string; device: string; minHeight: number; count: number; feedEvery: number | null; active: boolean; units: AdUnit[] };
+export type AdSlotConfig = { key: string; pageType: string; format: string; device: 'all'; minHeight: number; count: number; feedEvery: number | null; active: boolean; units: AdUnit[] };
 export type AdConfig = {
-  enabled: boolean; testMode: boolean; client: string | null; nonPersonalized: boolean; consentRequired: boolean; skipThinPages: boolean;
-  excludedRoutes: string[]; lazyMarginPx: number; slots: Record<string, AdSlotConfig>;
+  enabled: boolean;
+  client: string | null;
+  nonPersonalized: boolean;
+  consentRequired: boolean;
+  codes: Record<'horizontal' | 'vertical' | 'square', Record<string, string> | null>;
 };
-/** The settings the client part needs (no slot list). */
-export type AdClientSettings = Pick<AdConfig, 'testMode' | 'nonPersonalized' | 'consentRequired' | 'excludedRoutes' | 'lazyMarginPx'>;
-/** Everything a client list needs to render in-feed ads itself. */
+export type AdClientSettings = Pick<AdConfig, 'nonPersonalized' | 'consentRequired'> & {
+  testMode: false;
+  excludedRoutes: string[];
+  lazyMarginPx: number;
+};
 export type AdFeed = { slot: AdSlotConfig; settings: AdClientSettings };
 
 export const ADS_TAG = 'ads';
+const EXCLUDED_ROUTES = ['/search', '/contact', '/about', '/privacy-policy', '/terms-and-conditions', '/disclaimer', '/compare-colleges', '/seo-timeline'];
+const GLOBAL_MARGIN = 300;
 
 export const getAdConfig = cache(async (): Promise<AdConfig | null> => {
+  if (process.env.ADS_ENABLED !== 'true') return null;
   try {
     const result = await api<{ data: AdConfig }>('/ads/config', { next: { revalidate: 120, tags: [ADS_TAG] } });
-    return result.data;
+    return result.data.enabled ? result.data : null;
   } catch {
     return null;
   }
 });
 
-export function clientSettings(config: AdConfig): AdClientSettings {
-  return { testMode: config.testMode, nonPersonalized: config.nonPersonalized, consentRequired: config.consentRequired, excludedRoutes: config.excludedRoutes, lazyMarginPx: config.lazyMarginPx };
+function codeTypeForSlot(slotKey: string): 'horizontal' | 'vertical' | 'square' {
+  if (slotKey.includes('side') || slotKey.includes('rail') || slotKey.includes('vertical')) return 'vertical';
+  if (slotKey.includes('end') || slotKey.includes('feed') || slotKey.includes('square')) return 'square';
+  return 'horizontal';
 }
 
-/** Returns the slot when it may render on this page (or in admin test mode), else null. */
+function heightFor(type: 'horizontal' | 'vertical' | 'square') {
+  return type === 'vertical' ? 600 : type === 'square' ? 280 : 120;
+}
+
+export function clientSettings(config: AdConfig): AdClientSettings {
+  return { testMode: false, nonPersonalized: config.nonPersonalized, consentRequired: config.consentRequired, excludedRoutes: EXCLUDED_ROUTES, lazyMarginPx: GLOBAL_MARGIN };
+}
+
+/** Maps existing page placement keys to one of the three global responsive codes. */
 export async function getAdSlot(slotKey: string, opts: { thin?: boolean } = {}): Promise<AdFeed | null> {
   const config = await getAdConfig();
-  if (!config || (!config.enabled && !config.testMode)) return null;
-  const slot = config.slots[slotKey];
-  if (!slot) return null;
-  // Test mode keeps every slot mounted so `?adtest=1` can show placeholders; normal visitors still see nothing.
-  if (slot.count <= 0 && !config.testMode) return null;
-  if (opts.thin && config.skipThinPages) return null;
+  if (!config || opts.thin) return null;
+  const type = codeTypeForSlot(slotKey);
+  const ins = config.codes[type];
+  if (!ins) return null;
+  const slot: AdSlotConfig = {
+    key: slotKey, pageType: 'global', format: type, device: 'all',
+    minHeight: heightFor(type), count: 1, feedEvery: null, active: true,
+    units: [{ id: 0, variant: 'global', format: type, sizeHint: null, codeType: 'adsense_ins', ins, device: 'all', weight: 1 }]
+  };
   return { slot, settings: clientSettings(config) };
 }
 
-/** AdSense loader client id: DB setting first, then the optional env fallback. Null when no live AdSense unit exists. */
 export async function getAdsenseClient(): Promise<string | null> {
   const config = await getAdConfig();
-  if (!config?.enabled) return null;
-  const hasAdsense = Object.values(config.slots).some((slot) => slot.active && slot.units.some((unit) => unit.codeType === 'adsense_ins'));
-  if (!hasAdsense) return null;
-  const fromUnits = Object.values(config.slots).flatMap((slot) => slot.units).find((unit) => unit.ins?.['data-ad-client'])?.ins?.['data-ad-client'];
+  if (!config) return null;
+  const fromUnits = Object.values(config.codes).find((code) => code?.['data-ad-client'])?.['data-ad-client'];
   const client = config.client || process.env.NEXT_PUBLIC_ADSENSE_CLIENT || fromUnits || '';
   return /^ca-pub-\d{10,20}$/.test(client) ? client : null;
 }

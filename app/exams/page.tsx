@@ -3,6 +3,7 @@ import Link from 'next/link';
 import { CalendarDays } from 'lucide-react';
 import { api } from '../../lib/api';
 import ExamDirectory, { type ExamList } from '../../components/ExamDirectory';
+import AdSlot from '../../components/ads/AdSlot';
 import { daysUntil, formatDate as examFormatDate } from '../../lib/exam-format';
 
 const PAGE_SIZE = 20;
@@ -36,6 +37,7 @@ export default async function ExamsPage() {
     <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
     <nav className="breadcrumb" aria-label="Breadcrumb"><Link href="/">Home</Link><span aria-hidden="true">›</span><span aria-current="page">Exams</span></nav>
     <section className="articles-hero"><div className="articles-hero-copy"><p className="eyebrow">ENTRANCE EXAM GUIDES</p><h1>{heading}</h1><p>Compare exam dates, registration status, application fees, linked programmes and the colleges that accept each exam, then open the full exam profile before you apply.</p></div><img src="/exams-hero.webp" alt="Students preparing for college entrance exams" width="1200" height="675" fetchPriority="high" loading="eager" decoding="async" /></section>
+    <AdSlot slotKey="exams_listing" />
 
     {upcoming.length > 0 ? <section className="exam-upcoming" aria-labelledby="upcoming-exams">
       <h2 id="upcoming-exams"><CalendarDays size={18} aria-hidden="true" /> Upcoming exam dates</h2>

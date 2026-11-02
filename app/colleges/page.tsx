@@ -8,6 +8,7 @@ import { getLinkableEntities } from '../../lib/linkable-entities';
 import { getCourseFacets } from '../../lib/listings';
 import { type ListedCollege } from '../../components/CollegeListResults';
 import LoadMoreColleges from '../../components/LoadMoreColleges';
+import AdSlot from '../../components/ads/AdSlot';
 import { CourseFilterMobileButton, CourseFilterSidebar } from '../../components/CourseFilterPanel';
 
 type College = ListedCollege;
@@ -110,6 +111,7 @@ export default async function CollegesPage() {
       </div>
       <img src="/colleges-hero.webp" alt="Students comparing colleges and courses" width="1200" height="675" fetchPriority="high" loading="eager" decoding="async" />
     </section>
+    <AdSlot slotKey="colleges_listing" />
     <div className="listing-layout">
       <div className="listing-main">
         <CourseFilterMobileButton facets={facets.data} totalColleges={facets.totalColleges || result.pagination.total} />
