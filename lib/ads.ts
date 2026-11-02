@@ -64,7 +64,7 @@ export async function getAdSlot(slotKey: string, opts: { thin?: boolean } = {}):
   const config = await getAdConfig();
   if (!config || opts.thin) return null;
   const type = codeTypeForSlot(slotKey);
-  const ins = config.codes[type];
+  const ins = config.codes?.[type];
   if (!ins) return null;
   const slot: AdSlotConfig = {
     key: slotKey, pageType: 'global', format: type, device: 'all',
@@ -77,7 +77,7 @@ export async function getAdSlot(slotKey: string, opts: { thin?: boolean } = {}):
 export async function getAdsenseClient(): Promise<string | null> {
   const config = await getAdConfig();
   if (!config) return null;
-  const fromUnits = Object.values(config.codes).find((code) => code?.['data-ad-client'])?.['data-ad-client'];
+  const fromUnits = Object.values(config.codes || {}).find((code) => code?.['data-ad-client'])?.['data-ad-client'];
   const client = config.client || process.env.NEXT_PUBLIC_ADSENSE_CLIENT || fromUnits || '';
   return /^ca-pub-\d{10,20}$/.test(client) ? client : null;
 }
