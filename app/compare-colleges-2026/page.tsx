@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import Link from 'next/link';
 import { ArrowRight, CheckCircle2 } from 'lucide-react';
 import CollegeComparePage from '../../components/CollegeComparePage';
+import AdSlot from '../../components/ads/AdSlot';
 import { api, mediaUrl } from '../../lib/api';
 
 const siteUrl = (process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3001').replace(/\/+$/, '');
@@ -69,6 +70,7 @@ export default async function CompareCollegesPage() {
           </div>
         </div>
       </section>
+      <AdSlot slotKey="compare_top" className="listing-ad" />
 
       <main>
         <section className="section compare-tool-section">

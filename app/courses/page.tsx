@@ -3,6 +3,7 @@ import Link from 'next/link';
 import { api } from '../../lib/api';
 import CourseDirectory from '../../components/CourseDirectory';
 import AdSlot from '../../components/ads/AdSlot';
+import { getAdSlot } from '../../lib/ads';
 
 type Course = { id: number; name: string; slug: string; published_slug?: string | null; mode: string | null; image_url: string | null; programme_count: number; institute_count: number; review_count: number | string | null; average_rating: number | string | null };
 type CourseList = { data: Course[]; pagination: { page: number; perPage: number; total: number; totalPages: number } };
@@ -21,6 +22,7 @@ export default async function CoursesPage() {
   try { result = await api<CourseList>(`/courses?page=${page}&perPage=${PAGE_SIZE}`); } catch { /* keep the page renderable */ }
   const siteUrl = (process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3001').replace(/\/+$/, '');
   const pageUrl = `${siteUrl}/courses`;
+  const listingAdFeed = await getAdSlot('listing_feed');
   const jsonLd = {
     '@context': 'https://schema.org',
     '@graph': [
@@ -33,9 +35,10 @@ export default async function CoursesPage() {
     <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
     <nav className="breadcrumb" aria-label="Breadcrumb"><Link href="/">Home</Link><span aria-hidden="true">›</span><span aria-current="page">Courses</span></nav>
     <section className="articles-hero"><div className="articles-hero-copy"><p className="eyebrow">COURSE GUIDES</p><h1>Courses in India 2026</h1><p>Explore courses, programme coverage and the colleges connected with each study path. Use course information to compare fees, eligibility, admissions and outcomes.</p></div><img src="/courses-hero.webp" alt="Students exploring courses and college options" width="1200" height="675" fetchPriority="high" loading="eager" decoding="async" /></section>
-    <AdSlot slotKey="courses_listing" />
+    <AdSlot slotKey="listing_top" className="listing-ad" />
     <p className="muted">{result.pagination.total.toLocaleString('en-IN')} active courses · load more to continue</p>
-    <CourseDirectory initial={result.data} total={result.pagination.total} perPage={PAGE_SIZE} />
+    <CourseDirectory initial={result.data} total={result.pagination.total} perPage={PAGE_SIZE} adFeed={listingAdFeed} />
+    <AdSlot slotKey="listing_bottom" className="listing-ad" />
   </div></main>;
 }
 

@@ -53,7 +53,8 @@ function isExcluded(pathname: string, routes: string[]) {
 /**
  * Client part: lazy loads (IntersectionObserver), reserves height to avoid layout shift, shows the
  * "Advertisement" label, rotates A/B/C variants by weight and pushes adsbygoogle only for AdSense units.
- * Test mode: when the admin turned test mode on, `?adtest=1` shows dashed placeholders with the slot size.
+ * Test mode: when `ADS_TEST_MODE=true` is enabled locally, dashed placeholders show the
+ * configured placement and reserved size without loading AdSense.
  */
 export default function AdSlotClient({ slot, settings, className }: { slot: AdSlotConfig; settings: AdClientSettings; className?: string }) {
   const wrapRef = useRef<HTMLDivElement>(null);
@@ -64,7 +65,7 @@ export default function AdSlotClient({ slot, settings, className }: { slot: AdSl
   const [unit, setUnit] = useState<AdUnit | null>(null);
 
   useEffect(() => {
-    const test = settings.testMode && new URLSearchParams(window.location.search).get('adtest') === '1';
+    const test = settings.testMode;
     if (isExcluded(window.location.pathname, settings.excludedRoutes)) setMode('hidden');
     else if (test) setMode('test');
     else if (!slot.active) setMode('hidden');

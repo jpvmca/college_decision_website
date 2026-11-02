@@ -248,6 +248,7 @@ export default async function CourseProfilePage({ params }: { params: Promise<{ 
   return <main className="section college-profile-page"><div className="wrap prose">
     <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
     <nav className="breadcrumb" aria-label="Breadcrumb"><Link href="/">Home</Link><span aria-hidden="true">›</span><Link href="/courses">Courses</Link><span aria-hidden="true">›</span><span aria-current="page">{seo.displayName}</span></nav>
+    <AdSlot slotKey="course_top" />
     <header className="college-profile-header">
       <div>
         <p className="eyebrow">COURSE PROFILE</p>

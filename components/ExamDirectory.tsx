@@ -1,10 +1,13 @@
 'use client';
 
-import { useRef, useState } from 'react';
+import { Fragment, useRef, useState } from 'react';
 import Link from 'next/link';
 import { ArrowDown, ArrowRight } from 'lucide-react';
 import ExamLogo from './ExamLogo';
 import { STATE_LABEL, applicationFee, compactMoney, examDateFact, modeLabel, registrationFact } from '../lib/exam-format';
+import AdSlotClient from './ads/AdSlotClient';
+import { feedPositions } from '../lib/ad-feed';
+import type { AdFeed } from '../lib/ads';
 
 /**
  * Exam directory body for /exams: course tabs filter client-side (no URL change, no ?course=), and "Load more"
@@ -54,7 +57,7 @@ export type ExamList = {
 type ListState = { items: Exam[]; total: number; page: number };
 
 
-export default function ExamDirectory({ initial, total, courses, perPage }: { initial: Exam[]; total: number; courses: CourseFacet[]; perPage: number }) {
+export default function ExamDirectory({ initial, total, courses, perPage, adFeed = null }: { initial: Exam[]; total: number; courses: CourseFacet[]; perPage: number; adFeed?: AdFeed | null }) {
   const cache = useRef(new Map<string, ListState>([['', { items: initial, total, page: 1 }]]));
   const [course, setCourse] = useState('');
   const [list, setList] = useState<ListState>({ items: initial, total, page: 1 });
@@ -107,7 +110,7 @@ export default function ExamDirectory({ initial, total, courses, perPage }: { in
       const mode = modeLabel(exam.mode);
       const state = exam.schedule?.state || 'date_not_announced';
       const extraColleges = Math.max(0, Number(exam.institute_count || 0) - exam.colleges.length);
-      return <article className="article-card exam-card" id={`exam-${index + 1}`} key={exam.id}>
+      return <Fragment key={exam.id}><article className="article-card exam-card" id={`exam-${index + 1}`}>
         <div className="exam-card-top">
           <div className="exam-card-heading">
             {profileHref ? <Link href={profileHref}><ExamLogo src={exam.logo} examName={exam.name} courseName={exam.course_name} size={64} /></Link> : <ExamLogo src={exam.logo} examName={exam.name} courseName={exam.course_name} size={64} />}
@@ -153,7 +156,7 @@ export default function ExamDirectory({ initial, total, courses, perPage }: { in
           </div>
           {profileHref ? <Link className="home-card-more exam-card-more" href={profileHref}>Dates, eligibility & colleges <ArrowRight size={14} aria-hidden="true" /></Link> : null}
         </div>
-      </article>;
+      </article>{feedPositions(adFeed, list.items.length, 5).has(index + 1) && adFeed ? <AdSlotClient slot={adFeed.slot} settings={adFeed.settings} className="ad-in-list" /> : null}</Fragment>;
     }) : <div className="card"><h2>Exam list unavailable</h2><p>Please try again shortly.</p></div>}</div>
     {(list.items.length < list.total || error) && <div className="load-more-wrap">
       <button className="button secondary" type="button" onClick={loadMore} disabled={loading}>{loading ? 'Loading exams…' : error ? 'Try again' : 'Load more'} <ArrowDown size={16} aria-hidden="true" /></button>

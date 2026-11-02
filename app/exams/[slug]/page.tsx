@@ -249,6 +249,7 @@ export default async function ExamProfilePage({ params }: { params: Promise<{ sl
   return <main className="section college-profile-page"><div className="wrap prose">
     <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
     <nav className="breadcrumb" aria-label="Breadcrumb"><Link href="/">Home</Link><span aria-hidden="true">›</span><Link href="/exams">Exams</Link><span aria-hidden="true">›</span><span aria-current="page">{name}</span></nav>
+    <AdSlot slotKey="exam_top" />
     <header className="college-profile-header">
       <div>
         <p className="eyebrow">EXAM PROFILE</p>

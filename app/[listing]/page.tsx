@@ -11,6 +11,7 @@ import { LISTINGS_CACHE_VERSION, courseListingHref, getCourseFacets, listingFetc
 import { type ListedCollege, type ListPagination } from '../../components/CollegeListResults';
 import LoadMoreColleges from '../../components/LoadMoreColleges';
 import { getAdSlot } from '../../lib/ads';
+import AdSlot from '../../components/ads/AdSlot';
 import PercentileCollegesPage, { percentileMetadata } from '../../components/PercentileCollegesPage';
 import { cutoffGroupsFor, getPercentileCombos, parsePercentileSegment } from '../../lib/percentile';
 import { getClosingCombos, parseRankSegment } from '../../lib/closing';
@@ -301,6 +302,7 @@ export default async function CourseCollegesPage({ params, searchParams }: { par
     <JsonLd data={jsonLd} />
     <JsonLd data={breadcrumbLd} />
     <nav className="breadcrumb" aria-label="Breadcrumb"><Link href="/">Home</Link><span aria-hidden="true">›</span><Link href="/colleges">Colleges</Link><span aria-hidden="true">›</span><span aria-current="page">{cityPage ? `${label} Colleges in ${cityName}` : `${label} Colleges`}</span></nav>
+    <AdSlot slotKey="listing_top" className="listing-ad" />
     {image ? <section className="articles-hero listing-hero">
       <div className="articles-hero-copy">{heroCopy}</div>
       <img src={image.src} srcSet={image.srcSet} sizes={image.sizes} alt={image.alt} width={image.width} height={image.height} fetchPriority="high" loading="eager" decoding="async" />
@@ -319,5 +321,6 @@ export default async function CourseCollegesPage({ params, searchParams }: { par
       </div>
       <CourseFilterSidebar percentileGroups={percentileGroups} facets={facets.data} totalColleges={facets.totalColleges} selectedKey={course.key} selectedState={cityPage?.stateSlug || statePage?.stateSlug || null} selectedCity={cityPage?.citySlug || null} statePages={statePages.data} cityPages={cityPages.data} />
     </div>
+    <AdSlot slotKey="listing_bottom" className="listing-ad" />
   </div></main>;
 }

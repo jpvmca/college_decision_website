@@ -39,8 +39,8 @@ export type ListedCollege = {
 export type ListPagination = { page: number; perPage: number; total: number; totalPages: number };
 
 export function CollegeListResults({ colleges, total, linkableEntities, adFeed = null }: { colleges: ListedCollege[]; total: number; linkableEntities: LinkableEntity[]; adFeed?: AdFeed | null }) {
-  // listing_feed: after card 6, then every feedEvery cards (default 12 → cards 6 and 18).
-  const adPositions = feedPositions(adFeed, colleges.length, 6);
+  // listing_feed: after card 5, then every feedEvery cards.
+  const adPositions = feedPositions(adFeed, colleges.length, 5);
   return <div className="decision-results-list">
     {colleges.length ? colleges.map((college, index) => <Fragment key={college.id}>{(
       college.programme_id && college.course_id ? <div id={`college-${index + 1}`} key={college.id}><CollegeDecisionCard showReviews={false} showCompare={total > 1} item={{

@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
+import { Fragment } from 'react';
 import { api, ArticleList, mediaUrl } from '../../lib/api';
 import { getPageItems } from '../../lib/pagination';
 import ArticleFilters from '../../components/ArticleFilters';
@@ -166,12 +167,12 @@ export default async function ArticlesPage({ searchParams }: { searchParams: Pro
     <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
     <nav className="breadcrumb" aria-label="Breadcrumb"><Link href="/">Home</Link><span aria-hidden="true">›</span><span aria-current="page">Articles</span></nav>
     <section className="articles-hero"><div className="articles-hero-copy"><p className="eyebrow">STUDENT DECISION GUIDES</p><h1>Compare colleges with a clearer plan</h1><p>Explore course-by-course guides that bring fees, admission routes, eligibility and outcomes into one practical comparison.</p><p><Link className="button primary" href="/compare-colleges-2026">Compare colleges directly <ArrowRight size={16} aria-hidden="true" /></Link></p></div>{(() => { const image = getResponsiveImageSources('/articles-hero.webp'); return <img src={image.src} srcSet={image.srcSet} sizes={image.sizes} alt="Students comparing college decision guides" width="1200" height="675" fetchPriority="high" loading="eager" decoding="async" />; })()}</section>
-    <AdSlot slotKey="articles_listing" />
+    <AdSlot slotKey="articles_top" className="listing-ad" />
     <p className="muted">Twenty guides appear on each page. Open a guide to see the matching course options and the questions you should verify before applying.</p>
     <ArticleFilters visibleTypes={visibleTypes}>
     <div className="article-list">
-      {result.data.length ? result.data.map((article) => (
-        <article className={article.imageUrl ? 'article-card article-card-with-image' : 'article-card'} key={article.id}>
+      {result.data.length ? result.data.map((article, index) => (
+        <Fragment key={article.id}><article className={article.imageUrl ? 'article-card article-card-with-image' : 'article-card'}>
           {article.imageUrl && (() => {
             const image = getResponsiveImageSources(article.imageUrl);
             return <img className="article-card-image" src={image.src} srcSet={image.srcSet} sizes="(max-width: 760px) calc(100vw - 40px), min(1080px, calc(100vw - 40px))" alt={article.title} width="1200" height="675" loading="lazy" decoding="async" />;
@@ -200,11 +201,12 @@ export default async function ArticlesPage({ searchParams }: { searchParams: Pro
             {article.examCount ? <span><CheckCircle2 size={15} aria-hidden="true" /> {article.examCount} entrance routes</span> : null}
           </div>
           </div>
-        </article>
+        </article>{(index + 1) % 5 === 0 ? <AdSlot slotKey="article_feed" className="ad-in-list" /> : null}</Fragment>
       )) : <div className="card"><h2>Guides are being prepared</h2><p>No article passed the current data checks.</p></div>}
     </div>
     {result.pagination.totalPages > 1 && <Pagination page={page} totalPages={result.pagination.totalPages} budget={budget} type={type} />}
     </ArticleFilters>
+    <AdSlot slotKey="articles_bottom" className="listing-ad" />
   </div></main>;
 }
 

@@ -72,6 +72,7 @@ export default async function CollegeCutoffPage({ params }: { params: Promise<{ 
     <JsonLd data={breadcrumbJsonLd(siteUrl(), crumbs)} />
     {faqLd && <JsonLd data={faqLd} />}
     <nav className="breadcrumb" aria-label="Breadcrumb"><Link href="/">Home</Link><span aria-hidden="true">›</span><Link href="/colleges">Colleges</Link><span aria-hidden="true">›</span><Link href={`/colleges/${slug}`}>{name}</Link><span aria-hidden="true">›</span><span aria-current="page">Cutoff</span></nav>
+    <AdSlot slotKey="cutoff_top" />
     <header className="college-profile-header"><div>
       <p className="eyebrow">CUTOFF</p>
       <h1>{title}</h1>

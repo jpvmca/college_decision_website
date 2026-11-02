@@ -9,6 +9,7 @@ import { getCourseFacets } from '../../lib/listings';
 import { type ListedCollege } from '../../components/CollegeListResults';
 import LoadMoreColleges from '../../components/LoadMoreColleges';
 import AdSlot from '../../components/ads/AdSlot';
+import { getAdSlot } from '../../lib/ads';
 import { CourseFilterMobileButton, CourseFilterSidebar } from '../../components/CourseFilterPanel';
 
 type College = ListedCollege;
@@ -97,6 +98,7 @@ export default async function CollegesPage() {
     { name: 'Home', url: `${siteUrl}/` },
     { name: 'Colleges', url: `${siteUrl}/colleges` }
   ], `${pageUrl}#breadcrumb`);
+  const listingAdFeed = await getAdSlot('listing_feed');
 
   return <main className="section"><div className="wrap">
     <JsonLd data={jsonLd} />
@@ -111,7 +113,7 @@ export default async function CollegesPage() {
       </div>
       <img src="/colleges-hero.webp" alt="Students comparing colleges and courses" width="1200" height="675" fetchPriority="high" loading="eager" decoding="async" />
     </section>
-    <AdSlot slotKey="colleges_listing" />
+    <AdSlot slotKey="listing_top" className="listing-ad" />
     <div className="listing-layout">
       <div className="listing-main">
         <CourseFilterMobileButton facets={facets.data} totalColleges={facets.totalColleges || result.pagination.total} />
@@ -119,9 +121,10 @@ export default async function CollegesPage() {
           <p className="muted">{result.pagination.total.toLocaleString('en-IN')} active colleges · load more to continue</p>
         </div>
         <h2>Browse Colleges</h2>
-        <LoadMoreColleges initial={result.data} total={result.pagination.total} perPage={result.pagination.perPage} query="" linkableEntities={linkableEntities} />
+        <LoadMoreColleges initial={result.data} total={result.pagination.total} perPage={result.pagination.perPage} query="" linkableEntities={linkableEntities} adFeed={listingAdFeed} />
       </div>
       <CourseFilterSidebar facets={facets.data} totalColleges={facets.totalColleges || result.pagination.total} />
     </div>
+    <AdSlot slotKey="listing_bottom" className="listing-ad" />
   </div></main>;
 }

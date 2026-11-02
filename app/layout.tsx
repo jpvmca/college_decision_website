@@ -6,6 +6,7 @@ import MobileNav from '../components/MobileNav';
 import GoogleTagManager from '../components/GoogleTagManager';
 import StudentLeadPopup from '../components/StudentLeadPopup';
 import AdsenseLoader from '../components/ads/AdsenseLoader';
+import AdSlot from '../components/ads/AdSlot';
 import JsonLd from '../components/JsonLd';
 import { organizationId, organizationJsonLd } from '../lib/structured-data';
 import './globals.css';
@@ -74,7 +75,11 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
               <MobileNav />
             </div>
           </nav>
-          {children}
+          <div className="site-page-rails">
+            <aside className="site-page-rail site-page-rail-left" aria-label="Advertisements"><AdSlot slotKey="global_side_left" /></aside>
+            <div className="site-page-content">{children}</div>
+            <aside className="site-page-rail site-page-rail-right" aria-label="Advertisements"><AdSlot slotKey="global_side_right" /></aside>
+          </div>
           <footer className="footer"><div className="wrap"><Image className="footer-logo" src="/logo.svg" alt="College Decision" width={170} height={34} loading="lazy" /><span>Clear college decisions with practical cost, admission and outcome guidance.</span><nav className="footer-links" aria-label="Footer links"><Link href="/about">About</Link><Link href="/contact">Contact</Link><Link href="/privacy-policy">Privacy</Link><Link href="/terms-and-conditions">Terms</Link><Link href="/disclaimer">Disclaimer</Link></nav></div></footer>
           </div>
         <StudentLeadPopup />

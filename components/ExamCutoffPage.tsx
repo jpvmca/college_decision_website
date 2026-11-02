@@ -100,6 +100,7 @@ export default function ExamCutoffPage({ summary, blocks, activeYear, finder }: 
     {faqLd && <JsonLd data={faqLd} />}
     <nav className="breadcrumb" aria-label="Breadcrumb"><Link href="/">Home</Link><span aria-hidden="true">›</span><Link href="/exams">Exams</Link><span aria-hidden="true">›</span><Link href={`/exams/${slug}`}>{name}</Link><span aria-hidden="true">›</span>
       {activeYear ? <><Link href={`/exams/${slug}/cutoff`}>Cutoff</Link><span aria-hidden="true">›</span><span aria-current="page">{shownExamYear}</span></> : <span aria-current="page">Cutoff</span>}</nav>
+    <AdSlot slotKey="cutoff_top" />
     <header className="college-profile-header"><div>
       <p className="eyebrow">CUTOFF</p>
       <h1>{activeYear ? examCutoffTitle(summary, activeYear) : examCutoffOverviewTitle(summary)}</h1>

@@ -4,6 +4,7 @@ import { CalendarDays } from 'lucide-react';
 import { api } from '../../lib/api';
 import ExamDirectory, { type ExamList } from '../../components/ExamDirectory';
 import AdSlot from '../../components/ads/AdSlot';
+import { getAdSlot } from '../../lib/ads';
 import { daysUntil, formatDate as examFormatDate } from '../../lib/exam-format';
 
 const PAGE_SIZE = 20;
@@ -25,6 +26,7 @@ export default async function ExamsPage() {
   const heading = 'Entrance Exams in India 2026–27';
   const siteUrl = (process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3001').replace(/\/+$/, '');
   const pageUrl = `${siteUrl}/exams`;
+  const listingAdFeed = await getAdSlot('listing_feed');
   const jsonLd = {
     '@context': 'https://schema.org',
     '@graph': [
@@ -37,7 +39,7 @@ export default async function ExamsPage() {
     <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
     <nav className="breadcrumb" aria-label="Breadcrumb"><Link href="/">Home</Link><span aria-hidden="true">›</span><span aria-current="page">Exams</span></nav>
     <section className="articles-hero"><div className="articles-hero-copy"><p className="eyebrow">ENTRANCE EXAM GUIDES</p><h1>{heading}</h1><p>Compare exam dates, registration status, application fees, linked programmes and the colleges that accept each exam, then open the full exam profile before you apply.</p></div><img src="/exams-hero.webp" alt="Students preparing for college entrance exams" width="1200" height="675" fetchPriority="high" loading="eager" decoding="async" /></section>
-    <AdSlot slotKey="exams_listing" />
+    <AdSlot slotKey="listing_top" className="listing-ad" />
 
     {upcoming.length > 0 ? <section className="exam-upcoming" aria-labelledby="upcoming-exams">
       <h2 id="upcoming-exams"><CalendarDays size={18} aria-hidden="true" /> Upcoming exam dates</h2>
@@ -47,6 +49,7 @@ export default async function ExamsPage() {
       })}</ol>
     </section> : null}
 
-    <ExamDirectory initial={result.data} total={result.pagination.total} courses={courses} perPage={PAGE_SIZE} />
+    <ExamDirectory initial={result.data} total={result.pagination.total} courses={courses} perPage={PAGE_SIZE} adFeed={listingAdFeed} />
+    <AdSlot slotKey="listing_bottom" className="listing-ad" />
   </div></main>;
 }
