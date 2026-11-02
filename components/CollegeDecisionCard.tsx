@@ -1,5 +1,6 @@
 'use client';
 
+import { formatProgrammeDuration } from '../lib/duration';
 import ExpandableText from './ExpandableText';
 import CollegeViewDetailsModal from './CollegeViewDetailsModal';
 import DecisionActions from './DecisionActions';
@@ -50,10 +51,8 @@ function hasAmount(value: number | string | null | undefined) {
   return Number.isFinite(Number(value)) && Number(value) > 0;
 }
 
-function durationLabel(value: string | null) {
-  if (!value) return null;
-  const years = Number(value);
-  return Number.isFinite(years) ? `${years} years` : value;
+function durationLabel(value: string | null, name?: string | null) {
+  return formatProgrammeDuration(value, name) || value;
 }
 
 function packageMoney(value: number | string | null | undefined) {
@@ -104,7 +103,7 @@ export default function CollegeDecisionCard({ item, showCompare = true, showRevi
       <span className="college-type-pill">{item.instituteType === 'public' ? 'Public' : 'Private'}</span>
     </div>
     <p className="college-location">{item.city || 'Location not listed'}, {item.state || 'India'}</p>
-    {(hasAmount(item.lowestFee) || item.duration) && <div className="college-facts">{hasAmount(item.lowestFee) && <span>Lowest fee <b>{money(item.lowestFee)}</b></span>}{item.duration && <span>Duration <b>{durationLabel(item.duration)}</b></span>}</div>}
+    {(hasAmount(item.lowestFee) || item.duration) && <div className="college-facts">{hasAmount(item.lowestFee) && <span>Lowest fee <b>{money(item.lowestFee)}</b></span>}{item.duration && <span>Duration <b>{durationLabel(item.duration, item.programmeName)}</b></span>}</div>}
     {(item.averageYearFee || item.averagePackage || item.highestPackage || item.nirfRank || (showReviews && item.reviewCount)) && <div className="decision-card-highlights">{showReviews && item.reviewCount && <span>Student reviews <b>{item.reviewCount}{item.averageRating ? ` · ${Number(item.averageRating).toFixed(1)}/5` : ''}</b></span>}{item.averageYearFee && <span>Average yearly fee <b>{money(item.averageYearFee)}</b></span>}{item.averagePackage && packageMoney(item.averagePackage) && <span>Average placement <b>{packageMoney(item.averagePackage)}</b></span>}{item.highestPackage && packageMoney(item.highestPackage) && <span>Highest placement <b>{packageMoney(item.highestPackage)}</b></span>}{item.nirfRank && <span>NIRF <b>Rank {item.nirfRank}{item.nirfOutOf ? ` / ${item.nirfOutOf}` : ''}</b></span>}</div>}
     <p><b>Eligibility:</b> <ExpandableText text={plainText(item.eligibility, 'Check the latest official notice.')} /></p>
     <p><b>Admission route:</b> {admissionParts?.length ? <LinkedTextParts parts={admissionParts} /> : (item.admissionRoutes || 'Not listed')}</p>

@@ -1,3 +1,4 @@
+import { formatProgrammeDuration } from '../../lib/duration';
 import Link from 'next/link';
 import type { CSSProperties, ReactNode } from 'react';
 import InstituteLogo from '../InstituteLogo';
@@ -109,7 +110,7 @@ function CollegeColumn({
   return <section className="comparison-column">
     <div className="institute-heading"><div><h3><CollegeName college={college} /></h3>
     <p className="muted">{college.instituteType || unavailable} · {[college.location?.city, college.location?.state].filter(Boolean).join(', ') || unavailable}</p></div><InstituteLogo src={college.logo} alt={`${collegeName(college)} logo`} /></div>
-    {college.programmes?.length ? <><h4>Branches and programmes</h4><div className="detail-table-wrap"><table className="detail-table"><thead><tr><th>Programme / branch</th><th>Duration</th><th>Eligibility</th></tr></thead><tbody>{college.programmes.map((programme) => <tr key={programme.id}><th scope="row">{programme.name}</th><td>{programme.duration || unavailable}</td><td>{programme.eligibility || unavailable}</td></tr>)}</tbody></table></div></> : null}
+    {college.programmes?.length ? <><h4>Branches and programmes</h4><div className="detail-table-wrap"><table className="detail-table"><thead><tr><th>Programme / branch</th><th>Duration</th><th>Eligibility</th></tr></thead><tbody>{college.programmes.map((programme) => <tr key={programme.id}><th scope="row">{programme.name}</th><td>{formatProgrammeDuration(programme.duration, programme.name) || unavailable}</td><td>{programme.eligibility || unavailable}</td></tr>)}</tbody></table></div></> : null}
         {college.fees?.length ? <><h4>Fees</h4><div className="detail-table-wrap"><table className="detail-table"><thead><tr><th>Programme</th><th>Amount</th><th>Fee type</th><th>Duration</th></tr></thead><tbody>{college.fees.map((fee, index) => <tr key={`${fee.programme_id}-${index}`}><th scope="row">{fee.programme_name}</th><td><strong>{money(fee.fees)}</strong></td><td>{fee.fee_type || unavailable}</td><td>{fee.fee_duration || unavailable}</td></tr>)}</tbody></table></div></> : null}
         {college.exams?.length ? <><h4>Entrance exams</h4><p><LinkedProse text={college.exams.join(', ')} entities={entities} options={autoLinkOptions} /></p></> : null}
         {college.placements?.length ? <><h4>Placements</h4><div className="detail-table-wrap"><table className="detail-table"><thead><tr><th>Year</th><th>Average package</th><th>Highest package</th></tr></thead><tbody>{college.placements.map((placement, index) => <tr key={`${placement.year}-${index}`}><th scope="row">{placement.year || unavailable}</th><td>{packageValue(placement.average_package)}</td><td>{packageValue(placement.highest_package)}</td></tr>)}</tbody></table></div></> : null}

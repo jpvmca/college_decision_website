@@ -14,6 +14,7 @@ import ReadableHtml from '../../../components/ReadableHtml';
 import AdSlot from '../../../components/ads/AdSlot';
 import { readableBlocks, splitLead } from '../../../lib/readable-html';
 import { getLinkResolver } from '../../../lib/internal-link-index';
+import { formatProgrammeDuration, isoProgrammeDuration } from '../../../lib/duration';
 import { plainText, readableLines, PROGRAMME_HEADING_START, isShortText, withFullStop } from '../../../lib/readable-text';
 
 type CollegeProfile = {
@@ -215,11 +216,13 @@ function programmeFee(programme: CollegeProfile['programmes'][number]): Programm
   }
   const yearMin = Number(programme.min_year_fee) || 0;
   const yearMax = Number(programme.max_year_fee) || yearMin;
+  // A whole-course entry (fee duration 'total', e.g. a Total Fees row) is never a yearly fee:
+  // keep it as the full-programme total even when a single annual row also exists.
+  const total = Number(programme.max_total_fee) || Number(programme.min_total_fee) || 0;
   if (years.length === 1 || yearMin) {
     const fee = years[0]?.fee || yearMin;
-    return { kind: 'annual', years, annualMin: Math.min(fee, yearMin || fee), annualMax: Math.max(fee, yearMax), total: 0 };
+    return { kind: 'annual', years, annualMin: Math.min(fee, yearMin || fee), annualMax: Math.max(fee, yearMax), total };
   }
-  const total = Number(programme.max_total_fee) || Number(programme.min_total_fee) || 0;
   return total ? { kind: 'total', years: [], annualMin: 0, annualMax: 0, total } : null;
 }
 
@@ -388,18 +391,6 @@ function absoluteUrl(value: string, siteUrl: string) {
   } catch {
     return `${siteUrl}/logo.svg`;
   }
-}
-
-function isoDuration(value: unknown) {
-  const raw = String(value || '').trim();
-  if (!raw) return undefined;
-  const numeric = Number(raw);
-  if (Number.isFinite(numeric) && numeric > 0) return `P${numeric}Y`;
-  const years = raw.match(/^(\d+(?:\.\d+)?)\s*years?$/i);
-  if (years) return `P${years[1]}Y`;
-  const months = raw.match(/^(\d+)\s*months?$/i);
-  if (months) return `P${months[1]}M`;
-  return /^P(?:\d+Y)?(?:\d+M)?(?:\d+D)?$/i.test(raw) ? raw : undefined;
 }
 
 function profileFaqs(profile: CollegeProfile, name: string, location: string) {
@@ -641,7 +632,7 @@ export default async function CollegeProfilePage({ params }: { params: Promise<{
           name,
           url: officialUrl
         },
-        timeRequired: isoDuration(programme.duration)
+        timeRequired: isoProgrammeDuration(programme.duration, programme.programme_name, programme.course_name)
       })),
       {
         '@type': 'Article',
@@ -723,7 +714,7 @@ export default async function CollegeProfilePage({ params }: { params: Promise<{
         {(() => {
           const groupEligibility = text(groupEligibilitySource(group.programmes)?.eligibility, '');
           const shownEligibility = new Set<string>([groupEligibility]);
-          const renderProgramme = (programme: CollegeProfile['programmes'][number]) => { const ownKey = text(programme.eligibility, ''); const own = ownKey && !shownEligibility.has(ownKey) ? programme.eligibility : null; if (own) shownEligibility.add(ownKey); const long = own ? !isShortText(readableLines(own)) : false; return <div key={programme.programme_id} className={long ? 'programme-row programme-row-long' : 'programme-row'}><strong>{text(programme.programme_name, programme.course_name)}</strong>{programme.duration ? ` – ${programme.duration} years` : ''}{own && !long ? <> – <EligibilityText value={own} /></> : null}{(() => { const href = findPublishedHrefByName(linkableEntities, 'course', programme.course_name); const label = text(programme.course_name); if (!href || linkedCourseHrefs.has(href)) return null; linkedCourseHrefs.add(href); return <> · <Link href={href}>{label} profile</Link></>; })()}{own && long ? <EligibilityText value={own} label="Eligibility:" /> : null}</div>; };
+          const renderProgramme = (programme: CollegeProfile['programmes'][number]) => { const ownKey = text(programme.eligibility, ''); const own = ownKey && !shownEligibility.has(ownKey) ? programme.eligibility : null; if (own) shownEligibility.add(ownKey); const long = own ? !isShortText(readableLines(own)) : false; return <div key={programme.programme_id} className={long ? 'programme-row programme-row-long' : 'programme-row'}><strong>{text(programme.programme_name, programme.course_name)}</strong>{(() => { const label = formatProgrammeDuration(programme.duration, programme.programme_name, programme.course_name); return label ? ` – ${label}` : ''; })()}{own && !long ? <> – <EligibilityText value={own} /></> : null}{(() => { const href = findPublishedHrefByName(linkableEntities, 'course', programme.course_name); const label = text(programme.course_name); if (!href || linkedCourseHrefs.has(href)) return null; linkedCourseHrefs.add(href); return <> · <Link href={href}>{label} profile</Link></>; })()}{own && long ? <EligibilityText value={own} label="Eligibility:" /> : null}</div>; };
           // Large colleges: the first 8 course groups show up to 10 programmes; later groups start collapsed.
           const visibleCount = groupIndex < 8 ? PROGRAMMES_VISIBLE : 0;
           const visible = group.programmes.slice(0, visibleCount);
@@ -738,7 +729,7 @@ export default async function CollegeProfilePage({ params }: { params: Promise<{
       <SectionHeading icon={IndianRupee}>Course Fees at {name}</SectionHeading>
       {(() => { const renderFeeGroup = (group: (typeof recordedFeeGroups)[number]) => <div key={group.name}><h3>{group.heading.replace(' Programmes', '')} Fees</h3>
         {group.annualMin > 0 && <p>{group.yearwise ? 'Year-wise fee' : 'Annual fee'}: <strong>{feeRange(group.annualMin, group.annualMax)} per year</strong>{group.yearwise && group.maxYears > 1 ? ` (recorded for each year of study, up to Year ${group.maxYears})` : ''}.</p>}
-        {group.totalMin > 0 && <p>{group.yearwise ? 'Full-programme total (sum of the year-wise fees)' : 'Total programme fee'}: <strong>{feeRange(group.totalMin, group.totalMax)}</strong>.</p>}
+        {group.totalMin > 0 && <p>{group.yearwise ? 'Full-programme total (sum of the year-wise fees)' : 'Total fees for the full course'}: <strong>{feeRange(group.totalMin, group.totalMax)}</strong>.</p>}
         {group.yearwise && group.items.length <= 3 && <div className="profile-list">{group.items.filter((item) => item.fee.kind === 'yearwise').map((item) => <p key={item.programme.programme_id}><strong>{text(item.programme.programme_name, item.programme.course_name)}:</strong> {item.fee.years.map((year) => `Year ${year.year}: ${money(year.fee)}`).join(' · ')} · Total {money(item.fee.total)}</p>)}</div>}
       </div>;
         const rest = recordedFeeGroups.slice(8);
