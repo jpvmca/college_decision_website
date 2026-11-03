@@ -165,6 +165,1313 @@ export function courseSeo(profile: CourseSeoInput): CourseSeoPack {
   const examNames = profile.exams.slice(0, 5).map((e) => e.name).filter(Boolean);
   const examBit = examNames.length ? ` Common routes include ${examNames.join(', ')}.` : '';
 
+  if (slug === 'llm') {
+    return {
+      displayName: 'LLM (Master of Laws)',
+      h1: 'LLM Course: Eligibility, Admission, Fees, Syllabus and Scope 2026',
+      title: 'LLM Course: Eligibility, Admission, Fees & Syllabus 2026',
+      description:
+        'LLM course details for 2026: LLB eligibility, CLAT PG and AILET, 1-year vs 2-year LLM, syllabus, specialisations, fees at public and private colleges.',
+      keywords: ['LLM course', 'LLM course details', 'LLM eligibility', 'LLM admission 2026', 'LLM fees', 'LLM syllabus', 'one year LLM', 'CLAT PG'],
+      intro:
+        'The LLM (Master of Laws) is a one- or two-year postgraduate law degree you can take after an LLB. Use this guide to check eligibility, the entrance exams, fees, the syllabus and where an LLM can realistically take you.',
+      crossLink: {
+        href: '/llm-colleges',
+        anchor: 'Browse LLM colleges',
+        note: 'Ready to shortlist? See LLM colleges with listed fees, specialisations and accepted exams.'
+      },
+      faqs: [
+        { question: 'Is a one-year LLM valid in India?', answer: 'Yes. UGC amended its master\'s degree regulations in 2013 so that a master\'s can last one year when the entry qualification is a first degree plus LLB or a five-year integrated law degree. Universities must follow UGC\'s one-year LLM guidelines to offer it.' },
+        { question: 'Can I do an LLM without an LLB?', answer: 'No. An LLB, either the three-year course after graduation or a five-year integrated course, is the basic entry requirement for an LLM in India.' },
+        { question: 'What marks do I need in LLB for an LLM?', answer: 'It depends on the university. Many ask for 50% to 55% in LLB, with relaxation for reserved categories. NUJS Kolkata, for example, asks for 55%. Check the brochure of each university you apply to.' },
+        { question: 'When is CLAT PG 2027?', answer: 'The Consortium of NLUs has scheduled CLAT 2027, including the PG paper, for 6 December 2026 from 2 pm to 4 pm. Dates can change, so confirm on consortiumofnlus.ac.in.' },
+        { question: 'What is the fee for an LLM?', answer: 'Approximate annual tuition listed on CollegeDecision has a median of about Rs 55,000 at public colleges and Rs 90,000 at private ones. The middle half runs from about Rs 15,000 to Rs 85,000 (public) and Rs 60,000 to Rs 1,50,000 (private). Confirm the current fee with the college.' },
+        { question: 'Which LLM specialisation should I choose?', answer: 'Choose the area you already enjoyed during your LLB or want to work in, such as corporate, criminal, constitutional or IP law. Also check that the college has full-time faculty in that area.' },
+        { question: 'Is an LLM useful for a career in teaching?', answer: 'Yes. Assistant professor posts in law need a master\'s degree in law plus UGC NET or a PhD, so an LLM is the starting point for an academic career.' },
+        { question: 'Can I do an LLM while working?', answer: 'Most regular LLM programmes are full-time and on campus, especially the one-year format. If you need to keep working, ask the university whether a part-time or evening option is approved.' }
+      ]
+    };
+  }
+
+  if (slug === 'ug-diploma') {
+    return {
+      displayName: 'UG Diploma',
+      h1: 'UG Diploma Course: Eligibility, Admission, Fees and Careers 2026',
+      title: 'UG Diploma Course: Eligibility, Admission, Fees 2026',
+      description:
+        'UG diploma course details for 2026: Class 10 and Class 12 entry, polytechnic and lateral entry rules, state entrance tests, syllabus, fees and careers.',
+      keywords: ['UG diploma course', 'diploma after 10th', 'diploma after 12th', 'polytechnic diploma', 'lateral entry diploma', 'diploma course fees', 'diploma admission 2026'],
+      intro:
+        'A UG diploma is a practical course you can start after Class 10 or Class 12, from polytechnic engineering to D.El.Ed and paramedical diplomas. Check eligibility, admission tests, fees and where a diploma can take you.',
+      crossLink: {
+        href: '/courses/polytechnic-diploma',
+        anchor: 'Read the polytechnic diploma guide',
+        note: 'Planning an engineering diploma? See the polytechnic guide for branch-wise details.'
+      },
+      faqs: [
+        { question: 'Can I do a diploma after Class 10?', answer: 'Yes. AICTE lists three-year diplomas in engineering and technology, applied arts and crafts, and design for students who have passed Class 10.' },
+        { question: 'What is lateral entry in a diploma?', answer: 'Under AICTE norms, students who passed Class 12 with listed subjects, or Class 10 plus a two-year ITI, can join the second year of an engineering diploma. The affiliating body may run bridge courses.' },
+        { question: 'Is there an entrance exam for a UG diploma?', answer: 'Many states use a polytechnic entrance test, such as TS POLYCET in Telangana, JEECUP in Uttar Pradesh or DCECE in Bihar. Others admit on Class 10 or 12 merit, and private colleges often admit directly.' },
+        { question: 'What is the fee for a UG diploma?', answer: 'Approximate first-year tuition listed on CollegeDecision has a median of about Rs 26,000 a year, with the middle half from about Rs 15,000 to Rs 45,000. Government polytechnics are usually cheaper. Confirm with the college.' },
+        { question: 'Is a diploma equal to a degree?', answer: 'No. A diploma is a level below a bachelor\'s degree. Some jobs accept it, but most postgraduate courses need a degree.' },
+        { question: 'Can I do a B.Tech after a diploma?', answer: 'Yes, many states reserve lateral-entry seats in the second year of B.Tech or B.E. for engineering diploma holders. Rules and seat numbers differ by state.' },
+        { question: 'What is the eligibility for D.El.Ed?', answer: 'Under NCTE regulations, D.El.Ed needs Class 12 with at least 50% marks. States can add relaxation for reserved categories and their own admission rules.' }
+      ]
+    };
+  }
+
+  if (slug === 'pg-diploma') {
+    return {
+      displayName: 'PG Diploma',
+      h1: 'PG Diploma Course: Eligibility, Admission, Fees and Scope 2026',
+      title: 'PG Diploma Course: Eligibility, Exams, Fees & Scope 2026',
+      description:
+        'PG diploma course details for 2026: eligibility after graduation, PGDM vs PG diploma vs MBA, CAT and NEET PG routes, syllabus, fees and careers.',
+      keywords: ['PG diploma course', 'PG diploma after graduation', 'PGDM', 'PGDCA', 'PG diploma eligibility', 'PG diploma fees', 'one year PG diploma'],
+      intro:
+        'A PG diploma is a focused postgraduate course, usually one year, that you take after a bachelor\'s degree. Compare types, eligibility, entrance tests, fees and the careers it can realistically support.',
+      crossLink: {
+        href: '/courses/management-diploma',
+        anchor: 'Read the management diploma guide',
+        note: 'Considering a PGDM? See the management diploma guide and compare it with an MBA.'
+      },
+      faqs: [
+        { question: 'What is the duration of a PG diploma?', answer: 'Most university PG diplomas run for one year. The PGDM in management and clinical medical diplomas usually take two years.' },
+        { question: 'Who is eligible for a PG diploma?', answer: 'You need a bachelor\'s degree. For a PGDM, AICTE asks for a degree of at least three years with 50% marks (45% for reserved categories) and a valid test score. Clinical medical diplomas need MBBS and NEET PG.' },
+        { question: 'Is a PG diploma equal to a master\'s degree?', answer: 'No. A PG diploma is not a master\'s degree. Some PGDM programmes have AIU equivalence to an MBA, so ask the institute for the letter if it matters to you.' },
+        { question: 'Which exams are used for PG diploma admission?', answer: 'PGDM institutes use CAT, XAT, CMAT, MAT, ATMA or GMAT. Clinical medical diplomas use NEET PG. Many university diplomas admit on graduation marks.' },
+        { question: 'When is CAT 2026?', answer: 'CAT 2026 is on 29 November 2026, conducted by IIM Indore. Confirm on iimcat.ac.in.' },
+        { question: 'What is the fee for a PG diploma?', answer: 'Approximate non-PGDM first-year tuition listed on CollegeDecision has a median of about Rs 25,000 a year. PGDM fees are usually much higher. Confirm with each institute.' },
+        { question: 'Are medical PG diplomas still offered?', answer: 'Some are, but after a February 2019 MCI Board of Governors notice many diploma seats were converted to MD/MS seats. Check NMC recognition for the seat in your admission year.' }
+      ]
+    };
+  }
+
+  if (slug === 'dhmct') {
+    return {
+      displayName: 'Diploma in Hotel Management, Catering & Tourism (DHMCT)',
+      h1: 'DHMCT Course: Eligibility, Admission, Fees and Careers 2026',
+      title: 'DHMCT Course: Eligibility, Admission, Fees & Scope 2026',
+      description:
+        'Diploma in Hotel Management, Catering & Tourism for 2026: Class 12 eligibility, NCHMCT IHM diplomas, merit admission, syllabus, fees and careers.',
+      keywords: ['DHMCT course', 'diploma in hotel management', 'hotel management diploma after 12th', 'IHM diploma courses', 'DHMCT fees', 'DHMCT eligibility', 'hotel management diploma admission 2026'],
+      intro:
+        'DHMCT is a practical hotel management diploma, usually open after Class 12, that trains you for kitchens, restaurants, front office and housekeeping. Check eligibility, admission, fees and where it can lead.',
+      crossLink: {
+        href: '/courses/hotel-management-diploma',
+        anchor: 'Read the hotel management diploma guide',
+        note: 'Comparing diploma options? See the wider guide to hotel management diplomas.'
+      },
+      faqs: [
+        { question: 'What is the eligibility for a hotel management diploma?', answer: 'Most need a pass in Class 12 (10+2) in any stream. NCHMCT\'s Front Office diploma also needs English as a subject. AICTE lists a 5-year hotel management diploma after Class 10, and IHMs run a craftsmanship certificate in food production after Class 10.' },
+        { question: 'How long is a DHMCT course?', answer: 'It depends on the institute: from 1 to 3 years. NCHMCT trade diplomas at IHMs take 1.5 years, including 24 weeks of industrial training. AICTE lists a 3-year diploma after Class 12.' },
+        { question: 'Is there an entrance exam for a hotel management diploma?', answer: 'Usually not. IHMs and most private colleges admit on Class 12 merit or directly. NCHM JEE is for the B.Sc. in Hospitality & Hotel Administration, not the diplomas.' },
+        { question: 'When do IHM diploma admissions open?', answer: 'NCHMCT says individual IHMs advertise diploma admissions in local newspapers in June each year. IHM Panipat\'s 2026-27 forms, for example, closed on 12 June 2026. Check each IHM\'s notice.' },
+        { question: 'What is the fee for DHMCT?', answer: 'Approximate first-year tuition listed on CollegeDecision has a median of about Rs 33,750 a year, ranging from about Rs 25,000 to Rs 75,000 across 9 records. Uniforms, kits and hostel cost extra. Confirm with the college.' },
+        { question: 'Can I do a degree after a hotel management diploma?', answer: 'Yes. You can apply for the B.Sc. HHA through NCHM JEE or a BHMCT. Some private universities offer lateral entry for diploma holders, so check each one\'s rules.' },
+        { question: 'What jobs can I get after DHMCT?', answer: 'Common starting roles are kitchen commis, restaurant steward, front office associate and room attendant in hotels, plus roles in flight kitchens, railway catering, cruise lines and restaurant chains.' }
+      ]
+    };
+  }
+
+  if (slug === 'm-phil') {
+    return {
+      displayName: 'M.Phil (Master of Philosophy)',
+      h1: 'M.Phil Course 2026: Is It Still Valid? Rules, PhD Route and Alternatives',
+      title: 'M.Phil Course 2026: Status, Eligibility, Fees & Alternatives',
+      description:
+        'M.Phil course status for 2026: UGC discontinued it under the 2022 PhD rules. Old eligibility, fees, PhD entry for M.Phil holders, NET and RCI clinical route.',
+      keywords: ['M.Phil course', 'M.Phil discontinued', 'is M.Phil valid', 'M.Phil full form', 'M.Phil eligibility', 'M.Phil to PhD', 'M.Phil clinical psychology', 'UGC M.Phil notice'],
+      intro:
+        'M.Phil was a one- to two-year research degree after a master\'s, but the UGC has stopped it for new students. See what the rules say, how M.Phil holders can still enter a PhD, and the routes that replaced it.',
+      crossLink: {
+        href: '/courses/phd',
+        anchor: 'Read the PhD course guide',
+        note: 'Planning research? See PhD eligibility, entrance tests and fees.'
+      },
+      faqs: [
+        { question: 'Is M.Phil discontinued in India?', answer: 'Yes. Regulation 14 of the UGC (Minimum Standards and Procedures for Award of Ph.D. Degree) Regulations 2022 says higher education institutions shall not offer the M.Phil. A UGC public notice of 26 December 2023 asked universities to stop M.Phil admissions.' },
+        { question: 'Is an M.Phil I already hold still valid?', answer: 'Yes. The UGC notice is about fresh admissions. The 2022 PhD regulations still let candidates who completed an M.Phil with at least 55% marks apply for a PhD, with a 5% relaxation for listed categories.' },
+        { question: 'What should I do instead of an M.Phil?', answer: 'Apply for a PhD directly after a master\'s with 55%, or after a four-year bachelor\'s degree with 75%. Admission is through UGC NET or a university entrance test, followed by an interview.' },
+        { question: 'Can UGC NET be used for PhD admission?', answer: 'Yes. From the 2024-25 session, the UGC allows NET scores to be used for PhD admission, in addition to JRF and assistant professor eligibility. Check each university\'s PhD notice for how it uses the score.' },
+        { question: 'What replaced the M.Phil in Clinical Psychology?', answer: 'RCI replaced it with a two-year M.A. Clinical Psychology from the 2025-26 session, open to students with a four-year B.A. Psychology. In May 2026 RCI renamed it Master in Clinical Psychology (M.Clin.Psy).' },
+        { question: 'What was the fee for an M.Phil?', answer: 'Older listings on CollegeDecision for 11 institutes show a median tuition of about Rs 70,000 a year, from under Rs 5,000 at Delhi School of Economics to Rs 3,50,000 at one private university. These are approximate and historical.' },
+        { question: 'Is an M.Phil enough to become an assistant professor?', answer: 'No. Under UGC rules, assistant professor posts need a master\'s degree with 55% plus NET, SET or SLET, or a PhD.' }
+      ]
+    };
+  }
+
+  if (slug === 'dbpo') {
+    return {
+      displayName: 'Diploma in BPO',
+      h1: 'Diploma in BPO Course: Eligibility, Admission, Fees and Careers 2026',
+      title: 'Diploma in BPO: Eligibility, Syllabus, Fees & Jobs 2026',
+      description:
+        'Diploma in Business Process Outsourcing (BPO) for 2026: Class 12 eligibility, admission without an entrance exam, syllabus, fees, colleges and careers.',
+      keywords: ['diploma in BPO', 'BPO course', 'BPO diploma after 12th', 'business process outsourcing course', 'BPO course fees', 'CRM domestic voice course', 'BPO course syllabus'],
+      intro:
+        'A Diploma in Business Process Outsourcing (BPO) is a short, job-focused course for customer support and back-office work. Check eligibility, admission, the syllabus, fees and where it can realistically lead.',
+      crossLink: {
+        href: '/courses/ug-diploma',
+        anchor: 'Read the UG diploma guide',
+        note: 'Comparing diplomas after Class 12? See the UG diploma guide for other job-focused options.'
+      },
+      faqs: [
+        { question: 'What is a Diploma in BPO?', answer: 'It is a short diploma, usually about one year at colleges, that trains you for business process outsourcing work such as customer calls, chat and email support, data processing and billing.' },
+        { question: 'What is the eligibility for a Diploma in BPO?', answer: 'Colleges usually ask for Class 12 from a recognised board. The Skill India course CRM Domestic Voice (SSC/Q2210, version 1.0) lists Class 10 as the minimum, with a job entry age of 18. Check each prospectus.' },
+        { question: 'Is there an entrance exam for a BPO diploma?', answer: 'No. There is no national or state entrance exam. Colleges admit on Class 12 merit or directly, and some hold a short interview.' },
+        { question: 'What is the fee for a Diploma in BPO?', answer: 'Fee data is limited. One college diploma is listed at about Rs 9,000 for the course on a third-party site. Related B.Com Business Process Services degrees list about Rs 44,000 to Rs 1,38,000 a year on CollegeDecision. Confirm with the college.' },
+        { question: 'What jobs can I get after a BPO diploma?', answer: 'Common entry roles include customer care executive, chat or email support, back-office or data processing executive, and billing or accounts associate. With experience, some people move into quality or team lead roles.' },
+        { question: 'Is a BPO diploma equal to a degree?', answer: 'No. A diploma is below a bachelor\'s degree. If you want a degree, consider a B.Com, BBA or B.Voc after or instead of the diploma.' },
+        { question: 'What is the difference between voice and non-voice BPO?', answer: 'Voice work means handling customer phone calls. Non-voice work covers chat, email, data entry, documents and finance processes, where written English and accuracy matter more.' }
+      ]
+    };
+  }
+
+  if (slug === 'mfa') {
+    return {
+      displayName: 'MFA (Master of Fine Arts)',
+      h1: 'MFA Course: Eligibility, Admission, Fees, Syllabus and Scope 2026',
+      title: 'MFA Course: Eligibility, Admission, Fees & Syllabus 2026',
+      description:
+        'MFA course details for 2026: BFA eligibility, CUET PG and practical tests, syllabus, specialisations like painting and applied art, fees and careers.',
+      keywords: ['MFA course', 'Master of Fine Arts', 'MFA course details', 'MFA eligibility', 'MFA admission 2026', 'MFA fees', 'MFA syllabus', 'MFA after BFA'],
+      intro:
+        'The MFA (Master of Fine Arts) is a two-year, studio-based postgraduate degree you take after a BFA. Check eligibility, CUET PG and practical tests, specialisations, fees and where an MFA can realistically take you.',
+      crossLink: {
+        href: '/courses/bfa',
+        anchor: 'Read the BFA course guide',
+        note: 'Still at the undergraduate stage? Your BFA subject decides which MFA you can apply for.'
+      },
+      faqs: [
+        { question: 'What is the duration of an MFA?', answer: 'An MFA usually takes two years, split into four semesters. UGC\'s Specification of Degrees lists the MFA with a minimum duration of two years after a bachelor\'s degree.' },
+        { question: 'Who is eligible for an MFA?', answer: 'Most colleges ask for a BFA or BVA in the same or a related discipline. The College of Art, Delhi, for example, asks for a BFA in the relevant discipline with 50% marks (45% for SC, ST and PwBD).' },
+        { question: 'Is CUET PG required for an MFA?', answer: 'For central universities such as Delhi University and BHU, yes. They admit through CUET PG followed by a practical test. Many state and private universities use their own test, a portfolio review or an interview instead.' },
+        { question: 'How is the MFA merit list made at Delhi University?', answer: 'For MFA programmes at the College of Art, 50% weight goes to the CUET PG score and 50% to the practical-based test, and candidates must score at least 50% in the practical test.' },
+        { question: 'Can I do an MFA without a BFA?', answer: 'It is difficult. Central universities usually require a BFA in the relevant field. A few private universities accept related degrees, so check each prospectus carefully.' },
+        { question: 'What is the fee for an MFA?', answer: 'Approximate first-year tuition listed on CollegeDecision has a median of about Rs 8,000 a year at public institutes and Rs 76,000 at private ones. Materials, hostel and exhibition costs are extra. Confirm with the college.' },
+        { question: 'Can I teach in a college after an MFA?', answer: 'An MFA is the relevant master\'s degree, but UGC rules for assistant professor posts also require NET, SLET/SET or a PhD. UGC NET has subjects for Visual Art (code 79) and Performing Arts (code 65).' }
+      ]
+    };
+  }
+
+  if (slug === 'healthcare-pg') {
+    return {
+      displayName: 'PG Healthcare Courses',
+      h1: 'PG Healthcare Courses: MPH, MHA, Allied Health, Eligibility, Fees and Scope 2026',
+      title: 'PG Healthcare Courses 2026: MPH, MHA, M.OT, Eligibility & Fees',
+      description:
+        'PG healthcare courses for 2026: MPH, MHA, M.OT, MASLP, M.MLS and PG diplomas. Eligibility, CUET PG and other tests, syllabus, fees, colleges and careers.',
+      keywords: ['PG healthcare courses', 'healthcare courses after graduation', 'MPH course', 'MHA course', 'master of occupational therapy', 'MASLP', 'allied health PG courses', 'PG diploma clinical research'],
+      intro:
+        'PG healthcare is an umbrella for postgraduate courses in public health, health administration, allied health sciences, clinical research, yoga and nutrition. Check which programme suits your degree, how admission works, fees and realistic careers.',
+      crossLink: {
+        href: '/courses/mph',
+        anchor: 'Read the MPH course guide',
+        note: 'Leaning towards public health? The MPH guide covers it in more depth.'
+      },
+      faqs: [
+        { question: 'What are PG healthcare courses?', answer: 'They are master\'s degrees and PG diplomas for graduates who want to work in health without an MD or MS. Common options are MPH, MHA, M.OT, MASLP, M.MLS and PG diplomas in clinical research, yoga or nutrition.' },
+        { question: 'Can a non-medical graduate do a PG healthcare course?', answer: 'Yes, for many programmes. TISS, for example, accepts a three-year bachelor\'s degree in any discipline for its MPH programmes. Clinical allied health master\'s degrees such as M.OT or MASLP need the matching bachelor\'s degree.' },
+        { question: 'Is CUET PG required for PG healthcare courses?', answer: 'Only at institutions that use it. TISS admitted to its 2026 MPH programmes through CUET PG (paper COQP11 or COQP19). Many private universities use their own test, an interview or bachelor\'s marks.' },
+        { question: 'Who regulates allied health master\'s degrees?', answer: 'Degrees are specified by UGC. Allied and healthcare professions such as occupational therapy and medical laboratory science come under the NCAHP Act, 2021, while audiology and speech-language pathology are regulated by the Rehabilitation Council of India.' },
+        { question: 'What is the eligibility for MASLP?', answer: 'Usually a BASLP or an equivalent RCI-recognised degree. AYJNISHD Kolkata, for example, asks for 50% marks (45% for SC, ST and PwD), a completed internship and RCI registration.' },
+        { question: 'What is the fee for PG healthcare courses?', answer: 'Approximate first-year tuition listed on CollegeDecision has a median of about Rs 1,00,000 a year for master\'s programmes and about Rs 39,000 for PG diplomas, mostly at private institutes. Confirm with the college.' },
+        { question: 'Is a PG diploma in healthcare equal to a master\'s degree?', answer: 'No. A one-year PG diploma is shorter and narrower than a two-year master\'s degree. If you plan a PhD or college teaching later, a master\'s degree is usually the safer choice.' }
+      ]
+    };
+  }
+
+  if (slug === 'management-diploma') {
+    return {
+      displayName: 'Management Diploma (DBA)',
+      h1: 'Management Diploma Course: Eligibility, Admission, Fees and Scope 2026',
+      title: 'Management Diploma After 12th: Eligibility, Fees & Scope 2026',
+      description:
+        'Management diploma (DBA) after Class 12 in 2026: eligibility, admission on marks, syllabus, listed fees, colleges, careers and how it differs from a PGDM.',
+      keywords: ['management diploma', 'diploma in business administration', 'DBA course', 'diploma in management after 12th', 'management diploma fees', 'management diploma eligibility', 'diploma vs PGDM'],
+      intro:
+        'A management diploma, usually a Diploma in Business Administration, is a one- to three-year business course you can join after Class 12. See eligibility, admission, syllabus, listed fees and where it can realistically lead.',
+      crossLink: {
+        href: '/courses/pg-diploma',
+        anchor: 'Read the PG diploma and PGDM guide',
+        note: 'Already a graduate? A PGDM or PG diploma is the postgraduate route, with different eligibility and exams.'
+      },
+      faqs: [
+        { question: 'What is a management diploma?', answer: 'It is an undergraduate-level business course, most often called a Diploma in Business Administration (DBA), that you can join after Class 12. It covers accounts, marketing, HR and business communication, and sits below a bachelor\'s degree such as a BBA.' },
+        { question: 'What is the duration of a management diploma?', answer: 'It varies by university. The programmes listed on CollegeDecision run for one, two or three years.' },
+        { question: 'Who is eligible for a management diploma?', answer: 'Usually anyone who has passed Class 12 in any stream. Each university sets its own minimum marks, so check the current prospectus.' },
+        { question: 'Is there an entrance exam for a management diploma?', answer: 'There is no national entrance exam. Most colleges admit on Class 12 marks; some private universities hold their own aptitude test or interview. CAT, XAT, CMAT and MAT are for MBA and PGDM after graduation.' },
+        { question: 'Is a management diploma the same as a PGDM?', answer: 'No. A PGDM is a postgraduate diploma that needs a bachelor\'s degree and an entrance test score. A management diploma is taken after Class 12.' },
+        { question: 'What is the fee for a management diploma?', answer: 'Approximate annual fees listed on CollegeDecision range from about Rs 12,000 for one-year programmes to about Rs 1,00,000 at a large private university. Only four records are available, so confirm with each college.' },
+        { question: 'Can I do an MBA after a management diploma?', answer: 'Not directly. MBA and PGDM admission needs a bachelor\'s degree. Many diploma holders first complete a BBA, BMS or B.Com and then apply.' },
+        { question: 'Can a management diploma count towards a degree?', answer: 'If it was an exit award from a four-year degree under the UGC Curriculum and Credit Framework, you may re-enter the third year within the time limit. A standalone diploma does not give that right automatically, so ask the university.' }
+      ]
+    };
+  }
+
+  if (slug === 'travel-tourism-pg') {
+    return {
+      displayName: 'PG in Travel and Tourism (MBA TTM, MTTM, PG Diploma)',
+      h1: 'Travel and Tourism PG Course: Eligibility, Admission, Fees, Syllabus and Scope 2026',
+      title: 'Travel and Tourism PG Course: MBA TTM, MTTM, Fees 2026',
+      description:
+        'Travel and tourism PG courses for 2026: MBA (TTM), MTTM and PG diplomas, eligibility, IITTM and other entrance routes, syllabus, fees, colleges and careers.',
+      keywords: ['travel and tourism PG course', 'MBA tourism and travel management', 'MTTM course', 'master of tourism management', 'PG diploma in travel and tourism', 'IITTM MBA admission 2026', 'tourism PG fees'],
+      intro:
+        'A PG in travel and tourism, such as an MBA (TTM), MTTM or PG diploma, trains graduates from any stream for management roles in travel, destinations and events. Check eligibility, entrance routes, syllabus, fees, colleges and realistic career paths.',
+      crossLink: {
+        href: '/courses/diploma-travel',
+        anchor: 'Read the travel and tourism diploma guide',
+        note: 'Not a graduate yet? A diploma in travel and tourism is the shorter entry route.'
+      },
+      faqs: [
+        { question: 'What are the main PG courses in travel and tourism?', answer: 'The common ones are the MBA (Tourism and Travel Management), the Master of Tourism and Travel Management (MTTM), the Master of Tourism Management (MTM), the Master of Tourism Administration (MTA) and one-year PG diplomas in travel and tourism management.' },
+        { question: 'Who is eligible for a PG in travel and tourism?', answer: 'Most programmes accept a bachelor\'s degree in any stream. IITTM\'s MBA (TTM) 2026-28 bulletin asks for 50% marks (45% for SC/ST), and IGNOU\'s MTTM accepts any graduate from a recognised university.' },
+        { question: 'Which entrance exams are accepted for IITTM\'s MBA (TTM)?', answer: 'IITTM accepts a valid CAT, MAT, CMAT, XAT, GMAT, ATMA or CUET PG score, or you can sit its own IITTM Admission Test (IIAT). Shortlisted candidates then take a group discussion and personal interview.' },
+        { question: 'How is the IITTM merit list prepared?', answer: 'According to the 2026-28 bulletin, the entrance score carries 70%, the group discussion 15% and the personal interview 15%.' },
+        { question: 'Can I do a tourism master\'s by distance learning?', answer: 'Yes. IGNOU offers the Master of Tourism and Travel Management (MTTM_NEW) in open and distance mode. It takes 2 to 4 years and costs Rs 18,200 for the full programme, plus registration and development fees.' },
+        { question: 'What is the fee for a travel and tourism PG?', answer: 'IGNOU\'s MTTM costs Rs 9,100 a year. The four private institutes with fee data on CollegeDecision list about Rs 75,000 to Rs 2,00,000 a year. These are approximate, so confirm with each institute.' },
+        { question: 'Can I teach tourism after a master\'s degree?', answer: 'A relevant master\'s degree is the starting point. UGC NET has a separate subject, Tourism Administration and Management (code 93), for assistant professor eligibility and the Junior Research Fellowship.' }
+      ]
+    };
+  }
+
+  if (slug === 'professional-makeup-artistry') {
+    return {
+      displayName: 'Professional Makeup Artistry Course',
+      h1: 'Professional Makeup Artistry Course: Eligibility, Syllabus, Fees and Careers 2026',
+      title: 'Professional Makeup Artistry Course: Syllabus, Fees 2026',
+      description:
+        'Professional makeup artistry courses in 2026: B&WSSC NSQF qualifications, eligibility, training hours, syllabus, specialisations, approximate fees and careers.',
+      keywords: ['professional makeup artistry course', 'makeup artist course', 'makeup course fees', 'bridal makeup course', 'makeup artist course syllabus', 'NSQF makeup artist', 'B&WSSC makeup artist'],
+      intro:
+        'Professional makeup artistry is a hands-on skill course for bridal, fashion, photo and screen makeup. See the national B&WSSC qualifications, who can join, what you learn, what it costs and how makeup careers really work.',
+      crossLink: {
+        href: '/courses/beauty',
+        anchor: 'Read the beauty courses guide',
+        note: 'Looking for a wider beauty or cosmetology programme? Start with our beauty courses guide.'
+      },
+      faqs: [
+        { question: 'Is professional makeup artistry a degree course?', answer: 'Usually not. Most makeup artistry courses in India are certificates or diplomas from academies, skill centres and some colleges. Degree options in this area are broader programmes such as a B.Voc in beauty and wellness or a B.Sc in cosmetology.' },
+        { question: 'Is there a national standard for makeup artist courses?', answer: 'Yes. The Beauty & Wellness Sector Skill Council publishes qualification packs, including Professional Makeup Artist (BWS/Q0306, NSQF Level 4) and Bridal, Fashion and Portfolio Makeup Artist (BWS/Q0301, NSQF Level 5).' },
+        { question: 'How long is a professional makeup artist course?', answer: 'The B&WSSC model curriculum for Professional Makeup Artist sets at least 510 hours, including 60 hours of on-the-job training, or 600 hours with optional electives. Private short courses can be much shorter.' },
+        { question: 'What is the eligibility for a makeup artist course?', answer: 'Private academies set their own rules, often Class 10 or 12. The national Professional Makeup Artist qualification sets a minimum job-entry age of 18 and combinations such as Class 10 with relevant training or industry experience.' },
+        { question: 'Is there an entrance exam for makeup courses?', answer: 'No national entrance exam exists. Admission is usually direct or after an interview. Skill-council courses end with a practical assessment against the qualification standards.' },
+        { question: 'How much does a makeup artistry course cost?', answer: 'A one-year makeup diploma listed on CollegeDecision costs about Rs 50,000 a year. Short private courses vary widely, and the makeup kit is often an extra cost. Confirm the fee with the institute.' },
+        { question: 'What can I do after a makeup artistry course?', answer: 'Common routes are freelance bridal and event makeup, salon work, fashion and photo shoots, assisting in film and TV, brand and retail roles and, with experience, training others.' }
+      ]
+    };
+  }
+
+  if (slug === 'mvoc') {
+    return {
+      displayName: 'M.Voc (Master of Vocation)',
+      h1: 'M.Voc Course: Eligibility, Admission, Syllabus, Fees and Scope 2026',
+      title: 'M.Voc Course 2026: Eligibility, Admission, Syllabus & Scope',
+      description:
+        'M.Voc (Master of Vocation) for 2026: B.Voc and other eligibility routes, admission, PG Diploma exit, syllabus, specialisations, colleges and careers.',
+      keywords: ['M.Voc', 'M.Voc course', 'Master of Vocation', 'M.Voc eligibility', 'M.Voc after B.Voc', 'M.Voc admission 2026', 'M.Voc syllabus', 'M.Voc colleges'],
+      intro:
+        'The M.Voc (Master of Vocation) is a two-year, skill-heavy master\'s degree that follows the B.Voc. Check who can apply, how admission works, the PG Diploma exit, specialisations, colleges and where it can realistically lead.',
+      crossLink: {
+        href: '/courses/pg-diploma',
+        anchor: 'Read the PG diploma guide',
+        note: 'Want a shorter skill-focused option after graduation? Compare it with a one-year PG diploma.'
+      },
+      faqs: [
+        { question: 'What is the full form of M.Voc?', answer: 'M.Voc stands for Master of Vocation. It is a postgraduate degree specified by UGC for the skill-based (vocational) track that starts with the B.Voc.' },
+        { question: 'What is the duration of an M.Voc?', answer: 'Two years, usually four semesters. Many universities let you leave after the first year with a PG Diploma and complete the M.Voc after the second year.' },
+        { question: 'Who is eligible for an M.Voc?', answer: 'Usually a B.Voc graduate in a related trade. Many universities also accept other graduates. Ambedkar University Delhi, for example, accepts a B.Voc with 50%, any graduate with 50% and two years of industry experience, or NSQF Level 7 certification.' },
+        { question: 'Is there an entrance exam for M.Voc?', answer: 'There is no national M.Voc entrance exam. Universities admit on bachelor\'s marks, their own test, an interview or a portfolio. If a university uses CUET PG, check its programme list for the M.Voc paper.' },
+        { question: 'Can I do an M.Voc without a B.Voc?', answer: 'Often yes. Several universities accept any bachelor\'s degree, sometimes with work experience. Dayalbagh Educational Institute accepts a bachelor\'s with at least second class and asks trade changers to take a bridge course.' },
+        { question: 'What is the fee for an M.Voc?', answer: 'Fee data is limited. Approximate total course fees listed on CollegeDecision range from about Rs 42,000 at Devi Ahilya Vishwavidyalaya to about Rs 5,60,000 for design programmes at ARCH College, Jaipur. Confirm the full two-year fee with the college.' },
+        { question: 'Can I do a PhD after an M.Voc?', answer: 'UGC\'s vocational scheme allows progression to research-level study, but PhD eligibility is set by each university. Check the rules of your target universities before you enrol.' }
+      ]
+    };
+  }
+
+  if (slug === 'master-of-event-management') {
+    return {
+      displayName: 'Master of Event Management',
+      h1: 'Master of Event Management: Eligibility, Admission, Fees and Scope 2026',
+      title: 'Master of Event Management: MBA/MA Options, Fees & Scope 2026',
+      description:
+        'Event management at master\'s level in 2026: MBA, MA and M.Sc options, eligibility, CAT/CMAT/MAT routes, syllabus, listed fees, colleges and careers.',
+      keywords: ['master of event management', 'MBA in event management', 'MA event management', 'event management PG course', 'event management fees', 'event management eligibility', 'PG diploma in event management'],
+      intro:
+        'In India, event management at master\'s level is usually offered as an MBA in Event Management, an MA in PR and Events, an M.Sc or a PG diploma, not a degree titled "Master of Event Management". Compare eligibility, exams, fees and careers.',
+      crossLink: {
+        href: '/courses/mba',
+        anchor: 'Read the MBA / PGDM guide',
+        note: 'Most master\'s-level event programmes are MBA specialisations, so the MBA admission rules apply.'
+      },
+      faqs: [
+        { question: 'Is "Master of Event Management" a recognised degree in India?', answer: 'Not under that title. UGC\'s Specification of Degrees does not list it. The subject is usually offered as an MBA in Event Management, an MA or Master of Communication in PR and Events, an M.Sc in Sports and Events Management, or a PG diploma.' },
+        { question: 'What is the duration of a master\'s in event management?', answer: 'A master\'s degree such as an MBA or MA takes two years. Most PG diplomas in event management take one year.' },
+        { question: 'Who is eligible for an MBA in Event Management?', answer: 'A bachelor\'s degree in any discipline, often with about 50% marks, plus the test the university accepts. For AICTE-approved PGDM programmes, AICTE asks for a three-year degree with 50% (45% for reserved categories) and a valid test score.' },
+        { question: 'Which entrance exams are accepted?', answer: 'MBA routes commonly accept CAT, XAT, CMAT or MAT, or the university\'s own test. Many MA and PG diploma programmes admit on graduation marks and an interview.' },
+        { question: 'What is the fee for event management at master\'s level?', answer: 'Approximate first-year fees listed on CollegeDecision have a median of about Rs 1,50,000 a year across 11 records, from about Rs 60,000 to Rs 5,00,000. Confirm with each institute.' },
+        { question: 'Is a PG diploma in event management the same as a master\'s degree?', answer: 'No. A PG diploma is not a master\'s degree. Check what the final certificate will say and which university or body awards it.' },
+        { question: 'Can I do event management after any graduation?', answer: 'Yes, most programmes accept graduates from any discipline. Hospitality, mass communication and BBA graduates often apply, but they are not the only ones admitted.' }
+      ]
+    };
+  }
+
+  if (slug === 'diploma-travel') {
+    return {
+      displayName: 'Diploma in Travel and Tourism',
+      h1: 'Diploma in Travel and Tourism: Eligibility, Admission, Fees and Careers 2026',
+      title: 'Diploma in Travel and Tourism: Eligibility, Fees & Jobs 2026',
+      description:
+        'Travel and tourism diploma for 2026: polytechnic and IGNOU eligibility, admission without a national exam, syllabus, IATA training, fees, colleges and careers.',
+      keywords: ['diploma in travel and tourism', 'travel and tourism diploma', 'travel and tourism course after 12th', 'IGNOU DTS', 'travel and tourism polytechnic', 'air ticketing course', 'travel diploma fees'],
+      intro:
+        'A diploma in travel and tourism is a short, practical course in itineraries, air ticketing, travel documents and tour operations. Check the different formats, eligibility, admission, fees and where it can realistically lead.',
+      crossLink: {
+        href: '/courses/dhmct',
+        anchor: 'Read the hotel management diploma guide',
+        note: 'More interested in hotel work? The hotel management, catering and tourism diploma guide covers front office and food service.'
+      },
+      faqs: [
+        { question: 'What is the duration of a diploma in travel and tourism?', answer: 'It depends on the format. The MSBTE polytechnic diploma in Maharashtra takes 3 years after Class 10. IGNOU\'s Diploma in Tourism Studies has a minimum duration of 1 year after Class 12. Private certificate courses often run 6 months to 1 year.' },
+        { question: 'What is the eligibility for a travel and tourism diploma?', answer: 'Maharashtra polytechnics ask for Class 10 (SSC) with at least 35% aggregate. IGNOU\'s DTS needs Class 12 or equivalent, or IGNOU\'s BPP. Most private colleges ask for Class 12.' },
+        { question: 'Is there an entrance exam for a travel and tourism diploma?', answer: 'No. There is no national entrance exam. Maharashtra polytechnic seats are filled on merit through the DTE centralised admission process, IGNOU admits on eligibility, and private institutes admit directly or after an interview.' },
+        { question: 'What is the fee for a travel and tourism diploma?', answer: 'IGNOU lists Rs 4,500 for the full DTS programme, plus registration and exam fees. Private academies on CollegeDecision list about Rs 1,12,000 to Rs 1,40,000 for one-year travel courses. Fee data is limited, so confirm with the institute.' },
+        { question: 'What is the IATA Foundation in Travel and Tourism?', answer: 'It is an entry-level IATA certificate covering travel documents, air fares, ticketing and reservation systems. The self-study version gives 12 months to finish and ends with an online exam of 80 multiple-choice questions, with 60% needed to pass.' },
+        { question: 'What jobs can I get after a travel and tourism diploma?', answer: 'Common entry roles include travel consultant, reservation and ticketing executive, tour operations executive and travel support desk roles. Outcomes depend on the employer, city and your skills.' },
+        { question: 'Can I do a degree after a travel diploma?', answer: 'Yes. Common next steps are a Bachelor of Tourism Studies (BTS) or a BBA in tourism, and later an MBA in tourism and travel management. Some states allow polytechnic diploma holders lateral entry to selected degrees.' }
+      ]
+    };
+  }
+
+  if (slug === 'special') {
+    return {
+      displayName: 'Special Education',
+      h1: 'Special Education Courses: M.Ed. and B.Ed. Special Education, Eligibility, Fees and Careers 2026',
+      title: 'Special Education Courses: M.Ed., B.Ed., RCI Rules & Fees 2026',
+      description:
+        'Special education courses for 2026: RCI-approved B.Ed. and M.Ed. Special Education, eligibility, disability areas, admission, fees, CRR registration and careers.',
+      keywords: ['special education course', 'M.Ed special education', 'B.Ed special education', 'special education eligibility', 'RCI approved courses', 'CRR registration', 'special educator course'],
+      intro:
+        'Special education courses train teachers for children with disabilities and are regulated by the Rehabilitation Council of India (RCI). Check the B.Ed. and M.Ed. Special Education routes, eligibility, disability areas, fees and careers.',
+      crossLink: {
+        href: '/courses/m-ed',
+        anchor: 'Read the M.Ed. course guide',
+        note: 'Comparing postgraduate teacher education? The M.Ed. guide covers the general M.Ed. route.'
+      },
+      faqs: [
+        { question: 'What does the "Special" course on CollegeDecision mean?', answer: 'It is a postgraduate listing with no programmes currently linked to it. Most postgraduate courses with "special" in the name in India are special education courses, so this page covers special education.' },
+        { question: 'Who regulates special education courses in India?', answer: 'The Rehabilitation Council of India (RCI), set up under the RCI Act, 1992. RCI approves special education courses and institutions and keeps the Central Rehabilitation Register (CRR).' },
+        { question: 'What is the eligibility for M.Ed. Special Education?', answer: 'RCI norms ask for a B.Ed. Special Education with at least 50% in the same disability area, or a B.Ed. plus an RCI-recognised D.Ed. Special Education with 50% in each, or a 4-year integrated B.Ed. Special Education.' },
+        { question: 'How long is the M.Ed. Special Education?', answer: 'The regular M.Ed. Special Education is 2 years (4 semesters) and must be completed within 3 years. RCI lists distance M.Ed. Special Education courses at 2.5 years.' },
+        { question: 'What is the eligibility for B.Ed. Special Education?', answer: 'A bachelor\'s or master\'s degree in sciences, social sciences or humanities with at least 50% marks, or a B.E. or B.Tech with science and mathematics with 55%, as per RCI norms.' },
+        { question: 'Is RCI registration compulsory for special educators?', answer: 'Yes. Under Section 13 of the RCI Act, only people with a recognised qualification who are enrolled on the Central Rehabilitation Register may practise as rehabilitation professionals, including special educators.' },
+        { question: 'What is the fee for special education courses?', answer: 'Approximate B.Ed. Special Education tuition listed on CollegeDecision ranges from about Rs 29,000 to Rs 1,00,000 a year across six colleges. We do not yet have M.Ed. Special Education fee records. Confirm with the college.' },
+        { question: 'What jobs can I get after special education?', answer: 'Common roles include special educator in schools, resource room teacher, teacher educator, and roles in early intervention and NGOs. Kendriya Vidyalaya special educator notices also ask for CTET and a valid CRR number.' }
+      ]
+    };
+  }
+
+  if (slug === 'diploma') {
+    return {
+      displayName: 'Diploma Courses',
+      h1: 'Diploma Courses in India: Types, Eligibility, Fees and Scope 2026',
+      title: 'Diploma Courses in India: Types, Eligibility & Fees 2026',
+      description:
+        'Diploma courses explained for 2026: polytechnic after Class 10, lateral entry, UG and PG diplomas, D.Voc, AICTE and UGC rules, admission, fees and careers.',
+      keywords: ['diploma courses', 'diploma course after 10th', 'diploma after 12th', 'types of diploma courses', 'diploma eligibility', 'diploma fees', 'polytechnic diploma', 'diploma vs degree'],
+      intro:
+        'A diploma in India is a level of qualification, not one course. See how polytechnic, UG, PG and vocational diplomas differ, who approves them, how admission works and which one fits you.',
+      crossLink: {
+        href: '/courses/ug-diploma',
+        anchor: 'Read the UG diploma guide',
+        note: 'Already a graduate? See the PG diploma and management diploma guides instead.'
+      },
+      faqs: [
+        { question: 'What is a diploma course?', answer: 'A diploma is a qualification below a degree, or after a degree in the case of PG diplomas. The level depends on who awards it: AICTE-approved polytechnics, universities under UGC rules, or NCVET-approved awarding bodies.' },
+        { question: 'Can I do a diploma after Class 10?', answer: 'Yes. AICTE\'s Approval Process Handbook 2024-27 lists three-year diplomas in engineering and technology, design, and applied arts and crafts with Class 10 as the entry qualification.' },
+        { question: 'What diploma can I do after Class 12?', answer: 'You can join the second year of an AICTE diploma through lateral entry, take a two-year NCVET Diploma (Advanced) in a relevant subject, or choose an institute-level or vocational diploma. Rules differ by state and institute.' },
+        { question: 'What is a UG diploma under the new UGC framework?', answer: 'Under UGC\'s Curriculum and Credit Framework (2022), a degree student who exits after two years with 80 credits, plus a 4-credit vocational course in the summer, is awarded a UG Diploma and can re-enter within three years.' },
+        { question: 'Is a diploma equal to a degree?', answer: 'No. A diploma is a separate, usually shorter qualification. Some diplomas allow lateral entry into the second year of a degree, such as an engineering diploma into B.Tech.' },
+        { question: 'What is the fee for a diploma course?', answer: 'It varies by type. For polytechnic diplomas listed on CollegeDecision, approximate first-year tuition has a median of about Rs 11,000 at public and Rs 30,000 at private institutes. Confirm with each institute.' },
+        { question: 'How do I check if a diploma is recognised?', answer: 'Check that the institute and programme are approved for the current year by the relevant body, such as AICTE for technical diplomas, and that the certificate is issued by a state board, university or approved awarding body.' }
+      ]
+    };
+  }
+
+  if (slug === 'dphil') {
+    return {
+      displayName: 'D.Phil (Doctor of Philosophy)',
+      h1: 'D.Phil Course: Meaning, Eligibility, Admission and Fees 2026',
+      title: 'D.Phil Course: Meaning, Eligibility, Admission & Fees 2026',
+      description:
+        'D.Phil is the Doctor of Philosophy, the same degree as a PhD in India. See UGC 2022 eligibility, NET-based admission, coursework, fees and careers.',
+      keywords: ['D.Phil course', 'D.Phil full form', 'D.Phil vs PhD', 'Doctor of Philosophy', 'D.Phil eligibility', 'D.Phil admission 2026', 'PhD admission through NET', 'UGC PhD regulations 2022'],
+      intro:
+        'D.Phil is another name for the Doctor of Philosophy. In India it follows the same UGC rules as a PhD. Check eligibility, NET-based admission, coursework, fees and where a doctorate can lead.',
+      crossLink: {
+        href: '/courses/phd',
+        anchor: 'Read the PhD course guide',
+        note: 'Most universities now advertise this degree as a PhD. Compare current doctoral programmes there.'
+      },
+      faqs: [
+        { question: 'What is the full form of D.Phil?', answer: 'D.Phil stands for Doctor of Philosophy. UGC\'s specification of degrees lists it as Doctor of Philosophy (Ph.D. or D.Phil.).' },
+        { question: 'Is D.Phil the same as PhD?', answer: 'Yes, in India. Both are the same research doctorate and both follow the UGC (Minimum Standards and Procedures for Award of Ph.D. Degree) Regulations, 2022.' },
+        { question: 'Who is eligible for a D.Phil?', answer: 'Under UGC 2022 rules, you need a master\'s degree with at least 55% marks, or a four-year bachelor\'s with at least 75%. A 5% relaxation applies to SC, ST, OBC (non-creamy layer), differently-abled and EWS candidates as UGC decides.' },
+        { question: 'How long does a D.Phil take?', answer: 'A minimum of three years including coursework and a maximum of six years, with up to two more years through re-registration under the UGC 2022 regulations.' },
+        { question: 'Is NET required for D.Phil admission?', answer: 'Many universities now admit using UGC or CSIR NET scores plus an interview. The University of Allahabad, for example, used NET scores for 2025-26 and held its own CRET only where NET-qualified applicants were not enough.' },
+        { question: 'What is the fee for a D.Phil?', answer: 'No D.Phil fees are listed on CollegeDecision. For PhD programmes, approximate first-year tuition has a median of about Rs 10,500 at public and Rs 84,000 at private institutes. Confirm with the university.' },
+        { question: 'Which universities award a D.Phil?', answer: 'The title is now uncommon in India; most universities advertise the degree as a PhD. Abroad, the University of Oxford calls its research doctorate a DPhil.' }
+      ]
+    };
+  }
+
+  if (slug === 'dvoc') {
+    return {
+      displayName: 'D.Voc (Diploma of Vocation)',
+      h1: 'D.Voc Course: Full Form, Eligibility, Levels, Fees and Scope 2026',
+      title: 'D.Voc Course: Full Form, Eligibility, Levels & Scope 2026',
+      description:
+        'D.Voc (Diploma of Vocation) explained: AICTE and UGC B.Voc schemes, NSQF levels, eligibility after Class 10 or 12, admission, syllabus, fees and careers.',
+      keywords: ['D.Voc course', 'D.Voc full form', 'Diploma of Vocation', 'D.Voc eligibility', 'D.Voc after 10th', 'D.Voc vs B.Voc', 'NSQF diploma', 'vocational diploma'],
+      intro:
+        'D.Voc stands for Diploma of Vocation, a skill-based diploma aligned to national skill levels. See how the AICTE and UGC B.Voc schemes differ, who can apply, what you study and where it leads.',
+      crossLink: {
+        href: '/courses/bvoc',
+        anchor: 'Read the B.Voc course guide',
+        note: 'The D.Voc is the first exit point of a UGC B.Voc, so the B.Voc guide has fuller college and fee data.'
+      },
+      faqs: [
+        { question: 'What is the full form of D.Voc?', answer: 'D.Voc stands for Diploma of Vocation. AICTE\'s Approval Process Handbook lists it by that name.' },
+        { question: 'Can I do a D.Voc after Class 10?', answer: 'Yes, on AICTE\'s diploma track. A Class 10 pass student can exit after one year with a Certificate of Vocation (C.Voc) and after two years with a Diploma of Vocation.' },
+        { question: 'What is the difference between D.Voc and B.Voc?', answer: 'Under UGC\'s B.Voc guidelines, the Diploma is awarded after one year (NSQF level 5, 60 credits), the Advanced Diploma after two years (level 6) and the B.Voc degree after three years (level 7).' },
+        { question: 'Is there an entrance exam for D.Voc?', answer: 'There is no national entrance exam. Most institutes admit on Class 10 or Class 12 marks, sometimes with an aptitude test or interview.' },
+        { question: 'What subjects are taught in a D.Voc?', answer: 'In UGC\'s scheme, a one-year Diploma has 36 skill credits linked to a job role and 24 general education credits. Sectors include banking, tourism, software, retail and laboratory technology.' },
+        { question: 'What is the fee for a D.Voc?', answer: 'No D.Voc fees are listed on CollegeDecision yet. As a rough guide, B.Voc first-year tuition has a median of about Rs 18,000 at public and Rs 50,000 at private institutes. Confirm with the institute.' },
+        { question: 'What can I do after a D.Voc?', answer: 'You can take an entry-level skilled job or apprenticeship, or continue to the Advanced Diploma and B.Voc, and later an M.Voc.' }
+      ]
+    };
+  }
+
+  if (slug === 'executive-programme') {
+    return {
+      displayName: 'Executive Programme',
+      h1: 'Executive Programme: Eligibility, Admission, Fees and Scope 2026',
+      title: 'Executive Programme Course: Eligibility, Exams & Fees 2026',
+      description:
+        'Executive programmes for working professionals in 2026: one-year MBAs, AICTE executive PGDMs and certificates, with eligibility, exams, fees and careers.',
+      keywords: ['executive programme', 'executive programme course', 'executive MBA India', 'executive PGDM', 'executive programme eligibility', 'one year MBA for executives', 'executive programme fees'],
+      intro:
+        'An executive programme is a course for people who are already working, but the label covers one-year MBAs, 18-month AICTE PGDMs and short certificates. See how to tell them apart, who is eligible, which exams apply and what to check before you pay.',
+      crossLink: {
+        href: '/courses/online-executive-programme',
+        anchor: 'Read the online executive programme guide',
+        note: 'Want to study online while you work? Compare online executive programmes.'
+      },
+      faqs: [
+        { question: 'What is an executive programme?', answer: 'It is a course designed for working professionals. The label is not one qualification: it can be a one-year MBA for executives, an AICTE-approved PGDM for working professionals, a weekend diploma or a short certificate.' },
+        { question: 'Who is eligible for an executive programme?', answer: 'Usually graduates with work experience. AICTE allows an 18-month PGDM for working professionals with at least 3 years of relevant managerial or supervisory experience. IIM Ahmedabad\'s MBA-PGPX asks for at least 4 years of full-time work after graduation.' },
+        { question: 'Is GMAT required for an executive programme?', answer: 'For many one-year MBAs for executives, yes. IIM Ahmedabad\'s MBA-PGPX needs a test-centre GMAT or GRE score taken within five years. Weekend diplomas and certificates often use their own test or an interview instead.' },
+        { question: 'Is an executive programme the same as an MBA?', answer: 'Not always. Some executive programmes award an MBA or an AICTE-approved PGDM, but many award only a certificate from the institute. Check exactly what you will be awarded before you apply.' },
+        { question: 'What is the fee for an executive programme?', answer: 'Fees vary widely between short certificates and full-time one-year programmes. CollegeDecision has no tuition or total-fee records for this course yet, so check the institute\'s official fee page and ask for a written total.' },
+        { question: 'Does work experience during college count?', answer: 'Usually not. Institutes such as SPJIMR count only full-time work experience after graduation and exclude internships or project work done as part of the degree.' },
+        { question: 'Can I do a PhD after an executive programme?', answer: 'It depends on the award. A recognised master\'s degree or two-year PG diploma can meet doctoral eligibility, as at IIM Ahmedabad, but a short executive certificate usually will not.' }
+      ]
+    };
+  }
+  if (slug === 'fellowship') {
+    return {
+      displayName: 'Fellowship',
+      h1: 'Fellowship Course: Types, Eligibility, Admission and Scope 2026',
+      title: 'Fellowship Course: FPM, FNB & JRF Eligibility 2026',
+      description:
+        'Fellowship courses in India explained for 2026: Fellow Programme in Management, NBEMS FNB medical fellowships and UGC NET JRF, with eligibility and exams.',
+      keywords: ['fellowship course', 'fellow programme in management', 'FPM', 'FNB fellowship', 'NBEMS FET', 'UGC NET JRF', 'fellowship eligibility'],
+      intro:
+        'A fellowship can be a doctoral programme in management, a two-year NBEMS medical fellowship or a funded research fellowship such as JRF. Find out which is which, who is eligible, which entrance tests apply and how to check recognition.',
+      crossLink: {
+        href: '/courses/phd',
+        anchor: 'Read the PhD course guide',
+        note: 'Looking for a research degree? The PhD guide covers UGC rules, entrance tests and admission.'
+      },
+      faqs: [
+        { question: 'What is a fellowship course?', answer: 'In India the word covers three things: a Fellow Programme in Management (doctoral-level study at business schools), a medical fellowship such as the NBEMS FNB, and a funded research fellowship such as the UGC NET Junior Research Fellowship.' },
+        { question: 'Is a Fellow Programme in Management equal to a PhD?', answer: 'It depends on the institute and the award. IIM Ahmedabad now runs its former FPM as a Doctoral Programme in Management leading to a PhD. For any other fellow programme, ask the institute in writing what is awarded and whether it is recognised as equivalent to a PhD.' },
+        { question: 'What is the eligibility for a management fellow or doctoral programme?', answer: 'At IIM Ahmedabad, a master\'s degree or two-year PG diploma with 55% marks, or a four-year bachelor\'s degree with 65%, among other routes, with a 5-point relaxation for reserved categories. Candidates need CAT or an accepted test in lieu of it.' },
+        { question: 'How long is an FNB fellowship?', answer: 'NBEMS fellowship (FNB) courses last two years and are full-time training at NBEMS-accredited hospitals.' },
+        { question: 'How do I get admission to an FNB course?', answer: 'Through the Fellowship Entrance Test (FET) conducted by NBEMS, followed by centralised merit-based counselling. You need an MD, MS, DNB, DM, MCh or DrNB in an eligible feeder specialty.' },
+        { question: 'What is the minimum mark for PhD admission under UGC rules?', answer: 'UGC\'s 2022 PhD regulations ask for at least 55% in a master\'s degree, or at least 75% in a four-year bachelor\'s degree, with relaxations for reserved categories.' },
+        { question: 'What are the fees for a fellowship programme?', answer: 'CollegeDecision has no fee records for this course. Many doctoral programmes offer financial support and research fellowships pay a stipend, so check the official prospectus or bulletin.' }
+      ]
+    };
+  }
+  if (slug === 'foundation-course') {
+    return {
+      displayName: 'Foundation Course',
+      h1: 'Foundation Course: Eligibility, Exams, Fees and Next Steps 2026',
+      title: 'Foundation Course: CA Foundation & Institute Courses 2026',
+      description:
+        'Foundation courses in 2026: CA Foundation eligibility, exam dates and fee from ICAI, plus short hotel management and design foundation courses and next steps.',
+      keywords: ['foundation course', 'CA Foundation', 'CA Foundation eligibility', 'foundation course after 12th', 'hotel management foundation course', 'interior design foundation course'],
+      intro:
+        'A foundation course is a first step, not a degree. Learn how CA Foundation works under ICAI rules, what institute-run foundation courses in hospitality and design cover, what they cost and what to study next.',
+      crossLink: {
+        href: '/courses/hotel-management-diploma',
+        anchor: 'Read the hotel management diploma guide',
+        note: 'Ready for a full qualification? A hotel management diploma is a common next step after a hospitality foundation course.'
+      },
+      faqs: [
+        { question: 'What is a foundation course?', answer: 'It is an entry-level course that prepares you for a longer professional qualification or a field of work. Examples are ICAI\'s CA Foundation and short institute courses in hotel management or interior design. It is not a degree.' },
+        { question: 'Can I register for CA Foundation after Class 10?', answer: 'Yes, provisionally. ICAI allows registration after passing Class 10, but you can take the Foundation exam only after appearing in Class 12 and completing four months of registered study.' },
+        { question: 'How many times a year is the CA Foundation exam held?', answer: 'Three times a year, in January, May and September, according to ICAI.' },
+        { question: 'What is the passing criteria for CA Foundation?', answer: 'ICAI requires at least 40% in each paper and 50% in aggregate in one sitting. Papers 3 and 4 are objective and carry 0.25 negative marking per wrong answer.' },
+        { question: 'What is the CA Foundation registration fee?', answer: 'ICAI\'s FAQs give the Foundation registration fee as Rs 9,000, including the prospectus and study material. The exam fee is separate. Confirm the current fee on the ICAI portal.' },
+        { question: 'Does ICSI still have a CS Foundation course?', answer: 'No. ICSI replaced the CS Foundation Programme with the CS Executive Entrance Test (CSEET).' },
+        { question: 'Is a hotel management foundation course enough to get a job?', answer: 'It can help with entry-level roles, but many employers prefer a diploma or degree for supervisory jobs. Ask the institute where its recent students went, and consider a hotel management diploma or BHM next.' }
+      ]
+    };
+  }
+  if (slug === 'pg-diploma-labour-laws') {
+    return {
+      displayName: 'PG Diploma in Labour Laws and Labour Welfare',
+      h1: 'PG Diploma in Labour Laws: Eligibility, Admission, Syllabus, Fees and Scope 2026',
+      title: 'PG Diploma in Labour Laws 2026: Eligibility, Syllabus & Scope',
+      description:
+        'PG Diploma in Labour Laws and Labour Welfare for 2026: eligibility, admission, syllabus under the four Labour Codes, fees, colleges and careers.',
+      keywords: ['PG Diploma in Labour Laws', 'PGDLL', 'PG Diploma in Labour Law and Labour Welfare', 'labour law diploma eligibility', 'labour law diploma syllabus', 'labour codes course'],
+      intro:
+        'A one-year postgraduate diploma for graduates of any stream who work with wages, payroll, compliance and industrial relations. See eligibility, admission, how the four Labour Codes change the syllabus, fees, colleges and careers.',
+      crossLink: {
+        href: '/courses/law',
+        anchor: 'Read the LLB guide',
+        note: 'Want to practise as a lawyer? This diploma does not qualify you; you need an LLB.'
+      },
+      faqs: [
+        { question: 'What is a PG Diploma in Labour Laws?', answer: 'It is a one-year postgraduate diploma, usually run by a university law faculty, covering industrial relations, wages, social security, working conditions and labour welfare.' },
+        { question: 'Who is eligible for a PG Diploma in Labour Laws?', answer: 'Usually any graduate. Published minimums vary: MSU Baroda asks for 40% at graduation, Rabindranath Tagore University 45% (40% for SC/ST), and Parul University 50%.' },
+        { question: 'Is there an entrance exam?', answer: 'There is no national entrance exam. Most universities admit on graduation marks; a few hold their own test or interview. CLAT PG is not needed.' },
+        { question: 'Does the syllabus cover the new Labour Codes?', answer: 'It should. The four Labour Codes took effect on 21 November 2025 and central rules were notified on 8 May 2026. Check that your university has updated its syllabus.' },
+        { question: 'What is the fee for a PG Diploma in Labour Laws?', answer: 'Our listings have no fee records for this course. As an example, Parul University lists Rs 30,000 for its one-year programme. Most universities publish fees in the prospectus.' },
+        { question: 'Can I practise law after this diploma?', answer: 'No. To enrol as an advocate you need an LLB. The diploma adds depth for HR, compliance and industrial relations work, or for lawyers who already hold an LLB.' },
+        { question: 'What can I do after the diploma?', answer: 'Common routes are HR and industrial relations roles, statutory compliance and payroll, labour welfare posts where rules allow, and consulting. For further study, consider an LLB, an MBA in HR or an MSW.' }
+      ]
+    };
+  }
+  if (slug === 'vocational-diploma') {
+    return {
+      displayName: 'Vocational Diploma',
+      h1: 'Vocational Diploma Courses: Eligibility, Admission, Trades, Fees and Scope 2026',
+      title: 'Vocational Diploma 2026: Eligibility, Trades, Fees & Scope',
+      description:
+        'Vocational diploma courses for 2026: UGC skill-scheme exits, eligibility, admission, trades, approximate fees, colleges and the path to a B.Voc.',
+      keywords: ['vocational diploma', 'vocational diploma course', 'diploma in vocational studies', 'UGC vocational diploma', 'vocational diploma after 12th', 'skill diploma NSQF'],
+      intro:
+        'A short, practical qualification in one trade. Learn how UGC skill-scheme diplomas differ from stand-alone certificates, who can apply, what you study, fees, colleges and how a diploma leads to a B.Voc.',
+      crossLink: {
+        href: '/courses/bvoc',
+        anchor: 'Read the B.Voc guide',
+        note: 'Want a full degree in your trade? A one-year diploma can lead into the second year of a B.Voc.'
+      },
+      faqs: [
+        { question: 'What is a vocational diploma?', answer: 'A skill-based qualification in one trade. Under UGC\'s skill-based scheme, a one-year diploma is an exit award on the way to a B.Voc; colleges also run stand-alone trade certificates and diplomas.' },
+        { question: 'What is the eligibility for a vocational diploma?', answer: 'For UGC-scheme programmes, Class 12 pass or equivalent from a recognised board, with no age bar. Stand-alone certificates set their own rules and some accept Class 10.' },
+        { question: 'How long is a vocational diploma?', answer: 'Under the UGC scheme: certificate after 6 months, diploma after 1 year and advanced diploma after 2 years, based on credits earned.' },
+        { question: 'Can I join a B.Voc after a vocational diploma?', answer: 'Under UGC guidelines, a one-year diploma allows entry to the second year of a B.Voc and a two-year advanced diploma to the third year, in the same trade, subject to university rules.' },
+        { question: 'What is the fee for a vocational diploma?', answer: 'Data is thin. The one institution with a tuition record in our listings, MKM Group of Colleges for Girls, Faridabad, shows about Rs 6,000 a year. Confirm with the college.' },
+        { question: 'Is there an entrance exam?', answer: 'No national exam. Colleges admit on Class 10 or 12 marks, sometimes with a short interview or aptitude check.' }
+      ]
+    };
+  }
+  if (slug === 'diploma-library-science') {
+    return {
+      displayName: 'Diploma in Library Science (D.Lib / DLIS)',
+      h1: 'Diploma in Library Science: Eligibility, Admission, Syllabus, Fees and Scope 2026',
+      title: 'Diploma in Library Science 2026: Eligibility, Syllabus & Jobs',
+      description:
+        'Diploma in Library Science (D.Lib / DLIS) for 2026: eligibility after Class 12, admission, syllabus, colleges, careers and the path to B.Lib.I.Sc.',
+      keywords: ['Diploma in Library Science', 'D.Lib', 'DLIS', 'DLISc', 'library science diploma after 12th', 'library science diploma syllabus', 'library assistant course'],
+      intro:
+        'A one-year diploma after Class 12 that teaches classification, cataloguing, library management and library software. See eligibility, admission, syllabus, colleges, careers and how it leads to the B.Lib.I.Sc.',
+      crossLink: {
+        href: '/courses/b-lib',
+        anchor: 'Read the B.Lib guide',
+        note: 'Already a graduate? The one-year B.Lib.I.Sc is the qualification most professional librarian posts ask for.'
+      },
+      faqs: [
+        { question: 'What is the full form of D.Lib?', answer: 'D.Lib stands for Diploma in Library Science. Many universities call it DLIS or DLISc, Diploma in Library and Information Science.' },
+        { question: 'What is the eligibility for a Diploma in Library Science?', answer: 'Class 12 in any stream. Minimum marks vary: Nirwan University asks only for 10+2, MLSU Udaipur 40%, and Guru Kashi and Desh Bhagat universities 45% (with relaxation for reserved categories).' },
+        { question: 'How long is the course?', answer: 'One year, either annual or in two semesters, usually with an internship or library visit.' },
+        { question: 'Can I do a B.Lib.I.Sc after the diploma?', answer: 'Not directly. The B.Lib.I.Sc needs a bachelor\'s degree in any subject, so you first complete graduation.' },
+        { question: 'What jobs can I get after a library science diploma?', answer: 'Library assistant or attendant, documentation assistant, record keeper or archive assistant and cataloguing roles. Government posts list their own qualifications, so check each notification.' },
+        { question: 'What is the fee?', answer: 'Our listings have no fee record for this course. Universities publish the fee in their prospectus each session; confirm whether exam and registration charges are extra.' }
+      ]
+    };
+  }
+  if (slug === 'diploma-science') {
+    return {
+      displayName: 'Diploma in Science (Paramedical)',
+      h1: 'Diploma in Science (Paramedical): Eligibility, Admission, Streams, Fees and Scope 2026',
+      title: 'Diploma in Science 2026: Paramedical Eligibility & Scope',
+      description:
+        'Diploma in Science on CollegeDecision means paramedical science diplomas. 2026 guide to eligibility, NCAHP rules, streams, colleges and careers.',
+      keywords: ['Diploma in Science', 'diploma in paramedical science', 'paramedical diploma after 12th', 'paramedical diploma eligibility', 'NCAHP diploma', 'allied health diploma'],
+      intro:
+        '"Diploma in Science" is a broad label; the programmes listed under it here are Diplomas in Paramedical Science. See eligibility, NCAHP regulation, streams such as lab, imaging and dialysis, colleges and careers.',
+      crossLink: {
+        href: '/courses/healthcare',
+        anchor: 'Read the allied health courses guide',
+        note: 'Looking for a degree in an allied health field? Compare paramedical diplomas with UG allied health courses.'
+      },
+      faqs: [
+        { question: 'What is a Diploma in Science?', answer: 'It is not a single fixed course. On CollegeDecision, the programmes listed under it are Diplomas in Paramedical Science, which train technicians for hospitals and labs.' },
+        { question: 'Who regulates paramedical diplomas?', answer: 'The National Commission for Allied and Healthcare Professions (NCAHP), set up under the NCAHP Act, 2021, which covers 57 professions in 10 categories.' },
+        { question: 'What is the eligibility for a paramedical science diploma?', answer: 'Usually Class 12, preferably with science. Assam down town University also describes a three-year route after Class 10 with a one-year bridging course; its notices differ, so confirm with the university.' },
+        { question: 'How long is the course?', answer: 'Two or three years at the institutions in our listings. The NCAHP Act sets at least 2,000 hours over two to four years for allied health diplomas.' },
+        { question: 'Is NEET required for a paramedical diploma?', answer: 'Not normally for diploma-level allied health courses, but some states and institutions set their own rules, so read the admission notice.' },
+        { question: 'What can I do after a paramedical diploma?', answer: 'Technician roles in hospitals, diagnostic labs, imaging centres and dialysis units, or a bachelor\'s degree in the same allied field such as BMLT.' },
+        { question: 'Can I study a paramedical diploma online?', answer: 'Be cautious. Allied health training depends on supervised practical work, and NCAHP and UGC have issued letters on online and distance allied health courses. Check NCAHP notices first.' }
+      ]
+    };
+  }
+  if (slug === 'diploma-dental') {
+    return {
+      displayName: 'Diploma in Dental (Dental Hygiene and Dental Mechanics)',
+      h1: 'Diploma in Dental: Hygienist and Dental Mechanic Courses, Eligibility, Fees 2026',
+      title: 'Diploma in Dental 2026: Hygienist & Mechanic Course Guide',
+      description:
+        'Diploma in Dental 2026: dental hygienist and dental mechanic courses, 10+2 PCB eligibility, admission, syllabus, fees, colleges and the new National Dental Commission.',
+      keywords: ['diploma in dental', 'dental hygienist course', 'dental mechanic course', 'diploma in dental hygiene', 'diploma in dental mechanics', 'dental diploma after 12th', 'dental technician course'],
+      intro:
+        'A Diploma in Dental usually means a two-year dental hygienist or dental mechanic course run by a dental college after Class 12 with PCB. See eligibility, admission, syllabus, fees, colleges and how the 2026 move to the National Dental Commission affects you.',
+      crossLink: {
+        href: '/courses/dental',
+        anchor: 'Read the BDS course guide',
+        note: 'Want to become a dentist? Only a BDS degree, through NEET UG, lets you treat patients independently.'
+      },
+      faqs: [
+        { question: 'What is a Diploma in Dental?', answer: 'It usually refers to one of two two-year courses run by dental colleges: the Diploma in Dental Hygiene, which trains dental hygienists, and the Diploma in Dental Mechanics, which trains dental technicians who make dentures and appliances.' },
+        { question: 'What is the eligibility for a dental hygienist or dental mechanic diploma?', answer: 'Under the Dental Council of India\'s 2008 course regulations, you need 10+2 or equivalent with Physics, Chemistry and Biology, must be at least 17 at admission or within three months of it, and must be medically fit. Colleges may set a minimum percentage, such as 50% at Government Dental College, Srinagar.' },
+        { question: 'How long is the dental diploma course?', answer: 'Both the dental hygiene and dental mechanics diplomas run for two academic years of full-time study in a dental college, with an examination at the end of each year.' },
+        { question: 'Is NEET required for a dental diploma?', answer: 'Generally no. NEET UG is the exam for BDS. Most colleges admit diploma students on Class 12 marks, and some government colleges use a state admission body. Check your state\'s notice each year.' },
+        { question: 'Can a dental hygienist or dental mechanic treat patients independently?', answer: 'No. A dental hygienist works under the supervision of a registered dental surgeon, and a dental mechanic does laboratory work only, with no chair-side work. Opening a dental practice needs a BDS degree.' },
+        { question: 'Who regulates dental diplomas now?', answer: 'The National Dental Commission replaced the Dental Council of India on 19 March 2026, and the Dentists Act, 1948 was repealed. Ask the college how the diploma is recognised under the new framework before you enrol.' },
+        { question: 'What is the fee for a Diploma in Dental?', answer: 'We have very little fee data. The only listed records on CollegeDecision are from People\'s University, Bhopal: about Rs 75,000 a year for the hygienist diploma and Rs 2,20,000 for the mechanic diploma. These are approximate, so confirm with each college.' }
+      ]
+    };
+  }
+
+  if (slug === 'masters-entrepreneurship-family-business') {
+    return {
+      displayName: 'Masters in Entrepreneurship and Family Business',
+      h1: 'Masters in Entrepreneurship and Family Business: MBA Eligibility, Admission, Fees 2026',
+      title: 'Entrepreneurship & Family Business MBA 2026: Fees, Admission',
+      description:
+        'Masters in Entrepreneurship and Family Business 2026: MBA and PGDM eligibility, entrance tests, Nirma and ISB examples, syllabus, approximate fees, colleges and careers.',
+      keywords: ['MBA family business', 'masters in entrepreneurship and family business', 'MBA entrepreneurship and family business', 'family business management course', 'PGDM family business', 'ISB PGP MFAB', 'Nirma MBA FBE'],
+      intro:
+        'A master\'s in entrepreneurship and family business is an MBA or PGDM for people who plan to run, grow or take over a business. See eligibility, entrance tests, the Nirma and ISB examples, syllabus, fees and career routes.',
+      crossLink: {
+        href: '/courses/mba',
+        anchor: 'See all MBA / PGDM programmes',
+        note: 'Family business programmes are listed as MBA and PGDM specialisations on CollegeDecision.'
+      },
+      faqs: [
+        { question: 'What is a Masters in Entrepreneurship and Family Business?', answer: 'In India it is usually an MBA or PGDM with a specialisation in entrepreneurship and family business. It covers the management core plus new ventures, family governance, succession and growth strategy.' },
+        { question: 'What is the eligibility for an MBA in Family Business and Entrepreneurship?', answer: 'Usually a bachelor\'s degree in any discipline. Nirma University\'s MBA (FBE), for example, asks for a three-year bachelor\'s degree with at least 50% aggregate marks or equivalent CGPA.' },
+        { question: 'Do I need to belong to a business family?', answer: 'Not for most MBA specialisations. Nirma gives 5 extra points to candidates from business families but does not require it. ISB\'s PGP in Management for Family Business does require applicants to be members of a family business who intend to carry it forward.' },
+        { question: 'Which entrance exams are accepted?', answer: 'Most programmes accept CAT, XAT, CMAT or MAT. Nirma runs its own entrance test for the MBA (FBE), and ISB\'s family business programme uses the Business Admissions Test (BAT).' },
+        { question: 'How is the Nirma MBA (FBE) merit list made?', answer: 'Nirma\'s 2026 process weighted the entrance test at 60%, personal interview at 20%, theme development and presentation at 10% and past academic performance at 10%.' },
+        { question: 'How long is the programme?', answer: 'Most MBA and PGDM programmes are two years full-time. ISB\'s PGP MFAB is a 15-month modular programme with one week on campus every four to six weeks.' },
+        { question: 'What is the fee?', answer: 'Approximate first-year fees listed on CollegeDecision for 28 institutes have a median of about Rs 3 lakh, with most between about Rs 1.7 lakh and Rs 5.2 lakh. Confirm current fees with each institute.' }
+      ]
+    };
+  }
+
+  if (slug === 'rural-management') {
+    return {
+      displayName: 'Rural Management (MBA / PGDM-RM)',
+      h1: 'Rural Management Course: MBA and PGDM-RM Eligibility, Exams, Fees and Careers 2026',
+      title: 'Rural Management Course 2026: MBA/PGDM-RM, Exams & Fees',
+      description:
+        'Rural management course guide 2026: MBA and PGDM-RM eligibility, CAT, XAT and CMAT, IRMA admission process, syllabus, approximate fees, colleges and careers.',
+      keywords: ['rural management', 'MBA rural management', 'PGDM rural management', 'PGDM-RM', 'IRMA admission 2026', 'rural management colleges', 'rural management course fees'],
+      intro:
+        'Rural management is an MBA or PGDM specialisation for managing cooperatives, development organisations, rural finance and agri-business. See eligibility, CAT, XAT and CMAT routes, the IRMA process, syllabus, fees and careers.',
+      crossLink: {
+        href: '/courses/mba',
+        anchor: 'See all MBA / PGDM programmes',
+        note: 'Rural management programmes are listed under MBA / PGDM on CollegeDecision.'
+      },
+      faqs: [
+        { question: 'What is rural management?', answer: 'Rural management is a branch of management education focused on organisations that work in rural areas, such as cooperatives, producer organisations, microfinance institutions, NGOs, CSR foundations and agri-businesses. In India it is usually studied as an MBA or PGDM specialisation.' },
+        { question: 'What is the eligibility for an MBA or PGDM in rural management?', answer: 'A bachelor\'s degree in any discipline. At IRMA, for the 2026 cycle, the minimum was 50% at graduation (45% for SC, ST, OBC (NC), EWS and PwD candidates) with at least 15 years of education.' },
+        { question: 'Which entrance exams are accepted for rural management?', answer: 'Most institutes accept CAT, XAT, CMAT or MAT. IRMA shortlists on CAT, XAT or CMAT scores and then holds a written ability test and a personal interview.' },
+        { question: 'How long is a rural management course?', answer: 'The MBA or PGDM in rural management is usually two years full-time. Some institutes also offer one-year diplomas, executive programmes and doctoral fellow programmes.' },
+        { question: 'What is the fee for rural management?', answer: 'Approximate first-year fees listed on CollegeDecision for 16 institutes have a median of about Rs 1.1 lakh, ranging from about Rs 26,000 to Rs 6.8 lakh. Confirm the current fee with each institute.' },
+        { question: 'Is field work part of a rural management programme?', answer: 'Yes, at most institutes. Programmes usually include village stays or placements with rural organisations, and these are a key part of the learning.' },
+        { question: 'What jobs can I get after rural management?', answer: 'Common routes include cooperatives and producer organisations, NGOs and CSR foundations, government livelihood programmes, microfinance and rural banking, agri-business and rural marketing, and research or evaluation work.' }
+      ]
+    };
+  }
+
+  if (slug === 'online-ma-jmc') {
+    return {
+      displayName: 'Online MA JMC (Journalism and Mass Communication)',
+      h1: 'Online MA JMC: Eligibility, UGC Approval, Syllabus, Admission and Careers 2026',
+      title: 'Online MA JMC 2026: UGC Approval, Eligibility & Syllabus',
+      description:
+        'Online MA JMC 2026: eligibility, how to check UGC-DEB entitlement, admission, syllabus, fees to confirm, universities on the UGC list and career routes in media.',
+      keywords: ['online MA JMC', 'online MA journalism and mass communication', 'MA JMC online UGC approved', 'online MA mass communication', 'online MAJMC eligibility', 'online MA JMC syllabus'],
+      intro:
+        'An online MA JMC is a two-year media master\'s you study online from a UGC-entitled university. See who can apply, how to check UGC-DEB approval, admission steps, syllabus, what fees to confirm and where it can lead.',
+      crossLink: {
+        href: '/courses/mass-communication-pg',
+        anchor: 'Read the mass communication PG guide',
+        note: 'Prefer a campus programme with studios and newsroom training? Compare regular MA and MJMC options.'
+      },
+      faqs: [
+        { question: 'Is an online MA JMC valid?', answer: 'Yes, if it is awarded by a university that UGC has entitled or recognised to offer that programme online in your academic session. Under UGC\'s 2020 regulations, such online degrees are treated as equivalent to conventional degrees. Check the list on deb.ugc.ac.in.' },
+        { question: 'Who is eligible for an online MA JMC?', answer: 'Graduates in any discipline from a recognised university can usually apply. Each university sets its own minimum marks, so check the prospectus.' },
+        { question: 'Is there an entrance exam for an online MA JMC?', answer: 'Usually not. Most universities admit on graduation marks, though some hold a short eligibility test or interview. CUET PG is generally used for campus programmes, not online ones.' },
+        { question: 'How long is an online MA JMC?', answer: 'Two years, usually split into four semesters. Durations follow UGC\'s Specification of Degrees.' },
+        { question: 'How do I check whether a university can offer an online MA JMC?', answer: 'Open the UGC Distance Education Bureau website, find the entitled or recognised list for the current academic year, and confirm that both the university and the MA (Journalism and Mass Communication) programme appear.' },
+        { question: 'Can an edtech company award an online MA JMC?', answer: 'No. The degree must be awarded by the university. UGC and AICTE have warned that online degrees cannot be offered through franchise arrangements with edtech companies, though a university may use a platform to deliver its course.' },
+        { question: 'Can I do a PhD or UGC NET after an online MA JMC?', answer: 'A master\'s from a UGC-entitled university lets you apply for a PhD under that university\'s rules. UGC NET has a Mass Communication and Journalism subject, which is needed for assistant professor posts.' }
+      ]
+    };
+  }
+
+  if (slug === 'm-s') {
+    return {
+      displayName: 'M.S (Master of Surgery)',
+      h1: 'M.S Course (Master of Surgery): Eligibility, NEET-PG, Fees 2026',
+      title: 'M.S Course (Master of Surgery): Eligibility, NEET-PG & Fees 2026',
+      description:
+        'M.S here means Master of Surgery, a 3-year NMC-regulated PG medical degree. See eligibility, NEET-PG admission, specialities, fees and careers.',
+      keywords: ['M.S course', 'MS full form', 'Master of Surgery', 'MS eligibility', 'MS admission 2026', 'NEET PG MS', 'MS specialities', 'MS vs MD'],
+      intro:
+        'M.S on CollegeDecision usually means Master of Surgery, the three-year PG degree for MBBS doctors. Check NMC eligibility, NEET-PG counselling, specialities, listed fees and career routes.',
+      crossLink: {
+        href: '/courses/master-of-surgery',
+        anchor: 'Read the Master of Surgery guide',
+        note: 'Same degree, separate page. Compare surgical PG programmes there.'
+      },
+      faqs: [
+        { question: 'What is the full form of M.S?', answer: 'In medicine, M.S stands for Master of Surgery, a postgraduate broad-speciality degree for MBBS graduates. Some technical institutes also use M.S. for a Master of Science by research.' },
+        { question: 'How long is the M.S course?', answer: 'Under NMC\'s PGMER-2023, an MS takes three years including the examination period, or two years for students who already hold a recognised two-year PG diploma in the same subject.' },
+        { question: 'Who is eligible for M.S (Master of Surgery)?', answer: 'You need a recognised MBBS degree, medical registration and a completed internship by the cut-off date in the NBEMS bulletin, and you must qualify NEET-PG.' },
+        { question: 'Is NEET-PG compulsory for M.S admission?', answer: 'Yes, for now. PGMER-2023 says NEET-PG continues until the National Exit Test (NExT) replaces it. Institutes such as AIIMS admit through INI-CET instead.' },
+        { question: 'Can a college admit M.S students directly?', answer: 'No. NMC rules require all PG medical admissions to go through government counselling based on NEET-PG merit. Students admitted otherwise can be discharged.' },
+        { question: 'What are the main M.S specialities?', answer: 'General Surgery, Orthopaedics, Ophthalmology, ENT, Obstetrics and Gynaecology and Anatomy are the MS subjects most often listed on CollegeDecision.' },
+        { question: 'What is the fee for M.S?', answer: 'Fees vary hugely. Approximate listed figures on CollegeDecision range from about Rs 4,000 a year at a public university to over Rs 30 lakh a year at a deemed university. Check the official seat matrix for your seat.' },
+        { question: 'What can I study after M.S?', answer: 'The main option is a three-year M.Ch super-speciality degree through NEET-SS. Fellowships, post-doctoral certificate courses and a PhD are other routes.' }
+      ]
+    };
+  }
+  if (slug === 'medical-diploma') {
+    return {
+      displayName: 'Medical Diploma (Allied Health Diplomas)',
+      h1: 'Medical Diploma Courses: Eligibility, Admission, Fees and Scope 2026',
+      title: 'Medical Diploma Courses: Eligibility, Fees & Scope 2026',
+      description:
+        'Medical diploma courses after Class 12 in 2026: DMLT, radiology, ophthalmic and other allied health diplomas, NCAHP rules, eligibility, fees and careers.',
+      keywords: ['medical diploma courses', 'medical diploma after 12th', 'paramedical diploma', 'DMLT course', 'allied health diploma', 'NCAHP diploma curriculum', 'medical diploma fees', 'diploma in radiology technology'],
+      intro:
+        '"Medical diploma" usually means an allied health diploma after Class 12, such as DMLT, radiology and imaging or ophthalmic assistant. Check NCAHP rules, eligibility, admission, fees and where each diploma can lead.',
+      crossLink: {
+        href: '/courses/bmlt',
+        anchor: 'Read the BMLT course guide',
+        note: 'Thinking beyond a diploma? A lab technology degree gives more room to grow, and DMLT holders may get lateral entry.'
+      },
+      faqs: [
+        { question: 'What is a medical diploma course?', answer: 'On CollegeDecision it is a label for allied health diplomas after Class 12, such as DMLT, radiology and imaging technology, ophthalmic assistant, operation theatre and dialysis technology. It is not an MBBS-level qualification.' },
+        { question: 'Who regulates medical diploma courses?', answer: 'Allied and healthcare professions come under the National Commission for Allied and Healthcare Professions (NCAHP), set up under the NCAHP Act, 2021. Nursing, pharmacy and dental diplomas have their own councils: INC, PCI and DCI.' },
+        { question: 'What is the eligibility for DMLT?', answer: 'NCAHP\'s DMLT curriculum asks for Class 12 (10+2) with Physics, Chemistry and Biology from a recognised board and a minimum age of 17. The course lasts two years.' },
+        { question: 'Is NEET required for a medical diploma?', answer: 'Usually not. NCAHP\'s curricula for DMLT, radiology and imaging, and ophthalmic assistant describe selection on Class 12 merit. Some states or universities may hold their own test, so check the official notice.' },
+        { question: 'What is the fee for a medical diploma?', answer: 'Approximate annual tuition at private institutes listed on CollegeDecision has a median of about Rs 50,000 (19 records). Government colleges often charge less, but few publish fees. Confirm the full course cost with the college.' },
+        { question: 'Can I do a degree after DMLT?', answer: 'Yes. NCAHP\'s medical laboratory science curriculum allows DMLT holders from recognised institutions to join the second year of BMLS through lateral entry, limited to 10% of sanctioned seats and given on merit.' },
+        { question: 'Is the radiology diploma being phased out?', answer: 'NCAHP\'s Diploma in Medical Radiology and Imaging Technology curriculum recommends phasing out the diploma within three to five years, by about 2030, to promote bachelor\'s and master\'s programmes.' }
+      ]
+    };
+  }
+
+  if (slug === 'mth') {
+    return {
+      displayName: 'M.Th (Master of Theology)',
+      h1: 'M.Th Course (Master of Theology): Eligibility, Admission 2026',
+      title: 'M.Th Course (Master of Theology): Eligibility & Admission 2026',
+      description:
+        'M.Th is the Master of Theology, a 2-year degree after a BD or M.Div. See Serampore eligibility, admission tests, branches, costs and careers.',
+      keywords: ['M.Th course', 'M.Th full form', 'Master of Theology', 'M.Th eligibility', 'M.Th admission 2026', 'Serampore M.Th', 'M.Th branches', 'BD to M.Th'],
+      intro:
+        'M.Th is the Master of Theology, a two-year degree for BD or M.Div graduates, mostly awarded under the Senate of Serampore College. Check eligibility, admission tests, branches and careers.',
+      crossLink: {
+        href: '/courses/ma',
+        anchor: 'Read the MA course guide',
+        note: 'No M.Th programmes are listed yet. Compare MA options in religion, philosophy and history.'
+      },
+      faqs: [
+        { question: 'What is the full form of M.Th?', answer: 'M.Th stands for Master of Theology, a postgraduate degree in Christian theology and related subjects.' },
+        { question: 'How long is the M.Th course?', answer: 'Usually two years. Serampore College describes its M.Th as a two-year residential course that can be extended up to four years.' },
+        { question: 'Who is eligible for M.Th?', answer: 'Most colleges ask for a Senate of Serampore BD with at least a B grade, or an M.Div, plus required papers in the chosen branch. Exact rules differ by college.' },
+        { question: 'Is there an entrance exam for M.Th?', answer: 'There is no national test. Colleges hold their own written test and interview; Trinity Theological College, for example, also tests English.' },
+        { question: 'Can I do M.Th after a BA?', answer: 'Not directly. The M.Th builds on a first theology degree such as a BD or M.Div. If you want religion at master\'s level after a BA, consider an MA in Religious Studies or Philosophy.' },
+        { question: 'What are the main M.Th branches?', answer: 'Official college pages list Old Testament, New Testament, Christian Theology, History of Christianity, Religions, Missiology, Pastoral Care and Counselling, and Christian Education.' },
+        { question: 'What can I do after M.Th?', answer: 'Graduates often teach in theological colleges, serve in church ministry or counselling, or go on to a D.Th or PhD in theology.' }
+      ]
+    };
+  }
+  if (slug === 'mpa') {
+    return {
+      displayName: 'M.P.A (Master of Performing Arts)',
+      h1: 'M.P.A Course (Master of Performing Arts): Eligibility, Admission, Syllabus and Scope 2026',
+      title: 'MPA Course (Performing Arts): Eligibility, Admission 2026',
+      description:
+        'M.P.A (Master of Performing Arts) course details for 2026: eligibility, auditions and CUET PG, syllabus, music and dance specialisations, fees and careers.',
+      keywords: ['MPA course', 'Master of Performing Arts', 'MPA course details', 'MPA eligibility', 'MPA admission 2026', 'MPA in Kathak', 'MPA in music', 'MPA syllabus'],
+      intro:
+        'On CollegeDecision, M.P.A means the Master of Performing Arts, a two-year master\'s in music, dance or theatre. Check eligibility, auditions, specialisations, costs and where it can lead.',
+      crossLink: {
+        href: '/courses/mfa',
+        anchor: 'See performing arts programmes under the MFA guide',
+        note: 'Many Master of Performing Arts programmes are listed under our MFA course, so check both.'
+      },
+      faqs: [
+        { question: 'What is the full form of M.P.A here?', answer: 'On CollegeDecision, M.P.A stands for Master of Performing Arts. UGC\'s 2014 Specification of Degrees lists MPA as Master of Performing Arts. It is different from the Master of Public Administration.' },
+        { question: 'What is the duration of an MPA?', answer: 'Most Master of Performing Arts programmes in India run for two years, split into four semesters. Check the duration in the university\'s prospectus.' },
+        { question: 'Who is eligible for an MPA?', answer: 'Usually a graduate with a BPA, or a BA with music, dance or theatre, in the same art form. Each university sets its own marks rule and practical test.' },
+        { question: 'Is there an entrance exam for MPA?', answer: 'Most universities hold an audition, practical test or interview. Some central universities that take part in CUET PG use it for performing arts master\'s programmes.' },
+        { question: 'Which specialisations are offered in MPA?', answer: 'Common fields include vocal music, Tabla and other instruments, Kathak and other classical dance forms, and theatre. Programmes linked to M.P.A on CollegeDecision include Kathak, Tabla and vocal music.' },
+        { question: 'What is the fee for an MPA?', answer: 'CollegeDecision does not yet list fees for programmes under this course, so ask each college for the full two-year cost, including exam, instrument and hostel charges.' },
+        { question: 'Can I teach in a college after an MPA?', answer: 'An MPA is a relevant master\'s degree, but UGC rules for assistant professor posts also require NET, SLET/SET or a PhD. UGC NET has subjects for Music and Performing Arts.' }
+      ]
+    };
+  }
+  if (slug === 'mped') {
+    return {
+      displayName: 'M.P.Ed (Master of Physical Education)',
+      h1: 'M.P.Ed Course: Eligibility, Admission, Fees, Syllabus and Scope 2026',
+      title: 'M.P.Ed Course: Eligibility, Admission, Fees & Syllabus 2026',
+      description:
+        'M.P.Ed course details for 2026: NCTE eligibility (B.P.Ed with 50%), entrance and fitness tests, syllabus, fees, colleges and careers in physical education.',
+      keywords: ['M.P.Ed course', 'Master of Physical Education', 'MPEd eligibility', 'M.P.Ed admission 2026', 'M.P.Ed fees', 'M.P.Ed syllabus', 'M.P.Ed after B.P.Ed', 'NCTE M.P.Ed'],
+      intro:
+        'The M.P.Ed (Master of Physical Education) is a two-year, NCTE-regulated master\'s for B.P.Ed graduates. Check eligibility, entrance and fitness tests, syllabus, fees and careers.',
+      crossLink: {
+        href: '/courses/bped',
+        anchor: 'Read the B.P.Ed course guide',
+        note: 'You need a B.P.Ed (or equivalent) before an M.P.Ed. Many M.P.Ed programmes are also listed under our M.Ed course.'
+      },
+      faqs: [
+        { question: 'What is the duration of M.P.Ed?', answer: 'Under the NCTE Regulations, 2014, the M.P.Ed runs for two academic years or four semesters, and students may complete it within a maximum of three years.' },
+        { question: 'What is the eligibility for M.P.Ed?', answer: 'NCTE norms require a B.P.Ed or equivalent with at least 50% marks, or a B.Sc in Health and Physical Education with at least 50% marks. Reservation and relaxation follow government rules.' },
+        { question: 'Who regulates the M.P.Ed course?', answer: 'The National Council for Teacher Education (NCTE). Its norms and standards for the M.P.Ed are in Appendix 8 of the NCTE Regulations, 2014. Only NCTE-recognised institutions can run the course.' },
+        { question: 'Is there an entrance exam for M.P.Ed?', answer: 'Most universities hold a written test and a physical fitness test, and many add marks for sports achievements. Some central universities use CUET PG.' },
+        { question: 'Can I do M.P.Ed after a BA with physical education?', answer: 'Usually not on its own. NCTE norms ask for a B.P.Ed or equivalent, or a B.Sc in Health and Physical Education, with at least 50% marks.' },
+        { question: 'What is the fee for M.P.Ed?', answer: 'Listed fees on CollegeDecision range from about Rs 2,000 a year in tuition at a state university to about Rs 1 lakh a year in total fees at a private university. They are approximate; confirm with the college.' },
+        { question: 'Can I become a college lecturer after M.P.Ed?', answer: 'An M.P.Ed is the relevant master\'s degree, but UGC rules for assistant professor posts also require NET, SLET/SET or a PhD.' }
+      ]
+    };
+  }
+  if (slug === 'mplan') {
+    return {
+      displayName: 'M.Plan (Master of Planning)',
+      h1: 'M.Plan Course: Eligibility, Admission, Fees, Syllabus and Scope 2026',
+      title: 'M.Plan Course: Eligibility, GATE, Fees & Syllabus 2026',
+      description:
+        'M.Plan course details for 2026: ITPI eligibility (55%), GATE and admission, syllabus, urban, transport and housing specialisations, fees, colleges and careers.',
+      keywords: ['M.Plan course', 'Master of Planning', 'M.Plan eligibility', 'M.Plan admission 2026', 'M.Plan fees', 'M.Plan syllabus', 'M.Plan urban planning', 'M.Plan through GATE'],
+      intro:
+        'The M.Plan (Master of Planning) is a two-year professional master\'s in urban, regional, transport and housing planning. Check ITPI eligibility, GATE and admission, fees and careers.',
+      crossLink: {
+        href: '/courses/march',
+        anchor: 'See more planning programmes under the M.Arch guide',
+        note: 'Many Master of Planning programmes on CollegeDecision are listed under our M.Arch course, so check both.'
+      },
+      faqs: [
+        { question: 'What is the duration of M.Plan?', answer: 'ITPI\'s norms for planning institutions set the master\'s in planning at two years, or four semesters.' },
+        { question: 'Who is eligible for M.Plan?', answer: 'Under ITPI norms, a bachelor\'s degree in planning, civil engineering or architecture, or a master\'s degree in economics, sociology or geography. Candidates need at least 55% aggregate, relaxable for SC and ST as per government rules.' },
+        { question: 'Is GATE required for M.Plan?', answer: 'Many public institutes, such as NITs and Schools of Planning and Architecture, use GATE scores from the Architecture and Planning paper. Private universities often run their own test and interview.' },
+        { question: 'Who recognises M.Plan programmes?', answer: 'The Institute of Town Planners, India (ITPI) recognises planning programmes for membership and publishes a list of recognised courses. Check it before you apply.' },
+        { question: 'Can a civil engineer do M.Plan?', answer: 'Yes. A bachelor\'s degree in civil engineering is one of the qualifications listed in ITPI\'s norms, subject to the marks rule and each institute\'s conditions.' },
+        { question: 'What is the fee for M.Plan?', answer: 'Listed annual fees on CollegeDecision range from about Rs 57,500 to Rs 3 lakh, depending on the institute. They are approximate; confirm with the institute.' },
+        { question: 'What are the main M.Plan specialisations?', answer: 'Urban planning and urban and regional planning are the most common. Others include transport planning, housing, environmental planning and infrastructure planning.' }
+      ]
+    };
+  }
+  if (slug === 'mmlt') {
+    return {
+      displayName: 'M.M.L.T (Master of Medical Laboratory Technology)',
+      h1: 'M.M.L.T Course: Eligibility, Admission, Fees, Syllabus and Scope 2026',
+      title: 'M.M.L.T Course 2026: Eligibility, Admission, Fees & Syllabus',
+      description:
+        'M.M.L.T course details for 2026: BMLT eligibility, entrance tests, the new UGC M.MLS name, syllabus, specialisations, approximate fees, colleges and careers.',
+      keywords: ['MMLT course', 'M.M.L.T', 'Master of Medical Laboratory Technology', 'MMLT eligibility', 'MMLT admission 2026', 'MMLT fees', 'M.MLS course', 'M.Sc MLT'],
+      intro:
+        'M.M.L.T (Master of Medical Laboratory Technology) is a two-year master\'s for medical lab graduates, now listed by UGC as M.MLS. Check eligibility, entrance tests, specialisations, fees and realistic careers.',
+      crossLink: {
+        href: '/courses/healthcare-pg',
+        anchor: 'Read the PG healthcare courses guide',
+        note: 'Comparing allied health master\'s degrees? The PG healthcare guide covers M.MLS, M.OT, MPH and more.'
+      },
+      faqs: [
+        { question: 'What is the full form of M.M.L.T?', answer: 'M.M.L.T stands for Master of Medical Laboratory Technology. UGC\'s 2026 amendment to the Specification of Degrees lists the master\'s degree in this field as Master of Medical Laboratory Science (M.MLS).' },
+        { question: 'What is the duration of M.M.L.T?', answer: 'Two years. UGC lists M.MLS as a two-year master\'s degree after a bachelor\'s, and JIPMER\'s M.Sc MLT programmes in microbiology and pathology also run for two years.' },
+        { question: 'Who is eligible for M.M.L.T?', answer: 'Usually graduates with a BMLT, B.Sc MLT or B.MLS from a recognised university. VMRF, for example, asks for a pass in B.MLS in regular mode and registration with a State Allied and Healthcare Council for its 2026-27 M.MLS.' },
+        { question: 'Is there an entrance exam for M.M.L.T?', answer: 'There is no single national exam. Institutes such as JIPMER and VMRF hold their own entrance tests, while many private universities admit on bachelor\'s marks or an interview.' },
+        { question: 'What are the specialisations in M.M.L.T?', answer: 'The 2026 UGC list has four M.MLS specialisations: medical biochemistry, medical microbiology, haematology and transfusion medicine, and histology and cytopathology.' },
+        { question: 'What is the fee for M.M.L.T?', answer: 'Six private fee records on CollegeDecision range from about Rs 40,000 to Rs 1,45,000 a year, with a median near Rs 80,000. These are approximate. Confirm the current fee with the college.' },
+        { question: 'Who regulates medical laboratory professionals in India?', answer: 'Medical laboratory sciences professionals come under the National Commission for Allied and Healthcare Professions (NCAHP) Act, 2021. Degree names are specified by UGC.' }
+      ]
+    };
+  }
+
+  if (slug === 'mfsc') {
+    return {
+      displayName: 'M.F.Sc (Master of Fisheries Science)',
+      h1: 'M.F.Sc Course: Eligibility, ICAR AIEEA PG, Syllabus and Scope 2026',
+      title: 'M.F.Sc Course: Eligibility, ICAR Exam, Syllabus & Scope 2026',
+      description:
+        'M.F.Sc (Master of Fisheries Science) in 2026: B.F.Sc eligibility, ICAR AIEEA PG by NTA, OGPA rules, disciplines like aquaculture, colleges and careers.',
+      keywords: ['M.F.Sc course', 'Master of Fisheries Science', 'MFSc eligibility', 'MFSc admission 2026', 'ICAR AIEEA PG fisheries', 'MFSc aquaculture', 'MFSc after BFSc', 'CIFE MFSc'],
+      intro:
+        'The M.F.Sc (Master of Fisheries Science) is a two-year, research-based master\'s degree after a B.F.Sc. Check ICAR AIEEA (PG) eligibility, the exam pattern, disciplines, colleges and where the degree can lead.',
+      crossLink: {
+        href: '/courses/msc',
+        anchor: 'Read the M.Sc course guide',
+        note: 'Hold a B.Sc rather than a B.F.Sc? An M.Sc in fisheries, aquaculture or marine biology is usually the route.'
+      },
+      faqs: [
+        { question: 'What is the full form of M.F.Sc?', answer: 'M.F.Sc stands for Master of Fisheries Science, sometimes written Master of Fishery Science. It is a two-year postgraduate degree in fisheries.' },
+        { question: 'Who is eligible for an M.F.Sc?', answer: 'The ICAR AIEEA (PG) 2026 bulletin requires a B.F.Sc for all 12 fisheries disciplines. For ICAR-AU admission the degree must be four years long, with an OGPA of at least 6.60/10 (5.60/10 for SC, ST, PwBD and Third Gender candidates).' },
+        { question: 'Which exam is needed for M.F.Sc admission?', answer: 'ICAR AIEEA (PG), conducted by NTA, fills 30% of master\'s seats in agricultural universities and all seats at ICAR deemed universities such as CIFE, Mumbai. State universities fill other seats under their own rules.' },
+        { question: 'What is the ICAR AIEEA PG exam pattern?', answer: 'In 2026 it was a computer-based test of 120 multiple-choice questions in 120 minutes, in English only, with 4 marks for a correct answer and 1 mark deducted for a wrong one.' },
+        { question: 'Can I do an M.F.Sc after a B.Sc?', answer: 'Not through ICAR AIEEA (PG), where every fisheries discipline asks for a B.F.Sc. B.Sc graduates usually look at an M.Sc in fisheries, aquaculture or marine biology instead.' },
+        { question: 'What are the M.F.Sc specialisations?', answer: 'The ICAR 2026 bulletin lists 12, including aquaculture, fisheries resource management, fish processing technology, aquatic animal health management, fish genetics and breeding, fish nutrition and feed technology, and fish biotechnology.' },
+        { question: 'What can I do after an M.F.Sc?', answer: 'Common routes include aquaculture and hatchery work, seafood quality roles, state fisheries departments, research projects and a PhD. ASRB\'s NET is the eligibility test for teaching posts in agricultural universities.' }
+      ]
+    };
+  }
+
+  if (slug === 'mva') {
+    return {
+      displayName: 'M.V.A (Master of Visual Arts)',
+      h1: 'M.V.A Course (Master of Visual Arts): Eligibility, Admission, Fees 2026',
+      title: 'M.V.A Course: Eligibility, Admission, Fees & MFA Link 2026',
+      description:
+        'M.V.A is the Master of Visual Arts, a 2-year studio degree close to an MFA. See eligibility, portfolio-based admission, specialisations, fees and careers.',
+      keywords: ['MVA course', 'MVA full form', 'Master of Visual Arts', 'MVA eligibility', 'MVA admission 2026', 'MVA vs MFA', 'MVA specialisations', 'MVA fees'],
+      intro:
+        'M.V.A is the Master of Visual Arts, a two-year studio degree for BVA and BFA graduates, close in content to an MFA. Check eligibility, portfolio-based admission, specialisations, fees and careers.',
+      crossLink: {
+        href: '/courses/mfa',
+        anchor: 'Read the MFA course guide',
+        note: 'MVA and MFA cover similar ground. See more colleges and fee data in the MFA guide.'
+      },
+      faqs: [
+        { question: 'What is the full form of M.V.A?', answer: 'M.V.A stands for Master of Visual Arts, a postgraduate degree in painting, sculpture, applied art, printmaking or art history.' },
+        { question: 'Is MVA the same as MFA?', answer: 'They are closely related two-year master\'s degrees in art. The name depends on the university: MSU Baroda awards an MVA, while Delhi University and BHU award an MFA.' },
+        { question: 'How long is the MVA course?', answer: 'Two years over four semesters at MSU Baroda and Dada Lakhmi Chand State University of Performing and Visual Arts, Rohtak.' },
+        { question: 'Who is eligible for MVA?', answer: 'Usually a BVA or BFA in a related subject. DLCSUPVA asks for at least 50%, and MSU Baroda accepts only a four-year (12+4) BVA for its studio MVAs.' },
+        { question: 'Is there an entrance exam for MVA?', answer: 'There is no national MVA test. DLCSUPVA admits on the merit of the qualifying exam, while MSU Baroda uses a portfolio, aptitude test and interview.' },
+        { question: 'What is the MVA fee?', answer: 'At DLCSUPVA, the 2026-27 prospectus lists about Rs 31,750 for the first semester and Rs 32,250 for each later semester, excluding hostel. Private fees vary, so confirm with each university.' },
+        { question: 'What can I do after an MVA?', answer: 'Graduates work in studio practice, art teaching, illustration and design, galleries and museums, or go on to a PhD. College teaching posts need NET or a PhD under UGC rules.' }
+      ]
+    };
+  }
+  if (slug === 'moptm') {
+    return {
+      displayName: 'M.Optm (Master of Optometry)',
+      h1: 'M.Optm (Master of Optometry) Course: Eligibility, Admission, Fees and Scope 2026',
+      title: 'M.Optm (M.Optom) Course 2026: Eligibility, Fees & Syllabus',
+      description:
+        'M.Optm (Master of Optometry) course details for 2026: B.Optom eligibility, NCAHP registration, entrance tests, syllabus, specialisations, fees, colleges, careers.',
+      keywords: ['M.Optm course', 'M.Optom', 'Master of Optometry', 'M.Optom eligibility', 'M.Optom admission 2026', 'M.Optom fees', 'M.Optom syllabus', 'MSc Optometry'],
+      intro:
+        'M.Optm, listed by UGC as M.Optom., is the two-year Master of Optometry for B.Optom graduates. Check eligibility, registration rules, entrance tests, specialisations, fees and realistic careers.',
+      crossLink: {
+        href: '/courses/medical-pg',
+        anchor: 'Read the medical PG courses guide',
+        note: 'Master in Optometry programmes on CollegeDecision are listed under medical PG courses.'
+      },
+      faqs: [
+        { question: 'What is the full form of M.Optm?', answer: 'M.Optm stands for Master of Optometry. UGC\'s 2026 fifth amendment to the Specification of Degrees lists it with the abbreviation M.Optom.' },
+        { question: 'What is the duration of M.Optom?', answer: 'Two years. UGC lists M.Optom. as a two-year master\'s degree after a bachelor\'s degree.' },
+        { question: 'Who is eligible for M.Optom?', answer: 'Usually graduates with a B.Optom in regular mode from a recognised university. Several 2026 prospectuses, such as those of VMRF, DPU and Bharati Vidyapeeth, also ask for NCAHP or State Allied and Healthcare Council registration.' },
+        { question: 'Is there an entrance exam for M.Optom?', answer: 'There is no national exam. Universities run their own, such as the VMRF all-India entrance test and AIPGOET at Dr. D. Y. Patil Vidyapeeth. Bharati Vidyapeeth uses a test plus a group discussion.' },
+        { question: 'What is the fee for M.Optom?', answer: 'Seven private fee records on CollegeDecision have a median of about Rs 1,10,000 a year. VMRF lists Rs 1,00,000 a year for 2026-27. Hostel and other charges are extra, so confirm with the college.' },
+        { question: 'Is M.Optom the same as M.Sc Optometry?', answer: 'They cover similar ground, but the degree names differ. UGC\'s listed name is M.Optom., so check the exact degree title and eligibility on each university\'s prospectus.' },
+        { question: 'Who regulates optometrists in India?', answer: 'Optometrists are listed under ophthalmic sciences in the National Commission for Allied and Healthcare Professions (NCAHP) Act, 2021.' }
+      ]
+    };
+  }
+
+  if (slug === 'mlt') {
+    return {
+      displayName: 'M.L.T (Master\'s in Medical Laboratory Technology)',
+      h1: 'M.L.T Course: Master\'s in Medical Lab Technology, Eligibility and Fees 2026',
+      title: 'M.L.T Course: Master\'s in Medical Lab Technology 2026',
+      description:
+        'M.L.T at master\'s level in 2026: M.Sc MLT, MMLT and NCAHP\'s MMLS explained, with BMLS eligibility, entrance and interview, specialisations, fees and careers.',
+      keywords: ['MLT course', 'M.L.T course', 'M.Sc MLT', 'master of medical laboratory technology', 'MMLS course', 'MLT eligibility', 'MLT admission 2026', 'MLT fees'],
+      intro:
+        '"M.L.T" here means a two-year master\'s in medical laboratory technology, offered as M.Sc MLT, MMLT or MMLS. Check NCAHP\'s eligibility rules, admission, specialisations, fees and careers.',
+      crossLink: {
+        href: '/courses/mmlt',
+        anchor: 'Read the M.M.L.T course guide',
+        note: 'Most colleges list this master\'s as M.Sc MLT or MMLT. Compare current programmes there.'
+      },
+      faqs: [
+        { question: 'What is M.L.T?', answer: 'MLT stands for Medical Laboratory Technology. At master\'s level it is usually offered as M.Sc MLT or MMLT. NCAHP\'s 2025 national curriculum calls it the Master of Medical Laboratory Science (MMLS).' },
+        { question: 'Who regulates medical laboratory technology courses?', answer: 'The National Commission for Allied and Healthcare Professions (NCAHP), under the NCAHP Act, 2021. Medical Lab Technologist is listed in the Act\'s Schedule under Medical Laboratory and Life Sciences.' },
+        { question: 'What is the eligibility for a master\'s in MLT?', answer: 'NCAHP\'s curriculum asks for a Bachelor of Medical Laboratory Science from a recognised Indian university with at least 50% aggregate. Many universities still accept a B.Sc MLT or BMLT, so check the prospectus.' },
+        { question: 'How is admission done?', answer: 'Through a university entrance exam based on the BMLS syllabus, followed by an interview. NCAHP\'s curriculum says no direct admission should be given.' },
+        { question: 'How long is the course?', answer: 'Two years (four semesters) in NCAHP\'s curriculum, with 2,240 hours of teaching and training, 86 credits and a dissertation in the final semester.' },
+        { question: 'What are the specialisations?', answer: 'NCAHP\'s master\'s curriculum has tracks in medical microbiology, haematology and transfusion medicine, clinical biochemistry, and histopathology and cytology.' },
+        { question: 'What is the fee for a master\'s in MLT?', answer: 'Approximate annual tuition at private institutes listed on CollegeDecision has a median of about Rs 75,000 (6 records). Listed total annual fees have a median of about Rs 1,10,000 (5 records). Confirm with each college.' }
+      ]
+    };
+  }
+
+  if (slug === 'mot') {
+    return {
+      displayName: 'M.O.T (Master of Occupational Therapy)',
+      h1: 'M.O.T (Master of Occupational Therapy) Course: Eligibility, Admission, Fees and Scope 2026',
+      title: 'M.O.T Course 2026: Eligibility, Admission, Fees & Syllabus',
+      description:
+        'M.O.T (Master of Occupational Therapy) for 2026: BOT eligibility, PGET and MET tests, UGC M.OT specialisations, syllabus, approximate fees, colleges, careers.',
+      keywords: ['MOT course', 'M.O.T', 'Master of Occupational Therapy', 'MOT eligibility', 'MOT admission 2026', 'MOT fees', 'M.OT specialisations', 'MOT after BOT'],
+      intro:
+        'M.O.T (Master of Occupational Therapy) is a two-year master\'s for BOT graduates, now listed by UGC as eight specialised M.OT degrees. Check eligibility, entrance tests, fees and realistic careers.',
+      crossLink: {
+        href: '/courses/healthcare-pg',
+        anchor: 'Read the PG healthcare courses guide',
+        note: 'Comparing M.OT with MPH, MHA and other allied health master\'s degrees? Start with the PG healthcare guide.'
+      },
+      faqs: [
+        { question: 'What is the duration of M.O.T?', answer: 'Two years. UGC\'s 2026 fifth amendment to the Specification of Degrees lists each M.OT specialisation as a two-year master\'s degree after a bachelor\'s.' },
+        { question: 'Who is eligible for M.O.T?', answer: 'Occupational therapists with a BOT and a completed internship. SVNIRTAR, for example, asked for a regular, on-campus BOT with 50% marks and internship completed by 4 August 2026.' },
+        { question: 'What are the M.OT specialisations notified by UGC?', answer: 'Musculoskeletal Sciences, Paediatrics and Neonatology, Neurosciences, Mental Health, Cardiovascular and Pulmonary Sciences, Rehabilitation, Geriatrics, Hand, and Oncological Sciences. Universities offering an MOT are expected to restructure to these.' },
+        { question: 'Which entrance exams are used for M.O.T?', answer: 'There is no single national exam. Institutes run their own, such as SVNIRTAR\'s PGET (100 marks, 90 minutes in 2026) and the Manipal Entrance Test at MAHE.' },
+        { question: 'What is the fee for M.O.T?', answer: 'Fee data is limited. Two listings on CollegeDecision show about Rs 1,00,000 to Rs 1,16,000 a year, and MAHE lists Rs 7,40,000 for its two-year M.OT (Hand) for 2026. Confirm with each institute.' },
+        { question: 'Who regulates occupational therapists in India?', answer: 'Occupational therapists are listed as an allied and healthcare profession under the National Commission for Allied and Healthcare Professions (NCAHP) Act, 2021.' },
+        { question: 'Is M.O.T the same as the PG healthcare course?', answer: 'No. PG healthcare is a broad label for many master\'s degrees and diplomas. M.O.T is one specific clinical master\'s degree for occupational therapists.' }
+      ]
+    };
+  }
+
+  if (slug === 'pgp') {
+    return {
+      displayName: 'PGP (Post Graduate Programme in Management)',
+      h1: 'PGP Course: Eligibility, CAT Admission, Fees, Syllabus and Scope 2026',
+      title: 'PGP Course: Eligibility, CAT, Fees & Syllabus 2026',
+      description:
+        'PGP (Post Graduate Programme) explained for 2026: IIM and ISB eligibility, CAT and GMAT routes, syllabus, specialisations, listed fees, careers and what you are awarded.',
+      keywords: ['PGP course', 'PGP full form', 'Post Graduate Programme in Management', 'PGP eligibility', 'PGP admission 2026', 'PGP fees', 'IIM PGP', 'ISB PGP'],
+      intro:
+        'PGP usually means a business school\'s flagship postgraduate programme in management, such as the two-year PGP at IIM Ahmedabad or ISB\'s one-year PGP. See eligibility, CAT and GMAT routes, syllabus, listed fees and how to check what you will be awarded.',
+      crossLink: {
+        href: '/courses/mba',
+        anchor: 'Read the MBA / PGDM course guide',
+        note: 'Most IIM and business-school PGPs are listed under our MBA / PGDM course.'
+      },
+      faqs: [
+        { question: 'What is the full form of PGP?', answer: 'PGP stands for Post Graduate Programme. In management education it usually means Post Graduate Programme in Management, the flagship programme of IIMs and several business schools. The CAT 2026 bulletin groups the IIMs\' flagship courses under this name.' },
+        { question: 'Is a PGP the same as an MBA?', answer: 'At the IIMs it is effectively the MBA. The IIM Act, 2017 allows each IIM to grant degrees, and IIM Ahmedabad describes its two-year PGP as its flagship MBA programme. At other institutes a PGP may lead to a diploma or a certificate, so check what is awarded.' },
+        { question: 'What is the eligibility for a PGP at an IIM?', answer: 'The CAT 2026 bulletin asks for a bachelor\'s degree with at least 50% marks or equivalent CGPA (45% for SC, ST and PwBD). Final-year students can apply and join provisionally. Each IIM adds its own conditions in its admission policy.' },
+        { question: 'Which exam is needed for a PGP?', answer: 'CAT is needed for IIM PGPs and is accepted by listed non-IIM schools. CAT 2026 is on 29 November 2026. ISB\'s PGP uses a test-centre GMAT or GRE score instead.' },
+        { question: 'How long is a PGP?', answer: 'IIM PGPs such as IIM Ahmedabad\'s are two-year, full-time programmes. ISB\'s PGP runs for 12 months and asks for at least 24 months of full-time work experience. Online PGPs from private providers vary widely.' },
+        { question: 'What is the fee for a PGP?', answer: 'Approximate first-year tuition listed on CollegeDecision ranges from about Rs 4.5 lakh to Rs 14 lakh a year for two-year PGPs, and about Rs 24.7 lakh for ISB\'s one-year PGP. Hostel and other charges are extra. Confirm with each school.' },
+        { question: 'Are online PGP courses from edtech platforms valid?', answer: 'They are usually certificates, not degrees. UGC\'s public notice of 16 January 2022 said degree and diploma programmes offered through franchise arrangements with EdTech companies are not permitted, and advised students to check a programme\'s status on the UGC DEB website.' }
+      ]
+    };
+  }
+
+  if (slug === 'professional-certificate') {
+    return {
+      displayName: 'Professional Certificate Courses',
+      h1: 'Professional Certificate Courses: Eligibility, Recognition, Fees and Scope 2026',
+      title: 'Professional Certificate Courses: Eligibility, Fees 2026',
+      description:
+        'Professional certificate courses explained for 2026: what they are, who can join, NSQF and regulator recognition, assessments, popular areas, fees and how to check the issuer.',
+      keywords: ['professional certificate', 'professional certificate course', 'professional certificate courses in India', 'professional certificate eligibility', 'NSQF certificate', 'NISM certification', 'short term professional courses'],
+      intro:
+        'A professional certificate is a short, job-focused course that proves a specific skill. It is not a degree, and its value depends on who issues it. See eligibility, NSQF and regulator recognition, assessments, popular areas, fees and a checklist for choosing one.',
+      crossLink: {
+        href: '/courses/certificate-program',
+        anchor: 'Read the certificate programmes guide',
+        note: 'Looking for listed certificate courses at colleges? Start with our certificate programmes guide.'
+      },
+      faqs: [
+        { question: 'What is a professional certificate course?', answer: 'It is a short, skill-focused course that ends in a certificate rather than a degree. Universities, government bodies, professional institutes and private providers all offer them, and the value depends on who issues the certificate.' },
+        { question: 'Is a professional certificate a degree?', answer: 'No. It does not replace a bachelor\'s or master\'s degree where one is required. Some skill certificates are aligned to NSQF levels, which helps employers understand the level of the course.' },
+        { question: 'Who can join a professional certificate course?', answer: 'Each provider sets its own rules. Skill-level certificates often ask for Class 10 or 12, while advanced and executive certificates usually ask for a bachelor\'s degree and sometimes work experience.' },
+        { question: 'What is NSQF?', answer: 'The National Skills Qualification Framework is a competency-based framework with levels from 1 to 8, including half levels. NCVET publishes approved skill qualifications on the National Qualifications Register.' },
+        { question: 'Are some professional certificates compulsory?', answer: 'In some regulated roles, yes. SEBI has notified that people selling mutual fund products need the NISM Series V-A certification, and NISM runs certification exams for several other securities-market roles.' },
+        { question: 'How much does a professional certificate cost?', answer: 'There is no standard fee. No programme is listed under this course on CollegeDecision yet; related "professional" certificate records in our listings show tuition of about Rs 20,000 to Rs 77,400 a year. Confirm with the provider.' },
+        { question: 'How do I check if an online certificate is genuine?', answer: 'Confirm the issuing body on its official website. If the course claims a university link, UGC advises checking the programme on the UGC DEB website, and its January 2022 notice said franchise-style online programmes are not permitted.' }
+      ]
+    };
+  }
+
+  if (slug === 'online-executive-programme') {
+    return {
+      displayName: 'Online Executive Programme',
+      h1: 'Online Executive Programme: Eligibility, Recognition, Fees and Scope 2026',
+      title: 'Online Executive Programme: Eligibility, UGC Rules & Fees 2026',
+      description:
+        'Online executive programmes for working professionals in 2026: online MBAs, EMBAs, PG diplomas and certificates, with eligibility, UGC recognition, fees and careers.',
+      keywords: ['online executive programme', 'online executive programme India', 'online executive MBA', 'online executive course for working professionals', 'UGC approved online programme', 'online executive programme fees', 'online executive certificate'],
+      intro:
+        'An online executive programme lets you study while you keep working, but the label covers UGC-recognised online degrees, university PG diplomas and short institute or edtech certificates. See how to tell them apart, check recognition and compare costs before you enrol.',
+      crossLink: {
+        href: '/courses/executive-programme',
+        anchor: 'Read the executive programme guide',
+        note: 'Open to campus, weekend or one-year formats too? Compare all executive programmes.'
+      },
+      faqs: [
+        { question: 'What is an online executive programme?', answer: 'It is a course for working professionals delivered mainly online. The label is not one qualification: it can be a UGC-recognised online MBA or Executive MBA, an online PG diploma, a university certificate or a short certificate from a business school or training provider.' },
+        { question: 'Is an online executive programme valid in India?', answer: 'It depends on the award. Under Regulation 22 of the UGC (Open and Distance Learning Programmes and Online Programmes) Regulations, 2020, online degrees and PG diplomas from institutions recognised by UGC for online mode are treated as equivalent to the same awards in conventional mode. Short certificates are not degrees.' },
+        { question: 'How do I check whether an online programme is UGC recognised?', answer: 'Check the UGC Distance Education Bureau (DEB) website for the institution, the programme and the session you are joining. UGC asks students to confirm this before enrolling.' },
+        { question: 'Do IIM online executive programmes need UGC approval?', answer: 'No. UGC\'s Distance Education Bureau states that IITs, IIMs, IISc and other Institutions of National Importance do not come under its purview, so check what the award is on the institute\'s own website.' },
+        { question: 'Who is eligible for an online executive programme?', answer: 'Usually graduates, and many programmes also ask for some years of work experience. Each university or institute sets its own rule, so read the programme page.' },
+        { question: 'Is there an entrance exam for online executive programmes?', answer: 'There is no national exam. Most programmes admit on your degree, a profile review or an interview, and some universities run their own online test.' },
+        { question: 'What is the fee for an online executive programme?', answer: 'Fees vary widely between short certificates and two-year online degrees. CollegeDecision has no tuition or total-fee records for this course yet, so use the institute\'s official fee page and ask for a written total.' },
+        { question: 'Can I do a PhD online after an online executive programme?', answer: 'UGC does not permit research programmes such as M.Phil and PhD in online or distance mode. A recognised online master\'s degree can support a PhD application, but the PhD itself has to be done through a regular route.' }
+      ]
+    };
+  }
+  if (slug === 'post-graduate-program') {
+    return {
+      displayName: 'Post Graduate Program',
+      h1: 'Post Graduate Program: What It Means, Eligibility, Exams and Fees 2026',
+      title: 'Post Graduate Program: Meaning, Eligibility, Exams & Fees 2026',
+      description:
+        'What a Post Graduate Program really awards in India in 2026: MBA degree, PGDM or certificate, with eligibility, CAT rules, listed fees and how to choose.',
+      keywords: ['post graduate program', 'post graduate programme', 'post graduate program meaning', 'post graduate program in management', 'PGP vs MBA', 'post graduate program eligibility', 'post graduate program fees'],
+      intro:
+        '"Post Graduate Program" is a title institutes use for courses after graduation, not a single qualification. Learn how to tell whether it leads to an MBA degree, an AICTE-approved PGDM or a certificate, who is eligible, which exams apply and what fees look like.',
+      crossLink: {
+        href: '/courses/pgp',
+        anchor: 'Read the PGP guide',
+        note: 'Comparing IIM-style two-year programmes? See the PGP guide.'
+      },
+      faqs: [
+        { question: 'What is a Post Graduate Program?', answer: 'It is a name institutes use for programmes taken after graduation. Depending on the institute, it can lead to an MBA degree, an AICTE-approved PGDM or PGCM, a university PG diploma, or only the institute\'s own certificate.' },
+        { question: 'Is a Post Graduate Program the same as an MBA?', answer: 'Not always. IIMs were registered societies that awarded post graduate diplomas until the IIM Act, 2017 allowed them to grant degrees. Other institutes may award a PGDM or a certificate under the same name, so check exactly what you will receive.' },
+        { question: 'What is the eligibility for a Post Graduate Program?', answer: 'Usually a bachelor\'s degree. For CAT-based admissions, CAT 2026 requires at least 50% marks or equivalent CGPA (45% for SC, ST and PwBD candidates), and final-year students can apply.' },
+        { question: 'Which entrance exam is needed for a Post Graduate Program?', answer: 'CAT for IIM programmes. Other institutes accept CAT or tests such as XAT, CMAT, MAT or GMAT, and design or media programmes may use a portfolio or interview.' },
+        { question: 'What is the fee for a Post Graduate Program?', answer: 'It varies widely. No fee records are linked to this course itself on CollegeDecision. Related programmes list approximate first-year fees from about Rs 90,000 to about Rs 13 lakh per year; confirm current fees with each institute.' },
+        { question: 'How long is a Post Graduate Program?', answer: 'Commonly one or two years. Two-year programmes are typical for freshers, one-year programmes for experienced professionals, and short programmes with the same name also exist.' },
+        { question: 'Can I do a PhD after a Post Graduate Program?', answer: 'Yes, if the award is an MBA or a recognised two-year PG diploma that meets the doctoral programme\'s eligibility. A short certificate usually will not qualify.' }
+      ]
+    };
+  }
+  if (slug === 'online-certificate') {
+    return {
+      displayName: 'Online Certificate Courses',
+      h1: 'Online Certificate Courses: Eligibility, UGC Rules, Fees and Scope 2026',
+      title: 'Online Certificate Courses 2026: UGC-DEB Rules, Fees & Scope',
+      description:
+        'Online certificate courses in 2026: who can offer them under UGC-DEB rules, eligibility, SWAYAM exams, subjects, fees, colleges and how to check a certificate.',
+      keywords: ['online certificate courses', 'online certificate course', 'UGC approved online certificate', 'SWAYAM certificate', 'online certificate eligibility', 'online certificate fees', 'short online courses India', 'online certificate after 12th'],
+      intro:
+        'An online certificate is a short, non-degree course you study over the internet. Check who is allowed to offer one under UGC-DEB rules, how SWAYAM exams work, what you can study, costs and how to judge its value.',
+      crossLink: {
+        href: '/courses/online-programmes',
+        anchor: 'Browse Online Learning Programmes',
+        note: 'Most online certificates on CollegeDecision are listed under our Online Learning Programmes page.'
+      },
+      faqs: [
+        { question: 'Is an online certificate a degree?', answer: 'No. An online certificate is a short, certificate-level course. UGC-DEB describes equivalence with conventional awards for degrees and PG diplomas earned online from recognised universities, not for short certificates.' },
+        { question: 'Can any university offer online certificate courses?', answer: 'No. According to UGC-DEB, only a university recognised to offer UG degree, PG degree or PG diploma programmes in ODL or online mode may offer certificate or diploma programmes in those modes, with approval of its statutory and regulatory bodies.' },
+        { question: 'How do I check if an online certificate is recognised?', answer: 'For a university course, check the UGC-DEB website for the university\'s recognition for the session you plan to join. UGC-DEB says recognition for a previous year does not mean recognition for the next.' },
+        { question: 'Are SWAYAM certificates free?', answer: 'SWAYAM courses are free to study. To get a certificate you must register for the final proctored exam, which has a fee, and take it in person at a designated centre.' },
+        { question: 'Which subjects cannot be studied online?', answer: 'UGC-DEB lists engineering, medical, paramedical, pharmacy, nursing, dental, architecture, law, agriculture, hotel management, visual arts, sports and aviation, among others, as prohibited in ODL and online mode. From August 2026 this also covers allied and healthcare programmes under the NCAHP Act, including psychology.' },
+        { question: 'What is the eligibility for an online certificate?', answer: 'There is no national rule. Each provider sets its own entry requirement. Some courses are open to all, while others ask for Class 12, a degree or work experience.' },
+        { question: 'Can I get credit for an online certificate?', answer: 'Sometimes. UGC has a credit framework for online courses through SWAYAM, and universities that approve credit transfer can use the marks or certificate from those courses. Confirm with your own university first.' }
+      ]
+    };
+  }
+
+  if (slug === 'post-graduate-certificate') {
+    return {
+      displayName: 'Post Graduate Certificate (PGC)',
+      h1: 'Post Graduate Certificate Course: Eligibility, Admission, Fees and Scope 2026',
+      title: 'Post Graduate Certificate 2026: Eligibility, PGCM, Fees & Scope',
+      description:
+        'Post Graduate Certificate (PGC/PGCM) course details for 2026: AICTE duration and eligibility, admission, fields like management and law, fees, colleges and careers.',
+      keywords: ['post graduate certificate', 'PG certificate course', 'PGCM course', 'post graduate certificate in management', 'PG certificate eligibility', 'PG certificate fees', 'PG certificate vs PG diploma', 'one year PG certificate'],
+      intro:
+        'A Post Graduate Certificate is a short postgraduate award for graduates who want depth in one area. Check AICTE rules for the PGCM, eligibility, admission, common fields, listed fees and how it compares with a PG diploma.',
+      crossLink: {
+        href: '/courses/pg-diploma',
+        anchor: 'Read the PG Diploma course guide',
+        note: 'Most postgraduate certificate and diploma programmes on CollegeDecision are listed under our PG Diploma page.'
+      },
+      faqs: [
+        { question: 'What is a Post Graduate Certificate?', answer: 'It is a short postgraduate award taken after a bachelor\'s degree, focused on one area. It ranks below a PG diploma and a master\'s degree and is not a degree.' },
+        { question: 'What is the duration of a PG Certificate?', answer: 'AICTE\'s Approval Process Handbook 2024-27 sets the Post Graduate Certificate in Management (PGCM) and the engineering PG certificate at one year. Programmes in other fields vary by institute.' },
+        { question: 'What is the eligibility for PGCM?', answer: 'Under AICTE norms, a bachelor\'s degree of at least three years with at least 50% marks, or 45% for reserved categories.' },
+        { question: 'Is there an entrance exam for a PG Certificate?', answer: 'There is no common exam. Each institute sets its own selection method, which may use entrance test scores, academic record, an interview or work experience.' },
+        { question: 'What is the difference between PGCM and PGDM?', answer: 'Under AICTE rules, the PGCM lasts one year and the PGDM two years. AICTE also allows a PGDM student to exit with a PGCM after the first year, subject to earning the required credits.' },
+        { question: 'What is the fee for a PG Certificate?', answer: 'Fees vary widely. The few total-fee records on CollegeDecision range from about Rs 1.3 lakh to about Rs 10 lakh. They are approximate; confirm with each institute.' },
+        { question: 'In which fields are PG Certificates offered?', answer: 'Programmes listed on CollegeDecision cover management, finance and securities, law, communication and film, dentistry and technology. AICTE also names the PG certificate in fields such as logistics, travel and tourism, computer applications, AI and cyber security.' }
+      ]
+    };
+  }
+
+  if (slug === 'mvsc') {
+    return {
+      displayName: 'M.V.Sc (Master of Veterinary Science)',
+      h1: 'M.V.Sc Course: Eligibility, ICAR AIEEA PG, Subjects and Admission 2026',
+      title: 'M.V.Sc Course: Eligibility, ICAR AIEEA PG & Admission 2026',
+      description:
+        'M.V.Sc (Master of Veterinary Science) guide: B.V.Sc eligibility, ICAR AIEEA PG exam by NTA, admission routes, subjects, coursework, fees and careers.',
+      keywords: ['M.V.Sc course', 'MVSc full form', 'Master of Veterinary Science', 'M.V.Sc eligibility', 'ICAR AIEEA PG', 'M.V.Sc admission 2026', 'M.V.Sc subjects', 'veterinary PG in India'],
+      intro:
+        'M.V.Sc is the two-year master\'s degree for B.V.Sc & A.H. graduates. See who can apply, how ICAR AIEEA (PG) and state university tests work, which subjects you can choose and where the degree leads.',
+      faqs: [
+        { question: 'What is the full form of M.V.Sc?', answer: 'M.V.Sc stands for Master of Veterinary Science, a postgraduate degree in a specific branch of veterinary or animal science.' },
+        { question: 'Who is eligible for M.V.Sc?', answer: 'You need a B.V.Sc & A.H. degree. For ICAR AIEEA (PG) 2026, the minimum was 60% marks or an OGPA of 6.60/10 for General, OBC, UPS and EWS candidates, and 50% or 5.60/10 for SC, ST, PwBD and third gender candidates.' },
+        { question: 'How long is the M.V.Sc course?', answer: 'Two years, spread over four semesters. VCI\'s draft PG regulations allow it to be extended up to eight semesters.' },
+        { question: 'Which entrance exam is used for M.V.Sc admission?', answer: 'ICAR AIEEA (PG), conducted by NTA, fills 30% of master\'s seats in agricultural universities and all seats at IVRI, IARI, NDRI and CIFE. State universities fill their own seats through their own tests or merit lists.' },
+        { question: 'What is the ICAR AIEEA (PG) exam pattern?', answer: 'In 2026 it was a 2-hour computer-based test with 120 multiple-choice questions in English, with +4 marks for a correct answer and -1 for a wrong answer.' },
+        { question: 'Can B.V.Sc students in their final year apply?', answer: 'Yes. The 2026 bulletin let veterinary candidates appear provisionally, but they had to complete the degree, including internship, by 15 January 2027.' },
+        { question: 'What subjects can I choose in M.V.Sc?', answer: 'Options include Veterinary Medicine, Surgery and Radiology, Gynaecology and Obstetrics, Pathology, Microbiology, Parasitology, Anatomy, Physiology, Animal Nutrition, Animal Genetics and Breeding, Poultry Science and Public Health, among others.' },
+        { question: 'What is the fee for M.V.Sc?', answer: 'CollegeDecision does not yet list M.V.Sc fees. Most seats are at state veterinary and agricultural universities, which publish fees in their prospectus. Meritorious ICAR candidates may receive the ICAR PG Scholarship of Rs 12,640 a month.' }
+      ]
+    };
+  }
+
+  if (slug === 'post-doctoral-certificate') {
+    return {
+      displayName: 'Post Doctoral Certificate (PDCC)',
+      h1: 'Post Doctoral Certificate Course (PDCC): Eligibility, Admission and Fees 2026',
+      title: 'Post Doctoral Certificate (PDCC): Eligibility & Admission 2026',
+      description:
+        'Post Doctoral Certificate Course (PDCC) explained: one-year NMC course after MD, MS or DNB, eligibility, SGPGIMS entrance exam, fees and careers.',
+      keywords: ['Post Doctoral Certificate', 'PDCC course', 'PDCC full form', 'PDCC after MD', 'PDCC eligibility', 'PDCC admission 2026', 'SGPGIMS PDCC', 'NMC PGMER 2023 PDCC'],
+      intro:
+        'A Post Doctoral Certificate Course (PDCC) is a one-year sub-speciality training course for doctors with an MD, MS or DNB. See NMC rules, eligibility, how institutes like SGPGIMS admit candidates, fees and where it leads.',
+      crossLink: {
+        href: '/courses/md',
+        anchor: 'Read the MD course guide',
+        note: 'Most PDCCs need an MD, MS or DNB first, and CollegeDecision lists only two PDCC programmes, so the MD guide covers the feeder degree in more depth.'
+      },
+      faqs: [
+        { question: 'What is the full form of PDCC?', answer: 'PDCC stands for Post-Doctoral Certificate Course, a sub-speciality medical training course taken after an MD, MS or DNB.' },
+        { question: 'How long is a Post Doctoral Certificate Course?', answer: 'One year. NMC\'s Post-Graduate Medical Education Regulations, 2023 list the PDCC duration as one year and the Post-Doctoral Fellowship (PDF) as two years.' },
+        { question: 'Who is eligible for a PDCC?', answer: 'Doctors with a recognised MD, MS or DNB in the feeder speciality named for the course. For example, SGPGIMS asks for MD or DNB in Pediatrics for its PDCC in Neonatology.' },
+        { question: 'Is a PDCC the same as a postdoc after PhD?', answer: 'No. A PDCC is clinical training after a postgraduate medical degree. A research postdoc after a PhD is a fixed-term research position or fellowship, not a course.' },
+        { question: 'How is admission to PDCC done?', answer: 'There is no single national exam. Each institute runs its own test. SGPGIMS Lucknow held a 100-mark, 180-minute objective exam on 12 April 2026, with 50% qualifying marks for PDCC.' },
+        { question: 'What is the fee for a PDCC?', answer: 'CollegeDecision has no PDCC fee records. At SGPGIMS for 2026, first-year fees totalled Rs 74,100, including Rs 20,000 refundable caution money, plus a Rs 1,800 medical subscription.' },
+        { question: 'Is there reservation in PDCC seats?', answer: 'It depends on the institute. The SGPGIMS 2026 brochure states there is no reservation in its PDCC and PDAF courses.' }
+      ]
+    };
+  }
+
   if (slug === 'mba') {
     return {
       displayName,
