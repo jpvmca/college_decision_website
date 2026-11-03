@@ -63,7 +63,7 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
   };
   return (
     <html lang="en">
-      <body>
+      <body className={process.env.NODE_ENV === "development" ? "debug-rails" : undefined}>
         <GoogleTagManager />
         <JsonLd data={websiteJsonLd} />
         <JsonLd data={organizationJsonLd(siteUrl)} />

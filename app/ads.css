@@ -21,7 +21,7 @@
 .popular-layout{display:block}
 .home-ad-rail{display:none}
 @media (min-width:1100px){
-  .site-page-rails{display:grid;grid-template-columns:minmax(120px,160px) minmax(0,1280px) minmax(120px,160px);justify-content:center;gap:18px}
+  .site-page-rails{display:grid;grid-template-columns:minmax(120px,160px) minmax(0,1280px) minmax(120px,160px);justify-content:center;gap:18px;padding-inline:5px;box-sizing:border-box}
   .site-page-rail{display:block;min-width:0}
   .site-page-rail>.ad-wrap{position:sticky;top:88px;margin:18px 0;max-width:160px}
   .site-page-rail .ad-format-vertical .ad-inner,.site-page-rail .ad-format-vertical_banner .ad-inner{max-width:160px}
@@ -32,3 +32,8 @@
   .home-ad-rail>.ad-wrap .ad-format-vertical_banner .ad-inner{max-width:300px}
 }
 @media print{.ad-wrap{display:none}}
+/* Dev-only debug outlines for side ad rails (class added in app/layout.tsx only when NODE_ENV=development) */
+@media (min-width:1100px){
+  .debug-rails .site-page-rails{outline:1px dashed blue}
+  .debug-rails .site-page-rails>.site-page-rail{outline:1px solid red;outline-offset:-1px}
+}
