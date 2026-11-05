@@ -116,7 +116,7 @@ export default function SearchBox({ initialQuery = '', variant = 'header', autoF
         placeholder="Search colleges, exams, courses…"
       />
       {keyword && <button type="button" className="search-clear" aria-label="Clear search" onClick={() => { setKeyword(''); input.current?.focus(); }}><X size={16} aria-hidden="true" /></button>}
-      <button type="submit"><Search size={17} aria-hidden="true" /> <span>Search</span></button>
+      <button type="submit" aria-label="Search"><Search size={17} aria-hidden="true" /> <span>Search</span></button>
     </form>
     {showPanel && <div className="search-suggestions typeahead" id={listId} role="listbox" aria-label={`Suggestions for ${q}`} aria-busy={loading}>
       {loading && !groups.length && <p className="ta-status"><Loader2 size={16} className="ta-spin" aria-hidden="true" /> Searching…</p>}

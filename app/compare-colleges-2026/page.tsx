@@ -4,6 +4,8 @@ import { ArrowRight, BadgeCheck, CheckCircle2, FileText, GitCompareArrows, Gradu
 import CollegeComparePage from '../../components/CollegeComparePage';
 import AdSlot from '../../components/ads/AdSlot';
 import { api, mediaUrl } from '../../lib/api';
+import HeroPhoto from '../../components/HeroPhoto';
+import HeroStats from '../../components/HeroStats';
 
 const siteUrl = (process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3001').replace(/\/+$/, '');
 const comparisonImage = '/college-comparison-hero.webp';
@@ -81,14 +83,10 @@ export default async function CompareCollegesPage() {
               </div>
             </div>
             <div className="ls-hero-visual">
-              <img src="/college-comparison-hero.webp" alt="Students comparing college options and campus cards" width="1024" height="768" fetchPriority="high" loading="eager" decoding="async" />
+              <HeroPhoto src="/college-comparison-hero.webp" alt="Students comparing college options and campus cards" width={1024} height={768} />
             </div>
           </div>
-          <dl className="ls-stats">{stats.map((item) => <div key={item.label}>
-            <span className="ls-stat-icon"><item.icon size={18} aria-hidden="true" /></span>
-            <dt>{item.label}</dt>
-            <dd>{item.value.toLocaleString('en-IN')}{item.value >= 20 ? '+' : ''}</dd>
-          </div>)}</dl>
+          <HeroStats prefix="ls" stats={stats.map((item) => ({ icon: item.icon, label: item.label, value: `${item.value.toLocaleString('en-IN')}${item.value >= 20 ? '+' : ''}` }))} />
         </section>
         <AdSlot slotKey="compare_top" className="listing-ad" />
       </div>

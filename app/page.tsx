@@ -9,6 +9,8 @@ import CourseImage from '../components/CourseImage';
 import { formatLpa } from '../lib/packages';
 import { daysUntil, formatDate as examFormatDate } from '../lib/exam-format';
 import { ArrowLeftRight, ArrowRight, BadgeCheck, BookOpen, Building2, CalendarDays, ChartNoAxesCombined, ClipboardCheck, FileText, GraduationCap, IndianRupee, MapPin, ShieldCheck, Sparkles, Star, Trophy } from 'lucide-react';
+import HeroPhoto from '../components/HeroPhoto';
+import HeroStats from '../components/HeroStats';
 
 type CourseSummary = { id: number; name: string; slug?: string; image_url?: string | null; published_slug?: string | null; institute_count: number; programme_count: number; review_count: number | string | null; average_rating: number | string | null };
 type ExamSummary = { id: number; name: string; published_slug?: string | null; course_name: string | null; institute_count: number; programme_count: number; review_count: number | string | null; average_rating: number | string | null; logo?: string | null };
@@ -109,16 +111,12 @@ export default async function HomePage() {
           </div>
           <div className="hp-hero-visual" aria-hidden="true">
             <div className="hp-hero-glow" />
-            <img src="/college-decision-hero.webp" alt="" />
+            <HeroPhoto src="/college-decision-hero.webp" alt="" width={1536} height={1024} sizes="(max-width: 760px) 80vw, 420px" />
             <span className="hp-float hp-float-top"><ShieldCheck size={15} /> Compare with confidence</span>
             <span className="hp-float hp-float-bottom"><Sparkles size={15} /> Fees · Exams · Placements</span>
           </div>
         </div>
-        {stats.length > 0 && <div className="wrap"><dl className="hp-stats">{stats.map((item) => <div key={item.label}>
-          <span className="hp-stat-icon"><item.icon size={18} aria-hidden="true" /></span>
-          <dt>{item.label}</dt>
-          <dd>{item.value.toLocaleString('en-IN')}{item.value >= 1000 ? '+' : ''}</dd>
-        </div>)}</dl></div>}
+        {stats.length > 0 && <div className="wrap"><HeroStats prefix="hp" stats={stats.map((item) => ({ icon: item.icon, label: item.label, value: `${item.value.toLocaleString('en-IN')}${item.value >= 1000 ? '+' : ''}` }))} /></div>}
       </section>
 
       <section className="section home-decision-section hp-tool">

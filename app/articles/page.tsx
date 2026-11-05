@@ -8,6 +8,8 @@ import ArticleFilters from '../../components/ArticleFilters';
 import GuideCard from '../../components/GuideCard';
 import AdSlot from '../../components/ads/AdSlot';
 import { ArrowLeft, ArrowRight, BadgeCheck, BookOpen, FileText } from 'lucide-react';
+import HeroPhoto from '../../components/HeroPhoto';
+import HeroStats from '../../components/HeroStats';
 
 type ArticleType = 'all' | 'budget' | 'fees' | 'admission' | 'gov-avg-package' | 'exam-admission';
 const ALL_ARTICLE_TYPES: ArticleType[] = ['budget', 'fees', 'admission', 'gov-avg-package', 'exam-admission'];
@@ -161,14 +163,10 @@ export default async function ArticlesPage({ searchParams }: { searchParams: Pro
           </div>
         </div>
         <div className="ls-hero-visual">
-          <img src="/articles-hero.webp" alt="Students comparing college decision guides" width="1200" height="675" fetchPriority="high" loading="eager" decoding="async" />
+          <HeroPhoto src="/articles-hero.webp" alt="Students comparing college decision guides" />
         </div>
       </div>
-      {stats.length > 0 && <dl className="ls-stats">{stats.map((item) => <div key={item.label}>
-        <span className="ls-stat-icon"><item.icon size={18} aria-hidden="true" /></span>
-        <dt>{item.label}</dt>
-        <dd>{formatCount(item.value)}{item.value >= 20 ? '+' : ''}</dd>
-      </div>)}</dl>}
+      <HeroStats prefix="ls" stats={stats.map((item) => ({ icon: item.icon, label: item.label, value: `${formatCount(item.value)}${item.value >= 20 ? '+' : ''}` }))} />
     </section>
     <AdSlot slotKey="articles_top" className="listing-ad" />
     <div className="ls-head">

@@ -58,10 +58,10 @@
   .comparison-score-panel { align-items: stretch; flex-direction: column; gap: 20px; }
   .comparison-pie { align-self: center; }
 }
-:root{--ink:#172033;--muted:#667085;--line:#e5e7eb;--blue:#2563eb;--deep:#172554;--soft:#eff6ff;--green:#047857;--navy:#0e2f4f;--teal:#0f8f87;--success:#15803d;--warning:#b45309}
+:root{--ink:#172033;--muted:#475569;--line:#e5e7eb;--blue:#1d4ed8;--deep:#172554;--soft:#eff6ff;--green:#047857;--navy:#0e2f4f;--teal:#0f766e;--success:#15803d;--warning:#92400e}
 .enquiry-form{display:grid;gap:16px;margin-top:18px}.enquiry-form label{display:grid;gap:5px;font-weight:700;color:#344054}.enquiry-form input,.enquiry-form textarea{width:100%;border:1px solid #cdd9ed;border-radius:9px;padding:10px 12px;font:inherit;color:var(--ink);background:#fff}.enquiry-form textarea{resize:vertical}.enquiry-form .button{justify-self:start}
 *{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:#f8fafc;color:var(--ink);font:16px/1.65 system-ui,-apple-system,sans-serif}
-a{color:var(--blue);text-decoration:none}a:hover{text-decoration:underline}.site{min-height:100vh}.wrap{max-width:1120px;margin:auto;padding:0 20px}
+a{color:var(--blue);text-decoration:none}a:hover{text-decoration:underline}.auto-entity-link,.course-html-content a{text-decoration:underline;text-underline-offset:2px}.site{min-height:100vh}.wrap{max-width:1120px;margin:auto;padding:0 20px}
 .nav{background:#fff;border-bottom:1px solid var(--line)}.nav-inner{display:flex;align-items:center;justify-content:space-between;gap:22px;min-height:68px}.brand{display:flex;align-items:center}.brand img{display:block;width:188px;height:auto}.nav-links{display:flex;gap:20px}
 .hero{background:linear-gradient(135deg,#172554,#2563eb);color:#fff;padding:76px 0}.hero h1{max-width:760px;font-size:clamp(36px,6vw,64px);line-height:1.05;margin:0 0 18px}.hero p{max-width:680px;color:#dbeafe;font-size:18px}.button{display:inline-block;background:#fff;color:#1d4ed8;padding:11px 17px;border-radius:9px;font-weight:750;margin-top:12px}.button.primary{background:#2563eb;color:#fff}
 .section{padding:48px 0}.section h2{font-size:30px;margin:0 0 10px}.muted{color:var(--muted)}.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}.card{background:#fff;border:1px solid var(--line);border-radius:14px;padding:21px}.card h3{margin-top:0}.pill{display:inline-block;border-radius:99px;background:#ecfdf5;color:var(--green);font-size:12px;font-weight:700;padding:3px 9px}

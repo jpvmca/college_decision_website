@@ -3,7 +3,7 @@
   --cp-navy: #0b2447;
   --cp-ink: #142033;
   --cp-text: #334155;
-  --cp-muted: #64748b;
+  --cp-muted: #475569;
   --cp-line: #e3e9f2;
   --cp-soft: #f5f8fc;
   --cp-blue: #2563eb;
@@ -18,6 +18,12 @@
 }
 .cp-page .wrap { display: flex; flex-direction: column; gap: 20px; }
 .cp-page .wrap > * { margin-top: 0; margin-bottom: 0; }
+.cp-page .cp-card p a,
+.cp-page .cp-accordion-body a,
+.cp-page .cp-footnote a {
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
 .cp-sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0; }
 .cp-capitalize { text-transform: capitalize; }
 
@@ -112,8 +118,8 @@
 .cp-card h3 { margin: 26px 0 12px; color: var(--cp-ink); font-size: 16px; font-weight: 750; letter-spacing: -.005em; }
 .cp-card .cp-section-head + h3, .cp-card .cp-section-head + * > h3:first-child { margin-top: 0; }
 .cp-card p { line-height: 1.7; }
-.cp-footnote { margin: 16px 0 0; padding: 12px 14px; border-radius: 10px; background: var(--cp-soft); color: var(--cp-muted); font-size: 13px; line-height: 1.6 !important; }
-.cp-footnote strong { color: var(--cp-text); }
+.cp-footnote { margin: 16px 0 0; padding: 12px 14px; border-radius: 10px; background: var(--cp-soft); color: var(--cp-text); font-size: 13px; line-height: 1.6 !important; }
+.cp-footnote strong { color: var(--cp-ink); }
 
 /* Expand / collapse */
 .cp-more { margin-top: 10px; }
@@ -196,7 +202,7 @@
 .cp-fee-years li { display: flex; justify-content: space-between; gap: 12px; }
 .cp-fee-years li.is-total { margin-top: 3px; padding-top: 5px; border-top: 1px solid var(--cp-line); font-weight: 700; }
 .cp-placement-table td { white-space: nowrap; }
-.cp-placement-table td strong { color: var(--cp-amber); }
+.cp-placement-table td strong { color: #92400e; }
 
 /* ---------- Admission ---------- */
 .cp-accordion-list { display: grid; gap: 8px; }
@@ -216,7 +222,7 @@
 .cp-steps li { position: relative; display: grid; gap: 4px; align-content: start; padding: 16px; border: 1px solid var(--cp-line); border-radius: 14px; background: var(--cp-soft); counter-increment: cp-step; }
 .cp-steps li::before { content: counter(cp-step); display: grid; place-items: center; width: 28px; height: 28px; margin-bottom: 6px; border-radius: 50%; background: var(--cp-navy); color: #fff; font-size: 13px; font-weight: 800; }
 .cp-steps strong { color: var(--cp-ink); font-size: 14.5px; }
-.cp-steps span { color: var(--cp-muted); font-size: 13.5px; line-height: 1.55; }
+.cp-steps span { color: var(--cp-text); font-size: 13.5px; line-height: 1.55; }
 
 /* ---------- Placements ---------- */
 .cp-stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 10px; }
@@ -225,11 +231,11 @@
 .cp-stat strong { color: var(--cp-ink); font-size: 24px; line-height: 1.25; letter-spacing: -.01em; }
 .cp-stat span { overflow: hidden; color: var(--cp-muted); font-size: 12.5px; text-overflow: ellipsis; white-space: nowrap; }
 .cp-stat.is-amber { border-color: #fde3b5; background: var(--cp-amber-soft); }
-.cp-stat.is-amber strong { color: #b45309; }
+.cp-stat.is-amber strong { color: #92400e; }
 .cp-stat.is-blue { border-color: #d3e2fd; background: var(--cp-blue-soft); }
-.cp-stat.is-blue strong { color: #1d4ed8; }
+.cp-stat.is-blue strong { color: #1e40af; }
 .cp-stat.is-teal { border-color: #c5ece4; background: var(--cp-teal-soft); }
-.cp-stat.is-teal strong { color: var(--cp-teal); }
+.cp-stat.is-teal strong { color: #115e59; }
 .cp-chart { display: grid; gap: 12px; padding: 16px 18px; border: 1px solid var(--cp-line); border-radius: 14px; }
 .cp-chart-legend { display: flex; flex-wrap: wrap; gap: 6px 18px; color: var(--cp-muted); font-size: 12.5px; font-weight: 600; }
 .cp-chart-legend span { display: inline-flex; align-items: center; gap: 6px; }

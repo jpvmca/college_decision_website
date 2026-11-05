@@ -6,6 +6,8 @@ import ExamDirectory, { type ExamList } from '../../components/ExamDirectory';
 import AdSlot from '../../components/ads/AdSlot';
 import { getAdSlot } from '../../lib/ads';
 import { daysUntil, formatDate as examFormatDate } from '../../lib/exam-format';
+import HeroPhoto from '../../components/HeroPhoto';
+import HeroStats from '../../components/HeroStats';
 
 const PAGE_SIZE = 20;
 
@@ -52,14 +54,10 @@ export default async function ExamsPage() {
           <p>Compare exam dates, registration status, application fees, linked programmes and the colleges that accept each exam, then open the full exam profile before you apply.</p>
         </div>
         <div className="ex-hero-visual">
-          <img src="/exams-hero.webp" alt="Students preparing for college entrance exams" width="1200" height="675" fetchPriority="high" loading="eager" decoding="async" />
+          <HeroPhoto src="/exams-hero.webp" alt="Students preparing for college entrance exams" />
         </div>
       </div>
-      {stats.length > 0 && <dl className="ex-stats">{stats.map((item) => <div key={item.label}>
-        <span className="ex-stat-icon"><item.icon size={18} aria-hidden="true" /></span>
-        <dt>{item.label}</dt>
-        <dd>{item.value.toLocaleString('en-IN')}{item.value >= 20 ? '+' : ''}</dd>
-      </div>)}</dl>}
+      <HeroStats prefix="ex" stats={stats.map((item) => ({ icon: item.icon, label: item.label, value: `${item.value.toLocaleString('en-IN')}${item.value >= 20 ? '+' : ''}` }))} />
     </section>
 
     <AdSlot slotKey="listing_top" className="listing-ad" />

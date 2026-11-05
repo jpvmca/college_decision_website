@@ -3,7 +3,7 @@
   --ls-navy: #0b2447;
   --ls-ink: #142033;
   --ls-text: #334155;
-  --ls-muted: #64748b;
+  --ls-muted: #475569;
   --ls-line: #e3e9f2;
   --ls-soft: #f5f8fc;
   --ls-blue: #2563eb;
@@ -52,8 +52,14 @@
 .ls-stat-icon { grid-row: span 2; display: grid; place-items: center; width: 40px; height: 40px; border-radius: 12px; background: var(--ls-blue-soft); color: var(--ls-blue); }
 .ls-stats > div:nth-child(2) .ls-stat-icon { background: var(--ls-teal-soft); color: var(--ls-teal); }
 .ls-stats > div:nth-child(3) .ls-stat-icon { background: var(--ls-amber-soft); color: var(--ls-amber); }
-.ls-stats dd { grid-row: 1; grid-column: 2; margin: 0; color: var(--ls-ink); font-size: 22px; font-weight: 800; line-height: 1.15; letter-spacing: -.02em; }
-.ls-stats dt { grid-row: 2; grid-column: 2; color: var(--ls-muted); font-size: 12.5px; font-weight: 600; }
+.ls-stats p { margin: 0; }
+.ls-stat-value { grid-row: 1; grid-column: 2; margin: 0; color: var(--ls-ink); font-size: 22px; font-weight: 800; line-height: 1.15; letter-spacing: -.02em; }
+.ls-stat-label { grid-row: 2; grid-column: 2; margin: 0; color: var(--ls-muted); font-size: 12.5px; font-weight: 600; }
+.ls-page .decision-result p a,
+.ls-page .auto-entity-link {
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
 
 .ls-count { margin: 0 0 14px; color: var(--ls-muted); font-size: 14px; }
 .ls-head { margin: 8px 0 14px; }
@@ -153,8 +159,8 @@ a.ls-course h2 { color: var(--ls-ink); }
   .ls-stats { grid-template-columns: repeat(auto-fit, minmax(0, 1fr)); margin: -42px 8px 0; }
   .ls-stats > div { grid-template-columns: 1fr; justify-items: center; text-align: center; padding: 12px 8px; column-gap: 0; }
   .ls-stat-icon { grid-row: auto; width: 32px; height: 32px; margin-bottom: 6px; }
-  .ls-stats dd, .ls-stats dt { grid-column: auto; }
-  .ls-stats dd { font-size: 18px; }
+  .ls-stat-value, .ls-stat-label { grid-column: auto; }
+  .ls-stat-value { font-size: 18px; }
   .ls-hero-actions .button { flex: 1 1 auto; justify-content: center; }
   .ls-facts { grid-template-columns: 1fr 1fr; }
   .ls-page .college-card-heading { flex-wrap: wrap; }

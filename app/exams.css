@@ -3,7 +3,7 @@
   --ex-navy: #0b2447;
   --ex-ink: #142033;
   --ex-text: #334155;
-  --ex-muted: #64748b;
+  --ex-muted: #475569;
   --ex-line: #e3e9f2;
   --ex-soft: #f5f8fc;
   --ex-blue: #2563eb;
@@ -46,8 +46,14 @@
 .ex-stat-icon { grid-row: span 2; display: grid; place-items: center; width: 40px; height: 40px; border-radius: 12px; background: var(--ex-blue-soft); color: var(--ex-blue); }
 .ex-stats > div:nth-child(2) .ex-stat-icon { background: var(--ex-teal-soft); color: var(--ex-teal); }
 .ex-stats > div:nth-child(3) .ex-stat-icon { background: var(--ex-amber-soft); color: var(--ex-amber); }
-.ex-stats dd { grid-row: 1; grid-column: 2; margin: 0; color: var(--ex-ink); font-size: 22px; font-weight: 800; line-height: 1.15; letter-spacing: -.02em; }
-.ex-stats dt { grid-row: 2; grid-column: 2; color: var(--ex-muted); font-size: 12.5px; font-weight: 600; }
+.ex-stats p { margin: 0; }
+.ex-stat-value { grid-row: 1; grid-column: 2; margin: 0; color: var(--ex-ink); font-size: 22px; font-weight: 800; line-height: 1.15; letter-spacing: -.02em; }
+.ex-stat-label { grid-row: 2; grid-column: 2; margin: 0; color: var(--ex-muted); font-size: 12.5px; font-weight: 600; }
+.ex-page .auto-entity-link,
+.ex-page .exam-card-copy p a {
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
 
 .ex-eyebrow { display: inline-flex; align-items: center; gap: 6px; margin: 0 0 6px; color: var(--ex-teal); font-size: 12px; font-weight: 800; letter-spacing: .12em; text-transform: uppercase; }
 .ex-upcoming { margin: 28px 0 8px; }
@@ -129,7 +135,7 @@
   .ex-stats { grid-template-columns: repeat(3, minmax(0, 1fr)); margin: -42px 8px 0; }
   .ex-stats > div { grid-template-columns: 1fr; justify-items: center; text-align: center; padding: 12px 8px; column-gap: 0; }
   .ex-stat-icon { grid-row: auto; margin-bottom: 6px; width: 32px; height: 32px; }
-  .ex-stats dd, .ex-stats dt { grid-column: auto; }
+  .ex-stat-value, .ex-stat-label { grid-column: auto; }
   .ex-upcoming-list { grid-template-columns: 1fr; }
   .ex-filter { top: 4px; padding: 8px; }
   .ex-page .exam-card-heading { align-items: flex-start; }

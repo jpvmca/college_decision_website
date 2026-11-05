@@ -1,6 +1,6 @@
 /* Ad Manager slots: labelled, reserved height (no layout shift), never sticky. */
 .ad-wrap{display:block;clear:both;margin:32px auto;padding:6px 0 10px;max-width:100%;text-align:center;border-top:1px solid #eef1f6;border-bottom:1px solid #eef1f6;overflow:hidden;contain:layout}
-.ad-label{display:block;margin:0 0 6px;font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#8a94a6;line-height:16px}
+.ad-label{display:block;margin:0 0 6px;font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#475569;line-height:16px}
 .ad-inner{display:flex;align-items:center;justify-content:center;width:100%}
 .ad-inner ins.adsbygoogle{width:100%}
 .ad-inner img{max-width:100%;height:auto;display:block;margin:0 auto}

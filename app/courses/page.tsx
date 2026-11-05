@@ -6,6 +6,8 @@ import { getCourseFacets } from '../../lib/listings';
 import CourseDirectory from '../../components/CourseDirectory';
 import AdSlot from '../../components/ads/AdSlot';
 import { getAdSlot } from '../../lib/ads';
+import HeroPhoto from '../../components/HeroPhoto';
+import HeroStats from '../../components/HeroStats';
 
 type Course = { id: number; name: string; slug: string; published_slug?: string | null; mode: string | null; image_url: string | null; programme_count: number; institute_count: number; review_count: number | string | null; average_rating: number | string | null };
 type CourseList = { data: Course[]; pagination: { page: number; perPage: number; total: number; totalPages: number } };
@@ -58,14 +60,10 @@ export default async function CoursesPage() {
           </div>
         </div>
         <div className="ls-hero-visual">
-          <img src="/courses-hero.webp" alt="Students exploring courses and college options" width="1200" height="675" fetchPriority="high" loading="eager" decoding="async" />
+          <HeroPhoto src="/courses-hero.webp" alt="Students exploring courses and college options" />
         </div>
       </div>
-      {stats.length > 0 && <dl className="ls-stats">{stats.map((item) => <div key={item.label}>
-        <span className="ls-stat-icon"><item.icon size={18} aria-hidden="true" /></span>
-        <dt>{item.label}</dt>
-        <dd>{formatCount(item.value)}{item.value >= 20 ? '+' : ''}</dd>
-      </div>)}</dl>}
+      <HeroStats prefix="ls" stats={stats.map((item) => ({ icon: item.icon, label: item.label, value: `${formatCount(item.value)}${item.value >= 20 ? '+' : ''}` }))} />
     </section>
     <AdSlot slotKey="listing_top" className="listing-ad" />
     <div className="ls-head">
