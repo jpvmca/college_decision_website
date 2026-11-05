@@ -47,6 +47,9 @@ export function courseDisplayName(slug: string, dbName: string) {
   if (slug === 'mba') return dbName || 'MBA / PGDM';
   if (slug === 'bsc') return 'B.Sc';
   if (slug === 'arts') return 'BA (Bachelor of Arts)';
+  if (slug === 'phd') return 'Ph.D';
+  if (slug === 'beauty') return 'Beauty & Cosmetology';
+  if (slug === 'design-ug') return 'B.Des (Bachelor of Design)';
   if (slug === 'commerce') return 'B.Com (Bachelor of Commerce)';
   if (slug === 'online-mba') return 'Online MBA';
   if (slug === 'bpharm') return 'B.Pharm';
@@ -204,9 +207,9 @@ export function courseSeo(profile: CourseSeoInput): CourseSeoPack {
       intro:
         'A UG diploma is a practical course you can start after Class 10 or Class 12, from polytechnic engineering to D.El.Ed and paramedical diplomas. Check eligibility, admission tests, fees and where a diploma can take you.',
       crossLink: {
-        href: '/courses/polytechnic-diploma',
-        anchor: 'Read the polytechnic diploma guide',
-        note: 'Planning an engineering diploma? See the polytechnic guide for branch-wise details.'
+        href: '/courses/polytechnic',
+        anchor: 'Read the polytechnic course guide',
+        note: 'Planning an engineering diploma or lateral entry? See the polytechnic guide (course polytechnic-diploma was consolidated here).'
       },
       faqs: [
         { question: 'Can I do a diploma after Class 10?', answer: 'Yes. AICTE lists three-year diplomas in engineering and technology, applied arts and crafts, and design for students who have passed Class 10.' },
@@ -1472,127 +1475,594 @@ export function courseSeo(profile: CourseSeoInput): CourseSeoPack {
     };
   }
 
-  if (slug === 'mba') {
+  if (slug === 'march') {
     return {
-      displayName,
-      h1: 'MBA Course in India: Eligibility, Entrance Exams, Fees & Specialisations',
-      title: 'MBA Course Details: Eligibility, Exams, Fees & Subjects',
+      displayName: 'M.Arch (Master of Architecture)',
+      h1: 'M.Arch Course: Eligibility, Admission, Fees, Syllabus and Scope 2026',
+      title: 'M.Arch Course: Eligibility, PGETA, GATE, Fees & Syllabus 2026',
       description:
-        'MBA course guide: AICTE eligibility, CAT 2026 and other exams, MBA vs PGDM, specialisations, subjects and fees (median ₹1,62,500 a year in our data).',
-      keywords: [
-        'MBA course',
-        'MBA full form',
-        'MBA eligibility',
-        'MBA entrance exams',
-        'MBA vs PGDM',
-        'MBA specializations',
-        'MBA fees in India'
-      ],
+        'M.Arch course details for 2026: B.Arch with 50% (CoA), PGETA vs GATE AR via CCMT, syllabus, specialisations, fees (median about Rs 1.02 lakh a year) and careers.',
+      keywords: ['M.Arch course', 'M.Arch course details', 'M.Arch eligibility', 'M.Arch admission 2026', 'M.Arch fees', 'M.Arch syllabus', 'PGETA', 'GATE architecture for M.Arch'],
       intro:
-        'MBA (Master of Business Administration) is a two-year postgraduate programme after any bachelor’s degree. Check eligibility, entrance exams, MBA vs PGDM, specialisations and fees before you shortlist B-schools.',
+        'The M.Arch course (Master of Architecture) is a two-year postgraduate degree for B.Arch graduates who want to specialise. Use this guide to check eligibility, PGETA and GATE, fees, the syllabus and where an M.Arch can realistically take you.',
       crossLink: {
-        href: '/mba-colleges',
-        anchor: 'Compare MBA colleges by fees & placements',
-        note: 'Ready to shortlist? Browse MBA and PGDM colleges with recorded fees, accepted exams and placement outcomes.'
+        href: '/march-colleges',
+        anchor: 'Browse M.Arch colleges',
+        note: 'Ready to shortlist? See M.Arch colleges with listed fees, specialisations and accepted exams, and confirm each programme\'s CoA approval.'
       },
       faqs: [
-        {
-          question: 'What is the full form of MBA?',
-          answer: 'MBA stands for Master of Business Administration, a two-year postgraduate degree in management.'
-        },
-        {
-          question: 'What is the eligibility for MBA?',
-          answer: 'Under AICTE rules you need a bachelor’s degree of at least three years in any stream with 50% marks (45% for reserved categories), plus a valid entrance test score. Institutes can set higher cut-offs.'
-        },
-        {
-          question: 'Is MBA only 2 years?',
-          answer: 'A full-time MBA or PGDM is two years. AICTE also lists lateral entry into the second year for four-year B.Tech, BBA or BMS graduates where a university offers it, and an 18-month PGDM format for candidates with three years of managerial experience.'
-        },
-        {
-          question: 'Which entrance exams are accepted for MBA?',
-          answer: 'The IIMs use CAT. AICTE allows PGDM institutes to admit through CAT, XAT, CMAT, ATMA, MAT or GMAT, or a state or central government test. State CETs such as MAH MBA CET and TANCET, and institute tests such as SNAP and NMAT, are also common.'
-        },
-        {
-          question: 'When is CAT 2026?',
-          answer: 'CAT 2026 is on 29 November 2026, conducted by IIM Indore in three sessions. It is a 120-minute computer-based test with VARC, DILR and QA sections of 40 minutes each.'
-        },
-        {
-          question: 'What is the difference between MBA and PGDM?',
-          answer: 'An MBA is a degree awarded by a university or an IIM. A PGDM is a diploma awarded by an AICTE-approved autonomous institute. Both have the same AICTE entry rule. Compare approval, curriculum, fees and placements rather than the label.'
-        },
-        {
-          question: 'Which MBA specialisation is most common?',
-          answer: 'In our records, Finance (716 programmes), Marketing (709) and Human Resources (629) are the most common, followed by International Business, IT and Operations.'
-        },
-        {
-          question: 'What is the fee for an MBA in India?',
-          answer: 'It varies widely. Across 2,718 MBA/PGDM fee records in our database, the median is ₹1,62,500 a year. IIM Bangalore charges ₹26,00,000 for its two-year PGP 2026-28, with mess charges extra.'
-        },
-        {
-          question: 'Can I do an MBA after B.Sc, B.Com or B.Tech?',
-          answer: 'Yes. Any bachelor’s degree of at least three years with the required marks makes you eligible. Your stream does not limit which MBA specialisation you can choose.'
-        }
+        { question: 'What is the eligibility for the M.Arch course?', answer: 'Under the Council of Architecture PG Guidelines 2022, you need a B.Arch or equivalent with at least 50% aggregate marks or equivalent CGPA, and you must qualify an entrance test. Many colleges ask for more, and CCMT seats at NITs need 60% or 6.5 CGPA (55% or 6.0 for SC, ST and PwD).' },
+        { question: 'Can I do an M.Arch after B.Tech in civil engineering?', answer: 'No. The CoA rule needs a B.Arch or an equivalent architecture qualification. Civil engineering graduates usually look at an M.Tech, or at an M.Plan where the university accepts a civil engineering degree.' },
+        { question: 'Is PGETA or GATE better for M.Arch admission?', answer: 'Neither is better in general; they serve different colleges. PGETA is the Council of Architecture\'s test for CoA-approved institutions, while NITs and other central institutes fill M.Arch seats through CCMT using GATE Architecture and Planning scores. If you are applying widely, take both.' },
+        { question: 'When is PGETA 2027?', answer: 'PGETA 2027 dates had not been announced on 5 November 2026. PGETA 2026 was held on 31 May, 14 June and 28 June 2026, and candidates could take up to three attempts. Watch pgeta.in and coa.gov.in for the new schedule.' },
+        { question: 'What is the fee for the M.Arch course?', answer: 'First-year fees listed on CollegeDecision for 34 colleges have a median of about Rs 1,02,000 a year, with the middle half between about Rs 95,000 and Rs 1,34,500. Hostel, study tours and thesis costs are often extra, so confirm the full two-year fee with the college.' },
+        { question: 'Is the M.Arch course two years long?', answer: 'Yes. CoA sets a minimum of two years, or four semesters of about 18 working weeks each, for a full-time M.Arch. The course must be finished within three years.' },
+        { question: 'Do I need an M.Arch to register as an architect?', answer: 'No. Under the Architects Act, 1972, registration with the Council of Architecture is based on a recognised B.Arch. An M.Arch adds a specialisation and is the usual route into teaching, but it is not needed to practise.' },
+        { question: 'Is M.Arch the same as M.Plan?', answer: 'No. An M.Arch deepens architecture in a chosen specialisation, while an M.Plan focuses on urban, regional, transport or housing planning. Both are often taught at architecture and planning schools.' }
+      ]
+    };
+  }
+
+  if (slug === 'd-pharma-course') {
+    return {
+      displayName: 'D.Pharma (Diploma in Pharmacy)',
+      h1: 'D.Pharma Admission 2026-27: Eligibility, Process, Fees, Syllabus and Scope',
+      title: 'D.Pharma Admission 2026-27: Eligibility, Process & Fees',
+      description:
+        'D.Pharma admission 2026-27: Class 12 PCB/PCM eligibility, state merit and JEECUP routes, PCI syllabus, fees (median about Rs 75,500 a year) and careers.',
+      keywords: ['D.Pharma admission', 'D.Pharma admission 2026', 'D.Pharma eligibility', 'D.Pharma admission process', 'D.Pharma fees', 'D.Pharma syllabus', 'D.Pharma entrance exam', 'D.Pharma vs B.Pharma'],
+      intro:
+        'D.Pharma admission is open to Class 12 science students with Physics, Chemistry and Biology or Mathematics. There is no national test: each state fills seats by merit or its own test. Check eligibility, the process, fees and careers here.',
+      crossLink: {
+        href: '/courses/bpharm',
+        anchor: 'Read the B.Pharm course guide',
+        note: 'Weighing D.Pharma against a degree? PCI lets D.Pharma holders join B.Pharm directly in the second year.'
+      },
+      faqs: [
+        { question: 'What is the eligibility for D.Pharma admission?', answer: 'Under the PCI Education Regulations, 2020 you need a pass in 10+2 science with Physics, Chemistry and Biology or Mathematics. PCI sets no minimum percentage; states and institutes often ask for 50% (45% for some reserved categories).' },
+        { question: 'Is there an entrance exam for D.Pharma?', answer: 'There is no national D.Pharma entrance exam, and NEET and GPAT are not used. Uttar Pradesh fills seats through JEECUP, while Maharashtra and Haryana used Class 12 merit in 2026-27. Some private universities run their own test.' },
+        { question: 'How long is the D.Pharma course?', answer: 'Two academic years, followed by at least 500 hours of practical training spread over at least three months, as set by PCI ER-2020.' },
+        { question: 'Can commerce students do D.Pharma?', answer: 'No. PCI requires Physics and Chemistry in Class 12 along with Biology or Mathematics, so commerce and arts students without these subjects are not eligible.' },
+        { question: 'What is the fee for D.Pharma?', answer: 'Ten private colleges with a listed fee on CollegeDecision charge Rs 25,000 to Rs 1,20,000 a year, with a median of about Rs 75,500 (November 2026). Government seats are usually cheaper. Confirm the full two-year fee with the institute.' },
+        { question: 'Is the D.Pharm exit exam compulsory in 2026?', answer: 'PCI notified exit exam rules in 2022, but the exam has not been held. On 20 February 2026 PCI asked State Pharmacy Councils to register passed-out candidates under Section 32(2) of the Pharmacy Act, 1948. Check pci.gov.in for newer notices.' },
+        { question: 'Can I join B.Pharm after D.Pharma?', answer: 'Yes. PCI\'s B.Pharm rules allow D.Pharma holders to enter the second year (third semester) through lateral entry, subject to state or university admission rules and limited seats.' }
+      ]
+    };
+  }
+
+  if (slug === 'medical-ug') {
+    return {
+      displayName: 'Medical Courses after 12th (UG)',
+      h1: 'Medical Courses after 12th: Eligibility, NEET UG, Fees and Careers',
+      title: 'Medical Courses after 12th: NEET UG, Eligibility & Fees',
+      description:
+        'Medical courses after 12th compared: MBBS, BDS, AYUSH degrees, BNYS and paramedical diplomas. NEET UG eligibility, counselling, syllabus, fees and careers.',
+      keywords: ['medical courses after 12th', 'medical courses after 12th without NEET', 'medical UG courses', 'NEET UG courses list', 'BNYS course', 'paramedical diploma courses', 'medical course fees', 'medical course duration'],
+      intro:
+        'Medical courses after 12th include NEET-based doctor degrees such as MBBS, BDS, BAMS, BUMS, BSMS and BHMS, plus BNYS and 1 to 3 year paramedical diplomas. Compare eligibility, admission, fees and careers here.',
+      crossLink: {
+        href: '/courses/medical',
+        anchor: 'Read the MBBS course guide',
+        note: 'Aiming to become a doctor? Our MBBS guide covers NEET UG cut-offs, counselling and colleges in detail.'
+      },
+      faqs: [
+        { question: 'Which medical courses can I do after 12th?', answer: 'With Physics, Chemistry and Biology you can choose doctor degrees (MBBS, BDS, BAMS, BUMS, BSMS, BHMS) through NEET (UG), BNYS under state rules, or paramedical diplomas such as medical lab technology, optometry, X-ray and operation theatre technology.' },
+        { question: 'Which medical courses can I do after 12th without NEET?', answer: 'Most paramedical diplomas and many allied health degrees admit on Class 12 marks or a university test. BNYS is filled on Class 12 marks in some states and on NEET ranks in others. MBBS, BDS and the AYUSH degrees always need NEET (UG).' },
+        { question: 'What is the eligibility for NEET UG courses?', answer: 'Class 12 with Physics, Chemistry, Biology/Biotechnology and English, a minimum age of 17 by 31 December of the admission year, and the NEET qualifying percentile: 50th for General, 45th for General-PwBD and 40th for SC, ST and OBC-NCL.' },
+        { question: 'How long are medical UG courses?', answer: 'MBBS, BAMS, BUMS, BSMS and BHMS take about 5.5 years including a one-year internship, and BDS takes 5 years. Paramedical diplomas usually take 1 to 3 years.' },
+        { question: 'Who conducts counselling for medical UG seats?', answer: 'MCC conducts counselling for the All India Quota, deemed and central MBBS and BDS seats, and AACCC does the same for AYUSH degrees. State authorities fill state quota and private seats as per their rules.' },
+        { question: 'What are the fees for medical courses after 12th?', answer: 'Fees vary widely by course and college type. In the CollegeDecision Medical UG listing, three private BNYS colleges list Rs 69,000 to Rs 1,00,000 a year and three diploma colleges list Rs 30,000 to Rs 80,000 a year (November 2026). Confirm fees with the counselling body or college.' },
+        { question: 'When is NEET UG 2027?', answer: 'NTA had not announced NEET (UG) 2027 dates as of 5 November 2026. For reference, NEET (UG) 2026 was held on 3 May, with a re-examination on 21 June and results on 16 July 2026. Check neet.nta.nic.in for the 2027 bulletin.' }
+      ]
+    };
+  }
+
+  if (slug === 'online-mba') {
+    return {
+      displayName: 'Online MBA',
+      h1: 'Online MBA in India 2026: Validity, Eligibility, Admission, Fees and Careers',
+      title: 'Online MBA 2026: Validity, Eligibility, Fees & Admission',
+      description:
+        'Online MBA in India: UGC validity, how to check entitlement on UGC-DEB, eligibility, admission, syllabus, specialisations, listed fees and career scope.',
+      keywords: ['online MBA', 'online MBA in India', 'online MBA validity', 'online MBA eligibility', 'online MBA admission', 'online MBA fees', 'UGC approved online MBA', 'online MBA vs regular MBA'],
+      intro:
+        'An online MBA is a two-year MBA taught online. From a UGC-entitled university it is equal to a regular MBA. Learn how to check validity, eligibility, admission, fees and careers.',
+      crossLink: {
+        href: '/courses/mba',
+        anchor: 'Read the regular MBA guide',
+        note: 'Can study full time? Compare the online MBA with a regular MBA or PGDM.'
+      },
+      faqs: [
+        { question: 'Is an online MBA valid in India?', answer: 'Yes, if the university is entitled by UGC to offer that online programme for the session. Regulation 22 of the UGC ODL and Online Regulations, 2020 makes online degrees from recognised institutions equivalent to regular-mode degrees. Check the list on deb.ugc.ac.in.' },
+        { question: 'What is the eligibility for an online MBA?', answer: 'A bachelor\'s degree in any discipline from a recognised university. Each university sets its own marks rule; many ask for 50% (often 45% for reserved categories). Work experience is usually not required.' },
+        { question: 'Is there an entrance exam for an online MBA?', answer: 'There is no national entrance exam. Universities admit on graduation marks, their own online test or an interview. A few may consider CAT, CMAT or MAT scores.' },
+        { question: 'How long is an online MBA?', answer: 'Two years, usually split into four semesters. Some universities allow extra time to finish, as per their rules.' },
+        { question: 'What is the difference between an online MBA and an online PGDM?', answer: 'An online MBA is a degree awarded by a UGC-entitled university. An online PGDM is a diploma from an AICTE-approved autonomous institute. Both are postgraduate management qualifications, but they have different regulators.' },
+        { question: 'What are online MBA fees?', answer: 'Fees vary widely. In the CollegeDecision listing, three online PGDM institutes list Rs 1,25,000 to Rs 4,47,500 a year (November 2026). Online MBA university fees are not yet verified in our records, so confirm the full two-year fee with each university.' },
+        { question: 'Can I do a PhD after an online MBA?', answer: 'Yes. The UGC PhD Regulations, 2022 accept a master\'s degree, and an online MBA from an entitled university counts as one. The university\'s own entrance and admission rules still apply.' }
       ]
     };
   }
 
   if (slug === 'engineering') {
     return {
-      displayName,
-      h1: 'B.Tech / B.E. Course in India: Eligibility, Exams, Fees & Branches',
-      title: 'B.Tech Course Details: Eligibility, Fees, Exams & Careers',
+      displayName: 'Engineering (B.Tech / B.E.)',
+      h1: 'B.Tech Course: Eligibility, Admission, Fees, Syllabus and Scope 2026',
+      title: 'B.Tech Course: Eligibility, JEE Main, Fees & Syllabus 2026',
       description:
-        'B.Tech/B.E. course guide: Class 12 rules by route, Chemistry rules, JEE and state exams, branches, syllabus and fees (median ₹97,500 a year in our data).',
-      keywords: [
-        'B.Tech course',
-        'Bachelor of Technology',
-        'B.Tech vs B.E.',
-        'B.Tech fees in India',
-        'B.Tech eligibility',
-        'engineering entrance exams',
-        'B.Tech branches',
-        'jobs after B.Tech'
-      ],
+        'B.Tech course guide for 2026: AICTE eligibility, JEE Main 2027 dates, JoSAA rules, syllabus, branches, fees (median about Rs 70,000 a year) and careers.',
+      keywords: ['B.Tech course', 'B.Tech course details', 'B.Tech eligibility', 'B.Tech admission 2026', 'B.Tech fees', 'B.Tech syllabus', 'JEE Main for B.Tech', 'B.E. course'],
       intro:
-        'B.Tech (Bachelor of Technology) and B.E. are four-year engineering degrees after Class 12. Check which eligibility rule applies to you, the entrance exams, branches, syllabus and fees before you shortlist colleges.',
+        'The B.Tech course (Bachelor of Technology), also awarded as B.E., is a four-year undergraduate engineering degree after Class 12. Use this guide for eligibility, JEE Main and Advanced, fees, syllabus and how to compare colleges.',
       crossLink: {
         href: '/engineering-colleges',
-        anchor: 'Compare Engineering colleges by fees & placements',
-        note: 'Ready to shortlist? Browse Engineering colleges, including B.Tech and B.E. programmes, with recorded fees, course focus and placement outcomes.'
+        anchor: 'Browse engineering colleges',
+        note: 'Ready to shortlist? See B.Tech/B.E. colleges with listed fees, branches and accepted exams.'
       },
       faqs: [
-        {
-          question: 'What is the full form of B.Tech?',
-          answer: 'B.Tech stands for Bachelor of Technology, a four-year undergraduate engineering degree. B.E. (Bachelor of Engineering) is its equivalent.'
-        },
-        {
-          question: 'Is B.E. different from B.Tech?',
-          answer: 'Not for eligibility or recognition. UGC lists both as four-year bachelor’s degrees after 10+2, and JoSAA and GATE treat them together as B.E./B.Tech. Compare the syllabus and the college, not the name.'
-        },
-        {
-          question: 'Is Chemistry compulsory for B.Tech?',
-          answer: 'Not for every branch. Under AICTE rules, CSE, Electrical and Electronics need Physics and Maths plus one listed subject, which need not be Chemistry. Civil, Mechanical and Chemical need Physics, Chemistry and Maths, and IITs require all three for every branch.'
-        },
-        {
-          question: 'Do I need 75% in Class 12 for B.Tech?',
-          answer: 'Only for JoSAA admission to IITs, NITs, IIITs and GFTIs, which need 75% (65% for SC, ST and PwD) or a place in the top 20 percentile of your board. The AICTE minimum for other colleges is 45% in the qualifying subjects (40% for reserved categories).'
-        },
-        {
-          question: 'Can I get B.Tech admission without JEE Main?',
-          answer: 'Yes. State entrance exams and university tests such as BITSAT or VITEEE are separate routes. You need JEE Main for NITs, IIITs and GFTIs, and to qualify for JEE Advanced for the IITs.'
-        },
-        {
-          question: 'What is the fee for B.Tech in India?',
-          answer: 'Fees vary widely. Across 4,549 programme fee records in our database, the median is ₹97,500 a year. For 2026, NIT Trichy charges ₹62,500 tuition per semester and IIT Bombay, Delhi and Madras charge ₹1,00,000 per semester, with income-based waivers.'
-        },
-        {
-          question: 'Can I do B.Tech after a diploma?',
-          answer: 'Yes. AICTE allows diploma holders with at least 45% (40% for reserved categories) to join the second year through lateral entry and finish in three years.'
-        },
-        {
-          question: 'What can I do after B.Tech?',
-          answer: 'Common paths are a job in your branch, an M.Tech or M.E. through GATE, an MBA, or public-sector and government engineering roles. Outcomes depend on your branch, skills and college.'
-        }
+        { question: 'What is the eligibility for a B.Tech course?', answer: 'AICTE asks for 10+2 with Physics and Mathematics plus one listed subject, and at least 45% in those subjects (40% for reserved categories). NITs, IIITs and GFTIs through JoSAA need 75% in Class 12 (65% SC/ST/PwD) or a top-20 percentile place. IITs also require JEE Advanced with Physics, Chemistry and Maths.' },
+        { question: 'Is B.Tech the same as B.E.?', answer: 'For most jobs, GATE and JoSAA counselling, yes. Both are four-year undergraduate engineering degrees. Universities choose the label; compare the curriculum and college rather than the name.' },
+        { question: 'When is JEE Main 2027?', answer: 'As per the NTA Information Bulletin for JEE (Main) 2027, Session 1 exams are on 20, 21, 22, 23, 24 and 28 January 2027, and Session 2 exams are on 2–7 April 2027. Confirm any change on jeemain.nta.nic.in.' },
+        { question: 'Do I need JEE Advanced for every B.Tech college?', answer: 'No. JEE Advanced is for the IITs. NITs, IIITs and many other institutes use JEE Main through JoSAA. States and private universities also use their own CETs or tests.' },
+        { question: 'What is the fee for a B.Tech course?', answer: 'Across 762 colleges with a listed first-year tuition on CollegeDecision (November 2026), the median is about ₹70,000 a year and the middle half is about ₹50,000 to ₹1,15,000. Hostel and mess are usually extra. Confirm the current prospectus.' },
+        { question: 'Can diploma holders join B.Tech?', answer: 'Yes, through lateral entry into the second year at many universities, typically with a relevant diploma and the marks rule in the AICTE handbook or state brochure (often 45%, or 40% for reserved categories).' },
+        { question: 'Which B.Tech branch should I choose?', answer: 'Choose the work you want to study for four years. In our listing, ECE, CSE, Mechanical and Civil are the largest groups. Treat new AI labels carefully — many are CSE or ECE variants.' },
+        { question: 'Is Maths compulsory for B.Tech?', answer: 'For the standard AICTE Engineering and Technology route, Mathematics is part of the required subject combination with Physics and a third listed subject. Always read the branch-wise table in the current handbook or state brochure.' }
+      ]
+    };
+  }
+
+
+  if (slug === 'law') {
+    return {
+      displayName: 'LLB (3-Year)',
+      h1: 'LLB Course: Eligibility, Admission, Fees, Syllabus and Scope 2026',
+      title: 'LLB Course: Eligibility, Entrance Exams, Fees & Syllabus 2026',
+      description:
+        'LLB course guide for 2026: BCI eligibility after graduation, state CETs, syllabus, fees (median about Rs 40,000 a year) and careers. CLAT UG is not for this degree.',
+      keywords: ['LLB course', '3 year LLB', 'LLB eligibility', 'LLB after graduation', 'LLB entrance exam', 'LLB fees', 'LLB syllabus', 'LLB career'],
+      intro:
+        'The LLB course here means the three-year Bachelor of Laws after any bachelor’s degree. Use this guide for BCI eligibility, state entrance tests, fees, syllabus and how to compare colleges — not the five-year path after Class 12.',
+      crossLink: {
+        href: '/llb-colleges',
+        anchor: 'Browse LLB colleges',
+        note: 'Ready to shortlist? See 3-year LLB colleges with listed fees and accepted exams, and confirm each college’s BCI approval.'
+      },
+      faqs: [
+        { question: 'What is the eligibility for a 3-year LLB course?', answer: 'A bachelor’s degree from a recognised university with at least 45% marks (42% OBC; 40% SC/ST) under Bar Council of India rules. States and universities may ask for higher marks or a CET score.' },
+        { question: 'Is there an age limit for LLB admission?', answer: 'No upper age limit is enforced at present. BCI’s earlier age-cap circular was stayed by the Supreme Court, and the dispute is pending. Always read the current university or CET notice.' },
+        { question: 'Can I join a 3-year LLB through CLAT?', answer: 'No. CLAT UG is for five-year integrated programmes at NLUs after Class 12. For a 3-year LLB, use state tests such as MAH LL.B 3-Yr CET, TS LAWCET or AP LAWCET, or university exams.' },
+        { question: 'What is the fee for an LLB course?', answer: 'Across 103 colleges with a listed first-year tuition on CollegeDecision (November 2026), the median is about ₹40,000 a year. Public colleges in that set centre near ₹17,500; private near ₹45,000. Hostel is usually extra.' },
+        { question: 'Is a 3-year LLB enough to practise in court?', answer: 'After you complete an approved LLB and enrol with a State Bar Council, you can appear for AIBE and then practise, subject to that council’s rules. The three-year and five-year degrees both lead to enrolment when the college is approved.' },
+        { question: 'What subjects are taught in LLB?', answer: 'Core papers typically include constitutional law, contracts, torts, criminal law, property, family law, evidence, CPC, CrPC and company law, plus clinical papers such as drafting, moot court and professional ethics.' },
+        { question: 'Can I do LLB after any graduation?', answer: 'Yes, BCI allows any recognised bachelor’s subject, subject to the marks floor. Science, commerce and arts graduates all apply; some CETs still ask you to declare your stream for seat categories.' },
+        { question: 'LLB vs BA LLB — which should I choose?', answer: 'Choose LLB if you already hold a bachelor’s degree. Choose an integrated BA LLB (or BBA/B.Com LLB) if you are coming from Class 12 and want a five-year dual degree. See our integrated law course guide for that path.' }
+      ]
+    };
+  }
+
+  if (slug === 'integrated-law') {
+    return {
+      displayName: 'Integrated Law (5-Year LLB)',
+      h1: 'Integrated Law Course: Eligibility, CLAT, Fees, Syllabus and Scope 2026',
+      title: 'Integrated Law Course: CLAT, Eligibility, Fees & Syllabus 2026',
+      description:
+        'Integrated law course guide for 2026: BA/BBA/B.Com LLB after Class 12, BCI eligibility, CLAT 2027 and AILET dates, fees (median about Rs 81,700 a year) and careers.',
+      keywords: ['integrated law course', 'BA LLB', 'BBA LLB', '5 year LLB', 'CLAT 2027', 'AILET 2027', 'integrated LLB fees', 'NLU admission'],
+      intro:
+        'An integrated law course is a five-year dual degree (BA LLB, BBA LLB, B.Com LLB and related labels) after Class 12. Use this guide for BCI eligibility, CLAT and AILET dates, fees, combinations and how to compare colleges.',
+      crossLink: {
+        href: '/ba-llb-colleges',
+        anchor: 'Browse BA LLB colleges',
+        note: 'Ready to shortlist? See integrated BA LLB colleges with listed fees and accepted exams. Also compare BBA LLB options where listed.'
+      },
+      faqs: [
+        { question: 'What is an integrated law course?', answer: 'A five-year programme that combines a bachelor’s degree such as BA, BBA, B.Com or B.Sc with an LLB, so you finish with a dual qualification after Class 12 instead of doing a separate graduation first.' },
+        { question: 'What is the eligibility for BA LLB or BBA LLB?', answer: 'Bar Council of India asks for Class 12 with at least 45% marks (42% OBC; 40% SC/ST). CLAT and AILET follow the same marks floor in recent notices, plus that year’s application rules.' },
+        { question: 'When is CLAT 2027?', answer: 'The Consortium of NLUs has scheduled CLAT 2027 for 6 December 2026 from 2 pm to 4 pm. Confirm any change on consortiumofnlus.ac.in before you apply.' },
+        { question: 'When is AILET 2027?', answer: 'NLU Delhi has scheduled AILET 2027 for 13 December 2026 from 2 pm to 4 pm. Confirm on nationallawuniversitydelhi.in.' },
+        { question: 'What is the fee for an integrated LLB?', answer: 'Across 130 colleges with a listed first-year tuition on CollegeDecision (November 2026), the median is about ₹81,700 a year. Public colleges in that set centre near ₹44,000; private near ₹85,000. Hostel is usually extra.' },
+        { question: 'BA LLB vs BBA LLB — which is better?', answer: 'Neither is universally better. BA LLB suits students who want more social-science papers; BBA LLB adds management papers that some corporate recruiters like. Pick the combination you will study for five years and that the college actually teaches well.' },
+        { question: 'Do all NLUs take CLAT?', answer: 'Most NLUs use CLAT UG for the five-year programmes. NLU Delhi runs AILET instead. Always read the current year’s counselling brochure for seat matrix and domicile rules.' },
+        { question: 'Can I switch from integrated LLB to a 3-year LLB later?', answer: 'They are different entry routes. If you leave an integrated programme early you usually do not get an LLB. After a separate bachelor’s degree you can apply to a 3-year LLB instead — see our LLB course page.' }
+      ]
+    };
+  }
+
+
+
+  if (slug === 'arts') {
+    return {
+      displayName: 'BA (Bachelor of Arts)',
+      h1: 'BA Course: Eligibility, Admission, Fees, Syllabus and Scope 2026',
+      title: 'BA Course: Eligibility, CUET, Fees, Subjects & Syllabus 2026',
+      description:
+        'BA course guide for 2026: Class 12 eligibility, CUET UG vs merit routes, majors, fees (median about Rs 30,000 a year) and careers after Bachelor of Arts.',
+      keywords: ['BA course', 'Bachelor of Arts', 'BA eligibility', 'BA subjects', 'BA fees', 'CUET for BA', 'BA Honours', 'BA admission 2026'],
+      intro:
+        'The BA course (Bachelor of Arts) is a three-year undergraduate arts degree after Class 12, with four-year Honours options where universities offer them. Use this guide for eligibility, CUET and merit routes, fees and how to compare colleges.',
+      crossLink: {
+        href: '/ba-colleges',
+        anchor: 'Browse BA colleges',
+        note: 'Ready to shortlist? See BA colleges with listed fees, subjects and accepted exams.'
+      },
+      faqs: [
+        { question: 'What is the eligibility for a BA course?', answer: 'Class 12 (10+2) from a recognised board. Many colleges ask for about 45–50% aggregate, with category relaxation where notified. CUET-based programmes also need the subject mapping in that university’s brochure.' },
+        { question: 'Is CUET compulsory for BA admission?', answer: 'No. Many central and participating universities use CUET (UG), but a large number of state and private colleges still admit on Class 12 merit or their own test.' },
+        { question: 'What is the duration of a BA course?', answer: 'Most BA programmes run three years. Under NEP-aligned structures, some universities offer a four-year Honours or Honours with Research path with exit options — confirm on the college page.' },
+        { question: 'What is the fee for a BA course?', answer: 'Across 214 published colleges with Year-1 tuition under this course on CollegeDecision (November 2026), the median is about ₹30,000 a year. Public colleges in that sample centre near ₹11,200; private near ₹36,000. Hostel is usually extra.' },
+        { question: 'Which BA subject should I choose?', answer: 'Choose the major you can study for three or four years. In our active labels, English and Economics are the largest named clusters, followed by History, Political Science, Hindi, Psychology and Sociology.' },
+        { question: 'BA vs BA LLB — what is the difference?', answer: 'BA is a three-year arts degree. BA LLB is a five-year integrated law degree after Class 12. See our integrated law course page for BA LLB.' },
+        { question: 'Can science students apply for BA?', answer: 'Yes, many BA majors accept arts, commerce and science streams. Some subjects still require specific CUET domain papers or Class 12 prerequisites — read the mapping PDF.' },
+        { question: 'What can I do after a BA course?', answer: 'Common paths include an MA, B.Ed, three-year LLB, media or content roles, and exam preparation. Outcomes depend on major, skills and further study — not the BA label alone.' }
+      ]
+    };
+  }
+
+  if (slug === 'ma') {
+    return {
+      displayName: 'MA (Master of Arts)',
+      h1: 'MA Course: Eligibility, Admission, Fees, Syllabus and Scope 2026',
+      title: 'MA Course: Eligibility, CUET PG, Fees, Subjects & Syllabus 2026',
+      description:
+        'MA course guide for 2026: eligibility after graduation, CUET PG vs university tests, subjects, fees (median about Rs 40,000 a year) and careers after Master of Arts.',
+      keywords: ['MA course', 'Master of Arts', 'MA eligibility', 'MA subjects', 'MA fees', 'CUET PG', 'MA admission 2026', 'MA duration'],
+      intro:
+        'The MA course (Master of Arts) is usually a two-year postgraduate arts degree after a bachelor’s. Use this guide for eligibility, entrance routes, fees, subjects and how to compare departments.',
+      crossLink: {
+        href: '/ma-colleges',
+        anchor: 'Browse MA colleges',
+        note: 'Ready to shortlist? See MA colleges with listed fees, subjects and accepted exams.'
+      },
+      faqs: [
+        { question: 'What is the eligibility for an MA course?', answer: 'A recognised bachelor’s degree, preferably in the same or an allied subject. Many departments ask for about 45–55% marks, with reserved-category relaxation where notified.' },
+        { question: 'Is MA 1 year or 2 years?', answer: 'Most MA programmes in India are two years. One-year formats exist only where the university ordinance and UGC rules allow them — verify recognition for NET, jobs or foreign study before you choose one.' },
+        { question: 'Is CUET PG compulsory for MA?', answer: 'No. Participating universities use CUET PG paper codes, but many campuses still run their own PG entrance or admit on UG merit.' },
+        { question: 'What is the fee for an MA course?', answer: 'Across 120 published colleges with Year-1 tuition under this course on CollegeDecision (November 2026), the median is about ₹40,000 a year. Public colleges in that sample centre near ₹10,100; private near ₹50,000.' },
+        { question: 'Which MA subject is best?', answer: 'None is universally best. Pick the subject you will research for two years. In our active labels, English and Economics lead named programmes, followed by Hindi, History and Political Science.' },
+        { question: 'Can I do MA after B.Com or B.Sc?', answer: 'Sometimes, if the department accepts allied subjects or bridge courses. MA Economics and Psychology are stricter about prerequisites than some language programmes — email the department with your mark sheet.' },
+        { question: 'MA vs MSW — which should I choose?', answer: 'Choose MSW if you need a professional social-work master’s with fieldwork. Choose MA for academic subject depth in arts or social sciences. See our MSW course page for social work.' },
+        { question: 'What after an MA course?', answer: 'Common next steps are NET/JRF and PhD, B.Ed for school teaching where required, research roles, and exam preparation. Clinical psychology careers need recognised clinical credentials beyond a general MA Psychology.' }
+      ]
+    };
+  }
+
+
+
+  if (slug === 'design-ug') {
+    return {
+      displayName: 'B.Des (Bachelor of Design)',
+      h1: 'B.Des Course: Eligibility, Admission, Fees, Syllabus and Scope 2026',
+      title: 'B.Des Course: UCEED, NID, NIFT, Fees & Syllabus 2026',
+      description:
+        'B.Des course guide for 2026: Class 12 eligibility, UCEED 2027, NID DAT and NIFT routes, studios, fees (median about Rs 1,80,000 a year) and careers.',
+      keywords: ['B.Des course', 'Bachelor of Design', 'B.Des eligibility', 'UCEED', 'NID DAT', 'NIFT', 'B.Des fees', 'B.Des syllabus'],
+      intro:
+        'The B.Des course (Bachelor of Design) is a four-year undergraduate design degree after Class 12. Use this guide for UCEED, NID and NIFT routes, fees, studios and how to compare colleges.',
+      crossLink: {
+        href: '/bdes-colleges',
+        anchor: 'Browse B.Des colleges',
+        note: 'Ready to shortlist? See B.Des colleges with listed fees, disciplines and accepted exams.'
+      },
+      faqs: [
+        { question: 'What is the eligibility for a B.Des course?', answer: 'Class 12 from a recognised board is the shared base. UCEED, NID and NIFT each add year-of-passing, age or category rules — read that year’s brochure.' },
+        { question: 'When is UCEED 2027?', answer: 'IIT Bombay notified UCEED 2027 for 17 January 2027, with registration windows published for October 2026. Confirm any change on uceed.iitb.ac.in.' },
+        { question: 'Is B.Des the same as a design diploma?', answer: 'No. B.Des is usually a four-year undergraduate degree. Short diplomas are listed separately under Design - Diploma on this site.' },
+        { question: 'What is the fee for a B.Des course?', answer: 'Across 91 published colleges with Year-1 tuition under this course on CollegeDecision (November 2026), the median is about ₹1,80,000 a year. Public colleges in that sample centre near ₹3,00,000; private near ₹1,47,000. Confirm official circulars.' },
+        { question: 'Which entrance should I take for B.Des?', answer: 'Match the institute: UCEED for listed IIT design seats, NID DAT for NIDs, NIFT for NIFT campuses, plus state CETs or university tests where required.' },
+        { question: 'What specialisations exist in B.Des?', answer: 'Common studios include fashion, interior, product/industrial, communication/UX, textile and accessory design. Exact names differ by institute.' },
+        { question: 'Can commerce or arts students apply for B.Des?', answer: 'Yes for most national design entrances. A few university programmes may still prefer mathematics or science for certain studios — check the brochure.' },
+        { question: 'What after B.Des?', answer: 'Studio jobs, freelance practice, or M.Des via CEED/NID/NIFT PG routes. Portfolio quality matters as much as the entrance rank.' }
+      ]
+    };
+  }
+
+  if (slug === 'beauty') {
+    return {
+      displayName: 'Beauty & Cosmetology',
+      h1: 'Beauty Course: Eligibility, Fees, Syllabus and Career Guide 2026',
+      title: 'Beauty Course: Cosmetology, Certificates, Fees & Careers 2026',
+      description:
+        'Beauty course guide for cosmetology and beauty culture training: eligibility, admission, syllabus focus, honest fee gaps in our data, and careers — not medical degrees.',
+      keywords: ['beauty course', 'cosmetology course', 'beauty culture course', 'beauty course fees', 'salon course', 'makeup vs beauty course'],
+      intro:
+        'This beauty course page covers beauty culture and cosmetology certificates or diplomas — not MBBS or nursing. Use it to compare hours, kits and trainers, and see the makeup artistry page for makeup-led programmes.',
+      crossLink: {
+        href: '/courses/professional-makeup-artistry',
+        anchor: 'Professional Makeup Artistry course',
+        note: 'Focused on makeup? Compare the dedicated makeup artistry course guide.'
+      },
+      faqs: [
+        { question: 'Is a beauty course the same as healthcare?', answer: 'No. This page is for beauty and cosmetology training. Healthcare degrees are listed under Healthcare and related medical pages.' },
+        { question: 'What is the eligibility for a beauty course?', answer: 'Many certificates accept Class 10; longer diplomas often ask for Class 12. Always read the institute prospectus.' },
+        { question: 'Is there an entrance exam for beauty courses?', answer: 'Usually no national exam. Most academies admit directly; some college diplomas use an interview or institute test.' },
+        { question: 'What fees should I expect?', answer: 'Our published multi-college fee sample for this slug is too thin after cleanup to quote a trustworthy median. Ask for written tuition + kit costs.' },
+        { question: 'Beauty course vs professional makeup artistry?', answer: 'Makeup-led diplomas are better compared on the Professional Makeup Artistry page. Beauty culture courses often cover broader salon skills.' },
+        { question: 'Can a beauty certificate replace a medical licence?', answer: 'No. Salon certificates do not authorise medical aesthetic procedures that require clinical qualifications.' },
+        { question: 'How do I choose a beauty academy?', answer: 'Compare practical hours, hygiene standards, trainer portfolios, kit transparency and alumni you can call.' },
+        { question: 'Why is the beauty colleges listing missing?', answer: 'The site needs a minimum published college count for listing pages. This niche currently sits below that threshold after data cleanup.' }
+      ]
+    };
+  }
+
+  if (slug === 'phd') {
+    return {
+      displayName: 'Ph.D',
+      h1: 'Ph.D Course: Eligibility, Admission, Fees, Syllabus and Scope 2026',
+      title: 'Ph.D Course: Eligibility, Entrance, Fees & Research Guide 2026',
+      description:
+        'Ph.D course guide for 2026: eligibility after master’s, university entrance and NET/GATE routes, fees (median about Rs 62,500 a year) and how to choose a supervisor.',
+      keywords: ['Ph.D course', 'PhD eligibility', 'PhD admission', 'PhD fees', 'doctoral programme', 'PhD entrance', 'research degree India'],
+      intro:
+        'The Ph.D course (Doctor of Philosophy) is a supervised research doctorate. Use this guide for eligibility patterns, entrance routes, fees and supervisor checks — with the course name corrected from P.hd to Ph.D.',
+      crossLink: {
+        href: '/phd-colleges',
+        anchor: 'Browse Ph.D colleges',
+        note: 'Ready to shortlist? See Ph.D colleges with listed fees and subjects. Fellowship/FPM programmes are listed separately.'
+      },
+      faqs: [
+        { question: 'What is the eligibility for a Ph.D?', answer: 'Usually a master’s degree with about 55% marks (relaxation as notified), or a four-year bachelor’s where the university adopts UGC’s notified pathway, plus entrance/interview rules in the ordinance.' },
+        { question: 'How long is a Ph.D in India?', answer: 'Ordinances often allow about 3–6 years including coursework. Minimum and maximum durations are university-specific.' },
+        { question: 'Is NET compulsory for Ph.D admission?', answer: 'Not always. Many universities run their own entrance; NET/JRF may give exemption or weightage only where the ordinance says so.' },
+        { question: 'What is the fee for a Ph.D?', answer: 'Across 82 published colleges with Year-1 tuition under this course on CollegeDecision (November 2026), the median is about ₹62,500 a year. Public colleges centre near ₹22,000; private near ₹80,000. Stipends are separate.' },
+        { question: 'Ph.D vs Fellowship / FPM?', answer: 'A university Ph.D follows that university’s doctoral ordinance. FPM and named fellowships may differ — we list them under the Fellowship course.' },
+        { question: 'Can I do a Ph.D part-time while working?', answer: 'Only if the university ordinance allows a part-time mode and you meet NOC/residency rules. Confirm before resigning or relocating.' },
+        { question: 'Which entrance exams are used for Ph.D?', answer: 'University RET/entrance is common; engineering departments often use GATE; NET/JRF helps where accepted. Humanities rarely use GATE.' },
+        { question: 'How should I choose a Ph.D college?', answer: 'Prioritise supervisor fit, funding, lab or archive access, and time-to-degree — not brochure rank alone.' }
+      ]
+    };
+  }
+
+
+  if (slug === 'mpt') {
+    return {
+      displayName: 'Master of Physiotherapy (MPT)',
+      h1: 'MPT Course: Eligibility, Admission, Fees, Syllabus and Careers 2026',
+      title: 'MPT Course 2026: Eligibility, Specialisations, Fees & Careers',
+      description:
+        'MPT course guide for 2026: BPT eligibility, university entrance routes, NCAHP curriculum notes, specialisations, fees (median about Rs 1 lakh in our sample) and careers.',
+      keywords: ['MPT course', 'Master of Physiotherapy', 'MPT eligibility', 'MPT admission', 'MPT fees', 'MPT specialisations', 'MPT syllabus', 'MPT careers'],
+      intro:
+        'The MPT (Master of Physiotherapy) is a two-year postgraduate degree after BPT. Use this guide for eligibility, admission, speciality choice, fees listed on CollegeDecision and how to pick a college with real specialty clinics.',
+      crossLink: {
+        href: '/mpt-colleges',
+        anchor: 'Compare MPT colleges',
+        note: 'Ready to shortlist? Browse MPT programmes and check speciality labels and listed fees.'
+      },
+      faqs: [
+        { question: 'What is an MPT course?', answer: 'MPT is a two-year Master of Physiotherapy after BPT. It trains you for specialty clinical practice, research and teaching roles under university rules shaped by NCAHP physiotherapy curriculum expectations.' },
+        { question: 'Can I do MPT after Class 12?', answer: 'No. MPT is a postgraduate course. After Class 12 you typically do BPT first, complete internship and registration, then apply for MPT.' },
+        { question: 'What is the eligibility for MPT?', answer: 'Usually a regular-mode BPT from a recognised university, valid physiotherapist registration, and the admitting university’s entrance test or interview. Minimum BPT marks vary by college.' },
+        { question: 'Is there a national entrance exam for MPT?', answer: 'There is no single NEET-style national MPT exam. Most universities run their own PG entrance or merit-plus-interview process; a few states may notify allied PG counselling.' },
+        { question: 'What is the fee for an MPT course?', answer: 'Among 29 published colleges with Year-1 tuition under MPT on CollegeDecision (November 2026), the median is about ₹1,00,000 a year. Private samples (n=25) have a middle half around ₹90,000–₹1,25,200. Confirm the current circular.' },
+        { question: 'Which MPT specialisation should I choose?', answer: 'Pick the clinical area you already enjoy in BPT — orthopaedics, neurology, cardiopulmonary, sports or paediatrics — and verify that the college has real specialty clinics and dissertation guides in that track.' },
+        { question: 'How many MPT programmes are listed on CollegeDecision?', answer: 'As of 5 November 2026 our database has about 282 active MPT programmes at 104 published institutes after cleaning mis-tagged MPH and diploma rows.' },
+        { question: 'What should I check before paying MPT fees?', answer: 'Confirm the exact degree title, specialty clinic case load, full two-year fee breakup, whether the programme is full-time only, and that your BPT registration remains valid.' }
+      ]
+    };
+  }
+
+  if (slug === 'bhms') {
+    return {
+      displayName: 'BHMS',
+      h1: 'BHMS Course: Eligibility, NEET, Fees, Syllabus and Careers 2026',
+      title: 'BHMS Course 2026: NEET UG, NCH Eligibility, Fees & Careers',
+      description:
+        'BHMS course guide for 2026: 5.5-year NCH homoeopathy degree, NEET UG and AACCC counselling, eligibility notes, fees (median about Rs 1.2 lakh in our sample) and careers.',
+      keywords: ['BHMS course', 'BHMS full form', 'BHMS eligibility', 'BHMS NEET', 'BHMS fees', 'BHMS syllabus', 'BHMS colleges', 'NCH BHMS'],
+      intro:
+        'BHMS (Bachelor of Homoeopathic Medicine and Surgery) is a 5½-year NCH-regulated degree after Class 12 via NEET UG. Use this guide for eligibility, counselling, subjects, fees on CollegeDecision and career paths.',
+      crossLink: {
+        href: '/bhms-colleges',
+        anchor: 'Compare BHMS colleges',
+        note: 'Ready to shortlist? Browse BHMS colleges and check listed fees and locations.'
+      },
+      faqs: [
+        { question: 'What is the full form of BHMS?', answer: 'Bachelor of Homoeopathic Medicine and Surgery. It is the undergraduate professional degree in homoeopathy regulated by the National Commission for Homoeopathy (NCH).' },
+        { question: 'How long is the BHMS course?', answer: 'Five-and-a-half years in total, including four professional phases and a twelve-month compulsory rotatory internship, as per NCH graduate regulations summaries.' },
+        { question: 'Is NEET required for BHMS?', answer: 'Yes. NEET (UG) is mandatory for BHMS seats allotted through AACCC and state AYUSH counselling. There is no separate national BHMS entrance paper for those seats.' },
+        { question: 'What is the eligibility for BHMS after the 2025 NCH amendment?', answer: 'Class 12 with Physics, Chemistry and Biology or Biotechnology. NCH’s 2025 amendment direction has been summarised as requiring a pass without a fixed commission-level percentage; counselling bulletins may still publish cut-offs. Read the live brochure.' },
+        { question: 'How many BHMS seats are there in 2026-27?', answer: 'NCH’s permission status figures have been cited publicly at about 18,702 seats in 236 colleges for 2026-27. Always recheck the live NCH permission list for the college you want.' },
+        { question: 'What is the fee for BHMS?', answer: 'Among 13 published colleges with Year-1 tuition under BHMS on CollegeDecision (November 2026), the median is about ₹1,20,000 a year (middle half roughly ₹35,000–₹1,41,000). Kerala aided samples in the set are much lower.' },
+        { question: 'What can I do after BHMS?', answer: 'After internship and registration you can practise homoeopathy, work in AYUSH hospitals or programmes, or pursue MD (Hom) through AYUSH PG counselling. Teaching and specialty roles usually need PG.' },
+        { question: 'Is BHMS the same as BAMS?', answer: 'No. BHMS is homoeopathy under NCH; BAMS is Ayurveda under NCISM. Permission lists, subjects and practice scope differ.' }
+      ]
+    };
+  }
+
+  if (slug === 'bams') {
+    return {
+      displayName: 'BAMS',
+      h1: 'BAMS Course: Eligibility, NEET, Fees, Syllabus and Careers 2026',
+      title: 'BAMS Course 2026: NEET UG, NCISM Eligibility, Fees & Careers',
+      description:
+        'BAMS course guide for 2026: 5.5-year NCISM Ayurveda degree, NEET UG and AACCC counselling, eligibility notes, fees (median about Rs 77,250 in our sample) and careers.',
+      keywords: ['BAMS course', 'BAMS full form', 'BAMS eligibility', 'BAMS NEET', 'BAMS fees', 'BAMS syllabus', 'BAMS colleges', 'NCISM BAMS'],
+      intro:
+        'BAMS (Bachelor of Ayurvedic Medicine and Surgery) is a 5½-year NCISM-regulated Ayurveda degree after Class 12 via NEET UG. Use this guide for eligibility, counselling, subjects, fees on CollegeDecision and careers.',
+      crossLink: {
+        href: '/bams-colleges',
+        anchor: 'Compare BAMS colleges',
+        note: 'Ready to shortlist? Browse BAMS colleges and check listed fees and clinical locations.'
+      },
+      faqs: [
+        { question: 'What is the full form of BAMS?', answer: 'Bachelor of Ayurvedic Medicine and Surgery, also called Ayurvedacharya. It is the undergraduate professional degree in Ayurveda regulated by NCISM.' },
+        { question: 'How long is the BAMS course?', answer: 'Five-and-a-half years including professional phases (commonly three phases of about 18 months) and a twelve-month compulsory rotatory internship under NCISM undergraduate education regulations.' },
+        { question: 'Is NEET required for BAMS?', answer: 'Yes. NEET (UG) is mandatory for BAMS seats through AACCC and state AYUSH counselling.' },
+        { question: 'What is the eligibility for BAMS?', answer: 'Class 12 with Physics, Chemistry and Biology or Biotechnology. NCISM’s July 2025 eligibility direction has been summarised as requiring a pass; counselling bodies may still publish percentage cut-offs. Confirm on the live bulletin.' },
+        { question: 'What is the fee for BAMS?', answer: 'Among 18 published colleges with Year-1 tuition under BAMS on CollegeDecision (November 2026), the median is about ₹77,250 a year. Private samples show a wide middle half from about ₹40,000 to ₹3,54,000.' },
+        { question: 'What subjects are taught in BAMS?', answer: 'Ashtanga Ayurveda clinical branches such as Kayachikitsa and Shalya, along with Dravyaguna, Rasashastra, Panchakarma training and modern basic sciences like anatomy, physiology and pathology.' },
+        { question: 'What can I do after BAMS?', answer: 'After internship and registration you can practise Ayurveda, work in Panchakarma hospitals and AYUSH programmes, or pursue MD/MS (Ayurveda) through AYUSH PG counselling (often involving AIAPGET — confirm the live bulletin).' },
+        { question: 'Is BAMS equal to MBBS?', answer: 'No. BAMS is an Ayurveda degree under NCISM with its own practice scope. It does not grant unrestricted modern-medicine practice rights like MBBS.' }
+      ]
+    };
+  }
+
+  if (slug === 'mass-communication-pg') {
+    return {
+      displayName: 'Mass Communication (PG)',
+      h1: 'Mass Communication PG: MA, MJMC, PG Diploma, Fees and Careers 2026',
+      title: 'Mass Communication PG 2026: MA vs PG Diploma, CUET-PG, Fees',
+      description:
+        'Mass communication PG after graduation: MA/MJMC vs PG diploma, CUET-PG and institute tests, syllabus themes, fees (median about Rs 69,750 in our sample) and careers.',
+      keywords: ['mass communication PG', 'MJMC', 'MA mass communication', 'PG diploma journalism', 'IIMC admission', 'mass communication after graduation', 'CUET PG journalism'],
+      intro:
+        'After graduation you can take a master\'s (MA, MJMC or MMC) or a one-year PG diploma in mass communication. Use this guide for eligibility, entrances, fees listed on CollegeDecision and how to choose the award type.',
+      crossLink: {
+        href: '/mass-communication-pg-colleges',
+        anchor: 'Compare mass communication PG colleges',
+        note: 'Ready to shortlist? Browse PG mass communication programmes and check whether each award is a master\'s or a diploma.'
+      },
+      faqs: [
+        { question: 'What is a mass communication PG course?', answer: 'It is a postgraduate route after a bachelor\'s — usually an MA/MJMC/MMC master\'s or a one-year PG diploma in journalism, advertising, PR or broadcast.' },
+        { question: 'Should I choose an MA/MJMC or a PG diploma?', answer: 'Choose a master\'s for a degree that supports research and teaching pathways. Choose a PG diploma for a shorter, skills-first route into newsrooms or agencies. Read the sample certificate before you pay.' },
+        { question: 'Is CUET-PG required for every mass communication PG course?', answer: 'No. IIMC and some universities use CUET-PG. Many universities and private institutes run their own tests or interviews instead.' },
+        { question: 'How long is a mass communication master\'s?', answer: 'Under the UGC postgraduate framework, a master\'s is typically two years after a three-year bachelor\'s, or one year after a four-year honours degree where offered.' },
+        { question: 'What is the fee for mass communication PG courses?', answer: 'Among 40 published colleges with Year-1 tuition under this course on CollegeDecision (November 2026), the median is about ₹69,750 a year (middle half roughly ₹31,000–₹1,00,000). National institutes publish their own full-course tables.' },
+        { question: 'Can any graduate apply?', answer: 'Many programmes accept any bachelor\'s discipline if you clear the entrance; some prefer a media-related UG. Marks and age rules are institute-wise — read the live notice.' },
+        { question: 'What jobs can I get after a mass communication PG?', answer: 'Common roles include reporter, desk editor, video journalist, advertising or PR executive, corporate communicator and content producer. Portfolios and internships matter more than brochure brands.' },
+        { question: 'Where can I compare colleges?', answer: 'Use the mass communication PG colleges listing and confirm labs, internships and whether the award is a master\'s or a diploma.' }
+      ]
+    };
+  }
+
+  if (slug === 'aviation-pg') {
+    return {
+      displayName: 'Aviation (PG)',
+      h1: 'Aviation PG Courses: MBA, PG Diplomas, Eligibility and Careers 2026',
+      title: 'Aviation PG 2026: RGNAU MBA, Airport PG Diplomas, Careers',
+      description:
+        'Aviation PG courses after graduation: RGNAU MBA in aviation management, PG diplomas in airport operations and hospitality, eligibility notes, thin CollegeDecision sample and careers.',
+      keywords: ['aviation PG', 'MBA aviation management', 'RGNAU MBA', 'PG diploma airport operations', 'aviation management course', 'airport management PG', 'aviation hospitality PG diploma'],
+      intro:
+        'Aviation PG usually means an MBA in aviation management or a postgraduate diploma in airport operations and aviation hospitality. RGNAU is the central public reference; private PG diplomas also exist. Our published college sample is thin — verify circulars.',
+      crossLink: {
+        href: '/courses/aviation',
+        anchor: 'Read the aviation UG guide',
+        note: 'Looking for cabin crew or after-12th aviation options? Start with the undergraduate aviation guide.'
+      },
+      faqs: [
+        { question: 'What is an aviation PG course?', answer: 'A postgraduate management or operations programme after a bachelor\'s — typically an MBA in aviation management or a PG diploma in airport/aviation operations and hospitality.' },
+        { question: 'What is RGNAU?', answer: 'Rajiv Gandhi National Aviation University is the central public university under the Ministry of Civil Aviation. It offers MBA programmes in aviation management and postgraduate diplomas such as airport operations.' },
+        { question: 'What is the eligibility for RGNAU aviation PG programmes?', answer: 'Public 2026-27 summaries asked for a bachelor\'s with about 50% marks (with notified SC/ST relaxation) and published an upper age limit of 25 as on a stated date. Confirm the live bulletin for the year you apply.' },
+        { question: 'Is there a national entrance exam for aviation MBA?', answer: 'No single national aviation MBA exam. RGNAU regulations allow CAT or equivalent plus university selection stages; private PG diplomas usually use institute tests and interviews.' },
+        { question: 'Why is the aviation-pg college listing redirected?', answer: 'Our published sample has only two institutes with active PG-labelled programmes — below the usual listing threshold — so /aviation-pg-colleges redirects to this course page.' },
+        { question: 'What fees should I expect?', answer: 'CollegeDecision currently has no Year-1 tuition rows for published aviation-pg programmes. Use RGNAU and private institute fee circulars; do not rely on verbal package quotes.' },
+        { question: 'What jobs follow an aviation PG?', answer: 'Airport operations, airline station roles, ground handling, cargo desks and passenger-service pathways. MBA graduates aim at managerial tracks; diplomas more often start in shift operations.' },
+        { question: 'Is an aviation PG the same as a DGCA pilot or AME licence?', answer: 'No. Management degrees and PG diplomas do not replace DGCA licensing pathways for pilots or aircraft maintenance engineers.' }
+      ]
+    };
+  }
+
+  if (slug === 'diploma-design') {
+    return {
+      displayName: 'Diploma in Design',
+      h1: 'Design Diploma Courses: Eligibility, Fees, Tracks and vs B.Des 2026',
+      title: 'Design Diploma 2026: Interior, Jewellery, Fees & vs B.Des',
+      description:
+        'Design diploma courses after Class 12: interior, jewellery, textile, fashion and graphic tracks, admission, fees (median about Rs 90,270 in our sample) and when to choose B.Des instead.',
+      keywords: ['design diploma', 'diploma in design', 'diploma in interior design', 'jewellery design diploma', 'design diploma fees', 'design diploma vs B.Des', 'graphic design diploma'],
+      intro:
+        'A design diploma is a shorter studio course in interiors, jewellery, textiles, fashion, graphics or product design. Use this guide for eligibility, fees listed on CollegeDecision and when a four-year B.Des is the better credential.',
+      crossLink: {
+        href: '/courses/design-ug',
+        anchor: 'Read the B.Des / design UG guide',
+        note: 'Want a four-year design degree via NID or UCEED? See the design UG guide.'
+      },
+      faqs: [
+        { question: 'What is a design diploma?', answer: 'An institute-awarded diploma or advanced diploma focused on studio skills and a portfolio. Common tracks include interior, jewellery, textile, fashion, graphic and product design.' },
+        { question: 'How long is a design diploma?', answer: 'Many private diplomas run about one year. Advanced diplomas may take two or three years. Always read the prospectus for contact hours.' },
+        { question: 'Is there a national entrance for design diplomas?', answer: 'No. Most centres admit directly or via portfolio/aptitude tests. NID DAT and UCEED are for degree (B.Des) routes, not private diplomas.' },
+        { question: 'What is the fee for a design diploma?', answer: 'Among 13 published colleges with Year-1 tuition under diploma-design on CollegeDecision (November 2026), the median is about ₹90,270 a year (middle half roughly ₹60,000–₹1,25,000). Kits and materials are often extra.' },
+        { question: 'Is a design diploma equal to a B.Des?', answer: 'No. B.Des is a four-year bachelor\'s degree. A diploma is shorter and may limit some higher-study or employer filters. Prefer B.Des if you need a degree credential.' },
+        { question: 'Which design diploma track is most common in your records?', answer: 'Interior design labels are the largest cluster (about 154 programmes), followed by jewellery/gems (about 80), then textile, fashion, graphic and product.' },
+        { question: 'Can I do a design diploma after Class 12 in any stream?', answer: 'Usually yes at private institutes, subject to their prospectus. Some advanced diplomas prefer graduates. Confirm eligibility in writing before paying.' },
+        { question: 'Why does /diploma-design-colleges redirect?', answer: 'The listing URL redirects to this course page while you compare programmes and fees from the guide and institute profiles.' }
+      ]
+    };
+  }
+
+  if (slug === 'b-chem-eng') {
+    return {
+      displayName: 'B.Chem.Engg',
+      h1: 'B.Chem.Engg Course: ICT Mumbai, Eligibility, MHT-CET, Fees 2026',
+      title: 'B.Chem.Engg 2026: ICT Seats, MHT-CET, JEE Main & Careers',
+      description:
+        'B.Chem.Engg is ICT Mumbai\'s 4-year chemical engineering degree. 2026-27 eligibility, 75 seats (52 MHT-CET + 23 JEE Main), syllabus, fees data note and careers.',
+      keywords: ['B.Chem.Engg', 'B.Chem Eng course', 'ICT Mumbai chemical engineering', 'B.Chem.Engg admission 2026', 'MHT CET chemical engineering', 'chemical engineering eligibility', 'ICT Mumbai seats', 'B.Tech chemical engineering'],
+      intro:
+        'B.Chem.Engg is the four-year chemical engineering bachelor\'s name used by ICT Mumbai — the same discipline as B.Tech/B.E. Chem Eng. Check PCM eligibility, MHT-CET and JEE Main seats, and careers before you shortlist.',
+      crossLink: {
+        href: '/courses/m-chem-eng',
+        anchor: 'M.Chem.Engg course guide',
+        note: 'Planning a chemical engineering master\'s after GATE? See the M.Chem.Engg guide.'
+      },
+      faqs: [
+        { question: 'Is B.Chem.Engg the same as B.Tech Chemical Engineering?', answer: 'Yes — it is the same chemical engineering discipline. ICT Mumbai uses the degree title B.Chem.Engg; most other institutes award B.Tech or B.E. Chemical Engineering.' },
+        { question: 'How many B.Chem.Engg seats does ICT Mumbai have?', answer: 'The 2026 CAP seat matrix cue used in CollegeDecision research listed 75 seats: 52 through MHT-CET and 23 all-India through JEE Main. Confirm the live State CET Cell matrix for your year.' },
+        { question: 'What marks are needed for B.Chem.Engg at ICT?', answer: '10+2 with Physics, Chemistry and Mathematics and about 45% aggregate in PCM (about 40% for Maharashtra backward class, EWS and PwD as notified), plus a non-zero MHT-CET (PCM) or JEE Main score for the relevant seat pool.' },
+        { question: 'How long is B.Chem.Engg?', answer: 'Four years (eight semesters) in CollegeDecision\'s active programme rows after the November 2026 duration fix (48 months stored as 4 years).' },
+        { question: 'What entrance exams are used for B.Chem.Engg?', answer: 'ICT state seats use MHT-CET (PCM) via Maharashtra CAP; ICT all-India seats use JEE Main. IIT Chem Eng needs JEE Advanced; NITs use JEE Main + JoSAA.' },
+        { question: 'What fees does CollegeDecision show for B.Chem.Engg?', answer: 'As of 5 November 2026 the published sample has two programme rows and no Year-1 tuition fee rows. Use ICT and CET Cell fee circulars — we do not invent medians.' },
+        { question: 'Why does /b-chem-eng-colleges redirect here?', answer: 'The listing is thin (two programmes), so the colleges URL permanently redirects to this course guide while you compare institute profiles and official seat matrices.' },
+        { question: 'Can I do M.Chem.Engg after B.Chem.Engg?', answer: 'Yes. GATE Chemical Engineering (CH) is the usual national route into M.Chem.Engg / M.Tech Chem Eng, including ICT\'s Level 1/Level 2 process.' }
+      ]
+    };
+  }
+
+  if (slug === 'm-chem-eng') {
+    return {
+      displayName: 'M.Chem.Engg',
+      h1: 'M.Chem.Engg Course: ICT Mumbai, GATE Levels, Eligibility 2026',
+      title: 'M.Chem.Engg 2026: ICT Eligibility, GATE Level 1 & 2, Careers',
+      description:
+        'M.Chem.Engg is ICT Mumbai\'s 2-year chemical engineering master\'s. 2026-27 eligibility (~60%), GATE Level 1/2 admission, syllabus, fees data note and careers.',
+      keywords: ['M.Chem.Engg', 'M.Chem Eng course', 'ICT Mumbai M.Chem.Engg', 'M.Chem.Engg admission 2026', 'chemical engineering masters GATE', 'ICT Mumbai GATE levels', 'M.Tech chemical engineering', 'M.Chem.Engg eligibility'],
+      intro:
+        'M.Chem.Engg is ICT Mumbai\'s two-year chemical engineering master\'s (coursework plus thesis), equivalent in discipline to an M.Tech. Check GATE Level 1/2 rules, eligibility and careers before you apply.',
+      crossLink: {
+        href: '/courses/b-chem-eng',
+        anchor: 'B.Chem.Engg course guide',
+        note: 'Still choosing the undergraduate ICT path? See the B.Chem.Engg guide.'
+      },
+      faqs: [
+        { question: 'What is the eligibility for M.Chem.Engg at ICT?', answer: 'A four-year bachelor\'s in Chemical Engineering or a related field listed by ICT, with about 60% aggregate (about 55% for backward class as notified). B.Sc chemistry alone is not eligible for this programme.' },
+        { question: 'Is GATE compulsory for ICT M.Chem.Engg?', answer: 'Yes. Level 1 uses a valid GATE score in the relevant discipline. Level 2 uses GATE in another specialisation plus ICT\'s written test, combined about 70:30 as summarised from the 2026-27 manual.' },
+        { question: 'How long is M.Chem.Engg?', answer: 'Two years in our active programme rows: typically two semesters of coursework and two of thesis research.' },
+        { question: 'Is M.Chem.Engg the same as M.Tech Chemical Engineering?', answer: 'Same discipline family. ICT uses the M.Chem.Engg title; most institutes award M.Tech Chemical Engineering. GATE CH is the common national entrance.' },
+        { question: 'Is there a GATE stipend for M.Chem.Engg?', answer: 'AICTE postgraduate scholarship rules for GATE-qualified students may apply when scheme criteria are met. Older circulars often cited about ₹12,400 per month — confirm the live AICTE/institute notice for your year.' },
+        { question: 'What fees does CollegeDecision show for M.Chem.Engg?', answer: 'As of 5 November 2026 the published sample has two programme rows and no Year-1 tuition fee rows. Use ICT fee circulars; we do not invent medians.' },
+        { question: 'Why does /m-chem-eng-colleges redirect here?', answer: 'The listing is thin, so the colleges URL permanently redirects to this course guide while you compare official portals and institute profiles.' },
+        { question: 'Can I do a PhD after M.Chem.Engg?', answer: 'Yes. A strong thesis and fundamentals in transport and reaction engineering help for chemical engineering PhD admissions in India or abroad.' }
+      ]
+    };
+  }
+
+
+  if (slug === 'mba') {
+    return {
+      displayName,
+      h1: 'MBA Course: Eligibility, Entrance Exams, Fees, Syllabus and Careers 2026',
+      title: 'MBA Course 2026: Eligibility, CAT & Other Exams, Fees, Syllabus',
+      description:
+        'MBA course details for 2026-27: AICTE eligibility, CAT 2026, XAT, CMAT and MAT dates, MBA vs PGDM, syllabus, specialisations, fees (median ₹1.5 lakh a year) and careers.',
+      keywords: ['MBA course', 'MBA course details', 'MBA eligibility', 'MBA entrance exams 2026', 'MBA fees in India', 'MBA syllabus', 'MBA specializations', 'MBA vs PGDM'],
+      intro:
+        'The MBA course is a two-year postgraduate management degree open to graduates of any stream with 50% marks. Check eligibility, CAT and other entrance exams, syllabus, specialisations, fees and careers before you shortlist colleges.',
+      crossLink: {
+        href: '/mba-colleges',
+        anchor: 'Compare MBA colleges by fees and exams',
+        note: 'Ready to shortlist? Browse MBA and PGDM colleges with listed fees, accepted exams and placement records.'
+      },
+      faqs: [
+        { question: 'What is the eligibility for the MBA course?', answer: 'Under AICTE rules you need a bachelor\'s degree of at least three years in any stream with 50% marks (45% for reserved categories) and a valid entrance score. Colleges can set higher cut-offs.' },
+        { question: 'When is CAT 2026?', answer: 'CAT 2026 is on Sunday, 29 November 2026, in three sessions, conducted by IIM Indore. Admit cards are available on iimcat.ac.in from 4 November 2026.' },
+        { question: 'Which entrance exams are accepted for MBA?', answer: 'The IIMs use CAT. AICTE lets PGDM institutes admit through CAT, XAT, CMAT, ATMA, MAT or GMAT, or a state or central government test such as MAH MBA CET or TANCET.' },
+        { question: 'When are XAT 2027 and CMAT 2027?', answer: 'XAT 2027 is on 3 January 2027, with registration open until 6 December 2026. NTA\'s tentative calendar lists CMAT 2027 for 7 February 2027; registration had not opened as of 5 November 2026.' },
+        { question: 'What is the difference between MBA and PGDM?', answer: 'An MBA is a degree from a university or an IIM. A PGDM is a diploma from an AICTE-approved autonomous institute. Both have the same entry rule, so compare the institute rather than the label.' },
+        { question: 'What is the fee for an MBA in India?', answer: 'Across 2,215 programme records on CollegeDecision (November 2026), the median first-year tuition is ₹1,50,000, and half fall between ₹65,000 and ₹3,50,000. IIM Bangalore lists ₹26 lakh for its two-year PGP 2026-28.' },
+        { question: 'Can I do an MBA after B.Sc, B.Com or B.Tech?', answer: 'Yes. Any bachelor\'s degree of at least three years with the required marks makes you eligible, and your stream does not limit your specialisation.' },
+        { question: 'Which MBA specialisation is most common?', answer: 'In our records, Marketing (1,042 programmes), Human Resources (945) and Finance (932) are the most common, followed by International Business, IT and Operations.' }
       ]
     };
   }
@@ -1667,13 +2137,13 @@ export function courseSeo(profile: CourseSeoInput): CourseSeoPack {
 
   const curated: Record<string, Omit<CourseSeoPack, 'displayName'>> = {
     bca: {
-      h1: 'BCA Course in India: Eligibility, Subjects, Fees & Careers',
-      title: 'BCA Course Details: Eligibility, Subjects, Fees & Duration',
+      h1: 'BCA Course in India: Eligibility, Subjects, Admission, Fees & Careers',
+      title: 'BCA Course Details 2026: Eligibility, Subjects, Fees & Duration',
       description:
-        'BCA course guide: eligibility (is Maths compulsory?), 3 vs 4 years, subjects, specialisations, fees (median ₹64,000 a year in our data) and careers.',
+        'BCA course guide: eligibility (is Maths compulsory?), 3 vs 4 years, CUET and admission, subjects, specialisations, fees (median ₹58,000 a year) and careers after BCA.',
       keywords: ['BCA course', 'BCA full form', 'BCA course details', 'BCA subjects', 'BCA eligibility', 'BCA fees', 'BCA vs B.Tech'],
       intro:
-        'BCA (Bachelor of Computer Applications) is a 3- or 4-year undergraduate degree in software and computer applications after Class 12. Check eligibility, subjects, fees and next steps before you shortlist colleges.',
+        'A BCA course is a three- or four-year undergraduate degree in software and computer applications after Class 12. AICTE leaves the Maths rule to each university. Check eligibility, admission, subjects, fees and next steps before you shortlist colleges.',
       crossLink: {
         href: '/bca-colleges',
         anchor: 'Compare BCA colleges by fees & placements',
@@ -1686,563 +2156,305 @@ export function courseSeo(profile: CourseSeoInput): CourseSeoPack {
         },
         {
           question: 'What is the eligibility for BCA?',
-          answer: 'AICTE requires a Class 12 pass, with subject and marks rules set by the affiliating university. A diploma in Commercial Practice or equivalent is also accepted. Check each university’s prospectus for its exact rule.'
+          answer: 'AICTE requires a Class 12 pass, with subject and marks rules set by the affiliating university. A diploma in Commercial Practice or equivalent is also accepted.'
         },
         {
           question: 'Is Maths compulsory for BCA?',
-          answer: 'Not under AICTE’s rule, but some universities ask for Mathematics or Computer Science in Class 12 while others accept any stream. Without Mathematics, you will need a bridge course if you later join an MCA.'
+          answer: 'Not under AICTE\'s rule, but some universities require Mathematics or Computer Science in Class 12. Check each prospectus. An MCA later asks non-Maths students to take a bridge course.'
         },
         {
-          question: 'Is BCA a 3-year or 4-year course?',
-          answer: 'Both exist. Under the UGC credit framework, a 3-year BCA needs 120 credits and a 4-year BCA (Honours) needs 160 credits. AICTE allows 4-year BCA graduates lateral entry into the second year of an MCA, subject to seats.'
+          question: 'Is BCA 3 years or 4 years?',
+          answer: 'Both exist. A 3-year BCA needs 120 credits; a 4-year BCA (Honours) needs 160 credits under the UGC framework. Universities decide which options they run.'
         },
         {
-          question: 'How do I get admission to BCA?',
-          answer: 'Most colleges admit on Class 12 marks. Participating universities use CUET (UG), and some use their own test or an aptitude test such as UGAT.'
+          question: 'Is there an entrance exam for BCA?',
+          answer: 'Most colleges admit on Class 12 marks. Participating universities use CUET (UG), and some colleges accept AIMA\'s UGAT or their own test.'
         },
         {
-          question: 'What are the main BCA subjects?',
-          answer: 'Programming (C, Java or Python), data structures, database management, operating systems, computer networks, web technologies, software engineering and mathematics, plus electives and a final project.'
-        },
-        {
-          question: 'What is the fee for BCA in India?',
-          answer: 'Across 462 BCA fee records in our database, the median is ₹64,000 a year and half of programmes charge ₹38,100–₹1,05,000. The public-institute median is ₹40,000 and the private median ₹65,000.'
+          question: 'What is the fee for BCA?',
+          answer: 'Across 581 programmes with a listed fee on CollegeDecision (November 2026), the median first-year fee is ₹58,000. Public institutes have a median of ₹28,420 and private ones ₹60,000.'
         },
         {
           question: 'Which is better, BCA or B.Tech CSE?',
-          answer: 'B.Tech CSE is a 4-year engineering degree that needs Physics and Mathematics and usually an engineering entrance. BCA is a 3- or 4-year applications degree with more flexible entry. Many software employers hire from both; some roles specify B.E./B.Tech.'
+          answer: 'B.Tech is a 4-year engineering degree with more maths and hardware and needs Physics and Maths. BCA focuses on software and has wider entry. Some employers and government posts specify B.E./B.Tech.'
         },
         {
           question: 'What can I do after BCA?',
-          answer: 'You can work as a software developer, tester, web developer, support engineer or data analyst, or study further through an MCA, MBA or a master’s in data science.'
+          answer: 'You can start as a developer, tester, web developer or analyst, or study an MCA (lateral entry after a 4-year BCA, subject to seats), an MBA or a master\'s in data science.'
         }
       ]
     },
     bsc: {
-      h1: 'B.Sc Course in India: Eligibility, Subjects, Fees & Careers',
-      title: 'B.Sc Course Details: Subjects List, Eligibility, Fees & Duration',
+      h1: 'BSc Course in India: Eligibility, Admission, Subjects, Fees & Careers',
+      title: 'BSc Course Details 2026: Eligibility, Subjects, Fees & Duration',
       description:
-        'B.Sc course guide: eligibility and CUET subject rules, 3 vs 4-year Honours, main B.Sc subjects, fees (median ₹55,000 a year in our data) and careers.',
-      keywords: ['B.Sc course', 'B.Sc full form', 'B.Sc subjects', 'B.Sc courses list', 'B.Sc Honours', 'B.Sc eligibility', 'B.Sc fees'],
+        'BSc course guide: Class 12 eligibility by major, CUET (UG), 3 vs 4 years, top subjects, fees (median ₹50,000 a year), NIRF 2025 top colleges and careers.',
+      keywords: ['BSc course', 'BSc full form', 'BSc course details', 'BSc eligibility', 'BSc subjects', 'BSc fees', 'BSc 3 year vs 4 year'],
       intro:
-        'B.Sc (Bachelor of Science) is a 3- or 4-year undergraduate degree in a science subject after Class 12. Check eligibility, subject options, fees and next steps before you shortlist colleges.',
+        'A BSc course is a three- or four-year science degree after Class 12. Each university sets the Class 12 subjects and marks for each major, and many admit through CUET (UG). Check eligibility, subjects, fees, top colleges and next steps here.',
       crossLink: {
         href: '/bsc-colleges',
-        anchor: 'Compare B.Sc colleges by fees & admissions',
-        note: 'Ready to shortlist? Browse B.Sc colleges with recorded fees, subjects and admission routes.'
+        anchor: 'Compare BSc colleges by fees & admission routes',
+        note: 'Ready to shortlist? Browse BSc colleges with recorded fees, subjects and accepted exams.'
       },
       faqs: [
         {
-          question: 'What is the full form of B.Sc?',
-          answer: 'B.Sc stands for Bachelor of Science, an undergraduate degree in a science subject such as Physics, Chemistry, Mathematics, Computer Science or the life sciences.'
+          question: 'What is the full form of BSc?',
+          answer: 'BSc stands for Bachelor of Science, an undergraduate degree in a science subject such as Physics, Chemistry, Mathematics, Computer Science, Botany or Zoology.'
         },
         {
-          question: 'What is the eligibility for B.Sc?',
-          answer: 'Each university sets its own rule, usually Class 12 with science subjects that match the major: Physics, Chemistry and Mathematics for physical sciences, or Biology for life sciences. Nursing and Agriculture follow their regulators’ rules.'
+          question: 'What is the eligibility for BSc?',
+          answer: 'Each university sets its own rules. Physical-science majors usually need Physics, Chemistry and Mathematics in Class 12, and life-science majors usually need Biology. Minimum marks are often 45% to 55%.'
         },
         {
-          question: 'Is B.Sc a 3-year or 4-year course?',
-          answer: 'Both exist. Under the UGC framework, a 3-year B.Sc needs 120 credits and a 4-year B.Sc (Honours) needs 160 credits. Students with 75% or more in the first six semesters can choose Honours with Research.'
+          question: 'Is BSc 3 years or 4 years?',
+          answer: 'Both exist. Under the UGC framework, a 3-year BSc needs 120 credits and a 4-year BSc (Honours or Honours with Research) needs 160 credits. Universities decide which options they run.'
         },
         {
-          question: 'Is CUET required for B.Sc admission?',
-          answer: 'Only at universities that use it, such as central universities. For example, the University of Delhi asks for Physics, Chemistry and Mathematics in CUET (UG) for B.Sc (Hons) Physics. Many state and private colleges admit on Class 12 marks.'
+          question: 'Is there an entrance exam for BSc?',
+          answer: 'Central universities, including the University of Delhi, admit through CUET (UG). Many state and private colleges admit on Class 12 marks, and some private universities run their own tests.'
         },
         {
-          question: 'Which B.Sc subjects are most common?',
-          answer: 'In our records, Chemistry (400 programmes, including biochemistry), Computer Science/IT (387), Mathematics (347) and Physics (270) are the most common, followed by Botany, Zoology and life sciences.'
+          question: 'What is the fee for BSc?',
+          answer: 'Across 1,873 programmes with a listed fee on CollegeDecision (November 2026), the median first-year fee is ₹50,000. Public institutes have a median of ₹16,430 and private ones ₹60,000.'
         },
         {
-          question: 'What is the fee for B.Sc in India?',
-          answer: 'Across 1,676 B.Sc fee records in our database, the median is ₹55,000 a year. Public institutes are much cheaper (median ₹17,000) than private ones (median ₹69,600).'
+          question: 'Which are the top BSc colleges in India?',
+          answer: 'NIRF 2025 College ranking places Hindu College, Miranda House, Hansraj College, Kirori Mal College and St. Stephen\'s College at the top. NIRF ranks whole colleges, not the BSc alone.'
         },
         {
-          question: 'Can I do M.Sc in one year after B.Sc?',
-          answer: 'UGC’s postgraduate framework allows a one-year master’s after a 4-year Honours degree of 160 credits. After a 3-year degree, the master’s is two years. Each university decides which options it offers.'
-        },
-        {
-          question: 'What can I do after B.Sc?',
-          answer: 'You can take an M.Sc, MCA, MBA or B.Ed, prepare for government exams, or work in laboratory, data, IT, agriculture or environment roles depending on your subject.'
+          question: 'What can I do after BSc?',
+          answer: 'You can study an MSc through IIT JAM, CUET PG or state tests, take a B.Ed for school teaching, an MCA or MBA, or work in laboratory, data, IT or government roles.'
         }
       ]
     },
     bba: {
-      h1: 'BBA Course in India: Eligibility, Entrance Exams, Subjects & Fees',
-      title: 'BBA Course Details: Eligibility, Subjects, Fees & Exams',
+      h1: 'BBA Course: Eligibility, Entrance Exams, Fees, Syllabus and Careers 2026',
+      title: 'BBA Course 2026: Eligibility, CUET & Exams, Fees, Syllabus',
       description:
-        'BBA course guide: eligibility, CUET and entrance routes, BBA vs BMS vs B.Com, specialisations, subjects and fees (median ₹93,333 a year in our data).',
-      keywords: ['BBA course', 'BBA full form', 'BBA course details', 'BBA subjects', 'BBA entrance exam', 'BBA fees', 'BBA vs B.Com'],
+        'BBA course details for 2026-27: Class 12 eligibility, CUET UG, SET, IPMAT and UGAT routes, syllabus, specialisations, fees (median ₹85,000 a year) and careers.',
+      keywords: ['BBA course', 'BBA course details', 'BBA eligibility', 'BBA entrance exams 2026', 'BBA fees in India', 'BBA syllabus', 'BBA specializations', 'BBA vs BMS'],
       intro:
-        'BBA (Bachelor of Business Administration) is a 3- or 4-year undergraduate management degree after Class 12 in any stream. Check eligibility, entrance routes, subjects and fees before you shortlist colleges.',
+        'The BBA course is a three-year undergraduate management degree after Class 12 in any stream. Check eligibility, CUET and other entrance exams, syllabus, specialisations, fees and careers before you shortlist colleges.',
       crossLink: {
         href: '/bba-colleges',
-        anchor: 'Compare BBA colleges by fees & placements',
-        note: 'Ready to shortlist? Browse BBA colleges with recorded fees, accepted exams and placement outcomes.'
+        anchor: 'Compare BBA colleges by fees and exams',
+        note: 'Ready to shortlist? Browse BBA colleges with listed fees, accepted exams and placement records.'
       },
       faqs: [
-        {
-          question: 'What is the full form of BBA?',
-          answer: 'BBA stands for Bachelor of Business Administration, an undergraduate degree in management.'
-        },
-        {
-          question: 'What is the eligibility for BBA?',
-          answer: 'AICTE requires a Class 12 pass, with marks and subject rules set by the affiliating university. Most universities accept any stream, but some ask for Mathematics, such as DU for BMS and BBA (FIA) through CUET.'
-        },
-        {
-          question: 'Is BBA a 3-year or 4-year course?',
-          answer: 'Both exist. AICTE lists BBA/BMS/BBM as 3 or 4 years. Under the UGC framework, a 3-year degree needs 120 credits and a 4-year Honours degree 160 credits.'
-        },
-        {
-          question: 'Which entrance exams are there for BBA?',
-          answer: 'CUET (UG) at participating universities, university tests such as the Symbiosis Entrance Test (SET), and aptitude tests such as UGAT. Integrated BBA + MBA programmes at some IIMs use JIPMAT. Many colleges admit on Class 12 marks.'
-        },
-        {
-          question: 'What are the main BBA subjects?',
-          answer: 'Principles of management, accounting, marketing, finance, human resource management, business economics, statistics, business law and communication, followed by electives, an internship and a project.'
-        },
-        {
-          question: 'Which is better, BBA or B.Com?',
-          answer: 'BBA focuses on management functions such as marketing, HR and operations. B.Com focuses on accounting, taxation and finance and suits CA, CS or CMA. Both can lead to an MBA. In our records B.Com has a lower median fee.'
-        },
-        {
-          question: 'What is the fee for BBA in India?',
-          answer: 'Across 975 BBA fee records in our database, the median is ₹93,333 a year and half of programmes charge ₹53,333–₹1,73,744. The public-institute median is ₹40,010 and the private median ₹95,000.'
-        },
-        {
-          question: 'What can I do after BBA?',
-          answer: 'You can work in sales, marketing, finance, HR or operations, start or join a family business, or study further through an MBA or a professional qualification.'
-        }
-      ]
-    },
-    arts: {
-      h1: 'BA (Bachelor of Arts) Course in India: Subjects, Eligibility & Fees',
-      title: 'BA Course Details: Subjects List, Eligibility, Fees & Duration',
-      description:
-        'BA (Bachelor of Arts) guide: eligibility, CUET subject rules, 3 vs 4-year Honours, subjects list, fees (median ₹25,300 a year in our data) and careers.',
-      keywords: ['BA course', 'BA full form', 'Bachelor of Arts', 'BA subjects list', 'BA Honours', 'BA course duration', 'BA fees'],
-      intro:
-        'BA (Bachelor of Arts) is a 3- or 4-year undergraduate degree in the humanities, social sciences or languages after Class 12. Check eligibility, subject options, fees and next steps before you shortlist colleges.',
-      crossLink: {
-        href: '/ba-colleges',
-        anchor: 'Compare BA colleges by fees & admissions',
-        note: 'Ready to shortlist? Browse BA colleges with recorded fees, subjects and admission routes.'
-      },
-      faqs: [
-        {
-          question: 'What is the full form of BA?',
-          answer: 'BA stands for Bachelor of Arts, an undergraduate degree in the humanities, social sciences or languages.'
-        },
-        {
-          question: 'What is the eligibility for BA?',
-          answer: 'Each university sets its own rule; most accept Class 12 in any stream. Some majors need a matching subject: for example, Delhi University’s BA (Hons) Economics needs Mathematics in CUET (UG).'
-        },
-        {
-          question: 'Is BA a 3-year or 4-year course?',
-          answer: 'Both exist. Under the UGC framework, a 3-year BA needs 120 credits and a 4-year BA (Honours) needs 160 credits. Students with 75% or more in the first six semesters can choose Honours with Research.'
-        },
-        {
-          question: 'Which subjects can I choose in BA?',
-          answer: 'Common options include English, Hindi and other languages, Economics, History, Political Science, Psychology, Sociology, Geography, Philosophy, Public Administration and Journalism. In our records English, Economics and Indian languages are the most common.'
-        },
-        {
-          question: 'What is the difference between BA Honours and BA Programme?',
-          answer: 'A BA (Honours) focuses deeply on one major subject. A general BA, often called BA Programme, spreads across two or three subjects. Under the UGC framework, a 4-year degree is awarded with Honours.'
-        },
-        {
-          question: 'What is the fee for BA in India?',
-          answer: 'Across 923 BA fee records in our database, the median is ₹25,300 a year and half of programmes charge ₹10,390–₹60,000. Public institutes have a median of ₹13,746 and private ones ₹40,000.'
-        },
-        {
-          question: 'Can I do MA in one year after BA?',
-          answer: 'UGC’s postgraduate framework allows a one-year master’s after a 4-year Honours degree of 160 credits. After a 3-year BA, the MA is two years. Each university decides which options it offers.'
-        },
-        {
-          question: 'What can I do after BA?',
-          answer: 'You can take an MA, B.Ed, LLB or MBA, prepare for civil services and other government exams, or work in content, journalism, research, HR and social-sector roles.'
-        }
+        { question: 'What is the eligibility for the BBA course?', answer: 'You need a Class 12 pass from a recognised board. Most colleges ask for about 45% to 50% marks; some also want English. Exact cut-offs are set by the university or college.' },
+        { question: 'Is BBA a 3-year or 4-year course?', answer: 'Most BBA programmes are three years. Under the NEP, some universities also offer a four-year honours or research track. AICTE lists BBA/BMS/BBM as 3 or 4 years.' },
+        { question: 'Which entrance exams are accepted for BBA?', answer: 'Common routes are CUET UG, Symbiosis SET, IIM Indore IPMAT for the five-year IPM, AIMA UGAT and university CETs. Many private colleges still admit on Class 12 marks alone.' },
+        { question: 'When was IPMAT 2026 and what about 2027?', answer: 'IPMAT 2026 was held on 4 May 2026 by IIM Indore. As of 5 November 2026, IPMAT 2027 dates had not been announced; watch the IIM Indore admissions site.' },
+        { question: 'What is the difference between BBA, BMS and BBM?', answer: 'They are closely related undergraduate management degrees. BMS is common at Delhi University and Mumbai University; BBM and BBS are older labels. Compare the syllabus and the college, not only the letters.' },
+        { question: 'What is the fee for a BBA in India?', answer: 'Across 749 programme records on CollegeDecision (November 2026), the median first-year tuition is ₹85,000. Private colleges have a median of about ₹88,000; public colleges about ₹35,500.' },
+        { question: 'Can I do a BBA after Class 12 science or arts?', answer: 'Yes. Any stream can apply. Commerce helps with accounting papers, but it is rarely compulsory.' },
+        { question: 'Which BBA specialisation is most common?', answer: 'Most programmes are general BBA. Among named specialisations in our records, Marketing (154), Finance (148) and Banking (72) appear most often.' }
       ]
     },
     commerce: {
-      h1: 'B.Com Course in India: Eligibility, Subjects, Fees & CA Route',
-      title: 'B.Com Course Details: Subjects, Eligibility, Fees & Honours',
+      h1: 'B.Com Course: Eligibility, Subjects, Fees, Syllabus and Careers 2026',
+      title: 'B.Com Course 2026: Eligibility, CUET UG, Fees, Syllabus & CA Route',
       description:
-        'B.Com guide: eligibility, CUET rules, B.Com vs B.Com (Hons), CA direct entry, subjects, fees (median ₹45,000 a year in our data) and careers.',
-      keywords: ['B.Com course', 'B.Com full form', 'B.Com subjects', 'B.Com Honours', 'B.Com course details', 'B.Com with CA', 'B.Com vs BBA'],
+        'B.Com course details for 2026-27: Class 12 eligibility, CUET UG and merit routes, subjects, specialisations, fees (median ₹40,000 a year), top colleges and CA/CMA pathways.',
+      keywords: ['B.Com course', 'B.Com course details', 'B.Com eligibility', 'B.Com subjects', 'B.Com fees in India', 'B.Com specializations', 'CUET UG for B.Com', 'B.Com vs BBA'],
       intro:
-        'B.Com (Bachelor of Commerce) is a 3- or 4-year undergraduate degree in accounting, finance, tax and business law after Class 12. Check eligibility, subjects, the CA route and fees before you shortlist colleges.',
+        'The B.Com course is a three-year undergraduate commerce degree after Class 12. Check eligibility, CUET UG and merit admission, syllabus, specialisations, fees and careers before you shortlist colleges.',
       crossLink: {
         href: '/bcom-colleges',
-        anchor: 'Compare B.Com colleges by fees & admissions',
-        note: 'Ready to shortlist? Browse B.Com colleges with recorded fees and admission routes.'
+        anchor: 'Compare B.Com colleges by fees and exams',
+        note: 'Ready to shortlist? Browse B.Com colleges with listed fees, accepted exams and placement records.'
       },
       faqs: [
-        {
-          question: 'What is the full form of B.Com?',
-          answer: 'B.Com stands for Bachelor of Commerce, an undergraduate degree in accounting, finance, taxation, business law and economics.'
-        },
-        {
-          question: 'What is the eligibility for B.Com?',
-          answer: 'Each university sets its own rule, usually a Class 12 pass. Many accept any stream for a general B.Com, while B.Com (Honours) often needs Mathematics or Accountancy, as at Delhi University through CUET (UG).'
-        },
-        {
-          question: 'What is the difference between B.Com and B.Com (Hons)?',
-          answer: 'B.Com (Honours) goes deeper into accounting, finance and allied subjects and can have stricter entry rules. Under the UGC framework, a 4-year degree of 160 credits is awarded with Honours.'
-        },
-        {
-          question: 'Can I do CA after B.Com?',
-          answer: 'Yes. ICAI lets commerce graduates with at least 55% marks (other graduates 60%) skip CA Foundation and register directly for CA Intermediate. Final-year students can register provisionally.'
-        },
-        {
-          question: 'What are the main B.Com subjects?',
-          answer: 'Financial and corporate accounting, cost accounting, business and company law, income tax and GST, economics, business statistics, auditing and financial management, plus electives.'
-        },
-        {
-          question: 'What is the fee for B.Com in India?',
-          answer: 'Across 535 B.Com fee records in our database, the median is ₹45,000 a year and half of programmes charge ₹19,835–₹83,800. Public institutes have a median of ₹14,760 and private ones ₹50,000.'
-        },
-        {
-          question: 'Which is better, B.Com or BBA?',
-          answer: 'B.Com suits accounting, tax and finance and the CA, CS or CMA routes. BBA suits management roles and an MBA. Both can lead to an MBA, and B.Com has a lower median fee in our records.'
-        },
-        {
-          question: 'What can I do after B.Com?',
-          answer: 'You can pursue CA, CS or CMA, an M.Com or MBA, or work in accounting, audit, tax, banking, insurance and finance roles.'
-        }
+        { question: 'What is the eligibility for the B.Com course?', answer: 'You need a Class 12 pass from a recognised board. Most colleges ask for about 45% to 50% marks; exact cut-offs are set by the university. Any stream can apply.' },
+        { question: 'Is B.Com a 3-year or 4-year course?', answer: 'Most B.Com programmes are three years. Under the NEP, some universities also offer a four-year honours or research track.' },
+        { question: 'Which entrance exams are there for B.Com?', answer: 'Many colleges admit on Class 12 marks. CUET UG is used by many central and state universities. A few private groups use their own tests such as SET.' },
+        { question: 'What is the fee for a B.Com in India?', answer: 'Across 430 programme records on CollegeDecision (November 2026), the median first-year tuition is ₹40,000. Private colleges have a median of about ₹45,000; public colleges about ₹17,245.' },
+        { question: 'What is the difference between B.Com and B.Com (Hons)?', answer: 'B.Com (Hons) usually has a tighter focus and higher credit load. Compare the actual paper list at each college rather than the label alone.' },
+        { question: 'Can I do CA with B.Com?', answer: 'Yes. Many students attempt CA Foundation or Intermediate alongside or after B.Com. Ask the college about attendance flexibility if you plan articleship.' },
+        { question: 'Which B.Com specialisation is most common?', answer: 'Besides general B.Com, our records show B.Com (Hons) (482 programmes), Computer Applications (181), Accounting (160) and Finance (150) most often.' },
+        { question: 'What can I do after B.Com?', answer: 'Common next steps are jobs in accounts or banking, M.Com, an MBA, or professional qualifications such as CA, CMA or Company Secretary.' }
       ]
     },
     mca: {
-      h1: 'MCA Course in India: Eligibility, NIMCET & Entrance Exams, Fees',
-      title: 'MCA Course Details: Eligibility, Subjects, Fees & Exams',
+      h1: 'MCA Course: Eligibility, NIMCET, Fees, Syllabus and Careers 2026',
+      title: 'MCA Course 2026: Eligibility, NIMCET & Exams, Fees, Syllabus',
       description:
-        'MCA guide: AICTE eligibility and the Maths rule, NIMCET 2026 and other exams, lateral entry, subjects and fees (median ₹65,000 a year in our data).',
-      keywords: ['MCA course', 'MCA full form', 'MCA course details', 'MCA subjects', 'MCA eligibility', 'MCA entrance exam', 'NIMCET'],
+        'MCA course details for 2026-27: AICTE eligibility and Maths rule, NIMCET 2026 dates, state CETs, two-year syllabus, fees (median ₹60,000 a year) and careers.',
+      keywords: ['MCA course', 'MCA course details', 'MCA eligibility', 'MCA entrance exams 2026', 'NIMCET 2026', 'MCA fees in India', 'MCA syllabus', 'MCA specializations'],
       intro:
-        'MCA (Master of Computer Applications) is a two-year postgraduate degree in software and computer applications after any bachelor’s degree. Check eligibility, entrance exams, lateral entry and fees before you shortlist colleges.',
+        'The MCA course is a two-year postgraduate degree in computer applications after any bachelor\'s degree. Check AICTE eligibility, NIMCET and state CET routes, syllabus, fees and careers before you shortlist colleges.',
       crossLink: {
         href: '/mca-colleges',
-        anchor: 'Compare MCA colleges by fees & placements',
-        note: 'Ready to shortlist? Browse MCA colleges with recorded fees, accepted exams and placement outcomes.'
+        anchor: 'Compare MCA colleges by fees and exams',
+        note: 'Ready to shortlist? Browse MCA colleges with listed fees, accepted exams and placement records.'
       },
       faqs: [
-        {
-          question: 'What is the full form of MCA?',
-          answer: 'MCA stands for Master of Computer Applications, a postgraduate degree in software development and computer applications.'
-        },
-        {
-          question: 'What is the eligibility for MCA?',
-          answer: 'AICTE accepts any bachelor’s degree with 50% marks (45% for reserved categories), preferably with Mathematics at Class 12 or in the degree. Students without Mathematics must take a compulsory bridge course.'
-        },
-        {
-          question: 'Is MCA a 2-year or 3-year course?',
-          answer: 'Under current AICTE rules the MCA is 2 years. Graduates of a 4-year BCA or a B.Tech in CSE/IT can join the second year through lateral entry, subject to seat availability.'
-        },
-        {
-          question: 'Can I do MCA without Maths?',
-          answer: 'AICTE allows it with a compulsory bridge course, but each university decides. NIMCET, used by the NITs, needs Mathematics or Statistics in a three-year degree, or a B.E./B.Tech.'
-        },
-        {
-          question: 'Which entrance exams are there for MCA?',
-          answer: 'NIMCET for the NITs and IIIT Bhopal and Vadodara, state tests such as TANCET, MAH MCA CET, AP ICET, TS ICET, Karnataka PGCET and OJEE, and university tests.'
-        },
-        {
-          question: 'What is the NIMCET exam pattern?',
-          answer: 'NIMCET 2026 had 120 questions worth 1,000 marks in two hours, with 25% negative marking. Mathematics carried 600 marks, analytical reasoning 240, computer awareness 120 and English 40.'
-        },
-        {
-          question: 'What is the fee for MCA in India?',
-          answer: 'Across 393 MCA fee records in our database, the median is ₹65,000 a year and half of programmes charge ₹37,500–₹1,05,000. The public-institute median is ₹40,000 and the private median ₹66,667.'
-        },
-        {
-          question: 'What can I do after MCA?',
-          answer: 'Most MCA graduates work as software developers, testers, data analysts or cloud engineers. You can also pursue a PhD or specialised certifications.'
-        }
-      ]
-    },
-    'online-mba': {
-      h1: 'Online MBA in India: Validity, UGC Approval, Eligibility & Fees',
-      title: 'Online MBA in India: Is It Valid? Eligibility & Fees',
-      description:
-        'Online MBA guide: UGC validity and how to check a university, eligibility, online vs regular vs distance MBA, fees and tips for working professionals.',
-      keywords: ['online MBA', 'online MBA in India', 'UGC approved online MBA', 'online MBA fees', 'online MBA eligibility', 'distance MBA', 'online MBA for working professionals'],
-      intro:
-        'An online MBA is a two-year MBA delivered over the internet. From a UGC-entitled university it is equivalent to a regular MBA. Check the university’s entitlement, eligibility and total fees before you enrol.',
-      crossLink: {
-        href: '/online-mba-colleges',
-        anchor: 'Compare online MBA colleges',
-        note: 'Ready to shortlist? Browse online MBA programmes and check each university on the UGC-DEB list.'
-      },
-      faqs: [
-        {
-          question: 'Is an online MBA valid in India?',
-          answer: 'Yes, if the university is entitled by UGC to offer it. Under Regulation 22 of the UGC ODL and Online Regulations, 2020, online degrees from recognised institutions are equivalent to the same degree in regular mode.'
-        },
-        {
-          question: 'How do I check if an online MBA is UGC approved?',
-          answer: 'Find the university on the UGC Distance Education Bureau (deb.ugc.ac.in) list of institutions entitled to offer online degree programmes for your session, and check that the MBA appears against it.'
-        },
-        {
-          question: 'What is the eligibility for an online MBA?',
-          answer: 'UGC requires the same entry qualification as the regular MBA. AICTE’s regular-MBA minimum is a bachelor’s degree of at least three years with 50% marks (45% for reserved categories). Universities set the exact rules.'
-        },
-        {
-          question: 'Do I need CAT for an online MBA?',
-          answer: 'Not always. AICTE asks institutions to prefer CAT, XAT, CMAT, ATMA, MAT, GMAT or government entrance-test scores, but many universities also admit through their own test, interview or merit.'
-        },
-        {
-          question: 'How long is an online MBA?',
-          answer: 'Two years, the same as a regular MBA, usually in four semesters.'
-        },
-        {
-          question: 'What is the difference between an online MBA and a distance MBA?',
-          answer: 'An online MBA uses live and recorded classes on a learning platform. A distance (ODL) MBA relies on study material and occasional contact classes at study centres. Both need UGC-DEB recognition.'
-        },
-        {
-          question: 'What are online MBA fees?',
-          answer: 'Fees vary widely between universities, and our database has too few records for a reliable range. Ask each university for the total fee for all four semesters, including exam fees.'
-        },
-        {
-          question: 'Is an Online PGDM the same as an online MBA?',
-          answer: 'No. An Online PGDM is a postgraduate diploma from an AICTE-approved institute, while an online MBA is a degree awarded by a university.'
-        }
+        { question: 'What is the eligibility for the MCA course?', answer: 'Under AICTE rules you need any bachelor\'s degree of at least three years with 50% marks (45% for reserved categories). Mathematics at Class 12 or graduation is preferred; otherwise the institute must offer a bridge course.' },
+        { question: 'Is MCA a 2-year or 3-year course?', answer: 'Under current AICTE rules the MCA is two years. Older three-year programmes have been phased out. Some universities allow lateral entry into the second year for four-year BCA or B.Tech CSE/IT graduates.' },
+        { question: 'Can I do MCA without Maths?', answer: 'AICTE allows it with a compulsory bridge course, but each university decides. NIMCET for NIT seats requires Mathematics as part of the listed qualifying degrees.' },
+        { question: 'When was NIMCET 2026?', answer: 'NIMCET 2026 was held on 6 June 2026 by NIT Tiruchirappalli, with the result on 29 June 2026. Check the next year\'s brochure on the conducting NIT\'s site for 2027 dates.' },
+        { question: 'Which entrance exams are accepted for MCA?', answer: 'NIMCET for participating NITs and listed IIITs; TANCET, MAH MCA CET, AP ICET, CUET PG and other state PGCET-type tests for most other seats.' },
+        { question: 'What is the fee for an MCA in India?', answer: 'Across 307 programme records on CollegeDecision (November 2026), the median first-year tuition is ₹60,000. Private colleges have a median of about ₹62,000; public colleges about ₹35,500.' },
+        { question: 'What is the difference between MCA and PGDCA?', answer: 'MCA is a two-year postgraduate degree. PGDCA is usually a one-year diploma. They are not interchangeable for jobs that specifically ask for an MCA.' },
+        { question: 'Which MCA specialisation should I choose?', answer: 'Most programmes are general MCA with elective clusters. Pick electives that match the jobs you want, and judge the college by labs and projects rather than the specialisation name alone.' }
       ]
     },
     bpharm: {
-      h1: 'B.Pharm Course in India: Eligibility, Admission, Subjects & Fees',
-      title: 'B.Pharm Course Details: Eligibility, Subjects, Fees & Exams',
+      h1: 'B.Pharm Course in India: Eligibility, Admission, Subjects, Fees & Careers',
+      title: 'B.Pharm Course 2026: Eligibility, Admission, Subjects & Fees',
       description:
-        'B.Pharm guide: PCI eligibility (PCM/PCB), entrance exams, lateral entry after D.Pharm, subjects, fees (median ₹95,000 a year in our data) and careers.',
-      keywords: ['B.Pharm course', 'B Pharmacy course details', 'B.Pharm eligibility', 'B.Pharm subjects', 'B.Pharm fees', 'B.Pharm lateral entry', 'B.Pharm vs Pharm.D'],
+        'B.Pharm course guide: PCI eligibility (PCM or PCB with English), state entrance exams, lateral entry after D.Pharm, subjects, fees (median ₹90,000 a year) and NIRF 2025 top colleges.',
+      keywords: ['B.Pharm course', 'B Pharmacy course details', 'B.Pharm eligibility', 'B.Pharm admission', 'B.Pharm subjects', 'B.Pharm fees', 'B.Pharm lateral entry'],
       intro:
-        'B.Pharm (Bachelor of Pharmacy) is a four-year degree after Class 12 with Physics, Chemistry and Maths or Biology. Check PCI approval, eligibility, admission routes and fees before you shortlist colleges.',
+        'A B.Pharm course is a four-year pharmacy degree after Class 12 with English, Physics, Chemistry and Maths or Biology. A B.Pharm from a PCI-approved institution lets you register as a pharmacist. Check eligibility, admission, fees and top colleges here.',
       crossLink: {
         href: '/bpharm-colleges',
         anchor: 'Compare B.Pharm colleges by fees & placements',
-        note: 'Ready to shortlist? Browse B.Pharm colleges with recorded fees, accepted exams and placement outcomes.'
+        note: 'Ready to shortlist? Browse B.Pharm colleges with recorded fees, accepted exams and placement outcomes, and check each on PCI\'s approved list.'
       },
       faqs: [
         {
           question: 'What is the eligibility for B.Pharm?',
-          answer: 'PCI requires a 10+2 pass with English, Physics and Chemistry, plus Mathematics or Biology, from a recognised board. You must be 17 by 31 December of the admission year. Open-school (NIOS) 10+2 is not accepted.'
+          answer: 'PCI requires a 10+2 pass with English, Physics and Chemistry, plus Mathematics or Biology, from a recognised board. You must be 17 by 31 December of the admission year.'
         },
         {
           question: 'Can PCM students do B.Pharm?',
-          answer: 'Yes. Both PCM and PCB students are eligible. Students without Biology take Remedial Biology in the first semester, and students without Mathematics take Remedial Mathematics.'
+          answer: 'Yes. Both PCM and PCB students are eligible. PCM students take Remedial Biology and PCB students take Remedial Mathematics in the first semester.'
         },
         {
-          question: 'How many years is the B.Pharm course?',
-          answer: 'Four years (eight semesters). D.Pharm holders can join the third semester through lateral entry and finish in three years.'
+          question: 'Is NIOS 10+2 accepted for B.Pharm?',
+          answer: 'No. PCI does not accept 10+2 from non-formal or open schooling, such as NIOS or state open schools, for B.Pharm admission.'
         },
         {
           question: 'Is there an entrance exam for B.Pharm?',
-          answer: 'There is no single national test. Many states use their own tests, such as MHT CET, KCET, WBJEE, GUJCET and OJEE. BITS uses BITSAT, and some colleges admit on Class 12 marks.'
+          answer: 'There is no national B.Pharm test. States use tests such as MHT CET, KCET, AP EAPCET, WBJEE and GUJCET; BITS uses BITSAT; many private colleges admit on Class 12 merit.'
         },
         {
-          question: 'What subjects are in B.Pharm?',
-          answer: 'Pharmaceutics, pharmaceutical and medicinal chemistry, pharmacology, pharmacognosy, biochemistry, microbiology, industrial pharmacy, quality assurance and pharmacy law, plus practice school and a project.'
+          question: 'Can I do B.Pharm after D.Pharm?',
+          answer: 'Yes. D.Pharm holders from PCI-approved institutions can join B.Pharm in the third semester through lateral entry and finish in three years.'
         },
         {
-          question: 'What is the fee for B.Pharm in India?',
-          answer: 'Across 157 B.Pharm fee records in our database, the median is ₹95,000 a year and half of programmes charge ₹64,450–₹1,32,500. The public-institute median is ₹64,400 and the private median ₹1,04,250.'
+          question: 'What is the fee for B.Pharm?',
+          answer: 'Across 235 programmes with a listed fee on CollegeDecision (November 2026), the median first-year fee is ₹90,000. Public institutes have a median of ₹65,000 and private ones ₹93,000.'
         },
         {
-          question: 'Can I become a pharmacist after B.Pharm?',
-          answer: 'Yes. A B.Pharm from a PCI-approved institution lets you register as a pharmacist with your State Pharmacy Council (minimum age 18). PCI says B.Pharm (Honours) and B.Pharm + MBA are not approved for registration.'
-        },
-        {
-          question: 'What is the difference between B.Pharm and Pharm.D?',
-          answer: 'B.Pharm is a four-year degree focused on medicines and the pharmaceutical industry. Pharm.D is a six-year course after 10+2 with a clinical focus. Both qualify you to register as a pharmacist.'
+          question: 'What can I do after B.Pharm?',
+          answer: 'You can register as a pharmacist, work in production, quality control, regulatory affairs or medical sales, take government posts such as drug inspector, or study an M.Pharm through GPAT.'
         }
       ]
     },
-    architecture: {
-      h1: 'B.Arch Course in India: Eligibility, NATA, Subjects & Fees',
-      title: 'B.Arch Course: Eligibility, NATA/JEE, Subjects & Fees',
-      description:
-        'B.Arch guide: CoA eligibility (Physics + Maths, 45%), NATA vs JEE Main Paper 2A, 5-year structure, fees (median ₹1.15 lakh a year in our data).',
-      keywords: ['B.Arch course', 'B.Arch eligibility', 'B.Arch without chemistry', 'NATA vs JEE Main Paper 2', 'B.Arch subjects', 'B.Arch fees', 'B.Arch admission'],
-      intro:
-        'B.Arch is a five-year degree that leads to registration as an architect with the Council of Architecture. Check the subject rule, the aptitude test your counselling uses, and the total fees before you shortlist colleges.',
-      crossLink: {
-        href: '/barch-colleges',
-        anchor: 'Compare B.Arch colleges by fees & exams',
-        note: 'Ready to shortlist? Browse B.Arch colleges with recorded fees, accepted exams and placement outcomes, and check each one\'s CoA approval.'
-      },
-      faqs: [
-        {
-          question: 'What is the eligibility for B.Arch?',
-          answer: 'From the 2024-25 session, CoA requires 10+2 with Physics and Mathematics plus one of Chemistry, Biology, a technical vocational subject, Computer Science, IT, Informatics Practices, Engineering Graphics or Business Studies, with 45% aggregate. A 10+3 diploma with Mathematics and 45% also qualifies. You must also qualify NATA or JEE Main Paper 2A.'
-        },
-        {
-          question: 'Can I do B.Arch without Chemistry?',
-          answer: 'Under the CoA minimum, yes, if you have Physics and Mathematics plus another listed subject. But some routes still need PCM: NIT seats through JoSAA ask for Physics, Chemistry and Mathematics, and Jadavpur University through WBJEE asks for 50% in PCM.'
-        },
-        {
-          question: 'Is NATA compulsory for B.Arch?',
-          answer: 'You need a qualifying score in an aptitude test: either NATA, run by CoA, or JEE Main Paper 2A, run by NTA. Which one counts depends on the college and counselling body. IIT seats need JEE Advanced plus the Architecture Aptitude Test.'
-        },
-        {
-          question: 'What is the difference between NATA and JEE Main Paper 2A?',
-          answer: 'NATA 2026 had 200 marks: an offline drawing part and an adaptive online part, with up to two attempts in Phase 1. JEE Main Paper 2A had 400 marks across Mathematics, Aptitude and a Drawing test, and its rank is used for NIT seats through JoSAA and by several states.'
-        },
-        {
-          question: 'How many years is B.Arch?',
-          answer: 'At least five years (10 semesters), including one semester of practical training in the 8th or 9th semester and a design thesis in the 10th. CoA says the course must be finished within eight years.'
-        },
-        {
-          question: 'What is the fee for B.Arch in India?',
-          answer: 'Across 123 B.Arch fee records in our database, the median is ₹1,15,000 a year and half of programmes charge ₹89,080–₹1,85,000. The public-institute median is ₹99,000 (21 records) and the private median ₹1,15,000. Confirm current fees with each college.'
-        },
-        {
-          question: 'Do I need to register to work as an architect?',
-          answer: 'Yes. Under the Architects Act, 1972, you must be registered with the Council of Architecture to use the title architect. A B.Arch from a CoA-recognised programme, with admission that met CoA eligibility, lets you apply.'
-        },
-        {
-          question: 'What can I do after B.Arch?',
-          answer: 'You can work in architecture firms, start your own practice after registration, or move into urban design, conservation, interior architecture, project management or government architect posts. Many students also take an M.Arch or M.Plan.'
-        }
-      ]
-    },
-    march: {
-      h1: 'M.Arch Course in India: Eligibility, PGETA, GATE & Fees',
-      title: 'M.Arch Course: Eligibility, PGETA vs GATE & Fees',
-      description:
-        'M.Arch guide: CoA eligibility (B.Arch with 50%), PGETA vs GATE AR via CCMT, specialisations and fees (median ₹1.13 lakh a year in our data).',
-      keywords: ['M.Arch course', 'M.Arch eligibility', 'M.Arch entrance exam', 'PGETA', 'GATE architecture for M.Arch', 'M.Arch specialisations', 'M.Arch fees in India'],
-      intro:
-        'M.Arch is a two-year master\'s for B.Arch graduates who want to specialise. Check the 50% eligibility rule, whether your target institute uses PGETA or GATE, and the specialisation before you apply.',
-      crossLink: {
-        href: '/march-colleges',
-        anchor: 'Compare M.Arch colleges by fees & exams',
-        note: 'Ready to shortlist? Browse M.Arch colleges with recorded fees and accepted exams, and confirm each programme\'s CoA approval.'
-      },
-      faqs: [
-        {
-          question: 'What is the eligibility for M.Arch?',
-          answer: 'Under the Council of Architecture PG Guidelines 2022, you need a B.Arch or equivalent with at least 50% aggregate marks or equivalent CGPA, and you must qualify an entrance test. Some routes ask for more: CCMT seats at NITs need 60% or 6.5 CGPA (55% or 6.0 for SC, ST and PwD).'
-        },
-        {
-          question: 'Which entrance exam is needed for M.Arch?',
-          answer: 'CoA conducts PGETA for admission to PG architecture programmes. NITs, IIEST Shibpur and some IIITs and CFTIs admit M.Arch students through CCMT using GATE Architecture and Planning (AR) scores. Other institutes may use their own test or interview, so check each admission notice.'
-        },
-        {
-          question: 'What is PGETA?',
-          answer: 'PGETA is the Council of Architecture\'s Post Graduate Entrance Test in Architecture. In 2026 it was a two-hour computer-based test with four modules, held on three dates; candidates could take up to three attempts and the best score counted. The score is valid for one academic year.'
-        },
-        {
-          question: 'Can I take PGETA or GATE in the final year of B.Arch?',
-          answer: 'Yes. The PGETA 2026 brochure allows final-year B.Arch students to take the test, and GATE allows students in the third or higher year of their degree to appear. You must still meet the 50% B.Arch rule at admission.'
-        },
-        {
-          question: 'How long is the M.Arch course?',
-          answer: 'At least two years (four semesters of about 18 working weeks) full time. CoA\'s guidelines say it must be finished within three years, with one extra year allowed once in exceptional circumstances.'
-        },
-        {
-          question: 'What are the M.Arch specialisations?',
-          answer: 'Common options include sustainable or environmental architecture, landscape, urban design, conservation and construction management. In our records 52 of 68 M.Arch programmes are listed as a general M.Arch, so check each institute\'s actual focus.'
-        },
-        {
-          question: 'What is the fee for M.Arch in India?',
-          answer: 'Across 28 M.Arch fee records in our database, the median is ₹1,13,000 a year and half of programmes charge ₹82,750–₹1,33,673. The sample is small, so confirm current fees with each institute.'
-        },
-        {
-          question: 'Is M.Arch the same as M.Plan?',
-          answer: 'No. M.Arch deepens architecture in a chosen specialisation, while M.Plan focuses on urban, regional, transport or housing planning. Both are often taught at architecture and planning schools, and NITs admit to both through CCMT using GATE.'
-        }
-      ]
+    'architecture': {
+        h1: 'B.Arch Course: Eligibility, NATA, Fees, Syllabus and Careers 2026',
+        title: 'B.Arch Course 2026: NATA, Eligibility, Fees & CoA Registration',
+        description: 'B.Arch course guide: 5-year CoA architecture degree, NATA 2026 schedule, eligibility, fees from CollegeDecision data, studios and careers.',
+        keywords: ['B.Arch course', 'B.Arch', 'B.Arch eligibility', 'NATA', 'B.Arch fees', 'Bachelor of Architecture', 'CoA'],
+        intro: 'A B.Arch course is the five-year professional architecture degree toward CoA registration. This guide explains NATA, eligibility, fees, studios and how to choose a college.',
+        crossLink: { href: '/barch-colleges', anchor: 'B.Arch colleges in India', note: 'Browse published B.Arch college pages' },
+        faqs: [
+            { question: 'What is a B.Arch course?', answer: 'A five-year Bachelor of Architecture that supports CoA registration when rules are met.' },
+            { question: 'Is NATA mandatory?', answer: 'You need the aptitude score your admitting body accepts—NATA and/or JEE Paper 2.' },
+            { question: 'Can diploma holders apply?', answer: 'CoA’s NATA 2026 notice allowed 10+3 Diploma with Mathematics at the stated aggregate; confirm the live brochure.' },
+            { question: 'B.Arch vs B.Plan?', answer: 'B.Arch is architecture; B.Plan is planning—different pathways.' },
+            { question: 'How much does B.Arch cost?', answer: 'Our sample median annual tuition is about ₹1,08,000 across 403 rows; public colleges can be lower.' },
+            { question: 'How long is B.Arch?', answer: 'Five academic years under CoA minimum standards.' },
+            { question: 'Do I need Mathematics?', answer: 'Yes—Mathematics is part of the standard eligibility CoA describes.' },
+            { question: 'How do I register as an architect?', answer: 'After a recognised B.Arch, apply to the Council of Architecture under the Architects Act.' }
+        ]
     },
     'online-mca': {
-      h1: 'Online MCA in India: Validity, UGC & AICTE Rules, Eligibility & Fees',
-      title: 'Online MCA in India: Is It Valid? Eligibility & Fees',
+      h1: 'Online MCA Course: Validity, Eligibility, Admission, Fees and Syllabus 2026',
+      title: 'Online MCA Course 2026: UGC-DEB Validity, Eligibility & Fees',
       description:
-        'Online MCA guide: UGC validity, the AICTE rule for deemed universities, eligibility, online vs regular vs distance MCA, fees and how to choose.',
-      keywords: ['online MCA', 'online MCA course', 'online MCA fees', 'distance MCA', 'is online MCA valid', 'online MCA vs regular MCA', 'UGC approved online MCA'],
+        'Online MCA course guide for 2026: UGC-DEB validity, AICTE rule for deemed universities, eligibility, admission with DEB-ID, syllabus, published fees and careers.',
+      keywords: ['online MCA course', 'online MCA', 'online MCA eligibility', 'online MCA fees', 'is online MCA valid', 'UGC approved online MCA', 'online MCA admission 2026'],
       intro:
-        'An online MCA is a two-year MCA studied over the internet. From a UGC-entitled or recognised university it is equivalent to a regular MCA; deemed universities also need AICTE approval. Check the university, eligibility and total fees before you enrol.',
+        'An online MCA course is a two-year Master of Computer Applications studied over the internet. From a university listed by UGC-DEB for an online MCA in your session it equals a regular MCA. Check eligibility, admission, fees and approval here.',
       crossLink: {
-        href: '/online-mca-colleges',
-        anchor: 'Compare online MCA colleges',
-        note: 'Ready to shortlist? Browse online MCA programmes and check each university on the UGC-DEB list for your session.'
+        href: '/courses/online-programmes',
+        anchor: 'Compare online programmes',
+        note: 'Ready to shortlist? Browse online programmes and confirm each university on the UGC-DEB list for your session.'
       },
       faqs: [
         {
           question: 'Is an online MCA valid in India?',
-          answer: 'Yes, if the university is entitled or recognised by UGC to offer the MCA online for your session. Under Regulation 22 of the UGC ODL and Online Regulations, 2020, such degrees are equivalent to the same degree in regular mode.'
+          answer: 'Yes, if the university is entitled or recognised by UGC to offer the MCA online for your session. Regulation 22 of the UGC ODL and Online Regulations, 2020 makes such degrees equal to regular ones.'
         },
         {
           question: 'Does an online MCA need AICTE approval?',
-          answer: 'Only in some cases. UGC-DEB\'s October 2025 notice says central, state and private universities do not need prior AICTE approval for computer applications programmes, but deemed universities must get AICTE\'s prior approval or no-objection to offer them online.'
+          answer: 'Only for deemed universities. UGC-DEB\'s October 2025 notice says central, state and private universities do not need AICTE\'s prior approval for computer applications, but deemed universities do.'
         },
         {
-          question: 'How long is an online MCA?',
-          answer: 'Two years, usually four semesters. AICTE lists the MCA as a two-year course in online and distance mode, and UGC requires the same duration as the regular programme.'
+          question: 'How long is an online MCA course?',
+          answer: 'Two years, in four semesters, the same as the regular MCA.'
         },
         {
           question: 'Can I do an online MCA without Mathematics?',
-          answer: 'It depends on the university. AICTE\'s entry routes are a BCA or computer science degree, or a BA, B.Sc or B.Com with Mathematics at Class 12 or degree level plus a bridge course. Check the university\'s own rule before applying.'
+          answer: 'Often yes, through a bridge course, but it depends on the university. AICTE\'s route needs Mathematics at Class 12 or graduation, or a bridge course. Get the rule in writing before you apply.'
         },
         {
           question: 'Is there an entrance exam for an online MCA?',
-          answer: 'Not always. AICTE asks institutions to prefer candidates with a State or Central Government entrance-test score, but many universities also admit on merit or through their own process. NIMCET is for the regular MCA at the NITs.'
+          answer: 'Usually not. Admission is mostly on graduation marks. NIMCET is used for the NITs\' campus MCA, not online seats.'
         },
         {
           question: 'How many universities offer an online MCA?',
-          answer: 'We counted 69 universities listed for an online MCA for 2025-26 on the UGC-DEB programme list: 32 private, 23 deemed, 10 state, 2 central and 2 open universities. The list changes each session.'
+          answer: 'We counted 86 institutions listed against an online MCA for 2026-27 on the UGC-DEB programme list on 5 November 2026, up from 71 for 2025-26.'
         },
         {
-          question: 'What is the difference between an online MCA and a distance MCA?',
-          answer: 'An online MCA uses live and recorded classes on a learning platform. A distance (ODL) MCA relies on study material and contact classes at study centres. Both need UGC-DEB recognition for the session.'
+          question: 'What is the fee for an online MCA?',
+          answer: 'At the large private universities we checked on 5 November 2026, published totals ranged from about Rs 1.3 lakh (JAIN Online) to Rs 1.99 lakh (Amity Online) for two years. Discounts change often.'
         },
         {
-          question: 'What are online MCA fees?',
-          answer: 'Fees vary widely between universities, and our database has no fee records for online MCA programmes yet. Ask each university for the total fee for all four semesters, including exam fees.'
+          question: 'Is an online MCA good for a government job?',
+          answer: 'A recognised online MCA is equal to a regular MCA under UGC rules, but always read the specific recruitment notice.'
         }
       ]
     },
     'online-ma': {
-      h1: 'Online MA in India: Validity, Subjects, Eligibility & Fees',
-      title: 'Online MA in India: Is It Valid? Subjects & Eligibility',
+      h1: 'Online MA Course: Validity, Eligibility, Admission, Fees and Subjects 2026',
+      title: 'Online MA Course 2026: UGC-DEB Validity, Subjects & Fees',
       description:
-        'Online MA guide: UGC validity, checking your subject on the UGC-DEB list, eligibility, subjects offered in 2025-26, online vs distance MA and fees.',
-      keywords: ['online MA', 'online MA degree', 'online MA in India', 'online MA course', 'online MA English', 'distance MA', 'is online MA valid'],
+        'Online MA course guide for 2026: UGC-DEB validity, eligibility, admission with DEB-ID, popular subjects, LPU fee example and careers.',
+      keywords: ['online MA course', 'online MA', 'online MA eligibility', 'online MA fees', 'is online MA valid', 'UGC approved online MA', 'online MA admission 2026'],
       intro:
-        'An online MA is a Master of Arts studied over the internet, usually in two years. From a UGC-entitled or recognised university it is equivalent to a regular MA. Check that your exact subject is listed for online mode before you enrol.',
+        'An Online MA course is a two-year Master of Arts studied over the internet. From a university listed by UGC-DEB for that MA subject online in your session it equals a regular MA. Check eligibility, subjects, fees and approval here.',
       crossLink: {
-        href: '/ma-colleges',
-        anchor: 'Compare MA colleges',
-        note: 'Prefer campus study? Browse MA colleges, or check each online MA on the UGC-DEB list for your session.'
+        href: '/courses/ma',
+        anchor: 'Compare campus MA programmes',
+        note: 'Prefer classroom study? Browse the campus MA guide. For online options, confirm each university and subject on the UGC-DEB list.'
       },
       faqs: [
         {
-          question: 'Is an online MA valid in India?',
-          answer: 'Yes, if the university is entitled or recognised by UGC to offer that MA subject online for your session. Under Regulation 22 of the UGC ODL and Online Regulations, 2020, such degrees are equivalent to the same degree in regular mode.'
+          question: 'Is an Online MA valid in India?',
+          answer: 'Yes, if the university is entitled or recognised by UGC for that MA subject in online mode for your session. Regulation 22 of the UGC ODL and Online Regulations, 2020 makes such degrees equal to regular ones.'
         },
         {
-          question: 'How do I check if an online MA is UGC approved?',
-          answer: 'Open the UGC-DEB website and check that the university and your exact MA subject are listed for online mode for your academic session. Approval for one subject does not cover another.'
+          question: 'How do I check if an Online MA is UGC approved?',
+          answer: 'Search the programme list on deb.ugc.ac.in for the university, the session, the Master of Arts subject and Online mode.'
         },
         {
-          question: 'What is the eligibility for an online MA?',
-          answer: 'The same as the university\'s regular MA, usually a bachelor\'s degree, often in the same or a related subject. UGC\'s PG framework also lets you join a different subject if you qualify a national or university entrance test in it.'
+          question: 'What is the eligibility for an Online MA course?',
+          answer: 'Usually a bachelor\'s degree, following the same rule as the university\'s regular MA. Subject and marks rules vary.'
         },
         {
-          question: 'How long is an online MA?',
-          answer: 'Usually two years after a three-year bachelor\'s degree. UGC\'s 2024 PG framework also allows a one-year MA after a four-year honours degree where the university offers it.'
+          question: 'Is there an entrance exam for an Online MA?',
+          answer: 'Usually not. Most online MAs admit on graduation marks. CUET PG is more common for campus MA seats.'
         },
         {
-          question: 'Which MA subjects can I study online?',
-          answer: 'In 2025-26 the UGC-DEB list showed English at 43 universities, journalism and mass communication at 30, economics at 26 and political science at 18, with smaller numbers for sociology, history, Hindi and others.'
+          question: 'How long is an Online MA course?',
+          answer: 'Usually two years in four semesters. A one-year option may exist after a four-year honours undergraduate degree.'
         },
         {
-          question: 'Can I do an online MA along with a regular degree?',
-          answer: 'Yes. UGC\'s PG framework allows one full-time physical programme plus one online or distance programme, or up to two online or distance programmes, from UGC-recognised institutions.'
+          question: 'How many universities offer an Online MA?',
+          answer: 'We counted 74 institutions with online Master of Arts entries for 2026-27 on the UGC-DEB programme list on 5 November 2026.'
         },
         {
-          question: 'What is the difference between an online MA and a distance MA?',
-          answer: 'An online MA uses recorded and live classes and online assessment. A distance (ODL) MA relies on self-learning material and contact classes at study centres. UGC-DEB recognises each separately.'
+          question: 'What is the fee for an Online MA?',
+          answer: 'It varies by university. LPU Online\'s published MA fee on 5 November 2026 was about Rs 80,000 for two years before temporary grants.'
         },
         {
-          question: 'What are online MA fees?',
-          answer: 'Fees vary by university and subject, and our database has no fee records for online MA programmes yet. Ask for the total fee for all semesters, including exam fees.'
+          question: 'Is an Online MA the same as a distance MA?',
+          answer: 'No. Online and distance (ODL) are separate modes and need separate UGC-DEB approval.'
         }
       ]
     },
@@ -2294,243 +2506,196 @@ export function courseSeo(profile: CourseSeoInput): CourseSeoPack {
         }
       ]
     },
+    'mph': {
+      h1: 'MPH Course: Eligibility, Admission, Fees, Syllabus and Careers 2026',
+      title: 'MPH Course 2026: Eligibility, Admission, Fees & Careers',
+      description:
+        'MPH course guide for 2026: institute-wise eligibility, CUET PG and institute tests, syllabus, specialisations, official fee examples and careers.',
+      keywords: ['MPH course', 'Master of Public Health', 'MPH eligibility', 'MPH fees', 'MPH admission 2026', 'MPH vs MD Community Medicine', 'public health course'],
+      intro:
+        'An MPH course is a two-year Master of Public Health focused on population health. Eligibility and selection differ by institute. Compare admission routes, fees and careers before you shortlist.',
+      crossLink: {
+        href: '/courses/healthcare-pg',
+        anchor: 'Explore related healthcare PG courses',
+        note: 'Looking at allied health postgraduate options? Browse Healthcare PG programmes alongside this MPH course guide.'
+      },
+      faqs: [
+        {
+          question: 'What is an MPH course?',
+          answer: 'A two-year postgraduate degree in population health, covering epidemiology, biostatistics, policy and programme management.'
+        },
+        {
+          question: 'Can non-doctors do an MPH?',
+          answer: 'Yes, at many institutes, subject to their degree lists and marks rules.'
+        },
+        {
+          question: 'Is there a national MPH entrance exam?',
+          answer: 'No. TISS uses CUET PG; many other institutes run their own tests or interviews.'
+        },
+        {
+          question: 'How long is an MPH course?',
+          answer: 'Two years at the institutes checked for 2026.'
+        },
+        {
+          question: 'What is the fee for an MPH in India?',
+          answer: 'Official 2026 examples range from about Rs 1.1 lakh tuition at SCTIMST to a Rs 5 lakh programme fee at PHFI IIPHS.'
+        },
+        {
+          question: 'Is MPH the same as MD Community Medicine?',
+          answer: 'No. MD Community Medicine is a three-year clinical postgraduate programme for MBBS doctors through NEET PG.'
+        },
+        {
+          question: 'Does an MPH allow clinical practice?',
+          answer: 'No. Clinical practice rights depend on your prior professional qualification and registration.'
+        },
+        {
+          question: 'Where do MPH graduates work?',
+          answer: 'Government programmes, NGOs, research, surveillance units, hospitals\' public health cells and policy organisations.'
+        }
+      ]
+    },
+
     'online-msc': {
-      h1: 'Online M.Sc in India: Allowed Subjects, Validity & Eligibility',
-      title: 'Online M.Sc in India: Allowed Subjects, Validity & Fees',
+      h1: 'Online MSc Course: Lab Rule, Validity, Eligibility, Fees and Subjects 2026',
+      title: 'Online MSc Course 2026: UGC Lab Rule, Validity & Fees',
       description:
-        'Online M.Sc guide: UGC\'s lab rule, which subjects can be studied online, validity, eligibility, online vs distance M.Sc and 2025-26 subject counts.',
-      keywords: ['online M.Sc', 'online MSc course', 'online MSc mathematics', 'online MSc data science', 'online MSc in India', 'distance MSc', 'is online MSc valid'],
+        'Online MSc course guide for 2026: UGC lab rule, UGC-DEB validity, eligibility, Mathematics and Data Science subjects, fees and careers.',
+      keywords: ['online MSc course', 'online MSc', 'online MSc mathematics', 'online MSc data science', 'is online MSc valid', 'UGC approved online MSc', 'online MSc eligibility'],
       intro:
-        'An online M.Sc is possible only in subjects without compulsory lab work, such as mathematics, statistics and data science. From a UGC-entitled or recognised university it is equivalent to a regular M.Sc. Check your exact subject on the UGC-DEB list before you enrol.',
+        'An Online MSc course is a two-year Master of Science studied online. UGC limits online mode where labs are compulsory. From a university listed by UGC-DEB for that subject online in your session it equals a regular M.Sc.',
       crossLink: {
-        href: '/msc-colleges',
-        anchor: 'Compare M.Sc colleges',
-        note: 'Need a lab subject or prefer campus study? Browse M.Sc colleges, or check each online M.Sc on the UGC-DEB list for your session.'
+        href: '/courses/msc',
+        anchor: 'Compare campus MSc programmes',
+        note: 'Need laboratory training? Browse the campus MSc guide. For online options, confirm each university and subject on the UGC-DEB list.'
       },
       faqs: [
         {
-          question: 'Can I do an M.Sc online in India?',
-          answer: 'Yes, but only in subjects without compulsory lab work. UGC rules prohibit programmes with practical or laboratory courses in online mode unless the practicals are limited to programming, coding and software tools.'
+          question: 'Is an Online MSc valid in India?',
+          answer: 'Yes, if the university is entitled or recognised by UGC for that MSc subject in online mode for your session.'
         },
         {
-          question: 'Is an online M.Sc in physics or chemistry allowed?',
-          answer: 'Not in online mode, because these subjects need laboratory practicals. In the 2025-26 UGC-DEB list, physics, chemistry, zoology and botany M.Sc programmes appear only in distance mode, which has its own conditions for lab subjects.'
+          question: 'Can I study Physics or Chemistry as an Online MSc?',
+          answer: 'Usually not when compulsory laboratory work is required. Check the UGC-DEB online list for your session.'
         },
         {
-          question: 'Which M.Sc subjects are offered online?',
-          answer: 'In 2025-26 the UGC-DEB list showed online M.Sc mathematics at 22 universities, data science, AI and analytics at 10, and statistics at 4, with a few in economics or computer applications.'
+          question: 'What subjects are common in an Online MSc course?',
+          answer: 'Mathematics and Data Science are the largest groups on the 2026-27 online Master of Science list.'
         },
         {
-          question: 'Is an online M.Sc valid in India?',
-          answer: 'Yes, if the university is entitled or recognised by UGC to offer that M.Sc subject online for your session. Under Regulation 22 of the UGC ODL and Online Regulations, 2020, such degrees are equivalent to regular degrees.'
+          question: 'What is the eligibility for an Online MSc?',
+          answer: 'Usually a relevant bachelor\'s degree, matching the university\'s regular M.Sc rule.'
         },
         {
-          question: 'What is the eligibility for an online M.Sc?',
-          answer: 'The same as the university\'s regular M.Sc, usually a B.Sc in the same or a related subject. Minimum marks are set by each university; a national or university entrance test can open other subjects.'
+          question: 'Is there an entrance exam for an Online MSc?',
+          answer: 'Usually not for private online programmes; campus M.Sc seats may use CUET PG.'
         },
         {
-          question: 'How long is an online M.Sc?',
-          answer: 'Usually two years after a three-year degree. UGC\'s 2024 PG framework also allows a one-year PG after a four-year honours degree where the university offers it.'
+          question: 'How many universities offer an Online MSc?',
+          answer: 'We counted 45 institutions with online Master of Science entries for 2026-27 on the UGC-DEB list on 5 November 2026.'
         },
         {
-          question: 'What is the difference between an online M.Sc and a distance M.Sc?',
-          answer: 'An online M.Sc is limited to subjects whose practicals are software-based. A distance (ODL) M.Sc can include lab subjects, but only at universities meeting UGC\'s NAAC, NIRF or open-university conditions, from approved centres.'
+          question: 'What is the fee for an Online MSc?',
+          answer: 'It varies. LPU Online\'s M.Sc Mathematics grant fee on 5 November 2026 was about Rs 81,600 for two years.'
         },
         {
-          question: 'What are online M.Sc fees?',
-          answer: 'Fees vary by university and subject, and our database has no fee records for online M.Sc programmes yet. Ask for the total fee for all semesters, including exam fees.'
-        }
-      ]
-    },
-    law: {
-      h1: 'LLB Course in India: 3-Year LLB Eligibility, Exams, Fees & Subjects',
-      title: '3-Year LLB Course: Eligibility, Entrance Exams & Fees',
-      description:
-        '3-year LLB guide: BCI eligibility (45% in any degree), age-limit status, state entrance tests, subjects, fees (median ₹45,000 a year) and careers.',
-      keywords: ['LLB course', '3 year LLB', 'LLB eligibility', 'LLB after graduation', 'LLB age limit', 'LLB entrance exam', 'LLB fees'],
-      intro:
-        'The 3-year LLB is a law degree you take after any bachelor’s degree. Check BCI eligibility, the age-limit position, state entrance tests and fees before you shortlist law colleges.',
-      crossLink: {
-        href: '/llb-colleges',
-        anchor: 'Compare LLB colleges by fees & exams',
-        note: 'Ready to shortlist? Browse LLB colleges with recorded fees and accepted exams, and check each college’s BCI approval.'
-      },
-      faqs: [
-        {
-          question: 'What is the eligibility for a 3-year LLB?',
-          answer: 'A bachelor’s degree in any subject from a recognised university, with at least 45% marks (42% for OBC, 40% for SC/ST) under Bar Council of India rules. You need the 10th, 12th and degree pattern; universities and states may add conditions.'
-        },
-        {
-          question: 'Is there an age limit for LLB admission?',
-          answer: 'No upper age limit is enforced at present. BCI’s 2016 circular setting 30 years for the 3-year LLB was stayed by the Supreme Court on 3 March 2017, and the case is pending. Check your university’s current notice.'
-        },
-        {
-          question: 'Can I get into a 3-year LLB through CLAT?',
-          answer: 'CLAT UG is for the five-year integrated programmes at National Law Universities after Class 12. For a 3-year LLB, look at state tests such as MAH LL.B 3-Yr CET, TS LAWCET and AP LAWCET, or university tests.'
-        },
-        {
-          question: 'Which entrance exams are there for the 3-year LLB?',
-          answer: 'There is no national test. In 2026, Maharashtra ran the MAH LL.B 3-Yr CET, Telangana ran TS LAWCET and Andhra Pradesh ran AP LAWCET. Many universities hold their own test or admit on degree marks.'
-        },
-        {
-          question: 'Is a distance-mode LLB valid for practising law?',
-          answer: 'No. BCI rules require a regular course and exclude departments that teach law by correspondence or distance education, so a distance LLB does not lead to enrolment as an advocate.'
-        },
-        {
-          question: 'What is the fee for a 3-year LLB?',
-          answer: 'Across 140 three-year LLB fee records in our database, the median is ₹45,000 a year and half of programmes charge ₹30,000–₹98,000. The public-institute median is ₹15,000 and the private median ₹54,000.'
-        },
-        {
-          question: 'What do I need to practise as a lawyer after LLB?',
-          answer: 'Enrol with your State Bar Council and pass the All India Bar Examination (AIBE) to receive a Certificate of Practice. Final-semester students without backlogs can apply for the AIBE.'
-        },
-        {
-          question: 'Should I choose a 3-year LLB or a 5-year integrated LLB?',
-          answer: 'Take the 3-year LLB if you already have a degree or want to study another subject first. A 5-year course such as BA LLB saves a year if you are sure about law after Class 12.'
-        }
-      ]
-    },
-    'integrated-law': {
-      h1: 'Integrated Law Course: BA LLB, BBA LLB Eligibility, CLAT & Fees',
-      title: '5-Year Integrated LLB: BA LLB, BBA LLB, CLAT & Fees',
-      description:
-        '5-year integrated LLB guide: BCI eligibility after Class 12, CLAT 2027 and AILET dates, BA LLB vs BBA LLB, subjects and fees (median ₹1 lakh a year).',
-      keywords: ['integrated law course', '5 year LLB', 'BA LLB', 'BBA LLB', 'integrated LLB eligibility', 'LLB after 12th', 'BA LLB fees'],
-      intro:
-        'An integrated law course combines a bachelor’s degree such as a BA or BBA with the LLB in five years after Class 12. Check BCI eligibility, CLAT and AILET dates, combinations and fees before you apply.',
-      crossLink: {
-        href: '/llb-colleges',
-        anchor: 'Compare law colleges by fees & exams',
-        note: 'Ready to shortlist? Browse law colleges with recorded fees and accepted exams, and check each college’s BCI approval for the combination you want.'
-      },
-      faqs: [
-        {
-          question: 'What is the eligibility for a 5-year integrated LLB?',
-          answer: 'Class 12 in any stream from a recognised board with at least 45% marks (42% for OBC, 40% for SC/ST) under Bar Council of India rules. Some NLUs set higher minimums in their brochures.'
-        },
-        {
-          question: 'When is CLAT 2027?',
-          answer: 'The Consortium of NLUs will hold CLAT 2027 offline on 6 December 2026, from 2 pm to 4 pm. Applications are open from 3 August to 31 October 2026.'
-        },
-        {
-          question: 'Is there an age limit for BA LLB?',
-          answer: 'No upper age limit is enforced at present. A 2016 BCI circular setting 20 years (22 for reserved categories) was stayed by the Supreme Court in March 2017, and CLAT 2027 has no upper age limit.'
-        },
-        {
-          question: 'Which is better, BA LLB or BBA LLB?',
-          answer: 'The law papers are the same. BA LLB pairs law with social sciences; BBA LLB pairs it with management and accounts, which suits corporate law. Choose the first degree you will actually use.'
-        },
-        {
-          question: 'Can I join a BA LLB from the commerce or science stream?',
-          answer: 'Yes. BCI accepts Class 12 in any stream. Check the individual university’s minimum marks and admission test.'
-        },
-        {
-          question: 'Does NLU Delhi accept CLAT?',
-          answer: 'No. NLU Delhi admits to its BA LLB (Hons) through its own test, AILET. AILET 2027 is on 13 December 2026, with applications open until 10 November 2026.'
-        },
-        {
-          question: 'What is the fee for a 5-year integrated LLB?',
-          answer: 'Across 274 fee records in our database, the median is ₹1,00,000 a year and half of programmes charge ₹60,000–₹1,80,000. NLU fees can be higher; check each NLU’s CLAT brochure.'
-        },
-        {
-          question: 'How many years is an integrated law course?',
-          answer: 'At least five years, usually ten semesters. BCI rules say a law degree combined with a four-year degree, such as engineering, takes six years.'
+          question: 'Is Online MSc the same as distance M.Sc?',
+          answer: 'No. Online and ODL modes need separate UGC-DEB approval.'
         }
       ]
     },
     dental: {
-      h1: 'BDS Course in India: Eligibility, NEET, Subjects, Internship & Fees',
-      title: 'BDS Course Details: Eligibility, NEET, Duration & Fees',
+      h1: 'BDS Course: Eligibility, NEET-UG, Fees, Syllabus and Careers 2026',
+      title: 'BDS Course 2026: NEET-UG, Eligibility, Fees & Internship',
       description:
-        'BDS guide: 4 years + 1-year internship, NEET (UG) and 50% PCB eligibility, MCC/state counselling, year-wise subjects and official 2026-27 fees.',
-      keywords: ['BDS course', 'BDS course details', 'BDS eligibility', 'BDS course duration', 'BDS subjects', 'BDS fees', 'BDS vs MBBS'],
+        'BDS course guide: 5-year Bachelor of Dental Surgery, NEET-UG counselling, eligibility, fees (median ₹2.8 lakh/yr in our sample), syllabus and careers.',
+      keywords: ['BDS course', 'Bachelor of Dental Surgery', 'BDS eligibility', 'NEET for BDS', 'BDS fees', 'BDS syllabus', 'BDS vs diploma'],
       intro:
-        'BDS (Bachelor of Dental Surgery) takes four academic years plus a one-year paid internship, and every seat is filled through NEET (UG). Check eligibility, counselling routes and the full cost before you shortlist dental colleges.',
+        'A BDS course is the five-year undergraduate dental degree, including internship, toward dentist registration when rules are met. This guide covers NEET-UG, eligibility, fees on CollegeDecision records and how to avoid diploma mix-ups.',
       crossLink: {
         href: '/bds-colleges',
-        anchor: 'Compare BDS colleges by fees & placements',
-        note: 'Ready to shortlist? Browse BDS colleges with recorded fees, accepted exams and placement outcomes.'
+        anchor: 'Compare BDS colleges by fees & counselling routes',
+        note: 'Browse published BDS college pages with recorded fees and exams.'
       },
       faqs: [
         {
-          question: 'What is the eligibility for BDS?',
-          answer: 'You must pass Physics, Chemistry, Biology/Biotechnology and English in Class 12 with at least 50% in PCB together (40% for SC, ST and OBC; 45% for locomotor disability), qualify NEET (UG) and be 17 by 31 December of the admission year.'
+          question: 'What is a BDS course?',
+          answer: 'Bachelor of Dental Surgery—a five-year undergraduate dental degree including internship.'
         },
         {
-          question: 'How many years is the BDS course?',
-          answer: 'Five years: four academic years with a university exam each year, then a compulsory one-year paid rotating internship. The degree is awarded only after the internship.'
+          question: 'Is NEET compulsory for BDS?',
+          answer: 'Yes for almost all recognised BDS seats via NEET-UG and counselling.'
         },
         {
-          question: 'Can I get BDS admission without NEET?',
-          answer: 'No. DCI regulations make NEET (UG) the single entrance test for BDS, and all admissions, including deemed university and NRI seats, are made from the NEET merit list.'
+          question: 'How long is BDS?',
+          answer: 'Five years including the compulsory internship under standard regulations.'
         },
         {
-          question: 'What NEET percentile is needed for BDS?',
-          answer: 'The 50th percentile for General candidates, the 40th for SC, ST and OBC, and the 45th for candidates with a benchmark disability in the General category. These only make you eligible; seats depend on your rank.'
+          question: 'BDS vs dental diploma?',
+          answer: 'Hygienist or mechanic diplomas are not equivalent to BDS for dentist registration.'
         },
         {
-          question: 'Who conducts BDS counselling?',
-          answer: 'The Medical Counselling Committee (MCC) handles the 15% All India Quota, central university, ESIC Dental and deemed university seats. State authorities handle state-quota and private college seats. Register for both if you are eligible.'
+          question: 'What does BDS cost?',
+          answer: 'Our sample median annual tuition is about ₹2,80,000 across 65 rows; government seats are lower and private bonds can dominate.'
         },
         {
-          question: 'What subjects are taught in BDS?',
-          answer: 'Anatomy, physiology, biochemistry, dental anatomy and dental materials in year one; pathology, microbiology and pharmacology in year two; general medicine, surgery and oral pathology in year three; and eight clinical dental subjects in the final year.'
+          question: 'Can I do MDS after BDS?',
+          answer: 'Yes—through NEET-MDS after BDS and internship.'
         },
         {
-          question: 'What are BDS fees in India?',
-          answer: 'Official 2026-27 examples: ESIC Dental College, Kalaburagi charges ₹1,00,000 a year in tuition for state and All India Quota seats, and Vinayaka Mission\'s Sankarachariyar Dental College, Salem (deemed) charges ₹4,50,000. Hostel and mess are extra.'
+          question: 'Are management seats safe?',
+          answer: 'Only seats through official counselling channels are safe; cash deals outside portals are a red flag.'
         },
         {
-          question: 'What can I do after BDS?',
-          answer: 'Register with a State Dental Council and practise as a dentist, join government or Army Dental Corps posts through their own recruitment, or study a three-year MDS through NEET MDS.'
+          question: 'Where are official updates?',
+          answer: 'NTA NEET bulletin, MCC, state counselling and dental council notices.'
         }
       ]
     },
     mds: {
-      h1: 'MDS Course After BDS: Eligibility, NEET MDS, Specialities & Fees',
-      title: 'MDS Course: Eligibility, NEET MDS, Specialities & Fees',
+      h1: 'MDS Course: Eligibility, NEET-MDS, Specialities, Fees and Careers 2026',
+      title: 'MDS Course 2026: NEET-MDS, Branches, Fees & Duration',
       description:
-        'MDS guide: 3-year dental PG after BDS + internship, NEET MDS 2026 pattern and lowered cut-off, 9 specialities, fees (median ₹3 lakh/year in our data).',
-      keywords: ['MDS course', 'MDS course after BDS', 'MDS eligibility', 'MDS specialities', 'NEET MDS', 'MDS fees', 'MDS course duration'],
+        'MDS course guide: 3-year Master of Dental Surgery after BDS, NEET-MDS counselling, specialities, fees (median ₹3 lakh/yr in our sample) and careers.',
+      keywords: ['MDS course', 'Master of Dental Surgery', 'MDS eligibility', 'NEET MDS', 'MDS specialities', 'MDS fees', 'MDS after BDS'],
       intro:
-        'MDS (Master of Dental Surgery) is a three-year specialist degree after BDS and the one-year internship, with admission only through NEET MDS. Compare the nine specialities, the exam rules and the full cost before you choose.',
+        'An MDS course is a three-year postgraduate dental specialty degree after BDS and internship, filled mainly through NEET-MDS. Compare branches, fees and counselling rules before you lock a seat.',
       crossLink: {
         href: '/mds-colleges',
         anchor: 'Compare MDS colleges by fees & specialities',
-        note: 'Ready to shortlist? Browse MDS colleges with recorded fees, specialities and placement outcomes.'
+        note: 'Browse published MDS college pages with recorded fees and branches.'
       },
       faqs: [
         {
-          question: 'What is the eligibility for MDS?',
-          answer: 'A recognised BDS from an Indian university or institute, completion of the one-year compulsory rotatory internship, and provisional or permanent registration with a State Dental Council. You must also qualify NEET MDS.'
+          question: 'What is an MDS course?',
+          answer: 'A three-year Master of Dental Surgery postgraduate specialty degree after BDS.'
         },
         {
-          question: 'How many years is the MDS course?',
-          answer: 'Three years full-time, including exams, with a maximum of six years to finish. Holders of a dental postgraduate diploma in the same speciality can complete the MDS in two years.'
+          question: 'Is NEET-MDS compulsory?',
+          answer: 'Yes for almost all MDS seats in India.'
         },
         {
-          question: 'Is NEET MDS compulsory for MDS admission?',
-          answer: 'Yes. NEET MDS, conducted by NBEMS, is the single entrance test for MDS seats, including state-quota, private and deemed university seats. No state or private college may hold its own test. AIIMS New Delhi is not covered by NEET MDS.'
+          question: 'How long is MDS?',
+          answer: 'Three years.'
         },
         {
-          question: 'What is the NEET MDS exam pattern?',
-          answer: 'In 2026 it had 240 multiple-choice questions in 180 minutes: Part A with 100 questions in 75 minutes and Part B with 140 in 105 minutes. Each correct answer earns 4 marks and each wrong answer loses 1, for 960 marks.'
+          question: 'Which MDS branch is best?',
+          answer: 'There is no universal best—match ranks, aptitude and lifestyle.'
         },
         {
-          question: 'What is the NEET MDS qualifying percentile?',
-          answer: 'The regulations set the 50th percentile for General, 45th for UR-PwD and 40th for SC, ST and OBC. For 2026-27 the National Dental Commission lowered these by 10 points, to the 40th, 35th and 30th percentiles.'
+          question: 'What does MDS cost?',
+          answer: 'Our sample median annual tuition is about ₹3,00,000 across 304 rows; bonds may dominate private seats.'
         },
         {
-          question: 'Which MDS specialities are there?',
-          answer: 'Nine: Conservative Dentistry and Endodontics, Orthodontics, Prosthodontics and Crown & Bridge, Periodontology, Paediatric and Preventive Dentistry, Oral Pathology, Oral Medicine and Radiology, Oral and Maxillofacial Surgery, and Public Health Dentistry.'
+          question: 'MDS vs fellowship?',
+          answer: 'Fellowships are shorter and usually do not replace MDS for specialty registration.'
         },
         {
-          question: 'What are MDS fees in India?',
-          answer: 'Across 87 MDS fee records at 18 institutes in our database, the median is ₹3,00,000 a year and half charge ₹2,00,000–₹5,60,000. The public median is ₹1,03,333 and the private median ₹3,73,333.'
+          question: 'Can I switch branches mid-course?',
+          answer: 'Only through resignation and fresh counselling rules—not casually.'
         },
         {
-          question: 'Is NEET MDS the same as NEET PG?',
-          answer: 'No. NEET MDS is for BDS graduates seeking MDS seats. NEET PG is for MBBS graduates seeking MD, MS or DNB seats. Both are conducted by NBEMS.'
+          question: 'Where are official updates?',
+          answer: 'NBEMS, MCC, state counselling and dental council notices.'
         }
       ]
     },
@@ -2570,7 +2735,7 @@ export function courseSeo(profile: CourseSeoInput): CourseSeoPack {
         },
         {
           question: 'How often are CA exams held?',
-          answer: 'ICAI holds the first-level and Intermediate exams in January, May and September. From May 2026, the Final exam is held twice a year, in May and November.'
+          answer: 'ICAI holds the first-level and Intermediate exams in January, May and September. Check ICAI\'s announcements for the current Final exam schedule.'
         },
         {
           question: 'What are ICAI\'s CA registration fees?',
@@ -2631,198 +2796,82 @@ export function courseSeo(profile: CourseSeoInput): CourseSeoPack {
       ]
     },
     mcom: {
-      h1: 'M.Com Course: Eligibility, Entrance Exams, Subjects & Fees',
-      title: 'M.Com Course Details: Eligibility, Subjects & Fees',
+      h1: 'M.Com Course: Eligibility, Entrance Exams, Fees, Syllabus and Careers 2026',
+      title: 'M.Com Course 2026: Eligibility, CUET PG, Fees, Syllabus & Careers',
       description:
-        'M.Com guide: 1-year vs 2-year under UGC\'s 2024 rules, eligibility, CUET PG, subjects, specialisations and fees (median ₹34,500 a year in our data).',
-      keywords: ['M.Com course', 'M.Com eligibility', 'M.Com subjects list', 'M.Com fees', 'M.Com entrance exam', 'one year M.Com', 'courses after M.Com'],
+        'M.Com course details for 2026-27: B.Com eligibility, CUET PG and merit routes, two-year syllabus, specialisations, fees (median ₹31,000 a year) and careers.',
+      keywords: ['M.Com course', 'M.Com course details', 'M.Com eligibility', 'M.Com entrance exams', 'M.Com fees in India', 'M.Com syllabus', 'M.Com specializations', 'CUET PG for M.Com'],
       intro:
-        'M.Com (Master of Commerce) is a postgraduate degree in accounting, finance and tax: two years after a three-year degree, or one year after a four-year honours degree under UGC\'s 2024 framework. Check eligibility, CUET PG, subjects and fees before you shortlist.',
+        'The M.Com course is a two-year postgraduate commerce degree after B.Com or a related bachelor\'s. Check eligibility, CUET PG and merit admission, syllabus, fees and careers before you shortlist colleges.',
       crossLink: {
         href: '/mcom-colleges',
-        anchor: 'Compare M.Com colleges by fees & exams',
-        note: 'Ready to shortlist? Browse M.Com colleges with recorded fees, accepted exams and placement outcomes.'
+        anchor: 'Compare M.Com colleges by fees and exams',
+        note: 'Ready to shortlist? Browse M.Com colleges with listed fees, accepted exams and placement records.'
       },
       faqs: [
-        {
-          question: 'What is the full form of M.Com?',
-          answer: 'M.Com stands for Master of Commerce, a postgraduate degree in accounting, finance, taxation and business.'
-        },
-        {
-          question: 'Is M.Com one year or two years?',
-          answer: 'Under UGC\'s 2024 PG framework it is two years after a three-year bachelor\'s degree, and can be one year after a four-year honours or honours-with-research degree. Each university decides which formats it offers.'
-        },
-        {
-          question: 'Can I leave a two-year M.Com after one year?',
-          answer: 'The UGC framework allows one exit point: students who leave after the first year receive a postgraduate diploma.'
-        },
-        {
-          question: 'Which entrance exam is needed for M.Com?',
-          answer: 'Many central universities use CUET PG; Delhi University used the Commerce paper COQP08 for 2026-27. Other universities use their own tests or merit.'
-        },
-        {
-          question: 'Can I do an M.Com without a B.Com?',
-          answer: 'Some universities accept related degrees such as BBA, BMS or Business Economics. Under the UGC framework, a graduate from another subject can also qualify by passing a national or university entrance test in commerce.'
-        },
-        {
-          question: 'How much does an M.Com cost?',
-          answer: 'In CollegeDecision records the median annual fee is ₹34,500 (138 programmes). Public colleges have a median of ₹15,400 a year and private colleges ₹40,000.'
-        },
-        {
-          question: 'Is M.Com better than an MBA?',
-          answer: 'They suit different goals. An M.Com focuses on accounting, finance and research and suits teaching or finance roles; an MBA focuses on general management and campus placements.'
-        },
-        {
-          question: 'What can I do after an M.Com?',
-          answer: 'Accounts, tax, banking and finance roles; a PhD or UGC-NET for teaching and research; or professional courses such as CA, CMA or CS.'
-        }
+        { question: 'What is the eligibility for the M.Com course?', answer: 'Most universities ask for a B.Com or B.Com (Hons) with about 50% marks. Some accept BBA or B.A. Economics; always check the prospectus.' },
+        { question: 'Is M.Com a 2-year course?', answer: 'Yes. Under standard university rules M.Com is two years full time, usually in four semesters.' },
+        { question: 'Which entrance exams are accepted for M.Com?', answer: 'CUET PG is used by many central universities. Many state universities still admit on graduation merit or their own test.' },
+        { question: 'What is the fee for an M.Com in India?', answer: 'Across 105 programme records on CollegeDecision (November 2026), the median first-year tuition is ₹31,000. Private colleges have a median of about ₹40,000; public colleges about ₹16,204.' },
+        { question: 'What is the difference between M.Com and MBA?', answer: 'M.Com is an academic commerce postgraduate degree focused on accounting, finance and related theory. An MBA emphasises management practice and placements and usually costs more.' },
+        { question: 'Can I do M.Com without B.Com?', answer: 'Only if the university lists your bachelor\'s as eligible. Allied degrees such as BBA or B.A. Economics are accepted at some departments, not all.' },
+        { question: 'Which M.Com specialisation is most common?', answer: 'Most programmes are general M.Com. Among named tracks in our records, Finance (36), business-labelled programmes (25) and Computer Applications (17) appear most often.' },
+        { question: 'What can I do after M.Com?', answer: 'Common paths are teaching (often with NET), accounting and tax roles, banking and finance jobs, a PhD, or an MBA pivot.' }
       ]
     },
     pgdca: {
       h1: 'PGDCA Course: Duration, Eligibility, Syllabus & Fees',
-      title: 'PGDCA Course Details: Duration, Eligibility & Syllabus',
+      title: 'PGDCA Course 2026: Eligibility, Duration, Fees, Colleges',
       description:
-        'PGDCA guide: 1-year duration at IGNOU, MCU, PRSU and GNDU, eligibility for any-stream graduates, syllabus, IGNOU fees and PGDCA vs MCA.',
-      keywords: ['PGDCA course', 'PGDCA full form', 'PGDCA duration', 'PGDCA eligibility', 'PGDCA syllabus', 'IGNOU PGDCA', 'PGDCA vs MCA'],
+        'PGDCA guide: 1-year postgraduate diploma in computer applications, IGNOU eligibility and fees, syllabus themes, CollegeDecision fee medians, and PGDCA vs MCA.',
+      keywords: ['PGDCA course', 'PGDCA full form', 'PGDCA duration', 'PGDCA eligibility', 'PGDCA syllabus', 'IGNOU PGDCA', 'PGDCA fees', 'PGDCA vs MCA'],
       intro:
-        'PGDCA (Post Graduate Diploma in Computer Applications) is a one-year, two-semester diploma for graduates of any stream at the universities we checked. See eligibility, syllabus, IGNOU\'s fee and how it compares with an MCA.',
+        'PGDCA is a postgraduate diploma in computer applications. Most universities (including IGNOU’s PGDCA_NEW) run it as one year; see eligibility, Maths bridge rules, fees and how it compares with MCA.',
       crossLink: {
         href: '/mca-colleges',
-        anchor: 'Compare MCA colleges by fees & exams',
-        note: 'Thinking of a full master\'s degree instead? Browse MCA colleges with recorded fees, accepted exams and placement outcomes.'
+        anchor: 'Compare MCA colleges',
+        note: 'if you need a full master’s instead of a one-year diploma'
       },
       faqs: [
-        {
-          question: 'What is the full form of PGDCA?',
-          answer: 'PGDCA stands for Post Graduate Diploma in Computer Applications, a diploma taken after a bachelor\'s degree.'
-        },
-        {
-          question: 'Is PGDCA one year or two years?',
-          answer: 'IGNOU, MCU Bhopal, PRSU Raipur and GNDU all run it as a one-year, two-semester programme. IGNOU allows up to three years to finish. Check the prospectus of your university.'
-        },
-        {
-          question: 'Who is eligible for PGDCA?',
-          answer: 'Graduates from any stream. IGNOU asks for a bachelor\'s degree of at least three years; students without Maths at 10+2 or in the degree must also clear the bridge course BCS-012.'
-        },
-        {
-          question: 'Can a commerce or arts graduate do PGDCA?',
-          answer: 'Yes. The universities we checked accept graduates in any discipline, though some add a Maths condition or minimum marks.'
-        },
-        {
-          question: 'What subjects are taught in PGDCA?',
-          answer: 'It varies by university. IGNOU covers C and Python, computer organisation, operating systems, Java, databases and data structures; MCU Bhopal and PRSU Raipur add office software, web development and Tally.'
-        },
-        {
-          question: 'What is the fee for IGNOU PGDCA?',
-          answer: 'IGNOU\'s programme page lists ₹11,000 per semester for Indian students, with exam fees charged separately. Confirm the current fee on the IGNOU website before paying.'
-        },
-        {
-          question: 'Is PGDCA equal to MCA?',
-          answer: 'No. PGDCA is a postgraduate diploma of usually one year; MCA is a master\'s degree, two years after a three-year bachelor\'s degree under UGC\'s 2024 framework.'
-        },
-        {
-          question: 'Is there an entrance exam for PGDCA?',
-          answer: 'There is no national PGDCA entrance test. Universities usually admit directly or on merit; check each admission notice.'
-        }
+        { question: 'What is the full form of PGDCA?', answer: 'Post Graduate Diploma in Computer Applications—a diploma after a bachelor’s degree.' },
+        { question: 'Is PGDCA one year or two years?', answer: 'IGNOU and many universities run it as one year (two semesters). IGNOU allows up to three years to finish. Some colleges advertise two years—check that prospectus.' },
+        { question: 'Who is eligible for PGDCA?', answer: 'Graduates. IGNOU asks for a minimum three-year bachelor’s degree and Maths at 10+2 or graduation, otherwise BCS-012. Other universities set their own rules.' },
+        { question: 'Can arts or commerce graduates do PGDCA?', answer: 'Often yes. IGNOU allows any stream with the Maths/bridge condition. Confirm each college prospectus.' },
+        { question: 'What is the IGNOU PGDCA fee?', answer: 'About ₹11,000 per semester for Indian students on the programme page, plus registration/development and separate exam fees. Non-Maths students pay extra for BCS-012. Re-check ignou.ac.in.' },
+        { question: 'PGDCA vs MCA?', answer: 'PGDCA is a shorter applications diploma. MCA is a full master’s with deeper CS coverage and wider eligibility for many PG-level jobs.' },
+        { question: 'Is DAC the same as PGDCA?', answer: 'No. Advanced Computing/DAC programmes are a different curriculum. Misfiled DAC rows under PGDCA were inactivated on CollegeDecision.' },
+        { question: 'What jobs can I get after PGDCA?', answer: 'Junior programming support, web maintenance, lab/helpdesk and office IT roles are common starting points. Outcomes depend on projects and practice—not the certificate alone.' }
       ]
     },
     healthcare: {
-      h1: 'Allied & Healthcare Courses After 12th: List, NCAHP Rules & Fees',
-      title: 'Allied Health Courses After 12th: NCAHP Rules & Fees',
+      h1: 'Allied & Healthcare Courses After 12th: NCAHP Rules, Fees & Careers',
+      title: 'Allied Health Courses After 12th 2026: NCAHP, NEET & Fees',
       description:
-        'Allied and healthcare UG courses: NCAHP\'s 10 categories, new 4–5 year degrees, NEET and eligibility rules for 2026-27, fees and how to choose.',
+        'Allied and healthcare UG courses 2026-27: NCAHP rules, NEET notes, eligibility, syllabus tracks, fees (degree-like median ~₹1 lakh) and how to choose a college.',
       keywords: ['allied health courses after 12th', 'allied health sciences courses', 'paramedical courses after 12th', 'NCAHP courses', 'healthcare courses after 12th', 'B.Optom duration', 'allied health courses NEET'],
       intro:
-        'Allied and healthcare courses train you for clinical and technical roles such as optometry, lab science, imaging and therapy. From 2026-27, NCAHP curricula, new UGC degree names and NEET rules apply, so check each course carefully.',
+        'Allied and healthcare courses train you for clinical and technical roles such as optometry, lab science, imaging and therapy. From 2026-27, NCAHP curricula, newer degree names and NEET rules apply for several UG pathways—check each course carefully.',
       crossLink: {
         href: '/bsc-colleges',
         anchor: 'Compare B.Sc colleges',
-        note: 'Many allied health programmes are listed as B.Sc degrees. Check each college\'s NCAHP curriculum and state council approval before you shortlist.'
+        note: 'Many allied programmes are listed as B.Sc-style degrees. Confirm NCAHP curriculum and state approval before you shortlist.'
       },
       faqs: [
-        {
-          question: 'What are allied and healthcare courses?',
-          answer: 'They are diplomas and degrees for professions listed in the NCAHP Act, 2021, such as medical lab technologists, optometrists, physiotherapists, occupational therapists, OT and anaesthesia technologists, imaging technologists and dieticians.'
-        },
-        {
-          question: 'Who regulates allied health courses in India?',
-          answer: 'The National Commission for Allied and Healthcare Professions (NCAHP), set up under the NCAHP Act, 2021, which came into force on 25 May 2021. Nursing, pharmacy and medicine have their own regulators.'
-        },
-        {
-          question: 'Is NEET required for allied health courses?',
-          answer: 'For some UG courses, yes. NCAHP told school boards in November 2025 that NEET appearance is a basic eligibility criterion for some UG allied and healthcare courses from 2026-27. Check the curriculum for your course and your state\'s counselling rules.'
-        },
-        {
-          question: 'How many years is a B.Optom, BPT or BOT now?',
-          answer: 'Five years after 10+2. UGC\'s notification of 27 August 2026 extended B.Optom from 4 years, and B.PT and B.OT from 4½ years. Most other new allied health bachelor\'s degrees, such as B.MLS and B.AOTT, are 4 years.'
-        },
-        {
-          question: 'What is the eligibility for allied health UG courses?',
-          answer: 'Each NCAHP curriculum sets its own rule. A common pattern is 10+2 with Physics, Chemistry and Biology and 50% marks, and a minimum age of 17 by 31 December. Some courses, such as optometry, accept Mathematics instead of Biology.'
-        },
-        {
-          question: 'Can I study an allied health course through distance or online mode?',
-          answer: 'No. NCAHP has told UGC that only full-time regular qualifications can be recognised under the Act, so distance and online allied health courses are not recognised.'
-        },
-        {
-          question: 'Can I do a diploma in physiotherapy or optometry?',
-          answer: 'Not under the NCAHP framework. In August 2026 NCAHP said diplomas are not permitted for healthcare professions under ISCO code 22, which include physiotherapists, optometrists, occupational therapists and dieticians.'
-        },
-        {
-          question: 'What are the fees for allied health degrees?',
-          answer: 'Across 17 degree fee records under this page in our database, the median is ₹1,09,300 a year and half charge ₹90,000–₹1,25,000. The sample is small and mostly private, so ask each college for its current fees.'
-        }
-      ]
-    },
-    mph: {
-      h1: 'MPH Course in India: Eligibility, Admission, Subjects & Fees',
-      title: 'MPH Course in India: Eligibility, Admission & Fees',
-      description:
-        'Master of Public Health (MPH) guide: 2026 eligibility at TISS, IIPHG, PHFI and SCTIMST, CUET PG and institute tests, subjects, fees and careers.',
-      keywords: ['MPH course', 'Master of Public Health', 'MPH course in India', 'MPH eligibility', 'MPH course fees', 'MPH admission', 'MPH vs MD Community Medicine'],
-      intro:
-        'An MPH (Master of Public Health) is a two-year PG degree in population health, open at many institutes to health and non-health graduates. Each institute sets its own eligibility and test, so compare prospectuses before you apply.',
-      crossLink: null,
-      faqs: [
-        {
-          question: 'What is the full form of MPH?',
-          answer: 'MPH stands for Master of Public Health, a postgraduate degree focused on the health of populations through epidemiology, biostatistics, health policy and programme management.'
-        },
-        {
-          question: 'What is the eligibility for MPH in India?',
-          answer: 'It depends on the institute. For 2026, IIPH Gandhinagar accepted a bachelor\'s in any discipline with 50%, PHFI IIPHS listed health, science, technology, management and law degrees with 50%, and SCTIMST accepted health degrees or a relevant master\'s.'
-        },
-        {
-          question: 'Can non-medical students do an MPH?',
-          answer: 'Yes, at many institutes. IIPH Gandhinagar, TISS and PHFI IIPHS admit non-medical graduates. SCTIMST accepts some non-medical bachelor\'s degrees, such as B.Tech, but asks most social-science graduates for a master\'s degree.'
-        },
-        {
-          question: 'Is there an entrance exam for MPH?',
-          answer: 'There is no single national MPH test. TISS uses CUET PG scores, while SCTIMST, IIPH Gandhinagar, PHFI IIPHS and PGIMER run their own tests, often with an interview.'
-        },
-        {
-          question: 'How many years is the MPH course?',
-          answer: 'Two years, usually in four semesters, at all the institutes we checked. Most include internships and a dissertation.'
-        },
-        {
-          question: 'What are MPH fees in India?',
-          answer: 'Published 2026 fees vary: ₹1,10,000 tuition for two years at SCTIMST, ₹1,55,400 total at TISS (Social Epidemiology), ₹5,20,000 at PHFI IIPHS and ₹2,86,000 a year in tuition at IIPH Gandhinagar.'
-        },
-        {
-          question: 'What is the difference between MPH and MD Community Medicine?',
-          answer: 'MD Community Medicine is a three-year degree for MBBS doctors, admitted through NEET PG or INI-CET. An MPH is a two-year degree open to a wider range of graduates and focuses on public health practice, data and policy.'
-        },
-        {
-          question: 'What jobs can I get after an MPH?',
-          answer: 'Graduates work in government health programmes, NGOs, research institutions, international agencies, health insurance and pharma, in roles such as epidemiologist, research analyst, programme manager and policy analyst.'
-        }
+        { question: 'What are allied and healthcare courses?', answer: 'Diplomas and degrees for professions under the NCAHP Act, 2021—such as medical lab technology, optometry, imaging, OT/anaesthesia technology and therapy-related awards—not MBBS, nursing or pharmacy.' },
+        { question: 'Who regulates allied health courses in India?', answer: 'The National Commission for Allied and Healthcare Professions (NCAHP). Nursing, pharmacy and medicine have separate regulators.' },
+        { question: 'Is NEET required for allied health courses?', answer: 'For some UG courses from 2026-27, NEET appearance is treated as a basic eligibility criterion. Check the exact NCAHP curriculum and your state counselling brochure.' },
+        { question: 'Can I study allied health online or by distance?', answer: 'No for NCAHP recognition. Only full-time regular qualifications are recognised under the Act.' },
+        { question: 'What fees should I expect?', answer: 'On CollegeDecision in November 2026, degree-like first-year tuition had a median near ₹1,00,000 (12 records) and diploma-like rows about ₹41,400 (24 records). Samples are mostly private—confirm written fees.' },
+        { question: 'How many healthcare programmes are listed here?', answer: 'About 129 active programmes at 63 published institutes after cleaning nursing misfiles (November 2026).' },
+        { question: 'Are physiotherapy or optometry diplomas allowed?', answer: 'NCAHP has stated diplomas are not permitted for certain healthcare professions under ISCO code 22, including physiotherapists and optometrists. Verify current guidance before joining a “diploma” with those titles.' },
+        { question: 'Healthcare UG vs B.Sc Nursing—what is the difference?', answer: 'B.Sc Nursing is regulated by nursing councils and leads to RN registration. Allied health titles follow NCAHP pathways and different job cadres.' }
       ]
     },
     nursing: {
       h1: 'B.Sc Nursing Course in India: Eligibility, Admission, Subjects & Fees',
       title: 'B.Sc Nursing Course: Eligibility, Entrance, Subjects & Fees',
       description:
-        'B.Sc Nursing guide: INC eligibility (45% PCB), entrance test rules, 2026-27 dates, 4-year syllabus, fees (median ₹1,06,000 a year) and GNM vs ANM.',
+        'B.Sc Nursing guide: INC eligibility (45% PCB), entrance test rules, 2026-27 dates, 4-year syllabus, fees (median ₹98,600 a year) and GNM vs ANM.',
       keywords: ['B.Sc Nursing course', 'B.Sc Nursing eligibility', 'B.Sc Nursing entrance exam', 'B.Sc Nursing syllabus', 'B.Sc Nursing fees', 'B.Sc Nursing vs GNM', 'nursing course after 12th'],
       intro:
         'B.Sc Nursing is a four-year degree after Class 12 with Physics, Chemistry, Biology and English, with admission through a state or university entrance test. Check INC eligibility, the admission schedule and fees before you shortlist colleges.',
@@ -2854,7 +2903,7 @@ export function courseSeo(profile: CourseSeoInput): CourseSeoPack {
         },
         {
           question: 'What is the fee for B.Sc Nursing?',
-          answer: 'Across 24 B.Sc Nursing fee records in our database, almost all private, the median is ₹1,06,000 a year and half of programmes charge ₹77,800–₹1,48,000. Confirm the current fee with each college.'
+          answer: 'Across 57 B.Sc Nursing fee records in our database, almost all private, the median is ₹98,600 a year and half of programmes charge ₹72,600–₹1,30,000. Confirm the current fee with each college.'
         },
         {
           question: 'What is the difference between B.Sc Nursing and GNM?',
@@ -2868,256 +2917,122 @@ export function courseSeo(profile: CourseSeoInput): CourseSeoPack {
     },
     dgnm: {
       h1: 'GNM Course (Diploma in General Nursing and Midwifery): 2026-27 Guide',
-      title: 'GNM Course: Duration, Eligibility, Fees & 2026-27 Status',
+      title: 'GNM Course 2026: Eligibility, Fees, Syllabus & INC Status',
       description:
-        'GNM nursing guide: 3-year INC diploma, eligibility (10+2 any stream, 40%), phase-out status for 2026-27, subjects, fees and GNM vs B.Sc Nursing.',
+        'GNM nursing diploma 2026-27: 3-year INC course, Class 12 eligibility, admission deadline, subjects, fees (median ₹61,000 in a small sample) and careers.',
       keywords: ['GNM course', 'Diploma in General Nursing and Midwifery', 'GNM course duration', 'GNM eligibility', 'GNM nursing fees', 'is GNM being phased out', 'GNM vs B.Sc Nursing'],
       intro:
-        'GNM is a three-year nursing diploma, internship included, open to Class 12 students from any stream with English and 40% marks. Check INC\'s current admission notice and the school\'s approval before you apply.',
+        'GNM is a three-year INC nursing diploma, internship included, open after Class 12 with English and 40% marks. Check INC suitability and the 2026-27 admission deadline before you apply.',
       crossLink: {
         href: '/gnm-colleges',
         anchor: 'Compare GNM colleges',
-        note: 'Ready to shortlist? Browse GNM schools and confirm each one\'s State Nursing Council recognition and INC suitability for your admission year.'
+        note: 'Browse GNM schools and confirm State Nursing Council recognition and INC suitability for your admission year.'
       },
       faqs: [
-        {
-          question: 'What is the duration of the GNM course?',
-          answer: 'Three years under the INC syllabus, including a 26-week internship in the third year. You must finish within six years.'
-        },
-        {
-          question: 'What is the eligibility for GNM?',
-          answer: '10+2 with English and at least 40% in the qualifying exam, from any stream; science is preferable. NIOS, vocational ANM or health-care science students and registered ANMs are also eligible. Age 17 to 35.'
-        },
-        {
-          question: 'Is the GNM course closed or phased out?',
-          answer: 'INC said in 2019 that 2020-21 would be the last GNM admission year, but its Notification 19 of 2026 extended the 2026-27 last date of admission to 31 October 2026 for GNM and other nursing programmes. Check that your chosen school is approved for GNM this year.'
-        },
-        {
-          question: 'Can arts students do GNM?',
-          answer: 'Yes. INC accepts 10+2 in any stream with English and 40% marks. Science is preferable but not required.'
-        },
-        {
-          question: 'Is GNM a diploma or a degree?',
-          answer: 'GNM is a diploma. It still lets you register as a Registered Nurse and Registered Midwife. For a degree, you can later do Post Basic B.Sc Nursing.'
-        },
-        {
-          question: 'What is the fee for GNM?',
-          answer: 'Across 17 private GNM fee records in our database, the median is ₹65,000 a year and half of programmes charge ₹53,000–₹80,000. We have no government fee records.'
-        },
-        {
-          question: 'Which is better, GNM or B.Sc Nursing?',
-          answer: 'Both lead to RN & RM registration. B.Sc Nursing is a four-year degree that needs PCB and an entrance test and leads directly to M.Sc Nursing. GNM is three years and open to any stream.'
-        },
-        {
-          question: 'What can I do after GNM?',
-          answer: 'Register with your State Nursing Council and work as a staff nurse, or study Post Basic B.Sc Nursing, which then opens M.Sc Nursing.'
-        }
+        { question: 'What is the duration of the GNM course?', answer: 'Three years under the INC syllabus, including a supervised internship block in the programme. Finish within the maximum period your State Nursing Council allows.' },
+        { question: 'What is the eligibility for GNM?', answer: 'Pass 10+2 from a recognised board with English and at least 40% aggregate. Any stream can apply under the INC baseline; states may add age or medical rules.' },
+        { question: 'Is GNM being phased out in 2026-27?', answer: 'INC’s 2019 phase-out letter is archived, but 2026-27 notifications still list GNM among programmes taking admissions. INC Notification 21 of 2026 extended the nursing admission last date to 15 November 2026. Verify each school’s current GNM suitability.' },
+        { question: 'Is there a national GNM entrance exam?', answer: 'No. States may run their own CET or counselling, and many private schools admit on merit. Check your state brochure for 2026-27.' },
+        { question: 'What is the fee for GNM?', answer: 'On CollegeDecision in November 2026, five listed first-year tuition records showed a median of about ₹61,000. The sample is very small—get a written three-year fee schedule from the school.' },
+        { question: 'Can I do M.Sc Nursing after GNM?', answer: 'Not directly as the standard path. Complete Post Basic B.Sc Nursing after GNM registration, then apply for M.Sc Nursing.' },
+        { question: 'GNM vs B.Sc Nursing — which should I choose?', answer: 'B.Sc Nursing is a degree with stronger long-term academic options. GNM is shorter to registration for many students. Compare seats, fees and your degree plans before deciding.' },
+        { question: 'How many GNM colleges are listed on CollegeDecision?', answer: 'As of November 2026 we list 57 active GNM programmes at 56 published institutes. Always re-check INC and State Nursing Council approval for the campus you join.' }
       ]
     },
     anm: {
-      h1: 'ANM Nursing Course: Eligibility, Duration, Syllabus & Next Steps',
-      title: 'ANM Course: Eligibility, Duration, Syllabus & Career Path',
+      h1: 'ANM Course (Auxiliary Nurse Midwife): Eligibility, Admission, Fees & Careers',
+      title: 'ANM Course 2026: Eligibility, Duration, Fees & Jobs',
       description:
-        'ANM nursing guide: 2-year INC course after 10+2 (arts or science), age 17-35, subjects, clinical requirements, and how to move up to GNM and a degree.',
-      keywords: ['ANM course', 'ANM nursing course', 'Auxiliary Nurse Midwife course', 'ANM eligibility', 'ANM course duration', 'ANM syllabus', 'ANM to GNM'],
+        'ANM course guide: INC eligibility (10+2, age 17+), 2-year duration with 6-month internship, admission, subjects, fees (median ₹50,000 a year), colleges, jobs and the GNM route.',
+      keywords: ['ANM course', 'Auxiliary Nurse Midwife', 'ANM eligibility', 'ANM admission', 'ANM fees', 'ANM syllabus', 'ANM nursing jobs'],
       intro:
-        'ANM is a two-year course, including a six-month internship, that trains you for community and maternal health work. Class 12 students from arts, science or the health-care vocational stream aged 17 to 35 can apply.',
+        'ANM (Auxiliary Nurse Midwife) is a two-year INC-regulated nursing course after Class 12, with 18 months of study and a six-month internship, preparing you for community health, mother and child care. Check eligibility, admission, fees, colleges and careers here.',
       crossLink: {
         href: '/nursing-colleges',
-        anchor: 'Browse nursing colleges',
-        note: 'Ready to shortlist? Browse nursing colleges, check which list an ANM programme, and confirm State Nursing Council approval.'
+        anchor: 'Compare nursing colleges by fees & courses',
+        note: 'Ready to shortlist? Browse nursing colleges and check each one\'s INC and State Nursing Council recognition.'
       },
       faqs: [
         {
-          question: 'What is the duration of the ANM course?',
-          answer: 'Two years: 18 months of study plus a six-month internship, 3,480 hours in total under the INC syllabus.'
+          question: 'What is the full form of ANM?',
+          answer: 'ANM stands for Auxiliary Nurse Midwife, also written Auxiliary Nursing and Midwifery. It is a nursing course regulated by the Indian Nursing Council.'
         },
         {
           question: 'What is the eligibility for ANM?',
-          answer: '10+2 from a recognised board in arts (with English), science or the health-care science vocational stream. NIOS 10+2 is accepted. You must be 17 to 35 and medically fit. INC does not set a minimum percentage.'
+          answer: 'Under INC rules, 10+2 in arts with English, science, or the health-care science vocational stream, from a recognised board or NIOS. You must be at least 17 by 31 December of the admission year and medically fit. INC sets no minimum percentage, but states can; Maharashtra asks for 40%.'
         },
         {
-          question: 'Can arts students do ANM?',
-          answer: 'Yes. INC accepts 10+2 in arts with English core or elective, as well as science and the health-care vocational stream.'
+          question: 'How many years is the ANM course?',
+          answer: 'Two years: 18 months of study and a six-month supervised internship.'
+        },
+        {
+          question: 'Is there an upper age limit for ANM?',
+          answer: 'Older INC rules listed 35 years. Maharashtra\'s 2026 brochure says there is no upper age limit, citing an INC notification of 21 August 2023. Check your state\'s current notice.'
         },
         {
           question: 'Is there an entrance exam for ANM?',
-          answer: 'INC does not prescribe one. States and schools admit through their own merit lists, tests or counselling, so check your state\'s notice.'
-        },
-        {
-          question: 'What do ANM students study?',
-          answer: 'Community health nursing, health promotion, primary health care nursing and child health in the first year, then midwifery and health centre management, followed by a six-month internship.'
-        },
-        {
-          question: 'What is the difference between ANM and GNM?',
-          answer: 'ANM is a two-year course focused on community and maternal health. GNM is a three-year diploma that leads to registration as a Registered Nurse and Registered Midwife. Registered ANMs are eligible for GNM.'
-        },
-        {
-          question: 'Can I do GNM after ANM?',
-          answer: 'Yes. INC lists registered ANMs among those eligible for GNM, and its 2024 regulations set out a two-year ANM to GNM bridge programme. Ask your State Nursing Council whether the bridge programme is offered.'
+          answer: 'There is no national exam. Most schools admit on Class 12 merit; some states run central admission, such as Maharashtra\'s MH-Nursing CAP, and some schools hold their own test or interview.'
         },
         {
           question: 'What is the fee for ANM?',
-          answer: 'Our database has only five ANM fee records, too few for a reliable range. Ask each school for the total fee for both years, including hostel and exam fees.'
+          answer: 'Across 10 private programmes with a listed fee on CollegeDecision (November 2026), the median first-year fee is ₹50,000, ranging from ₹30,000 to ₹1,00,000. Government schools usually charge less.'
+        },
+        {
+          question: 'What can I do after ANM?',
+          answer: 'Work as an ANM in sub-centres and primary health centres, in hospitals or with NGOs after registering with your State Nursing Council, or study GNM and then Post Basic B.Sc Nursing.'
         }
       ]
     },
-    md: {
-      h1: 'MD Course in India: Eligibility, NEET-PG, Subjects & Fees',
-      title: 'MD Course Details: Eligibility, NEET-PG, Subjects & Fees',
-      description:
-        'MD after MBBS: NEET-PG eligibility, 3-year structure under NMC PGMER-2023, 32 MD subjects, MD vs MS, and fees by college type in our data.',
-      keywords: ['MD course', 'MD course details', 'MD after MBBS', 'MD eligibility', 'MD subjects list', 'MD vs MS', 'MD course fees'],
-      intro:
-        'MD (Doctor of Medicine) is a three-year postgraduate degree after MBBS. Admission needs a recognised MBBS, registration, a completed internship and a qualifying NEET-PG score, followed by MCC or state counselling.',
-      crossLink: {
-        href: '/md-colleges',
-        anchor: 'Compare MD colleges by fees and type',
-        note: 'Ready to shortlist? Browse MD programmes and check each college\'s NMC permission and counselling fee list.'
-      },
-      faqs: [
-        {
-          question: 'What is the eligibility for MD in India?',
-          answer: 'An MBBS recognised under the NMC Act, 2019, permanent or provisional registration with NMC or a State Medical Council, and a one-year internship finished by the NBEMS cut-off (30 September 2026 for the 2026-27 session). Foreign medical graduates also need FMGE.'
-        },
-        {
-          question: 'Is NEET-PG compulsory for MD?',
-          answer: 'Yes, for almost all seats. The NEET-PG 2026 bulletin says no other state or institution-level entrance is valid for MD, MS or postgraduate diploma seats. AIIMS, PGIMER, JIPMER, NIMHANS and SCTIMST are outside NEET-PG centralised admission and run their own process.'
-        },
-        {
-          question: 'How many years is the MD course?',
-          answer: 'Three years including exams under NMC\'s PGMER-2023. If you already hold a recognised two-year postgraduate diploma in the same subject, MD takes two years.'
-        },
-        {
-          question: 'What is the NEET-PG qualifying percentile?',
-          answer: 'For NEET-PG 2026 it was the 50th percentile for General/EWS, the 45th for UR-PwBD and the 40th for SC, ST and OBC candidates, including PwBD. Qualifying only makes you eligible for counselling.'
-        },
-        {
-          question: 'How many MD subjects are there?',
-          answer: 'PGMER-2023 recognises 32 MD subjects, from General Medicine, Paediatrics and Radio-diagnosis to Anatomy, Pathology, Community Medicine and Hospital Administration.'
-        },
-        {
-          question: 'What is the difference between MD and MS?',
-          answer: 'Both are three-year degrees after MBBS. MD covers medical, diagnostic and pre-clinical subjects. MS covers six surgical subjects: General Surgery, Obstetrics and Gynaecology, Ophthalmology, Orthopaedics, Otorhinolaryngology, and Traumatology and Surgery.'
-        },
-        {
-          question: 'What is the District Residency Programme in MD?',
-          answer: 'A compulsory three-month rotation in district hospitals or the district health system, done in the 3rd, 4th or 5th semester. Students continue to receive their stipend during the rotation.'
-        },
-        {
-          question: 'What are MD fees in India?',
-          answer: 'In our records the median annual fee is ₹82,400 for government/public MD programmes (52 records) and ₹20,22,143 for private programmes (72 records), last updated January 2025. Check the current fee in the MCC or state seat matrix.'
-        },
-        {
-          question: 'Do MD students get a stipend?',
-          answer: 'Yes. PGMER-2023 says PG students in all institutions must be paid a stipend at par with PG students in state or central government institutions in that state or union territory.'
-        }
-      ]
+    'md': {
+        h1: 'MD Course: Eligibility, NEET-PG, Fees, Branches and Careers 2026',
+        title: 'MD Course 2026: NEET-PG, Eligibility, Fees & Specialisations',
+        description: 'MD course guide: 3-year Doctor of Medicine after MBBS, NEET-PG 2026, branch clusters, fees from CollegeDecision data and counselling tips.',
+        keywords: ['MD course', 'MD', 'MD eligibility', 'NEET-PG', 'MD fees', 'Doctor of Medicine', 'MD specialisations'],
+        intro: 'An MD course is a three-year Doctor of Medicine after MBBS. This guide covers NEET-PG, eligibility, fees, branches and how MD differs from MS and medical diplomas.',
+        crossLink: { href: '/md-colleges', anchor: 'MD colleges in India', note: 'Browse published MD college pages' },
+        faqs: [
+            { question: 'What is an MD course?', answer: 'A three-year Doctor of Medicine postgraduate degree after MBBS in a non-surgical speciality.' },
+            { question: 'MD vs MS?', answer: 'MD covers medical and many pre-/para-clinical branches; MS is Master of Surgery.' },
+            { question: 'Is NEET-PG compulsory?', answer: 'For almost all MD seats yes, alongside INI-CET where those institutes admit separately.' },
+            { question: 'How long is MD?', answer: 'Three years of residency training.' },
+            { question: 'What does MD cost?', answer: 'Government seats can be a few tens of thousands a year; mixed private samples sit much higher—read bond PDFs.' },
+            { question: 'Can I switch MD to MS?', answer: 'Only through a fresh counselling/entrance path if rules allow.' },
+            { question: 'Which MD branch is best?', answer: 'There is no universal best—match ranks, aptitude and lifestyle.' },
+            { question: 'Where are official updates?', answer: 'NBEMS, MCC, NMC and your state counselling board.' }
+        ]
     },
     'medical-pg': {
-      h1: 'Medical PG Courses in India: MD, MS, Diplomas, DNB & More',
-      title: 'Medical PG Courses After MBBS: List, Duration & Entrance',
+      h1: 'Medical PG Courses After MBBS: MD, MS, Diplomas, DNB & NEET-PG',
+      title: 'Medical PG Courses After MBBS: MD/MS, Duration, NEET-PG 2026',
       description:
-        'PG medical courses after MBBS: MD, MS, diplomas, DNB and D.M./M.Ch with duration under NMC PGMER-2023, NEET-PG and NEET-SS routes, and M.Optom.',
-      keywords: ['medical PG courses', 'PG courses after MBBS', 'medical PG course duration in India', 'PG medical courses list', 'MD MS diploma DNB', 'super speciality courses after MD', 'M.Optom'],
+        'Medical PG courses after MBBS: MD/MS durations under NMC PGMER-2023, diplomas, DNB, NEET-PG and NEET-SS routes, plus honest notes on CollegeDecision listings (MD under /md-colleges; optometry under M.Optom).',
+      keywords: ['medical PG courses', 'PG courses after MBBS', 'medical PG course duration', 'MD MS diploma DNB', 'NEET-PG', 'NEET-SS', 'PGMER-2023'],
       intro:
-        'After MBBS, the main PG routes are MD and MS (3 years), postgraduate diplomas (2 years) and NBEMS DNB courses, all through NEET-PG. Super-speciality D.M. and M.Ch courses follow through NEET-SS.',
+        'After MBBS, the main medical PG routes are MD and MS (three years under PGMER-2023), postgraduate diplomas, and NBEMS DNB pathways through NEET-PG, with D.M./M.Ch later through NEET-SS. This guide explains the framework and how our medical-pg listing differs from the MD seat map.',
       crossLink: {
-        href: '/medical-pg-colleges',
-        anchor: 'Browse institutes in our PG medical listing',
-        note: 'This listing is mostly Master of Optometry programmes. For MD seats, compare colleges on the MD page.'
+        href: '/md-colleges',
+        anchor: 'Browse MD colleges',
+        note: 'Medical-pg has too few residual rows for its own listing. Use MD colleges here, Master of Surgery colleges for MS, and the M.Optom course page for optometry.'
       },
       faqs: [
-        {
-          question: 'Which PG courses can I do after MBBS?',
-          answer: 'MD (32 subjects) and MS (6 subjects), each 3 years; postgraduate diplomas (28 subjects), 2 years; and post-MBBS DNB, direct 6-year DrNB and NBEMS diploma courses. After MD, MS or DNB you can take D.M. or M.Ch super-speciality courses.'
-        },
-        {
-          question: 'What is the duration of PG medical courses in India?',
-          answer: 'Under NMC\'s PGMER-2023: MD/MS 3 years (2 years if you hold a recognised diploma in the same subject), postgraduate diploma 2 years, D.M./M.Ch 3 years after MD/MS, direct D.M./M.Ch 6 years, PDCC 1 year and PDF 2 years.'
-        },
-        {
-          question: 'Is NEET-PG required for all PG medical courses?',
-          answer: 'NEET-PG is the single entrance for MD, MS and postgraduate diploma seats and is also used for post-MBBS DNB, DrNB and NBEMS diploma seats. AIIMS, PGIMER, JIPMER, NIMHANS and SCTIMST run their own MD/MS admission process.'
-        },
-        {
-          question: 'Which exam is needed for D.M. and M.Ch?',
-          answer: 'NEET-SS. PGMER-2023 requires a minimum eligible NEET-SS score, and the central government or its designated authority runs counselling for all super-speciality seats.'
-        },
-        {
-          question: 'Are postgraduate medical diploma seats still available?',
-          answer: 'Some still exist, but PGMER-2023 says NMC will not accept new applications to start or increase diploma seats, and colleges may convert diploma seats to degree seats. Check the current seat matrix.'
-        },
-        {
-          question: 'What is the difference between MD and MS?',
-          answer: 'Both are 3-year degrees after MBBS. MD covers medical, diagnostic and pre-clinical subjects; MS covers six surgical subjects, including Obstetrics and Gynaecology, Orthopaedics and Ophthalmology.'
-        },
-        {
-          question: 'Can I do a PG health course without MBBS?',
-          answer: 'Yes, in other disciplines: MDS after BDS, MPT after BPT, M.Pharm after B.Pharm and M.Optom after B.Optom. These do not lead to MD or MS, which need an MBBS.'
-        },
-        {
-          question: 'What is M.Optom and who can apply?',
-          answer: 'Master of Optometry is a two-year, four-semester programme. NCAHP\'s curriculum guideline asks for a B.Optom or equivalent with at least 5.5 CGPA and admission through a university entrance test.'
-        }
-      ]
-    },
-    'medical-ug': {
-      h1: 'Medical Courses After 12th: MBBS, BDS, AYUSH, BNYS & Diplomas',
-      title: 'Medical Courses After 12th: List, Duration & Admission',
-      description:
-        'Medical courses after 12th: MBBS, BDS, BAMS, BUMS, BSMS, BHMS and BNYS with duration, NEET (UG) eligibility, counselling and paramedical options.',
-      keywords: ['medical courses after 12th', 'medical UG courses', 'medical courses list after 12th', 'BNYS course', 'BSMS course', 'AYUSH courses after 12th', 'paramedical diploma courses'],
-      intro:
-        'Doctor degrees after 12th (MBBS, BDS, BAMS, BUMS, BSMS, BHMS, BNYS) take 5 to 5½ years including internship, and most need NEET (UG). Paramedical diplomas are shorter and run through state boards or universities.',
-      crossLink: {
-        href: '/medical-ug-colleges',
-        anchor: 'Browse institutes in our medical UG listing',
-        note: 'This listing is mostly BNYS and paramedical diplomas. For MBBS, see the MBBS course guide.'
-      },
-      faqs: [
-        {
-          question: 'Which medical courses can I do after 12th?',
-          answer: 'Doctor degrees: MBBS, BDS, BAMS, BUMS, BSMS, BHMS and BNYS. Shorter options include paramedical diplomas (lab technology, optometry, operation theatre, X-ray) and health degrees such as nursing, BPT, B.Pharm and BMLT.'
-        },
-        {
-          question: 'Which courses need NEET (UG)?',
-          answer: 'The NEET (UG) 2026 bulletin covers MBBS, BDS, BAMS, BUMS, BSMS and BHMS. The score is also used for the 15% VCI quota in BVSc & AH and for B.Sc Nursing at some central institutions.'
-        },
-        {
-          question: 'How long are medical degrees after 12th?',
-          answer: 'MBBS, BAMS, BUMS, BSMS and BHMS take 5½ years including a 1-year internship. BDS takes 5 years (4 years plus a 1-year paid rotating internship). BNYS is 5½ years as per the Tamil Nadu prospectus.'
-        },
-        {
-          question: 'What is the eligibility for NEET-based medical courses?',
-          answer: 'Physics, Chemistry, Biology/Biotechnology and English in Class 12, a minimum age of 17 by 31 December of the admission year, and the NEET (UG) qualifying percentile: 50th for General, 45th for General-PwBD, 40th for SC, ST and OBC.'
-        },
-        {
-          question: 'Is NEET required for BNYS?',
-          answer: 'It depends on the state. BNYS was not listed in the NEET (UG) 2026 bulletin. Telangana\'s 2026-27 prospectus uses NEET (UG) ranks for BNYS, while Tamil Nadu\'s 2025-26 BNYS prospectus ranked candidates on Class 12 science marks.'
-        },
-        {
-          question: 'Who conducts counselling for AYUSH courses?',
-          answer: 'AACCC fills All India Quota seats in government and aided BAMS, BUMS, BSMS and BHMS colleges and seats in central and deemed universities. State authorities fill state-quota seats.'
-        },
-        {
-          question: 'Are there special language rules for BUMS and BSMS?',
-          answer: 'Yes. BUMS needs Urdu, Arabic or Persian in Class 10, or a Class 10-level Urdu test where conducted. BSMS needs Tamil in Class 10 or 12, or Tamil study in the first professional year.'
-        },
-        {
-          question: 'Can I do a paramedical diploma instead of a doctor degree?',
-          answer: 'Yes. Diplomas in lab technology, optometry, operation theatre or X-ray technology prepare you for technician roles, not for practising medicine. Rules are set by each state board or university.'
-        }
+        { question: 'Which PG courses can I do after MBBS?', answer: 'MD (32 subjects in the PGMER-2023 list) and MS (6 subjects), each usually three years; postgraduate diplomas (two years) where seats still exist; and post-MBBS DNB / NBEMS pathways. After a broad speciality you can attempt D.M. or M.Ch through NEET-SS.' },
+        { question: 'What is the duration of PG medical courses in India?', answer: 'Under NMC PGMER-2023: MD/MS three years (two years if you hold a recognised two-year diploma in the same subject); PG diploma two years; D.M./M.Ch usually three years after MD/MS; some direct six-year programmes; PDCC one year; PDF two years.' },
+        { question: 'Is NEET-PG required for all medical PG courses?', answer: 'NEET-PG is the standard entrance for MD, MS and postgraduate diploma seats in NMC colleges and is widely used for post-MBBS DNB pathways. Super-speciality seats use NEET-SS. Always read the year\'s official bulletin for exceptions.' },
+        { question: 'When is NEET-PG 2027?', answer: 'As of 5 November 2026, NBEMS had not officially announced the NEET-PG 2027 schedule. Ignore unverified expected-date articles and follow nbems.nic.in notices only.' },
+        { question: 'Are postgraduate medical diploma seats still available?', answer: 'Some existing diploma seats may still be counselled, but PGMER-2023 policy direction is that NMC will not accept new applications to start or increase diploma seats. Confirm the live seat matrix.' },
+        { question: 'Is the CollegeDecision medical-pg college list the full MD map?', answer: 'No. After cleanup, medical-pg keeps only residual rows (mainly M.Ch). Optometry is under M.Optm, and MD programmes are under the MD course. Use the correct filter when you shortlist.' },
+        { question: 'What is the difference between MD and MS?', answer: 'Both are three-year broad specialities under PGMER-2023. MD covers medicine and allied non-surgical specialities; MS covers surgical specialities. The subject lists differ; the duration rule is the same.' },
+        { question: 'What should I check before locking a PG medical seat?', answer: 'Recognition (NMC/NBEMS), fee breakup by quota, stipend, service bond, department case load, and whether the specialty feeds the super-speciality you may want later.' }
       ]
     },
     'online-bca': {
-      h1: 'Online BCA in India: Validity, UGC & AICTE Approval, Eligibility',
-      title: 'Online BCA in India: Is It Valid? Eligibility & Approval',
+      h1: 'Online BCA Course: Validity, Eligibility, Admission, Fees and Syllabus 2026',
+      title: 'Online BCA Course 2026: UGC-DEB Validity, Eligibility & Fees',
       description:
-        'Online BCA guide: UGC validity, AICTE approval, how to check a university, eligibility, online vs regular vs distance BCA and what to verify on fees.',
-      keywords: ['online BCA', 'online BCA in India', 'UGC approved online BCA', 'is online BCA valid', 'online BCA eligibility', 'online BCA vs regular BCA', 'distance BCA'],
+        'Online BCA course guide for 2026: UGC-DEB validity, Class 12 eligibility, admission with DEB-ID, syllabus, published fees (about Rs 1.44-1.77 lakh) and careers.',
+      keywords: ['online BCA course', 'online BCA', 'online BCA eligibility', 'online BCA fees', 'is online BCA valid', 'UGC approved online BCA', 'online BCA admission 2026'],
       intro:
-        'An online BCA is a Bachelor of Computer Applications studied over the internet. From a university entitled or recognised by UGC for the programme, it is equivalent to a regular BCA. Check UGC-DEB status, AICTE approval and the total fee before you enrol.',
+        'An online BCA course is a three-year Bachelor of Computer Applications studied through live and recorded classes. From a university listed by UGC-DEB for an online BCA in your session it equals a regular BCA. Check eligibility, fees and approval here.',
       crossLink: {
         href: '/bca-colleges',
         anchor: 'Compare BCA colleges',
@@ -3126,46 +3041,46 @@ export function courseSeo(profile: CourseSeoInput): CourseSeoPack {
       faqs: [
         {
           question: 'Is an online BCA valid in India?',
-          answer: 'Yes, if the university is entitled or recognised by UGC to offer that online programme. Regulation 22 of the UGC ODL and Online Regulations, 2020 treats such degrees as equivalent to the same degree in regular mode.'
+          answer: 'Yes, if the university is entitled or recognised by UGC for an online BCA in your session. Regulation 22 of the UGC ODL and Online Regulations, 2020 treats it as equal to a regular BCA.'
         },
         {
           question: 'How do I check if an online BCA is UGC approved?',
-          answer: 'Open the UGC-DEB website (deb.ugc.ac.in), find the list of institutions entitled or recognised for online degree programmes for your session, and check that a BCA is listed against the university.'
-        },
-        {
-          question: 'Does an online BCA need AICTE approval?',
-          answer: 'BCA is in AICTE\'s list of courses it approves in online mode, and its handbook says institutions may not admit students to such courses without the Council\'s approval. Ask the university for its AICTE approval.'
+          answer: 'Search the programme list on deb.ugc.ac.in for the university, the session and "Bachelor of Computer Applications" in online mode.'
         },
         {
           question: 'What is the eligibility for an online BCA?',
-          answer: 'The same as the university\'s regular BCA. AICTE\'s minimum is a Class 12 pass with the eligibility set by the university, or a diploma in Commercial Practice. Some universities ask for Mathematics.'
+          answer: 'A Class 12 pass with the minimum marks the university sets, often between 40% and 50%. Some universities ask for Mathematics.'
         },
         {
-          question: 'Can a BCA be done fully online if it has practicals?',
-          answer: 'Yes. UGC bars programmes with practical or lab courses from online mode, except where the practical work is limited to programming, coding and software tools, which covers BCA practicals.'
+          question: 'Is there an entrance exam for an online BCA?',
+          answer: 'Usually not. Most universities admit on Class 12 marks.'
         },
         {
           question: 'How long is an online BCA?',
-          answer: 'Usually three years, the same as a regular BCA. Some universities list a 4-year Honours version. UGC allows up to double the minimum duration to complete it.'
+          answer: 'Three years, in six semesters. A few universities offer a four-year Honours version.'
         },
         {
           question: 'How many universities offer an online BCA?',
-          answer: 'We counted 63 of 126 UGC-entitled institutions and 9 of 22 UGC-recognised institutions listing a BCA for the 2026-27 session. Lists change every session.'
+          answer: 'We counted 72 institutions listed against an online BCA for 2026-27 on the UGC-DEB programme list on 5 November 2026, up from 59 for 2025-26.'
         },
         {
-          question: 'What are online BCA fees?',
-          answer: 'Fees vary widely, and our database has no online BCA fee records. Ask each university for the written total fee for all semesters, including exam and registration fees.'
+          question: 'What is the fee for an online BCA?',
+          answer: 'At the private universities we checked, published totals ranged from Rs 1,44,000 (Manipal University Jaipur) to Rs 1,77,000 (CU Online) for three years, before temporary discounts.'
+        },
+        {
+          question: 'Can I do an MCA after an online BCA?',
+          answer: 'Yes. A recognised online BCA is accepted like a regular BCA for MCA admission, subject to the marks rule.'
         }
       ]
     },
     'online-bba': {
-      h1: 'Online BBA in India: Validity, Approval, Eligibility & Admission',
-      title: 'Online BBA in India: Is It Valid? Eligibility & Admission',
+      h1: 'Online BBA Course: Validity, Eligibility, Admission, Fees and Syllabus 2026',
+      title: 'Online BBA Course 2026: UGC-DEB Validity, Eligibility & Fees',
       description:
-        'Online BBA guide: UGC validity, AICTE approval, DEB-ID admission steps, eligibility, online vs regular BBA and the 3-year vs 4-year choice for an MBA.',
-      keywords: ['online BBA', 'online BBA in India', 'is online BBA valid', 'UGC approved online BBA', 'online BBA admission', 'online BBA eligibility', 'distance BBA'],
+        'Online BBA course guide for 2026: UGC-DEB validity, Class 12 eligibility, DEB-ID admission, syllabus, specialisations, published fees and MBA options.',
+      keywords: ['online BBA course', 'online BBA', 'online BBA eligibility', 'online BBA fees', 'is online BBA valid', 'UGC approved online BBA', 'online BBA admission 2026'],
       intro:
-        'An online BBA is a Bachelor of Business Administration studied over the internet. From a university entitled or recognised by UGC for the programme, it is equivalent to a regular BBA. Check UGC-DEB status, AICTE approval, your DEB-ID and the total fee before you enrol.',
+        'An online BBA course is a three-year Bachelor of Business Administration taught online. From a university listed by UGC-DEB for an online BBA in your session it equals a regular BBA. Check eligibility, admission, fees and approval here.',
       crossLink: {
         href: '/bba-colleges',
         anchor: 'Compare BBA colleges',
@@ -3174,46 +3089,46 @@ export function courseSeo(profile: CourseSeoInput): CourseSeoPack {
       faqs: [
         {
           question: 'Is an online BBA valid in India?',
-          answer: 'Yes, if the university is entitled or recognised by UGC to offer that online programme. Regulation 22 of the UGC ODL and Online Regulations, 2020 treats such degrees as equivalent to regular-mode degrees.'
+          answer: 'Yes, if the university is entitled or recognised by UGC for an online BBA in your session. Regulation 22 of the UGC ODL and Online Regulations, 2020 treats it as equal to a regular BBA.'
         },
         {
           question: 'What is the eligibility for an online BBA?',
-          answer: 'The same as the university\'s regular BBA. AICTE\'s minimum is a Class 12 pass with the eligibility set by the university; most universities accept any stream.'
-        },
-        {
-          question: 'What is a DEB-ID and do I need one for an online BBA?',
-          answer: 'Yes. A DEB-ID is created on the UGC-DEB portal using your ABC-ID. UGC made it mandatory for Indian students joining online or distance programmes from the session that began in October 2024.'
-        },
-        {
-          question: 'Does an online BBA need AICTE approval?',
-          answer: 'BBA is in AICTE\'s list of courses it approves in online mode, and its handbook says institutions may not admit students to such courses without the Council\'s approval. Ask the university for its approval.'
+          answer: 'A Class 12 pass in any stream, with the minimum marks the university sets; Manipal University Jaipur, for example, asks for 40%.'
         },
         {
           question: 'Is there an entrance exam for an online BBA?',
-          answer: 'AICTE\'s handbook does not name a test for online BBA. Universities decide whether to use a test, an interview or Class 12 marks.'
+          answer: 'Usually not. Admission is mostly on Class 12 marks.'
+        },
+        {
+          question: 'What is a DEB-ID?',
+          answer: 'It is a student ID created on the UGC-DEB portal using your ABC-ID. Indian students need one to join an online or distance programme.'
         },
         {
           question: 'How many universities offer an online BBA?',
-          answer: 'We counted 84 of 126 UGC-entitled institutions and 14 of 22 UGC-recognised institutions listing a BBA for the 2026-27 session, more than any other undergraduate degree.'
+          answer: 'We counted 98 institutions listed against an online BBA for 2026-27 on the UGC-DEB programme list on 5 November 2026, up from 81 for 2025-26.'
+        },
+        {
+          question: 'What is the fee for an online BBA?',
+          answer: 'Published totals at the universities we checked on 5 November 2026 ranged from Rs 90,000 (Sikkim Manipal University) to Rs 1,99,000 (Amity Online) for three years, before temporary discounts.'
         },
         {
           question: 'Can I do an MBA after an online BBA?',
-          answer: 'Yes, a recognised online BBA counts like a regular BBA. AICTE\'s regular-MBA minimum is a bachelor\'s degree with 50% marks (45% for reserved categories).'
+          answer: 'Yes. A recognised online BBA counts like a regular BBA for MBA admission, subject to marks and entrance test rules.'
         },
         {
-          question: 'What are online BBA fees?',
-          answer: 'Fees vary widely, and our database has no online BBA fee records. Ask each university for the written total fee for all semesters, including exam and registration fees.'
+          question: 'Is an online BBA good for working students?',
+          answer: 'Yes, it is designed for them. Plan 8 to 10 hours a week; LPU Online recommends that much for its BBA.'
         }
       ]
     },
     'online-bcom': {
-      h1: 'Online B.Com in India: Validity, Eligibility & How Classes Work',
-      title: 'Online B.Com in India: Is It Valid? Classes & Eligibility',
+      h1: 'Online B.Com Course: Validity, Eligibility, Admission, Fees and Syllabus 2026',
+      title: 'Online B.Com Course 2026: UGC-DEB Validity, Eligibility & Fees',
       description:
-        'Online B.Com guide: UGC validity, how to check a university, eligibility, DEB-ID, how online classes and exams work, and online vs regular B.Com.',
-      keywords: ['online B.Com', 'online BCom in India', 'is online B.Com valid', 'UGC approved online B.Com', 'B.Com online classes', 'online B.Com admission', 'distance B.Com'],
+        'Online B.Com course guide for 2026: UGC-DEB validity, Class 12 eligibility, DEB-ID admission, syllabus, Honours options, published fees and careers.',
+      keywords: ['online B.Com course', 'online B.Com', 'online BCom', 'online B.Com eligibility', 'online B.Com fees', 'is online B.Com valid', 'UGC approved online B.Com'],
       intro:
-        'An online B.Com is a Bachelor of Commerce studied over the internet. From a university entitled or recognised by UGC for the programme, it is equivalent to a regular B.Com. Check UGC-DEB status, your DEB-ID, how exams work and the total fee before you enrol.',
+        'An online B.Com course is a three-year Bachelor of Commerce taught through live and recorded classes. From a university listed by UGC-DEB for an online B.Com in your session it equals a regular B.Com. Check eligibility, fees and approval here.',
       crossLink: {
         href: '/bcom-colleges',
         anchor: 'Compare B.Com colleges',
@@ -3222,294 +3137,158 @@ export function courseSeo(profile: CourseSeoInput): CourseSeoPack {
       faqs: [
         {
           question: 'Is an online B.Com valid in India?',
-          answer: 'Yes, if the university is entitled or recognised by UGC to offer that online programme. Regulation 22 of the UGC ODL and Online Regulations, 2020 treats such degrees as equivalent to regular-mode degrees.'
+          answer: 'Yes, if the university is entitled or recognised by UGC for an online B.Com in your session. Regulation 22 of the UGC ODL and Online Regulations, 2020 treats it as equal to a regular B.Com.'
         },
         {
           question: 'How do I check if an online B.Com is UGC approved?',
-          answer: 'Open deb.ugc.ac.in, find the lists of institutions entitled or recognised for online degree programmes for your session, and check that the exact B.Com is listed against the university.'
+          answer: 'Search the programme list on deb.ugc.ac.in for the university, the session, online mode and "Bachelor of Commerce". A distance (ODL) listing does not cover the online programme.'
         },
         {
           question: 'What is the eligibility for an online B.Com?',
-          answer: 'The same as the university\'s regular B.Com, usually a Class 12 pass. Each university sets the subject and marks rules; Honours programmes more often ask for Mathematics or Accountancy.'
+          answer: 'A Class 12 pass with the minimum marks the university sets. Many universities accept any stream; Honours and professional B.Com programmes may ask for more.'
         },
         {
-          question: 'How do online B.Com classes work?',
-          answer: 'Through a learning platform with video lessons, e-content, a discussion forum and self-assessment. UGC expects at least two hours of activity every fortnight and 75% participation before end-semester exams.'
+          question: 'Is there an entrance exam for an online B.Com?',
+          answer: 'Usually not. Most universities admit on Class 12 marks. CUET UG is used for campus seats, not online ones.'
         },
         {
-          question: 'How are online B.Com exams conducted?',
-          answer: 'End-semester exams are proctored and carry at least 70% of the marks. Proctoring can be pen-and-paper, computer-based or fully online under supervision, depending on the university.'
+          question: 'How many universities offer an online B.Com?',
+          answer: 'We counted 80 institutions with 82 B.Com listings in online mode on the UGC-DEB 2026-27 list on 5 November 2026, up from 71 for 2025-26.'
         },
         {
-          question: 'Do I need a DEB-ID for an online B.Com?',
-          answer: 'Yes. UGC made the DEB-ID, created with your ABC-ID on the UGC-DEB portal, mandatory for Indian students joining online or distance programmes from the October 2024 session.'
+          question: 'What is the fee for an online B.Com?',
+          answer: 'Published totals on 5 November 2026 ranged from Rs 75,000 (Sikkim Manipal University) to Rs 2,94,000 (MAHE B.Com Professional) for the full programme. Exam and registration fees may be extra.'
         },
         {
-          question: 'Is there an online B.Com (Hons)?',
-          answer: 'Yes, at some universities. Of 81 B.Com listings in the UGC-DEB 2026-27 lists, 19 are Honours and 8 of those are stated as 4-year programmes.'
+          question: 'Can I do CA along with an online B.Com?',
+          answer: 'Yes. Many students study for CA, CMA or CS papers alongside an online B.Com, because the timetable is flexible. Check the exam dates do not clash.'
         },
         {
-          question: 'What are online B.Com fees?',
-          answer: 'Fees vary widely, and our database has no online B.Com fee records. Ask each university for the written total fee for all semesters, including exam and registration fees.'
+          question: 'Can I do an M.Com or MBA after an online B.Com?',
+          answer: 'Yes. A recognised online B.Com counts like a regular B.Com for M.Com and MBA admission, subject to marks and entrance test rules.'
         }
       ]
     },
     'online-bsc': {
-      h1: 'Online B.Sc in India: Allowed Subjects, Validity & Eligibility',
-      title: 'Online B.Sc in India: Allowed Subjects & Validity',
+      h1: 'Online B.Sc Course: Allowed Subjects, Validity, Eligibility and Fees 2026',
+      title: 'Online B.Sc Course 2026: Allowed Subjects, UGC-DEB Validity & Fees',
       description:
-        'Online B.Sc guide: UGC\'s lab rule, which subjects can be studied online, the 2026-27 UGC-DEB list, validity, eligibility and online vs distance B.Sc.',
-      keywords: ['online B.Sc', 'online BSc in India', 'is online B.Sc valid', 'UGC approved online B.Sc', 'online B.Sc data science', 'distance B.Sc', 'online B.Sc admission'],
+        'Online B.Sc course guide for 2026: UGC lab rule, the 4 online B.Sc programmes on the UGC-DEB 2026-27 list, eligibility, admission, fees and careers.',
+      keywords: ['online B.Sc course', 'online B.Sc', 'online BSc in India', 'is online B.Sc valid', 'UGC approved online B.Sc', 'online B.Sc data science', 'online B.Sc eligibility'],
       intro:
-        'An online B.Sc is a Bachelor of Science studied over the internet, but UGC bars programmes with lab or practical courses from online mode unless the practicals are limited to programming and software tools. Where it is allowed, a degree from a UGC entitled or recognised university is equivalent to a regular B.Sc.',
+        'An online B.Sc course is a Bachelor of Science taught online, but UGC allows it only in subjects without lab practicals. We found four online B.Sc programmes on the UGC-DEB 2026-27 list. Check allowed subjects, eligibility, fees and approval here.',
       crossLink: {
         href: '/bsc-colleges',
         anchor: 'Compare B.Sc colleges',
-        note: 'Need a lab subject such as physics or chemistry? Those cannot be studied online; browse B.Sc colleges for campus study.'
+        note: 'Need physics, chemistry or biology? Those cannot be studied online; browse B.Sc colleges for campus study.'
       },
       faqs: [
         {
           question: 'Is an online B.Sc valid in India?',
-          answer: 'Yes, if the subject is permitted online and the university is entitled or recognised by UGC for that programme. Regulation 22 of the UGC ODL and Online Regulations, 2020 treats such degrees as equivalent to regular-mode degrees.'
+          answer: 'Yes, if the subject is allowed online and the university is listed by UGC-DEB for that online B.Sc in your session. Regulation 22 of the UGC ODL and Online Regulations, 2020 treats it as equal to a regular B.Sc.'
         },
         {
-          question: 'Can I do a B.Sc in physics, chemistry or biology online?',
-          answer: 'No. UGC prohibits any programme that requires practical or laboratory courses in online mode, except where practicals are limited to programming, coding and software tools. Lab-based science needs a regular B.Sc or a distance B.Sc at an eligible university.'
+          question: 'Can I do an online B.Sc in physics, chemistry or biology?',
+          answer: 'No. UGC bars programmes with laboratory practicals from online mode, except where practicals are limited to programming and software tools.'
         },
         {
-          question: 'Which B.Sc subjects are available online?',
-          answer: 'Only subjects without wet-lab practicals. The four online B.Sc programmes in the UGC-DEB 2026-27 lists are in data science, information systems and management, and economics.'
-        },
-        {
-          question: 'Can I study nursing, agriculture or psychology online or by distance?',
-          answer: 'No. Nursing, agriculture, horticulture, para-medical and other listed disciplines are prohibited in both online and distance mode. UGC has also barred allied and healthcare programmes under the NCAHP Act, including psychology as a specialisation; UGC-DEB applies this from the August 2026 session.'
-        },
-        {
-          question: 'How do I check if an online B.Sc is UGC approved?',
-          answer: 'Open deb.ugc.ac.in, find the lists of institutions entitled or recognised for online degree programmes for your session, and check that the exact B.Sc, with the same subject, is listed against the university.'
+          question: 'Which online B.Sc programmes are UGC approved for 2026-27?',
+          answer: 'On 5 November 2026 we found four on the UGC-DEB online list: MAHE (Information Systems and Management), Symbiosis International (Hons, Economics), Sri Ramachandra (Hons, Data Science) and Silver Oak University (Data Science).'
         },
         {
           question: 'What is the eligibility for an online B.Sc?',
-          answer: 'The same as the university\'s regular B.Sc, usually a Class 12 pass with subject and marks rules set by the university. Data science or economics programmes may ask for Mathematics.'
+          answer: 'A Class 12 pass with the marks and subjects the university sets. MAHE asks 50% in Class 12 in any discipline for its online B.Sc ISM.'
         },
         {
-          question: 'Do I need a DEB-ID for an online B.Sc?',
-          answer: 'Yes. UGC made the DEB-ID, created with your ABC-ID on the UGC-DEB portal, mandatory for Indian students joining online or distance programmes from the October 2024 session.'
+          question: 'Is there an entrance exam for an online B.Sc?',
+          answer: 'We found none for the online B.Sc programmes we checked. Admission is on Class 12 marks.'
         },
         {
-          question: 'What is the difference between an online and a distance B.Sc?',
-          answer: 'An online B.Sc cannot include lab courses. A distance (ODL) B.Sc with lab work is allowed only at eligible universities, with practicals at the headquarters or at centres that have run the same programme in regular mode for at least seven years.'
+          question: 'What is the fee for an online B.Sc?',
+          answer: 'MAHE listed Rs 1,80,000 for its three-year online B.Sc ISM on 5 November 2026, or Rs 1,71,000 if paid in full. We did not confirm fees for the other three programmes.'
         },
         {
-          question: 'What are online B.Sc fees?',
-          answer: 'Our database has one online B.Sc programme and no fee records, so we do not give a range. Ask each university for the written total fee for all semesters, including exam and registration fees.'
+          question: 'Is an online B.Sc the same as a distance B.Sc?',
+          answer: 'No. They are different modes with separate UGC-DEB lists. A distance B.Sc may include practicals at study centres; an online B.Sc cannot include lab work.'
         }
       ]
     },
-    'online-ba': {
-      h1: 'Online BA in India: Validity, Subjects, Eligibility & How to Choose',
-      title: 'Online BA in India: Is It Valid? Subjects & Eligibility',
+'online-ba': {
+      h1: 'Online BA Course: Eligibility, Subjects, Fees, Admission & Scope 2026',
+      title: 'Online BA Course: Eligibility, UGC Validity, Subjects & Fees 2026',
       description:
-        'Online BA guide: UGC validity, how to check a university, subjects in the 2026-27 UGC-DEB lists, what UGC bars online, eligibility and DEB-ID.',
-      keywords: ['online BA', 'online BA in India', 'is online BA valid', 'UGC approved online BA', 'online BA subjects', 'online BA admission', 'distance BA'],
+        'Online BA course guide for 2026: UGC-DEB validity, Class 12 eligibility, DEB-ID, allowed subjects, what UGC bars online, fees and how to choose a listed university.',
+      keywords: ['Online BA course', 'Online BA course details', 'Online BA eligibility', 'UGC approved online BA', 'Online BA subjects', 'Online BA admission 2026', 'Online BA fees', 'DEB-ID'],
       intro:
-        'An online BA is a Bachelor of Arts studied over the internet. From a university entitled or recognised by UGC for the programme, it is equivalent to a regular BA. Some subjects, including visual arts, law and psychology as a specialisation, cannot be studied online.',
+        'An Online BA course is a Bachelor of Arts studied fully online. From a university entitled or recognised by UGC for that programme, it is equivalent to a regular BA. Use this guide for eligibility, DEB-ID, subjects, fees and the checks that protect you from unlisted offers.',
       crossLink: {
         href: '/ba-colleges',
         anchor: 'Compare BA colleges',
-        note: 'Want psychology, fine arts or campus study? Browse BA colleges. For online options, check each university on the UGC-DEB list.'
+        note: 'Need psychology, fine arts or campus study? Browse BA colleges. For online options, verify each university on the UGC-DEB list first.'
       },
       faqs: [
-        {
-          question: 'Is an online BA valid in India?',
-          answer: 'Yes, if the university is entitled or recognised by UGC to offer that online programme. Regulation 22 of the UGC ODL and Online Regulations, 2020 treats such degrees as equivalent to regular-mode degrees.'
-        },
-        {
-          question: 'How do I check if an online BA is UGC approved?',
-          answer: 'Open deb.ugc.ac.in, find the lists of institutions entitled or recognised for online degree programmes for your session, and check that a BA, with the subject you want, is listed against the university.'
-        },
-        {
-          question: 'Which subjects can I study in an online BA?',
-          answer: 'In the 2026-27 UGC-DEB lists, English and political science are named most often, followed by history, economics, sociology and Hindi. Many programmes let you combine three subjects from a list.'
-        },
-        {
-          question: 'Can I study psychology in an online BA?',
-          answer: 'Not from the August 2026 session. UGC has barred allied and healthcare programmes under the NCAHP Act, including psychology as a specialisation, in online and distance mode.'
-        },
-        {
-          question: 'Which arts subjects are not allowed online?',
-          answer: 'Visual arts, sports and law are prohibited in online and distance mode. Yoga and tourism and hospitality management are not permitted online, and any subject with lab practicals cannot be offered online.'
-        },
-        {
-          question: 'What is the eligibility for an online BA?',
-          answer: 'The same as the university\'s regular BA, usually a Class 12 pass with any subject or marks rules set by the university.'
-        },
-        {
-          question: 'Do I need a DEB-ID for an online BA?',
-          answer: 'Yes. UGC made the DEB-ID, created with your ABC-ID on the UGC-DEB portal, mandatory for Indian students joining online or distance programmes from the October 2024 session.'
-        },
-        {
-          question: 'Is an online BA 3 years or 4 years?',
-          answer: 'Usually 3 years (120 credits). Under the UGC undergraduate framework, a 4-year Honours BA needs 160 credits. In the 2026-27 UGC-DEB lists, 10 of 51 BA listings are Honours and 4 state 4 years.'
-        },
-        {
-          question: 'What are online BA fees?',
-          answer: 'Our database has one online BA programme and no fee records, so we do not give a range. Ask each university for the written total fee for all semesters, including exam and registration fees.'
-        }
+        { question: 'Is an Online BA course valid in India?', answer: 'Yes, if the university is entitled or recognised by UGC to offer that online programme for your session. Regulation 22 of the UGC ODL and Online Regulations, 2020 treats such degrees as equivalent to regular-mode degrees.' },
+        { question: 'How do I check if an Online BA is UGC approved?', answer: 'Open deb.ugc.ac.in, open the entitled and recognised Online programme lists for your session, and confirm that a BA with your subject combination is listed against the university.' },
+        { question: 'What is the eligibility for an Online BA course?', answer: 'Usually the same as the university\'s regular BA: a Class 12 pass, plus any marks or subject rules the university sets. Indian students also need a DEB-ID from the October 2024 session onwards.' },
+        { question: 'Do I need a DEB-ID for an Online BA?', answer: 'Yes for Indian students. Create it on the UGC-DEB portal with your ABC-ID. UGC made it mandatory from the October 2024 academic session.' },
+        { question: 'Can I study psychology in an Online BA course?', answer: 'Not from the August 2026 session as a specialisation, per UGC\'s DEB Instruction page (592nd meeting decision under the NCAHP Act). Confirm the live Instruction page when you apply.' },
+        { question: 'Is an Online BA 3 years or 4 years?', answer: 'Most programmes are 3 years (about 120 credits). A 4-year Honours BA needs about 160 credits under UGC\'s undergraduate framework. Check the exact listing and prospectus.' },
+        { question: 'Are there entrance exams for an Online BA course?', answer: 'No national Online BA exam. Most seats are Class 12 merit based. A few universities run their own test; CUET applies only if that university\'s online prospectus names it.' },
+        { question: 'What are Online BA course fees?', answer: 'CollegeDecision has 11 published Online BA programmes and no fee records yet, so we do not publish a range. Ask the university for the full written fee across all semesters.' }
       ]
     },
     msc: {
-      h1: 'MSc Course in India: Duration, Eligibility, Entrance Exams & Fees',
-      title: 'MSc Course Details: Eligibility, Exams, Subjects & Fees',
+      h1: 'MSc Course in India: Eligibility, JAM 2027, Admission, Fees & Careers',
+      title: 'MSc Course 2027: Eligibility, Duration, Entrance Exams & Fees',
       description:
-        'MSc guide: 1-year vs 2-year MSc under UGC rules, eligibility, IIT JAM and CUET PG, subjects, fees by subject (median ₹60,000 a year) and careers.',
-      keywords: ['MSc course', 'MSc course details', 'MSc eligibility', 'MSc entrance exam', 'MSc subjects', 'MSc fees', 'one year MSc'],
+        'MSc course guide: UGC eligibility, 1- vs 2-year MSc, IIT JAM 2027 and CUET PG dates, subjects, fees (median ₹60,000 a year), NIRF 2025 top universities and careers.',
+      keywords: ['MSc course', 'MSc full form', 'MSc course details', 'MSc eligibility', 'MSc entrance exam', 'MSc fees', 'one year MSc'],
       intro:
-        'An MSc is a postgraduate science degree: two years after a three-year B.Sc, or one year after a four-year honours degree under UGC\'s 2024 framework. Check eligibility, the entrance test each university uses and the total fees before you apply.',
+        'An MSc course is a one- or two-year science master\'s degree in a subject you studied in your bachelor\'s degree. The IITs admit through IIT JAM, central universities through CUET PG, and states through their own tests. Check eligibility, dates, fees and top universities here.',
       crossLink: {
         href: '/msc-colleges',
-        anchor: 'Compare MSc colleges by fees & exams',
-        note: 'Ready to shortlist? Browse MSc programmes with recorded fees, accepted exams and placement outcomes.'
+        anchor: 'Compare MSc colleges by fees & entrance exams',
+        note: 'Ready to shortlist? Browse MSc colleges with recorded fees, subjects and accepted exams.'
       },
       faqs: [
         {
-          question: 'Is MSc a one-year or two-year course?',
-          answer: 'Usually two years after a three-year B.Sc. UGC\'s 2024 postgraduate framework also allows a one-year MSc for students with a four-year honours or honours-with-research degree, but each university decides whether to offer it.'
+          question: 'What is the full form of MSc?',
+          answer: 'MSc stands for Master of Science, a postgraduate degree in a science subject such as Chemistry, Physics, Mathematics, Biotechnology or Computer Science.'
         },
         {
           question: 'What is the eligibility for MSc?',
-          answer: 'Under UGC\'s framework you are eligible in a subject you studied as a major or minor in your bachelor\'s degree, or in any subject whose national or university entrance test you qualify. Universities add their own subject and minimum-marks rules.'
+          answer: 'Under UGC\'s 2024 framework, you are eligible in a subject you took as a major or minor in your bachelor\'s degree, or in any subject whose national or university entrance test you qualify. Universities add their own marks rules.'
         },
         {
-          question: 'Which entrance exams are used for MSc admission?',
-          answer: 'IIT JAM for the IITs and, through CCMN counselling, IISc, NITs and other institutes; CUET PG for central and participating universities; state tests such as APPGCET (Andhra Pradesh) and TG CPGET (Telangana); and university tests.'
+          question: 'Is MSc one year or two years?',
+          answer: 'A 3-year bachelor\'s degree leads to a two-year MSc. A 4-year Honours or Honours with Research degree can lead to a one-year MSc, where the university offers it.'
         },
         {
           question: 'When is IIT JAM 2027?',
-          answer: 'IIT Kharagpur is organising JAM 2027. Applications close on 19 October 2026, the exam is on 14 February 2027 and results are due on 18 March 2027, according to the official JAM website.'
+          answer: 'IIT JAM 2027, organised by IIT Kharagpur, is on 14 February 2027. Results are due on 18 March 2027.'
         },
         {
-          question: 'Can I do an MSc in a different subject from my B.Sc?',
-          answer: 'Yes, in many cases. UGC\'s framework makes you eligible for any PG discipline if you qualify a national or university entrance test in that discipline. Individual programmes may still list required subjects, so check their eligibility tables.'
+          question: 'Which entrance exams are used for MSc?',
+          answer: 'IIT JAM for the IITs, IISc and NITs; CUET PG for central and participating universities; and state tests such as APPGCET, TG CPGET and Karnataka PGCET. Some universities run their own tests.'
         },
         {
-          question: 'What is the fee for an MSc in India?',
-          answer: 'Across 1,024 annual MSc fee records in our database, the median is ₹60,000 a year. The public-institute median is ₹23,000 and the private median ₹70,000. Fees also vary by subject, from about ₹32,000 for Zoology and Botany to ₹1,16,000 for Nursing.'
+          question: 'What is the fee for MSc?',
+          answer: 'Across 1,175 programmes with a listed fee on CollegeDecision (November 2026), the median first-year fee is ₹60,000. Public institutes have a median of ₹20,805 and private ones ₹60,000.'
         },
         {
-          question: 'Which MSc subjects are most common?',
-          answer: 'In our records Chemistry is the most common MSc subject, followed by Mathematics and Statistics, Physics, Computer Science and IT, and Biotechnology.'
-        },
-        {
-          question: 'What can I do after an MSc?',
-          answer: 'You can go on to a PhD, take research or laboratory posts, work in industry roles linked to your subject, or move towards college teaching, which needs further eligibility such as UGC NET.'
-        }
-      ]
-    },
-    ma: {
-      h1: 'MA Course in India: Duration, Eligibility, Admission, Subjects & Fees',
-      title: 'MA Course Details: Eligibility, Admission, Subjects & Fees',
-      description:
-        'MA guide: 1-year vs 2-year MA under UGC rules, eligibility, CUET PG codes by subject, state tests, fees (public median ₹12,599 a year) and careers.',
-      keywords: ['MA course', 'MA course details', 'MA eligibility', 'MA course duration', 'MA admission', 'MA subjects', 'MA fees'],
-      intro:
-        'An MA is a postgraduate degree in a humanities, social science or language subject: two years after a three-year degree, or one year after a four-year honours degree under UGC\'s 2024 framework. Check eligibility, the CUET PG code or state test each university uses, and total fees.',
-      crossLink: {
-        href: '/ma-colleges',
-        anchor: 'Compare MA colleges by fees & exams',
-        note: 'Ready to shortlist? Browse MA programmes with recorded fees, accepted exams and placement outcomes.'
-      },
-      faqs: [
-        {
-          question: 'How many years is an MA course?',
-          answer: 'Two years (four semesters) after a three-year bachelor\'s degree. UGC\'s 2024 postgraduate framework also allows a one-year MA after a four-year honours or honours-with-research degree, where the university offers it.'
-        },
-        {
-          question: 'What is the eligibility for MA?',
-          answer: 'Under UGC\'s framework you are eligible for an MA in a subject you took as a major or minor in your bachelor\'s degree, or in any subject whose national or university entrance test you qualify. Universities set their own minimum marks.'
-        },
-        {
-          question: 'Can I do an MA after B.Com or B.Sc?',
-          answer: 'Often yes. UGC\'s framework lets you switch subject at PG level if you qualify a national or university entrance test in the new subject. Check that the university accepts graduates from your stream for that MA.'
-        },
-        {
-          question: 'Which CUET PG paper is needed for an MA?',
-          answer: 'It depends on the university. In CUET PG 2026, for example, English was LAQP01, History HUQP09, Political Science HUQP18, Psychology HUQP20 and Economics COQP10, but some universities use the General paper (COQP11) instead.'
-        },
-        {
-          question: 'Is there an entrance exam for MA in Andhra Pradesh and Telangana?',
-          answer: 'Yes. State universities in Andhra Pradesh admitted through APPGCET 2026, conducted by Sri Venkateswara University for APSCHE, and Telangana universities through TG CPGET 2026, conducted by Kakatiya University.'
-        },
-        {
-          question: 'What is the fee for an MA in India?',
-          answer: 'Across 512 annual MA fee records in our database, the median is ₹30,000 a year: ₹12,599 at public institutes and ₹60,000 at private ones. Psychology and Journalism programmes have the highest subject medians.'
-        },
-        {
-          question: 'What is the difference between an MA and an online MA?',
-          answer: 'Both have the same entry rules and level. A regular MA is taught on campus; an online MA is delivered through a learning platform by a UGC-entitled university and suits learners who cannot attend classes.'
-        },
-        {
-          question: 'What can I do after an MA?',
-          answer: 'You can take UGC NET for assistant professor eligibility, JRF awards or PhD admission, apply for a PhD, or work in writing, journalism, policy, development and research roles. School teaching also needs a teacher-education qualification such as a B.Ed.'
-        }
-      ]
-    },
-    phd: {
-      h1: 'PhD in India: Eligibility, Admission, NET Route, Duration & Fees',
-      title: 'PhD Admission in India: Eligibility, NET, Duration & Fees',
-      description:
-        'PhD guide to UGC 2022 rules: 55% master\'s or 75% 4-year degree, NET categories, entrance test and interview, 3–6 year duration, fees and checklist.',
-      keywords: ['PhD admission', 'PhD eligibility', 'PhD course duration', 'UGC NET for PhD admission', 'PhD entrance exam', 'part-time PhD', 'PhD fees in India'],
-      intro:
-        'A PhD is India\'s highest research degree. Under the UGC PhD Regulations, 2022, you need a master\'s with 55% or a four-year degree with 75%, admission is through NET or a university test plus interview, and the programme lasts three to six years.',
-      crossLink: {
-        href: '/phd-colleges',
-        anchor: 'Compare PhD colleges by fees & admission routes',
-        note: 'Ready to shortlist? Browse PhD programmes with recorded fees and admission details, then check each university\'s PhD prospectus.'
-      },
-      faqs: [
-        {
-          question: 'What is the eligibility for a PhD in India?',
-          answer: 'Under the UGC PhD Regulations, 2022: a master\'s degree with at least 55% marks, or a four-year bachelor\'s degree with at least 75%, or an M.Phil with 55%. SC, ST, OBC (non-creamy layer), EWS and differently-abled candidates get a 5% relaxation.'
-        },
-        {
-          question: 'Can I do a PhD after a four-year bachelor\'s degree?',
-          answer: 'Yes. UGC allows direct PhD admission after a four-year (eight-semester) bachelor\'s degree with 75% marks, or 70% for reserved categories. Such graduates can also take UGC NET for JRF and PhD admission.'
-        },
-        {
-          question: 'How long does a PhD take?',
-          answer: 'At least three years including coursework and at most six years from admission. Universities can allow two more years by re-registration (eight in total), and women and persons with more than 40% disability can get a further two years.'
-        },
-        {
-          question: 'Is UGC NET required for PhD admission?',
-          answer: 'Not always. Universities can admit NET/JRF, CSIR NET, GATE or CEED fellowship holders on interview, use NET category 2 and 3 scores (70% NET marks, 30% interview), or hold their own entrance test followed by an interview.'
-        },
-        {
-          question: 'When is UGC NET December 2026?',
-          answer: 'NTA has scheduled UGC-NET December 2026 for 14 to 19 December 2026. Applications are open from 8 to 28 October 2026, with a late-fee window until 31 October. NTA calls the dates tentative.'
-        },
-        {
-          question: 'Can I do a PhD online or by distance learning?',
-          answer: 'No. Regulation 13 of the UGC PhD Regulations, 2022 bars universities from running PhD programmes in distance or online mode. A part-time PhD is allowed if you meet all the conditions and have your employer\'s no-objection certificate.'
-        },
-        {
-          question: 'What is the fee for a PhD in India?',
-          answer: 'Across 466 annual PhD fee records in our database, the median is ₹54,000 a year: ₹27,150 at public institutes and ₹84,000 at private ones. These records were last updated in January 2025, so check each prospectus.'
-        },
-        {
-          question: 'Is M.Phil still required before a PhD?',
-          answer: 'No. UGC\'s 2022 regulations say universities shall not offer the M.Phil. A master\'s degree with 55%, or a four-year bachelor\'s with 75%, is enough to apply.'
+          question: 'What can I do after MSc?',
+          answer: 'You can take a PhD, clear UGC NET for college teaching and fellowships, work in research labs, QC and R&D, or data roles, or take a B.Ed for school teaching.'
         }
       ]
     },
     mtech: {
-      h1: 'M.Tech / M.E. in India: Eligibility, GATE, State Tests & Fees',
-      title: 'M.Tech / M.E. Admission 2026-27: Eligibility, GATE & Fees',
+      h1: 'M.Tech Course in India: Eligibility, GATE 2027, Admission, Fees & Careers',
+      title: 'M.Tech Course 2027: Eligibility, GATE, Admission & Fees',
       description:
-        'M.Tech/M.E. guide: AICTE 50% eligibility, GATE 2027 dates, state tests (CEETA-PG, APPGECET, TG PGECET, PGCET), branches and fee data.',
-      keywords: ['M.Tech admission', 'M.Tech eligibility', 'M.Tech through GATE', 'M.Tech entrance exam', 'M.Tech fees in India', 'M.Tech specialisations', 'M.E. vs M.Tech'],
+        'M.Tech course guide: AICTE 50% eligibility, GATE 2027 dates, COAP, CCMT and state tests, subjects, branches, fees (median ₹75,000 a year) and top institutes.',
+      keywords: ['M.Tech course', 'M.Tech course details', 'M.Tech eligibility', 'M.Tech admission 2027', 'M.Tech through GATE', 'M.Tech fees in India', 'M.E. vs M.Tech'],
       intro:
-        'An M.Tech or M.E. is a two-year postgraduate engineering degree. AICTE requires a bachelor\'s degree with 50% marks (45% reserved). IITs and NITs admit mainly through GATE; state colleges use tests such as CEETA-PG, APPGECET, TG PGECET and PGCET.',
+        'An M.Tech course is a two-year postgraduate engineering degree. AICTE asks for a B.E. or B.Tech with 50% marks (45% reserved). IITs and NITs admit through GATE; state colleges use tests such as CEETA-PG and PGCET. Check eligibility, dates, fees and top institutes here.',
       crossLink: {
         href: '/mtech-colleges',
         anchor: 'Compare M.Tech colleges by fees & admission routes',
@@ -3517,36 +3296,36 @@ export function courseSeo(profile: CourseSeoInput): CourseSeoPack {
       },
       faqs: [
         {
-          question: 'What is the eligibility for M.Tech?',
-          answer: 'AICTE\'s Approval Process Handbook 2024-27 requires a bachelor\'s degree or equivalent with at least 50% marks (45% for reserved categories). Most programmes ask for a B.E. or B.Tech in the same or a related branch; some accept an M.Sc for allied branches.'
-        },
-        {
-          question: 'Is there any difference between M.Tech and M.E.?',
-          answer: 'They are the same level of degree. The UGC PG framework lists M.E. and M.Tech together at NHEQF level 7, and AICTE approves both as postgraduate degrees in engineering and technology. The name depends on the university.'
-        },
-        {
-          question: 'Is GATE compulsory for M.Tech?',
-          answer: 'No. GATE is the main route to IITs, NITs and IISc, but state colleges also admit through state tests such as CEETA-PG (Tamil Nadu), APPGECET (Andhra Pradesh), TG PGECET (Telangana) and PGCET (Karnataka), and some institutes hold their own tests.'
+          question: 'What is the eligibility for an M.Tech course?',
+          answer: 'AICTE requires a bachelor\'s degree or equivalent with at least 50% marks (45% for reserved categories). Most programmes ask for a B.E. or B.Tech in the same or a related branch; some accept an M.Sc or AMIE.'
         },
         {
           question: 'When is GATE 2027?',
-          answer: 'IIT Madras will hold GATE 2027 on 6, 7, 13, 14, 20 and 21 February 2027, with results on 19 March 2027. Registration with a late fee closed on 12 October 2026, and the correction window runs from 14 to 21 October 2026. Scores are valid for three years.'
+          answer: 'GATE 2027, organised by IIT Madras, is on 6, 7, 13, 14, 20 and 21 February 2027. Results are due on 19 March 2027, and scores stay valid for three years.'
         },
         {
-          question: 'Is TANCET required for M.Tech in Tamil Nadu?',
-          answer: 'No. In the 2026 cycle, TANCET covered only MBA and MCA. M.E., M.Tech, M.Arch and M.Plan admissions at Anna University and government and aided colleges used CEETA-PG, and GATE candidates also had to take CEETA-PG.'
+          question: 'Can I get M.Tech admission without GATE?',
+          answer: 'Yes. State universities use tests such as CEETA-PG, APPGECET, TG PGECET and Karnataka PGCET, and many private universities use their own test or degree marks. IITs and NITs mainly need GATE.'
         },
         {
-          question: 'Can working professionals do an M.Tech?',
-          answer: 'Yes. AICTE allows approved institutions to run classes in flexible timings for employed candidates, even beyond office hours. These are treated as regular-mode programmes, not evening or part-time ones, so confirm the institution\'s approval.'
+          question: 'What is the difference between M.Tech and M.E.?',
+          answer: 'None in level. The UGC framework lists M.E. and M.Tech together, and AICTE approves both. The name depends on the university.'
         },
         {
-          question: 'What is the fee for M.Tech in India?',
-          answer: 'Across 1,889 annual M.Tech and M.E. fee records in our database, the median is ₹79,850 a year: ₹74,658 at public institutes and ₹81,000 at private ones. Records were updated between January 2025 and October 2026; check each institute\'s notice.'
+          question: 'How are IIT and NIT M.Tech seats allotted?',
+          answer: 'IITs take applications on their own portals and make offers through COAP. NITs, IIITs and other centrally funded institutes use CCMT counselling.'
         },
         {
-          question: 'Which M.Tech branches are most common?',
-          answer: 'In our 4,069 active records, computer science, IT, AI and data programmes are the most common (989), followed by electronics, communication and VLSI (971), mechanical and production (739), electrical and power (502) and civil (459).'
+          question: 'What is the fee for an M.Tech in India?',
+          answer: 'Across 2,305 programmes with a listed fee on CollegeDecision (November 2026), the median first-year fee is ₹75,000. The middle half ranges from ₹50,000 to ₹1,05,227 a year.'
+        },
+        {
+          question: 'Which M.Tech specialisation is most common?',
+          answer: 'Computer Science and Engineering leads in our records, followed by Electronics and Communication, Mechanical CAD/CAM, VLSI, Civil, Power Systems and Structural Engineering.'
+        },
+        {
+          question: 'What can I do after an M.Tech?',
+          answer: 'You can work in industry R&D and design, join PSUs that recruit through GATE, teach in engineering colleges, or go on to a PhD at an IIT, NIT, IISc or university.'
         }
       ]
     },
@@ -3594,144 +3373,46 @@ export function courseSeo(profile: CourseSeoInput): CourseSeoPack {
         }
       ]
     },
-    'd-pharma-course': {
-      h1: 'D.Pharma Admission After 12th: State Process, Fees & Choice',
-      title: 'D.Pharma Admission After 12th: State Process & Fees',
-      description:
-        'D.Pharma admission after 12th: eligibility, how Maharashtra, UP and Haryana fill seats, 2026-27 dates, fees in our data and D.Pharma vs B.Pharma.',
-      keywords: ['D.Pharma admission', 'D.Pharma admission after 12th', 'D.Pharma admission process', 'D.Pharma entrance exam', 'D.Pharma vs B.Pharma', 'D.Pharma fees'],
-      intro:
-        'D.Pharma admission needs Class 12 science with Physics, Chemistry and Biology or Maths. There is no national test: each state fills seats by Class 12 merit or its own entrance test.',
-      crossLink: {
-        href: '/bpharm-colleges',
-        anchor: 'Compare B.Pharm colleges',
-        note: 'Weighing D.Pharma against a degree? Browse B.Pharm colleges with recorded fees and accepted exams.'
-      },
-      faqs: [
-        {
-          question: 'Can I get D.Pharma admission after 12th with PCM?',
-          answer: 'Yes. PCI accepts 10+2 science with Physics and Chemistry plus either Biology or Mathematics, so PCM and PCB students are both eligible.'
-        },
-        {
-          question: 'Is there an entrance exam for D.Pharma?',
-          answer: 'Not nationally. In 2026-27, Uttar Pradesh allotted seats on the JEECUP entrance-test result, while Maharashtra and Haryana admitted on Class 12 merit through state counselling.'
-        },
-        {
-          question: 'How does D.Pharma admission work in Maharashtra?',
-          answer: 'DTE Maharashtra runs a Centralised Admission Process. The merit list uses HSC marks in Physics, Chemistry and the higher of Biology or Mathematics.'
-        },
-        {
-          question: 'What is the last date for D.Pharma admission in Haryana in 2026?',
-          answer: 'HSTES lists 30 October 2026 as the final cut-off date for all Diploma Pharmacy admissions, including institute-level rounds, which start on 19 October.'
-        },
-        {
-          question: 'Can commerce or arts students do D.Pharma?',
-          answer: 'Not under PCI\'s rule, which needs Physics and Chemistry plus Biology or Mathematics at 10+2 in the science stream.'
-        },
-        {
-          question: 'How much does D.Pharma cost?',
-          answer: 'Across 59 programmes in our records, the median annual fee is ₹78,500; in Uttar Pradesh the median across 18 programmes is ₹92,700. Ask each institute for its current fee.'
-        },
-        {
-          question: 'Which is better after 12th, D.Pharma or B.Pharma?',
-          answer: 'D.Pharma is a two-year route to pharmacist registration and pharmacy work. B.Pharma takes four years but opens industry roles and M.Pharm. D.Pharma holders can later join B.Pharma in the third semester.'
-        }
-      ]
-    },
-    mpharm: {
-      h1: 'M.Pharm Course in India: Eligibility, GPAT, Specialisations & Fees',
-      title: 'M.Pharm Course: Eligibility, GPAT, Specialisations & Fees',
-      description:
-        'M.Pharm guide: PCI eligibility (B.Pharm 55%), GPAT 2026 rules, specialisations, semester structure, fees (median ₹1,21,050 a year) and careers.',
-      keywords: ['M.Pharm course', 'M.Pharm eligibility', 'M.Pharm admission through GPAT', 'M.Pharm specialisations', 'M.Pharm fees', 'Master of Pharmacy', 'M.Pharm subjects'],
-      intro:
-        'M.Pharm is a two-year PG degree after a PCI-approved B.Pharm with 55% (50% for SC/ST). Check the admission route, GPAT rules, specialisation and fees before you shortlist colleges.',
-      crossLink: {
-        href: '/mpharm-colleges',
-        anchor: 'Compare M.Pharm colleges by fees & placements',
-        note: 'Ready to shortlist? Browse M.Pharm colleges with recorded fees, accepted exams and placement outcomes.'
-      },
-      faqs: [
-        {
-          question: 'What is the eligibility for M.Pharm?',
-          answer: 'PCI requires a B.Pharm from a PCI-approved institution with at least 55% aggregate across four years (50% for SC/ST). You must also register with a State Pharmacy Council within one month of admission.'
-        },
-        {
-          question: 'Is GPAT compulsory for M.Pharm?',
-          answer: 'Not everywhere. PCI allows selection by a state or university test, a national test such as GPAT, or B.Pharm marks. GPAT is needed for M.Pharm scholarships, and some states, such as Telangana, give GPAT-qualified candidates first preference.'
-        },
-        {
-          question: 'What is the GPAT 2026 exam pattern?',
-          answer: 'NBEMS held GPAT 2026 on 7 March 2026: 125 multiple-choice questions in English in 3 hours, with +4 for a correct answer and −1 for a wrong one.'
-        },
-        {
-          question: 'How long is a GPAT score valid?',
-          answer: 'NBEMS states that the GPAT 2026 score is valid for three years.'
-        },
-        {
-          question: 'Which M.Pharm specialisations are there?',
-          answer: 'PCI lists Pharmaceutics, Industrial Pharmacy, Pharmaceutical Technology, Pharmaceutical Chemistry, Analysis, Quality Assurance, Regulatory Affairs, Biotechnology, Pharmacy Practice, Pharmacology, Pharmacognosy and Phytopharmacy & Phytomedicine.'
-        },
-        {
-          question: 'What is the fee for M.Pharm in India?',
-          answer: 'Across 252 M.Pharm fee records in our database, the median is ₹1,21,050 a year and half of programmes charge ₹86,000–₹1,70,000. The public median is ₹60,000 and the private median ₹1,30,000.'
-        },
-        {
-          question: 'What is studied in the second year of M.Pharm?',
-          answer: 'Mostly research. Semester III adds Research Methodology and Biostatistics, a journal club and your research proposal; semester IV is research work and the final presentation.'
-        },
-        {
-          question: 'Can I teach after M.Pharm?',
-          answer: 'Yes, M.Pharm is a common teaching qualification; PCI\'s D.Pharm regulations, for example, list M.Pharm or Pharm.D for lecturers. Check PCI\'s teacher-qualification rules for the level you want to teach.'
-        }
-      ]
+    'mpharm': {
+        h1: 'M.Pharm Course: Eligibility, GPAT, Fees, Syllabus and Careers 2026',
+        title: 'M.Pharm Course 2026: Eligibility, GPAT, Fees & Specialisations',
+        description: 'M.Pharm course guide: 2-year PCI master’s after B.Pharm, GPAT 2026 updates, fees from CollegeDecision data, specialisations and how to choose.',
+        keywords: ['M.Pharm course', 'M.Pharm', 'M.Pharm eligibility', 'M.Pharm fees', 'GPAT', 'Master of Pharmacy', 'M.Pharm specialisations'],
+        intro: 'An M.Pharm course is a two-year Master of Pharmacy after B.Pharm. This guide covers eligibility, GPAT, fees, specialisations and careers using CollegeDecision data and PCI/NBEMS sources.',
+        crossLink: { href: '/mpharm-colleges', anchor: 'M.Pharm colleges in India', note: 'Browse published M.Pharm college pages' },
+        faqs: [
+            { question: 'What is an M.Pharm course?', answer: 'A two-year Master of Pharmacy after B.Pharm under PCI norms, usually with a dissertation.' },
+            { question: 'Is GPAT compulsory for M.Pharm?', answer: 'Many scholarship and counselling seats need GPAT; some colleges fill vacant seats without it per brochure.' },
+            { question: 'How long is M.Pharm?', answer: 'Two years / four semesters in the standard PCI structure.' },
+            { question: 'What is the typical M.Pharm fee?', answer: 'Our November 2026 sample of annual tuition rows shows a median near ₹1,15,000; confirm the prospectus.' },
+            { question: 'Which specialisation is common?', answer: 'Pharmaceutics and Pharmacology are among the densest named branches in our records.' },
+            { question: 'Can I do M.Pharm without B.Pharm?', answer: 'Standard entry is through B.Pharm from a PCI-recognised college.' },
+            { question: 'M.Pharm vs Pharm.D?', answer: 'M.Pharm is a two-year master’s; Pharm.D is a longer clinical doctoral-level path with different rules.' },
+            { question: 'Where do I check approvals?', answer: 'Use pci.nic.in and the college’s affiliation letter for the exact branch.' }
+        ]
     },
     polytechnic: {
       h1: 'Polytechnic Course After 10th: Eligibility, Admission, Branches & Fees',
-      title: 'Polytechnic Course After 10th: Eligibility, Admission & Fees',
+      title: 'Polytechnic Course 2026: After 10th Eligibility, Fees & Branches',
       description:
-        'Polytechnic diploma after 10th: AICTE eligibility, state admission (POLYCET or merit), branches, fees (median ₹30,150 a year), B.Tech lateral entry.',
+        'Polytechnic diploma after Class 10: AICTE eligibility, state POLYCET or merit admission, popular branches, fees (public median ₹11,225; private ₹35,000) and B.Tech lateral entry.',
       keywords: ['polytechnic course', 'polytechnic course after 10th', 'polytechnic eligibility', 'polytechnic admission', 'polytechnic course fees', 'polytechnic lateral entry to B.Tech', 'diploma in engineering'],
       intro:
-        'A polytechnic course is a 3-year engineering diploma you can join after Class 10. Check your state\'s admission route, the branch, fees and the lateral-entry path to B.Tech before you pick a college.',
+        'A polytechnic course is a 3-year engineering diploma you can join after Class 10, with lateral entry after 10+2 or ITI. Check your state’s admission route, branch labs, fees and the B.Tech lateral-entry path.',
       crossLink: {
         href: '/polytechnic-colleges',
         anchor: 'Compare polytechnic colleges by fees & branches',
-        note: 'Ready to shortlist? Browse polytechnic colleges with recorded fees, branches and admission details.'
+        note: 'Browse polytechnic colleges with recorded fees, branches and admission details.'
       },
       faqs: [
-        {
-          question: 'What is the eligibility for a polytechnic course?',
-          answer: 'Under the AICTE Approval Process Handbook 2024-27, you need a pass in Class 10 (SSC) to join the 3-year diploma. States can add conditions; Telangana, for example, asks for Mathematics and at least 35% in Class 10.'
-        },
-        {
-          question: 'Is there an entrance exam for polytechnic admission?',
-          answer: 'It depends on the state. Telangana uses POLYCET, held by SBTET on 13 May 2026. Haryana filled 2026-27 diploma engineering seats on Class 10 merit without a test. There is no national polytechnic entrance test.'
-        },
-        {
-          question: 'What is the TS POLYCET exam pattern?',
-          answer: 'POLYCET-2026 had 150 multiple-choice questions in 2½ hours: Mathematics 60, Physics 30, Chemistry 30 and Biology 30, with no negative marking. The polytechnic rank uses the 120 marks in Maths, Physics and Chemistry, and the qualifying mark is 36.'
-        },
-        {
-          question: 'Can I join a polytechnic after 12th?',
-          answer: 'Yes. AICTE allows students who passed 10+2 with listed subjects, or Class 10 plus a 2-year ITI, to join the diploma directly in the second year through lateral entry.'
-        },
-        {
-          question: 'Can I do B.Tech after a polytechnic diploma?',
-          answer: 'Yes. AICTE lets diploma holders with at least 45% marks (40% for reserved categories) join B.E./B.Tech in the second year. Lateral-entry seats are up to 10% of approved intake plus unfilled first-year seats; states run the admission.'
-        },
-        {
-          question: 'What is the fee for a polytechnic course?',
-          answer: 'Across 276 polytechnic fee records in our database, the median is ₹30,150 a year and half of programmes charge ₹19,750–₹42,000. The government/public median is ₹11,225 and the private median ₹33,300. Telangana\'s government polytechnics charged ₹3,800 a year in 2026.'
-        },
-        {
-          question: 'Which polytechnic branch is most common?',
-          answer: 'In our records, Mechanical (117 programmes) and Civil (97) are the most common, followed by Electrical/EEE (59), Electronics/ECE (54) and Computer Science (54).'
-        },
-        {
-          question: 'How long is a polytechnic course?',
-          answer: 'Three years when you join after Class 10, and two years if you join the second year through lateral entry after 10+2 or ITI.'
-        }
+        { question: 'What is the eligibility for a polytechnic course?', answer: 'AICTE’s framework expects a Class 10 pass for the 3-year diploma. States often add Mathematics and minimum percentage rules. Lateral entry after 10+2 or Class 10 plus 2-year ITI joins year 2 where permitted.' },
+        { question: 'Is there an entrance exam for polytechnic admission?', answer: 'It depends on the state. Some use POLYCET-style tests; others fill seats on Class 10 merit. There is no national polytechnic entrance exam.' },
+        { question: 'Can I join a polytechnic after 12th?', answer: 'Yes. Eligible 10+2 students (and many ITI holders) can seek lateral entry into the second year through state counselling.' },
+        { question: 'Can I do B.Tech after a polytechnic diploma?', answer: 'Yes. Diploma holders meeting mark rules can compete for B.E./B.Tech lateral-entry seats that states administer, typically into the second year.' },
+        { question: 'What is the fee for a polytechnic course?', answer: 'In our November 2026 extract of 349 first-year tuition records, the overall median is about ₹33,700. Public median is about ₹11,225 (38 records) and private median about ₹35,000 (303 records). Confirm with the institute.' },
+        { question: 'Which polytechnic branch is most common?', answer: 'In our published listings, Mechanical (277 programmes) and Civil (248) lead, followed by Computer/CSE (137) and ECE (112).' },
+        { question: 'How long is a polytechnic course?', answer: 'Three years after Class 10, or about two years if you join through lateral entry into the second year.' },
+        { question: 'How many polytechnic programmes are listed here?', answer: 'As of November 2026 we list 1,339 active programmes at 453 published institutes under the polytechnic course.' }
       ]
     },
     bams: {
@@ -3787,54 +3468,45 @@ export function courseSeo(profile: CourseSeoInput): CourseSeoPack {
       ]
     },
     bums: {
-      h1: 'BUMS Course: Duration, Urdu Rule, Eligibility, Fees & Admission',
-      title: 'BUMS Course Details: Duration, Eligibility & Urdu Rule',
+      h1: 'BUMS Course: Eligibility, NEET Admission, Fees, Syllabus and Careers 2026',
+      title: 'BUMS Course 2026: NEET, Urdu Rule, Fees & Syllabus',
       description:
-        'BUMS guide: 5½-year Unani degree, the Urdu rule, NEET (UG) and AACCC counselling, Pre-Tib route, 2026-27 seats by state and careers.',
-      keywords: ['BUMS course', 'BUMS full form', 'BUMS course duration', 'BUMS eligibility', 'BUMS Urdu requirement', 'BUMS subjects', 'BUMS vs BAMS'],
+        'BUMS course guide: 5½-year Unani degree under NCISM, NEET UG counselling, Urdu/Arabic/Persian language rule, syllabus, thin fee sample and careers.',
+      keywords: ['BUMS course', 'BUMS', 'Bachelor of Unani Medicine and Surgery', 'BUMS eligibility', 'BUMS NEET', 'BUMS fees', 'Unani medical course'],
       intro:
-        'BUMS (Bachelor of Unani Medicine and Surgery) is a 5½-year Unani degree after Class 12 with Physics, Chemistry and Biology. Admission is through NEET (UG) and official counselling; if you did not study Urdu, Arabic or Persian, you study Urdu in the first year.',
-      crossLink: {
-        href: '/exams/neet',
-        anchor: 'Read the NEET (UG) exam guide',
-        note: 'BUMS seats are filled on NEET (UG) merit through AACCC and state counselling. Check the exam pattern and dates before you plan.'
-      },
+        'BUMS (Bachelor of Unani Medicine and Surgery) is a 5½-year Unani medical degree under NCISM, entered through NEET UG and counselling. Check the language rule, eligibility, syllabus and fee honesty notes here.',
       faqs: [
         {
-          question: 'What is the full form of BUMS?',
-          answer: 'BUMS stands for Bachelor of Unani Medicine and Surgery. NCISM\'s regulations name the degree Kamile Tib o Jarahat (Bachelor of Unani Medicine and Surgery – B.U.M.S.).'
+          question: 'What is BUMS?',
+          answer: 'Bachelor of Unani Medicine and Surgery—an undergraduate Unani professional degree regulated by NCISM.'
         },
         {
-          question: 'How many years is the BUMS course?',
-          answer: 'Five and a half years: First, Second and Third Professional phases of 18 months each, followed by a 12-month compulsory rotatory internship. The degree is awarded only after the internship.'
+          question: 'How long is the BUMS course?',
+          answer: 'Five and a half years, including a 12-month compulsory internship.'
         },
         {
-          question: 'Is Urdu compulsory for BUMS?',
-          answer: 'Not for admission. NCISM expects Urdu, Arabic or Persian as a subject in Class 10 or 12; students without it must study Urdu, Arabic and Mantiq wa Falsafa (logic and philosophy) in the First Professional year.'
+          question: 'Is NEET required for BUMS?',
+          answer: 'Yes for regular seats. Pre-Tib is a limited separate route for listed oriental qualifications.'
         },
         {
-          question: 'What is the eligibility for BUMS?',
-          answer: 'A Class 12 pass with Physics, Chemistry, and Biology or Biotechnology; a qualifying NEET (UG) percentile (50th for General/EWS, 45th for General PwBD, 40th for SC, ST and OBC); the language rule; and a minimum age of 17 by 31 December of the admission year.'
+          question: 'Do I need Urdu to apply?',
+          answer: 'Prior Urdu, Arabic or Persian helps, but you can join and study language subjects in the First Professional if you lack them.'
         },
         {
-          question: 'Is there an upper age limit for BUMS?',
-          answer: 'No. The AACCC 2026-27 bulletin says NCISM and NCH decided in July 2022 not to apply any upper age limit to BAMS, BSMS, BUMS and BHMS admissions.'
+          question: 'How many BUMS seats are there?',
+          answer: 'NCISM’s permitted existing Unani colleges list for 2026-27 showed 2,425 seats in 41 colleges as on 9 October 2026; verify the live list.'
         },
         {
-          question: 'Can I get BUMS admission without NEET?',
-          answer: 'Only through Pre-Tib, a one-year programme for holders of listed oriental qualifications such as Fazil, limited to 10% of a college\'s BUMS seats. All other seats, except foreign-national seats, are filled on NEET (UG) merit through counselling.'
+          question: 'What is the fee for BUMS?',
+          answer: 'Our published sample is too small for a typical figure. Confirm fees with each college.'
         },
         {
-          question: 'Who conducts BUMS counselling?',
-          answer: 'AACCC (Ministry of Ayush) fills 15% All India Quota seats in government and aided colleges, all deemed university seats and 50% of BUMS seats at AMU, Aligarh. State and UT authorities fill the 85% state quota and private college seats.'
+          question: 'How is BUMS different from BAMS?',
+          answer: 'Both are NCISM UG degrees via NEET, but BUMS is Unani and BAMS is Ayurveda, with different classical languages and therapies.'
         },
         {
-          question: 'How many BUMS seats are there in India?',
-          answer: 'NCISM\'s list of permitted existing Unani colleges for 2026-27, as on 9 October 2026, shows 2,425 BUMS seats in 41 colleges. Uttar Pradesh has 715 and Maharashtra 504.'
-        },
-        {
-          question: 'What is the difference between BUMS and BAMS?',
-          answer: 'Both are 5½-year NCISM degrees with NEET (UG) admission. BUMS teaches Unani medicine with Urdu and Arabic terminology; BAMS teaches Ayurveda with Sanskrit texts.'
+          question: 'Can I practise after BUMS?',
+          answer: 'After internship and registration requirements, you may practise Unani within legal scope—not unrestricted modern medicine.'
         }
       ]
     },
@@ -3891,102 +3563,90 @@ export function courseSeo(profile: CourseSeoInput): CourseSeoPack {
       ]
     },
     physiotherapy: {
-      h1: 'BPT Course in India: Eligibility, NEET Rule, Duration, Subjects & Fees',
-      title: 'BPT Course: Eligibility, NEET Rule, 5-Year Duration & Fees',
+      h1: 'BPT Course: Eligibility, NCAHP Duration, Fees, Syllabus and Careers 2026',
+      title: 'BPT Course 2026: NCAHP 5-Year Rule, NEET Deferral, Fees & Careers',
       description:
-        'BPT guide: NCAHP eligibility (PCB 50%), NEET from 2027-28, the new 5-year course with internship, subjects, fees (median ₹86,000/yr) and registration.',
-      keywords: ['BPT course', 'Bachelor of Physiotherapy', 'BPT eligibility', 'is NEET required for BPT', 'BPT course duration', 'BPT subjects', 'BPT fees'],
+        'BPT course guide: NCAHP 5-year Bachelor of Physiotherapy (4+1 internship), 2026-27 NEET deferral, eligibility, fees (median ₹81,770/yr) and careers.',
+      keywords: ['BPT course', 'Bachelor of Physiotherapy', 'BPT eligibility', 'is NEET required for BPT', 'BPT course duration', 'BPT fees', 'NCAHP physiotherapy'],
       intro:
-        'BPT (Bachelor of Physiotherapy) is now a five-year degree, including a one-year internship, open after Class 12 with Physics, Chemistry and Biology. Check NCAHP eligibility, the NEET timeline, fees and registration before you shortlist colleges.',
+        'A BPT course under NCAHP is framed as four academic years plus a one-year internship. For 2026-27 NEET appearance is deferred; from 2027-28 it is mandatory. Check eligibility, fees and registration here.',
       crossLink: {
-        href: '/bpt-colleges',
-        anchor: 'Compare BPT colleges by fees & placements',
-        note: 'Ready to shortlist? Browse BPT colleges with recorded fees and placement outcomes, then confirm each college follows the five-year NCAHP curriculum.'
+        href: '/courses/mpt',
+        anchor: 'Explore MPT after BPT',
+        note: 'See postgraduate physiotherapy pathways after your BPT.'
       },
       faqs: [
         {
-          question: 'How many years is the BPT course now?',
-          answer: 'Five years: four academic years plus a one-year full-time rotatory internship. NCAHP\'s physiotherapy curriculum is compulsory from 2026-27, and UGC\'s August 2026 notification lists B.PT as a five-year degree, up from 4.5 years.'
+          question: 'What is a BPT course?',
+          answer: 'Bachelor of Physiotherapy—an undergraduate professional degree in movement rehabilitation.'
         },
         {
-          question: 'Is NEET required for BPT admission?',
-          answer: 'Not for 2026-27: NCAHP deferred the NEET requirement and admission is on Class 12 PCB marks. From 2027-28 you must have appeared in NEET (UG) that year. NCAHP sets no minimum NEET score; admission is on NEET merit.'
+          question: 'How long is BPT under NCAHP?',
+          answer: 'Five years total: four academic years plus one year of internship.'
         },
         {
-          question: 'What is the eligibility for BPT?',
-          answer: '10+2 with Physics, Chemistry and Biology (or Botany and Zoology), at least 50% in PCB together (40% for SC, ST, OBC-NCL and PwBD), a pass in English, and age 17 by 31 December of the admission year. A medical fitness certificate is also required.'
+          question: 'Is NEET required for BPT in 2026-27?',
+          answer: 'No—NCAHP deferred mandatory NEET appearance for BPT/BOT to 2027-28; merit uses PCB marks as notified.'
         },
         {
-          question: 'Can PCM students do BPT?',
-          answer: 'Not under NCAHP\'s 2026-27 criteria. They require Physics, Chemistry and Biology (or Botany and Zoology) at 10+2.'
+          question: 'BPT vs physiotherapy diploma?',
+          answer: 'Diplomas are shorter and not the same professional bachelor award.'
         },
         {
-          question: 'What is the fee for BPT in India?',
-          answer: 'Across 57 BPT fee records in our database, the median is ₹86,000 a year and half of programmes charge ₹65,000–₹1,20,000. Records were last updated in January 2025, so ask each college for its current five-year fee schedule.'
+          question: 'What does BPT cost?',
+          answer: 'Our sample median annual tuition is about ₹81,770 across 215 rows.'
         },
         {
-          question: 'Can I do BPT through distance or online mode?',
-          answer: 'No. NCAHP has told UGC that only full-time regular allied health courses can be recognised under the NCAHP Act, 2021.'
+          question: 'What after BPT?',
+          answer: 'Clinical work and/or MPT specialisation, plus registration where required.'
         },
         {
-          question: 'Is a diploma in physiotherapy valid?',
-          answer: 'NCAHP\'s curriculum says the government aims to phase out physiotherapy diplomas, and an NCAHP clarification of August 2026 says diploma qualifications are not permitted for health professions under ISCO code 22. Choose the BPT degree.'
+          question: 'Why does /courses/bpt redirect here?',
+          answer: 'Duplicate BPT course URL was consolidated to this physiotherapy slug.'
         },
         {
-          question: 'Do I need to register after BPT?',
-          answer: 'Yes. Under the NCAHP Act only registered professionals can provide services in a recognised category. You apply to your State Council (or the Central Register if your state has none); registration is valid for five years.'
-        },
-        {
-          question: 'What can I do after BPT?',
-          answer: 'You can work as a physiotherapist in hospitals, clinics, sports and fitness settings or community rehabilitation, or study a two-year MPT in one of eight specialisations and then a PhD.'
+          question: 'Where do I verify recognition?',
+          answer: 'University affiliation letters, state brochures and NCAHP notices.'
         }
       ]
     },
     bpt: {
-      h1: 'How to Become a Physiotherapist in India: Courses & Registration',
-      title: 'How to Become a Physiotherapist: Courses & Registration',
+      h1: 'How to Become a Physiotherapist in India: BPT, Registration & Careers',
+      title: 'How to Become a Physiotherapist: BPT Path & NCAHP Registration',
       description:
-        'How to become a physiotherapist in India: B.PT, M.PT and PhD routes, NCAHP registration, state council status, work settings and career levels.',
-      keywords: ['how to become a physiotherapist', 'physiotherapist course', 'physiotherapy career in India', 'physiotherapist registration', 'NCAHP physiotherapy', 'bachelor of physiotherapy', 'physiotherapy courses after 12th'],
+        'How to become a physiotherapist in India: BPT under NCAHP, registration, work settings and why /courses/bpt redirects to the physiotherapy course guide.',
+      keywords: ['how to become a physiotherapist', 'physiotherapist course', 'physiotherapy career in India', 'NCAHP physiotherapy', 'bachelor of physiotherapy', 'BPT registration'],
       intro:
-        'To practise as a physiotherapist in India you need a full-time Bachelor of Physiotherapy (now five years with internship) and registration with your state allied health council under the NCAHP Act, 2021. See the qualification ladder, registration steps and career levels.',
+        'To practise as a physiotherapist in India you need a recognised Bachelor of Physiotherapy and registration under the allied health framework that applies in your state. Start with the canonical physiotherapy (BPT) course guide.',
       crossLink: {
-        href: '/bpt-colleges',
-        anchor: 'Compare BPT colleges by fees & placements',
-        note: 'Ready to shortlist? Browse BPT colleges with recorded fees and placement outcomes, then confirm each one runs the full-time five-year NCAHP curriculum.'
+        href: '/courses/physiotherapy',
+        anchor: 'Read the BPT / physiotherapy course guide',
+        note: 'Eligibility, NCAHP duration, fees and FAQs for Bachelor of Physiotherapy.'
       },
       faqs: [
         {
-          question: 'How do I become a physiotherapist in India?',
-          answer: 'Complete 10+2 with Physics, Chemistry and Biology, study a full-time Bachelor of Physiotherapy (B.PT) at a recognised university, and register with the allied health council of the state where you live. The B.PT now lasts five years, including a one-year internship.'
+          question: 'What degree do I need?',
+          answer: 'A recognised Bachelor of Physiotherapy (BPT), framed under NCAHP as four academic years plus internship.'
         },
         {
-          question: 'Who regulates physiotherapy in India?',
-          answer: 'The National Commission for Allied and Healthcare Professions (NCAHP), set up under the NCAHP Act, 2021, together with state and Union Territory councils. Physiotherapy is one of the 10 professional categories listed in the Act.'
+          question: 'Is NEET needed in 2026-27?',
+          answer: 'Mandatory NEET appearance for BPT is deferred to 2027-28; check the live NCAHP letter.'
         },
         {
-          question: 'Is registration compulsory for physiotherapists?',
-          answer: 'Yes. Under the NCAHP Act only registered professionals can provide services in a recognised category, hold such a government post or sign certificates that the law requires such a professional to sign.'
+          question: 'Where is the BPT course page?',
+          answer: 'Use /courses/physiotherapy—the old /courses/bpt URL redirects there.'
         },
         {
-          question: 'What if my state has no allied health council?',
-          answer: 'You apply to NCAHP for entry on the Central Register (fee ₹2,000). Your entry moves to the State Register once the council is set up. In October 2026, NCAHP listed Chandigarh, Delhi, Ladakh and Lakshadweep as not having notified a council.'
+          question: 'What about diplomas?',
+          answer: 'Short physiotherapy diplomas are not the same as BPT for professional practice claims.'
         },
         {
-          question: 'How long is physiotherapy registration valid?',
-          answer: 'Five years. To renew, you need at least 15 hours a year (75 hours in five years) of continuing professional development, no more than half of it online, and you must apply six months before expiry.'
+          question: 'What after BPT?',
+          answer: 'Clinical roles and/or MPT specialisation.'
         },
         {
-          question: 'Can I become a physiotherapist with a diploma?',
-          answer: 'NCAHP\'s curriculum says the government aims to phase out physiotherapy diplomas, and its August 2026 letter says diplomas are not permitted for health professions under ISCO code 22. The entry qualification is the B.PT degree.'
-        },
-        {
-          question: 'Which M.PT specialisations are recognised?',
-          answer: 'UGC\'s August 2026 notification lists eight: Musculoskeletal, Neuro, Cardio-Pulmonary, Sports, Pediatrics and Neonatal, Obstetrics and Gynecology, Oncology, and Community Rehabilitation Sciences.'
-        },
-        {
-          question: 'Do I need an M.PT to teach physiotherapy?',
-          answer: 'Yes. NCAHP\'s curriculum recommends an M.PT for the entry teaching post of assistant professor, and a PhD for associate professor and above. Each employer\'s recruitment rules apply.'
+          question: 'How do I register?',
+          answer: 'Follow your state allied health / physiotherapy council process under NCAHP-linked rules.'
         }
       ]
     },
@@ -4046,7 +3706,11 @@ export function courseSeo(profile: CourseSeoInput): CourseSeoPack {
       keywords: ['BMLT course', 'BMLT full form', 'BMLT eligibility', 'BMLT course duration', 'BMLT subjects', 'B.MLS course', 'BMLT course admission 2026'],
       intro:
         'BMLT trains you to run diagnostic laboratory tests. From 2026-27, NCAHP\'s curriculum calls it B.MLS: four years including a one-year internship, open after 10+2 with PCB, with admission on Class 12 merit. See eligibility, subjects, registration and further study.',
-      crossLink: null,
+      crossLink: {
+        href: '/bmlt-colleges',
+        anchor: 'Compare BMLT colleges by fees & courses',
+        note: 'Ready to shortlist? Compare BMLT colleges and check each programme\'s duration, internship and fees.'
+      },
       faqs: [
         {
           question: 'What is the full form of BMLT?',
@@ -4131,288 +3795,180 @@ export function courseSeo(profile: CourseSeoInput): CourseSeoPack {
       ]
     },
     'fashion-design-ug': {
-      h1: 'Fashion Design Course After 12th: B.Des, B.Sc, Diploma & NIFT',
-      title: 'Fashion Design Course After 12th: NIFT, Eligibility, Fees',
-      description:
-        'Fashion design after 12th: B.Des vs B.Sc vs diploma, NIFT eligibility and Situation Test, 801 NIFT seats, subjects, fees and careers.',
-      keywords: ['fashion designing course after 12th', 'fashion design course', 'B.Des fashion design', 'B.Sc fashion design', 'NIFT fashion design admission', 'fashion designing course fees', 'fashion design eligibility'],
-      intro:
-        'After Class 12 you can study fashion design through a four-year B.Des, a three- or four-year B.Sc, or a shorter diploma. Most programmes accept any stream; NIFT admits through a written test and a hands-on Situation Test.',
-      crossLink: {
-        href: '/fashion-design-ug-colleges',
-        anchor: 'Compare fashion design colleges',
-        note: 'Ready to shortlist? Browse fashion design colleges and check whether each programme is a degree or a diploma.'
-      },
-      faqs: [
-        {
-          question: 'Which fashion design course is best after 12th?',
-          answer: 'It depends on your goal. A B.Des (4 years at NIFT) or B.Sc (3 years, or 4 for honours) gives you a degree that leads to a master\'s. A diploma is shorter and skill-focused but is not a degree.'
-        },
-        {
-          question: 'Can commerce or arts students study fashion design?',
-          answer: 'Yes. NIFT accepts Class 12 from any stream for its B.Des, and most universities do the same. Only NIFT\'s B.F.Tech needs Mathematics.'
-        },
-        {
-          question: 'What is the age limit for NIFT B.Des?',
-          answer: 'You must be below 24 years on 1 August of the admission year. SC, ST and PwD candidates get five years\' relaxation.'
-        },
-        {
-          question: 'How does NIFT select fashion design students?',
-          answer: 'Through a General Ability Test (30%) and a Creative Ability Test (50%), then a Situation Test (20%) in which you build a model from given materials. You then choose Fashion Design at seat allocation.'
-        },
-        {
-          question: 'How many fashion design seats does NIFT have?',
-          answer: 'NIFT offered 801 regular and state-domicile B.Des Fashion Design seats across its campuses in 2026, out of 3,423 B.Des seats in total.'
-        },
-        {
-          question: 'What subjects are taught in fashion design?',
-          answer: 'Fashion illustration, pattern-making, draping, garment construction, textiles and design software such as CLO 3D, plus electives, a craft cluster visit, an industry internship and a final collection or project.'
-        },
-        {
-          question: 'What is the fee for a fashion design course?',
-          answer: 'In our thin sample, the median annual fee is ₹86,200 for degrees (28 records) and ₹81,000 for diplomas (23 records). NIFT\'s first-year B.Des fee for the 2026-27 batch is ₹3,41,700 including one-time charges.'
-        },
-        {
-          question: 'Is a B.Sc in Fashion Design a valid degree?',
-          answer: 'Yes, when a recognised university awards it. Under the UGC framework it runs for three years, or four for honours, and you can exit early with a certificate after one year or a diploma after two.'
-        }
-      ]
+        h1: 'Fashion Design UG Course: Eligibility, Fees, Syllabus and Careers 2026',
+        title: 'Fashion Design UG 2026: B.F.D, B.Sc Fashion, Fees & Careers',
+        description: 'Fashion Design UG guide: bachelor fashion degrees (B.F.D, B.Sc, BFT), eligibility, entrances, fees from CollegeDecision data and how they differ from fashion diplomas.',
+        keywords: ['Fashion Design UG', 'B.F.D', 'B.Sc Fashion Design', 'fashion course after 12th', 'fashion design fees', 'NIFT', 'fashion undergraduate'],
+        intro: 'A Fashion Design UG course is a bachelor’s programme in fashion design or fashion technology. This guide covers eligibility, fees, syllabus and how to separate degrees from diplomas.',
+        crossLink: { href: '/fashion-design-ug-colleges', anchor: 'Fashion Design UG colleges', note: 'Browse published undergraduate fashion college pages.' },
+        faqs: [
+            { question: 'What is a Fashion Design UG course?', answer: 'An undergraduate bachelor’s programme in fashion design, apparel or fashion technology, usually three to four years.' },
+            { question: 'Is a fashion diploma the same?', answer: 'No. Diplomas are shorter skill programmes listed separately.' },
+            { question: 'What eligibility is required?', answer: 'Typically 10+2 with the aggregate and entrance rules the institute publishes.' },
+            { question: 'Do I need NIFT?', answer: 'NIFT is one major route; many university B.Sc/B.F.D programmes use other tests or merit.' },
+            { question: 'How much are fees?', answer: 'Our sample median annual tuition is about ₹1,04,000 across 115 rows; materials are extra.' },
+            { question: 'How long is the course?', answer: 'Most bachelor schemes run about three or four years—confirm the ordinance.' },
+            { question: 'What careers follow?', answer: 'Design, merchandising, styling, production and related roles; portfolios matter.' },
+            { question: 'Where should I verify recognition?', answer: 'The awarding university’s recognition and the prospectus award title.' }
+        ]
     },
     'fashion-design-pg': {
-      h1: 'PG in Fashion Design: NIFT M.Des, M.F.M, M.F.Tech & NID M.Des',
-      title: 'PG in Fashion Design: NIFT & NID Master\'s, Eligibility, Fees',
+      h1: 'PG in Fashion Design: Eligibility, NIFT, Fees, Syllabus & Scope 2026',
+      title: 'PG in Fashion Design: NIFT M.Des, M.F.M, Fees & Eligibility 2026',
       description:
-        'Master\'s in fashion after graduation: NIFT M.Des, M.F.M and M.F.Tech vs NID M.Des, eligibility, selection weightage, seats and official fees.',
-      keywords: ['PG in fashion designing', 'masters in fashion design', 'NIFT M.Des', 'NIFT MFM', 'M.F.Tech', 'NID M.Des apparel design', 'fashion design course after graduation'],
+        'PG in fashion design after graduation: NIFT M.Des, M.F.M and M.F.Tech vs NID M.Des, eligibility, NIFTEE 2027 notes, syllabus tracks, fees (median about Rs 1.44 lakh in our sample) and careers.',
+      keywords: ['PG in fashion design', 'masters in fashion design', 'NIFT M.Des', 'NIFT MFM', 'M.F.Tech', 'NID M.Des', 'fashion design course after graduation'],
       intro:
-        'After graduation you can study fashion at master\'s level through NIFT\'s M.Des, M.F.M and M.F.Tech or NID\'s M.Des in Apparel, Textile or Lifestyle Accessory Design. Check eligibility, the selection process and whether a programme is a degree or a diploma.',
+        'A PG in fashion design after graduation can mean NIFT\'s M.Des, M.F.M or M.F.Tech, an NID M.Des track, a university master\'s or a PG diploma. Use this guide for eligibility, entrance routes, fees listed on CollegeDecision and how to choose the right award type.',
       crossLink: {
         href: '/fashion-design-pg-colleges',
         anchor: 'Compare PG fashion design colleges',
         note: 'Ready to shortlist? Browse PG fashion programmes and check whether each one is a master\'s degree or a diploma.'
       },
       faqs: [
-        {
-          question: 'Can I do a master\'s in fashion design after any degree?',
-          answer: 'Yes for NIFT\'s M.Des and M.F.M, which accept a bachelor\'s degree in any discipline or a three-year NIFT/NID diploma, and for NID\'s M.Des. NIFT\'s M.F.Tech needs B.E./B.Tech or a four-year B.F.Tech.'
-        },
-        {
-          question: 'Is there an age limit for NIFT master\'s programmes?',
-          answer: 'No. NIFT\'s M.Des, M.F.M and M.F.Tech have no age limit. NID\'s M.Des does: for 2027-28, General and EWS candidates must be born on or after 1 July 1995.'
-        },
-        {
-          question: 'How does NIFT select M.Des students?',
-          answer: 'General Ability Test 30%, Creative Ability Test 40% and personal interview 30%. M.F.M and M.F.Tech use the General Ability Test (70%) and interview (30%).'
-        },
-        {
-          question: 'Is NIFT\'s M.Des a fashion design course?',
-          answer: 'It is a multi-disciplinary design master\'s with tracks in design thinking, interaction and experience design, sustainability, trend research and strategic design. NIFT says it assumes you already know design fundamentals.'
-        },
-        {
-          question: 'How long is a master\'s in fashion design?',
-          answer: 'Two years at NIFT and two and a half years for NID\'s M.Des. University master\'s degrees take two years after a three-year bachelor\'s, or one year after a four-year honours degree.'
-        },
-        {
-          question: 'How many seats does NIFT have for master\'s programmes?',
-          answer: 'In 2026 NIFT offered 275 M.Des, 719 M.F.M and 68 M.F.Tech regular and state-domicile seats across its campuses, plus NRI seats.'
-        },
-        {
-          question: 'What is the fee for NIFT\'s master\'s programmes?',
-          answer: 'For the 2026-27 batch (non-NRI), tuition is ₹1,50,000 a semester in the first year. The first year costs ₹3,41,700 and the two years ₹6,84,600 including one-time charges, before hostel.'
-        },
-        {
-          question: 'Is a PG diploma in fashion the same as a master\'s degree?',
-          answer: 'No. Standalone postgraduate diplomas from private institutes are not degrees. Check the exact qualification name and who awards it before you pay.'
-        }
+        { question: 'Can I do a master\'s in fashion design after any degree?', answer: 'For NIFT M.Des and M.F.M, yes if you have a bachelor\'s in any discipline from a recognised Indian institution, or a minimum three-year undergraduate diploma from NIFT/NID. NIFT M.F.Tech needs B.F.Tech (NIFT) or B.E./B.Tech or a recognised four-year B.F.Tech. NID and universities have their own rules.' },
+        { question: 'Is there an age limit for NIFT master\'s programmes?', answer: 'No. NIFT\'s Admissions Guidelines 2027 state there is no upper age limit for M.Des, M.F.M and M.F.Tech. NID M.Des does publish category-wise birthdate cut-offs — read that handbook separately.' },
+        { question: 'Is NIFT M.Des a pure fashion design course?', answer: 'It is a multi-disciplinary design master\'s. NIFT states it assumes you already know design fundamentals and will not teach basic design skills from scratch. Choose M.F.M for management and M.F.Tech for technology/production.' },
+        { question: 'How long is a PG in fashion design?', answer: 'NIFT master\'s programmes are two years. NID M.Des length should be taken from the current handbook (often cited around two and a half years). University PG diplomas are often one year. Confirm on the prospectus.' },
+        { question: 'What does NIFTEE 2027 cost to apply?', answer: 'As per the NTA/NIFT 2027 bulletin pattern summarised on official pages: about ₹2,000 for one Open/OBC-NCL programme and about ₹3,000 if applying for both M.F.M and M.Des; SC/ST/PwD fees are lower. A late window may add ₹5,000. Confirm on the live bulletin.' },
+        { question: 'What fees should I expect for a fashion master\'s?', answer: 'Among seven published colleges with Year-1 tuition under this course on CollegeDecision (November 2026), the median is about ₹1,50,000 a year. NIFT rows commonly list about ₹3,00,000 Year-1 tuition for M.F.M/M.F.Tech — verify the campus circular on nift.ac.in.' },
+        { question: 'Should I choose M.Des, M.F.M or M.F.Tech?', answer: 'Pick M.Des for advanced design research and collections, M.F.M for fashion business and retail, and M.F.Tech if you have an engineering/B.F.Tech background and want apparel production systems. They lead to different jobs.' },
+        { question: 'Are PG diplomas the same as a master\'s?', answer: 'No. PG diplomas are usually shorter and may limit some higher-study or faculty paths. Read the award name on the sample certificate before you pay.' }
       ]
     },
     'animation-ug': {
-      h1: 'Animation Course After 12th: B.Sc Animation, Eligibility & Fees',
-      title: 'Animation Course After 12th: Eligibility, Duration, Fees',
+      h1: 'Animation Course After 12th: Eligibility, Admission, Fees & Syllabus 2026',
+      title: 'Animation Course After 12th: Eligibility, UCEED, Fees & Syllabus 2026',
       description:
-        'Animation after 12th: B.Sc Animation and VFX, NID and IIT design routes, diplomas, university eligibility rules, subjects and official fees.',
-      keywords: ['animation course after 12th', 'B.Sc animation', 'B.Sc animation and VFX', 'animation course eligibility', 'animation course fees', 'animation course duration'],
+        'Animation course after 12th: B.Sc Animation & VFX, B.Des via UCEED/NID, diplomas, eligibility, admission steps, syllabus, fees (median about Rs 1 lakh in our sample) and careers.',
+      keywords: ['animation course after 12th', 'B.Sc animation', 'B.Sc animation and VFX', 'animation course eligibility', 'animation course fees', 'UCEED for animation', 'animation course syllabus'],
       intro:
-        'After 12th you can study animation through a three- or four-year B.Sc in Animation and VFX, a design degree with an animation track, or a diploma. Compare entry rules, what you will learn and official fees before you apply.',
+        'The animation course after 12th can be a B.Sc in Animation and VFX, a B.Des animation track, a multimedia bachelor\'s or a diploma. Use this guide to compare eligibility, UCEED and NID routes, fees listed on CollegeDecision, and how to choose without mixing a degree with a diploma.',
       crossLink: {
         href: '/animation-ug-colleges',
         anchor: 'Compare animation colleges',
         note: 'Ready to shortlist? Browse animation programmes and check whether each one is a degree or a diploma.'
       },
       faqs: [
-        {
-          question: 'Which animation course can I do after 12th?',
-          answer: 'A B.Sc in Animation and VFX or a similar bachelor\'s degree, a design degree with an animation track such as NID\'s Animation Film Design or IIT Hyderabad\'s design programme through UCEED, or a diploma or short course.'
-        },
-        {
-          question: 'Can I do a B.Sc in Animation after 12th in any stream?',
-          answer: 'At some universities, yes. DY Patil and NorthCap University accept any stream, while LPU asks for 60% with Physics, Maths and English. Check each university\'s rules.'
-        },
-        {
-          question: 'How long is a B.Sc in Animation?',
-          answer: 'Three years, or four years with honours. Under the UGC framework you can exit with a certificate after one year or a diploma after two years.'
-        },
-        {
-          question: 'Is there an entrance exam for animation courses?',
-          answer: 'There is no single national test. Universities use 12th marks, their own tests, national tests, or a portfolio and interview. NID uses its Design Aptitude Test and IITs use UCEED.'
-        },
-        {
-          question: 'What are the fees for a B.Sc in Animation?',
-          answer: 'They vary widely. DY Patil lists ₹5,50,000 a year for 2026-27 and NorthCap University lists a total annual fee of ₹1,59,000. Add the cost of a computer and software.'
-        },
-        {
-          question: 'What will I study in an animation degree?',
-          answer: 'Drawing, character design and storyboarding; 2D and 3D animation, modelling, rigging and lighting; VFX, compositing and motion graphics; and a showreel and internship.'
-        },
-        {
-          question: 'Is an animation diploma the same as a degree?',
-          answer: 'No. A diploma is not a bachelor\'s degree, and you will normally need a degree for a master\'s in India. Check the qualification name and awarding body.'
-        },
-        {
-          question: 'What jobs can I get after an animation course?',
-          answer: 'Animator, storyboard or character artist, modeller, rigger, VFX or compositing artist, game artist and motion graphics designer. Your portfolio and showreel matter most.'
-        }
+        { question: 'Which animation course can I do after 12th?', answer: 'Common options are a B.Sc in Animation and VFX (or similar), a four-year B.Des with an animation track (including NID Animation Film Design and IIT design programmes through UCEED), a multimedia bachelor\'s, or a shorter diploma or advance diploma. Decide the credential before you compare fees.' },
+        { question: 'Can I do a B.Sc in Animation after 12th in any stream?', answer: 'Many universities accept any stream; some ask for a minimum percentage or specific subjects. IIT B.Des via UCEED and NID B.Des also accept Class 12 in any stream, subject to that year\'s handbook. Always read the prospectus for each college.' },
+        { question: 'Is UCEED required for every animation course?', answer: 'No. UCEED is for B.Des admissions at participating IITs/IIITDM and result-sharing institutes. Most university B.Sc Animation programmes use Class 12 marks, their own test, or a portfolio instead.' },
+        { question: 'When is UCEED 2027?', answer: 'As per the official UCEED 2027 site, the exam is on 17 January 2027 (9:00 am–12:00 noon), with results scheduled for 6 March 2027. Regular registration ran to 5 November 2026 and the late window to 10 November 2026, 5 pm — confirm any further notice on uceed.iitb.ac.in.' },
+        { question: 'How long is an animation degree after 12th?', answer: 'A B.Sc is commonly three years (or four with honours). A B.Des is typically four years. Diplomas are often one to two years. CollegeDecision duration fields for this course mix 1–4 without a unit column, so confirm on the prospectus.' },
+        { question: 'What are typical fees for an animation course after 12th?', answer: 'Only two published degree colleges under this course currently show Year-1 tuition on CollegeDecision (about ₹1,25,000 and ₹1,98,000 in November 2026). That is too small for a national median. Official IIT/NID fees are separate circulars. Add laptop and software costs.' },
+        { question: 'Is a diploma enough for an animation career?', answer: 'Diplomas can teach tools and help you build a reel, but many master\'s programmes and some employers prefer a recognised bachelor\'s. If you may want higher studies later, prefer a degree when you can.' },
+        { question: 'What should I check before paying animation college fees?', answer: 'Confirm whether the award is a degree or diploma, see recent student showreels, ask about supervised lab hours and software licences, and get a written Year-1 fee breakup including hostel and machine charges.' }
       ]
     },
     'mass-communication': {
-      h1: 'Mass Communication After 12th: BJMC Eligibility, Fees & Admission',
-      title: 'Mass Communication After 12th: BJMC Eligibility & Fees',
+      h1: 'Mass Communication Course (BJMC / BA JMC): Eligibility, Entrance Exams, Fees & Careers',
+      title: 'Mass Communication Course 2026: BJMC Eligibility, Exams & Fees',
       description:
-        'Mass communication after 12th: BA (JMC)/BJMC eligibility, admission via university tests or CUET, 3 vs 4 years, annual fee range and IIMC routes.',
-      keywords: ['mass communication course after 12th', 'BJMC course', 'BA journalism and mass communication', 'BJMC eligibility', 'BJMC fees', 'mass communication course duration', 'GGSIPU BJMC admission'],
+        'Mass communication (BJMC, BA JMC) guide: Class 12 eligibility, CUET (UG) at DU, IPU CET at GGSIPU, subjects, specialisations, fees (median ₹80,000 a year), colleges and media careers.',
+      keywords: ['mass communication course', 'BJMC course', 'BA journalism and mass communication', 'mass communication eligibility', 'mass communication entrance exam', 'mass communication fees', 'journalism course after 12th'],
       intro:
-        'After 12th you can study mass communication through a three- or four-year BA (JMC) or BJMC degree. Compare eligibility, admission routes, annual fees and postgraduate options such as IIMC before you apply.',
+        'Mass communication is a three- or four-year undergraduate degree, usually BJMC or BA (JMC), in journalism, advertising, PR, film and digital media, open after Class 12 in any stream. Check eligibility, entrance exams, fees, colleges and careers here.',
       crossLink: {
         href: '/mass-communication-colleges',
-        anchor: 'Compare mass communication colleges',
-        note: 'Ready to shortlist? Browse mass communication programmes and check whether each one is a degree or a diploma.'
+        anchor: 'Compare mass communication colleges by fees',
+        note: 'Ready to shortlist? Browse mass communication colleges with recorded fees, programmes and admission routes.'
       },
       faqs: [
         {
-          question: 'Can I do mass communication after 12th in any stream?',
-          answer: 'Yes, at most universities. A common rule is 12th pass with at least 50% marks and English as a subject, but each university sets its own eligibility.'
+          question: 'What is the eligibility for mass communication?',
+          answer: 'Class 12 in any stream from a recognised board. Many universities set 45% to 50%; GGSIPU asks for 50% in the best four subjects, including English, for BA (JMC).'
         },
         {
-          question: 'How long is a mass communication degree?',
-          answer: 'Three years for a bachelor\'s degree, or four years for an honours degree under the UGC framework. Some universities, such as GGSIPU, list the programme as four years.'
+          question: 'Which entrance exams are used for mass communication?',
+          answer: 'CUET (UG) for Delhi University and other central universities, IPU CET for GGSIPU (with CUET (UG) used for vacant seats), universities\' own tests, and Class 12 merit at many colleges.'
         },
         {
-          question: 'Is there an entrance exam for BJMC?',
-          answer: 'It depends on the university. GGSIPU admits through its own CET first and then CUET for vacant seats. Others use 12th marks, CUET-UG or their own test and interview.'
+          question: 'Which DU colleges offer BA (Hons) Journalism?',
+          answer: 'Lady Shri Ram College, Delhi College of Arts and Commerce, Kamala Nehru College, Maharaja Agrasen College, Institute of Home Economics, Kalindi College and Bharati College, with 32 to 67 seats each in 2026.'
         },
         {
-          question: 'What is the GGSIPU CET pattern for BA (JMC)?',
-          answer: 'Four sections of 25% each: English language and comprehension, general awareness, reasoning, and media aptitude (GGSIPU brochure 2026-27).'
+          question: 'Which CUET (UG) papers are needed for GGSIPU BA (JMC)?',
+          answer: 'GGSIPU lists English (101), Mass Media (318) and the General Aptitude Test (501) for filling vacant BA (JMC) seats through CUET (UG).'
         },
         {
-          question: 'What are the fees for a mass communication degree?',
-          answer: 'In our database of 66 bachelor\'s programmes at 62 institutes (mostly private, updated January 2025), the median annual fee is ₹80,000 and the middle half ranges from ₹59,467 to ₹1,26,667.'
+          question: 'What is the fee for mass communication?',
+          answer: 'Across 76 programmes with a listed fee on CollegeDecision (November 2026), the median first-year fee is ₹80,000, with the middle half between about ₹51,000 and ₹1.2 lakh.'
         },
         {
-          question: 'What is the BA (JMC) fee at GGSIPU?',
-          answer: 'At the university\'s own schools, the 2026-27 first-year fee is ₹1,56,500, rising each year to ₹1,94,551 in the fourth year. Affiliated colleges follow Delhi fee committee rates.'
+          question: 'Is mass communication 3 years or 4 years?',
+          answer: 'Traditionally three years. Many universities now run a four-year UG programme, with an exit option after three years.'
         },
         {
-          question: 'Is a diploma in mass communication the same as a degree?',
-          answer: 'No. A diploma or certificate is not a bachelor\'s degree. Check the qualification name and who awards it before you pay.'
-        },
-        {
-          question: 'Can I join IIMC after 12th?',
-          answer: 'No. IIMC\'s master\'s programmes and postgraduate diplomas need a bachelor\'s degree. For 2026-27, admission was through CUET-PG in Mass Communication and Journalism.'
+          question: 'What jobs can I get after mass communication?',
+          answer: 'Reporter, sub-editor, content writer, video producer or editor, copywriter, PR executive and social media manager. Internships and a strong portfolio matter most.'
         }
       ]
     },
     'b-ed': {
-      h1: 'B.Ed Course in India: Eligibility, Admission, ITEP Changes & Fees',
-      title: 'B.Ed Course: Eligibility, Duration, Fees & 2026 Rules',
+      h1: 'B.Ed Course in India: Eligibility, Admission, Fees, TET & Careers',
+      title: 'B.Ed Course 2026: Eligibility, Admission, Fees & Duration',
       description:
-        'B.Ed guide: NCTE eligibility (50% in graduation), 2-year course, ITEP and one-year B.Ed status, internship, TET rules and fees (median ₹50,000/yr).',
-      keywords: ['B.Ed course', 'B.Ed eligibility', 'B.Ed course duration', 'B.Ed fees', 'one year B.Ed', 'ITEP vs B.Ed', 'B.Ed subjects'],
+        'B.Ed course guide: NCTE 50% eligibility, 2-year duration (no one-year B.Ed), state entrance tests, ITEP, subjects, fees (median ₹46,250 a year), TET and teaching careers.',
+      keywords: ['B.Ed course', 'B.Ed full form', 'B.Ed eligibility', 'B.Ed admission', 'B.Ed fees', 'B.Ed duration', 'one year B.Ed'],
       intro:
-        'B.Ed is a two-year NCTE-regulated degree for graduates who want to teach classes VI to XII. Check eligibility, the ITEP and one-year B.Ed changes, TET rules and fees before you shortlist colleges.',
+        'A B.Ed course is a two-year NCTE degree for graduates with 50% marks that prepares you to teach classes VI to XII. Admission is through state or university tests or merit. Check eligibility, ITEP, fees, TET rules and careers here.',
       crossLink: {
         href: '/bed-colleges',
-        anchor: 'Compare B.Ed colleges by fees & placements',
-        note: 'Ready to shortlist? Browse B.Ed colleges with recorded fees, accepted exams and placement outcomes.'
+        anchor: 'Compare B.Ed colleges by fees & exams',
+        note: 'Ready to shortlist? Browse B.Ed colleges with recorded fees and accepted exams, and check each on NCTE\'s recognised list.'
       },
       faqs: [
         {
           question: 'What is the eligibility for B.Ed?',
-          answer: 'NCTE requires at least 50% marks in a bachelor\'s or master\'s degree in sciences, social sciences or humanities, or 55% in B.E./B.Tech with Science and Mathematics. Reserved categories get relaxation as per government rules, and universities may add subject conditions.'
+          answer: 'NCTE requires at least 50% marks in a bachelor\'s or master\'s degree in sciences, social sciences or humanities, or 55% in B.E./B.Tech with Science and Mathematics. Reserved categories get relaxation as per government rules.'
         },
         {
-          question: 'Is B.Ed now a one-year course?',
-          answer: 'Not yet. NCTE\'s draft regulations of February 2025 propose a one-year B.Ed for four-year degree or postgraduate holders, but on 12 October 2026 they had not been notified. The regular B.Ed is still two years.'
-        },
-        {
-          question: 'What is ITEP and how is it different from B.Ed?',
-          answer: 'ITEP is a four-year Integrated Teacher Education Programme taken after Class 12 that combines a B.A., B.Sc. or B.Com. with a B.Ed. Admission is through NCET, conducted by NTA. The regular B.Ed is a two-year course after graduation.'
+          question: 'Is B.Ed one year or two years?',
+          answer: 'The B.Ed is two years and must be finished within three years. In March 2026 the Education Ministry told the Lok Sabha that NCTE has no proposal to restore a one-year B.Ed.'
         },
         {
           question: 'Is there an entrance exam for B.Ed?',
-          answer: 'There is no single national test. States and universities decide, for example UP B.Ed JEE in Uttar Pradesh and GGSIPU CET in Delhi. CUET PG has B.Ed papers for participating universities, and some colleges admit on degree marks.'
+          answer: 'There is no single national test. States run tests such as UP B.Ed JEE, Maharashtra B.Ed CET and Rajasthan PTET; some universities use CUET PG or their own tests, and some admit on merit.'
         },
         {
           question: 'Can a B.Ed holder teach classes I to V?',
-          answer: 'No. The Supreme Court quashed NCTE\'s 2018 notification on 11 August 2023. For classes I to V, NCTE\'s routes are a two-year D.El.Ed or a four-year B.El.Ed, plus a TET pass.'
+          answer: 'No. After the Supreme Court\'s judgment of 11 August 2023, classes I to V need a D.El.Ed or B.El.Ed with a TET pass.'
         },
         {
-          question: 'Is CTET compulsory after B.Ed?',
-          answer: 'For classes VI to VIII, NCTE\'s minimum qualifications require a TET pass. CTET applies to Central Government schools such as KVS and NVS, and state schools use the state TET. A score of 60% is a pass and the CTET certificate is valid for life.'
+          question: 'What is ITEP?',
+          answer: 'The Integrated Teacher Education Programme is a four-year B.A., B.Sc. or B.Com. with B.Ed after Class 12. Admission is through NCET, run by NTA. Old B.A.B.Ed and B.Sc.B.Ed programmes must move to ITEP from 2026-27.'
         },
         {
-          question: 'What is the fee for B.Ed in India?',
-          answer: 'Across 130 B.Ed fee records in our database, the median is ₹50,000 a year and half of programmes charge ₹30,000–₹60,000. The public-institute median is ₹25,308 and the private median ₹50,000. Fee year is not stored.'
+          question: 'What is the fee for B.Ed?',
+          answer: 'Across 186 programmes with a listed fee on CollegeDecision (November 2026), the median first-year fee is ₹46,250. Public institutes have a median of ₹28,430 and private ones ₹50,000.'
         },
         {
-          question: 'Can I do B.Ed through distance education?',
-          answer: 'Only if you are already a trained in-service elementary teacher or have completed an NCTE-recognised face-to-face teacher education programme. Fresh graduates need a regular B.Ed.'
+          question: 'Can I do B.Ed through distance mode?',
+          answer: 'Only if you are a serving or already-trained teacher. NCTE allows open and distance B.Ed for in-service teachers, so fresh graduates need a regular B.Ed.'
+        },
+        {
+          question: 'What can I do after B.Ed?',
+          answer: 'You can teach in schools after clearing CTET or a state TET and the recruiting body\'s test, work in curriculum or content roles, or study an M.Ed, a master\'s or a PhD.'
         }
       ]
     },
     'm-ed': {
-      h1: 'M.Ed Course in India: Eligibility, Admission, Structure & Fees',
-      title: 'M.Ed Course: Eligibility, Duration, Fees & Careers',
-      description:
-        'M.Ed guide: NCTE eligibility (B.Ed or B.El.Ed with 50%), 2-year structure, CUET PG paper, M.Ed vs MA Education, careers and fees (median ₹54,000/yr).',
-      keywords: ['M.Ed course', 'M.Ed eligibility', 'M.Ed course duration', 'M.Ed fees', 'M.Ed vs MA Education', 'M.Ed entrance exam', 'one year M.Ed'],
-      intro:
-        'M.Ed is a two-year NCTE-regulated master\'s degree for B.Ed and B.El.Ed graduates who want to become teacher educators, researchers or school leaders. Check eligibility, admission, structure and fees before you shortlist colleges.',
-      crossLink: {
-        href: '/med-colleges',
-        anchor: 'Compare M.Ed colleges by fees & placements',
-        note: 'Ready to shortlist? Browse M.Ed colleges with recorded fees, accepted exams and placement outcomes.'
-      },
-      faqs: [
-        {
-          question: 'What is the eligibility for M.Ed?',
-          answer: 'NCTE requires at least 50% marks in a B.Ed, B.A.B.Ed, B.Sc.B.Ed or B.El.Ed, or in a D.El.Ed together with a bachelor\'s degree (50% in each). Reserved categories get relaxation as per government rules, and universities may add their own conditions.'
-        },
-        {
-          question: 'How long is the M.Ed course?',
-          answer: 'Two academic years, which must be completed within three years of admission. It includes core courses, a specialisation, a research dissertation and at least four weeks of field attachment.'
-        },
-        {
-          question: 'Is there an entrance exam for M.Ed?',
-          answer: 'NCTE allows admission on qualifying-exam marks and/or an entrance test. CUET PG 2026 has an M.Ed paper (COQP15) for participating universities, and many universities run their own test or interview.'
-        },
-        {
-          question: 'Is M.Ed now a one-year course?',
-          answer: 'Not yet. NCTE\'s draft regulations of February 2025 propose a one-year M.Ed and a two-year part-time M.Ed, but on 12 October 2026 they had not been notified. The regular M.Ed is still two years.'
-        },
-        {
-          question: 'What is the difference between M.Ed and MA Education?',
-          answer: 'M.Ed is a professional teacher-education degree regulated by NCTE that needs a B.Ed or similar. MA Education is an academic master\'s degree run under university rules. NCTE accepts both, with 55%, for some faculty posts in teacher-education colleges.'
-        },
-        {
-          question: 'What can I do after M.Ed?',
-          answer: 'M.Ed with 55% is one of NCTE\'s faculty qualifications for B.Ed and M.Ed colleges. Graduates also work in curriculum and teacher-training bodies, school leadership and research, and many go on to a PhD in Education.'
-        },
-        {
-          question: 'What is the fee for M.Ed in India?',
-          answer: 'Across 39 M.Ed fee records in our database, the median is ₹54,000 a year and half of programmes charge ₹35,000–₹73,980. The private median is ₹55,000 (30 records); there are too few public records for a public median.'
-        }
-      ]
+        h1: 'M.Ed Course: Eligibility, Admission, Fees, Syllabus and Careers 2026',
+        title: 'M.Ed Course 2026: Eligibility, Fees, NCTE & Specialisations',
+        description: 'M.Ed course guide: 2-year Master of Education after B.Ed, NCTE recognition tips, fees from CollegeDecision data, syllabus and careers.',
+        keywords: ['M.Ed course', 'M.Ed', 'M.Ed eligibility', 'M.Ed fees', 'Master of Education', 'NCTE M.Ed', 'M.Ed admission 2026'],
+        intro: 'An M.Ed course is a two-year Master of Education for teacher-education graduates. This guide covers eligibility, admission, fees, syllabus and how M.Ed differs from M.P.Ed.',
+        crossLink: { href: '/med-colleges', anchor: 'M.Ed colleges in India', note: 'Browse published M.Ed college pages with listed programmes.' },
+        faqs: [
+            { question: 'What is an M.Ed course?', answer: 'A two-year Master of Education postgraduate programme, usually after B.Ed, under India’s teacher-education framework.' },
+            { question: 'Is M.Ed the same as M.P.Ed?', answer: 'No. M.P.Ed is Master of Physical Education and is listed separately.' },
+            { question: 'How long is M.Ed?', answer: 'Typically two years under NCTE-aligned structures.' },
+            { question: 'What is the eligibility?', answer: 'Usually a B.Ed or recognised equivalent with the minimum marks the university sets.' },
+            { question: 'What does M.Ed cost?', answer: 'Our November 2026 sample median annual tuition is about ₹50,000 across 61 rows; confirm the prospectus.' },
+            { question: 'Is there a national entrance?', answer: 'Many universities run their own tests or use CUET-PG when notified; some use merit only.' },
+            { question: 'Does M.Ed guarantee a government teacher job?', answer: 'No. State recruitments have separate notifications, often including TET/CTET.' },
+            { question: 'Where do I verify recognition?', answer: 'NCTE lists plus the affiliating university college list for that session.' }
+        ]
     },
     deled: {
       h1: 'D.El.Ed Course: Eligibility, Admission, Syllabus & Teaching Rules',
@@ -4795,7 +4351,7 @@ export function courseSeo(profile: CourseSeoInput): CourseSeoPack {
       intro:
         'With Class 12 or a 2-year ITI you can join a polytechnic diploma in the second year and finish in 2 years. Check your subjects against the branch, your state\'s admission process and fees first.',
       crossLink: {
-        href: '/polytechnic-colleges',
+        href: '/courses/polytechnic',
         anchor: 'Compare polytechnic colleges',
         note: 'Shortlisting? Browse polytechnic colleges and check which ones offer lateral entry in your branch.'
       },
@@ -4978,11 +4534,15 @@ export function courseSeo(profile: CourseSeoInput): CourseSeoPack {
         },
         {
           question: 'What is the NSQF Digital Marketing Manager qualification?',
-          answer: 'An NCVET-approved NSQF Level 6 certificate (NQR 2022/ME/MESC/05446) with 840 hours of training. Postgraduates can enrol directly; graduates need relevant work experience.'
+          answer: 'An NCVET-approved NSQF Level 6 certificate (NQR 2022/ME/MESC/05446) with 840 hours of training. Postgraduates can enrol directly; graduates in digital marketing or social media need one year of relevant experience, and other graduates three years.'
         },
         {
           question: 'How much does a digital marketing PG diploma cost?',
-          answer: 'It varies by provider. GTU lists tuition of ₹25,000 for its entire one-year PGDDM for Indian students.'
+          answer: 'It varies by provider. GTU lists tuition of ₹25,000 for its entire one-year PGDDM for Indian students. Private institutes in our records list ₹1,00,000 to ₹2,05,000 for the first year.'
+        },
+        {
+          question: 'Is there an entrance exam for a PG diploma in digital marketing?',
+          answer: 'There is no national entrance exam. Most providers admit graduates directly, sometimes after an interview. An entrance score such as CAT, CMAT or MAT is needed only for the MBA or PGDM route.'
         },
         {
           question: 'Should I do an MBA instead of a digital marketing diploma?',
@@ -5031,67 +4591,71 @@ export function courseSeo(profile: CourseSeoInput): CourseSeoPack {
       ]
     },
     'bfa': {
-      h1: 'BFA (Bachelor of Fine Arts): Admission, Specialisations, Fees and Careers',
-      title: 'BFA Course 2026: Eligibility, Entrance Tests, Fees, Careers',
+      h1: 'BFA Course (Bachelor of Fine Arts): Eligibility, Entrance Tests, Fees & Careers',
+      title: 'BFA Course 2026: Eligibility, Entrance Exams, Fees & Colleges',
       description:
-        'BFA is a 4-year studio degree after Class 12. See eligibility, DU and Maharashtra entrance routes, specialisations, typical fees and art careers.',
-      keywords: ['BFA course', 'Bachelor of Fine Arts', 'BFA admission 2026', 'BFA eligibility', 'BFA fees', 'BFA entrance exam', 'BFA applied art', 'BFA painting'],
+        'BFA course guide: Class 12 eligibility, 4-year duration, practical tests, CUET (UG) at DU College of Art, Jamia test, specialisations, fees (median ₹60,000 a year) and careers.',
+      keywords: ['BFA course', 'Bachelor of Fine Arts', 'BFA eligibility', 'BFA entrance exam', 'BFA fees', 'BFA colleges in India', 'BFA specialisations'],
       intro:
-        'A four-year studio degree in painting, applied art, sculpture or print making, usually entered through a practical test after Class 12.',
+        'A BFA is usually a four-year visual art degree after Class 12 in painting, applied art, sculpture, printmaking or art history. Admission almost always includes a practical test. Check eligibility, entrance tests, fees, colleges and careers here.',
       crossLink: {
-        href: '/courses/mfa',
-        anchor: 'MFA course guide',
-        note: 'for postgraduate study after BFA'
+        href: '/bfa-colleges',
+        anchor: 'Compare BFA colleges by fees & specialisations',
+        note: 'Ready to shortlist? Browse BFA colleges with recorded fees, specialisations and admission routes.'
       },
       faqs: [
         {
-          question: 'Is BFA a 3-year or 4-year course?',
-          answer: 'At the University of Delhi, in Maharashtra and at Government College of Art, Chandigarh, BFA is a four-year, eight-semester degree.'
+          question: 'What is the full form of BFA?',
+          answer: 'BFA stands for Bachelor of Fine Arts, an undergraduate degree in visual art such as painting, applied art, sculpture, printmaking and art history. Some universities call a similar degree a Bachelor of Visual Arts (BVA).'
         },
         {
-          question: 'Can a science or commerce student do BFA?',
-          answer: 'Yes. These institutions accept Class 12 in any stream; selection depends mainly on the practical or aptitude test.'
+          question: 'What is the eligibility for BFA?',
+          answer: 'Class 12 pass, usually in any stream. Each college sets its own marks rule, and almost all add a practical or drawing test.'
+        },
+        {
+          question: 'Is BFA 3 years or 4 years?',
+          answer: 'Most BFA programmes are four years, often with a foundation year first. Some colleges in our records still list a three-year BFA.'
+        },
+        {
+          question: 'How does Delhi University admit students to BFA?',
+          answer: 'The College of Art uses CUET (UG), with one List A language and the General Aptitude Test, plus its own practical test. Merit is 50% CUET and 50% practical.'
+        },
+        {
+          question: 'Which entrance exams are used for BFA?',
+          answer: 'CUET (UG) with a practical test at DU\'s College of Art, Jamia Millia Islamia\'s own test, MAH AAC CET for Maharashtra art colleges, FADEE for JNAFAU Hyderabad, and aptitude tests at private universities.'
         },
         {
           question: 'What is the fee for BFA?',
-          answer: 'Among 43 institutes publishing annual fees, the middle value is about ₹60,000 a year; most fall between ₹40,000 and ₹1,04,000.'
+          answer: 'Across 67 programmes with a listed fee on CollegeDecision (November 2026), the median first-year fee is ₹60,000. Public institutes have a median of ₹14,025 and private ones ₹95,000.'
         },
         {
-          question: 'Which entrance exam is needed for BFA?',
-          answer: 'It depends on the university: DU uses CUET plus its own practical test, Maharashtra uses the state Fine Art CET, and many colleges run their own aptitude test.'
+          question: 'What can I do after BFA?',
+          answer: 'Work as an artist, illustrator, graphic designer, art director or animator, teach art in schools, or study an MFA. College teaching usually needs an MFA and the UGC NET in Visual Art (code 79).'
         }
       ]
     },
     'bvoc': {
-      h1: 'B.Voc (Bachelor of Vocation): Structure, Exit Options, Fees and Jobs',
-      title: 'B.Voc Course 2026: Eligibility, NSQF Levels, Fees, Careers',
+      h1: 'B.Voc Course: Duration, NSQF Exits, Fees & Careers',
+      title: 'B.Voc Course 2026: Eligibility, Fees, Syllabus, Colleges',
       description:
-        'B.Voc is a 3-year skill degree with exits at diploma and advanced diploma. See UGC rules, NSQF levels, credit split, typical fees and jobs.',
-      keywords: ['B.Voc course', 'Bachelor of Vocation', 'B.Voc eligibility', 'B.Voc fees', 'B.Voc NSQF', 'B.Voc jobs', 'B.Voc vs BSc', 'UGC B.Voc guidelines'],
+        'B.Voc (Bachelor of Vocation) guide: 3-year UGC skill degree, Diploma/Advanced Diploma exits, eligibility, fees (median ~₹48,000/yr), colleges and careers.',
+      keywords: ['B.Voc course', 'Bachelor of Vocation', 'B.Voc eligibility', 'B.Voc fees', 'B.Voc NSQF', 'B.Voc syllabus', 'B.Voc vs BA', 'UGC B.Voc'],
       intro:
-        'A three-year UGC skill degree mapped to NSQF levels 5 to 7, with a diploma after one year and an advanced diploma after two.',
+        'A three-year UGC skill degree mapped to NSQF levels 5–7, with a Diploma after one year and an Advanced Diploma after two. See eligibility, fees on our records and how to pick a trade.',
       crossLink: {
-        href: '/courses/diploma',
-        anchor: 'Diploma courses',
-        note: 'if you want a shorter skill programme'
+        href: '/courses/mvoc',
+        anchor: 'M.Voc (Master of Vocation)',
+        note: 'if you want the postgraduate vocational track after B.Voc'
       },
       faqs: [
-        {
-          question: 'Is B.Voc a valid degree?',
-          answer: 'Yes. B.Voc is a UGC bachelor\'s degree at NSQF Level 7, awarded by universities and autonomous colleges.'
-        },
-        {
-          question: 'Can I leave B.Voc after one year?',
-          answer: 'Yes. Under the UGC scheme you get a Diploma (NSQF Level 5) after one year and an Advanced Diploma (Level 6) after two.'
-        },
-        {
-          question: 'How much of B.Voc is practical?',
-          answer: 'At least 60% of credits are skill credits, and the revised UGC guidelines allow up to 70%.'
-        },
-        {
-          question: 'What is the fee for B.Voc?',
-          answer: 'Among 38 institutes publishing annual fees, the middle value is about ₹50,000 a year.'
-        }
+        { question: 'Is B.Voc a valid degree?', answer: 'Yes. Under UGC’s B.Voc scheme it is a bachelor’s degree at NSQF Level 7, awarded by universities and autonomous colleges.' },
+        { question: 'Can I leave B.Voc after one or two years?', answer: 'Yes—Diploma (NSQF Level 5) after year one and Advanced Diploma (Level 6) after year two, when the college implements UGC exit awards.' },
+        { question: 'How long is B.Voc?', answer: 'Three years (six semesters) for the full degree. Older records that showed 36 months meant the same length.' },
+        { question: 'How much of B.Voc is practical?', answer: 'UGC’s framework targets about 60% skill credits. Workshop and OJT hours vary by trade and college.' },
+        { question: 'What is the fee for B.Voc?', answer: 'Across 53 programmes with listed first-year tuition on CollegeDecision (November 2026), the median is about ₹48,000 a year (private median about ₹50,000).' },
+        { question: 'Is there a national B.Voc entrance exam?', answer: 'No dedicated national exam. Many seats are merit-based; some universities use their own test or CUET-UG where notified.' },
+        { question: 'B.Voc vs B.A./B.Sc.?', answer: 'B.Voc is more job-role focused with formal skill credits and exits. A regular degree is usually broader academically.' },
+        { question: 'What after B.Voc?', answer: 'Work in the trade or continue to M.Voc / other PG programmes where eligible. Verify each university’s rules.' }
       ]
     },
     'bped': {
@@ -5231,8 +4795,8 @@ export function courseSeo(profile: CourseSeoInput): CourseSeoPack {
       intro:
         'A two-year clinical master\'s for BPT graduates, specialising in areas such as musculoskeletal, neuro, cardiopulmonary or sports physiotherapy.',
       crossLink: {
-        href: '/courses/bpt',
-        anchor: 'BPT course guide',
+        href: '/courses/physiotherapy',
+        anchor: 'BPT / physiotherapy course guide',
         note: 'for the undergraduate physiotherapy route'
       },
       faqs: [
@@ -5255,62 +4819,70 @@ export function courseSeo(profile: CourseSeoInput): CourseSeoPack {
       ]
     },
     'msw': {
-      h1: 'MSW (Master of Social Work): Eligibility, Fieldwork, Fees and Careers',
-      title: 'MSW Course 2026: Eligibility, Fieldwork, Fees, Careers',
+      h1: 'MSW Course: Eligibility, Entrance Exams, Fees, Syllabus and Careers 2026',
+      title: 'MSW Course 2026: Eligibility, CUET PG, Fees, Specialisations',
       description:
-        'MSW is a 2-year social work master\'s open to any graduate. See eligibility, entrance and interview, fieldwork, typical fees and social work careers.',
-      keywords: ['MSW course', 'Master of Social Work', 'MSW eligibility', 'MSW admission 2026', 'MSW fees', 'MSW fieldwork', 'MSW jobs', 'MA Social Work'],
+        'MSW course details for 2026-27: bachelor\'s eligibility, CUET PG and merit routes, specialisations, fieldwork, fees (median ₹35,000 a year) and careers.',
+      keywords: ['MSW course', 'Master of Social Work', 'MSW eligibility', 'MSW entrance exams', 'MSW fees in India', 'MSW specializations', 'CUET PG for MSW', 'MSW career'],
       intro:
-        'A two-year professional master\'s in social work, open to graduates of any discipline, built around supervised fieldwork.',
+        'The MSW course is a two-year postgraduate social work degree after any bachelor\'s. Check eligibility, CUET PG routes, specialisations, fees and careers before you shortlist colleges.',
       crossLink: {
-        href: '/courses/bsw',
-        anchor: 'BSW course guide',
-        note: 'for the undergraduate social work route'
+        href: '/msw-colleges',
+        anchor: 'Compare MSW colleges by fees and exams',
+        note: 'Ready to shortlist? Browse MSW colleges with listed fees and programme details.'
       },
       faqs: [
-        {
-          question: 'Can I do MSW after BCom or BSc?',
-          answer: 'Yes. MSW is open to graduates of any discipline.'
-        },
-        {
-          question: 'Is MSW the same as MA Social Work?',
-          answer: 'The content is equivalent; some universities, such as the University of Delhi, name it MA Social Work.'
-        },
-        {
-          question: 'What is fieldwork in MSW?',
-          answer: 'Supervised practice with an agency for part of each week, plus camps and a block placement.'
-        },
-        {
-          question: 'What is the fee for MSW?',
-          answer: 'Among 30 institutes publishing annual fees, the middle value is about ₹37,100 a year.'
-        }
+        { question: 'What is the eligibility for the MSW course?', answer: 'Most universities ask for any bachelor\'s degree with about 50% marks. Some prefer BSW or social sciences; always check the prospectus.' },
+        { question: 'Is MSW a 2-year course?', answer: 'Yes. Standard MSW programmes are two years full time with concurrent fieldwork and block placements.' },
+        { question: 'Which entrance exams are accepted for MSW?', answer: 'CUET PG is used by many central universities. Many state universities still admit on graduation merit or their own test and interview.' },
+        { question: 'What is the fee for an MSW in India?', answer: 'Across 23 programme records on CollegeDecision (November 2026), the median first-year tuition is ₹35,000.' },
+        { question: 'What MSW specialisations are common?', answer: 'Community development, medical and psychiatric social work, family and child welfare, and HR/labour welfare are common concentration areas where offered.' },
+        { question: 'Can I do MSW without BSW?', answer: 'Often yes, if you hold any bachelor\'s degree the university accepts. Some departments still prefer BSW or social-science graduates.' },
+        { question: 'Is MSW the same as M.A. Social Work?', answer: 'Not always. Compare fieldwork hours and professional supervision. A dedicated MSW usually emphasises concurrent practice more strongly.' },
+        { question: 'What jobs can I get after MSW?', answer: 'NGO and CSR programme roles, hospital social work (with the right concentration), school and child-service roles, labour welfare or HR tracks, and research or teaching pathways with NET.' }
       ]
     },
     'm-lib': {
-      h1: 'Master of Library Science (M.Lib / MLISc): What You Study and Careers',
-      title: 'Master of Library Science: Syllabus, Fees, Library Careers',
+      h1: 'M.Lib Course (Master of Library Science): Eligibility, Admission, Fees & Careers',
+      title: 'M.Lib / MLISc Course 2026: Eligibility, Admission, Fees & Jobs',
       description:
-        'Master of Library Science (MLISc) is a 1-year course after BLISc. See what you study, fees, and careers in academic, public and digital libraries.',
-      keywords: ['Master of Library Science', 'M.Lib course', 'MLISc syllabus', 'library science master\'s', 'MLISc fees', 'librarian career', 'MLISc jobs', 'library science UGC NET'],
+        'M.Lib (MLISc) course guide: BLISc eligibility, 1-year duration, CUET PG at DU and BHU, subjects, fees (median ₹37,500 a year), colleges, UGC NET and librarian careers.',
+      keywords: ['M.Lib course', 'Master of Library Science', 'MLISc course', 'M.Lib eligibility', 'MLISc admission', 'M.Lib fees', 'library science UGC NET'],
       intro:
-        'A one-year master\'s after BLISc that prepares you for professional librarian, information manager and library teaching roles.',
+        'An M.Lib or MLISc is usually a one-year master\'s degree after a BLISc that prepares you for professional librarian and information roles. Central universities admit through CUET PG; many others admit on BLISc marks. Check eligibility, fees, colleges and the UGC NET route here.',
       crossLink: {
-        href: '/courses/mlibsc',
-        anchor: 'M.Lib.Sc admission guide',
-        note: 'for entrance routes and regular vs distance options'
+        href: '/mlib-colleges',
+        anchor: 'Compare M.Lib colleges by fees & admission routes',
+        note: 'Ready to shortlist? Browse M.Lib colleges with recorded fees and admission routes.'
       },
       faqs: [
         {
-          question: 'How long is the Master of Library Science?',
-          answer: 'One year (two semesters) at the University of Delhi and IGNOU; some universities run a two-year integrated version.'
+          question: 'What is the eligibility for M.Lib?',
+          answer: 'You normally need a BLISc from a recognised university. Many universities add a marks rule; for example, DU\'s distance MLISc asks for 50% (General), 45% (OBC, EWS, PwBD) and pass marks for SC and ST candidates.'
         },
         {
-          question: 'Can I do MLISc without BLISc?',
-          answer: 'Not for the one-year course; BLISc is the entry qualification. Integrated two-year programmes accept graduates directly.'
+          question: 'What is the duration of M.Lib?',
+          answer: 'Usually one year (two semesters) after the BLISc. A few universities list a two-year programme, so check the bulletin for the programme you choose.'
         },
         {
-          question: 'Is UGC-NET needed to be a college librarian?',
-          answer: 'Generally yes, along with a master\'s in library science, as per UGC rules for library posts.'
+          question: 'Is there an entrance exam for MLISc?',
+          answer: 'Delhi University and BHU admit through CUET PG; DU maps MLISc to paper COQP13 and fills half its 58 seats on merit for its own BLISc graduates. Many state and private universities admit on BLISc marks.'
+        },
+        {
+          question: 'Can I do M.Lib without a BLISc?',
+          answer: 'For most one-year programmes, no. If you only have a general degree, take a BLISc first, or check whether a two-year programme accepts graduates directly.'
+        },
+        {
+          question: 'What is the fee for M.Lib?',
+          answer: 'Across 14 programmes with a listed fee on CollegeDecision (November 2026), the median first-year fee is ₹37,500. Private universities have a median of ₹35,000. The sample is small, so confirm fees with each university.'
+        },
+        {
+          question: 'Which UGC NET subject is for library science?',
+          answer: 'Library and Information Science, subject code 59. The December 2026 UGC NET runs on 14 to 18 and 21 December 2026.'
+        },
+        {
+          question: 'What jobs can I get after M.Lib?',
+          answer: 'Librarian and assistant librarian posts in colleges, universities and schools, library and information officer roles in institutes and companies, documentation and archives roles, and digital library work. College posts usually also need the UGC NET.'
         }
       ]
     },
@@ -5343,31 +4915,27 @@ export function courseSeo(profile: CourseSeoInput): CourseSeoPack {
       ]
     },
     'b-lib': {
-      h1: 'Bachelor of Library Science (B.Lib / BLISc): What You Study, Fees and Jobs',
-      title: 'Bachelor of Library Science: Syllabus, Fees, Library Jobs',
+      h1: 'B.Lib Course: Eligibility, Fees, Syllabus and Careers 2026',
+      title: 'B.Lib Course 2026: Eligibility, Duration, Fees, Syllabus & Jobs',
       description:
-        'Bachelor of Library Science (BLISc) is a 1-year course after graduation. See what you study, eligibility, typical fees and library careers.',
-      keywords: ['Bachelor of Library Science', 'B.Lib course', 'BLISc syllabus', 'library science course', 'BLISc fees', 'library assistant job', 'BLISc after graduation', 'BLISc eligibility'],
+        'B.Lib (Bachelor of Library Science) course details for 2026-27: 1-year and 3-year routes, eligibility, subjects, fees (median ₹25,000 a year on a small sample) and careers.',
+      keywords: ['B.Lib course', 'Bachelor of Library Science', 'BLIS course', 'B.Lib eligibility', 'B.Lib fees', 'B.Lib syllabus', 'library science course', 'B.Lib vs M.Lib'],
       intro:
-        'A one-year professional course after graduation that teaches how libraries organise, find and manage information.',
+        'The B.Lib course is a bachelor\'s pathway into library and information work, often as a one-year programme after graduation. Check duration, eligibility, fees and careers before you shortlist colleges.',
       crossLink: {
-        href: '/courses/blisc',
-        anchor: 'B.Li.Sc admission guide',
-        note: 'for CUET-PG, DU SOL and IGNOU routes'
+        href: '/blib-colleges',
+        anchor: 'Compare B.Lib colleges by fees and city',
+        note: 'Ready to shortlist? Browse B.Lib colleges with listed fees and programme details.'
       },
       faqs: [
-        {
-          question: 'Is BLISc a one-year course?',
-          answer: 'Yes, at the University of Delhi and IGNOU it is one year (two semesters at DU).'
-        },
-        {
-          question: 'Can I do BLISc after 12th?',
-          answer: 'No. It is taken after a bachelor\'s degree.'
-        },
-        {
-          question: 'What is the fee for BLISc?',
-          answer: 'Among 17 institutes publishing annual fees, the middle value is about ₹25,000.'
-        }
+        { question: 'What is the eligibility for the B.Lib course?', answer: 'For most one-year B.Lib/BLIS programmes you need any bachelor\'s degree with marks set by the university. Three-year tracks usually need Class 12.' },
+        { question: 'Is B.Lib a 1-year or 3-year course?', answer: 'Both exist. The classic pattern is one year after graduation; some universities offer a three-year undergraduate track after Class 12.' },
+        { question: 'What is the difference between B.Lib and BLIS?', answer: 'Labels overlap heavily (B.Lib, BLIS, B.Li.Sc). Compare the official syllabus and duration for that university rather than the abbreviation alone.' },
+        { question: 'What is the fee for a B.Lib in India?', answer: 'Across 12 programme records on CollegeDecision (November 2026), the median first-year tuition is ₹25,000. The sample is small, so confirm locally.' },
+        { question: 'Do I need an entrance exam for B.Lib?', answer: 'Most seats are merit-based. Some universities run their own test. Follow the department notice for your year.' },
+        { question: 'What jobs can I get after B.Lib?', answer: 'Library assistant roles in schools, colleges, public and special libraries, plus digital library support where you have ICT practice. Many permanent posts prefer M.Lib later.' },
+        { question: 'Should I do M.Lib after B.Lib?', answer: 'Often yes for academic and government library progression. M.Lib / M.Lib.Sc is the standard postgraduate next step.' },
+        { question: 'Is a library science diploma the same as B.Lib?', answer: 'No. A diploma is usually shorter and may not meet notifications that ask for a bachelor\'s in library science. Compare eligibility rules carefully.' }
       ]
     },
     'blisc': {
@@ -5459,59 +5027,51 @@ export function courseSeo(profile: CourseSeoInput): CourseSeoPack {
       ]
     },
     'b-chem-eng': {
-      h1: 'B.Chem.Engg: ICT Mumbai Admission, Eligibility and Careers',
-      title: 'B.Chem.Engg 2026: ICT Mumbai Seats, MHT-CET, JEE Main',
+      h1: 'B.Chem.Engg Course: ICT Mumbai, Eligibility, MHT-CET, Fees 2026',
+      title: 'B.Chem.Engg 2026: ICT Seats, MHT-CET, JEE Main & Careers',
       description:
-        'B.Chem.Engg is a 4-year chemical engineering degree best known at ICT Mumbai. See 2026-27 eligibility, MHT-CET and JEE Main seats, and careers.',
-      keywords: ['B.Chem.Engg', 'B.Chem Eng', 'ICT Mumbai chemical engineering', 'B.Chem.Engg admission 2026', 'MHT CET chemical engineering', 'chemical engineering eligibility', 'ICT Mumbai seats', 'chemical engineer career'],
+        'B.Chem.Engg is ICT Mumbai\'s 4-year chemical engineering degree. 2026-27 eligibility, 75 seats (52 MHT-CET + 23 JEE Main), syllabus, fees data note and careers.',
+      keywords: ['B.Chem.Engg', 'B.Chem Eng course', 'ICT Mumbai chemical engineering', 'B.Chem.Engg admission 2026', 'MHT CET chemical engineering', 'chemical engineering eligibility', 'ICT Mumbai seats', 'B.Tech chemical engineering'],
       intro:
-        'A four-year chemical engineering degree, best known at the Institute of Chemical Technology, Mumbai, with seats through MHT-CET and JEE Main.',
+        'B.Chem.Engg is the four-year chemical engineering bachelor\'s name used by ICT Mumbai — the same discipline as B.Tech/B.E. Chem Eng. Check PCM eligibility, MHT-CET and JEE Main seats, and careers before you shortlist.',
       crossLink: {
         href: '/courses/m-chem-eng',
         anchor: 'M.Chem.Engg course guide',
-        note: 'for the postgraduate route'
+        note: 'Planning a chemical engineering master\'s after GATE? See the M.Chem.Engg guide.'
       },
       faqs: [
-        {
-          question: 'Is B.Chem.Engg the same as B.Tech Chemical Engineering?',
-          answer: 'Yes, it is the same discipline; ICT Mumbai uses the name B.Chem.Engg.'
-        },
-        {
-          question: 'How many B.Chem.Engg seats does ICT Mumbai have?',
-          answer: '75 in 2026: 52 through MHT-CET and 23 all-India through JEE Main.'
-        },
-        {
-          question: 'What marks are needed for B.Chem.Engg?',
-          answer: '45% in PCM (40% for Maharashtra reserved, EWS and PwD candidates) plus an MHT-CET or JEE Main score.'
-        }
+        { question: 'Is B.Chem.Engg the same as B.Tech Chemical Engineering?', answer: 'Yes — it is the same chemical engineering discipline. ICT Mumbai uses the degree title B.Chem.Engg; most other institutes award B.Tech or B.E. Chemical Engineering.' },
+        { question: 'How many B.Chem.Engg seats does ICT Mumbai have?', answer: 'The 2026 CAP seat matrix cue used in CollegeDecision research listed 75 seats: 52 through MHT-CET and 23 all-India through JEE Main. Confirm the live State CET Cell matrix for your year.' },
+        { question: 'What marks are needed for B.Chem.Engg at ICT?', answer: '10+2 with Physics, Chemistry and Mathematics and about 45% aggregate in PCM (about 40% for Maharashtra backward class, EWS and PwD as notified), plus a non-zero MHT-CET (PCM) or JEE Main score for the relevant seat pool.' },
+        { question: 'How long is B.Chem.Engg?', answer: 'Four years (eight semesters) in CollegeDecision\'s active programme rows after the November 2026 duration fix.' },
+        { question: 'What entrance exams are used for B.Chem.Engg?', answer: 'ICT state seats use MHT-CET (PCM) via Maharashtra CAP; ICT all-India seats use JEE Main. IIT Chem Eng needs JEE Advanced; NITs use JEE Main + JoSAA.' },
+        { question: 'What fees does CollegeDecision show for B.Chem.Engg?', answer: 'As of 5 November 2026 the published sample has two programme rows and no Year-1 tuition fee rows. Use ICT and CET Cell fee circulars — we do not invent medians.' },
+        { question: 'Why does /b-chem-eng-colleges redirect here?', answer: 'The listing is thin (two programmes), so the colleges URL permanently redirects to this course guide while you compare institute profiles and official seat matrices.' },
+        { question: 'Can I do M.Chem.Engg after B.Chem.Engg?', answer: 'Yes. GATE Chemical Engineering (CH) is the usual national route into M.Chem.Engg / M.Tech Chem Eng, including ICT\'s Level 1/Level 2 process.' }
       ]
     },
     'm-chem-eng': {
-      h1: 'M.Chem.Engg: ICT Mumbai Admission Levels, GATE and Eligibility',
-      title: 'M.Chem.Engg 2026: ICT Mumbai Eligibility, GATE Levels',
+      h1: 'M.Chem.Engg Course: ICT Mumbai, GATE Levels, Eligibility 2026',
+      title: 'M.Chem.Engg 2026: ICT Eligibility, GATE Level 1 & 2, Careers',
       description:
-        'M.Chem.Engg is a 2-year chemical engineering master\'s. See ICT Mumbai 2026-27 eligibility (60%), GATE Level 1 and Level 2 admission, and careers.',
-      keywords: ['M.Chem.Engg', 'M.Chem Eng', 'ICT Mumbai M.Chem.Engg', 'M.Chem.Engg admission 2026', 'chemical engineering masters GATE', 'ICT Mumbai GATE', 'M.Tech chemical engineering', 'M.Chem.Engg eligibility'],
+        'M.Chem.Engg is ICT Mumbai\'s 2-year chemical engineering master\'s. 2026-27 eligibility (~60%), GATE Level 1/2 admission, syllabus, fees data note and careers.',
+      keywords: ['M.Chem.Engg', 'M.Chem Eng course', 'ICT Mumbai M.Chem.Engg', 'M.Chem.Engg admission 2026', 'chemical engineering masters GATE', 'ICT Mumbai GATE levels', 'M.Tech chemical engineering', 'M.Chem.Engg eligibility'],
       intro:
-        'A two-year chemical engineering master\'s, best known at ICT Mumbai, admitted through GATE with a two-level process.',
+        'M.Chem.Engg is ICT Mumbai\'s two-year chemical engineering master\'s (coursework plus thesis), equivalent in discipline to an M.Tech. Check GATE Level 1/2 rules, eligibility and careers before you apply.',
       crossLink: {
         href: '/courses/b-chem-eng',
         anchor: 'B.Chem.Engg course guide',
-        note: 'for the undergraduate route'
+        note: 'Still choosing the undergraduate ICT path? See the B.Chem.Engg guide.'
       },
       faqs: [
-        {
-          question: 'What is the eligibility for M.Chem.Engg at ICT?',
-          answer: 'A four-year chemical or related engineering degree with 60% (55% for backward class).'
-        },
-        {
-          question: 'Is GATE compulsory for ICT M.Chem.Engg?',
-          answer: 'Yes. Level 1 uses relevant GATE; Level 2 uses GATE in another specialisation plus ICT\'s test.'
-        },
-        {
-          question: 'How long is M.Chem.Engg?',
-          answer: 'Two years: two semesters of papers and two of thesis.'
-        }
+        { question: 'What is the eligibility for M.Chem.Engg at ICT?', answer: 'A four-year bachelor\'s in Chemical Engineering or a related field listed by ICT, with about 60% aggregate (about 55% for backward class as notified). B.Sc chemistry alone is not eligible for this programme.' },
+        { question: 'Is GATE compulsory for ICT M.Chem.Engg?', answer: 'Yes. Level 1 uses a valid GATE score in the relevant discipline. Level 2 uses GATE in another specialisation plus ICT\'s written test, combined about 70:30 as summarised from the 2026-27 manual.' },
+        { question: 'How long is M.Chem.Engg?', answer: 'Two years in our active programme rows: typically two semesters of coursework and two of thesis research.' },
+        { question: 'Is M.Chem.Engg the same as M.Tech Chemical Engineering?', answer: 'Same discipline family. ICT uses the M.Chem.Engg title; most institutes award M.Tech Chemical Engineering. GATE CH is the common national entrance.' },
+        { question: 'Is there a GATE stipend for M.Chem.Engg?', answer: 'AICTE postgraduate scholarship rules for GATE-qualified students may apply when scheme criteria are met. Older circulars often cited about ₹12,400 per month — confirm the live AICTE/institute notice for your year.' },
+        { question: 'What fees does CollegeDecision show for M.Chem.Engg?', answer: 'As of 5 November 2026 the published sample has two programme rows and no Year-1 tuition fee rows. Use ICT fee circulars; we do not invent medians.' },
+        { question: 'Why does /m-chem-eng-colleges redirect here?', answer: 'The listing is thin, so the colleges URL permanently redirects to this course guide while you compare official portals and institute profiles.' },
+        { question: 'Can I do a PhD after M.Chem.Engg?', answer: 'Yes. A strong thesis and fundamentals in transport and reaction engineering help for chemical engineering PhD admissions in India or abroad.' }
       ]
     },
     'master-of-civil-engineering': {
@@ -5599,31 +5159,27 @@ export function courseSeo(profile: CourseSeoInput): CourseSeoPack {
       ]
     },
     'master-of-surgery': {
-      h1: 'MS (Master of Surgery): NEET-PG, Duration and Surgical Specialities',
-      title: 'MS Master of Surgery 2026: NEET-PG, Duration, Specialities',
+      h1: 'MS (Master of Surgery): NEET-PG, Specialities, Fees & Careers',
+      title: 'MS Master of Surgery 2026: NEET-PG, Duration, Fees & Specialities',
       description:
-        'MS (Master of Surgery) is a 3-year NMC postgraduate degree after MBBS. See NEET-PG and INI-CET admission, MS specialities and what residency involves.',
+        'MS (Master of Surgery) after MBBS: 3-year NMC PG degree, NEET-PG/INI-CET admission, specialities (ENT, OBG, Ortho, Surgery, Ophtha), fees sample and careers vs MD/MDS.',
       keywords: ['Master of Surgery', 'MS course', 'MS after MBBS', 'MS duration', 'NEET PG MS', 'MS specialities', 'MS General Surgery', 'MS Orthopaedics'],
       intro:
-        'A three-year NMC-regulated surgical postgraduate degree for MBBS doctors, admitted through NEET-PG or INI-CET.',
+        'MS is a three-year NMC surgical postgraduate degree for MBBS doctors, entered through NEET-PG or INI-CET counselling. Compare specialities, fees and how MS differs from MD and MDS.',
       crossLink: {
         href: '/courses/md',
         anchor: 'MD course guide',
-        note: 'for non-surgical postgraduate degrees'
+        note: 'for non-surgical postgraduate medical degrees; also see MDS for dental surgery.'
       },
       faqs: [
-        {
-          question: 'How many years is MS after MBBS?',
-          answer: 'Three years under NMC PGMER 2023; two years for holders of a recognised two-year PG diploma in the same subject.'
-        },
-        {
-          question: 'Which exam is needed for MS?',
-          answer: 'NEET-PG, or INI-CET for AIIMS and other INIs.'
-        },
-        {
-          question: 'Can colleges admit MS students directly?',
-          answer: 'No. Admission is only through online common counselling by the central or state authority.'
-        }
+        { question: 'How many years is MS after MBBS?', answer: 'Usually three years under NMC postgraduate regulations. Holders of a recognised two-year PG diploma in the same subject may have a shorter pathway where the current PGMER text allows—confirm the year’s rules.' },
+        { question: 'Which exam is needed for MS?', answer: 'NEET-PG for most counselling streams, or INI-CET for AIIMS and other INIs.' },
+        { question: 'Can colleges admit MS students directly?', answer: 'Recognised MS seats are filled through online common counselling. Treat “direct admission” claims without an allotment letter as a red flag.' },
+        { question: 'MS vs MD vs MDS—what is the difference?', answer: 'MS is surgical postgraduate medical training after MBBS. MD covers many non-surgical medical PG degrees. MDS is the dental postgraduate surgery/medicine track after BDS.' },
+        { question: 'What MS specialities are most listed here?', answer: 'On CollegeDecision in November 2026, large named groups include ENT, Obstetrics & Gynaecology, Orthopaedics, General Surgery and Ophthalmology.' },
+        { question: 'What is the fee for MS?', answer: 'Among 14 usable first-year tuition records on our site (November 2026), the median is about ₹23.8 lakh. The sample is private-heavy—government quota fees are usually much lower when allotted.' },
+        { question: 'How many MS programmes are listed?', answer: 'About 415 active programmes at 173 published institutes after moving mislabelled MD specialities out of this bucket.' },
+        { question: 'What comes after MS?', answer: 'Senior residency, consultant practice, MCh or fellowships where eligible, and academic posts per NMC teacher norms.' }
       ]
     },
     'dcs': {
@@ -5691,90 +5247,112 @@ export function courseSeo(profile: CourseSeoInput): CourseSeoPack {
       ]
     },
     'diploma-media': {
-      h1: 'Media Diploma (DJMC): One-Year Journalism and Mass Communication Courses',
-      title: 'Media Diploma 2026: DJMC Syllabus, Eligibility, Careers',
+      h1: 'Media Diploma Course: Eligibility, Fees, Syllabus and Careers 2026',
+      title: 'Media Diploma Course 2026: DJMC, Fees, Syllabus & Careers',
       description:
-        'A one-year media diploma (DJMC) after Class 12: what universities teach, eligibility, campus vs open university, and first jobs in media.',
-      keywords: ['media diploma', 'Diploma in Journalism and Mass Communication', 'DJMC', 'DJMC syllabus', 'journalism diploma after 12th', 'DJMC eligibility', 'media course one year', 'mass communication diploma'],
+        'Media diploma course guide for 2026: DJMC and film/radio diplomas, Class 12 eligibility, admission, syllabus tracks, listed fees sample and careers.',
+      keywords: ['media diploma course', 'media diploma', 'DJMC', 'diploma in journalism and mass communication', 'film diploma after 12th', 'media diploma fees', 'journalism diploma'],
       intro:
-        'A one-year, two-semester diploma in journalism and mass communication, open to Class 12 pass students.',
+        'A media diploma course is a short, skill-focused award—often one year—in journalism, film, radio, photography or events after Class 12. It is not a three-year Media UG degree. Check eligibility, fees and tracks here.',
       crossLink: {
-        href: '/courses/media-ug',
-        anchor: 'Media (UG) course guide',
-        note: 'for bachelor\'s degrees in media'
+        href: '/media-diploma-colleges',
+        anchor: 'Compare media diploma colleges',
+        note: 'Ready to shortlist? Browse media diploma programmes with listed fees where available.'
       },
       faqs: [
         {
-          question: 'How long is a media diploma?',
-          answer: 'Usually one year in two semesters.'
+          question: 'What is a media diploma course?',
+          answer: 'A short diploma—often about one year—in journalism, film, radio, photography, events or related media skills, usually after Class 12.'
         },
         {
-          question: 'Can I do a DJMC after 12th?',
-          answer: 'Yes, most require a Class 12 pass in any stream.'
+          question: 'Is a media diploma the same as BMM or BA JMC?',
+          answer: 'No. Those are undergraduate degrees. A diploma is shorter and is not automatically equivalent to a bachelor’s degree.'
         },
         {
-          question: 'Is a DJMC enough to become a journalist?',
-          answer: 'It can get you entry-level roles, but many national newsrooms prefer a degree or PG diploma.'
+          question: 'What is DJMC?',
+          answer: 'Diploma in Journalism and Mass Communication—a common university-style media diploma title.'
+        },
+        {
+          question: 'What is the eligibility?',
+          answer: 'Generally Class 12. Some academies add interviews, auditions or portfolios.'
+        },
+        {
+          question: 'How long does a media diploma take?',
+          answer: 'Most programmes in our records are about one year; check the offer letter.'
+        },
+        {
+          question: 'What fees should I expect?',
+          answer: 'Our listed sample median is about ₹82,500 Year-1 across 12 fee rows (November 2026). Specialist private diplomas can cost much more.'
+        },
+        {
+          question: 'Is there an entrance exam?',
+          answer: 'Usually not a national exam. Institutes use merit, interviews or their own creative tests.'
+        },
+        {
+          question: 'Can I do a degree after a media diploma?',
+          answer: 'Often yes, by applying separately to a Media UG programme; credit transfer is not guaranteed.'
         }
       ]
     },
     'media-ug': {
-      h1: 'Media Degrees After 12th: BJMC, BA JMC and Mass Communication',
-      title: 'Media UG Courses 2026: BJMC Eligibility, CUET, Fees',
-      description:
-        'Undergraduate media degrees (BJMC, BA JMC, mass communication): eligibility, GGSIPU and CUET routes, 3 or 4-year options, fees and careers.',
-      keywords: ['media course after 12th', 'BJMC', 'BA JMC', 'mass communication degree', 'BJMC eligibility', 'GGSIPU BA JMC', 'CUET mass media', 'media UG fees'],
-      intro:
-        'Bachelor\'s degrees in journalism, mass communication and media, now offered as three-year degrees or four-year honours.',
-      crossLink: {
-        href: '/courses/media-pg',
-        anchor: 'Media (PG) course guide',
-        note: 'for postgraduate options'
-      },
-      faqs: [
-        {
-          question: 'Is BJMC three years or four?',
-          answer: 'It depends on the university: UGC allows a 3-year degree (120 credits) or a 4-year honours (160 credits); GGSIPU\'s BA (JMC) is four years.'
-        },
-        {
-          question: 'What marks are needed for media courses after 12th?',
-          answer: 'GGSIPU asks for 50% in the best four subjects including English; others set their own criteria.'
-        },
-        {
-          question: 'What is the fee for BJMC?',
-          answer: 'Among 22 institutes publishing annual fees, the middle value is about ₹94,500.'
-        }
-      ]
+        h1: 'Media UG Course: Eligibility, Admission, Fees, Syllabus and Careers 2026',
+        title: 'Media UG Course 2026: BMM, BA JMC, Fees & Careers',
+        description: 'Media UG course guide: undergraduate BMM/BA journalism & mass communication degrees, eligibility, fees sample, syllabus and how they differ from media diplomas.',
+        keywords: ['Media UG course', 'BMM', 'BA JMC', 'media undergraduate', 'mass media degree', 'media course after 12th', 'Media UG fees'],
+        intro: 'A Media UG course is an undergraduate media or journalism degree such as BMM or BA JMC. This guide covers eligibility, admission, fees and how to avoid confusing it with short diplomas.',
+        crossLink: { href: '/media-ug-colleges', anchor: 'Media UG colleges in India', note: 'Browse published undergraduate media college pages.' },
+        faqs: [
+            { question: 'What is a Media UG course?', answer: 'An undergraduate bachelor’s degree in mass media, journalism, multimedia or related fields, usually about three years.' },
+            { question: 'Is BMM the same as BA JMC?', answer: 'Related awards with different university syllabi—compare the exact degree title.' },
+            { question: 'What is the eligibility?', answer: 'Generally 10+2 with the aggregate and rules the college publishes.' },
+            { question: 'How long is Media UG?', answer: 'Most programmes run about three years; check NEP/honours variants.' },
+            { question: 'What does it cost?', answer: 'Our thin November 2026 sample median is about ₹95,000 across 17 rows; confirm each prospectus.' },
+            { question: 'Are RJ diplomas included?', answer: 'No. Short media diplomas are listed under Media Diploma after cleanup.' },
+            { question: 'Do I need an entrance exam?', answer: 'Sometimes—CUET-UG, state CET or institute tests; many colleges also use merit.' },
+            { question: 'What after Media UG?', answer: 'Media/comms jobs or Media PG / specialised diplomas.' }
+        ]
     },
     'media-pg': {
-      h1: 'Media PG Courses: IIMC PG Diplomas, MA in Journalism and Mass Communication',
-      title: 'Media PG Courses 2026: IIMC, MA JMC, CUET-PG, Fees',
+      h1: 'Media PG Courses: PG Diploma & MA in Journalism, Advertising, PR, Film & Events',
+      title: 'Media PG Courses 2026: IIMC, Eligibility, Fees & Careers',
       description:
-        'Postgraduate media options: IIMC one-year PG Diplomas via CUET-PG (seats, age limits), two-year MA JMC, typical fees and how to choose.',
-      keywords: ['media PG courses', 'IIMC PG Diploma', 'MA Journalism and Mass Communication', 'CUET PG mass communication', 'COQP17', 'IIMC admission 2026', 'media masters India', 'PG diploma journalism'],
+        'Media PG guide: PG diplomas and MAs in journalism, advertising and PR, film and events; IIMC CUET PG (COQP17) and age limits, Jamia test, fees (IIMC ₹1.15–1.75 lakh) and careers.',
+      keywords: ['media PG courses', 'PG diploma in journalism', 'IIMC admission', 'PG diploma in advertising and PR', 'MA mass communication', 'media PG fees', 'event management PG diploma'],
       intro:
-        'Postgraduate routes into media: one-year PG diplomas such as IIMC\'s, and two-year master\'s degrees in journalism and mass communication.',
+        'Media PG courses are one-year PG diplomas and two-year master\'s degrees in journalism, advertising and PR, film and TV, and events, open to graduates in any discipline. IIMC admits through CUET PG, Jamia through its own test. Check eligibility, fees, colleges and careers here.',
       crossLink: {
-        href: '/courses/media-ug',
-        anchor: 'Media (UG) course guide',
-        note: 'for bachelor\'s options'
+        href: '/media-pg-colleges',
+        anchor: 'Compare Media PG colleges by fees & admission',
+        note: 'Ready to shortlist? Browse Media PG colleges with recorded fees, programmes and admission routes.'
       },
       faqs: [
         {
-          question: 'Which CUET-PG paper is needed for IIMC?',
-          answer: 'Mass Communication and Journalism, paper code COQP17.'
+          question: 'Which CUET PG paper is needed for IIMC?',
+          answer: 'Mass Communication and Journalism, paper code COQP17. IIMC fills all its MA and PG diploma seats through this score and e-counselling.'
         },
         {
-          question: 'Is there an age limit for IIMC?',
-          answer: 'Yes. For 2026-27: 25 for general, 28 for OBC and 30 for SC, ST and PwD, as on 1 August 2026.'
+          question: 'Is there an age limit for IIMC PG diplomas?',
+          answer: 'Yes. For 2026-27 it was 25 years for General, 28 for OBC and 30 for SC, ST and PwD candidates, as on 1 August 2026. IIMC MA programmes need 55% in graduation instead.'
         },
         {
-          question: 'How many seats does IIMC have in English Journalism?',
-          answer: '256 across six campuses in 2026-27.'
+          question: 'What is the fee for IIMC PG diplomas?',
+          answer: 'Under the 2026-27 prospectus, Journalism (English or Hindi) costs ₹1,15,000, Advertising and PR ₹1,45,000, and Radio and TV Journalism ₹1,75,000 for the course, plus a ₹20,000 seat acceptance fee that is part of the payment process.'
         },
         {
-          question: 'Should I do a PG diploma or an MA?',
-          answer: 'A PG diploma is faster for jobs; an MA is better for teaching, research and UGC-NET.'
+          question: 'How does Jamia select for MA Mass Communication?',
+          answer: 'AJK MCRC uses a 200-mark written test, a 45-mark interview and a 55-mark portfolio for 50 seats. You need graduation with at least 50%.'
+        },
+        {
+          question: 'PG diploma or MA: which is better for media?',
+          answer: 'A one-year PG diploma is a faster, skills-first route into a job. A two-year MA adds theory and research and suits you if you plan to take the UGC NET (Mass Communication and Journalism, code 63) or teach.'
+        },
+        {
+          question: 'What is the fee for private Media PG courses?',
+          answer: 'Across 9 private programmes with a listed fee on CollegeDecision (November 2026), the median first-year fee is ₹1,25,000, with the middle half between ₹1,00,000 and ₹2,15,000.'
+        },
+        {
+          question: 'What jobs can I get after a Media PG?',
+          answer: 'Reporter, sub-editor, producer, copywriter, PR or account executive, assistant director, editor, event executive and social media roles. A strong portfolio and internships matter most.'
         }
       ]
     },
@@ -5811,87 +5389,95 @@ export function courseSeo(profile: CourseSeoInput): CourseSeoPack {
       ]
     },
     'diploma-fashion': {
-      h1: 'Fashion Design Diploma: One-Year Courses, Syllabus, Fees and Jobs',
-      title: 'Fashion Design Diploma 2026: Syllabus, Fees, Careers',
+      h1: 'Diploma in Fashion Design: Eligibility, Admission, Fees, Colleges & Careers',
+      title: 'Diploma in Fashion Design 2026: Eligibility, Fees & Colleges',
       description:
-        'A one-year fashion design diploma after Class 12: real university syllabi, admission, typical fees, and jobs in apparel, styling and boutiques.',
-      keywords: ['fashion design diploma', 'diploma in fashion design', 'fashion diploma after 12th', 'fashion diploma fees', 'fashion design syllabus', 'UPRTOU fashion diploma', 'fashion designer course', 'boutique career'],
+        'Diploma in fashion design guide: Class 10/12 eligibility, 1-3 year courses, admission tests and portfolios, subjects, specialisations, fees (median about ₹68,700 a year), colleges and careers.',
+      keywords: ['diploma in fashion design', 'fashion designing diploma', 'fashion design diploma eligibility', 'fashion diploma fees', 'fashion diploma colleges', 'fashion design course after 12th', 'advanced diploma in fashion design'],
       intro:
-        'A one-year diploma that teaches sketching, pattern making, sewing, textiles and portfolio building.',
+        'A diploma in fashion design is a practical course of one to three years in sketching, pattern making, garment construction and fashion business, usually open after Class 10 or 12. Check eligibility, admission, fees, colleges and careers here.',
       crossLink: {
-        href: '/courses/cfd',
-        anchor: 'Certificate in Fashion Design guide',
-        note: 'for the six-month option'
+        href: '/fashion-design-ug-colleges',
+        anchor: 'Compare fashion design colleges',
+        note: 'Want a degree instead? Browse undergraduate fashion design colleges with recorded fees and programmes.'
       },
       faqs: [
         {
+          question: 'What is the eligibility for a diploma in fashion design?',
+          answer: 'Most UG-level fashion diplomas accept Class 10 or Class 12 in any stream; some ask for 45% to 50%. PG diplomas need graduation in any subject.'
+        },
+        {
           question: 'How long is a fashion design diploma?',
-          answer: 'Usually one year.'
+          answer: 'Usually one to three years, depending on the institute and level. Foundation courses are often one year; professional diplomas two or three years.'
         },
         {
-          question: 'Can I do a fashion diploma after 12th arts or commerce?',
-          answer: 'Yes, most accept Class 12 in any stream.'
+          question: 'Is there an entrance exam for fashion diploma courses?',
+          answer: 'Most private schools admit directly or through their own aptitude test, drawing test, portfolio review or interview. NIFT and NID entrance exams are mainly for degree programmes.'
         },
         {
-          question: 'What is the fee for a fashion diploma?',
-          answer: 'Among 8 private institutes publishing annual fees, the middle value is about ₹62,500.'
+          question: 'What is the fee for a fashion design diploma?',
+          answer: 'Across 34 programmes with a listed fee on CollegeDecision (November 2026), the median first-year fee is about ₹68,700, with listed fees from about ₹11,000 to ₹3.15 lakh. Materials add to the cost.'
+        },
+        {
+          question: 'Is a fashion diploma as good as a degree?',
+          answer: 'A diploma is quicker and very practical, and many employers hire on portfolio. A degree helps more for senior roles at large brands, government jobs and study abroad. Check who awards the diploma before you enrol.'
+        },
+        {
+          question: 'What subjects are taught in a fashion design diploma?',
+          answer: 'Design elements, colour theory, fashion illustration, textiles, pattern making, draping, garment construction, fashion CAD, trend forecasting, merchandising and portfolio development.'
+        },
+        {
+          question: 'What jobs can I get after a fashion diploma?',
+          answer: 'Assistant fashion designer, pattern maker, merchandiser, stylist, quality controller or boutique owner. Many diploma holders start as assistants and grow with experience.'
         }
       ]
     },
     'cfd': {
       h1: 'Certificate in Fashion Design: IGNOU CFDE and Short Fashion Courses',
-      title: 'Certificate in Fashion Design 2026: IGNOU CFDE, Fees',
+      title: 'Certificate in Fashion Design 2026: IGNOU CFDE, Fees & Scope',
       description:
-        'A certificate in fashion design is a short course after Class 12. See IGNOU CFDE (16 credits, 6 months, ₹5,200), what you learn and next steps.',
+        'Certificate in Fashion Design 2026: short courses after Class 12, IGNOU CFDE (16 credits, ~₹5,200), syllabus themes, thin private listings and next steps to diplomas or UG fashion.',
       keywords: ['certificate in fashion design', 'IGNOU CFDE', 'fashion design certificate', 'short fashion course', 'fashion course 6 months', 'CFDE fee', 'fashion certificate after 12th', 'online fashion course'],
       intro:
-        'A short, entry-level fashion course; IGNOU\'s CFDE is a 16-credit, six-month certificate open to Class 12 pass students.',
+        'A Certificate in Fashion Design is a short foundation course after Class 12. IGNOU’s CFDE is a 16-credit ODL example; private studios also run certificates. Use this guide before you pay for a short fashion batch.',
       crossLink: {
         href: '/courses/diploma-fashion',
         anchor: 'Fashion design diploma guide',
-        note: 'for the one-year option'
+        note: 'Compare the longer one-year diploma option after you finish a certificate—or instead of one.'
       },
       faqs: [
-        {
-          question: 'How long is IGNOU\'s Certificate in Fashion Design?',
-          answer: 'Six months minimum, with up to two years to complete.'
-        },
-        {
-          question: 'What is the fee for IGNOU CFDE?',
-          answer: 'IGNOU lists ₹5,200 for the full programme.'
-        },
-        {
-          question: 'Who can apply for CFDE?',
-          answer: 'Anyone who has passed 10+2 from a recognised board.'
-        }
+        { question: 'How long is a Certificate in Fashion Design?', answer: 'Most certificates run about six months to one year. IGNOU CFDE has a minimum duration of six months and allows up to two years to complete.' },
+        { question: 'What is the fee for IGNOU CFDE?', answer: 'IGNOU lists the CFDE programme fee around ₹5,200. Recheck the live fee table on ignou.ac.in before you pay.' },
+        { question: 'Who can apply for a fashion design certificate?', answer: 'Usually anyone who has passed Class 12. Some hobby studios accept Class 10—confirm what award you receive.' },
+        { question: 'Is a fashion certificate the same as a diploma?', answer: 'No. Certificates are shorter foundations. Diplomas usually offer more studio hours; degrees such as B.Des are longer still.' },
+        { question: 'Is there an entrance exam for CFD?', answer: 'Generally no. Certificate admissions are eligibility-based. NIFT and NID exams apply to degree (and some diploma) pathways, not basic certificates.' },
+        { question: 'How many CFD colleges are on CollegeDecision?', answer: 'Only three published certificate listings as of November 2026, plus ODL options such as IGNOU CFDE that you should verify on the university site.' },
+        { question: 'What can I do after a fashion design certificate?', answer: 'Junior boutique or atelier assistance, starter freelance work, or—more strategically—upgrade to a fashion diploma or undergraduate design degree.' },
+        { question: 'Should I choose CFD or a fashion diploma?', answer: 'Choose the certificate to test interest or for ODL flexibility. Choose a diploma if you already want deeper construction hours and a stronger award for hiring.' }
       ]
     },
     'diploma-fine-arts': {
-      h1: 'Fine Arts Diploma: Short Studio Courses, Who They Suit and What Next',
-      title: 'Fine Arts Diploma 2026: Eligibility, Studio Skills, Next Steps',
+      h1: 'Fine Arts Diploma: Studio Courses, Eligibility, Fees & BFA Path',
+      title: 'Fine Arts Diploma 2026: Eligibility, Fees, Syllabus & Careers',
       description:
-        'A fine arts diploma is a shorter studio course in drawing, painting and sculpture. See who it suits, an example at GCA Chandigarh, and how it compares with BFA.',
+        'Fine arts diploma 2026: painting and applied-art studio courses after 10th/12th, aptitude entry, fees (median ₹27,500 in a small sample) and how they compare with BFA.',
       keywords: ['fine arts diploma', 'diploma in fine arts', 'painting diploma', 'art diploma after 10th', 'fine arts course', 'DFASA', 'diploma vs BFA', 'art teacher course'],
       intro:
-        'A shorter studio qualification in drawing, painting, sculpture or applied art, offered by art colleges and universities.',
+        'A fine arts diploma is a shorter studio qualification in drawing, painting, sculpture or applied art. Use this guide for eligibility, fees and when to choose a BFA instead.',
       crossLink: {
         href: '/courses/bfa',
         anchor: 'BFA course guide',
-        note: 'for the four-year degree'
+        note: 'for the four-year undergraduate studio degree'
       },
       faqs: [
-        {
-          question: 'Can I do a fine arts diploma after 10th?',
-          answer: 'Some institutes accept Class 10; for example, GCA Chandigarh\'s DFASA admits Class 10 candidates through an aptitude test.'
-        },
-        {
-          question: 'Is a fine arts diploma enough to teach art?',
-          answer: 'It can be enough for hobby centres; colleges and many schools ask for a BFA or higher.'
-        },
-        {
-          question: 'Is a diploma or BFA better?',
-          answer: 'A BFA is the standard route to MFA, UGC-NET and college teaching; a diploma is a shorter studio option.'
-        }
+        { question: 'Can I do a fine arts diploma after 10th?', answer: 'Some institutes accept Class 10 with an aptitude test—for example certain DFASA-type routes. Many one-year diplomas still ask for Class 12.' },
+        { question: 'Is a fine arts diploma enough to teach art?', answer: 'It may suit hobby centres; colleges and many schools prefer a BFA or higher plus required education credentials.' },
+        { question: 'Diploma or BFA—which is better?', answer: 'A BFA is the standard route to MFA, UGC-NET and college teaching. A diploma is a shorter, cheaper studio option.' },
+        { question: 'What is the fee for a fine arts diploma?', answer: 'Among 8 private first-year tuition records on CollegeDecision (November 2026), the median is about ₹27,500. Add materials costs.' },
+        { question: 'Is there a national entrance exam?', answer: 'No. Institutes run their own aptitude tests or portfolio reviews.' },
+        { question: 'How many fine arts diploma colleges are listed?', answer: '14 programmes at 11 published institutes on CollegeDecision as of November 2026.' },
+        { question: 'What specialisations exist?', answer: 'Common labels include painting, applied art, sculpture, art-teacher diploma and advance diploma—hours and depth vary widely.' },
+        { question: 'What should I check before paying?', answer: 'Award name, supervised studio hours, critique culture, materials policy and a sample certificate.' }
       ]
     },
     'diploma-culinary-arts-patisserie': {
@@ -6063,31 +5649,27 @@ export function courseSeo(profile: CourseSeoInput): CourseSeoPack {
       ]
     },
     'certificate-program': {
-      h1: 'Certificate Programmes: University, Open University and Skill Certificates',
-      title: 'Certificate Programmes 2026: Types, Credits, How to Choose',
+      h1: 'Certificate Programmes: Types, Fees, Recognition & How to Choose',
+      title: 'Certificate Programmes 2026: Types, Fees, Eligibility & Careers',
       description:
-        'Certificate programmes compared: UGC UG certificates (40 credits), B.Voc exits (NSQF 5+), open-university certificates and skill certificates.',
-      keywords: ['certificate programme', 'certificate course', 'UG certificate UGC', 'IGNOU certificate', 'B.Voc diploma', 'short certificate course', 'certificate after 12th', 'certificate course recognition'],
+        'Certificate programmes explained as a catch-all of short awards: media, language, office and skill certificates, thin fee sample, recognition checks and when to upgrade to a diploma or degree.',
+      keywords: ['certificate programme', 'certificate course', 'certificate course after 12th', 'short certificate course', 'media certificate course', 'IGNOU certificate', 'certificate course recognition', 'certificate vs diploma'],
       intro:
-        'A comparison of the main kinds of certificate programmes in India and what each is worth.',
+        'Certificate programmes on CollegeDecision are a catch-all of short awards—often weeks to a year. Compare awarding body, hours and assessment before you pay, and upgrade to a diploma or degree when you need stronger recognition.',
       crossLink: {
-        href: '/courses/advance-certificate',
-        anchor: 'Advanced certificate guide',
-        note: 'for NSQF levels and verification'
+        href: '/courses/certification',
+        anchor: 'Skill certifications guide',
+        note: 'for NSQF / professional certification checks; also see subject diploma pages for longer programmes.'
       },
       faqs: [
-        {
-          question: 'What is a UG Certificate?',
-          answer: 'Under the UGC framework, the award for exiting after the first year of a degree with 40 credits plus a 4-credit vocational course.'
-        },
-        {
-          question: 'Are certificate courses recognised?',
-          answer: 'University and NSQF-aligned certificates are; check credits or the NSQF level and the awarding body.'
-        },
-        {
-          question: 'How long is a certificate programme?',
-          answer: 'From a few weeks to one year, depending on the type.'
-        }
+        { question: 'What is a certificate programme on this page?', answer: 'A catch-all of short certificates listed on CollegeDecision—not one national syllabus. Rows include media, language, office, wellness and other short awards.' },
+        { question: 'Are certificate courses recognised?', answer: 'University and NSQF-aligned certificates have clearer recognition paths. Private studio certificates depend on employer acceptance and portfolio proof—verify the awarding body.' },
+        { question: 'How long is a certificate programme?', answer: 'From a few weeks to about one year, depending on the provider and award type.' },
+        { question: 'What is the fee for certificate programmes?', answer: 'Only four published programmes show usable tuition here (November 2026), with a median near ₹10,500. That sample is too small for a national figure—get a written quote.' },
+        { question: 'Certificate vs diploma—which should I choose?', answer: 'Choose a certificate for a short skill trial; choose a diploma or degree when you need more hours, stronger recognition or an academic ladder.' },
+        { question: 'Is there an entrance exam?', answer: 'Usually no. A few selective media schools use interviews or tasks.' },
+        { question: 'How many certificate programmes are listed?', answer: 'About 78 active programmes at 33 published institutes after moving BBA Digital Marketing rows to BBA (November 2026).' },
+        { question: 'What should I check before paying?', answer: 'Certificate specimen name, contact hours, assessment, equipment access, total cost and refund rules.' }
       ]
     },
     'certification': {
@@ -6119,62 +5701,77 @@ export function courseSeo(profile: CourseSeoInput): CourseSeoPack {
       ]
     },
     'animation-diploma': {
-      h1: 'Animation Diploma: One-Year 2D and 3D Courses, Syllabus and Careers',
-      title: 'Animation Diploma 2026: 2D/3D Syllabus, Eligibility, Jobs',
+      h1: 'Animation Diploma: 2D/3D Courses, Syllabus, Fees & Careers',
+      title: 'Animation Diploma 2026: Eligibility, Fees, Syllabus & Jobs',
       description:
-        'A one-year animation diploma after Class 12: real university syllabi (2D, 3D, rigging, rendering), eligibility, and first jobs in animation and VFX.',
+        'Animation diploma after Class 12: 2D/3D/VFX tracks, eligibility, fees (median ₹64,500 in a small sample), colleges and showreel-led careers vs Animation UG.',
       keywords: ['animation diploma', 'diploma in animation', '2D 3D animation course', 'animation course after 12th', 'diploma in multimedia and animation', 'animation syllabus', 'animation jobs', 'VFX course'],
       intro:
-        'A one-year diploma teaching 2D and 3D animation, modelling, rigging, lighting and rendering after Class 12.',
+        'An animation diploma is a practical one- to two-year course in 2D/3D and related pipelines after Class 12. Compare labs, showreels and fees before you pay.',
       crossLink: {
-        href: '/courses/animation-ug',
-        anchor: 'Animation (UG) course guide',
-        note: 'for degree options'
+        href: '/animation-diploma-colleges',
+        anchor: 'Compare animation diploma colleges',
+        note: 'Browse diploma campuses, then see the Animation UG guide for degree options.'
       },
       faqs: [
-        {
-          question: 'How long is an animation diploma?',
-          answer: 'Typically one year; Bharathiar University allows up to two years with re-registration.'
-        },
-        {
-          question: 'What is the eligibility for an animation diploma?',
-          answer: 'Class 12; some universities set a minimum such as 50%.'
-        },
-        {
-          question: 'What matters most for animation jobs?',
-          answer: 'Your showreel.'
-        }
+        { question: 'How long is an animation diploma?', answer: 'Typically about one to two years, depending on the institute. Some university patterns allow re-registration windows—check the syllabus.' },
+        { question: 'What is the eligibility for an animation diploma?', answer: 'Usually Class 12 from a recognised board. A few tracks accept Class 10. Portfolios help at selective schools.' },
+        { question: 'Is there an entrance exam?', answer: 'Usually no national test. Institutes may use a drawing aptitude or interview. Degree entrances are separate.' },
+        { question: 'What is the fee for an animation diploma?', answer: 'On CollegeDecision in November 2026, 10 private first-year tuition records showed a median of about ₹64,500. Budget laptop and software separately.' },
+        { question: 'Diploma vs Animation UG—which should I choose?', answer: 'Choose a diploma for a faster tool-focused start; choose UG for a longer academic degree path. Many students upgrade after building a reel.' },
+        { question: 'How many animation diploma programmes are listed?', answer: '37 programmes at 21 published institutes after moving B.Sc multimedia rows to Animation UG (November 2026).' },
+        { question: 'What jobs can I get after the diploma?', answer: 'Junior animator, layout assistance, roto/paint, motion-graphics trainee and similar reel-driven roles—outcomes depend on showreel quality.' },
+        { question: 'What should I check before paying fees?', answer: 'Legal software seats, supervised lab hours, recent student reels, written fees and refund rules.' }
       ]
     },
     'architecture-diploma': {
-      h1: 'Diploma in Architecture (Architectural Assistantship): 3-Year Polytechnic Course',
-      title: 'Architecture Diploma 2026: 3 Years After 10th, Admission',
+      h1: 'Diploma in Architecture Course: Eligibility, Fees, Syllabus and Careers 2026',
+      title: 'Diploma in Architecture 2026: 3 Years, Fees, Assistantship',
       description:
-        'Diploma in Architecture / Architectural Assistantship is a 3-year polytechnic course after Class 10. See eligibility, syllabus, jobs and the path to B.Arch.',
-      keywords: ['diploma in architecture', 'architectural assistantship', 'architecture diploma after 10th', 'D.Arch polytechnic', 'architecture diploma eligibility', 'architecture diploma jobs', 'polytechnic architecture', 'diploma to B.Arch'],
+        'Diploma in architecture / architectural assistantship guide: Class 10 eligibility, 3-year polytechnic pattern, fees sample, syllabus and B.Arch path notes.',
+      keywords: ['diploma in architecture', 'architecture diploma', 'architectural assistantship', 'D.Arch', 'architecture diploma after 10th', 'architecture diploma fees', 'polytechnic architecture'],
       intro:
-        'A three-year, six-semester polytechnic diploma after Class 10 that trains architectural assistants and draughtspersons.',
+        'A diploma in architecture is usually a three-year polytechnic programme after Class 10 that trains drafting and assistant skills. It is not a CoA B.Arch degree. Check eligibility, fees and further-study paths here.',
       crossLink: {
-        href: '/courses/architecture',
-        anchor: 'Architecture course guide',
-        note: 'to become a registered architect'
+        href: '/architecture-diploma-colleges',
+        anchor: 'Compare architecture diploma colleges',
+        note: 'Browse architecture diploma and assistantship programmes listed on CollegeDecision.'
       },
       faqs: [
         {
-          question: 'How long is the diploma in architecture?',
-          answer: 'Three years (six semesters) after Class 10.'
+          question: 'What is a diploma in architecture?',
+          answer: 'A polytechnic or university diploma—often three years after Class 10—focused on architectural assistant and drafting skills.'
         },
         {
-          question: 'What marks are needed?',
-          answer: 'It depends on the state; Maharashtra asks for 35% in SSC for 2026-27.'
+          question: 'Is it the same as B.Arch?',
+          answer: 'No. B.Arch is the professional CoA degree. A diploma does not automatically confer the architect title.'
         },
         {
-          question: 'Can a diploma holder become an architect?',
-          answer: 'Only after a five-year B.Arch and registration with the Council of Architecture.'
+          question: 'Can I join after Class 10?',
+          answer: 'Yes for most state polytechnic diplomas. Some university diplomas ask for Class 12.'
+        },
+        {
+          question: 'Do I need NATA for the diploma?',
+          answer: 'Usually no. NATA is primarily for B.Arch admissions.'
+        },
+        {
+          question: 'How long is the course?',
+          answer: 'Standard assistantship diplomas are about three years; read advanced-diploma offers carefully.'
+        },
+        {
+          question: 'What is the fee?',
+          answer: 'Our small listed sample median is about ₹54,750 Year-1 across 6 fee rows (November 2026).'
+        },
+        {
+          question: 'What jobs can I get?',
+          answer: 'Architectural assistant, CAD drafting and junior support roles under licensed professionals.'
+        },
+        {
+          question: 'Can I do B.Arch after this diploma?',
+          answer: 'Possibly through routes your university and CoA rules allow that year—confirm before you join solely for that reason.'
         }
       ]
-    },
-    'maslp': {
+    },    'maslp': {
       h1: 'MASLP and M.Sc in Speech-Language Pathology: Eligibility, AIISH Entrance, Careers',
       title: 'MASLP 2026: Eligibility, AIISH Entrance, Seats, Careers',
       description:
@@ -6363,31 +5960,27 @@ export function courseSeo(profile: CourseSeoInput): CourseSeoPack {
       ]
     },
     'bsw': {
-      h1: 'BSW (Bachelor of Social Work): Fieldwork, Eligibility, Fees and Careers',
-      title: 'BSW Course 2026: Eligibility, Fieldwork, Fees, Careers',
+      h1: 'BSW Course: Eligibility, Subjects, Fees, Syllabus and Careers 2026',
+      title: 'BSW Course 2026: Eligibility, Fees, Syllabus & Fieldwork Guide',
       description:
-        'BSW is a 3-year social work degree with supervised fieldwork. See IGNOU’s 96-credit structure, eligibility, fees at 15 institutes and NGO/CSR careers.',
-      keywords: ['BSW course', 'Bachelor of Social Work', 'BSW eligibility', 'BSW fees', 'IGNOU BSW', 'BSW fieldwork', 'social work degree', 'BSW careers'],
+        'BSW course details for 2026-27: Class 12 eligibility, admission, fieldwork-focused syllabus, fees (median about ₹36,250 a year on a small sample), colleges and careers.',
+      keywords: ['BSW course', 'Bachelor of Social Work', 'BSW eligibility', 'BSW subjects', 'BSW fees in India', 'BSW syllabus', 'BSW career', 'BSW vs MSW'],
       intro:
-        'A three-year undergraduate degree in social work that combines classroom learning with supervised fieldwork.',
+        'The BSW course is a three-year undergraduate social work degree after Class 12. Check eligibility, fieldwork requirements, fees and careers before you shortlist colleges.',
       crossLink: {
-        href: '/courses/msw',
-        anchor: 'MSW course guide',
-        note: 'for the master’s degree'
+        href: '/bsw-colleges',
+        anchor: 'Compare BSW colleges by fees and city',
+        note: 'Ready to shortlist? Browse BSW colleges with listed fees and programme details.'
       },
       faqs: [
-        {
-          question: 'How long is BSW?',
-          answer: 'Three years; IGNOU allows up to six.'
-        },
-        {
-          question: 'How much fieldwork is in BSW?',
-          answer: 'At IGNOU, 24 of 96 credits are fieldwork and practicum.'
-        },
-        {
-          question: 'What is the BSW fee?',
-          answer: 'Among 15 institutes publishing annual fees, the middle value is about ₹32,500.'
-        }
+        { question: 'What is the eligibility for the BSW course?', answer: 'You need a Class 12 pass from a recognised board. Most colleges ask for about 45% to 50% marks; any stream can usually apply. Exact cut-offs are set by the university.' },
+        { question: 'Is BSW a 3-year course?', answer: 'Yes. Most BSW programmes are three years. A few campuses list four-year tracks — confirm on the prospectus.' },
+        { question: 'Does BSW include fieldwork?', answer: 'Yes. Supervised fieldwork is a core graded component, alongside theory papers and often a research project.' },
+        { question: 'What is the fee for a BSW in India?', answer: 'Across 14 programme records on CollegeDecision (November 2026), the median first-year tuition is ₹36,250. The sample is small, so confirm the current brochure.' },
+        { question: 'What is the difference between BSW and B.A. Sociology?', answer: 'BSW focuses on professional social-work methods and fieldwork. B.A. Sociology is a broader social-science degree without the same practice structure.' },
+        { question: 'Can I do MSW after BSW?', answer: 'Yes. BSW is a common feeder for MSW. Some MSW departments prefer BSW or social-science graduates.' },
+        { question: 'Are there entrance exams for BSW?', answer: 'Most seats use Class 12 merit. Some universities add an interview or their own test. CUET UG applies only if a university maps BSW to it.' },
+        { question: 'What jobs can I get after BSW?', answer: 'Common starts include NGO field roles, community projects, school or child-service support roles, and contractual welfare projects. Many graduates continue to MSW.' }
       ]
     },
     'bachelor-hotel-hospitality-tourism': {

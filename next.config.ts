@@ -42,6 +42,132 @@ const nextConfig: NextConfig = {
   },
   async redirects() {
     return [
+      {
+        source: '/physiotherapy-colleges',
+        destination: '/bpt-colleges',
+        statusCode: 301
+      },
+      {
+        source: '/courses/bpt',
+        destination: '/courses/physiotherapy',
+        statusCode: 301
+      },
+      {
+        source: '/dental-colleges',
+        destination: '/bds-colleges',
+        statusCode: 301
+      },
+      // diploma-in-library-science listing below 15-college minimum (2 published institutes after cleanup, 5 Nov 2026)
+      {
+        source: '/diploma-in-library-science-colleges',
+        destination: '/courses/diploma-library-science',
+        statusCode: 301
+      },
+      // online-mca fell below the 15-college listing minimum after removing campus-only colleges wrongly tagged online (5 Nov 2026)
+      {
+        // duplicate mass-communication course (id 135, 1 programme) inactivated 5 Nov 2026
+        source: '/courses/masscomm',
+        destination: '/courses/mass-communication',
+        statusCode: 301
+      },
+      {
+        // empty duplicate M.Lib course (id 1228) inactivated 5 Nov 2026 — canonical /courses/m-lib
+        source: '/courses/mlibsc',
+        destination: '/courses/m-lib',
+        statusCode: 301
+      },
+      {
+        // thin BVA course (id 1216, 1 programme) consolidated into BFA 5 Nov 2026
+        source: '/courses/bva',
+        destination: '/courses/bfa',
+        statusCode: 301
+      },
+      {
+        // duplicate MPT course slug inactivated 5 Nov 2026 — point to canonical /courses/mpt
+        source: '/courses/master-of-physiotherapy-mpt',
+        destination: '/courses/mpt',
+        permanent: true,
+      },
+      {
+        source: '/courses/master-of-physiotherapy-mpt/:path*',
+        destination: '/courses/mpt',
+        permanent: true,
+      },
+      // aviation-pg / diploma-design listings below threshold or missing (5 Nov 2026)
+      {
+        source: '/aviation-pg-colleges',
+        destination: '/courses/aviation-pg',
+        permanent: true,
+      },
+      {
+        source: '/diploma-design-colleges',
+        destination: '/courses/diploma-design',
+        permanent: true,
+      },
+      // polytechnic-diploma consolidated into polytechnic; chem-eng listings thin (5 Nov 2026)
+      {
+        source: '/courses/polytechnic-diploma',
+        destination: '/courses/polytechnic',
+        permanent: true,
+      },
+      {
+        source: '/courses/polytechnic-diploma/:path*',
+        destination: '/courses/polytechnic',
+        permanent: true,
+      },
+      {
+        source: '/polytechnic-diploma-colleges',
+        destination: '/courses/polytechnic',
+        permanent: true,
+      },
+      {
+        source: '/b-chem-eng-colleges',
+        destination: '/courses/b-chem-eng',
+        permanent: true,
+      },
+      {
+        source: '/m-chem-eng-colleges',
+        destination: '/courses/m-chem-eng',
+        permanent: true,
+      },
+      {
+        source: '/online-mca-colleges',
+        destination: '/courses/online-mca',
+        statusCode: 301
+      },
+      // online-ma / online-msc / mph listings below 15-college minimum after UGC-DEB cleanup (5 Nov 2026)
+      {
+        source: '/online-ma-colleges',
+        destination: '/courses/online-ma',
+        statusCode: 301
+      },
+      {
+        source: '/online-msc-colleges',
+        destination: '/courses/online-msc',
+        statusCode: 301
+      },
+      {
+        source: '/mph-colleges',
+        destination: '/courses/mph',
+        statusCode: 301
+      },
+      // BUMS listing too thin (< published colleges); keep URL discoverable
+      {
+        source: '/bums-colleges',
+        destination: '/courses/bums',
+        permanent: true,
+      },
+      // architecture listing slug mismatch: page lives at /barch-colleges
+      {
+        source: '/architecture-colleges',
+        destination: '/barch-colleges',
+        statusCode: 301
+      },
+      {
+        source: '/m-ed-colleges',
+        destination: '/med-colleges',
+        statusCode: 301
+      },
       // 9278 is SJCET, Bhandana, Dausa (Rajasthan), not Mysuru: approved slug change
       {
         source: '/colleges/s-j-college-of-engineering-and-technology-karnataka-mysuru/:path*',
@@ -176,6 +302,8 @@ const nextConfig: NextConfig = {
       { source: '/exams/comedk-uget-3/:path*', destination: '/exams/comedk-uget/:path*', statusCode: 301 },
       { source: '/exams/comedk-uget-4/:path*', destination: '/exams/comedk-uget/:path*', statusCode: 301 },
       { source: '/courses/btech', destination: '/courses/engineering', permanent: true },
+      // course 160 (d-pharm) had no programmes and duplicated D.Pharma; consolidated 2026-11-05
+      { source: '/courses/d-pharm', destination: '/courses/d-pharma-course', permanent: true },
       { source: '/btech-colleges', destination: '/engineering-colleges', permanent: true },
       {
         source: '/articles/chandigarh-university-cu-vs-chitkara-university-chandigarh-engineering-decision-guide',

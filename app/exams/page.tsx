@@ -1,6 +1,6 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
-import { CalendarDays } from 'lucide-react';
+import { BadgeCheck, BookOpen, CalendarDays, ClipboardCheck } from 'lucide-react';
 import { api } from '../../lib/api';
 import ExamDirectory, { type ExamList } from '../../components/ExamDirectory';
 import AdSlot from '../../components/ads/AdSlot';
@@ -35,17 +35,48 @@ export default async function ExamsPage() {
       { '@type': 'BreadcrumbList', '@id': `${pageUrl}#breadcrumb`, itemListElement: [{ '@type': 'ListItem', position: 1, name: 'Home', item: siteUrl }, { '@type': 'ListItem', position: 2, name: 'Exams', item: `${siteUrl}/exams` }, ...(activeCourse ? [{ '@type': 'ListItem', position: 3, name: activeCourse.name, item: pageUrl }] : [])] }
     ]
   };
-  return <main className="section"><div className="wrap">
+  const stats = [
+    result.pagination.total ? { icon: ClipboardCheck, value: result.pagination.total, label: 'Exams listed' } : null,
+    upcoming.length ? { icon: CalendarDays, value: upcoming.length, label: 'Dates this season' } : null,
+    courses.length ? { icon: BookOpen, value: courses.length, label: 'Course paths' } : null
+  ].filter((item): item is { icon: typeof ClipboardCheck; value: number; label: string } => Boolean(item));
+  return <main className="section ex-page"><div className="wrap">
     <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
-    <nav className="breadcrumb" aria-label="Breadcrumb"><Link href="/">Home</Link><span aria-hidden="true">›</span><span aria-current="page">Exams</span></nav>
-    <section className="articles-hero"><div className="articles-hero-copy"><p className="eyebrow">ENTRANCE EXAM GUIDES</p><h1>{heading}</h1><p>Compare exam dates, registration status, application fees, linked programmes and the colleges that accept each exam, then open the full exam profile before you apply.</p></div><img src="/exams-hero.webp" alt="Students preparing for college entrance exams" width="1200" height="675" fetchPriority="high" loading="eager" decoding="async" /></section>
+    <nav className="breadcrumb ex-crumb" aria-label="Breadcrumb"><Link href="/">Home</Link><span aria-hidden="true">›</span><span aria-current="page">Exams</span></nav>
+
+    <section className="ex-hero">
+      <div className="ex-hero-inner">
+        <div className="ex-hero-copy">
+          <span className="ex-kicker"><BadgeCheck size={15} aria-hidden="true" /> Entrance exam guides</span>
+          <h1>{heading}</h1>
+          <p>Compare exam dates, registration status, application fees, linked programmes and the colleges that accept each exam, then open the full exam profile before you apply.</p>
+        </div>
+        <div className="ex-hero-visual">
+          <img src="/exams-hero.webp" alt="Students preparing for college entrance exams" width="1200" height="675" fetchPriority="high" loading="eager" decoding="async" />
+        </div>
+      </div>
+      {stats.length > 0 && <dl className="ex-stats">{stats.map((item) => <div key={item.label}>
+        <span className="ex-stat-icon"><item.icon size={18} aria-hidden="true" /></span>
+        <dt>{item.label}</dt>
+        <dd>{item.value.toLocaleString('en-IN')}{item.value >= 20 ? '+' : ''}</dd>
+      </div>)}</dl>}
+    </section>
+
     <AdSlot slotKey="listing_top" className="listing-ad" />
 
-    {upcoming.length > 0 ? <section className="exam-upcoming" aria-labelledby="upcoming-exams">
-      <h2 id="upcoming-exams"><CalendarDays size={18} aria-hidden="true" /> Upcoming exam dates</h2>
-      <ol className="exam-upcoming-list">{upcoming.map((item) => {
+    {upcoming.length > 0 ? <section className="ex-upcoming" aria-labelledby="upcoming-exams">
+      <div className="ex-upcoming-head">
+        <p className="ex-eyebrow"><CalendarDays size={14} aria-hidden="true" /> Exam calendar</p>
+        <h2 id="upcoming-exams">Upcoming exam dates</h2>
+      </div>
+      <ol className="ex-upcoming-list">{upcoming.map((item) => {
         const days = daysUntil(item.exam_start_date);
-        return <li key={item.slug}><Link href={`/exams/${item.slug}`}><strong>{item.name}</strong><span>{examFormatDate(item.exam_start_date)}</span><em>{days === 0 ? 'Today' : `${days} day${days === 1 ? '' : 's'} left`}</em></Link></li>;
+        const date = new Date(`${item.exam_start_date.slice(0, 10)}T00:00:00Z`);
+        return <li key={item.slug}><Link href={`/exams/${item.slug}`}>
+          <span className="ex-date"><strong>{date.getUTCDate()}</strong><small>{date.toLocaleDateString('en-IN', { month: 'short', timeZone: 'UTC' })}</small></span>
+          <span className="ex-upcoming-copy"><strong>{item.name}</strong><small>{examFormatDate(item.exam_start_date)}</small></span>
+          <em className={days <= 14 ? 'is-soon' : undefined}>{days === 0 ? 'Today' : `${days} day${days === 1 ? '' : 's'} left`}</em>
+        </Link></li>;
       })}</ol>
     </section> : null}
 

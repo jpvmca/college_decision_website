@@ -2,11 +2,12 @@ import type { Metadata } from 'next';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import { Fragment } from 'react';
-import { api, ArticleList, mediaUrl } from '../../lib/api';
+import { api, ArticleList } from '../../lib/api';
 import { getPageItems } from '../../lib/pagination';
 import ArticleFilters from '../../components/ArticleFilters';
+import GuideCard from '../../components/GuideCard';
 import AdSlot from '../../components/ads/AdSlot';
-import { ArrowLeft, ArrowRight, CheckCircle2 } from 'lucide-react';
+import { ArrowLeft, ArrowRight, BadgeCheck, BookOpen, FileText } from 'lucide-react';
 
 type ArticleType = 'all' | 'budget' | 'fees' | 'admission' | 'gov-avg-package' | 'exam-admission';
 const ALL_ARTICLE_TYPES: ArticleType[] = ['budget', 'fees', 'admission', 'gov-avg-package', 'exam-admission'];
@@ -32,19 +33,8 @@ function articlesHref(page: number, _type?: ArticleType, _budget?: number) {
   return page > 1 ? `/articles?page=${page}` : '/articles';
 }
 
-function getResponsiveImageSources(rawImageUrl: string) {
-  // Site-local static assets (e.g. /articles-hero.webp in public/) are served by Next, not the media backend.
-  if (rawImageUrl.startsWith('/') && !rawImageUrl.startsWith('/uploads/')) {
-    return { src: rawImageUrl, srcSet: undefined, sizes: undefined };
-  }
-  const imageUrl = mediaUrl(rawImageUrl);
-  const widths = [480, 768, 1200, 1600];
-  const addQuery = (width: number) => `${imageUrl}?w=${width}&h=${Math.round(width * 0.5625)}&q=78&convert=webp`;
-  return {
-    src: addQuery(1200),
-    srcSet: widths.map((width) => `${addQuery(width)} ${width}w`).join(', '),
-    sizes: '(max-width: 760px) 100vw, 50vw'
-  };
+function formatCount(value: number) {
+  return value.toLocaleString('en-IN');
 }
 
 // Only ?page= is a real URL here; every other parameter (type, budget, ...) is 301'd away in proxy.ts and filters work client-side.
@@ -126,18 +116,6 @@ export default async function ArticlesPage({ searchParams }: { searchParams: Pro
   if (page > 1 && result.pagination.totalPages > 0 && page > result.pagination.totalPages) notFound();
   if (page > 1 && result.pagination.totalPages === 0) notFound();
 
-  const pill =
-    type === 'admission'
-      ? 'Admission & eligibility'
-      : type === 'fees'
-        ? 'Course fees'
-        : type === 'gov-avg-package'
-          ? 'Gov · avg package'
-          : type === 'exam-admission'
-            ? 'MBA · entrance exam'
-          : type === 'all'
-            ? 'Published guide'
-          : `Up to ₹${budget} lakh`;
   const siteUrl = (process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3001').replace(/\/+$/, '');
   const jsonLd = {
     '@context': 'https://schema.org',
@@ -163,47 +141,50 @@ export default async function ArticlesPage({ searchParams }: { searchParams: Pro
       }
     ]
   };
-  return <main className="section"><div className="wrap">
+  const stats = [
+    result.pagination.total ? { icon: FileText, value: result.pagination.total, label: 'Guides listed' } : null,
+    visibleTypes.length ? { icon: BookOpen, value: visibleTypes.length, label: 'Guide topics' } : null,
+    result.pagination.totalPages > 1 ? { icon: BookOpen, value: result.pagination.totalPages, label: 'Pages' } : null
+  ].filter((item): item is { icon: typeof FileText; value: number; label: string } => Boolean(item));
+  return <main className="section ls-page"><div className="wrap">
     <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
-    <nav className="breadcrumb" aria-label="Breadcrumb"><Link href="/">Home</Link><span aria-hidden="true">›</span><span aria-current="page">Articles</span></nav>
-    <section className="articles-hero"><div className="articles-hero-copy"><p className="eyebrow">STUDENT DECISION GUIDES</p><h1>Compare colleges with a clearer plan</h1><p>Explore course-by-course guides that bring fees, admission routes, eligibility and outcomes into one practical comparison.</p><p><Link className="button primary" href="/compare-colleges-2026">Compare colleges directly <ArrowRight size={16} aria-hidden="true" /></Link></p></div>{(() => { const image = getResponsiveImageSources('/articles-hero.webp'); return <img src={image.src} srcSet={image.srcSet} sizes={image.sizes} alt="Students comparing college decision guides" width="1200" height="675" fetchPriority="high" loading="eager" decoding="async" />; })()}</section>
+    <nav className="breadcrumb ls-crumb" aria-label="Breadcrumb"><Link href="/">Home</Link><span aria-hidden="true">›</span><span aria-current="page">Articles</span></nav>
+    <section className="ls-hero">
+      <div className="ls-hero-inner">
+        <div className="ls-hero-copy">
+          <span className="ls-kicker"><BadgeCheck size={15} aria-hidden="true" /> Student decision guides</span>
+          <h1>Compare colleges with a clearer plan</h1>
+          <p>Explore course-by-course guides that bring fees, admission routes, eligibility and outcomes into one practical comparison.</p>
+          <div className="ls-hero-actions">
+            <Link className="button ls-btn-primary" href="/compare-colleges-2026">Compare colleges directly <ArrowRight size={16} aria-hidden="true" /></Link>
+            <Link className="button ls-btn-ghost" href="/colleges">Browse colleges</Link>
+          </div>
+        </div>
+        <div className="ls-hero-visual">
+          <img src="/articles-hero.webp" alt="Students comparing college decision guides" width="1200" height="675" fetchPriority="high" loading="eager" decoding="async" />
+        </div>
+      </div>
+      {stats.length > 0 && <dl className="ls-stats">{stats.map((item) => <div key={item.label}>
+        <span className="ls-stat-icon"><item.icon size={18} aria-hidden="true" /></span>
+        <dt>{item.label}</dt>
+        <dd>{formatCount(item.value)}{item.value >= 20 ? '+' : ''}</dd>
+      </div>)}</dl>}
+    </section>
     <AdSlot slotKey="articles_top" className="listing-ad" />
-    <p className="muted">Twenty guides appear on each page. Open a guide to see the matching course options and the questions you should verify before applying.</p>
-    <ArticleFilters visibleTypes={visibleTypes}>
-    <div className="article-list">
-      {result.data.length ? result.data.map((article, index) => (
-        <Fragment key={article.id}><article className={article.imageUrl ? 'article-card article-card-with-image' : 'article-card'}>
-          {article.imageUrl && (() => {
-            const image = getResponsiveImageSources(article.imageUrl);
-            return <img className="article-card-image" src={image.src} srcSet={image.srcSet} sizes="(max-width: 760px) calc(100vw - 40px), min(1080px, calc(100vw - 40px))" alt={article.title} width="1200" height="675" loading="lazy" decoding="async" />;
-          })()}
-          <div className="article-card-content">
-          <div className="article-card-top">
-            <span className="pill">{type === 'all'
-              ? article.articleType === 'fees'
-                ? 'Course fees'
-                : article.articleType === 'admission'
-                  ? 'Admission & eligibility'
-                  : article.articleType === 'gov-avg-package'
-                    ? 'Gov · avg package'
-                    : article.articleType === 'exam-admission'
-                      ? 'MBA · entrance exam'
-                    : 'Budget guide'
-              : pill}</span>
-            <span className="muted">{article.candidateCount || 0} options</span>
-          </div>
-          <h2><Link href={`/articles/${article.slug}`}>{article.title}</Link></h2>
-          <p className="article-card-excerpt">{article.content || 'Compare fees, eligibility, admission route and outcomes before making a college decision.'}</p>
-          <div className="article-facts">
-            <span><CheckCircle2 size={15} aria-hidden="true" /> {article.articleType === 'gov-avg-package' ? 'Average package ranked' : article.articleType === 'exam-admission' ? 'Entrance exam matched' : article.articleType === 'admission' ? 'Eligibility checked' : article.articleType === 'fees' ? 'Fee comparison' : 'Budget comparison'}</span>
-            <span><CheckCircle2 size={15} aria-hidden="true" /> {article.articleType === 'gov-avg-package' ? 'Government colleges' : 'Admission context'}</span>
-            {article.placementCount ? <span><CheckCircle2 size={15} aria-hidden="true" /> {article.placementCount} placement-linked options</span> : null}
-            {article.examCount ? <span><CheckCircle2 size={15} aria-hidden="true" /> {article.examCount} entrance routes</span> : null}
-          </div>
-          </div>
-        </article>{(index + 1) % 5 === 0 ? <AdSlot slotKey="article_feed" className="ad-in-list" /> : null}</Fragment>
-      )) : <div className="card"><h2>Guides are being prepared</h2><p>No article passed the current data checks.</p></div>}
+    <div className="ls-head">
+      <p className="ls-eyebrow"><FileText size={14} aria-hidden="true" /> Directory</p>
+      <h2>Browse decision guides</h2>
     </div>
+    <p className="ls-count">Twenty guides appear on each page. Open a guide to see the matching course options and the questions you should verify before applying.</p>
+    <ArticleFilters visibleTypes={visibleTypes}>
+    {result.data.length ? <div className="ls-courses">
+      {result.data.map((article, index) => (
+        <Fragment key={article.id}>
+          <GuideCard article={article} index={index} />
+          {(index + 1) % 5 === 0 ? <AdSlot slotKey="article_feed" className="ad-in-list" /> : null}
+        </Fragment>
+      ))}
+    </div> : <div className="ls-empty"><h2>Guides are being prepared</h2><p>No article passed the current data checks.</p></div>}
     {result.pagination.totalPages > 1 && <Pagination page={page} totalPages={result.pagination.totalPages} budget={budget} type={type} />}
     </ArticleFilters>
     <AdSlot slotKey="articles_bottom" className="listing-ad" />

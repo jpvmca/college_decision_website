@@ -126,9 +126,14 @@ function profileFaqs(profile: CourseProfile, name: string, curated?: Array<{ que
 }
 
 function decisionNote(profile: CourseProfile, name: string) {
-  const fee = Number(profile.fees?.min_total_fee || 0);
+  // A "from" total fee is only representative when enough programmes list a whole-course total;
+  // otherwise use the average recorded annual fee (avoids a single outlier reading as the minimum).
+  const totalFeeProgrammes = Number(profile.fees?.programmes_with_fees || 0);
+  const minTotal = totalFeeProgrammes >= 5 ? Number(profile.fees?.min_total_fee || 0) : 0;
+  const yearFee = Number(profile.fees?.average_year_fee || 0);
+  const feeText = minTotal ? `recorded total fees from ${money(minTotal)}` : yearFee ? `an average recorded annual fee of about ${money(Math.round(yearFee / 1000) * 1000)}` : '';
   const averagePackage = Math.max(...profile.placements.map((item) => Number(item.average_package) || 0), 0);
-  if (fee && averagePackage) return `${name} has recorded total fees from ${money(fee)} and placement records with average packages up to ${packageValue(averagePackage)}. Use these figures to shortlist, then verify the same programme, year and category before deciding.`;
+  if (feeText && averagePackage) return `${name} has ${feeText} and placement records with year-wise average packages up to ${packageValue(averagePackage)}. Use these figures to shortlist, then verify the same programme, year and category before deciding.`;
   if (profile.placements.length) return `${name} has active placement records. Fee and package values can vary by year and specialisation, so compare the latest official report before applying.`;
   if (profile.reviewSummary.averageRating) return `${name} has a ${profile.reviewSummary.averageRating.toFixed(1)}/5 aggregate student rating. Prioritise official fee, admission and outcome information for your decision.`;
   return `Use ${name}'s eligibility, fee and admission records as a shortlist starting point. Confirm current dates, total cost and outcomes before applying.`;

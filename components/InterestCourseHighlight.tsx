@@ -17,7 +17,10 @@ export default function InterestCourseHighlight({ containerId }: { containerId: 
         const ids = (group.dataset.courseIds || '').split(',');
         const match = Boolean(courseId) && ids.includes(String(courseId));
         group.classList.toggle('is-interest', match);
-        if (match) group.querySelectorAll('details.profile-more').forEach((details) => { (details as HTMLDetailsElement).open = true; });
+        if (match) {
+          if (group instanceof HTMLDetailsElement) group.open = true;
+          group.querySelectorAll('details.profile-more').forEach((details) => { (details as HTMLDetailsElement).open = true; });
+        }
         const heading = group.querySelector('h3');
         const tag = heading?.querySelector('.interest-tag');
         if (match && heading && !tag) {

@@ -18,18 +18,14 @@
 .site-page-rail{display:none}
 .listing-ad{min-height:92px!important}
 .site-page-content>.hero,.site-page-content>.compare-hero{width:100vw;margin-left:calc(50% - 50vw)}
-.popular-layout{display:block}
-.home-ad-rail{display:none}
-@media (min-width:1100px){
-  .site-page-rails{display:grid;grid-template-columns:minmax(120px,160px) minmax(0,1280px) minmax(120px,160px);justify-content:center;gap:18px;padding-inline:5px;box-sizing:border-box}
-  .site-page-rail{display:block;min-width:0}
-  .site-page-rail>.ad-wrap{position:sticky;top:88px;margin:18px 0;max-width:160px}
+/* Global side rails: each rail is an equal 1fr gutter (min 200px = 160px ad + 20px each side); the ad is centred in it so edge gap == content gap on both sides */
+@media (min-width:1200px){
+  .site-page-rails{display:grid;grid-template-columns:minmax(200px,1fr) minmax(0,1120px) minmax(200px,1fr);gap:0;padding-inline:0;box-sizing:border-box}
+  .site-page-content{min-width:0}
+  .site-page-content>.hero>.wrap,.site-page-content>.compare-hero>.wrap{max-width:min(1120px,calc(100vw - 400px))}
+  .site-page-rail{display:flex;justify-content:center;min-width:0}
+  .site-page-rail>.ad-wrap{position:sticky;top:88px;align-self:flex-start;margin:18px 0;width:160px;max-width:160px}
   .site-page-rail .ad-format-vertical .ad-inner,.site-page-rail .ad-format-vertical_banner .ad-inner{max-width:160px}
-  .popular-layout{display:grid;grid-template-columns:minmax(0,1fr) 320px;gap:32px;align-items:start}
-  .home-ad-rail{display:block;min-width:0}
-  .home-ad-rail>.ad-wrap{margin:0 0 24px}
-  .home-ad-rail>.ad-wrap .ad-format-vertical .ad-inner,
-  .home-ad-rail>.ad-wrap .ad-format-vertical_banner .ad-inner{max-width:300px}
 }
 @media print{.ad-wrap{display:none}}
 /* Dev-only debug outlines for side ad rails (class added in app/layout.tsx only when NODE_ENV=development) */

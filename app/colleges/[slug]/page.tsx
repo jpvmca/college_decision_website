@@ -4,7 +4,8 @@ import type { Metadata } from 'next';
 import type { ReactNode } from 'react';
 import { notFound } from 'next/navigation';
 import Link from 'next/link';
-import { ArrowLeftRight, BookOpen, BriefcaseBusiness, Building2, ClipboardCheck, Globe2, HelpCircle, IndianRupee, Mail, MapPin, Phone, Star, Target, Trophy, Users, type LucideIcon } from 'lucide-react';
+import { ArrowLeftRight, ArrowUpRight, BadgeCheck, BookOpen, BriefcaseBusiness, Building2, CalendarDays, ChevronDown, ClipboardCheck, Clock, Globe2, GraduationCap, HelpCircle, IndianRupee, Landmark, Lightbulb, Mail, MapPin, Phone, ShieldCheck, Star, Target, TrendingUp, Trophy, Users, type LucideIcon } from 'lucide-react';
+import ProfileSectionNav from '../../../components/ProfileSectionNav';
 import { api, instituteLogoUrl } from '../../../lib/api';
 import { toAbsoluteExternalUrl } from '../../../lib/external-url';
 import { getLinkableEntities, findPublishedHref, findPublishedHrefByName } from '../../../lib/linkable-entities';
@@ -190,14 +191,6 @@ function cleanPlacements(profile: CollegeProfile) {
   return { lines: kept, wide, years, chart };
 }
 
-function placementLineText(line: PlacementLine) {
-  return [
-    line.highest ? `Highest ${packageValue(line.highest)}` : '',
-    line.average ? `Average ${packageValue(line.average)}` : '',
-    line.lowest ? `Lowest ${packageValue(line.lowest)}` : ''
-  ].filter(Boolean).join(', ');
-}
-
 // ---------- Fees ----------
 type ProgrammeFee = { kind: 'yearwise' | 'annual' | 'total'; years: Array<{ year: number; fee: number }>; annualMin: number; annualMax: number; total: number };
 
@@ -247,7 +240,7 @@ function stripSiteSuffix(value: string) {
   return value.replace(/\s*[|–—-]\s*College\s*Decision(\.in)?\s*$/i, '').trim();
 }
 
-const PROGRAMMES_VISIBLE = 10;
+const PROGRAMMES_VISIBLE = 6;
 
 /** Title suffix and description list only the sections that actually have data, so snippets never over-promise. */
 function profileSeo(profile: CollegeProfile, name: string, city: string, currentYear: number) {
@@ -434,13 +427,31 @@ function decisionNote(profile: CollegeProfile, name: string) {
 function PlacementChart({ rows }: { rows: Array<{ year: number; highest: number; average: number }> }) {
   if (!rows.length) return null;
   const max = Math.max(...rows.flatMap((item) => [item.average, item.highest]), 1);
-  return <div className="profile-chart" aria-label="Placement package trend chart">{rows.map((item) => <div className="profile-chart-row" key={item.year}><span>{item.year}</span><div className="profile-chart-bars"><i className="profile-bar average" style={{ width: `${(item.average / max) * 100}%` }} title={item.average ? `Average ${packageValue(item.average)}` : undefined} /><i className="profile-bar highest" style={{ width: `${(item.highest / max) * 100}%` }} title={item.highest ? `Highest ${packageValue(item.highest)}` : undefined} /></div><small>{packageValue(item.highest || item.average)}</small></div>)}</div>;
+  return <div className="cp-chart" aria-label="Placement package trend chart">
+    <div className="cp-chart-legend"><span><i className="is-average" />Best average package</span><span><i className="is-highest" />Highest package</span></div>
+    {rows.map((item) => <div className="cp-chart-row" key={item.year}>
+      <span className="cp-chart-year">{item.year}</span>
+      <div className="cp-chart-bars">
+        {item.average > 0 && <div className="cp-chart-bar is-average"><i style={{ width: `${Math.max(2, (item.average / max) * 100)}%` }} /><small>{packageValue(item.average)}</small></div>}
+        {item.highest > 0 && <div className="cp-chart-bar is-highest"><i style={{ width: `${Math.max(2, (item.highest / max) * 100)}%` }} /><small>{packageValue(item.highest)}</small></div>}
+      </div>
+    </div>)}
+  </div>;
 }
 
 function RatingChart({ breakdown }: { breakdown: CollegeProfile['reviewSummary']['ratingBreakdown'] }) {
   const total = breakdown.reduce((sum, item) => sum + item.count, 0);
   if (!total) return null;
-  return <div className="profile-rating-chart" aria-label="Student rating breakdown chart">{breakdown.map((item) => <div className="profile-rating-row" key={item.rating}><span>{item.rating}★</span><div><i style={{ width: `${(item.count / total) * 100}%` }} /></div><small>{item.count}</small></div>)}</div>;
+  return <div className="cp-rating-bars" aria-label="Student rating breakdown chart">{breakdown.map((item) => <div className="cp-rating-bar" key={item.rating}><span>{item.rating} <Star size={12} aria-hidden="true" /></span><div><i style={{ width: `${(item.count / total) * 100}%` }} /></div><small>{item.count}</small></div>)}</div>;
+}
+
+function Stars({ value }: { value: number }) {
+  return <span className="cp-stars" aria-hidden="true"><span className="cp-stars-fill" style={{ width: `${Math.min(100, (value / 5) * 100)}%` }}>★★★★★</span>★★★★★</span>;
+}
+
+function initials(name: string) {
+  const words = plainText(name, '').replace(/[^A-Za-z\s.]/g, ' ').split(/[\s.]+/).filter((word) => word && !/^(prof|dr|mr|mrs|ms|er|shri|smt)$/i.test(word));
+  return ((words[0]?.[0] || '') + (words.length > 1 ? words[words.length - 1][0] : '')).toUpperCase() || '•';
 }
 
 function RatingDimensionChart({ summary }: { summary: CollegeProfile['reviewSummary'] }) {
@@ -453,11 +464,10 @@ function RatingDimensionChart({ summary }: { summary: CollegeProfile['reviewSumm
     ['Admission', summary.averageAdmission]
   ].filter((row): row is [string, number] => typeof row[1] === 'number' && row[1] > 0);
   if (!rows.length) return null;
-  return <div className="profile-rating-dimension-chart" aria-label="Average student ratings by category">
-    {rows.map(([label, value]) => <div className="profile-rating-dimension-row" key={label}>
-      <span>{label}</span>
-      <div className="profile-rating-dimension-track"><i style={{ width: `${Math.min(100, (value / 5) * 100)}%` }} /></div>
-      <strong>{value.toFixed(1)}/5</strong>
+  return <div className="cp-dimensions" aria-label="Average student ratings by category">
+    {rows.map(([label, value]) => <div className={`cp-dimension${value >= 4 ? ' is-high' : value < 3.5 ? ' is-low' : ''}`} key={label}>
+      <div className="cp-dimension-head"><span>{label}</span><strong>{value.toFixed(1)}<small>/5</small></strong></div>
+      <div className="cp-dimension-track"><i style={{ width: `${Math.min(100, (value / 5) * 100)}%` }} /></div>
     </div>)}
   </div>;
 }
@@ -498,12 +508,16 @@ function affiliationText(profile: CollegeProfile) {
   return match?.[1] ? `${match[1].charAt(0).toUpperCase()}${match[1].slice(1)}.` : null;
 }
 
-function SectionHeading({ icon: Icon, children }: { icon: LucideIcon; children: ReactNode }) {
-  return <h2><Icon size={19} strokeWidth={2} aria-hidden="true" /><span>{children}</span></h2>;
+function SectionHeading({ icon: Icon, children, subtitle }: { icon: LucideIcon; children: ReactNode; subtitle?: ReactNode }) {
+  return <div className="cp-section-head"><span className="cp-section-icon"><Icon size={20} strokeWidth={2} aria-hidden="true" /></span><div><h2>{children}</h2>{subtitle ? <p>{subtitle}</p> : null}</div></div>;
 }
 
-function ContactItem({ icon: Icon, children }: { icon: LucideIcon; children: ReactNode }) {
-  return <span className="profile-contact-item"><Icon size={16} strokeWidth={2} aria-hidden="true" /><span>{children}</span></span>;
+function ContactItem({ icon: Icon, label, children }: { icon: LucideIcon; label: string; children: ReactNode }) {
+  return <div className="cp-contact"><span className="cp-contact-icon"><Icon size={16} strokeWidth={2} aria-hidden="true" /></span><div><small>{label}</small><span>{children}</span></div></div>;
+}
+
+function plural(count: number, word: string) {
+  return `${count} ${word}${count === 1 ? '' : 's'}`;
 }
 
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
@@ -590,6 +604,22 @@ export default async function CollegeProfilePage({ params }: { params: Promise<{
     { id: 'faq', label: 'FAQs', show: faqs.length > 0 }
   ].filter((item) => item.show);
   const affiliation = affiliationText(profile);
+  const fees = feeFacts(profile);
+  const topPackage = [...placements.wide.map((item) => ({ value: item.highest, year: item.year })), ...placements.lines.map((line) => ({ value: line.highest, year: line.year }))]
+    .filter((item) => item.value > 0).sort((a, b) => b.value - a.value || b.year - a.year)[0];
+  const topAverage = placements.lines.filter((line) => line.average > 0).sort((a, b) => b.average - a.average || b.year - a.year)[0];
+  const latestRankYear = rankings.rows[0]?.year || 0;
+  const bestRank = rankings.rows.filter((row) => row.year === latestRankYear).sort((a, b) => a.rank - b.rank)[0];
+  const glance = [
+    { icon: BookOpen, value: String(profile.programmes.length), label: 'Active programmes', note: `${courseFamilies(profile).length} course groups` },
+    fees.yearMin ? { icon: IndianRupee, value: money(fees.yearMin), label: 'Annual fees from', note: fees.yearMax > fees.yearMin ? `up to ${money(fees.yearMax)}` : 'per year of study' } : null,
+    topPackage ? { icon: TrendingUp, value: packageValue(topPackage.value), label: 'Highest package', note: `Reported ${topPackage.year}` } : null,
+    topAverage ? { icon: BriefcaseBusiness, value: packageValue(topAverage.average), label: 'Best average package', note: `${topAverage.course} (${topAverage.year})` } : null,
+    bestRank ? { icon: Trophy, value: `#${bestRank.rank}`, label: `${bestRank.label}${bestRank.year ? ` ${bestRank.year}` : ''} rank`, note: bestRank.course || (bestRank.outOf ? `out of ${bestRank.outOf}` : 'Ranking record') } : null,
+    rating && profile.reviewSummary.count ? { icon: Star, value: `${rating.toFixed(1)}/5`, label: 'Student rating', note: plural(profile.reviewSummary.count, 'rating') } : null,
+    profile.exams.length ? { icon: GraduationCap, value: String(profile.exams.length), label: 'Entrance exams', note: profile.exams.slice(0, 3).map((exam) => exam.name).join(', ') } : null
+  ].filter((item): item is { icon: LucideIcon; value: string; label: string; note: string } => Boolean(item)).slice(0, 6);
+  const recruiterNames = Array.from(new Map(profile.recruiters.map((recruiter) => plainText(recruiter.name, '')).filter(Boolean).map((recruiter) => [recruiter.toLowerCase(), recruiter])).values());
   const jsonLd = {
     '@context': 'https://schema.org',
     '@graph': [
@@ -663,138 +693,253 @@ export default async function CollegeProfilePage({ params }: { params: Promise<{
     ]
   };
 
+  const visibleFeeGroups = recordedFeeGroups.slice(0, 8);
+  const moreFeeGroups = recordedFeeGroups.slice(8);
+  const eligibilityGroups = programmeGroups.map((group) => ({ name: group.name, eligibility: groupEligibilitySource(group.programmes)?.eligibility })).filter((group) => group.eligibility);
+  const hasPlacementData = placements.lines.length > 0 || placements.wide.length > 0;
+  const placementYears = placements.years.length > 1 ? `${placements.years[placements.years.length - 1]}–${placements.years[0]}` : String(placements.years[0] || '');
+  const renderFeeTable = (groups: typeof recordedFeeGroups) => <div className="cp-table-wrap"><table className="cp-table cp-fee-table">
+    <thead><tr><th scope="col">Course</th><th scope="col">Fee per year</th><th scope="col">Full programme</th></tr></thead>
+    <tbody>{groups.map((group) => {
+      const yearwise = group.yearwise && group.items.length <= 3 ? group.items.filter((item) => item.fee.kind === 'yearwise') : [];
+      return <tr key={group.name}>
+        <th scope="row">
+          <strong>{group.heading.replace(' Programmes', '')} Fees</strong>
+          <small>{plural(group.items.length, 'programme')}{group.yearwise && group.maxYears > 1 ? ` · year-wise, up to Year ${group.maxYears}` : ''}</small>
+          {yearwise.length > 0 && <details className="cp-fee-years"><summary>Year-wise breakdown</summary>{yearwise.map((item) => <div key={item.programme.programme_id}><strong>{text(item.programme.programme_name, item.programme.course_name)}</strong><ul>{item.fee.years.map((year) => <li key={year.year}><span>Year {year.year}</span><span>{money(year.fee)}</span></li>)}<li className="is-total"><span>Total</span><span>{money(item.fee.total)}</span></li></ul></div>)}</details>}
+        </th>
+        <td data-label="Fee per year">{group.annualMin > 0 ? <><strong>{feeRange(group.annualMin, group.annualMax)}</strong><small>per year</small></> : <span className="muted">Not listed</span>}</td>
+        <td data-label="Full programme">{group.totalMin > 0 ? <><strong>{feeRange(group.totalMin, group.totalMax)}</strong><small>{group.yearwise ? 'sum of year-wise fees' : 'full course'}</small></> : <span className="muted">Not listed</span>}</td>
+      </tr>;
+    })}</tbody>
+  </table></div>;
+  const renderMember = (member: CollegeProfile['faculty'][number], index: number) => <div className="cp-person" key={`${member.name}-${member.position}-${index}`}>
+    <span className="cp-avatar" aria-hidden="true">{initials(member.name)}</span>
+    <div><strong>{plainText(member.name)}</strong>{member.position ? <span>{plainText(member.position)}</span> : null}{member.education ? <small>{plainText(member.education)}</small> : null}</div>
+  </div>;
+
   // Thin profile (no About and no programmes): never show ads.
   const adThin = !String(profile.about || '').trim() && profile.programmes.length === 0;
-  return <main className="section college-profile-page"><div className="wrap prose">
+  return <main className="section college-profile-page cp-page"><div className="wrap">
     <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
-    <nav className="breadcrumb" aria-label="Breadcrumb"><Link href="/">Home</Link><span aria-hidden="true">›</span><Link href="/colleges">Colleges</Link><span aria-hidden="true">›</span><span aria-current="page">{name}</span></nav>
+    <nav className="breadcrumb cp-breadcrumb" aria-label="Breadcrumb"><Link href="/">Home</Link><span aria-hidden="true">›</span><Link href="/colleges">Colleges</Link><span aria-hidden="true">›</span><span aria-current="page">{name}</span></nav>
     <AdSlot slotKey="college_top" thin={adThin} />
-    <header className="college-profile-header">
-      <div>
-        <h1>{name}{city ? `, ${city}` : ''} – {currentYear} Overview</h1>
-        <p className="muted">{profile.institute.instituteType || 'College'} · {location || 'India'}{profile.institute.isUniversity ? ' · University' : ''}</p>
-        <p>Review courses, fees, eligibility, admission routes, placements, rankings and student reviews for {name} before making your shortlist.</p>
-        <CollegeApply collegeSlug={slug} collegeName={name} courses={applyCourses} label={`Apply to ${name.length > 28 ? 'this college' : name}`} />{' '}
-        {officialWebsite && <a className="button" href={officialWebsite} target="_blank" rel="noopener noreferrer"><Globe2 size={16} aria-hidden="true" /> Visit official website</a>}
-        {cutoffs?.data?.length ? <Link className="button" href={`/colleges/${slug}/cutoff`}>Cutoff</Link> : null}
+
+    <header className="cp-hero">
+      <div className="cp-hero-top">
+        <div className="cp-hero-logo"><img src={profile.institute.logo ? instituteLogoUrl(profile.institute.logo) : '/logo.svg'} alt={profile.institute.logo ? `${name} college logo` : 'College Decision logo'} width="112" height="112" /></div>
+        <div className="cp-hero-copy">
+          <p className="cp-eyebrow">College profile · {currentYear}</p>
+          <h1>{name}{city ? `, ${city}` : ''}</h1>
+          <div className="cp-hero-meta">
+            <span><MapPin size={15} aria-hidden="true" /> {location || 'India'}</span>
+            <span><Landmark size={15} aria-hidden="true" /> <span className="cp-capitalize">{profile.institute.instituteType || 'College'}</span>{profile.institute.isUniversity ? ' · University' : ''}</span>
+            {profile.institute.establishmentYear ? <span><CalendarDays size={15} aria-hidden="true" /> Est. {profile.institute.establishmentYear}</span> : null}
+          </div>
+        </div>
       </div>
-      <img className="college-profile-logo" src={profile.institute.logo ? instituteLogoUrl(profile.institute.logo) : '/logo.svg'} alt={profile.institute.logo ? `${name} college logo` : 'College Decision logo'} width="160" height="160" />
+      <p className="cp-hero-lead">Explore recorded courses, fees, entrance routes, placements, rankings and aggregate student ratings before making your shortlist.</p>
+      <div className="cp-hero-badges">
+        <span className="cp-pill is-verified"><BadgeCheck size={15} aria-hidden="true" /> Evidence-backed profile</span>
+        {rating && profile.reviewSummary.count > 0 ? <span className="cp-pill is-rating"><Stars value={rating} /><strong>{rating.toFixed(1)}/5</strong> from {profile.reviewSummary.count} student ratings</span> : null}
+        {bestRank ? <span className="cp-pill is-rank"><Trophy size={14} aria-hidden="true" /> {bestRank.label}{bestRank.year ? ` ${bestRank.year}` : ''} <strong>#{bestRank.rank}</strong>{bestRank.course ? ` · ${bestRank.course}` : ''}</span> : null}
+      </div>
+      <div className="cp-hero-actions">
+        <CollegeApply collegeSlug={slug} collegeName={name} courses={applyCourses} label={`Apply to ${name.length > 28 ? 'this college' : name}`} />
+        <Link className="button cp-btn-ghost" href="#courses">Explore courses</Link>
+        <Link className="button cp-btn-ghost" href="/compare-colleges-2026"><ArrowLeftRight size={15} aria-hidden="true" /> Compare colleges</Link>
+        {officialWebsite && <a className="button cp-btn-ghost" href={officialWebsite} target="_blank" rel="noopener noreferrer"><Globe2 size={15} aria-hidden="true" /> Official website</a>}
+        {cutoffs?.data?.length ? <Link className="button cp-btn-ghost" href={`/colleges/${slug}/cutoff`}><Target size={15} aria-hidden="true" /> View cutoff</Link> : null}
+      </div>
     </header>
-    <section className="college-decision-note"><p className="eyebrow">DECISION NOTE</p><p>{decisionNote(profile, name)}</p></section>
 
-    <section className="college-stats" aria-label="College highlights">
-      <div><strong>{profile.programmes.length}</strong><span>Active programmes</span></div>
-      {profile.reviewSummary.count > 0 && <div><strong>{profile.reviewSummary.count}</strong><span>Student reviews</span></div>}
-      {rating ? <div><strong>{rating.toFixed(1)}</strong><span>Average rating</span></div> : null}
-      {placements.years.length > 0 && <div><strong>{placements.years[0]}</strong><span>Latest placement year</span></div>}
+    {glance.length > 0 && <section className="cp-glance" aria-labelledby="college-highlights-heading">
+      <h2 id="college-highlights-heading" className="cp-sr-only">Quick highlights</h2>
+      <div className="cp-glance-grid">{glance.map((item) => <div className="cp-glance-item" key={item.label}>
+        <span className="cp-glance-icon"><item.icon size={18} aria-hidden="true" /></span>
+        <strong>{item.value}</strong>
+        <span>{item.label}</span>
+        <small title={item.note}>{item.note}</small>
+      </div>)}</div>
+    </section>}
+
+    <section className="cp-insight">
+      <span className="cp-insight-icon"><Lightbulb size={20} aria-hidden="true" /></span>
+      <div><p className="cp-insight-title">Decision note</p><p>{decisionNote(profile, name)}</p></div>
     </section>
-    {toc.length > 2 && <nav className="college-profile-toc" aria-label="On this page"><strong>On this page:</strong>{toc.map((item) => <a key={item.id} href={`#${item.id}`}>{item.label}</a>)}</nav>}
 
-    {(profile.about || location || profile.institute.establishmentYear || officialWebsite) && <section id="about">
-      <SectionHeading icon={Building2}>About {name}</SectionHeading>
+    {toc.length > 2 && <ProfileSectionNav items={toc.map(({ id, label }) => ({ id, label }))} />}
+
+    {(profile.about || location || profile.institute.establishmentYear || officialWebsite) && <section id="about" className="cp-card">
+      <SectionHeading icon={Building2} subtitle="Background, campus, recognition and official contacts">About {name}</SectionHeading>
       {profile.about && (() => {
         const { lead, rest } = splitLead(readableBlocks(profile.about, { headingShift: 1, resolveLink: resolveAboutLink }));
         if (!lead) return null;
-        return <><h3>History and Background</h3><ReadableHtml html={lead} preSanitized />{rest ? <details className="profile-more"><summary>Read more about {name}</summary><ReadableHtml html={rest} preSanitized /></details> : null}</>;
+        return <><h3>History and Background</h3><ReadableHtml html={lead} preSanitized />{rest ? <details className="profile-more cp-more"><summary>Read more about {name}<ChevronDown size={16} aria-hidden="true" /></summary><ReadableHtml html={rest} preSanitized /></details> : null}</>;
       })()}
-      {(location || profile.institute.establishmentYear) && <><h3>Campus and Location</h3><p>{profile.institute.establishmentYear ? `Established in ${profile.institute.establishmentYear}. ` : ''}{location ? `Located in ${location}.` : ''} {profile.institute.location.addressLabel || ''}</p></>}
-      {affiliation && <><h3>Affiliation and Recognition</h3><p>{affiliation}</p></>}
-      {(officialWebsite || profile.institute.email || profile.institute.phone) && <div className="profile-contact-list">
-        {officialWebsite && <ContactItem icon={Globe2}><a href={officialWebsite} target="_blank" rel="noopener noreferrer">Official website</a></ContactItem>}
-        {profile.institute.email && <ContactItem icon={Mail}><a href={`mailto:${profile.institute.email}`}>{profile.institute.email}</a></ContactItem>}
-        {profile.institute.phone && <ContactItem icon={Phone}><a href={`tel:${profile.institute.phone.replace(/[^\d+]/g, '')}`}>{profile.institute.phone}</a></ContactItem>}
-        {location && <ContactItem icon={MapPin}>{location}</ContactItem>}
+      {(location || profile.institute.establishmentYear) && <><h3>Campus and Location</h3><div className="cp-facts">
+        {profile.institute.establishmentYear ? <div><small>Established</small><strong>{profile.institute.establishmentYear}</strong></div> : null}
+        {location && <div><small>Location</small><strong>{location}</strong></div>}
+        <div><small>Institute type</small><strong className="cp-capitalize">{profile.institute.instituteType || 'College'}{profile.institute.isUniversity ? ' · University' : ''}</strong></div>
+        {profile.institute.location.addressLabel ? <div className="is-wide"><small>Campus address</small><strong>{profile.institute.location.addressLabel}</strong></div> : null}
+      </div></>}
+      {affiliation && <><h3>Affiliation and Recognition</h3><p className="cp-affiliation"><ShieldCheck size={18} aria-hidden="true" /><span>{affiliation}</span></p></>}
+      {(officialWebsite || profile.institute.email || profile.institute.phone) && <div className="cp-contacts">
+        {officialWebsite && <ContactItem icon={Globe2} label="Website"><a href={officialWebsite} target="_blank" rel="noopener noreferrer">Official website</a></ContactItem>}
+        {profile.institute.email && <ContactItem icon={Mail} label="Email"><a href={`mailto:${profile.institute.email}`}>{profile.institute.email}</a></ContactItem>}
+        {profile.institute.phone && <ContactItem icon={Phone} label="Phone"><a href={`tel:${profile.institute.phone.replace(/[^\d+]/g, '')}`}>{profile.institute.phone}</a></ContactItem>}
       </div>}
     </section>}
 
     <AdSlot slotKey="college_mid_1" thin={adThin} />
-    {profile.programmes.length > 0 && <section id="courses">
-      <SectionHeading icon={BookOpen}>Courses and Programmes Offered</SectionHeading>
-      <div className="programme-groups" id="programme-groups">{programmeGroups.map((group, groupIndex) => <div key={group.name} className="programme-group" data-course-ids={[...new Set(group.programmes.map((programme) => programme.course_id))].join(',')}><h3>{group.heading}<CollegeApply compact collegeSlug={slug} collegeName={name} courses={applyCourses} courseIds={[...new Set(group.programmes.map((programme) => Number(programme.course_id)))]} label="Apply" /></h3><div className="profile-list">
-        {(() => {
+    {profile.programmes.length > 0 && <section id="courses" className="cp-card">
+      <SectionHeading icon={BookOpen} subtitle={`${plural(profile.programmes.length, 'programme')} across ${plural(programmeGroups.length, 'course group')}`}>Courses and Programmes Offered</SectionHeading>
+      <div className="programme-groups cp-course-groups" id="programme-groups">{programmeGroups.map((group, groupIndex) => {
+          const courseIds = [...new Set(group.programmes.map((programme) => Number(programme.course_id)))];
+          const apply = <CollegeApply compact collegeSlug={slug} collegeName={name} courses={applyCourses} courseIds={courseIds} label="Apply" />;
           const groupEligibility = text(groupEligibilitySource(group.programmes)?.eligibility, '');
           const shownEligibility = new Set<string>([groupEligibility]);
-          const renderProgramme = (programme: CollegeProfile['programmes'][number]) => { const ownKey = text(programme.eligibility, ''); const own = ownKey && !shownEligibility.has(ownKey) ? programme.eligibility : null; if (own) shownEligibility.add(ownKey); const long = own ? !isShortText(readableLines(own)) : false; return <div key={programme.programme_id} className={long ? 'programme-row programme-row-long' : 'programme-row'}><strong>{text(programme.programme_name, programme.course_name)}</strong>{(() => { const label = formatProgrammeDuration(programme.duration, programme.programme_name, programme.course_name); return label ? ` – ${label}` : ''; })()}{own && !long ? <> – <EligibilityText value={own} /></> : null}{(() => { const href = findPublishedHrefByName(linkableEntities, 'course', programme.course_name); const label = text(programme.course_name); if (!href || linkedCourseHrefs.has(href)) return null; linkedCourseHrefs.add(href); return <> · <Link href={href}>{label} profile</Link></>; })()}{own && long ? <EligibilityText value={own} label="Eligibility:" /> : null}</div>; };
-          // Large colleges: the first 8 course groups show up to 10 programmes; later groups start collapsed.
-          const visibleCount = groupIndex < 8 ? PROGRAMMES_VISIBLE : 0;
-          const visible = group.programmes.slice(0, visibleCount);
-          const rest = group.programmes.slice(visibleCount);
-          return <>{visible.map(renderProgramme)}{rest.length > 0 && <details className="profile-more"><summary>{visibleCount ? `Show all ${group.programmes.length} programmes` : `Show ${group.programmes.length} programme${group.programmes.length > 1 ? 's' : ''}`}</summary>{rest.map(renderProgramme)}</details>}</>;
-        })()}
-      </div></div>)}</div>
+          const renderProgramme = (programme: CollegeProfile['programmes'][number]) => {
+            const ownKey = text(programme.eligibility, '');
+            const own = ownKey && !shownEligibility.has(ownKey) ? programme.eligibility : null;
+            if (own) shownEligibility.add(ownKey);
+            const long = own ? !isShortText(readableLines(own)) : false;
+            const duration = formatProgrammeDuration(programme.duration, programme.programme_name, programme.course_name);
+            const courseHref = findPublishedHrefByName(linkableEntities, 'course', programme.course_name);
+            const showCourseLink = Boolean(courseHref && !linkedCourseHrefs.has(courseHref));
+            if (courseHref && showCourseLink) linkedCourseHrefs.add(courseHref);
+            return <div key={programme.programme_id} className="programme-row cp-programme">
+              <div className="cp-programme-main">
+                <strong>{text(programme.programme_name, programme.course_name)}</strong>
+                {own && !long ? <div className="cp-programme-elig"><EligibilityText value={own} /></div> : null}
+                {own && long ? <details className="cp-programme-more"><summary>Eligibility<ChevronDown size={14} aria-hidden="true" /></summary><EligibilityText value={own} /></details> : null}
+              </div>
+              {(duration || showCourseLink) && <div className="cp-programme-meta">
+                {duration ? <span className="cp-chip"><Clock size={13} aria-hidden="true" /> {duration}</span> : null}
+                {showCourseLink && courseHref ? <Link className="cp-programme-link" href={courseHref}>{text(programme.course_name)} profile <ArrowUpRight size={13} aria-hidden="true" /></Link> : null}
+              </div>}
+            </div>;
+          };
+          // Large colleges: the first 8 course groups are expanded with their first few programmes; later groups start collapsed.
+          if (groupIndex >= 8) return <details key={group.name} className="programme-group cp-course-group is-collapsed" data-course-ids={courseIds.join(',')}>
+            <summary><h3><span className="cp-course-title">{group.heading}</span><span className="cp-count">{plural(group.programmes.length, 'programme')}</span></h3><ChevronDown size={18} aria-hidden="true" /></summary>
+            <div className="cp-programmes"><div className="cp-group-apply">{apply}</div>{group.programmes.map(renderProgramme)}</div>
+          </details>;
+          const rest = group.programmes.slice(PROGRAMMES_VISIBLE);
+          return <div key={group.name} className="programme-group cp-course-group" data-course-ids={courseIds.join(',')}>
+            <h3><span className="cp-course-title">{group.heading}</span><span className="cp-count">{plural(group.programmes.length, 'programme')}</span>{apply}</h3>
+            <div className="cp-programmes">{group.programmes.slice(0, PROGRAMMES_VISIBLE).map(renderProgramme)}{rest.length > 0 && <details className="profile-more cp-more"><summary>Show all {group.programmes.length} programmes<ChevronDown size={16} aria-hidden="true" /></summary>{rest.map(renderProgramme)}</details>}</div>
+          </div>;
+        })}</div>
       <InterestCourseHighlight containerId="programme-groups" />
     </section>}
 
-    {recordedFeeGroups.length > 0 && <section id="fees">
-      <SectionHeading icon={IndianRupee}>Course Fees at {name}</SectionHeading>
-      {(() => { const renderFeeGroup = (group: (typeof recordedFeeGroups)[number]) => <div key={group.name}><h3>{group.heading.replace(' Programmes', '')} Fees</h3>
-        {group.annualMin > 0 && <p>{group.yearwise ? 'Year-wise fee' : 'Annual fee'}: <strong>{feeRange(group.annualMin, group.annualMax)} per year</strong>{group.yearwise && group.maxYears > 1 ? ` (recorded for each year of study, up to Year ${group.maxYears})` : ''}.</p>}
-        {group.totalMin > 0 && <p>{group.yearwise ? 'Full-programme total (sum of the year-wise fees)' : 'Total fees for the full course'}: <strong>{feeRange(group.totalMin, group.totalMax)}</strong>.</p>}
-        {group.yearwise && group.items.length <= 3 && <div className="profile-list">{group.items.filter((item) => item.fee.kind === 'yearwise').map((item) => <p key={item.programme.programme_id}><strong>{text(item.programme.programme_name, item.programme.course_name)}:</strong> {item.fee.years.map((year) => `Year ${year.year}: ${money(year.fee)}`).join(' · ')} · Total {money(item.fee.total)}</p>)}</div>}
-      </div>;
-        const rest = recordedFeeGroups.slice(8);
-        return <>{recordedFeeGroups.slice(0, 8).map(renderFeeGroup)}{rest.length > 0 && <details className="profile-more"><summary>Show fees for {rest.length} more courses</summary>{rest.map(renderFeeGroup)}</details>}</>;
-      })()}
-      <p className="muted">Hostel, mess and other charges are additional and not included.</p>
+    {recordedFeeGroups.length > 0 && <section id="fees" className="cp-card">
+      <SectionHeading icon={IndianRupee} subtitle="Recorded tuition fee ranges for each course group">Course Fees at {name}</SectionHeading>
+      {renderFeeTable(visibleFeeGroups)}
+      {moreFeeGroups.length > 0 && <details className="profile-more cp-more"><summary>Show fees for {moreFeeGroups.length} more courses<ChevronDown size={16} aria-hidden="true" /></summary>{renderFeeTable(moreFeeGroups)}</details>}
+      <p className="cp-footnote">Hostel, mess and other charges are additional and not included.</p>
     </section>}
 
-    {(profile.programmes.some((programme) => programme.eligibility) || profile.exams.length > 0) && <section id="admission">
-      <SectionHeading icon={ClipboardCheck}>Admission Process and Eligibility</SectionHeading>
-      {profile.programmes.some((programme) => programme.eligibility) && <><h3>Eligibility Criteria by Course</h3><div className="profile-list">{programmeGroups.map((group) => {
-        const eligibility = groupEligibilitySource(group.programmes)?.eligibility;
-        return eligibility ? <div key={group.name} className="programme-row"><strong>{group.name}:</strong> <EligibilityText value={eligibility} /></div> : null;
-      })}</div></>}
-      {profile.exams.length > 0 && <><h3>Entrance Exams Accepted</h3><div className="profile-chips">{profile.exams.map((exam) => {
+    {(eligibilityGroups.length > 0 || profile.exams.length > 0) && <section id="admission" className="cp-card">
+      <SectionHeading icon={ClipboardCheck} subtitle="Eligibility by course, accepted entrance exams and how to apply">Admission Process and Eligibility</SectionHeading>
+      {eligibilityGroups.length > 0 && <><h3>Eligibility Criteria by Course</h3>{(() => {
+        const renderEligibility = (group: (typeof eligibilityGroups)[number], index: number) => <details key={group.name} className="cp-accordion" open={index === 0}><summary><span>{group.name}</span><ChevronDown size={18} aria-hidden="true" /></summary><div className="cp-accordion-body"><EligibilityText value={group.eligibility} /></div></details>;
+        const rest = eligibilityGroups.slice(8);
+        return <div className="cp-accordion-list">{eligibilityGroups.slice(0, 8).map(renderEligibility)}{rest.length > 0 && <details className="profile-more cp-more"><summary>Show eligibility for {rest.length} more courses<ChevronDown size={16} aria-hidden="true" /></summary><div className="cp-accordion-list">{rest.map((group, index) => renderEligibility(group, index + 8))}</div></details>}</div>;
+      })()}</>}
+      {profile.exams.length > 0 && <><h3>Entrance Exams Accepted</h3><div className="cp-exam-chips">{profile.exams.map((exam) => {
         const href = findPublishedHref(linkableEntities, 'exam', exam.slug);
-        return href ? <Link key={exam.id} href={href}>{exam.name}</Link> : <span key={exam.id}>{exam.name}</span>;
+        return href ? <Link key={exam.id} href={href}>{exam.name}<ArrowUpRight size={13} aria-hidden="true" /></Link> : <span key={exam.id}>{exam.name}</span>;
       })}</div></>}
-      <h3>How to Apply</h3><p>Check the relevant programme eligibility, follow the mapped entrance-exam or university counselling route, and confirm dates, documents and fees on the official admission notice.</p>
+      <h3>How to Apply</h3>
+      <ol className="cp-steps">
+        <li><strong>Check eligibility</strong><span>Check the relevant programme eligibility above.</span></li>
+        <li><strong>Take the entrance route</strong><span>Follow the mapped entrance-exam or university counselling route.</span></li>
+        <li><strong>Confirm and apply</strong><span>Confirm dates, documents and fees on the official admission notice.</span></li>
+      </ol>
     </section>}
 
-    {hasCutoffs ? <section id="cutoffs-exams">
-      <SectionHeading icon={Target}>Cutoffs and Entrance Exams</SectionHeading>
+    {hasCutoffs ? <section id="cutoffs-exams" className="cp-card">
+      <SectionHeading icon={Target} subtitle="Opening and closing ranks by exam, round and category">Cutoffs and Entrance Exams</SectionHeading>
       {profile.exams.length > 0 && <><h3>Entrance Exams for {name}</h3><p>Admission is through: {examLinks()}.</p></>}
       <CollegeCutoffs slug={slug} collegeName={name} cutoffs={cutoffs} examHref={(examSlug) => findPublishedHref(linkableEntities, 'exam', examSlug)} />
-    </section> : profile.exams.length > 0 ? <section id="cutoffs-exams">
+    </section> : profile.exams.length > 0 ? <section id="cutoffs-exams" className="cp-card">
       <SectionHeading icon={Target}>How Admission Works</SectionHeading>
       <p>Admission to {name} is based on {examLinks()}{profile.exams.length > 1 ? ', depending on the programme' : ''}. Qualify in the relevant exam, then take part in the college or counselling process announced on the official admission notice.</p>
     </section> : null}
 
     <AdSlot slotKey="college_mid_2" thin={adThin} />
-    {(placements.lines.length > 0 || placements.wide.length > 0 || profile.recruiters.length > 0) && <section id="placements">
-      <SectionHeading icon={BriefcaseBusiness}>Placements and Recruiters</SectionHeading>
-      {(placements.lines.length > 0 || placements.wide.length > 0) && <><h3>Placement Highlights{placements.years.length ? ` (${placements.years.length > 1 ? `${placements.years[placements.years.length - 1]}–${placements.years[0]}` : placements.years[0]})` : ''}</h3><PlacementChart rows={placements.chart} />
-        {placements.wide.length > 0 && <div className="profile-list">{placements.wide.map((item) => <p key={`wide-${item.year}`}><strong>{profile.institute.isUniversity ? 'University' : 'Institute'}-wide highest package ({item.year}):</strong> {packageValue(item.highest)}, the same figure listed for {item.programmes} programmes, so it is shown once here.</p>)}</div>}
-        {placements.lines.length > 0 && <div className="profile-list">{placements.lines.map((line) => <p key={`${line.course}-${line.year}`}><strong>{line.course} ({line.year}):</strong> {placementLineText(line)}.</p>)}</div>}</>}
-      {profile.recruiters.length > 0 && <><h3>Top Recruiters</h3><p>{profile.recruiters.slice(0, 50).map((recruiter) => plainText(recruiter.name)).join(', ')}{profile.recruiters.length > 50 ? ` and ${profile.recruiters.length - 50} more` : ''}.</p></>}
-      {(placements.lines.length > 0 || placements.wide.length > 0) && <><h3>Placement Data Disclaimer</h3><p>Package units, currency and placement percentages are not fully specified in the source. Treat these figures as indicative and verify the latest official placement report.</p></>}
+    {(hasPlacementData || profile.recruiters.length > 0) && <section id="placements" className="cp-card">
+      <SectionHeading icon={BriefcaseBusiness} subtitle={hasPlacementData ? `Recorded packages ${placementYears} and recruiting companies` : 'Recruiting companies on record'}>Placements and Recruiters</SectionHeading>
+      {hasPlacementData && <>
+        <div className="cp-stats">
+          {topPackage ? <div className="cp-stat is-amber"><small>Highest package</small><strong>{packageValue(topPackage.value)}</strong><span>Reported {topPackage.year}</span></div> : null}
+          {topAverage ? <div className="cp-stat is-blue"><small>Best average package</small><strong>{packageValue(topAverage.average)}</strong><span>{topAverage.course} ({topAverage.year})</span></div> : null}
+          <div className="cp-stat"><small>Years covered</small><strong>{placementYears}</strong><span>{plural(placements.lines.length, 'course record')}</span></div>
+          {recruiterNames.length > 0 ? <div className="cp-stat is-teal"><small>Recruiters</small><strong>{recruiterNames.length}</strong><span>companies on record</span></div> : null}
+        </div>
+        <h3>Placement Highlights ({placementYears})</h3>
+        <PlacementChart rows={placements.chart} />
+        {placements.wide.length > 0 && <div className="cp-callouts">{placements.wide.map((item) => <p className="cp-callout" key={`wide-${item.year}`}><TrendingUp size={18} aria-hidden="true" /><span><strong>{profile.institute.isUniversity ? 'University' : 'Institute'}-wide highest package ({item.year}):</strong> {packageValue(item.highest)}, the same figure listed for {item.programmes} programmes, so it is shown once here.</span></p>)}</div>}
+        {placements.lines.length > 0 && <div className="cp-table-wrap"><table className="cp-table cp-placement-table">
+          <thead><tr><th scope="col">Course</th><th scope="col">Year</th><th scope="col">Highest</th><th scope="col">Average</th><th scope="col">Lowest</th></tr></thead>
+          <tbody>{placements.lines.map((line) => <tr key={`${line.course}-${line.year}`}>
+            <th scope="row">{line.course}</th>
+            <td data-label="Year">{line.year}</td>
+            <td data-label="Highest">{line.highest ? <strong>{packageValue(line.highest)}</strong> : '—'}</td>
+            <td data-label="Average">{line.average ? packageValue(line.average) : '—'}</td>
+            <td data-label="Lowest">{line.lowest ? packageValue(line.lowest) : '—'}</td>
+          </tr>)}</tbody>
+        </table></div>}
+      </>}
+      {recruiterNames.length > 0 && <><h3>Top Recruiters</h3><ul className="cp-recruiters">{recruiterNames.slice(0, 50).map((recruiter) => <li key={recruiter}>{recruiter}</li>)}{recruiterNames.length > 50 ? <li className="is-more">and {recruiterNames.length - 50} more</li> : null}</ul></>}
+      {hasPlacementData && <p className="cp-footnote"><strong>Placement data disclaimer:</strong> Package units, currency and placement percentages are not fully specified in the source. Treat these figures as indicative and verify the latest official placement report.</p>}
     </section>}
 
-    {profile.reviewSummary.count > 0 && <section id="reviews">
-      <SectionHeading icon={Star}>Student Reviews and Ratings</SectionHeading>
-      <h3>Overall Student Ratings</h3><div className="profile-list">
-        <p>Total student reviews: {profile.reviewSummary.count}</p>
-        {!ratingRows.length && <p>Ratings are not available for these reviews yet.</p>}
+    {profile.reviewSummary.count > 0 && <section id="reviews" className="cp-card">
+      <SectionHeading icon={Star} subtitle="Aggregate ratings from verified student reviews">Student Reviews and Ratings</SectionHeading>
+      <h3>Overall Student Ratings</h3>
+      <div className="cp-review-summary">
+        <div className="cp-score">
+          {rating ? <><strong>{rating.toFixed(1)}</strong><Stars value={rating} /></> : null}
+          <span>Total student reviews: {profile.reviewSummary.count}</span>
+        </div>
+        <RatingChart breakdown={profile.reviewSummary.ratingBreakdown} />
       </div>
+      {!ratingRows.length && <p className="muted">Ratings are not available for these reviews yet.</p>}
       <RatingDimensionChart summary={profile.reviewSummary} />
     </section>}
 
-    {profile.faculty.length > 0 && <section id="faculty">
-      <SectionHeading icon={Users}>Faculty and Departments</SectionHeading>
-      <h3>Key Faculty Members</h3><div className="profile-list">{(() => {
-        const renderMember = (member: CollegeProfile['faculty'][number], index: number) => <p key={`${member.name}-${member.position}-${index}`}><strong>{plainText(member.name)}</strong>{member.position ? ` – ${plainText(member.position)}` : ''}{member.education ? ` (${plainText(member.education)})` : ''}</p>;
-        const rest = profile.faculty.slice(PROGRAMMES_VISIBLE);
-        return <>{profile.faculty.slice(0, PROGRAMMES_VISIBLE).map(renderMember)}{rest.length > 0 && <details className="profile-more"><summary>Show all {profile.faculty.length} faculty members</summary>{rest.map((member, index) => renderMember(member, index + PROGRAMMES_VISIBLE))}</details>}</>;
-      })()}</div>
+    {profile.faculty.length > 0 && <section id="faculty" className="cp-card">
+      <SectionHeading icon={Users} subtitle={`${plural(profile.faculty.length, 'faculty member')} on record`}>Faculty and Departments</SectionHeading>
+      <h3>Key Faculty Members</h3>
+      <div className="cp-people">{profile.faculty.slice(0, PROGRAMMES_VISIBLE).map(renderMember)}</div>
+      {profile.faculty.length > PROGRAMMES_VISIBLE && <details className="profile-more cp-more"><summary>Show all {profile.faculty.length} faculty members<ChevronDown size={16} aria-hidden="true" /></summary><div className="cp-people">{profile.faculty.slice(PROGRAMMES_VISIBLE).map((member, index) => renderMember(member, index + PROGRAMMES_VISIBLE))}</div></details>}
     </section>}
 
-    {rankings.rows.length > 0 && <section id="rankings">
-      <SectionHeading icon={Trophy}>Rankings and Recognition</SectionHeading>
-      {rankings.groups.map((group) => <div key={group.label}><h3>{group.label} Rankings</h3><div className="profile-list">{group.rows.slice(0, 12).map((row) => <p key={`${row.year}-${row.rank}-${row.course}`}><strong>{row.year ? `${group.label} ${row.year}` : group.label}{row.course ? ` · ${row.course}` : ''}:</strong> Rank {row.rank}{row.outOf ? ` out of ${row.outOf}` : ''}</p>)}</div></div>)}
+    {rankings.rows.length > 0 && <section id="rankings" className="cp-card">
+      <SectionHeading icon={Trophy} subtitle={`${plural(rankings.rows.length, 'ranking record')} from ${rankings.groups.map((group) => group.label).join(', ')}`}>Rankings and Recognition</SectionHeading>
+      {rankings.groups.map((group) => <div key={group.label} className="cp-rank-group"><h3>{group.label} Rankings</h3><div className="cp-rank-grid">{group.rows.slice(0, 12).map((row) => <div className="cp-rank" key={`${row.year}-${row.rank}-${row.course}`}>
+        <span className="cp-rank-num"><small>#</small>{row.rank}</span>
+        <div><strong>{row.course || 'Overall'}</strong><span>{group.label}{row.year ? ` ${row.year}` : ''}{row.outOf ? ` · out of ${row.outOf}` : ''}</span></div>
+      </div>)}</div></div>)}
     </section>}
-    {profile.comparisonGuides.length > 0 && <section id="compare"><SectionHeading icon={ArrowLeftRight}>Compare {name}</SectionHeading><div className="college-programme-grid">{profile.comparisonGuides.map((guide) => <Link className="card" href={`/articles/${guide.slug}`} key={guide.slug}><h3>{stripSiteSuffix(text(guide.title, guide.h1 || 'College comparison guide'))}</h3><p className="muted">{guide.other_college_name ? `Compare ${name} with ${guide.other_college_name}` : 'Read the published comparison guide'}</p></Link>)}</div></section>}
-    {faqs.length > 0 && <section id="faq"><SectionHeading icon={HelpCircle}>Frequently asked questions</SectionHeading>{faqs.map((faq) => <article className="faq-item" key={faq.question}><h3>{faq.question}</h3><p>{faq.answer}</p></article>)}</section>}
+
+    {profile.comparisonGuides.length > 0 && <section id="compare" className="cp-card">
+      <SectionHeading icon={ArrowLeftRight} subtitle="Side-by-side guides on fees, branches and placements">Compare {name}</SectionHeading>
+      <div className="cp-compare-grid">{profile.comparisonGuides.map((guide) => <Link className="cp-compare-card" href={`/articles/${guide.slug}`} key={guide.slug}>
+        <span className="cp-compare-icon"><ArrowLeftRight size={16} aria-hidden="true" /></span>
+        <div><h3>{stripSiteSuffix(text(guide.title, guide.h1 || 'College comparison guide'))}</h3><p>{guide.other_college_name ? `Compare ${name} with ${guide.other_college_name}` : 'Read the published comparison guide'}</p></div>
+        <ArrowUpRight className="cp-compare-arrow" size={18} aria-hidden="true" />
+      </Link>)}</div>
+    </section>}
+
+    {faqs.length > 0 && <section id="faq" className="cp-card">
+      <SectionHeading icon={HelpCircle} subtitle={`Quick answers about ${name}`}>Frequently asked questions</SectionHeading>
+      <div className="cp-faq">{faqs.map((faq, index) => <details className="cp-faq-item" key={faq.question} open={index === 0}><summary><h3>{faq.question}</h3><ChevronDown size={18} aria-hidden="true" /></summary><p>{faq.answer}</p></details>)}</div>
+    </section>}
     <AdSlot slotKey="college_end" thin={adThin} />
-    <div className="notice"><strong>Data note:</strong> Fees, placements, rankings and reviews are recorded evidence and may change by batch, category, role, recruiter mix or academic year. Verify the latest official information before applying.</div>
+    <div className="cp-data-note"><ShieldCheck size={18} aria-hidden="true" /><p><strong>Data note:</strong> Fees, placements, rankings and reviews are recorded evidence and may change by batch, category, role, recruiter mix or academic year. Verify the latest official information before applying.</p></div>
   </div></main>;
 }

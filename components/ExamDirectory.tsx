@@ -2,7 +2,7 @@
 
 import { Fragment, useRef, useState } from 'react';
 import Link from 'next/link';
-import { ArrowDown, ArrowRight } from 'lucide-react';
+import { ArrowDown, ArrowRight, BookOpen, Building2, Star } from 'lucide-react';
 import ExamLogo from './ExamLogo';
 import { STATE_LABEL, applicationFee, compactMoney, examDateFact, modeLabel, registrationFact } from '../lib/exam-format';
 import AdSlotClient from './ads/AdSlotClient';
@@ -96,13 +96,13 @@ export default function ExamDirectory({ initial, total, courses, perPage, adFeed
     } catch { setError('Unable to load more exams. Please try again.'); } finally { setLoading(false); }
   }
 
-  return <>
-    {courses.length > 0 ? <div className="exam-course-filter" role="group" aria-label="Filter exams by course">
+  return <div className="ex-dir">
+    {courses.length > 0 ? <div className="exam-course-filter ex-filter" role="group" aria-label="Filter exams by course">
       <button type="button" className={!course ? 'active' : undefined} aria-pressed={!course} onClick={() => selectCourse('')}>All exams</button>
       {courses.map((item) => <button type="button" key={item.slug} className={course === item.slug ? 'active' : undefined} aria-pressed={course === item.slug} onClick={() => selectCourse(item.slug)}>{item.name} <span>{item.exam_count}</span></button>)}
     </div> : null}
-    <p className="muted" aria-live="polite">{list.total.toLocaleString('en-IN')} {active ? `${active.name} ` : ''}exams · sorted by colleges accepting the exam</p>
-    <div className="article-list">{list.items.length ? list.items.map((exam, index) => {
+    <p className="ex-count" aria-live="polite">{list.total.toLocaleString('en-IN')} {active ? `${active.name} ` : ''}exams · sorted by colleges accepting the exam</p>
+    <div className="article-list ex-list">{list.items.length ? list.items.map((exam, index) => {
       const profileHref = exam.published_slug ? `/exams/${exam.published_slug}` : null;
       const dateFact = examDateFact(exam.schedule);
       const registration = registrationFact(exam.schedule);
@@ -110,30 +110,31 @@ export default function ExamDirectory({ initial, total, courses, perPage, adFeed
       const mode = modeLabel(exam.mode);
       const state = exam.schedule?.state || 'date_not_announced';
       const extraColleges = Math.max(0, Number(exam.institute_count || 0) - exam.colleges.length);
-      return <Fragment key={exam.id}><article className="article-card exam-card" id={`exam-${index + 1}`}>
-        <div className="exam-card-top">
-          <div className="exam-card-heading">
-            {profileHref ? <Link href={profileHref}><ExamLogo src={exam.logo} examName={exam.name} courseName={exam.course_name} size={64} /></Link> : <ExamLogo src={exam.logo} examName={exam.name} courseName={exam.course_name} size={64} />}
-            <div className="exam-card-copy">
-              <div className="article-card-top">
-                {exam.course_published_slug ? <Link className="pill" href={`/courses/${exam.course_published_slug}`}>{exam.course_name}</Link> : <span className="pill">{exam.course_name || 'Entrance exam'}</span>}
-                <span className={`exam-state exam-state-${state}`}>{STATE_LABEL[state]}</span>
-              </div>
-              <h2>{profileHref ? <Link href={profileHref}>{exam.name}</Link> : exam.name}</h2>
-              {exam.full_name && exam.full_name.toLowerCase() !== exam.name.toLowerCase() ? <p className="exam-card-fullname">{exam.full_name}</p> : null}
+      const initials = exam.name.replace(/[^A-Za-z]/g, '').slice(0, 3).toUpperCase() || 'EX';
+      const facts = [
+        { label: 'Exam date', value: dateFact || 'Not announced' },
+        registration ? { label: 'Registration', value: registration } : null,
+        exam.schedule?.admission_window ? { label: 'Admissions', value: exam.schedule.admission_window } : null,
+        exam.conducted_by ? { label: 'Conducted by', value: exam.conducted_by } : null,
+        mode ? { label: 'Mode', value: mode } : null,
+        fee ? { label: 'Application fee', value: fee } : null,
+        exam.fee ? { label: 'Programme fees', value: `${compactMoney(exam.fee.min)} – ${compactMoney(exam.fee.max)} ${exam.fee.basis === 'year' ? '/ year' : 'total'}` } : null
+      ].filter((item): item is { label: string; value: string } => Boolean(item));
+      const mark = <ExamLogo src={exam.logo} examName={exam.name} courseName={exam.course_name} size={56} fallback={<span aria-hidden="true">{initials}</span>} />;
+      return <Fragment key={exam.id}><article className={`article-card exam-card ex-card is-${state}`} id={`exam-${index + 1}`}>
+        <div className="exam-card-heading">
+          {profileHref ? <Link className="ex-logo" href={profileHref}>{mark}</Link> : <span className="ex-logo">{mark}</span>}
+          <div className="exam-card-copy">
+            <div className="ex-card-top">
+              {exam.course_published_slug ? <Link className="ex-tag" href={`/courses/${exam.course_published_slug}`}>{exam.course_name}</Link> : <span className="ex-tag">{exam.course_name || 'Entrance exam'}</span>}
+              <span className={`exam-state exam-state-${state}`}>{STATE_LABEL[state]}</span>
             </div>
+            <h2>{profileHref ? <Link href={profileHref}>{exam.name}</Link> : exam.name}</h2>
+            {exam.full_name && exam.full_name.toLowerCase() !== exam.name.toLowerCase() ? <p className="exam-card-fullname">{exam.full_name}</p> : null}
           </div>
         </div>
 
-        <dl className="exam-card-facts">
-          <div><dt>Exam date</dt><dd>{dateFact || 'Not announced'}</dd></div>
-          {registration ? <div><dt>Registration</dt><dd>{registration}</dd></div> : null}
-          {exam.schedule?.admission_window ? <div><dt>Admissions</dt><dd>{exam.schedule.admission_window}</dd></div> : null}
-          {exam.conducted_by ? <div><dt>Conducted by</dt><dd>{exam.conducted_by}</dd></div> : null}
-          {mode ? <div><dt>Mode</dt><dd>{mode}</dd></div> : null}
-          {fee ? <div><dt>Application fee</dt><dd>{fee}</dd></div> : null}
-          {exam.fee ? <div><dt>Programme fees</dt><dd>{compactMoney(exam.fee.min)} – {compactMoney(exam.fee.max)} {exam.fee.basis === 'year' ? '/ year' : 'total'}</dd></div> : null}
-        </dl>
+        <dl className="exam-card-facts">{facts.map((fact) => <div key={fact.label}><dt>{fact.label}</dt><dd>{fact.value}</dd></div>)}</dl>
 
         {exam.programmes.length > 0 ? <div className="exam-card-row">
           <span className="exam-card-label">Popular programmes</span>
@@ -142,25 +143,25 @@ export default function ExamDirectory({ initial, total, courses, perPage, adFeed
 
         {exam.colleges.length > 0 ? <div className="exam-card-row">
           <span className="exam-card-label">Accepted by</span>
-          <p className="exam-card-colleges">
-            {exam.colleges.map((college, collegeIndex) => <span key={college.slug}>{collegeIndex > 0 ? ', ' : ''}<Link href={`/colleges/${college.slug}`}>{college.name}</Link></span>)}
-            {extraColleges > 0 ? <span> and {extraColleges.toLocaleString('en-IN')} more</span> : null}
-          </p>
+          <div className="ex-colleges">
+            {exam.colleges.slice(0, 4).map((college) => <Link key={college.slug} href={`/colleges/${college.slug}`}>{college.name}</Link>)}
+            {extraColleges > 0 ? <span className="ex-more">+{extraColleges.toLocaleString('en-IN')} more</span> : null}
+          </div>
         </div> : null}
 
         <div className="exam-card-footer">
-          <div className="article-facts">
-            <span>{Number(exam.institute_count || 0).toLocaleString('en-IN')} colleges</span>
-            <span>{Number(exam.programme_count || 0).toLocaleString('en-IN')} programmes</span>
-            {exam.review_count ? <span>{Number(exam.review_count).toLocaleString('en-IN')} reviews · {Number(exam.average_rating).toFixed(1)}/5</span> : null}
+          <div className="ex-metrics">
+            <span><Building2 size={14} aria-hidden="true" /> {Number(exam.institute_count || 0).toLocaleString('en-IN')} colleges</span>
+            <span><BookOpen size={14} aria-hidden="true" /> {Number(exam.programme_count || 0).toLocaleString('en-IN')} programmes</span>
+            {exam.review_count ? <span className="is-rating"><Star size={14} aria-hidden="true" /> {Number(exam.average_rating).toFixed(1)}/5 · {Number(exam.review_count).toLocaleString('en-IN')} reviews</span> : null}
           </div>
-          {profileHref ? <Link className="home-card-more exam-card-more" href={profileHref}>Dates, eligibility & colleges <ArrowRight size={14} aria-hidden="true" /></Link> : null}
+          {profileHref ? <Link className="ex-card-link" href={profileHref}>View exam profile <ArrowRight size={14} aria-hidden="true" /></Link> : null}
         </div>
       </article>{feedPositions(adFeed, list.items.length, 5).has(index + 1) && adFeed ? <AdSlotClient slot={adFeed.slot} settings={adFeed.settings} className="ad-in-list" /> : null}</Fragment>;
-    }) : <div className="card"><h2>Exam list unavailable</h2><p>Please try again shortly.</p></div>}</div>
-    {(list.items.length < list.total || error) && <div className="load-more-wrap">
-      <button className="button secondary" type="button" onClick={loadMore} disabled={loading}>{loading ? 'Loading exams…' : error ? 'Try again' : 'Load more'} <ArrowDown size={16} aria-hidden="true" /></button>
+    }) : <div className="card ex-empty"><h2>Exam list unavailable</h2><p>Please try again shortly.</p></div>}</div>
+    {(list.items.length < list.total || error) && <div className="load-more-wrap ex-more-wrap">
+      <button className="button secondary" type="button" onClick={loadMore} disabled={loading}>{loading ? 'Loading exams…' : error ? 'Try again' : 'Load more exams'} <ArrowDown size={16} aria-hidden="true" /></button>
       {error && <p className="muted" role="alert">{error}</p>}
     </div>}
-  </>;
+  </div>;
 }

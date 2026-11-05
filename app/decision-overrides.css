@@ -141,3 +141,50 @@
 @keyframes hero-badge-drift{0%,100%{transform:translateY(0)}50%{transform:translateY(-5px)}}
 @media(max-width:900px){.hero-layout{grid-template-columns:1fr;gap:10px}.hero-visual{min-height:280px;max-width:620px;margin:0 auto}.hero-visual-badge-top{right:2%}.hero-visual-badge-bottom{left:2%}}
 @media(prefers-reduced-motion:reduce){.hero-visual,.hero-visual-glow,.hero-visual-badge-top,.hero-visual-badge-bottom{animation:none}}
+.college-profile-page .college-profile-header{position:relative;box-sizing:border-box;width:100%;max-width:100%;overflow:hidden;margin:8px 0 0;padding:38px 30px 34px;border:0;border-radius:18px;background:linear-gradient(120deg,#102b50 0%,#1b4771 58%,#0f766e 100%);color:#fff;box-shadow:0 16px 34px #102b5024}
+.college-profile-page .college-profile-header,.college-profile-hero-copy{min-width:0}
+.college-profile-hero-copy{flex:1 1 auto}
+.college-profile-page .college-profile-header::after{content:"";position:absolute;right:-100px;bottom:-130px;width:360px;height:360px;border:1px solid #ffffff2b;border-radius:50%;box-shadow:0 0 0 34px #ffffff0b,0 0 0 68px #ffffff08;pointer-events:none}
+.college-profile-hero-copy{position:relative;z-index:1;max-width:800px}
+.college-profile-hero-copy .eyebrow{margin:0 0 10px;color:#a7f3d0;font-size:12px;font-weight:850;letter-spacing:.12em}
+.college-profile-hero-copy h1{max-width:760px;margin:0 0 12px;color:#fff;font-size:clamp(32px,5vw,58px);letter-spacing:-.03em}
+.college-profile-identity{display:flex;flex-wrap:wrap;gap:8px 16px;align-items:center;color:#dbeafe;font-size:14px}
+.college-profile-identity span{display:inline-flex;align-items:center;gap:5px}
+.college-profile-identity svg{color:#a7f3d0}
+.college-profile-badge{border:1px solid #a7f3d080;border-radius:999px;background:#ffffff14;color:#ecfdf5;padding:5px 9px;font-weight:750}
+.college-profile-lead{max-width:680px;margin:18px 0 12px!important;color:#dbeafe!important;font-size:17px;line-height:1.65}
+.college-profile-rating{display:flex;flex-wrap:wrap;align-items:center;gap:8px;margin:12px 0 4px;color:#dbeafe;font-size:14px}
+.college-profile-rating strong{color:#fff;font-size:18px}
+.rating-stars{color:#fcd34d;letter-spacing:.08em;font-size:16px}
+.college-profile-actions{display:flex;flex-wrap:wrap;gap:9px;margin-top:20px}
+.college-profile-actions .button{display:inline-flex;align-items:center;gap:7px;margin:0;border:1px solid #ffffff35}
+.college-profile-actions .button.secondary{background:#ffffff14;color:#fff}
+.college-profile-actions .button.secondary:hover{background:#ffffff26;text-decoration:none}
+.college-profile-hero-mark{position:relative;z-index:1;display:flex;flex:0 0 190px;flex-direction:column;align-items:center;gap:10px;color:#dbeafe;text-align:center;font-size:11px;letter-spacing:.05em;text-transform:uppercase}
+.college-profile-hero-mark strong{color:#a7f3d0;font-size:10px}
+.college-profile-page .college-profile-logo{width:154px;height:154px;flex-basis:154px;border:8px solid #fff;border-radius:24px;padding:16px;box-shadow:0 12px 28px #061a352e}
+.college-profile-page .college-decision-note{margin:24px 0 0;border:1px solid #c7d9f3;border-left:4px solid #0f766e;background:linear-gradient(120deg,#f0fdfa,#eff6ff);box-shadow:0 7px 20px #25427d0d}
+.college-highlights-panel{margin-top:24px!important;padding:24px;border:1px solid #dbe5f2;border-radius:16px;background:#fff;box-shadow:0 8px 25px #25427d0b}
+.college-section-kicker{color:#0f766e;font-size:11px;font-weight:850;letter-spacing:.13em}
+.college-highlights-panel h2{margin:3px 0 16px!important;border:0!important;padding:0!important;font-size:25px!important}
+.college-highlights-panel .college-stats{grid-template-columns:repeat(6,minmax(0,1fr));gap:10px;margin:0}
+.college-highlights-panel .college-stats>div{position:relative;display:grid;gap:5px;min-width:0;padding:15px 13px;border:1px solid #e1e9f5;border-radius:12px;background:linear-gradient(180deg,#fff,#f8fbff)}
+.college-highlights-panel .college-stats svg{color:#2563eb}
+.college-highlights-panel .college-stats strong{font-size:20px;overflow-wrap:anywhere}
+.college-highlights-panel .college-stats span{font-size:12px;line-height:1.35}
+.college-profile-page>section:not(.college-highlights-panel){scroll-margin-top:78px}
+@media(max-width:1100px){.college-highlights-panel .college-stats{grid-template-columns:repeat(3,minmax(0,1fr))}}
+@media(max-width:1100px){
+  .college-profile-page .college-profile-header{align-items:flex-start;flex-direction:column-reverse;gap:20px}
+  .college-profile-hero-mark{align-items:flex-start;flex-direction:row;text-align:left}
+}
+@media(max-width:760px){
+  .college-profile-page .college-profile-header{align-items:flex-start;margin:4px 0 0;padding:28px 20px 26px;border-radius:14px;flex-direction:column-reverse;gap:20px}
+  .college-profile-page .college-profile-header::after{right:-150px;bottom:-180px}
+  .college-profile-hero-mark{align-items:flex-start;flex-direction:row;text-align:left}
+  .college-profile-page .college-profile-logo{width:98px;height:98px;flex-basis:98px;border-width:5px;border-radius:18px;padding:10px}
+  .college-profile-lead{font-size:16px}
+  .college-profile-actions .button{flex:1 1 auto;justify-content:center}
+  .college-highlights-panel{padding:18px}
+  .college-highlights-panel .college-stats{grid-template-columns:repeat(2,minmax(0,1fr))}
+}

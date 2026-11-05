@@ -38,7 +38,7 @@ export default function ArticleFilters({ visibleTypes, children }: { visibleType
   }
 
   return <>
-    {choices.length > 0 && <div className="budget-tabs" role="group" aria-label="Article filters"><span className="filter-label"><Filter size={16} aria-hidden="true" /> Filter guides</span>
+    {choices.length > 0 && <div className="budget-tabs ls-filter" role="group" aria-label="Article filters"><span className="filter-label"><Filter size={16} aria-hidden="true" /> Filter guides</span>
       {active && <button type="button" className="budget-tab" onClick={() => pick(null)}>All guides</button>}
       {choices.map((c) => <button type="button" key={c.id} className={active?.id === c.id ? 'budget-tab active' : 'budget-tab'} aria-pressed={active?.id === c.id} onClick={() => pick(c)}>{c.label}</button>)}
     </div>}

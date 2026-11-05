@@ -2,7 +2,7 @@ import type { Metadata } from 'next';
 import Link from 'next/link';
 import JsonLd from '../../components/JsonLd';
 import { breadcrumbJsonLd } from '../../lib/structured-data';
-import { ArrowRight } from 'lucide-react';
+import { ArrowRight, BadgeCheck, BookOpen, Building2 } from 'lucide-react';
 import { api } from '../../lib/api';
 import { getLinkableEntities } from '../../lib/linkable-entities';
 import { getCourseFacets } from '../../lib/listings';
@@ -38,6 +38,10 @@ export async function generateMetadata(): Promise<Metadata> {
     twitter: { card: 'summary_large_image', title: baseTitle, description },
     robots: { index: true, follow: true }
   };
+}
+
+function formatCount(value: number) {
+  return value.toLocaleString('en-IN');
 }
 
 export default async function CollegesPage() {
@@ -99,31 +103,49 @@ export default async function CollegesPage() {
     { name: 'Colleges', url: `${siteUrl}/colleges` }
   ], `${pageUrl}#breadcrumb`);
   const listingAdFeed = await getAdSlot('listing_feed');
+  const totalColleges = facets.totalColleges || result.pagination.total;
+  const stats = [
+    result.pagination.total ? { icon: Building2, value: result.pagination.total, label: 'Colleges listed' } : null,
+    facets.data.length ? { icon: BookOpen, value: facets.data.length, label: 'Course paths' } : null
+  ].filter((item): item is { icon: typeof Building2; value: number; label: string } => Boolean(item));
 
-  return <main className="section"><div className="wrap">
+  return <main className="section ls-page"><div className="wrap">
     <JsonLd data={jsonLd} />
     <JsonLd data={breadcrumbLd} />
-    <nav className="breadcrumb" aria-label="Breadcrumb"><Link href="/">Home</Link><span aria-hidden="true">›</span><span aria-current="page">Colleges</span></nav>
-    <section className="articles-hero">
-      <div className="articles-hero-copy">
-        <p className="eyebrow">COLLEGE GUIDES</p>
-        <h1>Colleges in India 2026</h1>
-        <p>Browse active colleges by name, location, institute type and programme coverage. Use the list as a starting point, then compare course fees, admission routes and placements before applying.</p>
-        <p><Link className="button primary" href="/compare-colleges-2026">Compare colleges <ArrowRight size={16} aria-hidden="true" /></Link></p>
+    <nav className="breadcrumb ls-crumb" aria-label="Breadcrumb"><Link href="/">Home</Link><span aria-hidden="true">›</span><span aria-current="page">Colleges</span></nav>
+    <section className="ls-hero">
+      <div className="ls-hero-inner">
+        <div className="ls-hero-copy">
+          <span className="ls-kicker"><BadgeCheck size={15} aria-hidden="true" /> College guides</span>
+          <h1>Colleges in India 2026</h1>
+          <p>Browse active colleges by name, location, institute type and programme coverage. Use the list as a starting point, then compare course fees, admission routes and placements before applying.</p>
+          <div className="ls-hero-actions">
+            <Link className="button ls-btn-primary" href="/compare-colleges-2026">Compare colleges <ArrowRight size={16} aria-hidden="true" /></Link>
+            <Link className="button ls-btn-ghost" href="/courses">Browse courses</Link>
+          </div>
+        </div>
+        <div className="ls-hero-visual">
+          <img src="/colleges-hero.webp" alt="Students comparing colleges and courses" width="1200" height="675" fetchPriority="high" loading="eager" decoding="async" />
+        </div>
       </div>
-      <img src="/colleges-hero.webp" alt="Students comparing colleges and courses" width="1200" height="675" fetchPriority="high" loading="eager" decoding="async" />
+      {stats.length > 0 && <dl className="ls-stats">{stats.map((item) => <div key={item.label}>
+        <span className="ls-stat-icon"><item.icon size={18} aria-hidden="true" /></span>
+        <dt>{item.label}</dt>
+        <dd>{formatCount(item.value)}{item.value >= 20 ? '+' : ''}</dd>
+      </div>)}</dl>}
     </section>
     <AdSlot slotKey="listing_top" className="listing-ad" />
     <div className="listing-layout">
       <div className="listing-main">
-        <CourseFilterMobileButton facets={facets.data} totalColleges={facets.totalColleges || result.pagination.total} />
-        <div className="article-card-top">
-          <p className="muted">{result.pagination.total.toLocaleString('en-IN')} active colleges · load more to continue</p>
+        <CourseFilterMobileButton facets={facets.data} totalColleges={totalColleges} />
+        <div className="ls-head">
+          <p className="ls-eyebrow"><Building2 size={14} aria-hidden="true" /> Directory</p>
+          <h2>Browse Colleges</h2>
         </div>
-        <h2>Browse Colleges</h2>
+        <p className="ls-count">{formatCount(result.pagination.total)} active colleges · load more to continue</p>
         <LoadMoreColleges initial={result.data} total={result.pagination.total} perPage={result.pagination.perPage} query="" linkableEntities={linkableEntities} adFeed={listingAdFeed} />
       </div>
-      <CourseFilterSidebar facets={facets.data} totalColleges={facets.totalColleges || result.pagination.total} />
+      <CourseFilterSidebar facets={facets.data} totalColleges={totalColleges} />
     </div>
     <AdSlot slotKey="listing_bottom" className="listing-ad" />
   </div></main>;

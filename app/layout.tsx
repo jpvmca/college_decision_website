@@ -17,6 +17,11 @@ import './compare-mobile.css';
 import './listing-filter.css';
 import './student-lead.css';
 import './ads.css';
+import './college-profile.css';
+import './home.css';
+import './exams.css';
+import './listings.css';
+import './header.css';
 
 const defaultTitle = 'Compare College Fees, Courses & Exams in India';
 const defaultDescription = 'Compare college fees, courses, entrance exams, admission routes and placements across India before you shortlist.';
