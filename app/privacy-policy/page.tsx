@@ -1,4 +1,6 @@
 import type { Metadata } from 'next';
+import Link from 'next/link';
+import { Shield } from 'lucide-react';
 
 export const metadata: Metadata = {
   robots: { index: false, follow: true },
@@ -8,11 +10,19 @@ export const metadata: Metadata = {
 };
 
 export default function PrivacyPolicyPage() {
-  return <main className="section"><div className="wrap prose">
-    <p className="eyebrow">LEGAL INFORMATION</p>
-    <h1>Privacy Policy</h1>
-    <p className="muted">Last updated: 30 October 2026</p>
-    <p>This Privacy Policy explains how CollegeDecision.in handles information when you browse our college guides, use search, register for counselling or contact us. We aim to collect only what is needed to operate, protect and improve the website.</p>
+  return <main className="section ls-page"><div className="wrap">
+    <nav className="breadcrumb ls-crumb" aria-label="Breadcrumb"><Link href="/">Home</Link><span aria-hidden="true">›</span><span aria-current="page">Privacy Policy</span></nav>
+    <section className="ls-hero">
+      <div className="ls-hero-inner is-solo">
+        <div className="ls-hero-copy">
+          <span className="ls-kicker"><Shield size={15} aria-hidden="true" /> Legal information</span>
+          <h1>Privacy Policy</h1>
+          <p>This Privacy Policy explains how CollegeDecision.in handles information when you browse our college guides, use search, register for counselling or contact us. We aim to collect only what is needed to operate, protect and improve the website.</p>
+        </div>
+      </div>
+    </section>
+    <div className="ls-prose">
+    <p className="ls-date">Last updated: 30 October 2026</p>
     <h2>Information you provide</h2>
     <p>If you email us, we receive the information you choose to include, such as your name, email address, message, page URL and supporting source. Please do not send passwords, payment information, government identity documents or sensitive student records.</p>
     <h2>Student registration and enquiry form</h2>
@@ -39,5 +49,6 @@ export default function PrivacyPolicyPage() {
     <p>You may ask what personal information we hold about you, including details submitted through the registration form, and request correction or deletion. You may also ask us to stop contacting you. Contact <a href="mailto:privacy@collegedecision.in">privacy@collegedecision.in</a> with enough context for us to locate the request.</p>
     <h2>Updates</h2>
     <p>We may revise this policy when the website or applicable requirements change. The “Last updated” date identifies the latest version.</p>
+    </div>
   </div></main>;
 }

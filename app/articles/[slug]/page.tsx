@@ -1,7 +1,8 @@
 import type { Metadata } from 'next';
 import { notFound, permanentRedirect, redirect } from 'next/navigation';
 import Link from 'next/link';
-import { ArrowRight } from 'lucide-react';
+import { ArrowRight, BadgeCheck, FileText } from 'lucide-react';
+import HeroPhoto from '../../../components/HeroPhoto';
 import { api, mediaUrl } from '../../../lib/api';
 import { getLinkableEntities } from '../../../lib/linkable-entities';
 import AutoLinkedText from '../../../components/AutoLinkedText';
@@ -244,14 +245,28 @@ export default async function ArticleDetailPage({ params, searchParams }: { para
         { '@type': 'BreadcrumbList', itemListElement: [{ '@type': 'ListItem', position: 1, name: 'Home', item: getSiteUrl() }, { '@type': 'ListItem', position: 2, name: 'Articles', item: `${getSiteUrl()}/articles` }, { '@type': 'ListItem', position: 3, name: article.title, item: `${getSiteUrl()}/articles/${article.slug}` }] }
       ]
     };
-    return <main className="section"><div className="wrap prose">
+    return <main className="section ls-page"><div className="wrap">
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(comparisonJsonLd) }} />
-      <nav className="breadcrumb" aria-label="Breadcrumb"><Link href="/">Home</Link><span aria-hidden="true">›</span><Link href="/articles">Articles</Link><span aria-hidden="true">›</span><span aria-current="page">{breadcrumbTitle}</span></nav>
-      <h1>{article.h1 || article.title}</h1>
-      {article.imageUrl && (() => {
-        const image = getResponsiveImageSources(article.imageUrl, true);
-        return <img className="article-detail-image" src={image.src} srcSet={image.srcSet} sizes={image.sizes} alt={article.h1 || article.title} width="1200" height="800" fetchPriority="high" loading="eager" decoding="async" />;
-      })()}
+      <nav className="breadcrumb ls-crumb" aria-label="Breadcrumb"><Link href="/">Home</Link><span aria-hidden="true">›</span><Link href="/articles">Articles</Link><span aria-hidden="true">›</span><span aria-current="page">{breadcrumbTitle}</span></nav>
+      <section className="ls-hero">
+        <div className="ls-hero-inner">
+          <div className="ls-hero-copy">
+            <span className="ls-kicker"><BadgeCheck size={15} aria-hidden="true" /> College comparison</span>
+            <h1>{article.h1 || article.title}</h1>
+            <p>Compare recorded fees, eligibility, admission routes and placements before you shortlist.</p>
+            <div className="ls-hero-actions">
+              <Link className="button ls-btn-primary" href="/compare-colleges-2026">Compare colleges <ArrowRight size={16} aria-hidden="true" /></Link>
+              <Link className="button ls-btn-ghost" href="/articles">More guides</Link>
+            </div>
+          </div>
+          <div className="ls-hero-visual">
+            {article.imageUrl ? (() => {
+              const image = getResponsiveImageSources(article.imageUrl, true);
+              return <img src={image.src} srcSet={image.srcSet} sizes={image.sizes} alt={article.h1 || article.title} width="1200" height="800" fetchPriority="high" loading="eager" decoding="async" />;
+            })() : <HeroPhoto src="/college-comparison-hero.webp" alt="Students comparing college options" width={1024} height={768} />}
+          </div>
+        </div>
+      </section>
       <CollegeComparisonArticle article={article as unknown as Parameters<typeof CollegeComparisonArticle>[0]['article']} linkableEntities={linkableEntities} />
       <AdSlot slotKey="article_end" />
     </div></main>;
@@ -298,22 +313,33 @@ export default async function ArticleDetailPage({ params, searchParams }: { para
     ]
   };
   const summaryLabel = isAveragePackageExceedsFeesArticle(article.type) ? `Recorded average package exceeds recorded fees in ${article.location?.name || 'India'}` : isHighestPackageArticle(article.type) ? `Colleges in ${article.state?.name || 'selected state'} with at least ₹${article.packageThresholdLakh || 15} lakh highest package` : isGovAvgPackageArticle(article.type) ? `Government colleges in ${article.state?.name || 'selected state'} ranked by average package` : isExamAdmissionArticle(article.type) ? `MBA colleges accepting ${article.exam?.name || 'the selected entrance exam'}` : article.budgetLakh ? `Budget guide: up to ₹${article.budgetLakh} lakh` : article.type.includes('admission') ? 'Course admission and eligibility guide' : 'Course fee guide';
-  return <main className="section"><div className="wrap prose">
+  return <main className="section ls-page"><div className="wrap">
     <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
-    <nav className="breadcrumb" aria-label="Breadcrumb"><Link href="/">Home</Link><span aria-hidden="true">›</span><Link href="/articles">Articles</Link><span aria-hidden="true">›</span><span aria-current="page">{article.title}</span></nav>
+    <nav className="breadcrumb ls-crumb" aria-label="Breadcrumb"><Link href="/">Home</Link><span aria-hidden="true">›</span><Link href="/articles">Articles</Link><span aria-hidden="true">›</span><span aria-current="page">{article.title}</span></nav>
     <AdSlot slotKey="article_top" />
-    <h1>{article.title}</h1>
-    {article.imageUrl && (() => {
-      const image = getResponsiveImageSources(article.imageUrl);
-      return <img className="article-detail-image" src={image.src} srcSet={image.srcSet} sizes={image.sizes} alt={article.title} width="1200" height="675" fetchPriority="high" loading="eager" decoding="async" />;
-    })()}
-    <p className="article-backlink"><Link href="/articles">← Back to all Student Decision Guides</Link></p>
-    <p><Link className="button primary" href="/compare-colleges-2026">Compare colleges side by side <ArrowRight size={16} aria-hidden="true" /></Link></p>
+    <section className="ls-hero">
+      <div className="ls-hero-inner">
+        <div className="ls-hero-copy">
+          <span className="ls-kicker"><FileText size={15} aria-hidden="true" /> Student decision guide</span>
+          <h1>{article.title}</h1>
+          <p className="ls-hero-lead"><AutoLinkedText text={seo.intro} entities={linkableEntities} /></p>
+          <div className="ls-hero-actions">
+            <Link className="button ls-btn-primary" href="/compare-colleges-2026">Compare colleges <ArrowRight size={16} aria-hidden="true" /></Link>
+            <Link className="button ls-btn-ghost" href="/articles">All guides</Link>
+          </div>
+        </div>
+        <div className="ls-hero-visual">
+          {article.imageUrl ? (() => {
+            const image = getResponsiveImageSources(article.imageUrl);
+            return <img src={image.src} srcSet={image.srcSet} sizes={image.sizes} alt={article.title} width="1200" height="675" fetchPriority="high" loading="eager" decoding="async" />;
+          })() : <HeroPhoto src="/articles-hero.webp" alt="Students comparing college decision guides" />}
+        </div>
+      </div>
+    </section>
     <div className="notice"><strong>Before you apply:</strong> {isAveragePackageExceedsFeesArticle(article.type) || isHighestPackageArticle(article.type) || isGovAvgPackageArticle(article.type) ? 'placement packages are historical leads and can change by batch, role and recruiter mix. Confirm the latest official fee and placement report before deciding.' : isExamAdmissionArticle(article.type) ? `exam routes and college requirements can change. Confirm the current ${article.exam?.name || 'entrance exam'} notice and each institution's official admission process before applying.` : article.type.includes('admission') ? 'eligibility and admission routes can change by institution and academic year. Confirm the latest official notice before applying.' : 'treat these figures as fee leads, not final quotes. Confirm the academic year, currency, duration, hostel, mess, deposits and current admission rules with the institution.'}</div>
-    <p className="article-intro"><AutoLinkedText text={seo.intro} entities={linkableEntities} /></p>
     {isExamAdmissionArticle(article.type) && article.exam?.applyUrl && <p className="article-backlink"><a href={article.exam.applyUrl} target="_blank" rel="noopener noreferrer">Open official {article.exam.name} information</a></p>}
     <AdSlot slotKey="article_middle" />
-    <h2>{seo.optionsHeading}</h2>
+    <div className="ls-head"><p className="ls-eyebrow"><FileText size={14} aria-hidden="true" /> Directory</p><h2>{seo.optionsHeading}</h2></div>
     <ArticleCollegeList
       slug={article.slug}
       articleType={article.type}
@@ -326,11 +352,13 @@ export default async function ArticleDetailPage({ params, searchParams }: { para
       excludeExamSlugs={isExamAdmissionArticle(article.type) && article.exam?.slug ? [article.exam.slug] : []}
       adFeed={articleAdFeed}
     />
-    <h2>How to use this guide</h2>
-    <p>{isAveragePackageExceedsFeesArticle(article.type) ? 'Use the package-above-fees result as a shortlist signal, then compare programme quality, fee coverage, eligibility, admission route and the latest official placement report.' : isHighestPackageArticle(article.type) ? 'Start with colleges that meet the package threshold, then compare programme quality, fees, eligibility, admission route and the latest official placement report before applying.' : isGovAvgPackageArticle(article.type) ? 'Start with the government colleges that report stronger average packages in your chosen state. Then compare eligibility, fees, admission route, facilities and the latest official placement report before applying.' : 'Start with the colleges that match your preferred location and admission route. Then compare the complete programme cost, duration, eligibility, entrance exam, facilities, learning resources, and recent placement information. A low displayed fee is useful only when it is current and complete.'}</p>
+    <section className="ls-panel">
+      <div className="ls-head"><p className="ls-eyebrow">How to use this guide</p><h2>Make a better shortlist</h2></div>
+      <p>{isAveragePackageExceedsFeesArticle(article.type) ? 'Use the package-above-fees result as a shortlist signal, then compare programme quality, fee coverage, eligibility, admission route and the latest official placement report.' : isHighestPackageArticle(article.type) ? 'Start with colleges that meet the package threshold, then compare programme quality, fees, eligibility, admission route and the latest official placement report before applying.' : isGovAvgPackageArticle(article.type) ? 'Start with the government colleges that report stronger average packages in your chosen state. Then compare eligibility, fees, admission route, facilities and the latest official placement report before applying.' : 'Start with the colleges that match your preferred location and admission route. Then compare the complete programme cost, duration, eligibility, entrance exam, facilities, learning resources, and recent placement information. A low displayed fee is useful only when it is current and complete.'}</p>
+    </section>
     <AdSlot slotKey="article_end" />
     {relatedVisible.length > 0 && <section className="related-guides" aria-labelledby="related-guides-heading">
-      <h2 id="related-guides-heading">Related Student Decision Guides</h2>
+      <div className="ls-head"><p className="ls-eyebrow"><FileText size={14} aria-hidden="true" /> Related</p><h2 id="related-guides-heading">Related Student Decision Guides</h2></div>
       <div className="related-guide-list">{relatedVisible.map((guide) => <Link className="related-guide" href={`/articles/${guide.slug}`} key={guide.slug}><strong>{guide.title}</strong><span>{guide.description}</span></Link>)}</div>
     </section>}
   </div></main>;

@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
+import { BadgeCheck, ChevronDown, Lightbulb } from 'lucide-react';
 import JsonLd from './JsonLd';
 import CollegeFinder, { type AnyFinderCombo } from './CollegeFinder';
 import { getCourseFacets, courseListingHref, type CourseFacet } from '../lib/listings';
@@ -124,22 +125,49 @@ export default async function ClosingCollegesPage({ segment, query, kind }: { se
   const a = personal?.applied;
   const sortedLevels = [...combo.levels].sort((x, y) => (kind === 'rank' ? x - y : y - x));
 
-  return <main className="section college-profile-page"><div className="wrap prose">
+  return <main className="section college-profile-page cp-page"><div className="wrap">
     <JsonLd data={breadcrumbJsonLd(siteUrl(), crumbs)} />
     {faqLd && !searching && <JsonLd data={faqLd} />}
-    <nav className="breadcrumb" aria-label="Breadcrumb"><Link href="/">Home</Link><span aria-hidden="true">›</span><Link href="/colleges">Colleges</Link><span aria-hidden="true">›</span><Link href={courseListingHref(facet.key)}>{label} Colleges</Link><span aria-hidden="true">›</span><span aria-current="page">Accepting {levelText(kind, level)} in {exam}</span></nav>
-    <header className="college-profile-header"><div>
-      <p className="eyebrow">{exam} {kind === 'rank' ? 'RANK' : 'PERCENTILE'}</p>
-      <h1>{label} Colleges Accepting {levelText(kind, level)} in {exam} {year}</h1>
-      <p>{list.length
+    <nav className="breadcrumb cp-breadcrumb" aria-label="Breadcrumb"><Link href="/">Home</Link><span aria-hidden="true">›</span><Link href="/colleges">Colleges</Link><span aria-hidden="true">›</span><Link href={courseListingHref(facet.key)}>{label} Colleges</Link><span aria-hidden="true">›</span><span aria-current="page">Accepting {levelText(kind, level)} in {exam}</span></nav>
+    <header className="cp-hero">
+      <div className="cp-hero-copy">
+        <p className="cp-eyebrow">{exam} {kind === 'rank' ? 'rank' : 'percentile'}</p>
+        <h1>{label} Colleges Accepting {levelText(kind, level)} in {exam} {year}</h1>
+      </div>
+      <p className="cp-hero-lead">{list.length
         ? `${list.length} ${label.toLowerCase()} college${list.length === 1 ? '' : 's'} had at least one branch with a ${year} final-round ${cond} in ${exam}, so a candidate with ${kind === 'rank' ? `rank ${fmtRank(level)}` : `${level} percentile`} would have been within reach of ${progCount} branch option${progCount === 1 ? '' : 's'}.`
         : `No listed college had a ${year} final-round ${cond} in ${exam}.`}</p>
-      <p className="muted"><strong>Basis:</strong> {year} final counselling round, General (Open) category, gender-neutral seats, {quotaText(combo)} quota{combo.exam_slug === 'jee-main' ? ', B.E./B.Tech programmes (Paper 1)' : ''}. Closing {kind}s vary by category, quota, seat pool and year and are not a guarantee of admission.</p>
+      <div className="cp-hero-badges"><span className="cp-pill is-verified"><BadgeCheck size={15} aria-hidden="true" /> {year} final counselling round</span></div>
       <div className="cutoff-year-links" role="navigation" aria-label={`${exam} ${kind} levels`}>
         {sortedLevels.map((l) => <Link key={l} className={`button${l === level ? ' primary' : ''}`} aria-current={l === level ? 'page' : undefined} href={hrefFor(combo, facet.key, l)}>Accepting {levelText(kind, l)}</Link>)}
         <Link className="button" href={`/exams/${r.exam}/cutoff`}>{exam} cutoff for all colleges</Link>
       </div>
-    </div></header>
+    </header>
+    <section className="cp-insight">
+      <span className="cp-insight-icon"><Lightbulb size={20} aria-hidden="true" /></span>
+      <div><p className="cp-insight-title">Basis</p><p>{year} final counselling round, General (Open) category, gender-neutral seats, {quotaText(combo)} quota{combo.exam_slug === 'jee-main' ? ', B.E./B.Tech programmes (Paper 1)' : ''}. Closing {kind}s vary by category, quota, seat pool and year and are not a guarantee of admission.</p></div>
+    </section>
+    {list.length ? <section className="cutoff-section">
+      <h2>{exam} {year} at {levelText(kind, level).toLowerCase()}: snapshot</h2>
+      <div className="detail-table-wrap"><table className="detail-table">
+        <tbody>
+          <tr><th scope="row">Colleges within reach</th><td>{list.length}</td></tr>
+          <tr><th scope="row">Branch options</th><td>{progCount}</td></tr>
+          {(() => {
+            const closings = list.flatMap((c) => c.programmes.map((p) => p.closing)).filter((n) => Number.isFinite(n));
+            if (!closings.length) return null;
+            const tight = kind === 'rank' ? Math.min(...closings) : Math.max(...closings);
+            const loose = kind === 'rank' ? Math.max(...closings) : Math.min(...closings);
+            return <tr><th scope="row">{kind === 'rank' ? 'Closing rank range' : 'Closing percentile range'}</th><td>{fmtVal(kind, tight)} – {fmtVal(kind, loose)}</td></tr>;
+          })()}
+          {(() => {
+            const cities = Array.from(new Set(list.map((c) => [c.city, c.state].filter(Boolean).join(', ')).filter(Boolean)));
+            return cities.length ? <tr><th scope="row">Locations</th><td>{cities.slice(0, 8).join('; ')}{cities.length > 8 ? ` · +${cities.length - 8} more` : ''}</td></tr> : null;
+          })()}
+        </tbody>
+      </table></div>
+      <p>Use this page as a {year} guide only: a candidate with {kind === 'rank' ? `rank ${fmtRank(level)}` : `${level} percentile`} was inside the final-round closing {kind} for the branches listed, under the {quotaText(combo)} quota and General, gender-neutral filters above. Check the official {exam} counselling brochure for the current seat matrix.</p>
+    </section> : null}
 
     <CollegeFinder combos={combos} initialId={`${facet.key}|${r.exam}|${kind}`} initialFacets={clean.facets} resetHref={path}
       initialValues={searching ? { value: one(query[kind === 'rank' ? 'rank' : 'percentile']), category: one(query.category) || 'OPEN', quota: one(query.quota), homeState: one(query.homeState), gender: one(query.gender) || 'GENDER_NEUTRAL', branch: one(query.branch) } : undefined} />
@@ -161,6 +189,6 @@ export default async function ClosingCollegesPage({ segment, query, kind }: { se
       <p className="muted">Branches are sorted from most to least competitive. Colleges without {exam} {year} final-round data are not listed.</p>
     </section>
     {!searching && <section className="cutoff-section"><h2>FAQs</h2>
-      {faqs.map((f) => <details key={f.question}><summary>{f.question}</summary><p>{f.answer}</p></details>)}</section>}
+      <div className="cp-faq">{faqs.map((f) => <details className="cp-faq-item" key={f.question}><summary><h3>{f.question}</h3><ChevronDown size={18} aria-hidden="true" /></summary><p>{f.answer}</p></details>)}</div></section>}
   </div></main>;
 }

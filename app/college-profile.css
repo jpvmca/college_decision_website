@@ -55,7 +55,7 @@
   pointer-events: none;
 }
 .cp-hero > * { position: relative; }
-.cp-hero-top { display: flex; align-items: center; gap: 22px; }
+.cp-hero-top { display: flex; align-items: center; gap: 22px; flex-wrap: wrap; }
 .cp-hero-logo { flex: 0 0 104px; width: 104px; height: 104px; display: grid; place-items: center; padding: 10px; border-radius: 22px; background: #fff; box-shadow: 0 10px 26px rgba(3, 15, 35, .3), 0 0 0 6px rgba(255, 255, 255, .12); }
 .cp-hero-logo img { width: 100%; height: 100%; object-fit: contain; }
 .cp-hero-copy { min-width: 0; }
@@ -377,6 +377,131 @@
   .cp-fee-table tbody td { flex-wrap: wrap; }
   .cp-fee-table tbody td small { flex-basis: 100%; text-align: right; margin-top: 0; }
 }
+/* Course / exam / cutoff family — same chrome as college profiles */
+.cp-page .cp-hero:not(:has(+ .cp-glance)) { padding-bottom: 34px; }
+.cp-hero-media {
+  flex: 0 0 280px;
+  width: 280px;
+  overflow: hidden;
+  border-radius: 18px;
+  background: #fff;
+  box-shadow: 0 10px 26px rgba(3, 15, 35, .3), 0 0 0 6px rgba(255, 255, 255, .12);
+}
+.cp-hero-media img { display: block; width: 100%; height: auto; aspect-ratio: 16 / 9; object-fit: cover; }
+.cp-hero-logo .exam-logo { width: 84px !important; height: 84px !important; border: 0; padding: 0; border-radius: 0; background: transparent; }
+.cp-hero-lead a { color: #99f6e4; text-decoration: underline; text-underline-offset: 2px; }
+.cp-hero-lead a:hover { color: #fff; }
+.cp-hero-meta a { color: #cfe0f5; text-decoration: underline; text-underline-offset: 2px; }
+.cp-glance-item strong a { color: inherit; }
+.cp-hero .cutoff-year-links { margin-top: 20px; }
+.cp-hero .cutoff-year-links .button {
+  display: inline-flex; align-items: center; margin: 0; padding: 9px 14px;
+  border: 1px solid rgba(255, 255, 255, .24); border-radius: 10px;
+  background: rgba(255, 255, 255, .08); color: #fff !important; font-size: 13.5px; font-weight: 700;
+}
+.cp-hero .cutoff-year-links .button:hover { border-color: rgba(255, 255, 255, .5); background: rgba(255, 255, 255, .16); text-decoration: none; }
+.cp-hero .cutoff-year-links .button.primary {
+  border: 0; background: linear-gradient(135deg, #f59e0b, #ea580c) !important; color: #fff !important;
+  box-shadow: 0 8px 18px rgba(234, 88, 12, .32);
+}
+
+.cp-page .course-html-content {
+  margin: 0; padding: 28px; border: 1px solid var(--cp-line); border-radius: var(--cp-radius);
+  background: #fff; box-shadow: var(--cp-shadow);
+}
+.cp-page .course-html-content > h2,
+.cp-page .course-html-article h2 {
+  margin: 28px 0 12px; padding-bottom: 10px; border-bottom: 1px solid var(--cp-line);
+  color: var(--cp-ink); font-size: clamp(20px, 2.2vw, 24px); letter-spacing: -.015em;
+}
+.cp-page .course-html-content > h2:first-child,
+.cp-page .course-html-article h2:first-child { margin-top: 0; }
+.cp-page .course-html-content h3 { color: var(--cp-ink); }
+.cp-page .course-article-intro { border-left-color: var(--cp-teal); background: var(--cp-teal-soft); color: var(--cp-ink); }
+
+.cp-page .profile-chips { display: flex; flex-wrap: wrap; gap: 8px; }
+.cp-page .profile-chips a,
+.cp-page .profile-chips span {
+  display: inline-flex; align-items: center; padding: 7px 12px; border: 1px solid #d6e2f5; border-radius: 10px;
+  background: #fff; color: var(--cp-navy); font-size: 13.5px; font-weight: 650;
+}
+.cp-page .profile-chips a:hover { border-color: var(--cp-blue); background: var(--cp-blue-soft); color: var(--cp-blue); text-decoration: none; }
+.cp-page .college-profile-columns { gap: 16px; margin-top: 0; }
+.cp-page .college-programme-grid { gap: 12px; }
+.cp-page .college-programme-grid .card {
+  padding: 16px; border: 1px solid var(--cp-line); border-radius: 14px; background: #fff;
+  box-shadow: var(--cp-shadow); color: inherit; transition: border-color .15s ease, transform .15s ease;
+}
+.cp-page .college-programme-grid a.card:hover { border-color: #b8ccef; transform: translateY(-2px); text-decoration: none; }
+.cp-page .college-programme-grid h3 { margin: 0 0 4px; color: var(--cp-ink); font-size: 15px; }
+.cp-page .home-college-heading { display: flex; align-items: center; gap: 12px; }
+.cp-page .course-college-logo { width: 48px; height: 48px; flex: 0 0 48px; padding: 4px; border: 1px solid var(--cp-line); border-radius: 12px; background: #fff; object-fit: contain; }
+.cp-page .article-backlink { margin: 0; }
+.cp-page .article-backlink a { font-weight: 700; }
+
+.cp-page .exam-schedule-card,
+.cp-page .exam-events {
+  margin: 0; padding: 28px; border: 1px solid var(--cp-line); border-radius: var(--cp-radius);
+  background: #fff; box-shadow: var(--cp-shadow);
+}
+.cp-page .exam-schedule-card h2,
+.cp-page .exam-events h2 { margin: 0 0 16px; color: var(--cp-ink); letter-spacing: -.015em; }
+.cp-page .exam-schedule-grid { grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); }
+.cp-page .exam-schedule-grid > div { border-color: var(--cp-line); border-radius: 12px; background: var(--cp-soft); }
+.cp-page .exam-schedule-grid strong { color: var(--cp-muted); font-size: 12px; letter-spacing: .04em; text-transform: uppercase; }
+.cp-page .exam-schedule-grid span { color: var(--cp-ink); font-weight: 700; }
+.cp-page .exam-countdown { color: var(--cp-teal); }
+.cp-page .exam-events-table { width: 100%; border-collapse: collapse; font-size: 14px; }
+.cp-page .exam-events-table th { padding: 11px 14px; background: var(--cp-soft); color: var(--cp-muted); font-size: 12px; text-align: left; text-transform: uppercase; }
+.cp-page .exam-events-table td { padding: 12px 14px; border-top: 1px solid var(--cp-line); vertical-align: top; }
+
+.cp-page .course-geo-links {
+  margin: 0; padding: 28px; border: 1px solid var(--cp-line); border-radius: var(--cp-radius);
+  background: #fff; box-shadow: var(--cp-shadow);
+}
+.cp-page .course-geo-links h2 { margin: 0 0 12px; color: var(--cp-ink); font-size: 20px; }
+.cp-page .course-geo-links li { border-color: var(--cp-line); border-radius: 12px; background: var(--cp-soft); }
+.cp-page .course-geo-links a { color: var(--cp-navy); }
+.cp-page .course-geo-links a:hover { color: var(--cp-blue); }
+
+.cp-page .finder-card,
+.cp-page .cutoff-section,
+.cp-page .cutoff-takeaways {
+  margin: 0; padding: 28px; border: 1px solid var(--cp-line); border-radius: var(--cp-radius);
+  background: #fff; box-shadow: var(--cp-shadow);
+}
+.cp-page .cutoff-section + .cutoff-section,
+.cp-page .cutoff-section .cutoff-section { margin-top: 16px; padding: 0; border: 0; box-shadow: none; }
+.cp-page .finder-card h2,
+.cp-page .cutoff-section > h2 { margin: 0 0 14px; color: var(--cp-ink); letter-spacing: -.015em; }
+.cp-page .finder-card { scroll-margin-top: 80px; }
+.cp-page .detail-table-wrap { border-color: var(--cp-line); border-radius: 14px; }
+.cp-page .detail-table thead th { background: var(--cp-soft); color: var(--cp-muted); }
+.cp-page .cutoff-filters { border-color: var(--cp-line); border-radius: 14px; background: var(--cp-soft); }
+.cp-page .cutoff-section details { border-bottom-color: var(--cp-line); }
+.cp-page .cutoff-section details > summary { display: flex; align-items: center; justify-content: space-between; gap: 12px; color: var(--cp-ink); font-size: 15px; }
+.cp-page .notice,
+.cp-page .cp-data-note { display: flex; gap: 12px; align-items: flex-start; margin: 0; padding: 16px 18px; border: 1px solid #f3dfc4; border-radius: 14px; background: #fffaf2; }
+.cp-page .profile-list p { border-bottom-color: var(--cp-line); }
+
+@media (max-width: 760px) {
+  .cp-hero-media { width: 100%; flex-basis: auto; }
+  .cp-page .course-html-content,
+  .cp-page .exam-schedule-card,
+  .cp-page .exam-events,
+  .cp-page .course-geo-links,
+  .cp-page .finder-card,
+  .cp-page .cutoff-section { padding: 18px 16px; }
+}
+
 @media (prefers-reduced-motion: reduce) {
   .cp-page * { transition: none !important; }
+}
+
+.cp-gallery { margin: 22px 0 8px; }
+.cp-gallery-list { display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); gap: 10px; margin: 0; padding: 0; list-style: none; }
+.cp-gallery-list li { overflow: hidden; border-radius: 12px; background: #e8eef6; }
+.cp-gallery-list img { display: block; width: 100%; height: 100%; aspect-ratio: 16 / 9; object-fit: cover; }
+@media (max-width: 700px) {
+  .cp-gallery-list { grid-template-columns: repeat(2, 1fr); }
 }

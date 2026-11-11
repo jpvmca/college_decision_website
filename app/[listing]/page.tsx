@@ -2,12 +2,15 @@ import type { Metadata } from 'next';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import { cache } from 'react';
-import { ArrowRight } from 'lucide-react';
+import { ArrowRight, BadgeCheck, Building2, GraduationCap, MapPin } from 'lucide-react';
 import JsonLd from '../../components/JsonLd';
+import HeroPhoto from '../../components/HeroPhoto';
+import HeroStats from '../../components/HeroStats';
 import { breadcrumbJsonLd } from '../../lib/structured-data';
 import { api, mediaUrl } from '../../lib/api';
 import { getLinkableEntities } from '../../lib/linkable-entities';
-import { LISTINGS_CACHE_VERSION, courseListingHref, getCourseFacets, listingFetchOptions, parseCourseListingSegment, type CourseFacet } from '../../lib/listings';
+import { LISTINGS_CACHE_VERSION, courseListingHref, getCourseFacets, getListingSummary, listingFetchOptions, parseCourseListingSegment, type CourseFacet } from '../../lib/listings';
+import ListingGuide from '../../components/ListingGuide';
 import { type ListedCollege, type ListPagination } from '../../components/CollegeListResults';
 import LoadMoreColleges from '../../components/LoadMoreColleges';
 import { getAdSlot } from '../../lib/ads';
@@ -237,16 +240,21 @@ export default async function CourseCollegesPage({ params, searchParams }: { par
     : seoTitle(label);
   const totalLabel = pagination.total.toLocaleString('en-IN');
   const image = heroImage(result);
-  const heroCopy = <>
-    <p className="eyebrow">COLLEGE GUIDES</p>
-    <h1>{heading}</h1>
-    <p className="listing-intro">{cityPage
-      ? `Explore ${totalLabel}+ ${label.toLowerCase()} colleges in ${cityName}, ${stateName}. Compare fees, admission routes, cut-offs, placements and rankings before shortlisting.`
-      : statePage
-      ? `Explore ${totalLabel}+ ${label.toLowerCase()} colleges in ${stateName}. Compare fees, admission routes, cut-offs, placements and rankings before shortlisting.`
-      : `Find ${label} colleges for different profiles and budgets. India has ${totalLabel} active colleges offering ${label} in our database, listed with the most complete fee, course and placement information first so you can shortlist faster.`}</p>
-    <p><Link className="button primary" href="/compare-colleges-2026">Compare colleges <ArrowRight size={16} aria-hidden="true" /></Link></p>
-  </>;
+  const summary = await getListingSummary(course.courseSlug, cityPage?.stateSlug || statePage?.stateSlug || null, cityPage?.citySlug || null);
+  const countText = pagination.total.toLocaleString('en-IN');
+  const intro = cityPage
+    ? `College Decision lists ${countText} published ${label} colleges in ${cityName}, ${stateName}. Use the directory to compare published fees, admission routes and placements, then confirm every figure on the official college site.`
+    : statePage
+      ? `College Decision lists ${countText} published ${label} colleges in ${stateName}. Use the directory to compare published fees, admission routes and placements, then confirm every figure on the official college site.`
+      : `Find ${label} colleges for different profiles and budgets. India has ${countText} published colleges offering ${label} in our database, listed with the most complete fee, course and placement information first so you can shortlist faster.`;
+  const courseStates = statePages.data.filter((item) => item.courseSlug === course.courseSlug);
+  const courseCities = cityPages.data.filter((item) => item.courseSlug === course.courseSlug);
+  const stats = [
+    pagination.total ? { icon: Building2, value: `${totalLabel}${pagination.total >= 20 ? '+' : ''}`, label: `${label} colleges` } : null,
+    courseStates.length ? { icon: MapPin, value: `${courseStates.length}`, label: 'States covered' } : null,
+    courseCities.length ? { icon: GraduationCap, value: `${courseCities.length}`, label: 'City pages' } : null
+  ].filter((item): item is { icon: typeof Building2; value: string; label: string } => Boolean(item));
+  const kicker = cityPage ? `${label} in ${cityName}` : statePage ? `${label} in ${stateName}` : `${label} college guides`;
 
   const jsonLd = {
     '@context': 'https://schema.org',
@@ -298,26 +306,53 @@ export default async function CourseCollegesPage({ params, searchParams }: { par
   ], `${pageUrl}#breadcrumb`);
 
   const listingAdFeed = await getAdSlot('listing_feed', { thin: !result.data.length });
-  return <main className="section"><div className="wrap">
+  return <main className="section ls-page"><div className="wrap">
     <JsonLd data={jsonLd} />
     <JsonLd data={breadcrumbLd} />
-    <nav className="breadcrumb" aria-label="Breadcrumb"><Link href="/">Home</Link><span aria-hidden="true">›</span><Link href="/colleges">Colleges</Link><span aria-hidden="true">›</span><span aria-current="page">{cityPage ? `${label} Colleges in ${cityName}` : `${label} Colleges`}</span></nav>
+    <nav className="breadcrumb ls-crumb" aria-label="Breadcrumb"><Link href="/">Home</Link><span aria-hidden="true">›</span><Link href="/colleges">Colleges</Link><span aria-hidden="true">›</span><span aria-current="page">{cityPage ? `${label} Colleges in ${cityName}` : statePage ? `${label} Colleges in ${stateName}` : `${label} Colleges`}</span></nav>
+    <section className="ls-hero">
+      <div className="ls-hero-inner">
+        <div className="ls-hero-copy">
+          <span className="ls-kicker"><BadgeCheck size={15} aria-hidden="true" /> {kicker}</span>
+          <h1>{heading}</h1>
+          <p>{intro}</p>
+          <div className="ls-hero-actions">
+            <Link className="button ls-btn-primary" href="/compare-colleges-2026">Compare colleges <ArrowRight size={16} aria-hidden="true" /></Link>
+            {course.courseSlug ? <Link className="button ls-btn-ghost" href={`/courses/${course.courseSlug}`}>{label} course guide</Link> : <Link className="button ls-btn-ghost" href="/courses">Browse courses</Link>}
+          </div>
+        </div>
+        <div className="ls-hero-visual">
+          {image
+            ? <img src={image.src} srcSet={image.srcSet} sizes={image.sizes} alt={image.alt} width={image.width} height={image.height} fetchPriority="high" loading="eager" decoding="async" />
+            : <HeroPhoto src="/colleges-hero.webp" alt={`Students comparing ${label} colleges and courses`} />}
+        </div>
+      </div>
+      <HeroStats prefix="ls" stats={stats} />
+    </section>
+    {summary ? <ListingGuide
+      label={label}
+      courseSlug={course.courseSlug}
+      courseKey={course.key}
+      placeName={cityPage ? cityName : statePage ? stateName : 'India'}
+      placeKind={cityPage ? 'city' : statePage ? 'state' : 'india'}
+      stateSlug={cityPage?.stateSlug || statePage?.stateSlug || null}
+      siblingStates={courseStates.map((item) => ({ stateSlug: item.stateSlug, stateName: item.stateName, count: item.count, href: `/${course.key}-colleges-in-${item.stateSlug}` }))}
+      summary={summary}
+      year={CURRENT_YEAR}
+    /> : null}
     <AdSlot slotKey="listing_top" className="listing-ad" />
-    {image ? <section className="articles-hero listing-hero">
-      <div className="articles-hero-copy">{heroCopy}</div>
-      <img src={image.src} srcSet={image.srcSet} sizes={image.sizes} alt={image.alt} width={image.width} height={image.height} fetchPriority="high" loading="eager" decoding="async" />
-    </section> : <section className="hero-inline">{heroCopy}</section>}
     <div className="listing-layout">
       <div className="listing-main">
         <CourseFilterMobileButton percentileGroups={percentileGroups} facets={facets.data} totalColleges={facets.totalColleges} selectedKey={course.key} selectedState={cityPage?.stateSlug || statePage?.stateSlug || null} selectedCity={cityPage?.citySlug || null} statePages={statePages.data} cityPages={cityPages.data} />
-        <div className="article-card-top">
-          <p className="muted">{totalLabel} {label} colleges · load more to continue</p>
+        <div className="ls-head">
+          <p className="ls-eyebrow"><Building2 size={14} aria-hidden="true" /> Directory</p>
+          <h2>Browse {label} Colleges</h2>
         </div>
-        <h2>Browse {label} Colleges</h2>
+        <p className="ls-count">{totalLabel} {label} colleges · load more to continue</p>
         {statePage || cityPage
           ? <LoadMoreColleges initial={result.data} total={pagination.total} perPage={pagination.perPage} query={`course=${encodeURIComponent(course.courseSlug)}&state=${encodeURIComponent(cityPage?.stateSlug || statePage?.stateSlug || '')}${cityPage ? `&city=${encodeURIComponent(cityPage.citySlug)}` : ''}`} linkableEntities={linkableEntities} adFeed={listingAdFeed} />
           : <LoadMoreColleges initial={result.data} total={pagination.total} perPage={pagination.perPage} endpoint={`/api/course-listing/${encodeURIComponent(course.key)}`} linkableEntities={linkableEntities} adFeed={listingAdFeed} />}
-        <p className="muted">Fees and placement figures are shown only where colleges have reported them; confirm the latest numbers on the official college website before applying.</p>
+        <p className="ls-note">Fees and placement figures are shown only where colleges have reported them; confirm the latest numbers on the official college website before applying.</p>
       </div>
       <CourseFilterSidebar percentileGroups={percentileGroups} facets={facets.data} totalColleges={facets.totalColleges} selectedKey={course.key} selectedState={cityPage?.stateSlug || statePage?.stateSlug || null} selectedCity={cityPage?.citySlug || null} statePages={statePages.data} cityPages={cityPages.data} />
     </div>

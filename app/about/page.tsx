@@ -1,4 +1,6 @@
 import type { Metadata } from 'next';
+import Link from 'next/link';
+import { BadgeCheck } from 'lucide-react';
 
 export const metadata: Metadata = {
   title: 'About CollegeDecision.in',
@@ -17,10 +19,18 @@ export const metadata: Metadata = {
 };
 
 export default function AboutPage() {
-  return <main className="section"><div className="wrap prose">
-    <p className="eyebrow">ABOUT COLLEGEDECISION.IN</p>
-    <h1>College research that helps you decide with confidence</h1>
-    <p>CollegeDecision.in is built for students and families who want more than a college name, a ranking or a single fee number. We bring course, institute, cost, eligibility, admission and placement information together so you can ask better questions before applying.</p>
+  return <main className="section ls-page"><div className="wrap">
+    <nav className="breadcrumb ls-crumb" aria-label="Breadcrumb"><Link href="/">Home</Link><span aria-hidden="true">›</span><span aria-current="page">About</span></nav>
+    <section className="ls-hero">
+      <div className="ls-hero-inner is-solo">
+        <div className="ls-hero-copy">
+          <span className="ls-kicker"><BadgeCheck size={15} aria-hidden="true" /> About CollegeDecision.in</span>
+          <h1>College research that helps you decide with confidence</h1>
+          <p>CollegeDecision.in is built for students and families who want more than a college name, a ranking or a single fee number. We bring course, institute, cost, eligibility, admission and placement information together so you can ask better questions before applying.</p>
+        </div>
+      </div>
+    </section>
+    <div className="ls-prose">
     <h2>What we are building</h2>
     <p>Our goal is to make college research easier to understand and easier to verify. Instead of treating every number as a promise, our guides explain what the record represents, which academic details may be missing and what should be confirmed with the institution.</p>
     <div className="grid">
@@ -34,5 +44,6 @@ export default function AboutPage() {
     <p>The platform is designed for applicants comparing undergraduate, postgraduate, diploma and professional courses across India. It is useful at the early research stage, when you are narrowing options and preparing questions for admissions offices.</p>
     <h2>Who runs CollegeDecision.in</h2>
     <p>CollegeDecision.in is maintained by an independent product and research team focused on making education data easier to compare. We are not affiliated with every institution listed on the platform, and we do not accept editorial control in exchange for changing factual information. For corrections or collaboration questions, contact <a href="mailto:hello@collegedecision.in">hello@collegedecision.in</a>.</p>
+    </div>
   </div></main>;
 }

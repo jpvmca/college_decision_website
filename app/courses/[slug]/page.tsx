@@ -1,6 +1,8 @@
 import type { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import Link from 'next/link';
+import type { LucideIcon } from 'lucide-react';
+import { ArrowRight, BadgeCheck, BookOpen, Building2, ChevronDown, ClipboardCheck, GraduationCap, IndianRupee, Lightbulb, Star, TriangleAlert } from 'lucide-react';
 import { api, mediaUrl } from '../../../lib/api';
 import { courseDisplayName, courseSeo as buildCourseSeo } from '../../../lib/course-seo';
 import { autoLinkHtml } from '../../../lib/auto-link-entities';
@@ -12,6 +14,11 @@ import CourseGeoLinks from '../../../components/CourseGeoLinks';
 import AdSlot from '../../../components/ads/AdSlot';
 import { splitLongParagraphs } from '../../../lib/readable-html';
 import { plainText } from '../../../lib/readable-text';
+import { courseListingHref, getCourseFacets } from '../../../lib/listings';
+
+function SectionHead({ icon: Icon, title, subtitle }: { icon: LucideIcon; title: string; subtitle?: string }) {
+  return <div className="cp-section-head"><span className="cp-section-icon"><Icon size={20} strokeWidth={2} aria-hidden="true" /></span><div><h2>{title}</h2>{subtitle ? <p>{subtitle}</p> : null}</div></div>;
+}
 
 type CourseProfile = {
   course: {
@@ -184,7 +191,10 @@ export default async function CourseProfilePage({ params }: { params: Promise<{ 
   const pageUrl = `${siteUrl}/courses/${slug}`;
   const imageUrl = absoluteUrl(profile.course.image ? mediaUrl(profile.course.image) || '/courses-hero.webp' : '/courses-hero.webp', siteUrl);
   const seo = courseSeo(profile);
-  const linkableEntities = await getLinkableEntities();
+  const [linkableEntities, facets] = await Promise.all([getLinkableEntities(), getCourseFacets()]);
+  const listing = facets.data.find((facet) => facet.courseSlug === profile.course.slug);
+  const listingHref = listing ? courseListingHref(listing.key) : null;
+  const currentYear = new Date().getFullYear();
   const linkedHtmlContent = autoLinkHtml(seo.faqs?.length ? stripEmbeddedFaqs(profile.course.htmlContent) : profile.course.htmlContent, linkableEntities, {
     excludeHrefs: [`/courses/${slug}`]
   }).replace(/(<img\b[^>]*\bsrc=")(\/uploads\/[^"]+)"/gi, (_, prefix: string, src: string) => `${prefix}${mediaUrl(src)}"`);
@@ -250,60 +260,72 @@ export default async function CourseProfilePage({ params }: { params: Promise<{ 
     ]
   };
 
-  return <main className="section college-profile-page"><div className="wrap prose">
+  return <main className="section college-profile-page cp-page"><div className="wrap">
     <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
-    <nav className="breadcrumb" aria-label="Breadcrumb"><Link href="/">Home</Link><span aria-hidden="true">›</span><Link href="/courses">Courses</Link><span aria-hidden="true">›</span><span aria-current="page">{seo.displayName}</span></nav>
+    <nav className="breadcrumb cp-breadcrumb" aria-label="Breadcrumb"><Link href="/">Home</Link><span aria-hidden="true">›</span><Link href="/courses">Courses</Link><span aria-hidden="true">›</span><span aria-current="page">{seo.displayName}</span></nav>
     <AdSlot slotKey="course_top" />
-    <header className="college-profile-header">
-      <div>
-        <p className="eyebrow">COURSE PROFILE</p>
-        <h1>{seo.h1}</h1>
-        <p className="muted">{profile.course.mode || 'Course'} · India</p>
-        <p><AutoLinkedText text={seo.intro} entities={linkableEntities} options={{ excludeHrefs: [`/courses/${slug}`] }} /></p>
+    <header className="cp-hero">
+      <div className="cp-hero-top">
+        <div className="cp-hero-media"><img src={imageUrl} alt={`${seo.displayName} course`} width="280" height="158" /></div>
+        <div className="cp-hero-copy">
+          <p className="cp-eyebrow">Course profile · {currentYear}</p>
+          <h1>{seo.h1}</h1>
+          <div className="cp-hero-meta"><span><GraduationCap size={15} aria-hidden="true" /> {profile.course.mode || 'Course'} · India</span></div>
+        </div>
       </div>
-      <img className="course-profile-image" src={imageUrl} alt={`${seo.displayName} course`} width="280" height="158" />
+      <p className="cp-hero-lead"><AutoLinkedText text={seo.intro} entities={linkableEntities} options={{ excludeHrefs: [`/courses/${slug}`] }} /></p>
+      <div className="cp-hero-badges"><span className="cp-pill is-verified"><BadgeCheck size={15} aria-hidden="true" /> Evidence-backed profile</span></div>
+      <div className="cp-hero-actions">
+        <Link className="button ls-btn-primary" href="/compare-colleges-2026">Compare colleges <ArrowRight size={16} aria-hidden="true" /></Link>
+        {listing && listingHref ? <Link className="button cp-btn-ghost" href={listingHref}>{listing.label} colleges</Link> : <Link className="button cp-btn-ghost" href="/colleges">Browse colleges</Link>}
+      </div>
     </header>
-    <section className="college-decision-note"><p className="eyebrow">DECISION NOTE</p><p>{decisionNote(profile, seo.displayName)}</p></section>
-
-    <section className="college-stats" aria-label="Course highlights">
-      <div><strong>{profile.programmeCount || profile.programmes.length || '—'}</strong><span>Active programmes</span></div>
-      <div><strong>{profile.exams.length || '—'}</strong><span>Admission exams</span></div>
-      <div><strong>{rating ? rating.toFixed(1) : '—'}</strong><span>Average rating</span></div>
-      <div><strong>{profile.reviewSummary.count || '—'}</strong><span>Student reviews</span></div>
+    <section className="cp-glance" aria-labelledby="course-highlights-heading">
+      <h2 id="course-highlights-heading" className="cp-sr-only">Course highlights</h2>
+      <div className="cp-glance-grid">
+        <div className="cp-glance-item"><span className="cp-glance-icon"><BookOpen size={18} aria-hidden="true" /></span><strong>{profile.programmeCount || profile.programmes.length || '—'}</strong><span>Active programmes</span></div>
+        <div className="cp-glance-item"><span className="cp-glance-icon"><ClipboardCheck size={18} aria-hidden="true" /></span><strong>{profile.exams.length || '—'}</strong><span>Admission exams</span></div>
+        <div className="cp-glance-item"><span className="cp-glance-icon"><Star size={18} aria-hidden="true" /></span><strong>{rating ? rating.toFixed(1) : '—'}</strong><span>Average rating</span></div>
+        <div className="cp-glance-item"><span className="cp-glance-icon"><Building2 size={18} aria-hidden="true" /></span><strong>{profile.reviewSummary.count || '—'}</strong><span>Student reviews</span></div>
+      </div>
+    </section>
+    <section className="cp-insight">
+      <span className="cp-insight-icon"><Lightbulb size={20} aria-hidden="true" /></span>
+      <div><p className="cp-insight-title">Decision note</p><p>{decisionNote(profile, seo.displayName)}</p></div>
     </section>
 
     {profile.course.htmlContent && <section className="course-html-content" aria-label={`${seo.displayName} course guide`} dangerouslySetInnerHTML={{ __html: splitLongParagraphs(linkedHtmlContent) }} />}
 
-    {!profile.course.htmlContent && programmeNames.length > 0 && <section><h2>{name} programme variants</h2><div className="profile-chips">{programmeNames.slice(0, 40).map((item) => <span key={item}>{item}</span>)}</div></section>}
+    {!profile.course.htmlContent && programmeNames.length > 0 && <section className="cp-card"><SectionHead icon={BookOpen} title={`${name} programme variants`} /><div className="profile-chips">{programmeNames.slice(0, 40).map((item) => <span key={item}>{item}</span>)}</div></section>}
 
-    {!profile.course.htmlContent && (profile.fees?.min_total_fee || profile.fees?.max_total_fee || profile.exams.length > 0) && <section className="college-profile-columns">
-      {(profile.fees?.min_total_fee || profile.fees?.max_total_fee) && <div><h2>Fees</h2><p>Recorded total fees for {name} range from <strong>{money(profile.fees?.min_total_fee)}</strong> to <strong>{money(profile.fees?.max_total_fee)}</strong>. Confirm the current academic year, category, hostel, mess, deposits and other charges before applying.</p></div>}
-      {profile.exams.length > 0 && <div><h2>Admission exams and routes</h2><div className="profile-chips">{profile.exams.map((exam) => <Link key={exam.id} href={`/exams/${exam.slug}`}>{exam.name}</Link>)}</div></div>}
+    {!profile.course.htmlContent && (profile.fees?.min_total_fee || profile.fees?.max_total_fee || profile.exams.length > 0) && <section className="cp-card college-profile-columns">
+      {(profile.fees?.min_total_fee || profile.fees?.max_total_fee) && <div><SectionHead icon={IndianRupee} title="Fees" /><p>Recorded total fees for {name} range from <strong>{money(profile.fees?.min_total_fee)}</strong> to <strong>{money(profile.fees?.max_total_fee)}</strong>. Confirm the current academic year, category, hostel, mess, deposits and other charges before applying.</p></div>}
+      {profile.exams.length > 0 && <div><SectionHead icon={ClipboardCheck} title="Admission exams and routes" /><div className="profile-chips">{profile.exams.map((exam) => <Link key={exam.id} href={`/exams/${exam.slug}`}>{exam.name}</Link>)}</div></div>}
     </section>}
 
-    {!profile.course.htmlContent && (profile.placements.length > 0 || profile.reviewSummary.count > 0) && <section className="college-profile-columns">
+    {!profile.course.htmlContent && (profile.placements.length > 0 || profile.reviewSummary.count > 0) && <section className="cp-card college-profile-columns">
       {profile.placements.length > 0 && <div><h2>Placements and packages</h2><PlacementChart placements={profile.placements} /><div className="profile-list">{profile.placements.map((placement, index) => <p key={`${placement.year}-${index}`}><strong>{placement.year || 'Year not listed'}:</strong> Average {packageValue(placement.average_package)} · Highest {packageValue(placement.highest_package)}</p>)}</div></div>}
       {profile.reviewSummary.count > 0 && <div><h2>Student ratings</h2><p><strong>{rating?.toFixed(1)} / 5</strong> aggregate rating from {profile.reviewSummary.count} active review{profile.reviewSummary.count === 1 ? '' : 's'}.</p><RatingChart breakdown={profile.reviewSummary.ratingBreakdown} /><p className="muted">Individual review text is omitted; use the rating distribution alongside the fee and placement evidence above.</p></div>}
     </section>}
 
-    {!profile.course.htmlContent && (profile.rankings.length > 0 || profile.recruiters.length > 0) && <section className="college-profile-columns">
+    {!profile.course.htmlContent && (profile.rankings.length > 0 || profile.recruiters.length > 0) && <section className="cp-card college-profile-columns">
       {profile.rankings.length > 0 && <div><h2>Rankings</h2><div className="profile-list">{profile.rankings.slice(0, 30).map((ranking, index) => <p key={`${ranking.ranking_body}-${ranking.year}-${index}`}><strong>{ranking.ranking_body}</strong>: Rank {ranking.rank}{ranking.out_of ? ` / ${ranking.out_of}` : ''}{ranking.year ? ` · ${ranking.year}` : ''}</p>)}</div></div>}
       {profile.recruiters.length > 0 && <div><h2>Recruiters and industry connections</h2><div className="profile-chips">{profile.recruiters.slice(0, 50).map((recruiter) => <span key={recruiter.id}>{recruiter.name}</span>)}</div></div>}
     </section>}
 
-    {!profile.course.htmlContent && <section><h2>About {seo.displayName}</h2><p>{seo.displayName} is listed as a study path in India. Use this page as a research starting point and confirm current course fees, eligibility, admission dates and placement outcomes before applying.</p></section>}
+    {!profile.course.htmlContent && <section className="cp-card"><SectionHead icon={GraduationCap} title={`About ${seo.displayName}`} /><p>{seo.displayName} is listed as a study path in India. Use this page as a research starting point and confirm current course fees, eligibility, admission dates and placement outcomes before applying.</p></section>}
     
     <AdSlot slotKey="course_mid_1" />
-    {(seo.crossLink || profile.exams.length > 0) && <section className="college-profile-columns" aria-label="Related pathways">
+    {(seo.crossLink || profile.exams.length > 0) && <section className="cp-card college-profile-columns" aria-label="Related pathways">
       {seo.crossLink ? <div><h2>Related course guide</h2><p>{seo.crossLink.note} <Link href={seo.crossLink.href}>{seo.crossLink.anchor}</Link></p></div> : null}
       {profile.exams.length > 0 ? <div><h2>Entrance exams for {seo.displayName}</h2><div className="profile-chips">{profile.exams.map((exam) => <Link key={`link-${exam.id}`} href={`/exams/${exam.slug}`}>{exam.name} exam guide</Link>)}</div></div> : null}
     </section>}
 
-    {profile.articles.length > 0 && <section><h2>{seo.displayName} guides</h2>{(() => {
+    {profile.articles.length > 0 && <section className="cp-card"><SectionHead icon={BookOpen} title={`${seo.displayName} guides`} />{(() => {
       const feeArticles = profile.articles.filter((article) => {
         const type = (article.articleType || '').toLowerCase();
-        const slug = article.slug || '';
-        return type === 'budget' || type.includes('fee') || type.includes('package') || slug.includes('fee') || slug.includes('package') || slug.includes('under-');
+        const articleSlug = article.slug || '';
+        return type === 'budget' || type.includes('fee') || type.includes('package') || articleSlug.includes('fee') || articleSlug.includes('package') || articleSlug.includes('under-');
       });
       const otherArticles = profile.articles.filter((article) => !feeArticles.includes(article));
       return <>
@@ -312,8 +334,8 @@ export default async function CourseProfilePage({ params }: { params: Promise<{ 
       </>;
     })()}</section>}
     <AdSlot slotKey="course_end" />
-    {faqs.length > 0 && <section><h2>Frequently asked questions</h2>{faqs.map((faq) => <article className="faq-item" key={faq.question}><h3>{faq.question}</h3><p>{faq.answer}</p></article>)}</section>}
+    {faqs.length > 0 && <section className="cp-card"><SectionHead icon={ClipboardCheck} title="Frequently asked questions" /><div className="cp-faq">{faqs.map((faq) => <details className="cp-faq-item" key={faq.question}><summary><h3>{faq.question}</h3><ChevronDown size={18} aria-hidden="true" /></summary><p>{faq.answer}</p></details>)}</div></section>}
     <CourseGeoLinks courseSlug={profile.course.slug} />
-    <div className="notice"><strong>Data note:</strong> Fees, placements, rankings and reviews are recorded evidence and may change by batch, category, role, recruiter mix or academic year. Verify the latest official information before applying.</div>
+    <div className="cp-data-note"><TriangleAlert size={18} aria-hidden="true" /><p><strong>Data note:</strong> Fees, placements, rankings and reviews are recorded evidence and may change by batch, category, role, recruiter mix or academic year. Verify the latest official information before applying.</p></div>
   </div></main>;
 }

@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import { BadgeCheck, ChevronDown, ClipboardList } from 'lucide-react';
 import JsonLd from './JsonLd';
 import ExamCutoffsClient from './ExamCutoffsClient';
 import CutoffExpand from './CutoffExpand';
@@ -63,7 +64,33 @@ export function examCutoffDescription(summary: ExamCutoffSummary, year?: number)
 type Block = { year: number; data: ExamCutoffResponse | null };
 
 /** Shared server-rendered body for /exams/{slug}/cutoff and /exams/{slug}/cutoff/{year}. */
-export default function ExamCutoffPage({ summary, blocks, activeYear, finder }: { summary: ExamCutoffSummary; blocks: Block[]; activeYear?: number; finder?: { combos: AnyFinderCombo[]; initialId: string } | null }) {
+function YearCompare({ name, metric, years, blocks }: { name: string; metric: string; years: ExamCutoffSummary["years"]; blocks: Block[] }) {
+  const usable = blocks.filter((b) => b.data?.data.length);
+  if (usable.length < 2) return null;
+  const byId = new Map<number, { name: string; slug: string | null; values: Record<number, number | null> }>();
+  usable.forEach((b) => {
+    b.data!.data.forEach((row) => {
+      const cur = byId.get(row.institute_id) || { name: row.institute_name, slug: row.published_slug, values: {} };
+      const n = Number(row.best_value);
+      cur.values[b.year] = Number.isFinite(n) ? n : null;
+      byId.set(row.institute_id, cur);
+    });
+  });
+  const rows = Array.from(byId.values()).filter((r) => Object.keys(r.values).length >= 2).slice(0, 20);
+  if (!rows.length) return null;
+  const yearLabels = usable.map((b) => years.find((y) => y.year === b.year) || { year: b.year });
+  const unit = metric === "rank" ? "closing rank" : metric === "percentile" ? "percentile" : "score";
+  return <section className="cutoff-section">
+    <h2>{name} cutoff across years</h2>
+    <p>Same colleges compared on the General-category figure used in each year table ({unit}). Blank cells mean that college has no published figure for that year in our records.</p>
+    <div className="detail-table-wrap"><table className="detail-table cutoff-table">
+      <thead><tr><th scope="col">College</th>{yearLabels.map((y) => <th key={y.year} scope="col">{name} {examYearOf(y)}</th>)}</tr></thead>
+      <tbody>{rows.map((r) => <tr key={r.name}><th scope="row">{r.slug ? <Link href={`/colleges/${r.slug}/cutoff`}>{r.name}</Link> : r.name}</th>{yearLabels.map((y) => <td key={y.year}>{r.values[y.year] == null ? "—" : formatMetric(r.values[y.year]!, metric === "rank" ? "rank" : metric === "percentile" ? "percentile" : "score")}</td>)}</tr>)}</tbody>
+    </table></div>
+  </section>;
+}
+
+export default function ExamCutoffPage({ summary, blocks, activeYear, finder, compareBlocks }: { summary: ExamCutoffSummary; blocks: Block[]; activeYear?: number; finder?: { combos: AnyFinderCombo[]; initialId: string } | null; compareBlocks?: Block[] }) {
   const slug = summary.exam.slug;
   const name = cleanName(summary.exam.name);
   const shownYear = activeYear || summary.years[0].year;
@@ -95,27 +122,30 @@ export default function ExamCutoffPage({ summary, blocks, activeYear, finder }: 
   if (metric === 'rank') faqs.push({ question: `What do opening and closing ranks mean in the ${name} cutoff?`, answer: `The opening rank is the best rank and the closing rank is the last rank admitted to a programme in a given round, category and seat pool. Your rank must be at or below the closing rank to have had a seat in that round.` });
   const faqLd = faqJsonLd(faqs.filter((f) => f.answer.trim()));
 
-  return <main className="section college-profile-page"><div className="wrap prose">
+  return <main className="section college-profile-page cp-page"><div className="wrap">
     <JsonLd data={breadcrumbJsonLd(siteUrl(), crumbs)} />
     {faqLd && <JsonLd data={faqLd} />}
-    <nav className="breadcrumb" aria-label="Breadcrumb"><Link href="/">Home</Link><span aria-hidden="true">›</span><Link href="/exams">Exams</Link><span aria-hidden="true">›</span><Link href={`/exams/${slug}`}>{name}</Link><span aria-hidden="true">›</span>
+    <nav className="breadcrumb cp-breadcrumb" aria-label="Breadcrumb"><Link href="/">Home</Link><span aria-hidden="true">›</span><Link href="/exams">Exams</Link><span aria-hidden="true">›</span><Link href={`/exams/${slug}`}>{name}</Link><span aria-hidden="true">›</span>
       {activeYear ? <><Link href={`/exams/${slug}/cutoff`}>Cutoff</Link><span aria-hidden="true">›</span><span aria-current="page">{shownExamYear}</span></> : <span aria-current="page">Cutoff</span>}</nav>
     <AdSlot slotKey="cutoff_top" />
-    <header className="college-profile-header"><div>
-      <p className="eyebrow">CUTOFF</p>
-      <h1>{activeYear ? examCutoffTitle(summary, activeYear) : examCutoffOverviewTitle(summary)}</h1>
-      <p>{isMinimum
+    <header className="cp-hero">
+      <div className="cp-hero-copy">
+        <p className="cp-eyebrow">Cutoff</p>
+        <h1>{activeYear ? examCutoffTitle(summary, activeYear) : examCutoffOverviewTitle(summary)}</h1>
+      </div>
+      <p className="cp-hero-lead">{isMinimum
         ? `College-wise ${name} ${shownExamYear} ${metric === 'score' ? 'scores' : 'percentiles'} published for ${isAdmissionKeyed(yearInfo) ? `${batchLabel(yearInfo.year)} ` : ''}admissions, taken from each institute's admission policy wherever it is available: the overall figure and, where given, sectional figures${yearInfo.categories === 1 ? ' (only General-category figures are published)' : ' for every category'}. These are published minimum eligibility or shortlisting criteria, depending on the institute.`
         : activeYear
           ? `${name} ${shownExamYear} cutoffs for ${shownColleges} colleges.`
           : `${name} cutoffs for ${summary.years.map((y) => examYearOf(y)).join(', ')}, latest year first.`} {metric === 'rank' ? 'Each college shows its lowest final-round closing rank; open a college to see every programme, round, category and quota.' : isMinimum ? '' : 'Figures are the published cutoff scores.'}</p>
-      <p className="muted">{yearInfo.institutes} {yearInfo.institutes === 1 ? 'college currently has' : 'colleges currently have'} {name} {shownExamYear} cutoff records{shownColleges !== yearInfo.institutes ? ` (${shownColleges} in the table below with its default filters${slug === 'jee-main' ? ', B.E./B.Tech' : ''})` : ''}{yearInfo.aggregator ? '; some figures are from secondary publications and are marked' : ''}.</p>
+      <div className="cp-hero-badges"><span className="cp-pill is-verified"><BadgeCheck size={15} aria-hidden="true" /> {yearInfo.institutes} {yearInfo.institutes === 1 ? 'college' : 'colleges'} with records</span></div>
       {isMultiYear(summary) && <div className="cutoff-year-links" role="navigation" aria-label={`${name} cutoff years`}>
         {summary.years.map((y) => <Link key={y.year} className={`button${y.year === activeYear ? ' primary' : ''}`} href={yearHref(y.year)} aria-current={y.year === activeYear ? 'page' : undefined}>{name} {examYearOf(y)} Cutoff{isAdmissionKeyed(y) ? ` (${batchLabel(y.year)})` : ''}</Link>)}
         <Link className="button" href={`/exams/${slug}`}>{name} exam details</Link>
       </div>}
-      {!isMultiYear(summary) && <p><Link className="button" href={`/exams/${slug}`}>{name} exam details</Link></p>}
-    </div></header>
+      {!isMultiYear(summary) && <div className="cp-hero-actions"><Link className="button cp-btn-ghost" href={`/exams/${slug}`}><ClipboardList size={15} aria-hidden="true" /> {name} exam details</Link></div>}
+    </header>
+    <p className="muted">{yearInfo.institutes} {yearInfo.institutes === 1 ? 'college currently has' : 'colleges currently have'} {name} {shownExamYear} cutoff records{shownColleges !== yearInfo.institutes ? ` (${shownColleges} in the table below with its default filters${slug === 'jee-main' ? ', B.E./B.Tech' : ''})` : ''}{yearInfo.aggregator ? '; some figures are from secondary publications and are marked' : ''}.</p>
     {note && <p className="muted"><strong>Note:</strong> {note}</p>}
     {yearInfo.aggregator && <p className="muted">* Some figures for {name} {shownExamYear} come from a secondary publication because the official document could not be retrieved. They are marked “Secondary source - not independently verified” in the table.</p>}
     {activeYear && metric === 'percentile' && primary && <CutoffTakeaways name={name} examYear={shownExamYear} rows={primary.data} />}
@@ -133,8 +163,9 @@ export default function ExamCutoffPage({ summary, blocks, activeYear, finder }: 
             </>}
       </CutoffExpand>
     </section>{i === 0 && <AdSlot slotKey="cutoff_mid" />}</Fragment> : null; })}
+    <YearCompare name={name} metric={metric} years={summary.years} blocks={compareBlocks && compareBlocks.length ? compareBlocks : blocks} />
     {faqs.some((f) => f.answer.trim()) && <section className="cutoff-section cutoff-faq"><h2>{name} Cutoff FAQs</h2>
-      {faqs.filter((f) => f.answer.trim()).map((f) => <div key={f.question}><h3>{f.question}</h3><p>{f.answer}</p></div>)}</section>}
+      <div className="cp-faq">{faqs.filter((f) => f.answer.trim()).map((f) => <details className="cp-faq-item" key={f.question}><summary><h3>{f.question}</h3><ChevronDown size={18} aria-hidden="true" /></summary><p>{f.answer}</p></details>)}</div></section>}
     <AdSlot slotKey="cutoff_end" />
   </div></main>;
 }

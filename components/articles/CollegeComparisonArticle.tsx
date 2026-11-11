@@ -1,5 +1,7 @@
 import { formatProgrammeDuration } from '../../lib/duration';
 import Link from 'next/link';
+import JsonLd from '../JsonLd';
+import { faqJsonLd } from '../../lib/cutoffs';
 import type { CSSProperties, ReactNode } from 'react';
 import InstituteLogo from '../InstituteLogo';
 import AutoLinkedText from '../AutoLinkedText';
@@ -182,7 +184,18 @@ export default function CollegeComparisonArticle({
     ['Highest placement', placementA?.highest_package ? packageValue(placementA.highest_package) : unavailable, placementB?.highest_package ? packageValue(placementB.highest_package) : unavailable],
     ['Ranking', a.rankings?.[0] ? `${a.rankings[0].ranking_body || unavailable}: ${a.rankings[0].rank || unavailable}` : unavailable, b.rankings?.[0] ? `${b.rankings[0].ranking_body || unavailable}: ${b.rankings[0].rank || unavailable}` : unavailable]
   ];
-  return <section className="college-comparison-article">
+  const nameA = collegeName(a);
+  const nameB = collegeName(b);
+  const comparisonFaqs: Array<{ question: string; answer: string }> = [
+    { question: `Which college is better for ${article.course.name}: ${nameA} or ${nameB}?`, answer: scoreLeader === 'equal recorded score'
+      ? `${nameA} and ${nameB} have an equal recorded decision score on this page. Compare the exact ${article.course.name} branch, recorded fees and admission route rather than treating either college as a universal winner.`
+      : `${scoreLeader} has the higher recorded evidence score, but that is not a universal ranking. Check branches, comparable fees and the official admission notice before you decide.` },
+    ...(a.fees?.length || b.fees?.length ? [{ question: `Which college has lower recorded fees?`, answer: `Fee rows on this page are taken from recorded programme fees and may use different fee types or durations. Compare the matching ${article.course.name} programme, then confirm the current official fee notice.` }] : []),
+    { question: `Where are ${nameA} and ${nameB} located?`, answer: [ [a.location?.city, a.location?.state].filter(Boolean).length ? `${nameA} is listed in ${[a.location?.city, a.location?.state].filter(Boolean).join(', ')}` : null, [b.location?.city, b.location?.state].filter(Boolean).length ? `${nameB} is listed in ${[b.location?.city, b.location?.state].filter(Boolean).join(', ')}` : null].filter(Boolean).join('. ') + ( [a.location?.city, a.location?.state, b.location?.city, b.location?.state].filter(Boolean).length ? '.' : 'Locations are shown on each college profile when recorded.') },
+    { question: 'Should I treat this comparison as a final admission decision?', answer: 'No. Figures can change by year, branch and quota. Verify fees, eligibility and placements on each official college website before you apply.' }
+  ];
+
+    return <section className="college-comparison-article">
     <p className="article-intro">This course-wise guide compares recorded programme, fee, admission, placement and ranking evidence for <CollegeName college={a} /> and <CollegeName college={b} />. <LinkedProse text={`Fees and outcomes can change; verify the latest official notification.`} entities={linkableEntities} options={autoLinkOptions} /></p>
     <div className="comparison-section-heading"><div><p className="eyebrow">AT A GLANCE</p><h2>Quick comparison</h2></div><span className="comparison-course-badge"><LinkedProse text={article.course.name} entities={linkableEntities} options={autoLinkOptions} /></span></div>
     <div className="comparison-table-wrap"><table className="comparison-table"><thead><tr><th>Factor</th><th><span className="comparison-college-head"><CollegeName college={a} /><InstituteLogo src={a.logo} alt={`${collegeName(a)} logo`} /></span></th><th><span className="comparison-college-head"><CollegeName college={b} /><InstituteLogo src={b.logo} alt={`${collegeName(b)} logo`} /></span></th></tr></thead><tbody>{comparisonRows.filter(([, valueA, valueB]) => valueA !== unavailable || valueB !== unavailable).map(([factor, valueA, valueB]) => <tr key={factor}><th scope="row">{factor}</th><td>{valueA}</td><td>{valueB}</td></tr>)}</tbody></table></div>
@@ -213,5 +226,6 @@ export default function CollegeComparisonArticle({
     <p className="notice"><strong>Final takeaway:</strong> Compare the exact branch and programme cost first, then verify eligibility, active entrance-exam mappings and the latest official placement information before admission.</p>
     <p className="notice"><strong>Data note:</strong> A dash means the information is not available in the current records. This page does not invent values or treat different years and fee types as directly comparable.</p>
     <p><Link href="/compare-colleges-2026">Compare other colleges side by side →</Link></p>
+    {comparisonFaqs.length ? <><JsonLd data={faqJsonLd(comparisonFaqs)} /><h2>FAQs</h2><div className="cp-faq">{comparisonFaqs.map((f) => <details className="cp-faq-item" key={f.question}><summary><h3>{f.question}</h3></summary><p>{f.answer}</p></details>)}</div></> : null}
   </section>;
 }

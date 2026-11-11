@@ -1,4 +1,6 @@
 import type { Metadata } from 'next';
+import Link from 'next/link';
+import { FileText } from 'lucide-react';
 
 export const metadata: Metadata = {
   robots: { index: false, follow: true },
@@ -8,11 +10,19 @@ export const metadata: Metadata = {
 };
 
 export default function TermsPage() {
-  return <main className="section"><div className="wrap prose">
-    <p className="eyebrow">LEGAL INFORMATION</p>
-    <h1>Terms and Conditions</h1>
-    <p className="muted">Last updated: 18 August 2026</p>
-    <p>By using CollegeDecision.in, you agree to use the website responsibly and to read these terms. If you do not agree, please do not use the website.</p>
+  return <main className="section ls-page"><div className="wrap">
+    <nav className="breadcrumb ls-crumb" aria-label="Breadcrumb"><Link href="/">Home</Link><span aria-hidden="true">›</span><span aria-current="page">Terms and Conditions</span></nav>
+    <section className="ls-hero">
+      <div className="ls-hero-inner is-solo">
+        <div className="ls-hero-copy">
+          <span className="ls-kicker"><FileText size={15} aria-hidden="true" /> Legal information</span>
+          <h1>Terms and Conditions</h1>
+          <p>By using CollegeDecision.in, you agree to use the website responsibly and to read these terms. If you do not agree, please do not use the website.</p>
+        </div>
+      </div>
+    </section>
+    <div className="ls-prose">
+    <p className="ls-date">Last updated: 18 August 2026</p>
     <h2>Purpose of the website</h2>
     <p>CollegeDecision.in provides college and course research material to help students compare options. It is not an educational institution, admission authority, counselling service, employment agency or legal adviser.</p>
     <h2>Use of our content</h2>
@@ -29,5 +39,6 @@ export default function TermsPage() {
     <p>To the extent permitted by law, CollegeDecision.in is not responsible for loss arising from reliance on incomplete, outdated or incorrectly interpreted information, or from an admission, financial or career decision made using the website.</p>
     <h2>Contact</h2>
     <p>Questions about these terms can be sent to <a href="mailto:hello@collegedecision.in">hello@collegedecision.in</a>.</p>
+    </div>
   </div></main>;
 }

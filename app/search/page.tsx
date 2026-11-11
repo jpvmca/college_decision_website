@@ -1,9 +1,12 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
+import { ArrowRight, BadgeCheck, Search } from 'lucide-react';
 import { api } from '../../lib/api';
 import CollegeDecisionCard, { CollegeDecisionResult } from '../../components/CollegeDecisionCard';
 import CollegeDecisionFilter from '../../components/CollegeDecisionFilter';
 import SearchBox from '../../components/SearchBox';
+import HeroPhoto from '../../components/HeroPhoto';
+import HeroStats from '../../components/HeroStats';
 import { EMPTY_SUGGEST, SUGGEST_GROUPS, highlight, type SuggestResult } from '../../lib/typeahead';
 
 type DecisionResponse = { data: CollegeDecisionResult[]; pagination: { page: number; perPage: number; total: number; totalPages: number } };
@@ -50,18 +53,42 @@ export default async function SearchPage({ searchParams }: { searchParams: Promi
       params.set('page', String(nextPage));
       return `/search?${params.toString()}`;
     };
-    return <main className="section"><div className="wrap">
+    return <main className="section ls-page"><div className="wrap">
       <CollegeDecisionFilter collapsible initialFilters={{ course: query.course, state: query.state, city: query.city, budgetMax: query.budgetMax, instituteType: query.instituteType, branch: query.branch, exam: query.exam }} />
-      <div className="hero-inline"><p className="eyebrow">COLLEGE DECISION RESULTS</p><h1>{decisionResults.pagination.total.toLocaleString('en-IN')} colleges match your preferences</h1><p>Compare programme, location, fee and admission context before deciding.</p></div>
+      <section className="ls-hero">
+        <div className="ls-hero-inner">
+          <div className="ls-hero-copy">
+            <span className="ls-kicker"><BadgeCheck size={15} aria-hidden="true" /> College decision results</span>
+            <h1>{decisionResults.pagination.total.toLocaleString('en-IN')} colleges match your preferences</h1>
+            <p>Compare programme, location, fee and admission context before deciding.</p>
+            <div className="ls-hero-actions">
+              <Link className="button ls-btn-primary" href="/compare-colleges-2026">Compare colleges <ArrowRight size={16} aria-hidden="true" /></Link>
+              <Link className="button ls-btn-ghost" href="/colleges">Browse all colleges</Link>
+            </div>
+          </div>
+          <div className="ls-hero-visual"><HeroPhoto src="/colleges-hero.webp" alt="Students comparing colleges that match their preferences" /></div>
+        </div>
+        <HeroStats prefix="ls" stats={[{ icon: Search, value: decisionResults.pagination.total.toLocaleString('en-IN'), label: 'Matching colleges' }]} />
+      </section>
       {decisionResults.data.length ? <div className="decision-results-list">{decisionResults.data.map((item) => <CollegeDecisionCard key={item.programmeId} item={item} showCompare={decisionResults.pagination.total > 1} />)}</div> : <div className="card no-results"><h2>No colleges found</h2><p>Try selecting a wider budget or removing a branch, city, or exam filter.</p></div>}
       {decisionResults.pagination.totalPages > 1 && <nav className="decision-pagination" aria-label="College result pages"><Link className="page-arrow" href={buildPageUrl(Math.max(1, page - 1))} aria-disabled={page <= 1}>Previous</Link><span>Page {page} of {decisionResults.pagination.totalPages}</span><Link className="page-arrow" href={buildPageUrl(Math.min(decisionResults.pagination.totalPages, page + 1))} aria-disabled={page >= decisionResults.pagination.totalPages}>Next</Link></nav>}
     </div></main>;
   }
   const groups = SUGGEST_GROUPS.map((g) => ({ ...g, items: results[g.key] })).filter((g) => g.items.length);
   const total = groups.reduce((n, g) => n + g.items.length, 0);
-  return <main className="section"><div className="wrap">
-    <div className="hero-inline"><p className="eyebrow">SEARCH</p><h1>{keyword ? `Search results for “${keyword}”` : 'Search colleges, exams, courses and guides'}</h1><p>{keyword ? `${total} match${total === 1 ? '' : 'es'}${results.fuzzy ? ' (close matches — check the spelling)' : ''}. Colleges show published profiles only.` : 'Type a college name or short name (IIT, NMIMS), an entrance exam (CAT, JEE) or a course (MBA, B.Tech).'}</p></div>
-    <SearchBox variant="page" initialQuery={keyword} autoFocus={!keyword} />
+  return <main className="section ls-page"><div className="wrap">
+    <section className="ls-hero">
+      <div className="ls-hero-inner">
+        <div className="ls-hero-copy">
+          <span className="ls-kicker"><Search size={15} aria-hidden="true" /> Search</span>
+          <h1>{keyword ? `Search results for “${keyword}”` : 'Search colleges, exams, courses and guides'}</h1>
+          <p>{keyword ? `${total} match${total === 1 ? '' : 'es'}${results.fuzzy ? ' (close matches — check the spelling)' : ''}. Colleges show published profiles only.` : 'Type a college name or short name (IIT, NMIMS), an entrance exam (CAT, JEE) or a course (MBA, B.Tech).'}</p>
+        </div>
+        <div className="ls-hero-visual"><HeroPhoto src="/colleges-hero.webp" alt="Search colleges, exams, courses and decision guides" /></div>
+      </div>
+      {keyword ? <HeroStats prefix="ls" stats={[{ icon: Search, value: String(total), label: total === 1 ? 'Match' : 'Matches' }]} /> : null}
+    </section>
+    <div className="ls-search-box"><SearchBox variant="page" initialQuery={keyword} autoFocus={!keyword} /></div>
     {keyword && groups.length ? <div className="search-groups">{groups.map((g) => <section className="search-group" key={g.key} aria-labelledby={`sg-${g.key}`}>
       <h2 id={`sg-${g.key}`}>{g.label} <small>{g.items.length}{g.items.length >= 20 ? '+' : ''}</small></h2>
       <div className="search-group-list">{g.items.map((item) => <Link className="search-hit" key={`${item.type}-${item.id}`} href={item.href}><strong>{highlight(item.title, results.fuzzy ? '' : keyword)}</strong>{item.subtitle && <small>{item.type === 'listing' ? 'Listing · ' : ''}{item.subtitle}</small>}</Link>)}</div>

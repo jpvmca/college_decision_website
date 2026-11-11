@@ -6,7 +6,7 @@ import { getCourseFacets, listingFetchOptions, type CourseFacet } from './listin
  * The backend returns pages keyed by course slug (e.g. "commerce"); the public URL uses the
  * listing facet key (e.g. "bcom"), exactly as app/[listing]/page.tsx resolves them.
  */
-export type StateGeoPage = { courseSlug: string; stateSlug: string; stateName: string; count: number | string };
+export type StateGeoPage = { courseSlug: string; stateSlug: string; stateName: string; count: number | string; lastmod?: string | null };
 export type CityGeoPage = StateGeoPage & { citySlug: string; cityName: string };
 export type GeoLink<T> = T & { href: string; facet: CourseFacet };
 

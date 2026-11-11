@@ -1,4 +1,6 @@
 import type { Metadata } from 'next';
+import Link from 'next/link';
+import { TriangleAlert } from 'lucide-react';
 
 export const metadata: Metadata = {
   robots: { index: false, follow: true },
@@ -8,10 +10,19 @@ export const metadata: Metadata = {
 };
 
 export default function DisclaimerPage() {
-  return <main className="section"><div className="wrap prose">
-    <p className="eyebrow">READ BEFORE YOU DECIDE</p>
-    <h1>Disclaimer</h1>
-    <p className="muted">Last updated: 18 August 2026</p>
+  return <main className="section ls-page"><div className="wrap">
+    <nav className="breadcrumb ls-crumb" aria-label="Breadcrumb"><Link href="/">Home</Link><span aria-hidden="true">›</span><span aria-current="page">Disclaimer</span></nav>
+    <section className="ls-hero">
+      <div className="ls-hero-inner is-solo">
+        <div className="ls-hero-copy">
+          <span className="ls-kicker"><TriangleAlert size={15} aria-hidden="true" /> Read before you decide</span>
+          <h1>Disclaimer</h1>
+          <p>CollegeDecision.in is a research and comparison resource. It is not a substitute for the current official information published by a college, university, examination authority or regulator.</p>
+        </div>
+      </div>
+    </section>
+    <div className="ls-prose">
+    <p className="ls-date">Last updated: 18 August 2026</p>
     <div className="notice"><strong>Short version:</strong> CollegeDecision.in is a research and comparison resource. It is not a substitute for the current official information published by a college, university, examination authority or regulator.</div>
     <h2>Fees and total cost</h2>
     <p>Fee values shown on our pages are recorded data points or comparison leads. They may exclude hostel, mess, deposits, development charges, examination fees, transport, taxes, category differences or later academic-year changes. Ask the institution for a current written fee schedule before paying or applying.</p>
@@ -24,5 +35,6 @@ export default function DisclaimerPage() {
     <h2>No professional advice or guarantee</h2>
     <p>Our content is general educational information. It is not legal, financial, immigration, career or admission advice, and we do not guarantee admission, rankings, scholarships, employment or any particular outcome.</p>
     <p>Use CollegeDecision.in to prepare questions and compare possibilities, then make the final decision using current official sources and your own circumstances.</p>
+    </div>
   </div></main>;
 }

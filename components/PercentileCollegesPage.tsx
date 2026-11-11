@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
+import { BadgeCheck, ChevronDown, Lightbulb } from 'lucide-react';
 import JsonLd from './JsonLd';
 import ClosingCollegesPage, { allFinderCombos, finderPropsForExam } from './ClosingCollegesPage';
 import CollegeFinder from './CollegeFinder';
@@ -136,22 +137,28 @@ export default async function PercentileCollegesPage({ segment, query }: { segme
   const { combos: combosForForm } = await allFinderCombos();
   const a = personal?.applied;
 
-  return <main className="section college-profile-page"><div className="wrap prose">
+  return <main className="section college-profile-page cp-page"><div className="wrap">
     <JsonLd data={breadcrumbJsonLd(siteUrl(), crumbs)} />
     {faqLd && !searching && <JsonLd data={faqLd} />}
-    <nav className="breadcrumb" aria-label="Breadcrumb"><Link href="/">Home</Link><span aria-hidden="true">›</span><Link href="/colleges">Colleges</Link><span aria-hidden="true">›</span><Link href={courseListingHref(facet.key)}>{label} Colleges</Link><span aria-hidden="true">›</span><span aria-current="page">Accepting {level} Percentile in {exam}</span></nav>
-    <header className="college-profile-header"><div>
-      <p className="eyebrow">{exam} PERCENTILE</p>
-      <h1>{label} Colleges Accepting {level} Percentile in {exam} {year}</h1>
-      <p>{list.length
+    <nav className="breadcrumb cp-breadcrumb" aria-label="Breadcrumb"><Link href="/">Home</Link><span aria-hidden="true">›</span><Link href="/colleges">Colleges</Link><span aria-hidden="true">›</span><Link href={courseListingHref(facet.key)}>{label} Colleges</Link><span aria-hidden="true">›</span><span aria-current="page">Accepting {level} Percentile in {exam}</span></nav>
+    <header className="cp-hero">
+      <div className="cp-hero-copy">
+        <p className="cp-eyebrow">{exam} percentile</p>
+        <h1>{label} Colleges Accepting {level} Percentile in {exam} {year}</h1>
+      </div>
+      <p className="cp-hero-lead">{list.length
         ? `${list.length} ${label} college${list.length === 1 ? '' : 's'} publish a General-category minimum overall ${exam} percentile of ${level} or less for ${year} admissions, so a General-category candidate with ${level} percentile meets their minimum requirement.`
         : `None of the ${clean.totalWithData} ${label} colleges with published ${exam} ${year} minimums has a General-category overall minimum of ${level} percentile or less.`}{examYearNote}</p>
-      <p className="muted"><strong>Important:</strong> these are minimum shortlisting criteria published by each institute, not guaranteed admission or final interview-call cutoffs. Many colleges also apply sectional minimums and later rank candidates on academics, work experience, diversity and interviews.</p>
+      <div className="cp-hero-badges"><span className="cp-pill is-verified"><BadgeCheck size={15} aria-hidden="true" /> Minimum shortlisting criteria</span></div>
       <div className="cutoff-year-links" role="navigation" aria-label={`${exam} percentile levels`}>
         {PERCENTILE_LEVELS.map((l) => <Link key={l} className={`button${l === level ? ' primary' : ''}`} aria-current={l === level ? 'page' : undefined} href={percentileHref(facet.key, l, r.exam)}>Accepting {l} Percentile</Link>)}
         <Link className="button" href={`/exams/${r.exam}/cutoff`}>{exam} cutoff for all colleges</Link>
       </div>
-    </div></header>
+    </header>
+    <section className="cp-insight">
+      <span className="cp-insight-icon"><Lightbulb size={20} aria-hidden="true" /></span>
+      <div><p className="cp-insight-title">Important</p><p>These are minimum shortlisting criteria published by each institute, not guaranteed admission or final interview-call cutoffs. Many colleges also apply sectional minimums and later rank candidates on academics, work experience, diversity and interviews.</p></div>
+    </section>
 
     {combosForForm.length > 0 && <CollegeFinder combos={combosForForm} initialId={`${facet.key}|${r.exam}|qualifying`} initialFacets={clean.facets} resetHref={path}
       initialValues={searching ? { percentile: one(query.percentile), category: one(query.category) || 'OPEN', varc: one(query.varc), dilr: one(query.dilr), qa: one(query.qa), state: one(query.state), city: one(query.city), programme: one(query.programme), budget: one(query.budget), year: one(query.year) } : undefined} />}
@@ -177,7 +184,7 @@ export default async function PercentileCollegesPage({ segment, query }: { segme
     </section>
 
     {!searching && <section className="cutoff-section"><h2>FAQs</h2>
-      {faqs.map((f) => <details key={f.question}><summary>{f.question}</summary><p>{f.answer}</p></details>)}</section>}
+      <div className="cp-faq">{faqs.map((f) => <details className="cp-faq-item" key={f.question}><summary><h3>{f.question}</h3><ChevronDown size={18} aria-hidden="true" /></summary><p>{f.answer}</p></details>)}</div></section>}
   </div></main>;
 }
 

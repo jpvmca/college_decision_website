@@ -44,5 +44,10 @@ export default async function Page({ params }: { params: Promise<{ slug: string;
   }
   const data = await getExamYearCutoffs(slug, r.year, 100);
   if (!data?.data.length) notFound();
-  return <ExamCutoffPage summary={r.s} blocks={[{ year: r.year, data }]} activeYear={r.year} finder={await examFinderProps(slug)} />;
+  const peerYears = r.s.years.filter((y) => y.year !== r.year);
+  // Compact year-on-year table: only fetch extra years when the current table is small enough to stay useful.
+  const compareBlocks = r.s.years.length > 1 && (data.pagination.total <= 20)
+    ? [{ year: r.year, data }, ...(await Promise.all(peerYears.map(async (y) => ({ year: y.year, data: await getExamYearCutoffs(slug, y.year, 20) }))))]
+    : undefined;
+  return <ExamCutoffPage summary={r.s} blocks={[{ year: r.year, data }]} activeYear={r.year} finder={await examFinderProps(slug)} compareBlocks={compareBlocks} />;
 }

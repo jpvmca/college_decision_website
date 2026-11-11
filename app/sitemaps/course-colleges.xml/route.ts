@@ -36,8 +36,8 @@ export async function GET() {
       `<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">` +
       entries.map((entry) => `<url><loc>${xml(`${base}${courseListingHref(entry.key)}`)}</loc>${entry.lastmod ? `<lastmod>${entry.lastmod}</lastmod>` : ''}<changefreq>weekly</changefreq><priority>0.8</priority></url>`).join('') +
       // The backend returns only courses enabled in the admin rollout control.
-      statePages.filter((entry) => !allowed || allowed.has(entry.facet.key)).map((entry) => `<url><loc>${xml(`${base}${entry.href}`)}</loc><changefreq>weekly</changefreq><priority>0.7</priority></url>`).join('') +
-      cityPages.filter((entry) => !allowed || allowed.has(entry.facet.key)).map((entry) => `<url><loc>${xml(`${base}${entry.href}`)}</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>`).join('') +
+      statePages.filter((entry) => !allowed || allowed.has(entry.facet.key)).map((entry) => `<url><loc>${xml(`${base}${entry.href}`)}</loc>${entry.lastmod ? `<lastmod>${xml(entry.lastmod)}</lastmod>` : ''}<changefreq>weekly</changefreq><priority>0.7</priority></url>`).join('') +
+      cityPages.filter((entry) => !allowed || allowed.has(entry.facet.key)).map((entry) => `<url><loc>${xml(`${base}${entry.href}`)}</loc>${entry.lastmod ? `<lastmod>${xml(entry.lastmod)}</lastmod>` : ''}<changefreq>weekly</changefreq><priority>0.6</priority></url>`).join('') +
       `</urlset>`;
     return new NextResponse(body, { headers: { 'Content-Type': 'application/xml; charset=utf-8', 'Cache-Control': 'no-store, max-age=0' } });
   } catch {

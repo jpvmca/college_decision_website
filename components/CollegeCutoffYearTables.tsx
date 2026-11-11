@@ -15,7 +15,9 @@ function cell(r: YearRow | undefined) {
   if (!r) return NOT_AVAILABLE;
   if (r.metric_type === 'score') return r.cutoff_score == null || Number(r.cutoff_score) <= 0 ? NOT_AVAILABLE : String(Number(r.cutoff_score));
   if (r.metric_type === 'percentile') return r.cutoff_percentile == null ? NOT_AVAILABLE : String(Number(r.cutoff_percentile));
-  return rankText(r.closing_rank);
+  const closing = rankText(r.closing_rank);
+  const opening = r.opening_rank != null && Number(r.opening_rank) > 0 ? rankText(r.opening_rank) : null;
+  return opening && closing !== NOT_AVAILABLE ? `${opening} – ${closing}` : closing;
 }
 const group = <T,>(items: T[], key: (t: T) => string) => items.reduce((m, it) => { const k = key(it); (m.get(k) || m.set(k, []).get(k)!).push(it); return m; }, new Map<string, T[]>());
 
@@ -50,7 +52,8 @@ export default function CollegeCutoffYearTables({ rows, metric }: { rows: YearRo
       {src?.source_url && <p className="muted">Source: <a href={src.source_url} target="_blank" rel="noopener nofollow">{agg ? 'secondary (aggregator) source*' : 'official institute admission policy'}</a>. {rows.every((r) => r.cutoff_type === 'reported') ? 'These are cutoffs reported by a secondary publication and have not been checked against the institute’s own document.' : 'These are minimum percentiles for shortlisting, not final admission cutoffs.'}</p>}
     </>;
   }
-  const label = metric === 'score' ? 'Closing score' : 'Closing rank';
+  const hasOpening = metric === 'rank' && rows.some((r) => r.opening_rank != null && Number(r.opening_rank) > 0);
+  const label = metric === 'score' ? 'Closing score' : hasOpening ? 'Opening–closing rank' : 'Closing rank';
   const byQuota = group(rows, (r) => r.quota || '');
   const qOrder = ['AI', 'OS', 'HS'];
   return <>{Array.from(byQuota).sort(([a], [b]) => ((qOrder.indexOf(a) + 1 || 9) - (qOrder.indexOf(b) + 1 || 9))).map(([quota, qRows]) => <div key={quota || 'all'}>

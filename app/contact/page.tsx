@@ -1,6 +1,8 @@
 'use client';
 
 import { FormEvent, useState } from 'react';
+import Link from 'next/link';
+import { Mail } from 'lucide-react';
 
 export default function ContactPage() {
   const [submitted, setSubmitted] = useState(false);
@@ -28,10 +30,18 @@ export default function ContactPage() {
       setSending(false);
     }
   }
-  return <main className="section"><div className="wrap prose">
-    <p className="eyebrow">GET IN TOUCH</p>
-    <h1>Help us keep college information useful</h1>
-    <p>Found an outdated fee, incorrect course mapping, missing source or admission detail that needs attention? Send us the exact page and enough evidence for the review team to investigate it responsibly.</p>
+  return <main className="section ls-page"><div className="wrap">
+    <nav className="breadcrumb ls-crumb" aria-label="Breadcrumb"><Link href="/">Home</Link><span aria-hidden="true">›</span><span aria-current="page">Contact</span></nav>
+    <section className="ls-hero">
+      <div className="ls-hero-inner is-solo">
+        <div className="ls-hero-copy">
+          <span className="ls-kicker"><Mail size={15} aria-hidden="true" /> Get in touch</span>
+          <h1>Help us keep college information useful</h1>
+          <p>Found an outdated fee, incorrect course mapping, missing source or admission detail that needs attention? Send us the exact page and enough evidence for the review team to investigate it responsibly.</p>
+        </div>
+      </div>
+    </section>
+    <div className="ls-prose">
     <div className="grid">
       <article className="card"><span className="pill">Corrections</span><h2>Report a data issue</h2><p>Include the institute name, course name, page URL, field that looks incorrect and the official page or document supporting your correction.</p><p><a href="mailto:review@collegedecision.in">review@collegedecision.in</a></p></article>
       <article className="card"><span className="pill">General</span><h2>Ask a question</h2><p>For partnership, editorial or general platform questions, write to our team with a clear subject and the context we need to respond.</p><p><a href="mailto:hello@collegedecision.in">hello@collegedecision.in</a></p></article>
@@ -53,5 +63,6 @@ export default function ContactPage() {
     <h2>What makes a useful correction request?</h2>
     <ul><li>Use the official college or university website whenever possible.</li><li>State the academic year, programme and campus connected to the correction.</li><li>Do not send passwords, payment details, identity documents or sensitive student information.</li><li>We review evidence before changing a record; sending a request does not guarantee publication or correction.</li></ul>
     <div className="notice"><strong>Important:</strong> CollegeDecision.in is an information and comparison platform. Contacting us does not create an admission application, counselling relationship or guarantee of admission.</div>
+    </div>
   </div></main>;
 }

@@ -47,3 +47,26 @@ export async function getCourseFacets(): Promise<CourseFacetList> {
     return { data: [], totalColleges: 0 };
   }
 }
+
+export type ListingSummary = {
+  total: number;
+  privateCount: number;
+  publicCount: number;
+  cities: Array<{ name: string; slug: string; count: number }>;
+  states?: Array<{ name: string; slug: string; count: number }>;
+  exams?: Array<{ name: string; slug: string; count: number }>;
+  topColleges?: Array<{ name: string; slug: string; city: string | null; state: string | null }>;
+  fees: { n: number; min: number; max: number; median: number | null } | null;
+};
+
+export async function getListingSummary(courseSlug: string, stateSlug?: string | null, citySlug?: string | null): Promise<ListingSummary | null> {
+  const params = new URLSearchParams({ course: courseSlug });
+  if (stateSlug) params.set('state', stateSlug);
+  if (citySlug) params.set('city', citySlug);
+  try {
+    const result = await api<{ data: ListingSummary }>(`/colleges/listing-summary?${params}`, listingFetchOptions([`listing-summary:${courseSlug}:${stateSlug || ''}:${citySlug || ''}`]));
+    return result?.data || null;
+  } catch {
+    return null;
+  }
+}

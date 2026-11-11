@@ -318,6 +318,146 @@ const nextConfig: NextConfig = {
         source: '/articles/chandigarh-university-cu-chandigarh-vs-chitkara-university-chandigarh-engineering-decision-guide',
         destination: '/articles/chandigarh-university-vs-chitkara-university-chandigarh-btech-engineering-decision-guide',
         permanent: true
+      },
+      // BSc in Himachal Pradesh has 13 published colleges, below MIN_COLLEGES_FOR_LISTING (15)
+      {
+        source: '/bsc-colleges-in-himachal-pradesh',
+        destination: '/bsc-colleges',
+        statusCode: 301
+      },
+      // GPMCE (institute 201): AICTE withdrew approval on 24 June 2014 for 2014-15; Delhi High Court upheld the order on 15 September 2014 (W.P.(C) 4007/2014). Unpublished locally 11 Nov 2026 -> Delhi NCR engineering listing
+      {
+        source: '/colleges/guru-premsukh-memorial-college-of-engineering-delhi-ncr-delhi',
+        destination: '/engineering-colleges-in-delhi-ncr',
+        statusCode: 301
+      },
+      {
+        source: '/colleges/guru-premsukh-memorial-college-of-engineering-delhi-ncr-delhi/:path*',
+        destination: '/engineering-colleges-in-delhi-ncr',
+        statusCode: 301
+      },
+      // Thin rank-cutoff listing pages (below 15 colleges in the combo; no thicker sibling rank page). 11 Nov 2026
+      {
+        source: '/barch-colleges-accepting-2000-rank-in-jee-advanced',
+        destination: '/exams/jee-advanced/cutoff',
+        statusCode: 301
+      },
+      {
+        source: '/barch-colleges-accepting-5000-rank-in-jee-advanced',
+        destination: '/exams/jee-advanced/cutoff',
+        statusCode: 301
+      },
+      {
+        source: '/barch-colleges-accepting-10000-rank-in-jee-advanced',
+        destination: '/exams/jee-advanced/cutoff',
+        statusCode: 301
+      },
+      {
+        source: '/barch-colleges-accepting-25000-rank-in-jee-advanced',
+        destination: '/exams/jee-advanced/cutoff',
+        statusCode: 301
+      },
+      {
+        source: '/engineering-colleges-accepting-500-rank-in-wbjee',
+        destination: '/exams/wbjee/cutoff',
+        statusCode: 301
+      },
+      {
+        source: '/engineering-colleges-accepting-1000-rank-in-wbjee',
+        destination: '/exams/wbjee/cutoff',
+        statusCode: 301
+      },
+      {
+        source: '/engineering-colleges-accepting-2000-rank-in-wbjee',
+        destination: '/exams/wbjee/cutoff',
+        statusCode: 301
+      },
+      {
+        source: '/engineering-colleges-accepting-5000-rank-in-wbjee',
+        destination: '/exams/wbjee/cutoff',
+        statusCode: 301
+      },
+      {
+        source: '/engineering-colleges-accepting-10000-rank-in-wbjee',
+        destination: '/exams/wbjee/cutoff',
+        statusCode: 301
+      },
+      {
+        source: '/engineering-colleges-accepting-100000-rank-in-ojee',
+        destination: '/exams/ojee/cutoff',
+        statusCode: 301
+      },
+      {
+        source: '/engineering-colleges-accepting-200000-rank-in-ojee',
+        destination: '/exams/ojee/cutoff',
+        statusCode: 301
+      },
+      {
+        source: '/engineering-colleges-accepting-500000-rank-in-ojee',
+        destination: '/exams/ojee/cutoff',
+        statusCode: 301
+      },
+      {
+        source: '/engineering-colleges-accepting-1000000-rank-in-ojee',
+        destination: '/exams/ojee/cutoff',
+        statusCode: 301
+      },
+      {
+        source: '/engineering-colleges-accepting-100-rank-in-cg-pet',
+        destination: '/exams/cg-pet/cutoff',
+        statusCode: 301
+      },
+      {
+        source: '/engineering-colleges-accepting-250-rank-in-cg-pet',
+        destination: '/exams/cg-pet/cutoff',
+        statusCode: 301
+      },
+      {
+        source: '/engineering-colleges-accepting-500-rank-in-cg-pet',
+        destination: '/exams/cg-pet/cutoff',
+        statusCode: 301
+      },
+      // Thin GUJCET engineering rank pages (only 4 colleges in the whole combo; data year 2025). 11 Nov 2026 W2z
+      {
+        source: '/engineering-colleges-accepting-5000-rank-in-gujcet',
+        destination: '/exams/gujcet/cutoff',
+        statusCode: 301
+      },
+      {
+        source: '/engineering-colleges-accepting-10000-rank-in-gujcet',
+        destination: '/exams/gujcet/cutoff',
+        statusCode: 301
+      },
+      {
+        source: '/engineering-colleges-accepting-25000-rank-in-gujcet',
+        destination: '/exams/gujcet/cutoff',
+        statusCode: 301
+      },
+      {
+        source: '/engineering-colleges-accepting-50000-rank-in-gujcet',
+        destination: '/exams/gujcet/cutoff',
+        statusCode: 301
+      },
+      // Thin TS EAPCET engineering rank pages (at most 10 colleges in the combo; data year 2025). 11 Nov 2026 W2z
+      {
+        source: '/engineering-colleges-accepting-10000-rank-in-ts-eapcet',
+        destination: '/exams/ts-eapcet/cutoff',
+        statusCode: 301
+      },
+      {
+        source: '/engineering-colleges-accepting-25000-rank-in-ts-eapcet',
+        destination: '/exams/ts-eapcet/cutoff',
+        statusCode: 301
+      },
+      {
+        source: '/engineering-colleges-accepting-50000-rank-in-ts-eapcet',
+        destination: '/exams/ts-eapcet/cutoff',
+        statusCode: 301
+      },
+      {
+        source: '/engineering-colleges-accepting-100000-rank-in-ts-eapcet',
+        destination: '/exams/ts-eapcet/cutoff',
+        statusCode: 301
       }
     ];
   }

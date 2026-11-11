@@ -5,7 +5,7 @@ export const CUTOFF_REVALIDATE = 600;
 const opts = (tag: string) => ({ next: { revalidate: CUTOFF_REVALIDATE, tags: ['cutoffs', tag] } });
 
 export type CollegeCutoffSummary = {
-  institute: { id: number; name: string; slug: string; city: string | null; state: string | null } | null;
+  institute: { id: number; name: string; slug: string; city: string | null; state: string | null; logo?: string | null } | null;
   exams: Array<{
     exam_id: number; slug: string; name: string; metric: 'rank' | 'score' | 'percentile'; published: boolean;
     years: Array<{ year: number; exam_year?: number; rows: number; rounds: number; programmes: number; aggregator: boolean }>;

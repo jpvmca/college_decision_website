@@ -1,6 +1,8 @@
 import type { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import Link from 'next/link';
+import type { LucideIcon } from 'lucide-react';
+import { ArrowRight, BadgeCheck, BookOpen, Building2, CalendarDays, ChevronDown, ClipboardList, GraduationCap, Lightbulb, Target, TriangleAlert } from 'lucide-react';
 import { api, instituteLogoUrl, mediaUrl } from '../../../lib/api';
 import { stripEmbeddedFaqs } from '../../../lib/strip-embedded-faqs';
 import AdSlot from '../../../components/ads/AdSlot';
@@ -135,6 +137,10 @@ function absoluteUrl(value: string, siteUrl: string) {
   }
 }
 
+function SectionHead({ icon: Icon, title, subtitle }: { icon: LucideIcon; title: string; subtitle?: string }) {
+  return <div className="cp-section-head"><span className="cp-section-icon"><Icon size={20} strokeWidth={2} aria-hidden="true" /></span><div><h2>{title}</h2>{subtitle ? <p>{subtitle}</p> : null}</div></div>;
+}
+
 function examSeo(profile: ExamProfile) {
   const pack = buildExamSeo(profile as any);
   return { title: pack.title, description: pack.description, keywords: pack.keywords, h1: pack.h1, intro: pack.intro, label: pack.label, year: pack.year, intent: pack.intent, pack };
@@ -246,40 +252,47 @@ export default async function ExamProfilePage({ params }: { params: Promise<{ sl
 
   // exam_mid_2 sits before the guide's 3rd <h2>; split only when that slot can render.
   const guideSplit = guideHtml && (await getAdSlot('exam_mid_2')) ? splitBeforeNthH2(guideHtml, 3) : null;
-  return <main className="section college-profile-page"><div className="wrap prose">
+  const currentYear = new Date().getFullYear();
+  const metaBits = [profile.exam.course?.name, profile.exam.mode, levelLabel(profile.exam.level)].filter(Boolean);
+  const courseHref = profile.exam.course?.publishedSlug ? `/courses/${profile.exam.course.publishedSlug}` : null;
+  const safeCourseHref = courseHref && linkableEntities.some((entity) => entity.href === courseHref) ? courseHref : null;
+  return <main className="section college-profile-page cp-page"><div className="wrap">
     <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
-    <nav className="breadcrumb" aria-label="Breadcrumb"><Link href="/">Home</Link><span aria-hidden="true">›</span><Link href="/exams">Exams</Link><span aria-hidden="true">›</span><span aria-current="page">{name}</span></nav>
+    <nav className="breadcrumb cp-breadcrumb" aria-label="Breadcrumb"><Link href="/">Home</Link><span aria-hidden="true">›</span><Link href="/exams">Exams</Link><span aria-hidden="true">›</span><span aria-current="page">{name}</span></nav>
     <AdSlot slotKey="exam_top" />
-    <header className="college-profile-header">
-      <div>
-        <p className="eyebrow">EXAM PROFILE</p>
-        <h1>{seo.h1}</h1>
-        <p className="muted">{[profile.exam.course?.name, profile.exam.mode, levelLabel(profile.exam.level)].filter(Boolean).join(' · ') || 'Entrance exam'} · India</p>
-        <p><AutoLinkedText text={seo.intro} entities={linkableEntities} options={{ excludeHrefs: autoLinkExclude }} /></p>
-        {profile.exam.applyUrl ? <p><a href={profile.exam.applyUrl} target="_blank" rel="noopener noreferrer">Open official {name} information</a></p> : null}
-        {examCutoffs?.data.length ? <p><Link className="button primary" href={`/exams/${slug}/cutoff`}>{name} Cutoff</Link></p> : null}
+    <header className="cp-hero">
+      <div className="cp-hero-top">
+        {profile.exam.logo ? <div className="cp-hero-logo"><ExamLogo src={profile.exam.logo} examName={name} courseName={profile.exam.course?.name} size={88} /></div> : null}
+        <div className="cp-hero-copy">
+          <p className="cp-eyebrow">Exam profile · {currentYear}</p>
+          <h1>{seo.h1}</h1>
+          <div className="cp-hero-meta"><span><ClipboardList size={15} aria-hidden="true" /> {metaBits.join(' · ') || 'Entrance exam'} · India</span></div>
+        </div>
       </div>
-      <ExamLogo src={profile.exam.logo} examName={name} courseName={profile.exam.course?.name} size={120} />
+      <p className="cp-hero-lead"><AutoLinkedText text={seo.intro} entities={linkableEntities} options={{ excludeHrefs: autoLinkExclude }} /></p>
+      <div className="cp-hero-badges"><span className="cp-pill is-verified"><BadgeCheck size={15} aria-hidden="true" /> Evidence-backed profile</span></div>
+      <div className="cp-hero-actions">
+        {examCutoffs?.data.length ? <Link className="button ls-btn-primary" href={`/exams/${slug}/cutoff`}><Target size={15} aria-hidden="true" /> {name} Cutoff</Link> : <Link className="button ls-btn-primary" href="/compare-colleges-2026">Compare colleges <ArrowRight size={16} aria-hidden="true" /></Link>}
+        {profile.exam.applyUrl ? <a className="button cp-btn-ghost" href={profile.exam.applyUrl} target="_blank" rel="noopener noreferrer">Official {name} information</a> : null}
+        {safeCourseHref && profile.exam.course?.name ? <Link className="button cp-btn-ghost" href={safeCourseHref}>{profile.exam.course.name} course</Link> : null}
+      </div>
     </header>
-    <section className="college-decision-note"><p className="eyebrow">DECISION NOTE</p><p>{decisionNote(profile, name)}</p></section>
-
-    <section className="college-stats" aria-label="Exam highlights">
-      <div><strong>{profile.instituteCount || '—'}</strong><span>Mapped colleges</span></div>
-      <div><strong>{profile.programmeCount || '—'}</strong><span>Mapped programmes</span></div>
-      <div><strong>{profile.fees?.programmes_with_fees || '—'}</strong><span>Programmes with fees</span></div>
-      <div><strong>{(() => {
-        const courseHref = profile.exam.course?.publishedSlug
-          ? `/courses/${profile.exam.course.publishedSlug}`
-          : null;
-        const safeHref = courseHref && linkableEntities.some((entity) => entity.href === courseHref) ? courseHref : null;
-        return safeHref && profile.exam.course?.name
-          ? <a href={safeHref}>{profile.exam.course.name}</a>
-          : (profile.exam.course?.name || '—');
-      })()}</strong><span>Primary course</span></div>
+    <section className="cp-glance" aria-labelledby="exam-highlights-heading">
+      <h2 id="exam-highlights-heading" className="cp-sr-only">Exam highlights</h2>
+      <div className="cp-glance-grid">
+        <div className="cp-glance-item"><span className="cp-glance-icon"><Building2 size={18} aria-hidden="true" /></span><strong>{profile.instituteCount || '—'}</strong><span>Mapped colleges</span></div>
+        <div className="cp-glance-item"><span className="cp-glance-icon"><BookOpen size={18} aria-hidden="true" /></span><strong>{profile.programmeCount || '—'}</strong><span>Mapped programmes</span></div>
+        <div className="cp-glance-item"><span className="cp-glance-icon"><GraduationCap size={18} aria-hidden="true" /></span><strong>{profile.fees?.programmes_with_fees || '—'}</strong><span>Programmes with fees</span></div>
+        <div className="cp-glance-item"><span className="cp-glance-icon"><ClipboardList size={18} aria-hidden="true" /></span><strong>{safeCourseHref && profile.exam.course?.name ? <a href={safeCourseHref}>{profile.exam.course.name}</a> : (profile.exam.course?.name || '—')}</strong><span>Primary course</span></div>
+      </div>
+    </section>
+    <section className="cp-insight">
+      <span className="cp-insight-icon"><Lightbulb size={20} aria-hidden="true" /></span>
+      <div><p className="cp-insight-title">Decision note</p><p>{decisionNote(profile, name)}</p></div>
     </section>
 
-    {schedule && (schedule.exam_start_date || schedule.expected_month || schedule.application_start_date || schedule.result_date) && <section className="exam-schedule-card" aria-labelledby="exam-schedule-heading">
-      <h2 id="exam-schedule-heading">{events.length ? `Key ${name} dates` : `Important ${name} dates`}</h2>
+    {schedule && (schedule.exam_start_date || schedule.expected_month || schedule.application_start_date || schedule.result_date) && <section className="exam-schedule-card">
+      <SectionHead icon={CalendarDays} title={events.length ? `Key ${name} dates` : `Important ${name} dates`} />
       <div className="exam-schedule-grid">
         {schedule.exam_start_date ? <div><strong>Exam date</strong><span>{formatShortDate(schedule.exam_start_date)}{schedule.exam_end_date && schedule.exam_end_date !== schedule.exam_start_date ? ` to ${formatShortDate(schedule.exam_end_date)}` : ''}</span>{schedule.countdownEligible ? <ExamCountdown date={schedule.exam_start_date} /> : null}</div> : schedule.expected_month ? <div><strong>Expected exam window</strong><span>{schedule.expected_month}</span></div> : null}
         {schedule.application_start_date && <div><strong>Registration starts</strong><span>{formatShortDate(schedule.application_start_date)}</span></div>}
@@ -310,29 +323,29 @@ export default async function ExamProfilePage({ params }: { params: Promise<{ sl
       <section className="course-html-content" aria-label={`${name} exam guide (continued)`} dangerouslySetInnerHTML={{ __html: splitLongParagraphs(guideSplit[1]) }} />
     </> : guideHtml ? <section className="course-html-content" aria-label={`${name} exam guide`} dangerouslySetInnerHTML={{ __html: splitLongParagraphs(guideHtml) }} /> : null}
 
-    {!guideHtml && aboutText && <section><h2>About {name}</h2><p>{aboutText}</p></section>}
-    {!guideHtml && !aboutText && <section><h2>About {name}</h2><p>{name} is listed as an entrance exam route in India. Use the mapped college and programme evidence below as a research starting point and confirm the latest official notice before applying.</p></section>}
+    {!guideHtml && aboutText && <section className="cp-card"><SectionHead icon={ClipboardList} title={`About ${name}`} /><p>{aboutText}</p></section>}
+    {!guideHtml && !aboutText && <section className="cp-card"><SectionHead icon={ClipboardList} title={`About ${name}`} /><p>{name} is listed as an entrance exam route in India. Use the mapped college and programme evidence below as a research starting point and confirm the latest official notice before applying.</p></section>}
 
-    {!guideHtml && (profile.exam.eligibility || profile.exam.pattern) && <section className="college-profile-columns">
+    {!guideHtml && (profile.exam.eligibility || profile.exam.pattern) && <section className="cp-card college-profile-columns">
       {profile.exam.eligibility && <div><h2>Eligibility</h2><p>{text(profile.exam.eligibility)}</p></div>}
       {profile.exam.pattern && <div><h2>Exam pattern</h2><p>{text(profile.exam.pattern)}</p></div>}
     </section>}
 
-    {!guideHtml && (profile.exam.criteria || profile.exam.applicationFees || profile.exam.howToPrepare) && <section className="college-profile-columns">
+    {!guideHtml && (profile.exam.criteria || profile.exam.applicationFees || profile.exam.howToPrepare) && <section className="cp-card college-profile-columns">
       {profile.exam.criteria && <div><h2>Selection criteria</h2><p>{text(profile.exam.criteria)}</p></div>}
       {profile.exam.applicationFees && <div><h2>Application fees</h2><p>{text(profile.exam.applicationFees)}</p></div>}
       {profile.exam.howToPrepare && <div><h2>How to prepare</h2><p>{text(profile.exam.howToPrepare)}</p></div>}
     </section>}
 
-    {!guideHtml && examFeeSentence(profile.fees) && <section><h2>Fees for programmes accepting {name}</h2>
+    {!guideHtml && examFeeSentence(profile.fees) && <section className="cp-card"><SectionHead icon={GraduationCap} title={`Fees for programmes accepting ${name}`} />
       <p>{examFeeSentence(profile.fees)}</p>
       <p>Only active programmes at published colleges are counted. Confirm the academic year, category, hostel, mess and other charges with each institute.</p></section>}
 
-    {!guideHtml && profile.programmes.length > 0 && <section><h2>Programmes linked with {name}</h2><div className="profile-chips">{profile.programmes.slice(0, 40).map((item) => <span key={`${item.programme_name}-${item.duration}`}>{text(item.programme_name)}</span>)}</div></section>}
+    {!guideHtml && profile.programmes.length > 0 && <section className="cp-card"><SectionHead icon={BookOpen} title={`Programmes linked with ${name}`} /><div className="profile-chips">{profile.programmes.slice(0, 40).map((item) => <span key={`${item.programme_name}-${item.duration}`}>{text(item.programme_name)}</span>)}</div></section>}
 
     {(examCutoffs?.data.length || seo.intent === 'cutoff') ? <ExamCutoffs examLabel={seo.label} cutoffs={examCutoffs} collegeHref={(collegeSlug) => findPublishedHref(linkableEntities, 'college', collegeSlug) || `/colleges/${collegeSlug}`} /> : null}
 
-    {profile.colleges.length > 0 && <section><h2>Colleges accepting {seo.label}: {profile.colleges.length} listed</h2><p className="muted">Browse published college profiles mapped to {seo.label}. Prefer institutes with fees and placement evidence when shortlisting.</p>{seo.pack.collegesNote && <p className="muted">{seo.pack.collegesNote.text}{seo.pack.collegesNote.href && seo.pack.collegesNote.linkText ? <> <Link href={seo.pack.collegesNote.href}>{seo.pack.collegesNote.linkText}</Link>.</> : null}</p>}<div className="college-programme-grid">{profile.colleges.map((college) => {
+    {profile.colleges.length > 0 && <section className="cp-card"><SectionHead icon={Building2} title={`Colleges accepting ${seo.label}: ${profile.colleges.length} listed`} subtitle={`Browse published college profiles mapped to ${seo.label}. Prefer institutes with fees and placement evidence when shortlisting.`} />{seo.pack.collegesNote && <p className="muted">{seo.pack.collegesNote.text}{seo.pack.collegesNote.href && seo.pack.collegesNote.linkText ? <> <Link href={seo.pack.collegesNote.href}>{seo.pack.collegesNote.linkText}</Link>.</> : null}</p>}<div className="college-programme-grid">{profile.colleges.map((college) => {
       const href = college.published_slug ? `/colleges/${college.published_slug}` : null;
       const card = <>
         <div className="home-college-heading">
@@ -351,10 +364,10 @@ export default async function ExamProfilePage({ params }: { params: Promise<{ sl
       const ranked = rankExamArticles(profile.articles.map((a) => ({ ...a, articleType: a.articleType })), profile.exam.slug);
       const list = ranked.length ? ranked : profile.articles;
       if (!list.length) return null;
-      return <section><h2>{seo.label} accepting-colleges & related guides</h2><div className="college-programme-grid">{list.map((article) => <Link className="card" href={`/articles/${article.slug}`} key={article.slug}><h3>{articleAnchorTitle(article, seo.label)}</h3><p className="muted">{(article.articleType || 'exam').replace(/-/g, ' ')} guide for {seo.label}</p></Link>)}</div></section>;
+      return <section className="cp-card"><SectionHead icon={BookOpen} title={`${seo.label} accepting-colleges & related guides`} /><div className="college-programme-grid">{list.map((article) => <Link className="card" href={`/articles/${article.slug}`} key={article.slug}><h3>{articleAnchorTitle(article, seo.label)}</h3><p className="muted">{(article.articleType || 'exam').replace(/-/g, ' ')} guide for {seo.label}</p></Link>)}</div></section>;
     })()}
     <AdSlot slotKey="exam_end" />
-    {faqs.length > 0 && <section><h2>Frequently asked questions</h2>{faqs.map((faq) => <article className="faq-item" key={faq.question}><h3>{faq.question}</h3><p>{faq.answer}</p></article>)}</section>}
-    <div className="notice"><strong>Data note:</strong> Exam rules, cutoffs, fees and college mappings can change by year and category. Verify the latest official information before applying.</div>
+    {faqs.length > 0 && <section className="cp-card"><SectionHead icon={ClipboardList} title="Frequently asked questions" /><div className="cp-faq">{faqs.map((faq) => <details className="cp-faq-item" key={faq.question}><summary><h3>{faq.question}</h3><ChevronDown size={18} aria-hidden="true" /></summary><p>{faq.answer}</p></details>)}</div></section>}
+    <div className="cp-data-note"><TriangleAlert size={18} aria-hidden="true" /><p><strong>Data note:</strong> Exam rules, cutoffs, fees and college mappings can change by year and category. Verify the latest official information before applying.</p></div>
   </div></main>;
 }

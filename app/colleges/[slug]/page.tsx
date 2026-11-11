@@ -6,7 +6,7 @@ import { notFound } from 'next/navigation';
 import Link from 'next/link';
 import { ArrowLeftRight, ArrowUpRight, BadgeCheck, BookOpen, BriefcaseBusiness, Building2, CalendarDays, ChevronDown, ClipboardCheck, Clock, Globe2, GraduationCap, HelpCircle, IndianRupee, Landmark, Lightbulb, Mail, MapPin, Phone, ShieldCheck, Star, Target, TrendingUp, Trophy, Users, type LucideIcon } from 'lucide-react';
 import ProfileSectionNav from '../../../components/ProfileSectionNav';
-import { api, instituteLogoUrl } from '../../../lib/api';
+import { api, instituteLogoUrl, mediaUrl } from '../../../lib/api';
 import { toAbsoluteExternalUrl } from '../../../lib/external-url';
 import { getLinkableEntities, findPublishedHref, findPublishedHrefByName } from '../../../lib/linkable-entities';
 import { CollegeCutoffs, type CollegeCutoffResponse } from '../../../components/Cutoffs';
@@ -32,6 +32,8 @@ type CollegeProfile = {
     establishmentYear?: number | null;
     isUniversity?: number | boolean;
   };
+  images?: Array<{ path: string; title?: string | null; isFeatured?: boolean }>;
+  seo?: { title?: string | null; description?: string | null; keywords?: string | null } | null;
   programmes: Array<{
     programme_id: number;
     programme_name: string;
@@ -243,6 +245,14 @@ function stripSiteSuffix(value: string) {
 const PROGRAMMES_VISIBLE = 6;
 
 /** Title suffix and description list only the sections that actually have data, so snippets never over-promise. */
+function cleanSeoTitle(value: string | null | undefined) {
+  const title = String(value || '').replace(/&rsquo;/g, '’').replace(/&amp;/g, '&').replace(/\s+/g, ' ').trim();
+  if (!title) return '';
+  // Imported legacy titles from other brands should not go live.
+  if (/collegesearch/i.test(title)) return '';
+  return title.replace(/\s*\|\s*College Decision\s*$/i, '').trim();
+}
+
 function profileSeo(profile: CollegeProfile, name: string, city: string, currentYear: number) {
   const placements = cleanPlacements(profile);
   const hasPlacements = placements.lines.length > 0 || placements.wide.length > 0;
@@ -531,7 +541,9 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   const siteUrl = (process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3001').replace(/\/+$/, '');
   const imageUrl = absoluteUrl(profile.institute.logo ? instituteLogoUrl(profile.institute.logo) : '/logo.svg', siteUrl);
   const currentYear = new Date().getFullYear();
-  const { title, description } = profileSeo(profile, name, city, currentYear);
+  const generated = profileSeo(profile, name, city, currentYear);
+  const title = cleanSeoTitle(profile.seo?.title) || generated.title;
+  const description = String(profile.seo?.description || '').replace(/&rsquo;/g, '’').replace(/&amp;/g, '&').trim() || generated.description;
   return {
     title,
     description,
@@ -553,6 +565,17 @@ export default async function CollegeProfilePage({ params }: { params: Promise<{
   const city = profile.institute.location.city || '';
   const state = profile.institute.location.state || '';
   const location = [city, state].filter(Boolean).join(', ');
+  const campusImages = (profile.images || []).filter((image) => image?.path).slice(0, 8).map((image) => {
+    const src = mediaUrl(image.path);
+    const sized = (width: number) => `${src}${src.includes('?') ? '&' : '?'}w=${width}&q=78&convert=webp`;
+    return {
+      src: sized(900),
+      thumb: sized(480),
+      alt: `${name}${image.title ? ` — ${image.title}` : ' campus'}`,
+      featured: Boolean(image.isFeatured)
+    };
+  });
+  const heroCampus = campusImages[0] || null;
   const linkableEntities = await getLinkableEntities();
   const legacyLinkResolver = await getLinkResolver();
   const selfPath = `/colleges/${slug}`;
@@ -737,6 +760,7 @@ export default async function CollegeProfilePage({ params }: { params: Promise<{
             {profile.institute.establishmentYear ? <span><CalendarDays size={15} aria-hidden="true" /> Est. {profile.institute.establishmentYear}</span> : null}
           </div>
         </div>
+        {heroCampus ? <div className="cp-hero-media"><img src={heroCampus.src} alt={heroCampus.alt} width="280" height="158" loading="lazy" decoding="async" /></div> : null}
       </div>
       <p className="cp-hero-lead">Explore recorded courses, fees, entrance routes, placements, rankings and aggregate student ratings before making your shortlist.</p>
       <div className="cp-hero-badges">
@@ -768,7 +792,18 @@ export default async function CollegeProfilePage({ params }: { params: Promise<{
       <div><p className="cp-insight-title">Decision note</p><p>{decisionNote(profile, name)}</p></div>
     </section>
 
-    {toc.length > 2 && <ProfileSectionNav items={toc.map(({ id, label }) => ({ id, label }))} />}
+        {campusImages.length > 0 && <section className="cp-gallery" aria-label={`${name} campus photos`}>
+      <h2 className="cp-sr-only">{name} campus photos</h2>
+      <ul className="cp-gallery-list">
+        {campusImages.map((image, index) => (
+          <li key={`${image.src}-${index}`}>
+            <img src={image.thumb} alt={image.alt} width="480" height="270" loading="lazy" decoding="async" />
+          </li>
+        ))}
+      </ul>
+    </section>}
+
+{toc.length > 2 && <ProfileSectionNav items={toc.map(({ id, label }) => ({ id, label }))} />}
 
     {(profile.about || location || profile.institute.establishmentYear || officialWebsite) && <section id="about" className="cp-card">
       <SectionHeading icon={Building2} subtitle="Background, campus, recognition and official contacts">About {name}</SectionHeading>

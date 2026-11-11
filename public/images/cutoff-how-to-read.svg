@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="960" height="280" viewBox="0 0 960 280" role="img" aria-labelledby="title desc">
+  <title id="title">How to read opening and closing ranks</title>
+  <desc id="desc">Opening rank is the first (best) rank allotted in a counselling round. Closing rank is the last rank allotted in that round. A lower rank is more competitive.</desc>
+  <rect width="960" height="280" rx="16" fill="#f8fafc" stroke="#dbe5f2"/>
+  <rect x="0" y="0" width="8" height="280" fill="#1f3a60"/>
+  <text x="36" y="44" font-family="Georgia, serif" font-size="22" fill="#1f3a60">How to read a cutoff table</text>
+  <text x="36" y="72" font-family="system-ui, sans-serif" font-size="14" fill="#334155">For rank-based counselling (JoSAA, MCC, state CETs and others)</text>
+  <g>
+    <rect x="36" y="100" width="270" height="140" rx="12" fill="#fff" stroke="#cbd5e1"/>
+    <text x="56" y="138" font-family="system-ui, sans-serif" font-size="13" fill="#64748b">OPENING RANK</text>
+    <text x="56" y="172" font-family="Georgia, serif" font-size="28" fill="#1f3a60">3,105</text>
+    <text x="56" y="204" font-family="system-ui, sans-serif" font-size="13" fill="#334155">First (best) rank allotted</text>
+    <text x="56" y="224" font-family="system-ui, sans-serif" font-size="13" fill="#334155">in that round and quota.</text>
+  </g>
+  <g>
+    <rect x="326" y="100" width="270" height="140" rx="12" fill="#fff" stroke="#cbd5e1"/>
+    <text x="346" y="138" font-family="system-ui, sans-serif" font-size="13" fill="#64748b">CLOSING RANK</text>
+    <text x="346" y="172" font-family="Georgia, serif" font-size="28" fill="#1f3a60">7,243</text>
+    <text x="346" y="204" font-family="system-ui, sans-serif" font-size="13" fill="#334155">Last rank allotted in that</text>
+    <text x="346" y="224" font-family="system-ui, sans-serif" font-size="13" fill="#334155">round. Lower is better.</text>
+  </g>
+  <g>
+    <rect x="616" y="100" width="308" height="140" rx="12" fill="#fff" stroke="#cbd5e1"/>
+    <text x="636" y="138" font-family="system-ui, sans-serif" font-size="13" fill="#64748b">CATEGORY · QUOTA · ROUND</text>
+    <text x="636" y="172" font-family="Georgia, serif" font-size="20" fill="#1f3a60">Compare like with like</text>
+    <text x="636" y="204" font-family="system-ui, sans-serif" font-size="13" fill="#334155">General vs reserved, Home State vs</text>
+    <text x="636" y="224" font-family="system-ui, sans-serif" font-size="13" fill="#334155">All India, and the counselling round.</text>
+  </g>
+</svg>
+echo SVG_OK
