@@ -75,7 +75,7 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
         <div className="site">
           <nav className="nav">
             <div className="wrap nav-inner">
-              <Link className="brand" href="/" aria-label="College Decision home"><Image src="/logo.svg" alt="College Decision" width={188} height={38} priority /></Link>
+              <Link className="brand" href="/" aria-label="College Decision home"><Image src="/logo-wordmark.svg" alt="College Decision" width={188} height={38} priority /></Link>
               <SearchBox />
               <MobileNav />
             </div>
@@ -85,7 +85,7 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
             <div className="site-page-content">{children}</div>
             <aside className="site-page-rail site-page-rail-right" aria-label="Advertisements"><AdSlot slotKey="global_side_right" /></aside>
           </div>
-          <footer className="footer"><div className="wrap"><Image className="footer-logo" src="/logo.svg" alt="College Decision" width={170} height={34} loading="lazy" /><span>Clear college decisions with practical cost, admission and outcome guidance.</span><nav className="footer-links" aria-label="Footer links"><Link href="/about">About</Link><Link href="/contact">Contact</Link><Link href="/privacy-policy">Privacy</Link><Link href="/terms-and-conditions">Terms</Link><Link href="/disclaimer">Disclaimer</Link></nav></div></footer>
+          <footer className="footer"><div className="wrap"><Image className="footer-logo" src="/logo-wordmark.svg" alt="College Decision" width={170} height={34} loading="lazy" /><span>Clear college decisions with practical cost, admission and outcome guidance.</span><nav className="footer-links" aria-label="Footer links"><Link href="/about">About</Link><Link href="/contact">Contact</Link><Link href="/privacy-policy">Privacy</Link><Link href="/terms-and-conditions">Terms</Link><Link href="/disclaimer">Disclaimer</Link></nav></div></footer>
           </div>
         <StudentLeadPopup />
         <AdsenseLoader />
