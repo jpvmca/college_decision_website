@@ -178,6 +178,22 @@ const nextConfig: NextConfig = {
         destination: '/colleges/s-j-college-of-engineering-and-technology-rajasthan-dausa/:path*',
         statusCode: 301
       },
+      // unpublished duplicates -> published originals (13 Nov 2026): 2421 -> 7286, 69969 -> 15208, 1782 (PWS management dept entry) -> 15208
+      {
+        source: '/colleges/government-medical-college-karnataka-mysore/:path*',
+        destination: '/colleges/mysore-medical-college-karnataka-mysore/:path*',
+        statusCode: 301
+      },
+      {
+        source: '/colleges/dr-madhukarrao-wasnik-pws-arts-commerce-college-kamptee-road-nagpur-26-c-18349/:path*',
+        destination: '/colleges/pws-arts-and-commerce-college-maharashtra-nagpur/:path*',
+        statusCode: 301
+      },
+      {
+        source: '/colleges/pws-college-of-arts-commerce-department-of-management-studies-and-reseach-maharashtra-nagpur/:path*',
+        destination: '/colleges/pws-arts-and-commerce-college-maharashtra-nagpur/:path*',
+        statusCode: 301
+      },
       // GGSCET Bathinda (644) is now Guru Kashi University's Faculty of Engineering & Technology (gku.ac.in) -> 14709
       {
         source: '/colleges/guru-gobind-singh-college-of-engineering-and-technology-punjab-bhatinda/:path*',

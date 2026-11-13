@@ -29,6 +29,8 @@ type GeneratedArticle = {
   packageThresholdLakh?: number | null;
   candidateCount: number;
   h1?: string;
+  metaTitle?: string | null;
+  metaDescription?: string | null;
   decisionScore?: { collegeA: number; collegeB: number };
   collegeA?: Record<string, unknown>;
   collegeB?: Record<string, unknown>;
@@ -209,17 +211,19 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   const article = await getArticle(slug, 1);
   if (!article) return { title: 'Article not found', robots: { index: false, follow: false } };
   const seo = getSeoContext(article);
-  const pageTitle = article.title.replace(/\s*\|\s*College Decision\s*$/i, '').trim();
+  const pageTitle = (article.metaTitle || article.title).replace(/\s*\|\s*College Decision\s*$/i, '').trim();
   const canonical = `${getSiteUrl()}/articles/${article.slug}`;
+  const description = article.metaDescription
+    || ('metaDescription' in seo ? seo.metaDescription : `${pageTitle}: ${seo.intro}`);
   return {
     title: pageTitle,
-    description: 'metaDescription' in seo ? seo.metaDescription : `${pageTitle}: ${seo.intro}`,
+    description,
     alternates: { canonical },
     robots: { index: true, follow: true },
     openGraph: {
       type: 'article',
       title: pageTitle,
-      description: seo.intro,
+      description,
       url: canonical,
       images: [{ url: mediaUrl(article.imageUrl) || '/og/default.png', width: 1200, height: 630, alt: article.imageUrl ? pageTitle : 'College Decision' }]
     },
