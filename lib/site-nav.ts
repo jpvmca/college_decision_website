@@ -1,6 +1,6 @@
 /**
  * Header / footer navigation data.
- * Every href below was verified to return HTTP 200 on the local site (14 Nov 2026) before it was added.
+ * Every href below was verified to return HTTP 200 on the local site and on production (14 Nov 2026).
  * Do not add links here without checking the page exists - no placeholder or planned URLs.
  */
 export type NavLink = { href: string; label: string };
@@ -777,20 +777,12 @@ export const NAV_STREAMS: NavStream[] = [
         "label": "B.Sc in Delhi NCR"
       },
       {
-        "href": "/ba-colleges-in-uttar-pradesh",
-        "label": "BA in Uttar Pradesh"
-      },
-      {
         "href": "/ba-colleges-in-maharashtra",
         "label": "BA in Maharashtra"
       },
       {
         "href": "/ba-colleges-in-karnataka",
         "label": "BA in Karnataka"
-      },
-      {
-        "href": "/ba-colleges-in-tamil-nadu",
-        "label": "BA in Tamil Nadu"
       },
       {
         "href": "/ba-colleges-in-delhi-ncr",
