@@ -67,7 +67,7 @@ export default async function CoursesPage() {
     </section>
     <AdSlot slotKey="listing_top" className="listing-ad" />
     <div className="ls-head">
-      <p className="ls-eyebrow"><GraduationCap size={14} aria-hidden="true" /> Directory</p>
+      <p className="ls-eyebrow"><GraduationCap size={14} aria-hidden="true" /> All courses</p>
       <h2>Browse courses</h2>
     </div>
     <p className="ls-count">{formatCount(result.pagination.total)} active courses · load more to continue</p>

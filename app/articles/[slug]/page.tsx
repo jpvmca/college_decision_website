@@ -343,7 +343,7 @@ export default async function ArticleDetailPage({ params, searchParams }: { para
     <div className="notice"><strong>Before you apply:</strong> {isAveragePackageExceedsFeesArticle(article.type) || isHighestPackageArticle(article.type) || isGovAvgPackageArticle(article.type) ? 'placement packages are historical leads and can change by batch, role and recruiter mix. Confirm the latest official fee and placement report before deciding.' : isExamAdmissionArticle(article.type) ? `exam routes and college requirements can change. Confirm the current ${article.exam?.name || 'entrance exam'} notice and each institution's official admission process before applying.` : article.type.includes('admission') ? 'eligibility and admission routes can change by institution and academic year. Confirm the latest official notice before applying.' : 'treat these figures as fee leads, not final quotes. Confirm the academic year, currency, duration, hostel, mess, deposits and current admission rules with the institution.'}</div>
     {isExamAdmissionArticle(article.type) && article.exam?.applyUrl && <p className="article-backlink"><a href={article.exam.applyUrl} target="_blank" rel="noopener noreferrer">Open official {article.exam.name} information</a></p>}
     <AdSlot slotKey="article_middle" />
-    <div className="ls-head"><p className="ls-eyebrow"><FileText size={14} aria-hidden="true" /> Directory</p><h2>{seo.optionsHeading}</h2></div>
+    <div className="ls-head"><p className="ls-eyebrow"><FileText size={14} aria-hidden="true" /> Your options</p><h2>{seo.optionsHeading}</h2></div>
     <ArticleCollegeList
       slug={article.slug}
       articleType={article.type}

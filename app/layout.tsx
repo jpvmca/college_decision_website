@@ -79,7 +79,7 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
         <div className="site">
           <header className="nav">
             <div className="wrap nav-inner">
-              <Link className="brand" href="/" aria-label="College Decision home"><Image src="/logo-wordmark.svg" alt="College Decision" width={188} height={38} priority /></Link>
+              <Link className="brand" href="/" aria-label="College Decision home"><Image src="/logo-wordmark.svg" alt="College Decision" width={223} height={40} priority /></Link>
               <SearchBox />
               <MobileNav />
             </div>

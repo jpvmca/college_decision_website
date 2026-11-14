@@ -243,9 +243,9 @@ export default async function CourseCollegesPage({ params, searchParams }: { par
   const summary = await getListingSummary(course.courseSlug, cityPage?.stateSlug || statePage?.stateSlug || null, cityPage?.citySlug || null);
   const countText = pagination.total.toLocaleString('en-IN');
   const intro = cityPage
-    ? `College Decision lists ${countText} published ${label} colleges in ${cityName}, ${stateName}. Use the directory to compare published fees, admission routes and placements, then confirm every figure on the official college site.`
+    ? `College Decision lists ${countText} published ${label} colleges in ${cityName}, ${stateName}. Use this list to compare published fees, admission routes and placements, then confirm every figure on the official college site.`
     : statePage
-      ? `College Decision lists ${countText} published ${label} colleges in ${stateName}. Use the directory to compare published fees, admission routes and placements, then confirm every figure on the official college site.`
+      ? `College Decision lists ${countText} published ${label} colleges in ${stateName}. Use this list to compare published fees, admission routes and placements, then confirm every figure on the official college site.`
       : `Find ${label} colleges for different profiles and budgets. India has ${countText} published colleges offering ${label} in our database, listed with the most complete fee, course and placement information first so you can shortlist faster.`;
   const courseStates = statePages.data.filter((item) => item.courseSlug === course.courseSlug);
   const courseCities = cityPages.data.filter((item) => item.courseSlug === course.courseSlug);
@@ -345,7 +345,7 @@ export default async function CourseCollegesPage({ params, searchParams }: { par
       <div className="listing-main">
         <CourseFilterMobileButton percentileGroups={percentileGroups} facets={facets.data} totalColleges={facets.totalColleges} selectedKey={course.key} selectedState={cityPage?.stateSlug || statePage?.stateSlug || null} selectedCity={cityPage?.citySlug || null} statePages={statePages.data} cityPages={cityPages.data} />
         <div className="ls-head">
-          <p className="ls-eyebrow"><Building2 size={14} aria-hidden="true" /> Directory</p>
+          <p className="ls-eyebrow"><Building2 size={14} aria-hidden="true" /> College list</p>
           <h2>Browse {label} Colleges</h2>
         </div>
         <p className="ls-count">{totalLabel} {label} colleges · load more to continue</p>

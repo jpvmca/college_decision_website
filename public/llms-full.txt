@@ -29,9 +29,9 @@ The website focuses on:
 
 - [Home](/): Decision tool, popular colleges/courses/exams, and published guides.
 - [All decision guides](/articles): Published guides covering fees, budgets, admission, eligibility, and placement context.
-- [Colleges directory](/colleges): Active colleges with programme coverage.
-- [Courses directory](/courses): Courses with linked colleges and programmes.
-- [Exams directory](/exams): Entrance exams ordered by mapped college coverage.
+- [All colleges](/colleges): Active colleges with programme coverage.
+- [All courses](/courses): Courses with linked colleges and programmes.
+- [All exams](/exams): Entrance exams ordered by mapped college coverage.
 - [Compare colleges 2026](/compare-colleges-2026): Compare up to four colleges by fees, courses, placements, rankings and admission context.
 - [About College Decision](/about): Platform purpose and editorial context.
 - [Contact College Decision](/contact): Contact information and enquiries.

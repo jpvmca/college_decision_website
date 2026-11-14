@@ -8,8 +8,8 @@ Last updated: 2026-09-05
 
 - [Home](/): Compare college fees, admission and placements in India, plus the best-fit college filter.
 - [Articles](/articles): Published college comparison and admission guides.
-- [Colleges](/colleges): Paginated directory of active colleges.
-- [Courses](/courses): Paginated directory of courses with programme coverage.
+- [Colleges](/colleges): Paginated list of active colleges.
+- [Courses](/courses): Paginated list of courses with programme coverage.
 - [Exams](/exams): Entrance exams mapped to active college programmes.
 - [Compare colleges 2026](/compare-colleges-2026): Side-by-side college comparison for fees, courses, placements and admission.
 - [About](/about): About the College Decision platform.

@@ -170,7 +170,7 @@ export default async function ArticlesPage({ searchParams }: { searchParams: Pro
     </section>
     <AdSlot slotKey="articles_top" className="listing-ad" />
     <div className="ls-head">
-      <p className="ls-eyebrow"><FileText size={14} aria-hidden="true" /> Directory</p>
+      <p className="ls-eyebrow"><FileText size={14} aria-hidden="true" /> All guides</p>
       <h2>Browse decision guides</h2>
     </div>
     <p className="ls-count">Twenty guides appear on each page. Open a guide to see the matching course options and the questions you should verify before applying.</p>

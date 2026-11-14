@@ -18,8 +18,10 @@
   flex: 0 0 auto;
 }
 .nav .brand img {
-  width: 176px;
-  height: auto;
+  display: block;
+  width: auto;
+  height: 40px;
+  aspect-ratio: 712 / 128;
 }
 
 .nav .site-search {
@@ -278,6 +280,7 @@
 .site-footer { margin-top: 36px; padding: 40px 0 22px; background: #f8fafc; color: #475569; }
 .site-footer .wrap { display: block; }
 .footer-top { display: grid; grid-template-columns: 240px minmax(0, 1fr); gap: 36px; }
+.site-footer .footer-logo { display: block; width: 190px; height: auto; aspect-ratio: 712 / 128; }
 .footer-brand p { margin: 12px 0 14px; font-size: 14px; line-height: 1.55; }
 .footer-email { display: inline-flex; align-items: center; gap: 7px; color: #0b2447; font-size: 14px; font-weight: 700; }
 .footer-grid { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.45fr) minmax(0, .8fr) minmax(0, 1fr) minmax(0, 1fr); gap: 24px; }
@@ -304,7 +307,7 @@
 }
 
 @media (max-width: 1100px) {
-  .nav .brand img { width: 158px; }
+  .nav .brand img { height: 36px; }
   .nav .site-search { max-width: 340px; }
 }
 
@@ -425,7 +428,7 @@
     flex-basis: 100%;
     max-width: none;
   }
-  .nav .brand img { width: 152px; }
+  .nav .brand img { height: 34px; }
   .nav .search-form button[type="submit"] span { display: none; }
   .nav .search-form button[type="submit"] { padding: 0 12px; }
   .site-menu { max-height: calc(100dvh - 120px); }

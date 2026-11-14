@@ -60,15 +60,15 @@ export default function ListingGuide({
   const intro = total === 0
     ? `College Decision does not currently list any published ${label} colleges in ${loc}. This snapshot is kept so the page stays honest about empty records; it does not invent colleges, fees or exams.`
     : placeKind === 'india'
-      ? `College Decision lists ${total.toLocaleString('en-IN')} published ${label} colleges in India.${typeBit ? ` ${typeBit[0].toUpperCase()}${typeBit.slice(1)} institutes appear in the directory.` : ''}${stateBit ? ` The states with the most listings in our records are ${stateBit}.` : ''}${cityBit ? ` The cities with the most listings are ${cityBit}.` : ''} ${feeBit}`
+      ? `College Decision lists ${total.toLocaleString('en-IN')} published ${label} colleges in India.${typeBit ? ` ${typeBit[0].toUpperCase()}${typeBit.slice(1)} institutes appear in this list.` : ''}${stateBit ? ` The states with the most listings in our records are ${stateBit}.` : ''}${cityBit ? ` The cities with the most listings are ${cityBit}.` : ''} ${feeBit}`
       : `College Decision lists ${total.toLocaleString('en-IN')} published ${label} colleges in ${loc}.${typeBit ? ` Of these, ${typeBit}.` : ''}${cityBit ? ` The largest clusters in our records are ${cityBit}.` : ''} ${feeBit}`;
 
   const faqs = [
     {
       question: `How many ${label} colleges are there in ${loc}?`,
       answer: total === 0
-        ? `We do not currently list any published ${label} colleges in ${loc}. Official or state directories may still show programmes that are not yet live on College Decision.`
-        : `We currently list ${total.toLocaleString('en-IN')} published ${label} colleges in ${loc}. The count is only of colleges that are live on College Decision with an active ${label} programme, so official or state directories may show a different total.`
+        ? `We do not currently list any published ${label} colleges in ${loc}. Official or state lists may still show programmes that are not yet live on College Decision.`
+        : `We currently list ${total.toLocaleString('en-IN')} published ${label} colleges in ${loc}. The count is only of colleges that are live on College Decision with an active ${label} programme, so official or state lists may show a different total.`
     },
     ...(typeBit && total > 0 ? [{ question: `Are ${label} colleges in ${loc} mostly private or public?`, answer: `In this listing, ${typeBit} ${label} colleges are published. Institute type comes from our college records and should be checked against the official college or university page.` }] : []),
     ...(summary.fees && summary.fees.n >= 3
@@ -80,7 +80,7 @@ export default function ListingGuide({
     ...(topCities.length ? [{ question: `Which cities in ${loc} have the most ${label} colleges?`, answer: `Based on published profiles, the cities with the most ${label} colleges here are ${listNames(topCities)}.` }] : []),
     ...(exams.length ? [{ question: `Which entrance exams are mapped to ${label} colleges in ${loc}?`, answer: `In our records, published ${label} programmes in ${loc} are mapped to ${listNames(exams)}. Confirm the exam actually used in the latest official admission notice, because mappings can lag behind a new counselling cycle.` }] : []),
     { question: `How should I shortlist a ${label} college in ${loc}?`, answer: total === 0
-      ? `Until published ${label} colleges appear in this directory, start from the official counselling or university list for ${loc}, then confirm eligibility, fees and recognition on the official college site.`
+      ? `Until published ${label} colleges appear on this page, start from the official counselling or university list for ${loc}, then confirm eligibility, fees and recognition on the official college site.`
       : `Start with the course and eligibility on the official site, then compare published fees, entrance tests accepted, and location. Use the ${label} course guide for the academic pattern, and treat placement figures as historical records, not a promise.` }
   ];
   const faqLd = faqJsonLd(faqs);
@@ -101,7 +101,7 @@ export default function ListingGuide({
             {topCities.length ? <tr><th scope="row">Cities with most listings</th><td>{listNames(topCities)}</td></tr> : null}
             {exams.length ? <tr><th scope="row">Exams mapped in this list</th><td>{exams.map((exam, i) => <span key={exam.slug}>{i ? ', ' : ''}<Link href={`/exams/${exam.slug}`}>{exam.name}</Link> ({exam.count.toLocaleString('en-IN')})</span>)}</td></tr> : null}
             {summary.fees && summary.fees.n >= 3 ? <tr><th scope="row">Annual fee (published sample)</th><td>Median {inr(summary.fees.median || 0)} · {inr(summary.fees.min)}–{inr(summary.fees.max)} ({summary.fees.n.toLocaleString('en-IN')} colleges)</td></tr> : <tr><th scope="row">Annual fee</th><td>{total === 0 ? 'No colleges are listed, so no fee range is shown' : 'Too few published fee records for a range'}</td></tr>}
-            {directoryColleges.length ? <tr><th scope="row">Colleges listed first in this directory</th><td>{directoryColleges.map((college, i) => {
+            {directoryColleges.length ? <tr><th scope="row">Colleges listed first on this page</th><td>{directoryColleges.map((college, i) => {
               const place = [college.city, college.state].filter(Boolean).join(', ');
               return <span key={college.slug}>{i ? '; ' : ''}<Link href={`/colleges/${college.slug}`}>{college.name}</Link>{place ? ` (${place})` : ''}</span>;
             })}</td></tr> : null}
@@ -110,9 +110,9 @@ export default function ListingGuide({
       </div>
       <h2>How to choose a {label} college in {loc}</h2>
       {total === 0
-        ? <p>There are no published {label} colleges in {loc} on this page yet, so there is no directory shortlist to work from. Use an official counselling or university list, then confirm recognition, eligibility and fees with the college.</p>
+        ? <p>There are no published {label} colleges in {loc} on this page yet, so there is no shortlist to work from. Use an official counselling or university list, then confirm recognition, eligibility and fees with the college.</p>
         : <>
-          <p>Use the directory below to open profiles, then confirm every figure with the college. A useful shortlist usually checks:</p>
+          <p>Use the list below to open profiles, then confirm every figure with the college. A useful shortlist usually checks:</p>
           <ul>
             <li>Whether the {label} programme is the exact award you want (honours, specialisation, duration) and is currently offered.</li>
             <li>Entrance tests or merit routes actually used for the latest admission cycle — not just historic exam names on a profile.</li>

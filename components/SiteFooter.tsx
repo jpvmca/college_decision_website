@@ -15,7 +15,7 @@ export default function SiteFooter() {
     <div className="wrap">
       <div className="footer-top">
         <div className="footer-brand">
-          <Image className="footer-logo" src="/logo-wordmark.svg" alt="College Decision" width={170} height={34} loading="lazy" />
+          <Image className="footer-logo" src="/logo-wordmark.svg" alt="College Decision" width={190} height={34} loading="lazy" />
           <p>Clear college decisions with practical cost, admission and outcome guidance.</p>
           <a className="footer-email" href={`mailto:${SITE_EMAIL_ADDRESS}`}><Mail size={15} aria-hidden="true" />{SITE_EMAIL_ADDRESS}</a>
         </div>

@@ -137,7 +137,7 @@ export default async function CollegesPage() {
       <div className="listing-main">
         <CourseFilterMobileButton facets={facets.data} totalColleges={totalColleges} />
         <div className="ls-head">
-          <p className="ls-eyebrow"><Building2 size={14} aria-hidden="true" /> Directory</p>
+          <p className="ls-eyebrow"><Building2 size={14} aria-hidden="true" /> All colleges</p>
           <h2>Browse Colleges</h2>
         </div>
         <p className="ls-count">{formatCount(result.pagination.total)} active colleges · load more to continue</p>
