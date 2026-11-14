@@ -43,8 +43,8 @@ export default function ContactPage() {
     </section>
     <div className="ls-prose">
     <div className="grid">
-      <article className="card"><span className="pill">Corrections</span><h2>Report a data issue</h2><p>Include the institute name, course name, page URL, field that looks incorrect and the official page or document supporting your correction.</p><p><a href="mailto:review@collegedecision.in">review@collegedecision.in</a></p></article>
-      <article className="card"><span className="pill">General</span><h2>Ask a question</h2><p>For partnership, editorial or general platform questions, write to our team with a clear subject and the context we need to respond.</p><p><a href="mailto:hello@collegedecision.in">hello@collegedecision.in</a></p></article>
+      <article className="card"><span className="pill">Corrections</span><h2>Report a data issue</h2><p>Include the institute name, course name, page URL, field that looks incorrect and the official page or document supporting your correction.</p><p><a href="mailto:mail@collegedecision.in">mail@collegedecision.in</a></p></article>
+      <article className="card"><span className="pill">General</span><h2>Ask a question</h2><p>For partnership, editorial or general platform questions, write to our team with a clear subject and the context we need to respond.</p><p><a href="mailto:mail@collegedecision.in">mail@collegedecision.in</a></p></article>
     </div>
     <h2>Send an enquiry</h2>
     {submitted && <div className="notice"><strong>Thank you.</strong> Your enquiry has been received by our team.</div>}

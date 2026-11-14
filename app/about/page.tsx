@@ -43,7 +43,7 @@ export default function AboutPage() {
     <h2>Who CollegeDecision.in is for</h2>
     <p>The platform is designed for applicants comparing undergraduate, postgraduate, diploma and professional courses across India. It is useful at the early research stage, when you are narrowing options and preparing questions for admissions offices.</p>
     <h2>Who runs CollegeDecision.in</h2>
-    <p>CollegeDecision.in is maintained by an independent product and research team focused on making education data easier to compare. We are not affiliated with every institution listed on the platform, and we do not accept editorial control in exchange for changing factual information. For corrections or collaboration questions, contact <a href="mailto:hello@collegedecision.in">hello@collegedecision.in</a>.</p>
+    <p>CollegeDecision.in is maintained by an independent product and research team focused on making education data easier to compare. We are not affiliated with every institution listed on the platform, and we do not accept editorial control in exchange for changing factual information. For corrections or collaboration questions, contact <a href="mailto:mail@collegedecision.in">mail@collegedecision.in</a>.</p>
     </div>
   </div></main>;
 }

@@ -87,7 +87,7 @@ Pages show an optional registration form, a few seconds after load, for students
 - Approximate location: country, state and city. Indian visitors can choose or edit their state and city. For visitors outside India these are worked out from the IP address after the form is submitted.
 - IP address, page URL, page type and campaign (UTM) tags. On a college page, the college and course are recorded as the student's interest in that college.
 
-Details are used to respond to enquiries and provide counselling. A repeat submission with the same mobile number or email updates the existing record. The browser's local storage keeps the course interest, approximate location and form status, so the location is not looked up again and college pages can show the student's course first. Students can ask for their details to be deleted at privacy@collegedecision.in; see the [privacy policy](/privacy-policy).
+Details are used to respond to enquiries and provide counselling. A repeat submission with the same mobile number or email updates the existing record. The browser's local storage keeps the course interest, approximate location and form status, so the location is not looked up again and college pages can show the student's course first. Students can ask for their details to be deleted at mail@collegedecision.in; see the [privacy policy](/privacy-policy).
 
 ## Responsible use
 

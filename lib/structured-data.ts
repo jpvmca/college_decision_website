@@ -5,6 +5,7 @@
 
 export const SITE_NAME = 'College Decision';
 export const SITE_ALTERNATE_NAME = 'CollegeDecision.in';
+export const SITE_EMAIL = 'mail@collegedecision.in';
 
 export function siteBaseUrl() {
   return (process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3001').replace(/\/+$/, '');
@@ -26,6 +27,13 @@ export function organizationJsonLd(siteUrl = siteBaseUrl()) {
     logo: {
       '@type': 'ImageObject',
       url: `${siteUrl}/logo.svg`
+    },
+    email: SITE_EMAIL,
+    contactPoint: {
+      '@type': 'ContactPoint',
+      contactType: 'customer support',
+      email: SITE_EMAIL,
+      url: `${siteUrl}/contact`
     }
   };
 }
