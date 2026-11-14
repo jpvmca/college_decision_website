@@ -1,0 +1,29 @@
+/*
+ * Shared horizontal-overflow guards (14 Nov 2026). Loaded last.
+ * Cause fixed here: grid/flex children default to min-width:auto, so a wide table inside them
+ * stretches the track past the viewport instead of scrolling inside its .detail-table-wrap.
+ */
+body { overflow-wrap: break-word; }
+/* Chrome applies break-word inside auto-layout table cells like 'anywhere' (letter-by-letter); tables scroll in their wrappers instead. */
+th, td { overflow-wrap: normal; }
+img, video, iframe { max-width: 100%; }
+pre { max-width: 100%; overflow-x: auto; }
+
+/* Grid items that hold tables / long text must be allowed to shrink. */
+.comparison-detail-grid > *, .comparison-column > * { min-width: 0; }
+.detail-table-wrap, .table-wrap, .table-scroll { max-width: 100%; overflow-x: auto; -webkit-overflow-scrolling: touch; }
+
+/* Rich text from the CMS (tables are already wrapped by ReadableHtml): long URLs wrap. */
+.readable a, .prose a { overflow-wrap: anywhere; }
+
+/* "View <long college name> profile" buttons were white-space:nowrap and pushed the page wide. */
+.view-button { max-width: 100%; }
+.comparison-column .view-button { white-space: normal; text-align: center; overflow-wrap: anywhere; }
+
+/* Data tables: wrap at spaces only (no letter-by-letter breaks) and scroll inside .detail-table-wrap. */
+.detail-table th, .detail-table td { overflow-wrap: normal; word-break: normal; }
+.detail-table thead th { white-space: nowrap; }
+.detail-table td { min-width: 96px; }
+.detail-table td:first-child, .detail-table tbody th { min-width: 150px; }
+.detail-table td:only-child { min-width: 0; }
+.comparison-column .detail-table td:nth-child(3):last-child { min-width: 220px; }

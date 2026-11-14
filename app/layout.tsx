@@ -25,6 +25,7 @@ import './home.css';
 import './exams.css';
 import './listings.css';
 import './header.css';
+import './overflow-guards.css';
 
 const defaultTitle = 'Compare College Fees, Courses & Exams in India';
 const defaultDescription = 'Compare college fees, courses, entrance exams, admission routes and placements across India before you shortlist.';
