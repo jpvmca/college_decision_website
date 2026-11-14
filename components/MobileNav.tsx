@@ -3,7 +3,8 @@
 import Link from 'next/link';
 import { useEffect, useState } from 'react';
 import { usePathname } from 'next/navigation';
-import { BookOpen, Building2, ClipboardCheck, FileText, GitCompareArrows, Menu, X } from 'lucide-react';
+import { BookOpen, Building2, ClipboardCheck, FileText, Menu, MessageCircle, X } from 'lucide-react';
+import { CONTACT_HREF } from '../lib/site-nav';
 
 const links = [
   { href: '/colleges', label: 'Colleges', icon: Building2, current: (path: string) => path === '/colleges' || path.startsWith('/colleges/') },
@@ -12,40 +13,127 @@ const links = [
   { href: '/articles', label: 'Articles', icon: FileText, current: (path: string) => path === '/articles' || path.startsWith('/articles/') }
 ];
 
+const DESKTOP = '(min-width: 1024px)';
+const HOVER = '(hover: hover) and (pointer: fine)';
+
+function menuDetails(): HTMLDetailsElement[] {
+  return Array.from(document.querySelectorAll<HTMLDetailsElement>('#site-navigation details[data-mega]'));
+}
+
+/**
+ * Header controller: desktop primary links, the mobile menu toggle and the small amount of
+ * behaviour the server-rendered <details> mega menu needs (one open at a time, Escape,
+ * outside click, hover intent on desktop, close on navigation). No menu data lives here.
+ */
 export default function MobileNav() {
   const pathname = usePathname() || '/';
   const [open, setOpen] = useState(false);
-  const compareCurrent = pathname.startsWith('/compare-colleges');
 
-  useEffect(() => { setOpen(false); }, [pathname]);
+  // Close everything after navigation.
   useEffect(() => {
+    setOpen(false);
+    menuDetails().forEach((item) => { item.open = false; });
+  }, [pathname]);
+
+  // Mobile drawer state lives on the shared #site-navigation element.
+  useEffect(() => {
+    const menu = document.getElementById('site-navigation');
+    menu?.classList.toggle('menu-open', open);
+    menu?.closest('.nav')?.classList.toggle('nav-menu-open', open);
     if (!open) return;
-    const onKey = (event: KeyboardEvent) => { if (event.key === 'Escape') setOpen(false); };
-    document.addEventListener('keydown', onKey);
     const previous = document.body.style.overflow;
     document.body.style.overflow = 'hidden';
-    return () => {
-      document.removeEventListener('keydown', onKey);
-      document.body.style.overflow = previous;
-    };
+    return () => { document.body.style.overflow = previous; };
   }, [open]);
+
+  useEffect(() => {
+    const items = menuDetails();
+    const timers = new Map<HTMLDetailsElement, number>();
+    const closeOthers = (current: HTMLDetailsElement) => {
+      if (!window.matchMedia(DESKTOP).matches) return;
+      items.forEach((item) => { if (item !== current) item.open = false; });
+    };
+    const onToggle = (event: Event) => {
+      const item = event.currentTarget as HTMLDetailsElement;
+      if (item.open) closeOthers(item);
+    };
+    const onEnter = (event: PointerEvent) => {
+      if (event.pointerType !== 'mouse' || !window.matchMedia(DESKTOP).matches || !window.matchMedia(HOVER).matches) return;
+      const item = event.currentTarget as HTMLDetailsElement;
+      window.clearTimeout(timers.get(item));
+      timers.set(item, window.setTimeout(() => { item.open = true; }, 120));
+    };
+    const onLeave = (event: PointerEvent) => {
+      if (event.pointerType !== 'mouse' || !window.matchMedia(DESKTOP).matches) return;
+      const item = event.currentTarget as HTMLDetailsElement;
+      window.clearTimeout(timers.get(item));
+      timers.set(item, window.setTimeout(() => { item.open = false; }, 180));
+    };
+    const onKey = (event: KeyboardEvent) => {
+      if (event.key !== 'Escape') return;
+      const active = items.find((item) => item.open);
+      if (active) {
+        active.open = false;
+        active.querySelector('summary')?.focus();
+        return;
+      }
+      setOpen(false);
+    };
+    const onPointerDown = (event: PointerEvent) => {
+      const target = event.target as Node;
+      items.forEach((item) => { if (item.open && !item.contains(target) && window.matchMedia(DESKTOP).matches) item.open = false; });
+    };
+    const onFocusOut = (event: FocusEvent) => {
+      const item = event.currentTarget as HTMLDetailsElement;
+      const next = event.relatedTarget as Node | null;
+      if (next && !item.contains(next) && window.matchMedia(DESKTOP).matches) item.open = false;
+    };
+    const onLinkClick = (event: MouseEvent) => {
+      if ((event.target as HTMLElement).closest('a')) {
+        items.forEach((item) => { item.open = false; });
+        setOpen(false);
+      }
+    };
+    const menu = document.getElementById('site-navigation');
+    items.forEach((item) => {
+      item.addEventListener('toggle', onToggle);
+      item.addEventListener('pointerenter', onEnter);
+      item.addEventListener('pointerleave', onLeave);
+      item.addEventListener('focusout', onFocusOut);
+    });
+    menu?.addEventListener('click', onLinkClick);
+    document.addEventListener('keydown', onKey);
+    document.addEventListener('pointerdown', onPointerDown);
+    return () => {
+      items.forEach((item) => {
+        item.removeEventListener('toggle', onToggle);
+        item.removeEventListener('pointerenter', onEnter);
+        item.removeEventListener('pointerleave', onLeave);
+        item.removeEventListener('focusout', onFocusOut);
+      });
+      timers.forEach((timer) => window.clearTimeout(timer));
+      menu?.removeEventListener('click', onLinkClick);
+      document.removeEventListener('keydown', onKey);
+      document.removeEventListener('pointerdown', onPointerDown);
+    };
+  }, []);
 
   return <div className="mobile-navigation">
     {open && <button className="nav-backdrop" type="button" aria-label="Close menu" onClick={() => setOpen(false)} />}
+    <div className="nav-links nav-primary">
+      {links.map((link) => {
+        const Icon = link.icon;
+        return <Link key={link.href} href={link.href} aria-current={link.current(pathname) ? 'page' : undefined}>
+          <Icon size={15} aria-hidden="true" /> {link.label}
+        </Link>;
+      })}
+      <Link className="nav-talk" href={CONTACT_HREF} aria-current={pathname === CONTACT_HREF ? 'page' : undefined}>
+        <MessageCircle size={15} aria-hidden="true" /> Talk to us
+      </Link>
+    </div>
     <button className="mobile-menu-toggle" type="button" aria-expanded={open} aria-controls="site-navigation" onClick={() => setOpen((value) => !value)}>
       <span className="sr-only">{open ? 'Close menu' : 'Open menu'}</span>
       {open ? <X size={22} aria-hidden="true" /> : <Menu size={22} aria-hidden="true" />}
     </button>
-    <div id="site-navigation" className={open ? 'nav-links mobile-open' : 'nav-links'}>
-      {links.map((link) => {
-        const Icon = link.icon;
-        return <Link key={link.href} href={link.href} aria-current={link.current(pathname) ? 'page' : undefined} onClick={() => setOpen(false)}>
-          <Icon size={15} aria-hidden="true" /> {link.label}
-        </Link>;
-      })}
-      <Link className="nav-compare" href="/compare-colleges-2026" aria-current={compareCurrent ? 'page' : undefined} onClick={() => setOpen(false)}>
-        <GitCompareArrows size={15} aria-hidden="true" /> Compare<span className="nav-compare-extra"> colleges</span>
-      </Link>
-    </div>
   </div>;
 }

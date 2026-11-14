@@ -46,6 +46,17 @@ const nextConfig: NextConfig = {
   },
   async redirects() {
     return [
+      // Common legacy/guessable URLs for the company pages (14 Nov 2026)
+      {
+        source: '/contact-us',
+        destination: '/contact',
+        statusCode: 301
+      },
+      {
+        source: '/terms',
+        destination: '/terms-and-conditions',
+        statusCode: 301
+      },
       {
         source: '/physiotherapy-colleges',
         destination: '/bpt-colleges',
