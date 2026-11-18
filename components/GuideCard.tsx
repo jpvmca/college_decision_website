@@ -1,6 +1,6 @@
 import Link from 'next/link';
 import { ArrowRight, CheckCircle2 } from 'lucide-react';
-import { mediaUrl } from '../lib/api';
+import { imageSrcSet, imageUrl } from '../lib/api';
 
 export type GuideArticle = {
   id: number;
@@ -36,12 +36,10 @@ export function getGuideImageSources(rawImageUrl: string) {
   if (rawImageUrl.startsWith('/') && !rawImageUrl.startsWith('/uploads/')) {
     return { src: rawImageUrl, srcSet: undefined as string | undefined, sizes: undefined as string | undefined };
   }
-  const imageUrl = mediaUrl(rawImageUrl);
   const widths = [480, 768, 1200, 1600];
-  const addQuery = (width: number) => `${imageUrl}?w=${width}&h=${Math.round(width * 0.5625)}&q=78&convert=webp`;
   return {
-    src: addQuery(1200),
-    srcSet: widths.map((width) => `${addQuery(width)} ${width}w`).join(', '),
+    src: imageUrl(rawImageUrl, 1200, { height: 675, quality: 78 }),
+    srcSet: imageSrcSet(rawImageUrl, widths, { aspect: 16 / 9, quality: 78 }),
     sizes: '(max-width: 760px) 100vw, 50vw'
   };
 }

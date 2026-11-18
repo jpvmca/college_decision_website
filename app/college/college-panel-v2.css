@@ -1,0 +1,22 @@
+/* College panel v2 (courses & fees, placements, recruiters, re-verification). Builds on college-panel.css (.cpn-*). */
+.cpv2-picker { display: flex; flex-wrap: wrap; gap: 12px; align-items: end; }
+.cpv2-picker label { display: flex; flex-direction: column; gap: 4px; font-weight: 600; min-width: 320px; flex: 1; }
+.cpv2-table input[type="number"] { width: 140px; }
+.cpv2-table select { max-width: 200px; }
+.cpv2-period { display: flex; gap: 6px; align-items: center; }
+.cpv2-period input[type="number"] { width: 64px !important; }
+.cpv2-table tr.cpv2-removed td { text-decoration: line-through; opacity: 0.6; }
+.cpv2-table tr.cpv2-new td { background: #f0f7ff; }
+.cpv2-row-actions { display: flex; gap: 6px; }
+.cpv2-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 12px; }
+.cpv2-proof { display: flex; flex-direction: column; gap: 6px; padding: 12px; border: 1px dashed #b8c4d6; border-radius: 8px; background: #fafcff; }
+.cpv2-proof-btn { align-self: flex-start; cursor: pointer; font-weight: 600; color: #1d4ed8; border: 1px solid #bfdbfe; background: #eff6ff; border-radius: 6px; padding: 6px 12px; }
+.cpv2-proof-btn input { display: none; }
+.cpv2-proof-list { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 4px; }
+.cpv2-proof-list li { display: flex; gap: 8px; align-items: center; font-size: 14px; }
+.cpv2-options { list-style: none; margin: -6px 0 0; padding: 4px; border: 1px solid #dbe3ee; border-radius: 8px; max-height: 240px; overflow: auto; background: #fff; }
+.cpv2-options button { width: 100%; text-align: left; background: none; border: 0; padding: 6px 8px; cursor: pointer; border-radius: 4px; font: inherit; }
+.cpv2-options button:hover { background: #eef4ff; }
+.cpv2-picked { display: flex; gap: 10px; align-items: center; font-weight: 400; }
+.cpv2-checks { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 8px; }
+.cpv2-check { display: flex; gap: 8px; align-items: center; font-weight: 400 !important; flex-direction: row !important; }

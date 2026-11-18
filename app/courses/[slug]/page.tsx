@@ -3,7 +3,7 @@ import { notFound } from 'next/navigation';
 import Link from 'next/link';
 import type { LucideIcon } from 'lucide-react';
 import { ArrowRight, BadgeCheck, BookOpen, Building2, ChevronDown, ClipboardCheck, GraduationCap, IndianRupee, Lightbulb, Star, TriangleAlert } from 'lucide-react';
-import { api, mediaUrl } from '../../../lib/api';
+import { api, imageSrcSet, imageUrl as sizedImageUrl, mediaUrl } from '../../../lib/api';
 import { courseDisplayName, courseSeo as buildCourseSeo } from '../../../lib/course-seo';
 import { autoLinkHtml } from '../../../lib/auto-link-entities';
 import { getLinkableEntities } from '../../../lib/linkable-entities';
@@ -266,7 +266,7 @@ export default async function CourseProfilePage({ params }: { params: Promise<{ 
     <AdSlot slotKey="course_top" />
     <header className="cp-hero">
       <div className="cp-hero-top">
-        <div className="cp-hero-media"><img src={imageUrl} alt={`${seo.displayName} course`} width="280" height="158" /></div>
+        <div className="cp-hero-media"><img src={profile.course.image ? sizedImageUrl(profile.course.image, 480) || imageUrl : imageUrl} srcSet={profile.course.image ? imageSrcSet(profile.course.image, [480, 768]) : undefined} sizes="(max-width: 760px) 100vw, 280px" alt={`${seo.displayName} course`} width="280" height="158" /></div>
         <div className="cp-hero-copy">
           <p className="cp-eyebrow">Course profile · {currentYear}</p>
           <h1>{seo.h1}</h1>

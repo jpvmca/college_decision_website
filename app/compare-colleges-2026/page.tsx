@@ -3,7 +3,7 @@ import Link from 'next/link';
 import { ArrowRight, BadgeCheck, CheckCircle2, FileText, GitCompareArrows, GraduationCap } from 'lucide-react';
 import CollegeComparePage from '../../components/CollegeComparePage';
 import AdSlot from '../../components/ads/AdSlot';
-import { api, mediaUrl } from '../../lib/api';
+import { api, imageUrl } from '../../lib/api';
 import HeroPhoto from '../../components/HeroPhoto';
 import HeroStats from '../../components/HeroStats';
 
@@ -110,7 +110,7 @@ export default async function CompareCollegesPage() {
           <p className="ls-count">Read the latest college comparison articles to compare fees, courses, placements and admission evidence before you shortlist.</p>
           <div className="ls-courses">
             {comparisonArticles.map((article) => {
-              const image = mediaUrl(article.imageUrl) || comparisonImage;
+              const image = imageUrl(article.imageUrl, 768, { height: 432, quality: 78 }) || comparisonImage;
               return <Link className="ls-course" href={`/articles/${article.slug}`} key={article.id}>
                 <div className="ls-course-media">
                   <img className="course-card-image" src={image} alt="" width="640" height="360" loading="lazy" />

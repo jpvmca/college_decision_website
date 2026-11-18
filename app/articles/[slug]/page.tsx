@@ -3,13 +3,14 @@ import { notFound, permanentRedirect, redirect } from 'next/navigation';
 import Link from 'next/link';
 import { ArrowRight, BadgeCheck, FileText } from 'lucide-react';
 import HeroPhoto from '../../../components/HeroPhoto';
-import { api, mediaUrl } from '../../../lib/api';
+import { api, imageSrcSet, imageUrl as sizedImageUrl, mediaUrl } from '../../../lib/api';
 import { getLinkableEntities } from '../../../lib/linkable-entities';
 import AutoLinkedText from '../../../components/AutoLinkedText';
 import ArticleCollegeList from '../../../components/ArticleCollegeList';
 import AdSlot from '../../../components/ads/AdSlot';
 import { getAdSlot } from '../../../lib/ads';
 import CollegeComparisonArticle from '../../../components/articles/CollegeComparisonArticle';
+import { staticImageUrl } from '../../../lib/image';
 
 export const revalidate = 300;
 
@@ -67,13 +68,12 @@ function getSiteUrl() {
 }
 
 function getResponsiveImageSources(rawImageUrl: string, preserveAspectRatio = false) {
-  const imageUrl = mediaUrl(rawImageUrl);
   const widths = [480, 768, 1200, 1600];
   const quality = preserveAspectRatio ? 89 : 78;
-  const addQuery = (width: number) => `${imageUrl}${imageUrl.includes('?') ? '&' : '?'}w=${width}${preserveAspectRatio ? '' : `&h=${Math.round(width * 0.5625)}`}&q=${quality}&convert=webp`;
+  const aspect = preserveAspectRatio ? undefined : 16 / 9;
   return {
-    src: addQuery(1200),
-    srcSet: widths.map((width) => `${addQuery(width)} ${width}w`).join(', '),
+    src: sizedImageUrl(rawImageUrl, 1200, { height: aspect ? Math.round(1200 / aspect) : undefined, quality }),
+    srcSet: imageSrcSet(rawImageUrl, widths, { aspect, quality }),
     sizes: '(max-width: 760px) calc(100vw - 40px), min(1080px, calc(100vw - 40px))'
   };
 }
@@ -225,7 +225,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
       title: pageTitle,
       description,
       url: canonical,
-      images: [{ url: mediaUrl(article.imageUrl) || '/og/default.png', width: 1200, height: 630, alt: article.imageUrl ? pageTitle : 'College Decision' }]
+      images: [{ url: mediaUrl(article.imageUrl) || staticImageUrl('/og/default.png'), width: 1200, height: 630, alt: article.imageUrl ? pageTitle : 'College Decision' }]
     },
     twitter: { card: 'summary_large_image', title: pageTitle }
   };
@@ -335,7 +335,7 @@ export default async function ArticleDetailPage({ params, searchParams }: { para
         <div className="ls-hero-visual">
           {article.imageUrl ? (() => {
             const image = getResponsiveImageSources(article.imageUrl);
-            return <img src={image.src} srcSet={image.srcSet} sizes={image.sizes} alt={article.title} width="1200" height="675" fetchPriority="high" loading="eager" decoding="async" />;
+            return <img src={image.src} srcSet={image.srcSet} sizes={image.sizes} alt={article.title} width="1200" height="675" style={{ aspectRatio: '16 / 9', objectFit: 'cover' }} fetchPriority="high" loading="eager" decoding="async" />;
           })() : <HeroPhoto src="/articles-hero.webp" alt="Students comparing college decision guides" />}
         </div>
       </div>

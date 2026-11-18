@@ -1,6 +1,6 @@
 import Link from 'next/link';
 import type { Metadata } from 'next';
-import { api, ArticleList, mediaUrl } from '../lib/api';
+import { api, ArticleList, imageSrcSet, imageUrl } from '../lib/api';
 import CollegeDecisionFilter from '../components/CollegeDecisionFilter';
 import ExamLogo from '../components/ExamLogo';
 import InstituteLogo from '../components/InstituteLogo';
@@ -49,10 +49,8 @@ export const metadata: Metadata = {
 };
 
 function getGuideImageSources(rawImageUrl: string) {
-  const imageUrl = mediaUrl(rawImageUrl);
   const widths = [320, 480, 640];
-  const addQuery = (width: number) => `${imageUrl}?w=${width}&h=${Math.round(width * 0.5625)}&q=78&convert=webp`;
-  return { src: addQuery(480), srcSet: widths.map((width) => `${addQuery(width)} ${width}w`).join(', ') };
+  return { src: imageUrl(rawImageUrl, 480, { height: 270, quality: 78 }), srcSet: imageSrcSet(rawImageUrl, widths, { aspect: 16 / 9, quality: 78 }) };
 }
 
 export default async function HomePage() {

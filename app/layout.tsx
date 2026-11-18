@@ -4,7 +4,6 @@ import Image from 'next/image';
 import SearchBox from '../components/SearchBox';
 import MobileNav from '../components/MobileNav';
 import SiteMenu from '../components/SiteMenu';
-import PopularStrip from '../components/PopularStrip';
 import SiteFooter from '../components/SiteFooter';
 import GoogleTagManager from '../components/GoogleTagManager';
 import StudentLeadPopup from '../components/StudentLeadPopup';
@@ -26,6 +25,7 @@ import './exams.css';
 import './listings.css';
 import './header.css';
 import './overflow-guards.css';
+import { staticImageUrl } from '../lib/image';
 
 const defaultTitle = 'Compare College Fees, Courses & Exams in India';
 const defaultDescription = 'Compare college fees, courses, entrance exams, admission routes and placements across India before you shortlist.';
@@ -43,7 +43,7 @@ export const metadata: Metadata = {
     siteName: 'College Decision',
     title: defaultTitle,
     description: defaultDescription,
-    images: [{ url: '/og/default.png', width: 1200, height: 630, alt: 'College Decision' }]
+    images: [{ url: staticImageUrl('/og/default.png'), width: 1200, height: 630, alt: 'College Decision' }]
   },
   twitter: { card: 'summary_large_image', title: defaultTitle, description: defaultDescription }
 };
@@ -79,13 +79,14 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
         <div className="site">
           <header className="nav">
             <div className="wrap nav-inner">
-              <Link className="brand" href="/" aria-label="College Decision home"><Image src="/logo-wordmark.svg" alt="College Decision" width={223} height={40} priority /></Link>
-              <SearchBox />
+              <Link className="brand" href="/" aria-label="College Decision home"><Image src={staticImageUrl('/logo-wordmark.svg')} unoptimized alt="College Decision" width={223} height={40} priority /></Link>
+              <div className="nav-search">
+                <SearchBox />
+              </div>
               <MobileNav />
             </div>
             <SiteMenu />
           </header>
-          <PopularStrip />
           <div className="site-page-rails">
             <aside className="site-page-rail site-page-rail-left" aria-label="Advertisements"><AdSlot slotKey="global_side_left" /></aside>
             <div className="site-page-content">{children}</div>

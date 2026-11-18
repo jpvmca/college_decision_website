@@ -24,6 +24,8 @@ export async function GET() {
       [`${base}/compare-colleges-2026`, 'weekly', '0.9'],
       [`${base}/about`, 'monthly', '0.5'],
       [`${base}/contact`, 'monthly', '0.4'],
+      [`${base}/for-colleges`, 'monthly', '0.4'],
+      [`${base}/for-colleges/verification-policy`, 'yearly', '0.3'],
       [`${base}/privacy-policy`, 'yearly', '0.2'],
       [`${base}/terms-and-conditions`, 'yearly', '0.2'],
       [`${base}/disclaimer`, 'yearly', '0.2']

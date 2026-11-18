@@ -1,7 +1,8 @@
 import Link from 'next/link';
 import Image from 'next/image';
 import { Mail } from 'lucide-react';
-import { FOOTER_COMPANY, FOOTER_COURSES, FOOTER_EXAMS, FOOTER_STATES, FOOTER_STREAMS, SITE_EMAIL_ADDRESS, type NavLink } from '../lib/site-nav';
+import { FOOTER_COMPANY, FOOTER_COURSES, FOOTER_FOR_COLLEGES, FOOTER_EXAMS, FOOTER_STATES, FOOTER_STREAMS, SITE_EMAIL_ADDRESS, type NavLink } from '../lib/site-nav';
+import { staticImageUrl } from '../lib/image';
 
 function FooterColumn({ title, links }: { title: string; links: NavLink[] }) {
   return <nav className="footer-col" aria-label={title}>
@@ -15,7 +16,7 @@ export default function SiteFooter() {
     <div className="wrap">
       <div className="footer-top">
         <div className="footer-brand">
-          <Image className="footer-logo" src="/logo-wordmark.svg" alt="College Decision" width={190} height={34} loading="lazy" />
+          <Image className="footer-logo" src={staticImageUrl('/logo-wordmark.svg')} unoptimized alt="College Decision" width={190} height={34} loading="lazy" />
           <p>Clear college decisions with practical cost, admission and outcome guidance.</p>
           <a className="footer-email" href={`mailto:${SITE_EMAIL_ADDRESS}`}><Mail size={15} aria-hidden="true" />{SITE_EMAIL_ADDRESS}</a>
         </div>
@@ -24,6 +25,7 @@ export default function SiteFooter() {
           <FooterColumn title="By state" links={FOOTER_STATES} />
           <FooterColumn title="Top exams" links={FOOTER_EXAMS} />
           <FooterColumn title="Courses" links={FOOTER_COURSES} />
+          <FooterColumn title="For colleges" links={FOOTER_FOR_COLLEGES} />
           <FooterColumn title="Company" links={FOOTER_COMPANY} />
         </div>
       </div>

@@ -1,3 +1,4 @@
+import CampusGallery from '../../../components/CampusGallery';
 import InterestCourseHighlight from '../../../components/InterestCourseHighlight';
 import CollegeApply from '../../../components/CollegeApply';
 import type { Metadata } from 'next';
@@ -6,8 +7,8 @@ import { notFound } from 'next/navigation';
 import Link from 'next/link';
 import { ArrowLeftRight, ArrowUpRight, BadgeCheck, BookOpen, BriefcaseBusiness, Building2, CalendarDays, ChevronDown, ClipboardCheck, Clock, Globe2, GraduationCap, HelpCircle, IndianRupee, Landmark, Lightbulb, Mail, MapPin, Phone, ShieldCheck, Star, Target, TrendingUp, Trophy, Users, type LucideIcon } from 'lucide-react';
 import ProfileSectionNav from '../../../components/ProfileSectionNav';
-import { api, instituteLogoUrl, mediaUrl } from '../../../lib/api';
-import { toAbsoluteExternalUrl } from '../../../lib/external-url';
+import { api, imageUrl, instituteLogoUrl } from '../../../lib/api';
+import { OFFICIAL_WEBSITE_REL, toAbsoluteExternalUrl } from '../../../lib/external-url';
 import { getLinkableEntities, findPublishedHref, findPublishedHrefByName } from '../../../lib/linkable-entities';
 import { CollegeCutoffs, type CollegeCutoffResponse } from '../../../components/Cutoffs';
 import { formatLpa } from '../../../lib/packages';
@@ -17,6 +18,8 @@ import { readableBlocks, splitLead } from '../../../lib/readable-html';
 import { getLinkResolver } from '../../../lib/internal-link-index';
 import { formatProgrammeDuration, isoProgrammeDuration } from '../../../lib/duration';
 import { plainText, readableLines, PROGRAMME_HEADING_START, isShortText, withFullStop } from '../../../lib/readable-text';
+import { staticImageUrl } from '../../../lib/image';
+import { claimHref, getCollegeVerification, VERIFICATION_POLICY_HREF, type CollegeVerification } from '../../../lib/college-verification';
 
 type CollegeProfile = {
   institute: {
@@ -32,7 +35,7 @@ type CollegeProfile = {
     establishmentYear?: number | null;
     isUniversity?: number | boolean;
   };
-  images?: Array<{ path: string; title?: string | null; isFeatured?: boolean }>;
+  images?: Array<{ path: string; title?: string | null; isFeatured?: boolean; category?: string | null; categoryLabel?: string | null }>;
   seo?: { title?: string | null; description?: string | null; keywords?: string | null } | null;
   programmes: Array<{
     programme_id: number;
@@ -74,6 +77,8 @@ type CollegeProfile = {
   rankings: Array<{ course_name?: string | null; rank: number; out_of?: number | null; year?: number | null; ranking_body: string }>;
   recruiters: Array<{ id: number; name: string; organization?: string | null; industry?: string | null }>;
   about?: string | null;
+  /** Admissions overview HTML (institute_contents type 'admissions'), editable from the college panel. */
+  admissions?: string | null;
   faculty: Array<{ name: string; position?: string | null; education?: string | null; speciality?: string | null }>;
   reviews: Array<{ id: number; course_name?: string | null; overall_rating?: number | null; overall_review?: string | null; created_at?: string | null }>;
   reviewSummary: {
@@ -559,20 +564,22 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
 export default async function CollegeProfilePage({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params;
   const [profile, cutoffs] = await Promise.all([getCollege(slug), getCollegeCutoffs(slug)]);
+  const verification: CollegeVerification = profile ? await getCollegeVerification(slug, profile as unknown as Parameters<typeof getCollegeVerification>[1]) : { verified: false };
+  const claimLink = profile ? claimHref({ slug }) : '';
   if (!profile) notFound();
 
   const name = displayName(profile);
   const city = profile.institute.location.city || '';
   const state = profile.institute.location.state || '';
   const location = [city, state].filter(Boolean).join(', ');
-  const campusImages = (profile.images || []).filter((image) => image?.path).slice(0, 8).map((image) => {
-    const src = mediaUrl(image.path);
-    const sized = (width: number) => `${src}${src.includes('?') ? '&' : '?'}w=${width}&q=78&convert=webp`;
+  const campusImages = (profile.images || []).filter((image) => image?.path).slice(0, 30).map((image) => {
     return {
-      src: sized(900),
-      thumb: sized(480),
-      alt: `${name}${image.title ? ` — ${image.title}` : ' campus'}`,
-      featured: Boolean(image.isFeatured)
+      src: imageUrl(image.path, 768, { quality: 78 }),
+      thumb: imageUrl(image.path, 480, { quality: 78 }),
+      alt: `${name}${image.title ? ` — ${image.title}` : image.categoryLabel ? ` — ${image.categoryLabel}` : ' campus'}`,
+      featured: Boolean(image.isFeatured),
+      category: image.category || null,
+      categoryLabel: image.categoryLabel || null
     };
   });
   const heroCampus = campusImages[0] || null;
@@ -617,7 +624,7 @@ export default async function CollegeProfilePage({ params }: { params: Promise<{
     { id: 'about', label: 'About', show: Boolean(profile.about || location || profile.institute.establishmentYear || officialWebsite) },
     { id: 'courses', label: 'Courses', show: profile.programmes.length > 0 },
     { id: 'fees', label: 'Fees', show: recordedFeeGroups.length > 0 },
-    { id: 'admission', label: 'Admission', show: profile.programmes.some((programme) => programme.eligibility) || profile.exams.length > 0 },
+    { id: 'admission', label: 'Admission', show: profile.programmes.some((programme) => programme.eligibility) || profile.exams.length > 0 || Boolean(profile.admissions) },
     { id: 'cutoffs-exams', label: hasCutoffs ? 'Cutoffs' : 'Entrance exams', show: hasCutoffs || profile.exams.length > 0 },
     { id: 'placements', label: 'Placements', show: placements.lines.length > 0 || placements.wide.length > 0 || profile.recruiters.length > 0 },
     { id: 'reviews', label: 'Reviews', show: profile.reviewSummary.count > 0 },
@@ -750,7 +757,7 @@ export default async function CollegeProfilePage({ params }: { params: Promise<{
 
     <header className="cp-hero">
       <div className="cp-hero-top">
-        <div className="cp-hero-logo"><img src={profile.institute.logo ? instituteLogoUrl(profile.institute.logo) : '/logo.svg'} alt={profile.institute.logo ? `${name} college logo` : 'College Decision logo'} width="112" height="112" /></div>
+        <div className="cp-hero-logo"><img src={profile.institute.logo ? imageUrl(profile.institute.logo, 192, { quality: 85 }) : staticImageUrl('/logo.svg')} alt={profile.institute.logo ? `${name} college logo` : 'College Decision logo'} width="112" height="112" /></div>
         <div className="cp-hero-copy">
           <p className="cp-eyebrow">College profile · {currentYear}</p>
           <h1>{name}{city ? `, ${city}` : ''}</h1>
@@ -766,13 +773,20 @@ export default async function CollegeProfilePage({ params }: { params: Promise<{
       <div className="cp-hero-badges">
         <span className="cp-pill is-verified"><BadgeCheck size={15} aria-hidden="true" /> Evidence-backed profile</span>
         {rating && profile.reviewSummary.count > 0 ? <span className="cp-pill is-rating"><Stars value={rating} /><strong>{rating.toFixed(1)}/5</strong> from {profile.reviewSummary.count} student ratings</span> : null}
+        {verification.verified
+          ? verification.verificationDue
+            ? <Link className="cp-pill is-claim-verified is-verification-due" href={VERIFICATION_POLICY_HREF} title="Claimed by the college; its yearly re-verification is due"><ShieldCheck size={15} aria-hidden="true" /> Verified by college · Verification due</Link>
+            : verification.claimed === false
+              ? <Link className="cp-pill is-claim-verified" href={VERIFICATION_POLICY_HREF} title="Profile verified by the CollegeDecision team"><ShieldCheck size={15} aria-hidden="true" /> Verified</Link>
+              : <Link className="cp-pill is-claim-verified" href={VERIFICATION_POLICY_HREF} title="Profile claimed and verified by the college"><ShieldCheck size={15} aria-hidden="true" /> Verified by college</Link>
+          : null}
         {bestRank ? <span className="cp-pill is-rank"><Trophy size={14} aria-hidden="true" /> {bestRank.label}{bestRank.year ? ` ${bestRank.year}` : ''} <strong>#{bestRank.rank}</strong>{bestRank.course ? ` · ${bestRank.course}` : ''}</span> : null}
       </div>
       <div className="cp-hero-actions">
         <CollegeApply collegeSlug={slug} collegeName={name} courses={applyCourses} label={`Apply to ${name.length > 28 ? 'this college' : name}`} />
         <Link className="button cp-btn-ghost" href="#courses">Explore courses</Link>
         <Link className="button cp-btn-ghost" href="/compare-colleges-2026"><ArrowLeftRight size={15} aria-hidden="true" /> Compare colleges</Link>
-        {officialWebsite && <a className="button cp-btn-ghost" href={officialWebsite} target="_blank" rel="noopener noreferrer"><Globe2 size={15} aria-hidden="true" /> Official website</a>}
+        {officialWebsite && <a className="button cp-btn-ghost" href={officialWebsite} target="_blank" rel={OFFICIAL_WEBSITE_REL}><Globe2 size={15} aria-hidden="true" /> Official website</a>}
         {cutoffs?.data?.length ? <Link className="button cp-btn-ghost" href={`/colleges/${slug}/cutoff`}><Target size={15} aria-hidden="true" /> View cutoff</Link> : null}
       </div>
     </header>
@@ -792,16 +806,7 @@ export default async function CollegeProfilePage({ params }: { params: Promise<{
       <div><p className="cp-insight-title">Decision note</p><p>{decisionNote(profile, name)}</p></div>
     </section>
 
-        {campusImages.length > 0 && <section className="cp-gallery" aria-label={`${name} campus photos`}>
-      <h2 className="cp-sr-only">{name} campus photos</h2>
-      <ul className="cp-gallery-list">
-        {campusImages.map((image, index) => (
-          <li key={`${image.src}-${index}`}>
-            <img src={image.thumb} alt={image.alt} width="480" height="270" loading="lazy" decoding="async" />
-          </li>
-        ))}
-      </ul>
-    </section>}
+        {campusImages.length > 0 && <CampusGallery name={name} images={campusImages} />}
 
 {toc.length > 2 && <ProfileSectionNav items={toc.map(({ id, label }) => ({ id, label }))} />}
 
@@ -820,7 +825,7 @@ export default async function CollegeProfilePage({ params }: { params: Promise<{
       </div></>}
       {affiliation && <><h3>Affiliation and Recognition</h3><p className="cp-affiliation"><ShieldCheck size={18} aria-hidden="true" /><span>{affiliation}</span></p></>}
       {(officialWebsite || profile.institute.email || profile.institute.phone) && <div className="cp-contacts">
-        {officialWebsite && <ContactItem icon={Globe2} label="Website"><a href={officialWebsite} target="_blank" rel="noopener noreferrer">Official website</a></ContactItem>}
+        {officialWebsite && <ContactItem icon={Globe2} label="Website"><a href={officialWebsite} target="_blank" rel={OFFICIAL_WEBSITE_REL}>Official website</a></ContactItem>}
         {profile.institute.email && <ContactItem icon={Mail} label="Email"><a href={`mailto:${profile.institute.email}`}>{profile.institute.email}</a></ContactItem>}
         {profile.institute.phone && <ContactItem icon={Phone} label="Phone"><a href={`tel:${profile.institute.phone.replace(/[^\d+]/g, '')}`}>{profile.institute.phone}</a></ContactItem>}
       </div>}
@@ -876,8 +881,13 @@ export default async function CollegeProfilePage({ params }: { params: Promise<{
       <p className="cp-footnote">Hostel, mess and other charges are additional and not included.</p>
     </section>}
 
-    {(eligibilityGroups.length > 0 || profile.exams.length > 0) && <section id="admission" className="cp-card">
+    {(eligibilityGroups.length > 0 || profile.exams.length > 0 || profile.admissions) && <section id="admission" className="cp-card">
       <SectionHeading icon={ClipboardCheck} subtitle="Eligibility by course, accepted entrance exams and how to apply">Admission Process and Eligibility</SectionHeading>
+      {profile.admissions && (() => {
+        const { lead, rest } = splitLead(readableBlocks(profile.admissions, { headingShift: 1, resolveLink: resolveAboutLink }));
+        if (!lead) return null;
+        return <><h3>Admission Overview</h3><ReadableHtml html={lead} preSanitized />{rest ? <details className="profile-more cp-more"><summary>Read the full admission process<ChevronDown size={16} aria-hidden="true" /></summary><ReadableHtml html={rest} preSanitized /></details> : null}</>;
+      })()}
       {eligibilityGroups.length > 0 && <><h3>Eligibility Criteria by Course</h3>{(() => {
         const renderEligibility = (group: (typeof eligibilityGroups)[number], index: number) => <details key={group.name} className="cp-accordion" open={index === 0}><summary><span>{group.name}</span><ChevronDown size={18} aria-hidden="true" /></summary><div className="cp-accordion-body"><EligibilityText value={group.eligibility} /></div></details>;
         const rest = eligibilityGroups.slice(8);
@@ -975,6 +985,11 @@ export default async function CollegeProfilePage({ params }: { params: Promise<{
       <div className="cp-faq">{faqs.map((faq, index) => <details className="cp-faq-item" key={faq.question} open={index === 0}><summary><h3>{faq.question}</h3><ChevronDown size={18} aria-hidden="true" /></summary><p>{faq.answer}</p></details>)}</div>
     </section>}
     <AdSlot slotKey="college_end" thin={adThin} />
+    {!(verification.claimed ?? verification.verified) && <aside className="cp-claim-cta" aria-label="Claim this college profile">
+      <Building2 size={20} aria-hidden="true" />
+      <div><strong>Do you represent {name}?</strong><p>Claim this profile to verify it and keep courses, fees, admissions and contact details accurate. Every update is reviewed before it is published.</p></div>
+      <div className="cp-claim-cta-actions"><Link className="button" href={claimLink} rel="nofollow">Claim this profile</Link><Link href={VERIFICATION_POLICY_HREF}>How verification works</Link></div>
+    </aside>}
     <div className="cp-data-note"><ShieldCheck size={18} aria-hidden="true" /><p><strong>Data note:</strong> Fees, placements, rankings and reviews are recorded evidence and may change by batch, category, role, recruiter mix or academic year. Verify the latest official information before applying.</p></div>
   </div></main>;
 }

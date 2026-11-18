@@ -24,6 +24,10 @@
     "ios >= 15"
   ],
   "dependencies": {
+    "@tiptap/extension-placeholder": "^3.34.0",
+    "@tiptap/pm": "^3.34.0",
+    "@tiptap/react": "^3.34.0",
+    "@tiptap/starter-kit": "^3.34.0",
     "lucide-react": "^1.32.0",
     "next": "^16.3.1",
     "react": "^19.2.8",

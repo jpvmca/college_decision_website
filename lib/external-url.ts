@@ -40,3 +40,6 @@ export function toAbsoluteExternalUrl(
 ): string | null {
   return toExternalHttpUrl(value);
 }
+
+/** rel for the college's official website (dedicated Contact field, admin-reviewed). */
+export const OFFICIAL_WEBSITE_REL = 'nofollow ugc noopener noreferrer';

@@ -1,3 +1,5 @@
+import { s3ImageUrl, uploadsPath } from './image';
+
 const apiUrl = process.env.BACKEND_API_URL || 'http://127.0.0.1:4000/api/v1';
 const PUBLIC_MEDIA_ORIGIN = (process.env.NEXT_PUBLIC_MEDIA_URL || '').replace(/\/$/, '');
 const INTERNAL_UPLOADS_ORIGIN = /^(https?:\/\/)(?:127\.0\.0\.1|localhost):9101/i;
@@ -19,6 +21,8 @@ function mediaOrigin() {
 
 export function mediaUrl(value: string | null | undefined) {
   if (!value || !String(value).trim()) return '';
+  const fromS3 = s3ImageUrl(value);
+  if (fromS3) return fromS3;
   let src = String(value).trim().replace(INTERNAL_UPLOADS_ORIGIN, 'https://api.collegedecision.in');
   if (PUBLIC_MEDIA_ORIGIN) src = src.replace(PRODUCTION_UPLOADS_ORIGIN, PUBLIC_MEDIA_ORIGIN);
   if (/^https?:\/\//i.test(src)) return src;
@@ -26,11 +30,37 @@ export function mediaUrl(value: string | null | undefined) {
   return `${origin}${src.startsWith('/') ? src : `/${src}`}`;
 }
 
-export function instituteLogoUrl(value: string | null | undefined) {
+/**
+ * Sized upload image: the S3 variant closest above `width` when NEXT_PUBLIC_IMAGE_BASE_URL is set,
+ * otherwise the API's on-the-fly resize (?w=&h=&q=&convert=webp). Non-upload URLs are returned as is.
+ */
+export function imageUrl(value: string | null | undefined, width?: number, options: { height?: number; quality?: number } = {}) {
+  if (!value || !String(value).trim()) return '';
+  const fromS3 = s3ImageUrl(value, width);
+  if (fromS3) return fromS3;
   const url = mediaUrl(value);
-  if (!url) return '';
-  if (!/\/uploads\//i.test(url)) return url;
-  return `${url}${url.includes('?') ? '&' : '?'}w=96&q=85&convert=webp`;
+  if (!url || !width || !uploadsPath(value)) return url;
+  const height = options.height ? `&h=${options.height}` : '';
+  return `${url}${url.includes('?') ? '&' : '?'}w=${width}${height}&q=${options.quality ?? 82}&convert=webp`;
+}
+
+/** srcset string for an upload image at the given display widths. */
+export function imageSrcSet(value: string | null | undefined, widths: number[], options: { aspect?: number; quality?: number } = {}) {
+  if (!value || !uploadsPath(value)) return undefined;
+  const seen = new Set<string>();
+  const parts: string[] = [];
+  for (const width of widths) {
+    const url = imageUrl(value, width, { height: options.aspect ? Math.round(width / options.aspect) : undefined, quality: options.quality });
+    if (!url || seen.has(url)) continue;
+    seen.add(url);
+    parts.push(`${url} ${width}w`);
+  }
+  return parts.join(', ') || undefined;
+}
+
+export function instituteLogoUrl(value: string | null | undefined) {
+  if (!mediaUrl(value)) return '';
+  return imageUrl(value, 96, { quality: 85 });
 }
 
 export async function api<T>(path: string, init?: RequestInit): Promise<T> {

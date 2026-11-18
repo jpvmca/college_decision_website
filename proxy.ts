@@ -44,5 +44,7 @@ export function proxy(request: NextRequest) {
 }
 
 export const config = {
-  matcher: '/:path*'
+  // Claim document uploads (/api/claims) skip the proxy: Next buffers proxied request bodies (10 MB cap),
+  // and those routes stream multipart uploads straight to the backend.
+  matcher: '/((?!api/claims).*)'
 };

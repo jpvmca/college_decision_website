@@ -11,6 +11,13 @@ const securityHeaders = [
 const nextConfig: NextConfig = {
   poweredByHeader: false,
   reactStrictMode: true,
+  images: {
+    // Upload images are served from S3 (NEXT_PUBLIC_IMAGE_BASE_URL); keep the API origin for the /uploads fallback.
+    remotePatterns: [
+      { protocol: 'https', hostname: 'cd-mrd-file-storage.s3.ap-south-1.amazonaws.com', pathname: '/cd/uploads/public/**' },
+      { protocol: 'https', hostname: 'api.collegedecision.in', pathname: '/uploads/**' }
+    ]
+  },
   async headers() {
     return [
       {

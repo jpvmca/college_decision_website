@@ -1,24 +1,33 @@
 'use client';
 
-import { FormEvent, useState } from 'react';
+import { FormEvent, useRef, useState } from 'react';
 import Link from 'next/link';
 import { Mail } from 'lucide-react';
+import Recaptcha, { RECAPTCHA_ENABLED, type RecaptchaHandle } from '../../components/Recaptcha';
 
 export default function ContactPage() {
+  const captcha = useRef<RecaptchaHandle>(null);
   const [submitted, setSubmitted] = useState(false);
   const [error, setError] = useState('');
   const [sending, setSending] = useState(false);
+  const hasCaptcha = RECAPTCHA_ENABLED && Boolean(process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY);
+
   async function submit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
-    setSending(true);
     setError('');
     const formElement = event.currentTarget;
     const form = new FormData(formElement);
+    const recaptchaToken = captcha.current?.getToken() || undefined;
+    if (hasCaptcha && !recaptchaToken) {
+      setError('Please complete the "I\'m not a robot" check.');
+      return;
+    }
+    setSending(true);
     try {
       const response = await fetch('/api/enquiries', {
         method: 'POST',
         headers: { 'content-type': 'application/json' },
-        body: JSON.stringify(Object.fromEntries(form.entries()))
+        body: JSON.stringify({ ...Object.fromEntries(form.entries()), recaptchaToken })
       });
       const body = await response.json();
       if (!response.ok) throw new Error(body.error || 'Could not send your enquiry');
@@ -27,6 +36,7 @@ export default function ContactPage() {
     } catch (submitError) {
       setError(submitError instanceof Error ? submitError.message : 'Could not send your enquiry');
     } finally {
+      captcha.current?.reset();
       setSending(false);
     }
   }
@@ -43,12 +53,12 @@ export default function ContactPage() {
     </section>
     <div className="ls-prose">
     <div className="grid">
-      <article className="card"><span className="pill">Corrections</span><h2>Report a data issue</h2><p>Include the institute name, course name, page URL, field that looks incorrect and the official page or document supporting your correction.</p><p><a href="mailto:mail@collegedecision.in">mail@collegedecision.in</a></p></article>
+      <article className="card"><span className="pill">Corrections</span><h2>Report a data issue</h2><p>Include the institute name, course name, page URL, field that looks incorrect and the official page or document supporting your correction.</p><p><a href="mailto:mail@collegedecision.in">mail@collegedecision.in</a></p><p className="muted">Represent a college? <Link href="/for-colleges/claim">Claim your college profile</Link> to verify it and request updates directly. <Link href="/for-colleges/verification-policy">How verification works</Link>.</p></article>
       <article className="card"><span className="pill">General</span><h2>Ask a question</h2><p>For partnership, editorial or general platform questions, write to our team with a clear subject and the context we need to respond.</p><p><a href="mailto:mail@collegedecision.in">mail@collegedecision.in</a></p></article>
     </div>
     <h2>Send an enquiry</h2>
     {submitted && <div className="notice"><strong>Thank you.</strong> Your enquiry has been received by our team.</div>}
-    {error && <div className="modal-error">{error}</div>}
+    {error && <div className="modal-error" role="alert">{error}</div>}
     <form className="enquiry-form" onSubmit={submit}>
       <div className="detail-grid">
         <label>Name<input name="name" required maxLength={120} /></label>
@@ -58,6 +68,7 @@ export default function ContactPage() {
       </div>
       <label>Message<textarea name="message" required maxLength={10000} rows={6} /></label>
       <input type="hidden" name="pageUrl" value="/contact" />
+      {hasCaptcha ? <Recaptcha ref={captcha} className="enquiry-captcha" /> : null}
       <button className="button primary" type="submit" disabled={sending}>{sending ? 'Sending…' : 'Send enquiry'}</button>
     </form>
     <h2>What makes a useful correction request?</h2>

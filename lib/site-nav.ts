@@ -946,7 +946,8 @@ export const PRIMARY_LINKS: NavLink[] = [
   { href: '/colleges', label: 'Colleges' },
   { href: '/exams', label: 'Exams' },
   { href: '/courses', label: 'Courses' },
-  { href: '/articles', label: 'Articles' }
+  { href: '/articles', label: 'Articles' },
+  { href: COMPARE_HREF, label: 'Compare' }
 ];
 
 export const FOOTER_STREAMS: NavLink[] = [
@@ -996,6 +997,14 @@ export const FOOTER_COURSES: NavLink[] = [
   { href: '/courses/bca', label: 'BCA' },
   { href: '/courses/bpharm', label: 'B.Pharm' },
   { href: '/courses', label: 'All course guides' }
+];
+
+export const FOR_COLLEGES_NAV_HREF = '/for-colleges';
+export const FOOTER_FOR_COLLEGES: NavLink[] = [
+  { href: '/for-colleges', label: 'For colleges' },
+  { href: '/for-colleges/claim', label: 'Claim your profile' },
+  { href: '/for-colleges/verification-policy', label: 'Verification policy' },
+  { href: '/contact', label: 'Report a data issue' }
 ];
 
 export const FOOTER_COMPANY: NavLink[] = [

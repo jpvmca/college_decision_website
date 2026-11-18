@@ -505,3 +505,30 @@
 @media (max-width: 700px) {
   .cp-gallery-list { grid-template-columns: repeat(2, 1fr); }
 }
+
+/* Claim verification badge + lower claim CTA (claim system, Nov 2026) */
+a.cp-pill { text-decoration: none; }
+a.cp-pill:hover { text-decoration: none; border-color: rgba(255, 255, 255, .45); }
+.cp-pill.is-claim-verified { border-color: rgba(134, 239, 172, .6); background: rgba(22, 163, 74, .18); color: #dcfce7; font-weight: 750; }
+.cp-pill.is-claim-verified svg { color: #86efac; }
+.cp-pill.is-claim-verified.is-verification-due { border-color: rgba(253, 186, 116, .7); background: rgba(234, 88, 12, .2); color: #ffedd5; }
+.cp-pill.is-claim-verified.is-verification-due svg { color: #fdba74; }
+.cp-page .cp-claim-cta { display: flex; align-items: center; gap: 16px; margin: 0 0 16px; padding: 18px 20px; border: 1px solid #c7d7f2; border-radius: 14px; background: #f3f7fe; }
+.cp-claim-cta > svg { flex: 0 0 auto; color: #1d4ed8; }
+.cp-claim-cta strong { color: #0b2447; font-size: 15.5px; }
+.cp-claim-cta p { margin: 4px 0 0; color: #475569; font-size: 14px; line-height: 1.55; }
+.cp-claim-cta-actions { display: flex; flex: 0 0 auto; align-items: center; gap: 14px; margin-left: auto; }
+.cp-claim-cta-actions .button { margin: 0; white-space: nowrap; }
+.cp-claim-cta-actions a:not(.button) { font-size: 13.5px; font-weight: 650; white-space: nowrap; }
+@media (max-width: 760px) {
+  .cp-page .cp-claim-cta { flex-direction: column; align-items: flex-start; }
+  .cp-claim-cta-actions { margin-left: 0; flex-wrap: wrap; }
+}
+
+/* Gallery type tabs (2026-11-18) */
+.cp-gallery-tabs { display: flex; flex-wrap: wrap; gap: 6px; margin: 0 0 10px; }
+.cp-gallery-tabs button { border: 1px solid #d0d9e6; background: #fff; color: #334155; border-radius: 999px; padding: 5px 12px; font: inherit; font-size: 13px; font-weight: 600; cursor: pointer; }
+.cp-gallery-tabs button.active { background: #1d4ed8; border-color: #1d4ed8; color: #fff; }
+.cp-gallery-list li { position: relative; }
+.cp-gallery-tag { position: absolute; left: 8px; bottom: 8px; background: rgba(15, 23, 42, .75); color: #fff; font-size: 11.5px; font-weight: 700; border-radius: 999px; padding: 2px 9px; }
+.cp-gallery-more { margin-top: 10px; border: 1px solid #bfd0ea; background: #f5f8ff; color: #1d4ed8; border-radius: 10px; padding: 7px 14px; font: inherit; font-size: 14px; font-weight: 650; cursor: pointer; }

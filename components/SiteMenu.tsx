@@ -1,8 +1,8 @@
 import Link from 'next/link';
-import { ChevronDown, GitCompareArrows, Sparkles, MessageCircle, Building2, ClipboardCheck, BookOpen, FileText } from 'lucide-react';
-import { BEST_FIT_HREF, COMPARE_ARTICLES, COMPARE_HREF, CONTACT_HREF, NAV_STREAMS, PRIMARY_LINKS, type NavLink } from '../lib/site-nav';
+import { ChevronDown, GitCompareArrows, Sparkles, MessageCircle, Building2, ClipboardCheck, BookOpen, FileText, LogIn } from 'lucide-react';
+import { BEST_FIT_HREF, COMPARE_ARTICLES, COMPARE_HREF, CONTACT_HREF, FOR_COLLEGES_NAV_HREF, NAV_STREAMS, PRIMARY_LINKS, type NavLink } from '../lib/site-nav';
 
-const PRIMARY_ICONS = [Building2, ClipboardCheck, BookOpen, FileText];
+const PRIMARY_ICONS = [Building2, ClipboardCheck, BookOpen, FileText, GitCompareArrows];
 
 function Column({ title, links, id }: { title: string; links: NavLink[]; id: string }) {
   if (!links.length) return null;
@@ -71,8 +71,10 @@ export default function SiteMenu() {
         </li>
       </ul>
       <div className="menu-actions">
-        <Link className="menu-bestfit" href={BEST_FIT_HREF}><Sparkles size={15} aria-hidden="true" /><span className="bestfit-extra">Find your </span>best-fit college</Link>
+        <Link className="menu-forcolleges" href={FOR_COLLEGES_NAV_HREF} aria-label="For colleges"><Building2 size={14} aria-hidden="true" /><span>For colleges</span></Link>
+        <Link className="menu-bestfit" href={BEST_FIT_HREF}><Sparkles size={15} aria-hidden="true" /><span>Find your best-fit college</span></Link>
         <Link className="menu-talk menu-mobile-only" href={CONTACT_HREF}><MessageCircle size={15} aria-hidden="true" />Talk to us</Link>
+        <Link className="menu-college-login menu-mobile-only" href="/college/login"><LogIn size={15} aria-hidden="true" />College login</Link>
       </div>
     </div>
   </div>;

@@ -3,14 +3,15 @@
 import Link from 'next/link';
 import { useEffect, useState } from 'react';
 import { usePathname } from 'next/navigation';
-import { BookOpen, Building2, ClipboardCheck, FileText, Menu, MessageCircle, X } from 'lucide-react';
-import { CONTACT_HREF } from '../lib/site-nav';
+import { BookOpen, Building2, ClipboardCheck, FileText, GitCompareArrows, LayoutDashboard, LogIn, Menu, MessageCircle, X } from 'lucide-react';
+import { COMPARE_HREF, CONTACT_HREF } from '../lib/site-nav';
 
 const links = [
   { href: '/colleges', label: 'Colleges', icon: Building2, current: (path: string) => path === '/colleges' || path.startsWith('/colleges/') },
   { href: '/exams', label: 'Exams', icon: ClipboardCheck, current: (path: string) => path === '/exams' || path.startsWith('/exams/') },
   { href: '/courses', label: 'Courses', icon: BookOpen, current: (path: string) => path === '/courses' || path.startsWith('/courses/') },
-  { href: '/articles', label: 'Articles', icon: FileText, current: (path: string) => path === '/articles' || path.startsWith('/articles/') }
+  { href: '/articles', label: 'Articles', icon: FileText, current: (path: string) => path === '/articles' || path.startsWith('/articles/') },
+  { href: COMPARE_HREF, label: 'Compare', icon: GitCompareArrows, current: (path: string) => path === COMPARE_HREF || path.startsWith('/compare-colleges') }
 ];
 
 const DESKTOP = '(min-width: 1024px)';
@@ -28,6 +29,16 @@ function menuDetails(): HTMLDetailsElement[] {
 export default function MobileNav() {
   const pathname = usePathname() || '/';
   const [open, setOpen] = useState(false);
+  // "College panel" when a college session hint cookie exists (the session cookie itself is httpOnly).
+  const [hasPanelHint, setHasPanelHint] = useState(false);
+  useEffect(() => {
+    const read = () => setHasPanelHint(/(?:^|;\s*)cd_college_hint=1(?:;|$)/.test(document.cookie));
+    read();
+    window.addEventListener('cd-college-hint', read);
+    return () => window.removeEventListener('cd-college-hint', read);
+  }, [pathname]);
+  const panel = hasPanelHint && pathname !== '/college/login';
+  const inPanel = pathname === '/college' || pathname.startsWith('/college/');
 
   // Close everything after navigation.
   useEffect(() => {
@@ -130,7 +141,13 @@ export default function MobileNav() {
       <Link className="nav-talk" href={CONTACT_HREF} aria-current={pathname === CONTACT_HREF ? 'page' : undefined}>
         <MessageCircle size={15} aria-hidden="true" /> Talk to us
       </Link>
+      <Link className="nav-college-login" href={panel ? '/college' : '/college/login'} aria-current={inPanel ? 'page' : undefined} title={panel ? 'Open your college panel' : 'Sign in to manage your college profile'}>
+        {panel ? <LayoutDashboard size={15} aria-hidden="true" /> : <LogIn size={15} aria-hidden="true" />} <span className="ncl-full">{panel ? 'College panel' : 'College login'}</span><span className="ncl-short" aria-hidden="true">{panel ? 'Panel' : 'Login'}</span>
+      </Link>
     </div>
+    <Link className="nav-login-compact" href={panel ? '/college' : '/college/login'} aria-current={inPanel ? 'page' : undefined} aria-label={panel ? 'College panel' : 'College login'}>
+      {panel ? <LayoutDashboard size={15} aria-hidden="true" /> : <LogIn size={15} aria-hidden="true" />}<span>{panel ? 'Panel' : 'Login'}</span>
+    </Link>
     <button className="mobile-menu-toggle" type="button" aria-expanded={open} aria-controls="site-navigation" onClick={() => setOpen((value) => !value)}>
       <span className="sr-only">{open ? 'Close menu' : 'Open menu'}</span>
       {open ? <X size={22} aria-hidden="true" /> : <Menu size={22} aria-hidden="true" />}

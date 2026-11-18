@@ -8,6 +8,7 @@ import { getAdSlot } from '../../lib/ads';
 import { daysUntil, formatDate as examFormatDate } from '../../lib/exam-format';
 import HeroPhoto from '../../components/HeroPhoto';
 import HeroStats from '../../components/HeroStats';
+import { staticImageUrl } from '../../lib/image';
 
 const PAGE_SIZE = 20;
 
@@ -15,7 +16,7 @@ const PAGE_SIZE = 20;
 export async function generateMetadata(): Promise<Metadata> {
   const title = 'Entrance Exams in India 2026–27: Dates, Fees & Colleges';
   const description = 'Compare entrance exams in India: next exam dates, registration status, application fees, linked programmes, fee ranges and colleges accepting each exam.';
-  return { title, description, alternates: { canonical: '/exams' }, openGraph: { title, description, type: 'website', images: [{ url: '/exams-hero.webp', width: 1200, height: 675, alt: 'Students preparing for college entrance exams' }] }, robots: { index: true, follow: true } };
+  return { title, description, alternates: { canonical: '/exams' }, openGraph: { title, description, type: 'website', images: [{ url: staticImageUrl('/exams-hero.webp'), width: 1200, height: 675, alt: 'Students preparing for college entrance exams' }] }, robots: { index: true, follow: true } };
 }
 
 export default async function ExamsPage() {

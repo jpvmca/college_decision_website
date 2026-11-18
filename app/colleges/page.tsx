@@ -13,6 +13,7 @@ import { getAdSlot } from '../../lib/ads';
 import { CourseFilterMobileButton, CourseFilterSidebar } from '../../components/CourseFilterPanel';
 import HeroPhoto from '../../components/HeroPhoto';
 import HeroStats from '../../components/HeroStats';
+import { staticImageUrl } from '../../lib/image';
 
 type College = ListedCollege;
 
@@ -35,7 +36,7 @@ export async function generateMetadata(): Promise<Metadata> {
       description,
       url: '/colleges',
       type: 'website',
-      images: [{ url: '/colleges-hero.webp', width: 1200, height: 675, alt: 'Students comparing colleges in India' }]
+      images: [{ url: staticImageUrl('/colleges-hero.webp'), width: 1200, height: 675, alt: 'Students comparing colleges in India' }]
     },
     twitter: { card: 'summary_large_image', title: baseTitle, description },
     robots: { index: true, follow: true }

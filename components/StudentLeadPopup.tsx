@@ -16,7 +16,7 @@ const SHOW_AFTER_MS = (() => {
   return Number.isFinite(n) && n >= 0 ? n * 1000 : 5000;
 })();
 /** Pages where a popup would get in the way of a task the visitor is already doing. */
-const NO_POPUP = /^\/(contact|privacy-policy|terms-and-conditions|disclaimer)(\/|$)/;
+const NO_POPUP = /^\/(contact|privacy-policy|terms-and-conditions|disclaimer|for-colleges|college)(\/|$)/;
 
 type Field = 'name' | 'mobile' | 'email' | 'courseId' | 'stateId' | 'cityId';
 type Errors = Partial<Record<Field | 'form', string>>;

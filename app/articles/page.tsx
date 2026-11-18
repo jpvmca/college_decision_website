@@ -10,6 +10,7 @@ import AdSlot from '../../components/ads/AdSlot';
 import { ArrowLeft, ArrowRight, BadgeCheck, BookOpen, FileText } from 'lucide-react';
 import HeroPhoto from '../../components/HeroPhoto';
 import HeroStats from '../../components/HeroStats';
+import { staticImageUrl } from '../../lib/image';
 
 type ArticleType = 'all' | 'budget' | 'fees' | 'admission' | 'gov-avg-package' | 'exam-admission';
 const ALL_ARTICLE_TYPES: ArticleType[] = ['budget', 'fees', 'admission', 'gov-avg-package', 'exam-admission'];
@@ -46,7 +47,7 @@ export async function generateMetadata({ searchParams }: { searchParams: Promise
   const type: ArticleType = 'all';
   const budget = 5;
   const siteUrl = (process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3001').replace(/\/+$/, '');
-  const openGraphBase = { images: [{ url: `${siteUrl}/articles-hero.webp`, width: 1024, height: 576, alt: 'Students comparing college decision guides' }] };
+  const openGraphBase = { images: [{ url: staticImageUrl('/articles-hero.webp').startsWith('http') ? staticImageUrl('/articles-hero.webp') : `${siteUrl}/articles-hero.webp`, width: 1024, height: 576, alt: 'Students comparing college decision guides' }] };
 
   let result: ArticleList = { data: [], pagination: { page, perPage: 20, total: 0, totalPages: 0 }, budgetLakh: budget };
   try {

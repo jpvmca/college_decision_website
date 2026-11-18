@@ -7,7 +7,7 @@ import JsonLd from '../../components/JsonLd';
 import HeroPhoto from '../../components/HeroPhoto';
 import HeroStats from '../../components/HeroStats';
 import { breadcrumbJsonLd } from '../../lib/structured-data';
-import { api, mediaUrl } from '../../lib/api';
+import { api, imageSrcSet, imageUrl, mediaUrl } from '../../lib/api';
 import { getLinkableEntities } from '../../lib/linkable-entities';
 import { LISTINGS_CACHE_VERSION, courseListingHref, getCourseFacets, getListingSummary, listingFetchOptions, parseCourseListingSegment, type CourseFacet } from '../../lib/listings';
 import ListingGuide from '../../components/ListingGuide';
@@ -20,6 +20,7 @@ import { cutoffGroupsFor, getPercentileCombos, parsePercentileSegment } from '..
 import { getClosingCombos, parseRankSegment } from '../../lib/closing';
 import ClosingCollegesPage, { closingMetadata } from '../../components/ClosingCollegesPage';
 import { CourseFilterMobileButton, CourseFilterSidebar, type CityPageOption, type StatePageOption } from '../../components/CourseFilterPanel';
+import { staticImageUrl } from '../../lib/image';
 
 /**
  * Course listing pages: /{key}-colleges (e.g. /mba-colleges, /engineering-colleges).
@@ -111,14 +112,13 @@ function heroImage(result: CourseListing) {
   if (!result.image?.path) return null;
   const url = mediaUrl(result.image.path);
   if (!url) return null;
-  const sized = (width: number) => `${url}${url.includes('?') ? '&' : '?'}w=${width}&h=${Math.round(width * 0.5625)}&q=82&convert=webp`;
   return {
     url,
     width: result.image.width || 1200,
     height: result.image.height || 675,
     alt: `${result.course.label} colleges in India by profile and budget`,
-    src: sized(1200),
-    srcSet: [480, 768, 1200].map((width) => `${sized(width)} ${width}w`).join(', '),
+    src: imageUrl(result.image.path, 1200, { height: 675 }),
+    srcSet: imageSrcSet(result.image.path, [480, 768, 1200], { aspect: 16 / 9 }),
     sizes: '(max-width: 760px) calc(100vw - 40px), 540px'
   };
 }
@@ -164,7 +164,7 @@ export async function generateMetadata({ params, searchParams }: { params: Param
   const image = heroImage(result);
   const ogImages = image
     ? [{ url: image.url, width: image.width, height: image.height, alt: image.alt }]
-    : [{ url: '/colleges-hero.webp', width: 1200, height: 675, alt: `Students comparing ${label} colleges in India` }];
+    : [{ url: staticImageUrl('/colleges-hero.webp'), width: 1200, height: 675, alt: `Students comparing ${label} colleges in India` }];
   return {
     // absolute: bypass the root layout's "%s | College Decision" template.
     title: { absolute: title },

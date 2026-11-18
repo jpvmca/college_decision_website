@@ -7,6 +7,7 @@ import { Fragment } from 'react';
 import CollegeCutoffYearTables from '../../../../components/CollegeCutoffYearTables';
 import AdSlot from '../../../../components/ads/AdSlot';
 import { instituteLogoUrl } from '../../../../lib/api';
+import { staticImageUrl } from '../../../../lib/image';
 import {
   breadcrumbJsonLd, cutoffYearHeading, examYearOf, faqJsonLd, formatMetric, examYearNote,
   getCollegeCutoffSummary, getCollegeYearRows, metricWord, siteUrl, fitDescription,
@@ -175,7 +176,7 @@ export default async function CollegeCutoffPage({ params }: { params: Promise<{ 
     <section className="cutoff-section" aria-labelledby="how-to-read-cutoffs">
       <h2 id="how-to-read-cutoffs">How to read {name} cutoffs</h2>
       <figure style={{ margin: '12px 0 16px' }}>
-        <img src="/images/cutoff-how-to-read.svg" alt={`How to read opening and closing ranks on the ${name} cutoff tables`} width="960" height="280" loading="lazy" />
+        <img src={staticImageUrl('/images/cutoff-how-to-read.svg')} alt={`How to read opening and closing ranks on the ${name} cutoff tables`} width="960" height="280" loading="lazy" />
       </figure>
       {howTo.map((p, i) => <p key={i}>{p}</p>)}
     </section>

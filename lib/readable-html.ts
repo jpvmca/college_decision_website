@@ -113,8 +113,19 @@ function inlineHtml(nodes: Array<Node | string>, opts: Opts): string {
       let href = safeHref(n.attrs.href || '');
       if (href && opts.resolveLink) href = opts.resolveLink(href);
       if (!href || !plain(inner)) { out += inner; continue; }
-      const external = /^(https?:)?\/\//i.test(href);
-      out += external ? `<a href="${escapeAttr(href)}" target="_blank" rel="noopener noreferrer">${inner}</a>` : `<a href="${escapeAttr(href)}">${inner}</a>`;
+      const absolute = /^(https?:)?\/\//i.test(href);
+      if (absolute) {
+        let ours = false;
+        try {
+          const host = new URL(href.startsWith('//') ? `https:${href}` : href).hostname;
+          ours = /(?:^|\.)collegedecision\.in$/i.test(host);
+        } catch { ours = false; }
+        // Unwrap external anchors (spam / backlinks). Keep CollegeDecision.in links, marked nofollow ugc.
+        if (!ours) { out += inner; continue; }
+        out += `<a href="${escapeAttr(href)}" target="_blank" rel="nofollow ugc noopener noreferrer">${inner}</a>`;
+      } else {
+        out += `<a href="${escapeAttr(href)}">${inner}</a>`;
+      }
       continue;
     }
     if (INLINE_ALLOWED.has(n.tag)) { out += plain(inner) ? `<${n.tag}>${inner}</${n.tag}>` : inner; continue; }
