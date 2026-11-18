@@ -62,7 +62,7 @@ export default function ContactPage() {
       <h2><Building2 size={18} aria-hidden="true" /> {COMPANY_INFO.name}</h2>
       <address>
         <p><MapPin size={15} aria-hidden="true" /> {COMPANY_INFO.addressLine}</p>
-        <p><Phone size={15} aria-hidden="true" /> <a href={`tel:${COMPANY_INFO.phoneE164}`}>{COMPANY_INFO.phone}</a></p>
+        {COMPANY_INFO.phone ? <p><Phone size={15} aria-hidden="true" /> <a href={`tel:${COMPANY_INFO.phoneE164}`}>{COMPANY_INFO.phone}</a></p> : null}
         <p><Mail size={15} aria-hidden="true" /> <a href="mailto:mail@collegedecision.in">mail@collegedecision.in</a></p>
         <p className="muted">GSTIN: {COMPANY_INFO.gstin}</p>
       </address>

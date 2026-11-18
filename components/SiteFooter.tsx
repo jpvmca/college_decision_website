@@ -19,7 +19,7 @@ export default function SiteFooter() {
           <Image className="footer-logo" src={staticImageUrl('/logo-wordmark.svg')} unoptimized alt="College Decision" width={190} height={34} loading="lazy" />
           <p>Clear college decisions with practical cost, admission and outcome guidance.</p>
           <a className="footer-email" href={`mailto:${SITE_EMAIL_ADDRESS}`}><Mail size={15} aria-hidden="true" />{SITE_EMAIL_ADDRESS}</a>
-          <a className="footer-email footer-phone" href={`tel:${COMPANY_INFO.phoneE164}`}><Phone size={15} aria-hidden="true" />{COMPANY_INFO.phone}</a>
+          {COMPANY_INFO.phone ? <a className="footer-email footer-phone" href={`tel:${COMPANY_INFO.phoneE164}`}><Phone size={15} aria-hidden="true" />{COMPANY_INFO.phone}</a> : null}
           <address className="footer-company">
             <strong>{COMPANY_INFO.name}</strong>
             <span><MapPin size={14} aria-hidden="true" />{COMPANY_INFO.addressLine}</span>

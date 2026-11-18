@@ -31,7 +31,7 @@ export function organizationJsonLd(siteUrl = siteBaseUrl()) {
       url: `${siteUrl}/logo.svg`
     },
     email: SITE_EMAIL,
-    telephone: COMPANY_INFO.phoneE164,
+    ...(COMPANY_INFO.phoneE164 ? { telephone: COMPANY_INFO.phoneE164 } : {}),
     legalName: COMPANY_INFO.name,
     taxID: COMPANY_INFO.gstin,
     address: {
@@ -46,7 +46,7 @@ export function organizationJsonLd(siteUrl = siteBaseUrl()) {
       '@type': 'ContactPoint',
       contactType: 'customer support',
       email: SITE_EMAIL,
-      telephone: COMPANY_INFO.phoneE164,
+      ...(COMPANY_INFO.phoneE164 ? { telephone: COMPANY_INFO.phoneE164 } : {}),
       areaServed: 'IN',
       url: `${siteUrl}/contact`
     }
