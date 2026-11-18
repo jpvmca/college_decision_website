@@ -584,7 +584,6 @@ export default async function CollegeProfilePage({ params }: { params: Promise<{
       categoryLabel: image.categoryLabel || null
     };
   });
-  const heroCampus = campusImages[0] || null;
   const linkableEntities = await getLinkableEntities();
   const legacyLinkResolver = await getLinkResolver();
   const selfPath = `/colleges/${slug}`;
@@ -768,7 +767,7 @@ export default async function CollegeProfilePage({ params }: { params: Promise<{
             {profile.institute.establishmentYear ? <span><CalendarDays size={15} aria-hidden="true" /> Est. {profile.institute.establishmentYear}</span> : null}
           </div>
         </div>
-        {heroCampus ? <div className="cp-hero-media"><img src={heroCampus.src} alt={heroCampus.alt} width="280" height="158" loading="lazy" decoding="async" /></div> : null}
+        {/* Gallery photos are shown only in the Gallery section, never in the hero. */}
       </div>
       <p className="cp-hero-lead">Explore recorded courses, fees, entrance routes, placements, rankings and aggregate student ratings before making your shortlist.</p>
       <div className="cp-hero-badges">
