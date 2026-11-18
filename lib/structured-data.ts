@@ -3,6 +3,8 @@
  * <script type="application/ld+json"> so crawlers and validators see it in the raw HTML.
  */
 
+import { COMPANY_INFO } from './site-nav';
+
 export const SITE_NAME = 'College Decision';
 export const SITE_ALTERNATE_NAME = 'CollegeDecision.in';
 export const SITE_EMAIL = 'mail@collegedecision.in';
@@ -29,10 +31,23 @@ export function organizationJsonLd(siteUrl = siteBaseUrl()) {
       url: `${siteUrl}/logo.svg`
     },
     email: SITE_EMAIL,
+    telephone: COMPANY_INFO.phoneE164,
+    legalName: COMPANY_INFO.name,
+    taxID: COMPANY_INFO.gstin,
+    address: {
+      '@type': 'PostalAddress',
+      streetAddress: COMPANY_INFO.streetAddress,
+      addressLocality: COMPANY_INFO.locality,
+      addressRegion: COMPANY_INFO.region,
+      postalCode: COMPANY_INFO.postalCode,
+      addressCountry: COMPANY_INFO.country
+    },
     contactPoint: {
       '@type': 'ContactPoint',
       contactType: 'customer support',
       email: SITE_EMAIL,
+      telephone: COMPANY_INFO.phoneE164,
+      areaServed: 'IN',
       url: `${siteUrl}/contact`
     }
   };

@@ -40,7 +40,7 @@ export const STATUS_LABEL: Record<string, string> = {
 
 export const SECTION_LABEL: Record<string, string> = {
   about: 'About', contact: 'Contact details', admissions: 'Admissions', gallery: 'Photo gallery', logo: 'Logo', courses: 'Courses',
-  fees: 'Fees', exams: 'Entrance exams', placements: 'Placements', recruiters: 'Recruiters', faculty: 'Faculty'
+  fees: 'Fees', exams: 'Entrance exams', placements: 'Placements', recruiters: 'Recruiters', faculty: 'Faculty', brochure: 'Brochure'
 };
 
 export function formatIst(value: string | null | undefined) {

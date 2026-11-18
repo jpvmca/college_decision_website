@@ -23,3 +23,9 @@ export function uploadLogo(instituteId: number, file: File) {
   form.append('image', file);
   return panelPost<{ data: { path: string; url: string; width: number; height: number; bytes: number } }>(`institutes/${instituteId}/logo/upload`, form);
 }
+
+export function uploadBrochure(instituteId: number, file: File) {
+  const form = new FormData();
+  form.append('file', file);
+  return panelPost<{ data: { id: number; name: string; sizeBytes: number } }>(`institutes/${instituteId}/brochure/upload`, form);
+}

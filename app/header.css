@@ -310,6 +310,11 @@
 .site-footer .footer-logo { display: block; width: 190px; height: auto; aspect-ratio: 712 / 128; }
 .footer-brand p { margin: 12px 0 14px; font-size: 14px; line-height: 1.55; }
 .footer-email { display: inline-flex; align-items: center; gap: 7px; color: #0b2447; font-size: 14px; font-weight: 700; }
+.footer-brand .footer-phone { display: flex; margin-top: 8px; width: fit-content; }
+.footer-company { display: grid; gap: 4px; margin-top: 14px; font-style: normal; font-size: 13px; line-height: 1.5; color: #475569; max-width: 300px; }
+.footer-company strong { color: #0b2447; font-size: 13px; }
+.footer-company span { display: flex; gap: 6px; align-items: flex-start; overflow-wrap: anywhere; }
+.footer-company svg { flex: 0 0 auto; margin-top: 3px; }
 .footer-grid { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.45fr) minmax(0, .8fr) minmax(0, 1fr) minmax(0, 1fr) minmax(0, 1fr); gap: 24px; }
 .footer-col-title { margin: 0 0 10px; color: #0b2447; font-size: 13px; font-weight: 800; letter-spacing: .04em; text-transform: uppercase; }
 .footer-col ul { display: grid; gap: 7px; margin: 0; padding: 0; list-style: none; }
@@ -532,3 +537,8 @@
   .nav-login-compact:hover { text-decoration: none; border-color: #0b2447; }
   .nav-login-compact[aria-current="page"] { border-color: #0b2447; background: #eef4ff; }
 }
+.contact-company { margin: 18px 0 8px; }
+.contact-company h2 { display: flex; align-items: center; gap: 8px; }
+.contact-company address { font-style: normal; display: grid; gap: 2px; }
+.contact-company address p { display: flex; align-items: flex-start; gap: 8px; margin: 4px 0; overflow-wrap: anywhere; }
+.contact-company address svg { flex: 0 0 auto; margin-top: 4px; color: #1d4ed8; }

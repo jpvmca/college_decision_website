@@ -16,6 +16,19 @@ export type NavStream = {
 };
 
 export const SITE_EMAIL_ADDRESS = 'mail@collegedecision.in';
+/** Legal entity that operates CollegeDecision.in (shown in footer, contact page and Organization JSON-LD). */
+export const COMPANY_INFO = {
+  name: 'Hytrix Technology LLP',
+  gstin: '09AAQFH0700E1ZO',
+  phone: '8765848732',
+  phoneE164: '+918765848732',
+  streetAddress: 'D-54, Arjun Tower, Vibhuti Khand',
+  locality: 'Lucknow',
+  region: 'Uttar Pradesh',
+  postalCode: '226010',
+  country: 'IN',
+  addressLine: 'D-54, Arjun Tower, Vibhuti Khand, Lucknow, Uttar Pradesh 226010'
+} as const;
 export const COMPARE_HREF = '/compare-colleges-2026';
 /** Homepage "Find your best-fit college" decision tool section. */
 export const BEST_FIT_HREF = '/#decision-title';

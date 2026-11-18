@@ -9,7 +9,7 @@ type Item = { href: string; label: string; key: string; icon: LucideIcon };
 const GROUPS: Array<{ title: string; items: Item[] }> = [
   { title: 'Dashboard', items: [{ href: '/college', label: 'Overview', key: '', icon: LayoutDashboard }] },
   { title: 'Profile', items: [
-    { href: '/college/logo', label: 'Logo', key: 'logo', icon: ImageIcon },
+    { href: '/college/logo', label: 'Logo & brochure', key: 'logo', icon: ImageIcon },
     { href: '/college/about', label: 'About', key: 'about', icon: FileText },
     { href: '/college/contact', label: 'Contact details', key: 'contact', icon: Phone },
     { href: '/college/admissions', label: 'Admissions', key: 'admissions', icon: ClipboardList },

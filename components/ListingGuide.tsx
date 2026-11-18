@@ -1,6 +1,7 @@
 import Link from 'next/link';
 import { ChevronDown } from 'lucide-react';
 import JsonLd from './JsonLd';
+import CollapsibleContent from './CollapsibleContent';
 import { faqJsonLd } from '../lib/cutoffs';
 import type { ListingSummary } from '../lib/listings';
 import { courseListingHref } from '../lib/listings';
@@ -87,8 +88,9 @@ export default function ListingGuide({
   const nearby = siblingStates.filter((s) => s.stateSlug !== stateSlug).slice(0, 8);
 
   return (
-    <section className="cutoff-section listing-guide">
+    <section className="cutoff-section listing-guide is-compact">
       {faqLd && <JsonLd data={faqLd} />}
+      <CollapsibleContent collapsedHeight={150}>
       <h2>{label} colleges in {loc}: at a glance</h2>
       <p>{intro}</p>
       <div className="detail-table-wrap">
@@ -126,6 +128,7 @@ export default function ListingGuide({
       {nearby.length ? <p>Related state lists: {nearby.map((s, i) => <span key={s.stateSlug}>{i ? ', ' : ''}<Link href={s.href}>{label} colleges in {s.stateName}</Link></span>)}.</p> : null}
       <h2>{label} colleges in {loc}: FAQs</h2>
       <div className="cp-faq">{faqs.map((f) => <details className="cp-faq-item" key={f.question}><summary><h3>{f.question}</h3><ChevronDown size={18} aria-hidden="true" /></summary><p>{f.answer}</p></details>)}</div>
+      </CollapsibleContent>
     </section>
   );
 }

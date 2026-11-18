@@ -76,3 +76,4 @@
 .programme-groups:not(:has(.is-interest)) > .programme-group:first-child .college-apply.is-compact,
 /* Interest course: its group is moved to the top (CSS order) and becomes the suggested one. */
 .programme-groups > .programme-group.is-interest .college-apply.is-compact { display: inline-flex; }
+.lead-captcha { margin: 10px 0 4px; min-height: 78px; overflow: hidden; }

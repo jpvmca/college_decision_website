@@ -1,11 +1,12 @@
 import CampusGallery from '../../../components/CampusGallery';
 import InterestCourseHighlight from '../../../components/InterestCourseHighlight';
 import CollegeApply from '../../../components/CollegeApply';
+import BrochureDownload from '../../../components/BrochureDownload';
 import type { Metadata } from 'next';
 import type { ReactNode } from 'react';
 import { notFound } from 'next/navigation';
 import Link from 'next/link';
-import { ArrowLeftRight, ArrowUpRight, BadgeCheck, BookOpen, BriefcaseBusiness, Building2, CalendarDays, ChevronDown, ClipboardCheck, Clock, Globe2, GraduationCap, HelpCircle, IndianRupee, Landmark, Lightbulb, Mail, MapPin, Phone, ShieldCheck, Star, Target, TrendingUp, Trophy, Users, type LucideIcon } from 'lucide-react';
+import { ArrowLeftRight, ArrowUpRight, BadgeCheck, BookOpen, BriefcaseBusiness, Building2, CalendarDays, ChevronDown, ClipboardCheck, Clock, Globe2, GraduationCap, HelpCircle, Images, IndianRupee, Landmark, Lightbulb, MapPin, ShieldCheck, Star, Target, TrendingUp, Trophy, Users, type LucideIcon } from 'lucide-react';
 import ProfileSectionNav from '../../../components/ProfileSectionNav';
 import { api, imageUrl, instituteLogoUrl } from '../../../lib/api';
 import { OFFICIAL_WEBSITE_REL, toAbsoluteExternalUrl } from '../../../lib/external-url';
@@ -35,6 +36,7 @@ type CollegeProfile = {
     establishmentYear?: number | null;
     isUniversity?: number | boolean;
   };
+  brochure?: { available: boolean; sizeBytes?: number } | null;
   images?: Array<{ path: string; title?: string | null; isFeatured?: boolean; category?: string | null; categoryLabel?: string | null }>;
   seo?: { title?: string | null; description?: string | null; keywords?: string | null } | null;
   programmes: Array<{
@@ -622,6 +624,7 @@ export default async function CollegeProfilePage({ params }: { params: Promise<{
   });
   const toc = [
     { id: 'about', label: 'About', show: Boolean(profile.about || location || profile.institute.establishmentYear || officialWebsite) },
+    { id: 'gallery', label: 'Gallery', show: campusImages.length > 0 },
     { id: 'courses', label: 'Courses', show: profile.programmes.length > 0 },
     { id: 'fees', label: 'Fees', show: recordedFeeGroups.length > 0 },
     { id: 'admission', label: 'Admission', show: profile.programmes.some((programme) => programme.eligibility) || profile.exams.length > 0 || Boolean(profile.admissions) },
@@ -660,8 +663,6 @@ export default async function CollegeProfilePage({ params }: { params: Promise<{
         legalName: profile.institute.officialName,
         url: officialUrl,
         logo: profile.institute.logo ? instituteLogoUrl(profile.institute.logo) : undefined,
-        email: profile.institute.email || undefined,
-        telephone: profile.institute.phone || undefined,
         sameAs: officialWebsite ? [officialWebsite] : undefined,
         address: profile.institute.location.addressLabel || location || undefined,
         foundingDate: profile.institute.establishmentYear ? String(profile.institute.establishmentYear) : undefined,
@@ -784,6 +785,7 @@ export default async function CollegeProfilePage({ params }: { params: Promise<{
       </div>
       <div className="cp-hero-actions">
         <CollegeApply collegeSlug={slug} collegeName={name} courses={applyCourses} label={`Apply to ${name.length > 28 ? 'this college' : name}`} />
+        {profile.brochure?.available ? <BrochureDownload collegeSlug={slug} collegeName={name} courses={applyCourses} sizeBytes={profile.brochure.sizeBytes} /> : null}
         <Link className="button cp-btn-ghost" href="#courses">Explore courses</Link>
         <Link className="button cp-btn-ghost" href="/compare-colleges-2026"><ArrowLeftRight size={15} aria-hidden="true" /> Compare colleges</Link>
         {officialWebsite && <a className="button cp-btn-ghost" href={officialWebsite} target="_blank" rel={OFFICIAL_WEBSITE_REL}><Globe2 size={15} aria-hidden="true" /> Official website</a>}
@@ -806,12 +808,12 @@ export default async function CollegeProfilePage({ params }: { params: Promise<{
       <div><p className="cp-insight-title">Decision note</p><p>{decisionNote(profile, name)}</p></div>
     </section>
 
-        {campusImages.length > 0 && <CampusGallery name={name} images={campusImages} />}
+
 
 {toc.length > 2 && <ProfileSectionNav items={toc.map(({ id, label }) => ({ id, label }))} />}
 
     {(profile.about || location || profile.institute.establishmentYear || officialWebsite) && <section id="about" className="cp-card">
-      <SectionHeading icon={Building2} subtitle="Background, campus, recognition and official contacts">About {name}</SectionHeading>
+      <SectionHeading icon={Building2} subtitle="Background, campus, recognition and official website">About {name}</SectionHeading>
       {profile.about && (() => {
         const { lead, rest } = splitLead(readableBlocks(profile.about, { headingShift: 1, resolveLink: resolveAboutLink }));
         if (!lead) return null;
@@ -824,11 +826,15 @@ export default async function CollegeProfilePage({ params }: { params: Promise<{
         {profile.institute.location.addressLabel ? <div className="is-wide"><small>Campus address</small><strong>{profile.institute.location.addressLabel}</strong></div> : null}
       </div></>}
       {affiliation && <><h3>Affiliation and Recognition</h3><p className="cp-affiliation"><ShieldCheck size={18} aria-hidden="true" /><span>{affiliation}</span></p></>}
-      {(officialWebsite || profile.institute.email || profile.institute.phone) && <div className="cp-contacts">
-        {officialWebsite && <ContactItem icon={Globe2} label="Website"><a href={officialWebsite} target="_blank" rel={OFFICIAL_WEBSITE_REL}>Official website</a></ContactItem>}
-        {profile.institute.email && <ContactItem icon={Mail} label="Email"><a href={`mailto:${profile.institute.email}`}>{profile.institute.email}</a></ContactItem>}
-        {profile.institute.phone && <ContactItem icon={Phone} label="Phone"><a href={`tel:${profile.institute.phone.replace(/[^\d+]/g, '')}`}>{profile.institute.phone}</a></ContactItem>}
+      {/* College phone / email are never shown publicly (kept in the DB, panel and admin only). */}
+      {officialWebsite && <div className="cp-contacts">
+        <ContactItem icon={Globe2} label="Website"><a href={officialWebsite} target="_blank" rel={OFFICIAL_WEBSITE_REL}>Official website</a></ContactItem>
       </div>}
+    </section>}
+
+    {campusImages.length > 0 && <section id="gallery" className="cp-card">
+      <SectionHeading icon={Images} subtitle={`${plural(campusImages.length, 'photo')} shared by the college and reviewed by College Decision`}>{name} Gallery</SectionHeading>
+      <CampusGallery name={name} images={campusImages} />
     </section>}
 
     <AdSlot slotKey="college_mid_1" thin={adThin} />

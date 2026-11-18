@@ -2,7 +2,8 @@
 
 import { FormEvent, useRef, useState } from 'react';
 import Link from 'next/link';
-import { Mail } from 'lucide-react';
+import { Building2, Mail, MapPin, Phone } from 'lucide-react';
+import { COMPANY_INFO } from '../../lib/site-nav';
 import Recaptcha, { RECAPTCHA_ENABLED, type RecaptchaHandle } from '../../components/Recaptcha';
 
 export default function ContactPage() {
@@ -56,6 +57,16 @@ export default function ContactPage() {
       <article className="card"><span className="pill">Corrections</span><h2>Report a data issue</h2><p>Include the institute name, course name, page URL, field that looks incorrect and the official page or document supporting your correction.</p><p><a href="mailto:mail@collegedecision.in">mail@collegedecision.in</a></p><p className="muted">Represent a college? <Link href="/for-colleges/claim">Claim your college profile</Link> to verify it and request updates directly. <Link href="/for-colleges/verification-policy">How verification works</Link>.</p></article>
       <article className="card"><span className="pill">General</span><h2>Ask a question</h2><p>For partnership, editorial or general platform questions, write to our team with a clear subject and the context we need to respond.</p><p><a href="mailto:mail@collegedecision.in">mail@collegedecision.in</a></p></article>
     </div>
+    <article className="card contact-company">
+      <span className="pill">Company details</span>
+      <h2><Building2 size={18} aria-hidden="true" /> {COMPANY_INFO.name}</h2>
+      <address>
+        <p><MapPin size={15} aria-hidden="true" /> {COMPANY_INFO.addressLine}</p>
+        <p><Phone size={15} aria-hidden="true" /> <a href={`tel:${COMPANY_INFO.phoneE164}`}>{COMPANY_INFO.phone}</a></p>
+        <p><Mail size={15} aria-hidden="true" /> <a href="mailto:mail@collegedecision.in">mail@collegedecision.in</a></p>
+        <p className="muted">GSTIN: {COMPANY_INFO.gstin}</p>
+      </address>
+    </article>
     <h2>Send an enquiry</h2>
     {submitted && <div className="notice"><strong>Thank you.</strong> Your enquiry has been received by our team.</div>}
     {error && <div className="modal-error" role="alert">{error}</div>}

@@ -6,7 +6,8 @@ import {
   LEAD_TRACKED_KEY, LEAD_UTM_KEY, courseFromContext, geoIsFresh, loadCities, loadFormOptions, locationFromSlug, pageContext, readPrefs, slugify, writePrefs,
   type FormCity, type FormOptions, type GeoInfo
 } from '../lib/student-lead';
-import { APPLY_OPEN_EVENT, markApplied, type ApplyRequest } from '../lib/college-apply';
+import { APPLY_OPEN_EVENT, fetchBrochure, markApplied, startDownload, type ApplyRequest } from '../lib/college-apply';
+import Recaptcha, { RECAPTCHA_ENABLED, type RecaptchaHandle } from './Recaptcha';
 import { suggestEmail, validateEmail, validateMobile, validateName } from '../lib/lead-validation';
 
 // Delay (seconds) before the popup opens; set NEXT_PUBLIC_STUDENT_POPUP_DELAY_SECONDS in .env (default 5, 0 allowed).
@@ -41,6 +42,11 @@ export default function StudentLeadPopup() {
   const inFlight = useRef(new Set<string>());
   /** Set when opened from an Apply button: limits courses to the college's and records an apply request. */
   const [apply, setApply] = useState<ApplyRequest | null>(null);
+  /** Brochure mode: same form (college courses) + reCAPTCHA, then the PDF download starts. */
+  const brochure = apply?.mode === 'brochure';
+  const captcha = useRef<RecaptchaHandle>(null);
+  const hasCaptcha = RECAPTCHA_ENABLED && Boolean(process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY);
+  const [brochureUrl, setBrochureUrl] = useState('');
 
   // First-touch UTM parameters for this browser session.
   useEffect(() => {
@@ -178,7 +184,7 @@ export default function StudentLeadPopup() {
     return () => window.clearTimeout(timer);
   }, [form, open, done]);
 
-  const close = useCallback(() => { setOpen(false); setApply(null); }, []);
+  const close = useCallback(() => { setOpen(false); setApply(null); setBrochureUrl(''); }, []);
 
   useEffect(() => {
     if (!open) return;
@@ -232,6 +238,8 @@ export default function StudentLeadPopup() {
     setTouched({ name: true, mobile: true, email: true, courseId: true, stateId: true, cityId: true });
     const first = FIELD_ORDER.find((f) => found[f]);
     if (first) { focusField(first); return; }
+    const recaptchaToken = brochure && hasCaptcha ? captcha.current?.getToken() || '' : undefined;
+    if (brochure && hasCaptcha && !recaptchaToken) { setErrors({ form: 'Please complete the "I\'m not a robot" check.' }); return; }
     setSubmitting(true);
     let utm: Record<string, string | null> = {};
     try { utm = JSON.parse(window.sessionStorage.getItem(LEAD_UTM_KEY) || '{}'); } catch { /* ignore */ }
@@ -245,8 +253,8 @@ export default function StudentLeadPopup() {
           courseId: Number(form.courseId), countryCode: country.code,
           stateId: isIndia ? Number(form.stateId) || null : null, cityId: isIndia ? Number(form.cityId) || null : null,
           collegeSlug: apply ? apply.collegeSlug : ctx.pageType === 'college_profile' || ctx.pageType === 'college_cutoff' ? ctx.collegeSlug : null,
-          apply: Boolean(apply),
-          pageUrl: `${window.location.pathname}`.slice(0, 255), pageType: ctx.pageType, cta: apply ? 'apply_button' : 'popup_auto_5s',
+          apply: Boolean(apply) && !brochure, brochure, recaptchaToken,
+          pageUrl: `${window.location.pathname}`.slice(0, 255), pageType: ctx.pageType, cta: brochure ? 'brochure' : apply ? 'apply_button' : 'popup_auto_5s',
           website: form.website, elapsedMs: Date.now() - openedAt.current, ...utm
         })
       });
@@ -269,11 +277,19 @@ export default function StudentLeadPopup() {
         ...(isIndia ? { stateId: Number(form.stateId) || null, stateName, cityId: Number(form.cityId) || null, cityName: cityName || null } : {}),
         ...(d.countryId ? { countryId: d.countryId } : {})
       });
-      if (apply) markApplied(apply.collegeSlug, [Number(form.courseId)]);
+      if (apply && !brochure) markApplied(apply.collegeSlug, [Number(form.courseId)]);
+      if (brochure && apply) {
+        if (!d.token) { setErrors({ form: 'Could not verify your details. Please try again.' }); return; }
+        const file = await fetchBrochure(apply.collegeSlug, d.token);
+        if (!file.ok) { setErrors({ form: file.error }); return; }
+        setBrochureUrl(file.url);
+        startDownload(file.url);
+      }
       setDone(true);
     } catch {
       setErrors({ form: 'We couldn’t reach the server. Please check your connection and try again.' });
     } finally {
+      if (brochure) captcha.current?.reset();
       setSubmitting(false);
     }
   }
@@ -304,18 +320,21 @@ export default function StudentLeadPopup() {
         {done ? (
           <div className="lead-done">
             <div className="lead-done-icon" aria-hidden="true">✓</div>
-            <h2 id="lead-title">{apply ? 'Application submitted!' : 'You\u2019re registered!'}</h2>
-            <p>{apply
+            <h2 id="lead-title">{brochure ? 'Your brochure download has started' : apply ? 'Application submitted!' : 'You\u2019re registered!'}</h2>
+            <p>{brochure && apply
+              ? `Thanks, ${form.name.trim().split(' ')[0]}. The ${apply.collegeName} brochure (PDF) is downloading. A College Decision counsellor may contact you to help with admission questions.`
+              : apply
               ? `Thanks, ${form.name.trim().split(' ')[0]}. Your application to ${apply.collegeName} for ${apply.courses.find((c) => String(c.id) === form.courseId)?.name || 'the selected course'} is recorded. A College Decision counsellor will contact you shortly.`
               : `Thanks, ${form.name.trim().split(' ')[0]}. A College Decision counsellor will reach out to help you shortlist colleges.`}</p>
+            {brochure && brochureUrl ? <p><a href={brochureUrl} rel="noopener">Download did not start? Click here.</a></p> : null}
             <button type="button" className="lead-submit" onClick={close}>Continue browsing</button>
           </div>
         ) : (
           <form ref={formRef} onSubmit={submit} noValidate>
             <div className="lead-head">
-              <span className="lead-badge">{apply ? 'Apply' : 'Free counselling'}</span>
-              <h2 id="lead-title">{apply ? `Apply to ${apply.collegeName}` : 'Find the right college for you'}</h2>
-              <p>{apply ? 'Share your details once. Our counsellor will help you with this application.' : 'Get fees, cutoffs and admission updates for colleges that match your interest.'}</p>
+              <span className="lead-badge">{brochure ? 'Brochure' : apply ? 'Apply' : 'Free counselling'}</span>
+              <h2 id="lead-title">{brochure && apply ? `Download ${apply.collegeName} brochure` : apply ? `Apply to ${apply.collegeName}` : 'Find the right college for you'}</h2>
+              <p>{brochure ? 'Share a few details and the brochure (PDF) downloads right away.' : apply ? 'Share your details once. Our counsellor will help you with this application.' : 'Get fees, cutoffs and admission updates for colleges that match your interest.'}</p>
             </div>
             <div className="lead-grid">
               <label className="lead-field lead-full">
@@ -338,10 +357,10 @@ export default function StudentLeadPopup() {
                 {emailHint && <small className="lead-hint">Did you mean <button type="button" onClick={() => { setForm((f) => ({ ...f, email: emailHint })); setErrors((er) => ({ ...er, email: undefined })); }}>{emailHint}</button>?</small>}
               </label>
               <label className="lead-field lead-full">
-                <span>{apply ? 'Course to apply for' : 'Interested in'}</span>
-                <select name="courseId" value={form.courseId} onChange={set('courseId')} disabled={!options && !apply} {...a11y('courseId')}>
-                  <option value="">{options || apply ? 'Select course' : 'Loading courses…'}</option>
-                  {apply
+                <span>{brochure ? 'Course you are interested in' : apply ? 'Course to apply for' : 'Interested in'}</span>
+                <select name="courseId" value={form.courseId} onChange={set('courseId')} disabled={!options && !apply?.courses.length} {...a11y('courseId')}>
+                  <option value="">{options || apply?.courses.length ? 'Select course' : 'Loading courses…'}</option>
+                  {apply?.courses.length
                     ? apply.courses.map((c) => <option key={c.id} value={c.id}>{c.name}</option>)
                     : options?.courses.map((c) => <option key={c.id} value={c.id}>{c.label}</option>)}
                 </select>
@@ -375,8 +394,9 @@ export default function StudentLeadPopup() {
               ))}
               <input className="lead-hp" tabIndex={-1} autoComplete="off" aria-hidden="true" name="website" value={form.website} onChange={set('website')} />
             </div>
+            {brochure && hasCaptcha ? <Recaptcha ref={captcha} className="lead-captcha" /> : null}
             {errors.form && <p className="lead-error" role="alert">{errors.form}</p>}
-            <button type="submit" className="lead-submit" disabled={submitting} aria-busy={submitting}>{submitting ? 'Submitting…' : apply ? 'Submit application' : 'Get free counselling'}</button>
+            <button type="submit" className="lead-submit" disabled={submitting} aria-busy={submitting}>{submitting ? 'Submitting…' : brochure ? 'Download brochure' : apply ? 'Submit application' : 'Get free counselling'}</button>
             <p className="lead-note">By submitting, you agree to be contacted about admissions. See our <a href="/privacy-policy" target="_blank">Privacy Policy</a>.</p>
           </form>
         )}

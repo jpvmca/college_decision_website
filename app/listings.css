@@ -268,3 +268,16 @@ a.ls-course h2 { color: var(--ls-ink); }
 @media (prefers-reduced-motion: reduce) {
   .ls-page * { transition: none !important; }
 }
+
+/* Collapsible listing intro: keep the college list near the top; full text stays in HTML for SEO. */
+.collapsible-content { position: relative; }
+.collapsible-content-body { overflow: hidden; }
+.collapsible-content.is-collapsed .collapsible-content-body { position: relative; }
+.collapsible-content.is-collapsed .collapsible-content-body::after { content: ''; position: absolute; left: 0; right: 0; bottom: 0; height: 56px; background: linear-gradient(to bottom, rgba(255,255,255,0), #fff); pointer-events: none; }
+.collapsible-toggle { display: inline-flex; align-items: center; gap: 6px; margin-top: 8px; padding: 6px 14px; border: 1px solid #cbd5e1; border-radius: 999px; background: #fff; color: #1d4ed8; font-size: 14px; font-weight: 700; cursor: pointer; }
+.collapsible-toggle:hover { background: #eff6ff; border-color: #93c5fd; }
+.listing-guide.is-compact { padding-top: 14px; padding-bottom: 14px; margin-bottom: 14px; }
+.listing-guide.is-compact > .collapsible-content > .collapsible-content-body > h2:first-child { margin-top: 0; }
+@media (max-width: 640px) {
+  .listing-guide.is-compact .collapsible-content-body { font-size: 15px; }
+}
