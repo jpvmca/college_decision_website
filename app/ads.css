@@ -1,5 +1,5 @@
 /* Ad Manager slots: labelled, reserved height (no layout shift), never sticky. */
-.ad-wrap{display:block;clear:both;margin:32px auto;padding:6px 0 10px;max-width:100%;text-align:center;border-top:1px solid #eef1f6;border-bottom:1px solid #eef1f6;overflow:hidden;contain:layout}
+.ad-wrap{display:block;clear:both;margin:32px auto;padding:6px 0 10px;width:100%;max-width:100%;box-sizing:border-box;text-align:center;border-top:1px solid #eef1f6;border-bottom:1px solid #eef1f6;overflow:hidden;contain:layout}
 .ad-label{display:block;margin:0 0 6px;font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#475569;line-height:16px}
 .ad-inner{display:flex;align-items:center;justify-content:center;width:100%}
 .ad-inner ins.adsbygoogle{width:100%}
@@ -13,7 +13,8 @@
 @media (min-width:768px){.ad-device-desktop{display:block}.ad-device-mobile{display:none}}
 .ad-test .ad-placeholder{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;width:100%;border:2px dashed #f59e0b;border-radius:10px;background:repeating-linear-gradient(45deg,#fffbeb,#fffbeb 10px,#fef3c7 10px,#fef3c7 20px);color:#92400e;font-size:13px}
 .ad-test .ad-placeholder strong{font-family:ui-monospace,Menlo,monospace;font-size:14px}
-.decision-results-list>.ad-wrap{grid-column:1/-1}
+/* Grid items with auto margins shrink to their content (the 99px label), and AdSense never requests an ad that narrow: stretch in-list slots to the full row. */
+.decision-results-list>.ad-wrap,.ls-courses>.ad-wrap{grid-column:1/-1;justify-self:stretch;width:100%;margin-left:0;margin-right:0}
 .site-page-rails{display:block}
 .site-page-rail{display:none}
 .listing-ad{min-height:92px!important}
