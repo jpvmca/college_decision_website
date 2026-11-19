@@ -72,7 +72,7 @@
 .ex-upcoming-list em.is-soon { background: #fff1e6; color: #c2410c; }
 
 .ex-dir { margin-top: 22px; }
-.ex-filter { position: sticky; top: 8px; z-index: 12; display: flex; flex-wrap: wrap; gap: 7px; margin: 0 0 14px; padding: 10px; border: 1px solid var(--ex-line); border-radius: 16px; background: rgba(255, 255, 255, .94); box-shadow: 0 8px 22px rgba(15, 35, 75, .08); backdrop-filter: saturate(1.4) blur(10px); }
+.ex-filter { position: sticky; top: 128px; z-index: 12; display: flex; flex-wrap: wrap; gap: 7px; margin: 0 0 14px; padding: 10px; border: 1px solid var(--ex-line); border-radius: 16px; background: rgba(255, 255, 255, .94); box-shadow: 0 8px 22px rgba(15, 35, 75, .08); backdrop-filter: saturate(1.4) blur(10px); }
 .ex-page .exam-course-filter a, .ex-page .exam-course-filter button { padding: 7px 12px; border: 1px solid var(--ex-line); border-radius: 999px; background: #fff; color: var(--ex-navy); font-size: 13.5px; font-weight: 650; transition: background .15s ease, border-color .15s ease, color .15s ease; }
 .ex-page .exam-course-filter a:hover, .ex-page .exam-course-filter button:hover { border-color: #b8ccef; background: var(--ex-blue-soft); }
 .ex-page .exam-course-filter a.active, .ex-page .exam-course-filter button.active { background: var(--ex-navy); border-color: var(--ex-navy); color: #fff; }
@@ -137,7 +137,7 @@
   .ex-stat-icon { grid-row: auto; margin-bottom: 6px; width: 32px; height: 32px; }
   .ex-stat-value, .ex-stat-label { grid-column: auto; }
   .ex-upcoming-list { grid-template-columns: 1fr; }
-  .ex-filter { top: 4px; padding: 8px; }
+  .ex-filter { top: 132px; padding: 8px; }
   .ex-page .exam-card-heading { align-items: flex-start; }
   .ex-logo { flex-basis: 52px; width: 52px; height: 52px; border-radius: 14px; }
   .ex-page .exam-card-copy h2 { font-size: 19px; }

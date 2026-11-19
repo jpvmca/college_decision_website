@@ -1,8 +1,8 @@
 'use client';
 
-import { Fragment, useRef, useState } from 'react';
+import { Fragment, useState, type KeyboardEvent } from 'react';
 import Link from 'next/link';
-import { ArrowDown, ArrowRight, BookOpen, Building2, Star } from 'lucide-react';
+import { ArrowRight, BookOpen, Building2, Star } from 'lucide-react';
 import ExamLogo from './ExamLogo';
 import { STATE_LABEL, applicationFee, compactMoney, examDateFact, modeLabel, registrationFact } from '../lib/exam-format';
 import AdSlotClient from './ads/AdSlotClient';
@@ -10,8 +10,9 @@ import { feedPositions } from '../lib/ad-feed';
 import type { AdFeed } from '../lib/ads';
 
 /**
- * Exam directory body for /exams: course tabs filter client-side (no URL change, no ?course=), and "Load more"
- * fetches the next batch without ?page=. The first batch of "All exams" is server-rendered by the page.
+ * Exam directory body for /exams. The server renders every exam on /exams (All tab) so the HTML stays
+ * complete for search engines. Course tabs only update client state — they do not change the URL or
+ * send a ?course= / ?page= parameter.
  */
 export type ScheduleState = 'registration_open' | 'registration_closed' | 'upcoming' | 'completed' | 'date_not_announced';
 export type Schedule = {
@@ -54,55 +55,34 @@ export type ExamList = {
   pagination: { page: number; perPage: number; total: number; totalPages: number };
 };
 
-type ListState = { items: Exam[]; total: number; page: number };
-
-
-export default function ExamDirectory({ initial, total, courses, perPage, adFeed = null }: { initial: Exam[]; total: number; courses: CourseFacet[]; perPage: number; adFeed?: AdFeed | null }) {
-  const cache = useRef(new Map<string, ListState>([['', { items: initial, total, page: 1 }]]));
+export default function ExamDirectory({ initial, total, courses, adFeed = null }: { initial: Exam[]; total: number; courses: CourseFacet[]; adFeed?: AdFeed | null }) {
   const [course, setCourse] = useState('');
-  const [list, setList] = useState<ListState>({ items: initial, total, page: 1 });
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState<string | null>(null);
   const active = courses.find((item) => item.slug === course) || null;
+  const items = course ? initial.filter((exam) => exam.course_slug === course) : initial;
+  const shown = course ? items.length : total;
+  const adAt = feedPositions(adFeed, items.length, 5);
 
-  async function fetchPage(slug: string, page: number) {
-    const response = await fetch(`/api/exams?page=${page}&perPage=${perPage}${slug ? `&course=${encodeURIComponent(slug)}` : ''}`);
-    if (!response.ok) throw new Error('failed');
-    return await response.json() as ExamList;
-  }
-
-  async function selectCourse(slug: string) {
-    if (slug === course || loading) return;
-    setError(null);
-    const cached = cache.current.get(slug);
-    if (cached) { setCourse(slug); setList(cached); return; }
-    setLoading(true);
-    try {
-      const result = await fetchPage(slug, 1);
-      const next = { items: result.data, total: result.pagination.total, page: 1 };
-      cache.current.set(slug, next);
-      setCourse(slug); setList(next);
-    } catch { setError('Unable to load exams. Please try again.'); } finally { setLoading(false); }
-  }
-
-  async function loadMore() {
-    if (loading || list.items.length >= list.total) return;
-    setLoading(true); setError(null);
-    try {
-      const result = await fetchPage(course, list.page + 1);
-      const seen = new Set(list.items.map((item) => item.id));
-      const next = { items: [...list.items, ...result.data.filter((item) => !seen.has(item.id))], total: result.pagination.total, page: list.page + 1 };
-      cache.current.set(course, next); setList(next);
-    } catch { setError('Unable to load more exams. Please try again.'); } finally { setLoading(false); }
+  function onTabListKeyDown(event: KeyboardEvent<HTMLDivElement>) {
+    if (!['ArrowRight', 'ArrowLeft', 'ArrowDown', 'ArrowUp', 'Home', 'End'].includes(event.key)) return;
+    const tabs = Array.from(event.currentTarget.querySelectorAll<HTMLButtonElement>('[role="tab"]'));
+    const index = tabs.indexOf(document.activeElement as HTMLButtonElement);
+    if (index < 0 || !tabs.length) return;
+    event.preventDefault();
+    const nextIndex = event.key === 'Home' ? 0
+      : event.key === 'End' ? tabs.length - 1
+      : event.key === 'ArrowRight' || event.key === 'ArrowDown' ? (index + 1) % tabs.length
+      : (index - 1 + tabs.length) % tabs.length;
+    tabs[nextIndex].focus();
+    tabs[nextIndex].click();
   }
 
   return <div className="ex-dir">
-    {courses.length > 0 ? <div className="exam-course-filter ex-filter" role="group" aria-label="Filter exams by course">
-      <button type="button" className={!course ? 'active' : undefined} aria-pressed={!course} onClick={() => selectCourse('')}>All exams</button>
-      {courses.map((item) => <button type="button" key={item.slug} className={course === item.slug ? 'active' : undefined} aria-pressed={course === item.slug} onClick={() => selectCourse(item.slug)}>{item.name} <span>{item.exam_count}</span></button>)}
+    {courses.length > 0 ? <div className="exam-course-filter ex-filter" role="tablist" aria-label="Filter exams by course" onKeyDown={onTabListKeyDown}>
+      <button type="button" role="tab" id="exam-tab-all" aria-controls="exam-directory-panel" aria-selected={!course} tabIndex={!course ? 0 : -1} className={!course ? 'active' : undefined} onClick={() => setCourse('')}>All exams</button>
+      {courses.map((item) => <button type="button" role="tab" id={`exam-tab-${item.slug}`} key={item.slug} aria-controls="exam-directory-panel" aria-selected={course === item.slug} tabIndex={course === item.slug ? 0 : -1} className={course === item.slug ? 'active' : undefined} onClick={() => setCourse(item.slug)}>{item.name} <span>{item.exam_count}</span></button>)}
     </div> : null}
-    <p className="ex-count" aria-live="polite">{list.total.toLocaleString('en-IN')} {active ? `${active.name} ` : ''}exams · sorted by colleges accepting the exam</p>
-    <div className="article-list ex-list">{list.items.length ? list.items.map((exam, index) => {
+    <p className="ex-count" aria-live="polite">{shown.toLocaleString('en-IN')} {active ? `${active.name} ` : ''}exams · sorted by colleges accepting the exam</p>
+    <div className="article-list ex-list" id="exam-directory-panel" role="tabpanel" aria-labelledby={active ? `exam-tab-${active.slug}` : 'exam-tab-all'}>{items.length ? items.map((exam, index) => {
       const profileHref = exam.published_slug ? `/exams/${exam.published_slug}` : null;
       const dateFact = examDateFact(exam.schedule);
       const registration = registrationFact(exam.schedule);
@@ -121,7 +101,7 @@ export default function ExamDirectory({ initial, total, courses, perPage, adFeed
         exam.fee ? { label: 'Programme fees', value: `${compactMoney(exam.fee.min)} – ${compactMoney(exam.fee.max)} ${exam.fee.basis === 'year' ? '/ year' : 'total'}` } : null
       ].filter((item): item is { label: string; value: string } => Boolean(item));
       const mark = <ExamLogo src={exam.logo} examName={exam.name} courseName={exam.course_name} size={56} fallback={<span aria-hidden="true">{initials}</span>} />;
-      return <Fragment key={exam.id}><article className={`article-card exam-card ex-card is-${state}`} id={`exam-${index + 1}`}>
+      return <Fragment key={exam.id}><article className={`article-card exam-card ex-card is-${state}`} id={course ? undefined : `exam-${index + 1}`}>
         <div className="exam-card-heading">
           {profileHref ? <Link className="ex-logo" href={profileHref}>{mark}</Link> : <span className="ex-logo">{mark}</span>}
           <div className="exam-card-copy">
@@ -157,11 +137,7 @@ export default function ExamDirectory({ initial, total, courses, perPage, adFeed
           </div>
           {profileHref ? <Link className="ex-card-link" href={profileHref}>View exam profile <ArrowRight size={14} aria-hidden="true" /></Link> : null}
         </div>
-      </article>{feedPositions(adFeed, list.items.length, 5).has(index + 1) && adFeed ? <AdSlotClient slot={adFeed.slot} settings={adFeed.settings} className="ad-in-list" /> : null}</Fragment>;
+      </article>{adAt.has(index + 1) && adFeed ? <AdSlotClient slot={adFeed.slot} settings={adFeed.settings} className="ad-in-list" /> : null}</Fragment>;
     }) : <div className="card ex-empty"><h2>Exam list unavailable</h2><p>Please try again shortly.</p></div>}</div>
-    {(list.items.length < list.total || error) && <div className="load-more-wrap ex-more-wrap">
-      <button className="button secondary" type="button" onClick={loadMore} disabled={loading}>{loading ? 'Loading exams…' : error ? 'Try again' : 'Load more exams'} <ArrowDown size={16} aria-hidden="true" /></button>
-      {error && <p className="muted" role="alert">{error}</p>}
-    </div>}
   </div>;
 }

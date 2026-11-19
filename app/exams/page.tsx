@@ -10,9 +10,27 @@ import HeroPhoto from '../../components/HeroPhoto';
 import HeroStats from '../../components/HeroStats';
 import { staticImageUrl } from '../../lib/image';
 
-const PAGE_SIZE = 20;
+// Backend listDirectory caps perPage at 30, so the page walks every page and hands the full list to the client.
+const EXAM_BATCH = 30;
 
-// ?course= and ?page= are 301'd to /exams in proxy.ts: course tabs and "Load more" work client-side, so /exams is the only URL.
+async function loadExamDirectory(): Promise<ExamList> {
+  const first = await api<ExamList>(`/exams?page=1&perPage=${EXAM_BATCH}`);
+  const totalPages = Math.max(1, first.pagination.totalPages || 1);
+  if (totalPages === 1) return first;
+  const rest = await Promise.all(Array.from({ length: totalPages - 1 }, (_, index) => api<ExamList>(`/exams?page=${index + 2}&perPage=${EXAM_BATCH}`)));
+  const seen = new Set(first.data.map((exam) => exam.id));
+  const data = [...first.data];
+  for (const page of rest) {
+    for (const exam of page.data) {
+      if (seen.has(exam.id)) continue;
+      seen.add(exam.id);
+      data.push(exam);
+    }
+  }
+  return { ...first, data, pagination: { page: 1, perPage: data.length, total: first.pagination.total, totalPages: 1 } };
+}
+
+// ?course= and ?page= are 301'd to /exams in proxy.ts. Course tabs filter the server-rendered list in the browser, so /exams is the only URL.
 export async function generateMetadata(): Promise<Metadata> {
   const title = 'Entrance Exams in India 2026–27: Dates, Fees & Colleges';
   const description = 'Compare entrance exams in India: next exam dates, registration status, application fees, linked programmes, fee ranges and colleges accepting each exam.';
@@ -20,11 +38,10 @@ export async function generateMetadata(): Promise<Metadata> {
 }
 
 export default async function ExamsPage() {
-  let result: ExamList = { data: [], pagination: { page: 1, perPage: PAGE_SIZE, total: 0, totalPages: 0 } };
-  try { result = await api<ExamList>(`/exams?page=1&perPage=${PAGE_SIZE}`); } catch { /* keep the page renderable */ }
+  let result: ExamList = { data: [], pagination: { page: 1, perPage: EXAM_BATCH, total: 0, totalPages: 0 } };
+  try { result = await loadExamDirectory(); } catch { /* keep the page renderable */ }
   const courses = result.courses || [];
   const activeCourse = null as { name: string } | null;
-  const page = 1;
   const upcoming = (result.upcoming || []).filter((item) => daysUntil(item.exam_start_date) >= 0);
   const heading = 'Entrance Exams in India 2026–27';
   const siteUrl = (process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3001').replace(/\/+$/, '');
@@ -34,7 +51,7 @@ export default async function ExamsPage() {
     '@context': 'https://schema.org',
     '@graph': [
       { '@type': 'CollectionPage', '@id': `${pageUrl}#collectionpage`, url: pageUrl, name: heading, description: 'Entrance exams in India with next exam dates, registration status, fees, linked programmes and colleges accepting each exam.', isPartOf: { '@id': `${siteUrl}/#website` }, breadcrumb: { '@id': `${pageUrl}#breadcrumb` }, mainEntity: { '@id': `${pageUrl}#itemlist` } },
-      { '@type': 'ItemList', '@id': `${pageUrl}#itemlist`, name: heading, numberOfItems: result.pagination.total, itemListElement: result.data.map((exam, index) => { const examUrl = exam.published_slug ? `${siteUrl}/exams/${exam.published_slug}` : `${pageUrl}#exam-${index + 1}`; return { '@type': 'ListItem', position: (page - 1) * result.pagination.perPage + index + 1, url: examUrl, name: exam.name }; }) },
+      { '@type': 'ItemList', '@id': `${pageUrl}#itemlist`, name: heading, numberOfItems: result.pagination.total, itemListElement: result.data.map((exam, index) => { const examUrl = exam.published_slug ? `${siteUrl}/exams/${exam.published_slug}` : `${pageUrl}#exam-${index + 1}`; return { '@type': 'ListItem', position: index + 1, url: examUrl, name: exam.name }; }) },
       { '@type': 'BreadcrumbList', '@id': `${pageUrl}#breadcrumb`, itemListElement: [{ '@type': 'ListItem', position: 1, name: 'Home', item: siteUrl }, { '@type': 'ListItem', position: 2, name: 'Exams', item: `${siteUrl}/exams` }, ...(activeCourse ? [{ '@type': 'ListItem', position: 3, name: activeCourse.name, item: pageUrl }] : [])] }
     ]
   };
@@ -79,7 +96,7 @@ export default async function ExamsPage() {
       })}</ol>
     </section> : null}
 
-    <ExamDirectory initial={result.data} total={result.pagination.total} courses={courses} perPage={PAGE_SIZE} adFeed={listingAdFeed} />
+    <ExamDirectory initial={result.data} total={result.pagination.total} courses={courses} adFeed={listingAdFeed} />
     <AdSlot slotKey="listing_bottom" className="listing-ad" />
   </div></main>;
 }

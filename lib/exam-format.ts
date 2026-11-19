@@ -64,9 +64,11 @@ export function examDateFact(schedule: Schedule | null) {
 export function registrationFact(schedule: Schedule | null) {
   if (!schedule?.application_end_date) return null;
   const end = formatDate(schedule.application_end_date);
+  // Use schedule.state from the API, not "today", so a cached/prerendered card matches the client hydrate.
   if (schedule.state === 'registration_open') return `Open till ${end}`;
-  if (schedule.application_start_date && daysUntil(schedule.application_start_date) > 0) return `Opens ${formatDate(schedule.application_start_date)}`;
-  return daysUntil(schedule.application_end_date) < 0 ? `Closed on ${end}` : `Closes ${end}`;
+  if (schedule.state === 'upcoming' && schedule.application_start_date) return `Opens ${formatDate(schedule.application_start_date)}`;
+  if (schedule.state === 'registration_closed' || schedule.state === 'completed') return `Closed on ${end}`;
+  return `Closes ${end}`;
 }
 
 
