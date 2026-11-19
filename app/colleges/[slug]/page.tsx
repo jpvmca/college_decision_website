@@ -3,7 +3,7 @@ import InterestCourseHighlight from '../../../components/InterestCourseHighlight
 import CollegeApply from '../../../components/CollegeApply';
 import BrochureDownload from '../../../components/BrochureDownload';
 import type { Metadata } from 'next';
-import type { ReactNode } from 'react';
+import { cache, type ReactNode } from 'react';
 import { notFound } from 'next/navigation';
 import Link from 'next/link';
 import { ArrowLeftRight, ArrowUpRight, BadgeCheck, BookOpen, BriefcaseBusiness, Building2, CalendarDays, ChevronDown, ClipboardCheck, Clock, Globe2, GraduationCap, HelpCircle, Images, IndianRupee, Landmark, Lightbulb, MapPin, ShieldCheck, Star, Target, TrendingUp, Trophy, Users, type LucideIcon } from 'lucide-react';
@@ -102,22 +102,23 @@ type CollegeProfile = {
 
 // Default cutoff table only (server-rendered for SEO). Filters run client-side via /api/college-cutoffs;
 // the page URL never carries filter params.
-async function getCollegeCutoffs(slug: string) {
+// React cache(): one backend call per request even though generateMetadata and the page both ask.
+const getCollegeCutoffs = cache(async (slug: string) => {
   try {
     return await api<CollegeCutoffResponse>(`/colleges/${encodeURIComponent(slug)}/cutoffs?perPage=25`, { cache: 'no-store' });
   } catch {
     return null;
   }
-}
+});
 
-async function getCollege(slug: string) {
+const getCollege = cache(async (slug: string) => {
   try {
     const response = await api<{ data: CollegeProfile }>(`/colleges/${encodeURIComponent(slug)}`, { cache: 'no-store' });
     return response.data;
   } catch {
     return null;
   }
-}
+});
 
 
 // ---------- Rankings ----------

@@ -7,6 +7,7 @@ import SiteMenu from '../components/SiteMenu';
 import SiteFooter from '../components/SiteFooter';
 import GoogleTagManager from '../components/GoogleTagManager';
 import StudentLeadPopup from '../components/StudentLeadPopup';
+import NavigationProgress from '../components/NavigationProgress';
 import AdsenseLoader from '../components/ads/AdsenseLoader';
 import AdSlot from '../components/ads/AdSlot';
 import JsonLd from '../components/JsonLd';
@@ -73,6 +74,7 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
   return (
     <html lang="en">
       <body className={process.env.NODE_ENV === "development" ? "debug-rails" : undefined}>
+        <NavigationProgress />
         <GoogleTagManager />
         <JsonLd data={websiteJsonLd} />
         <JsonLd data={organizationJsonLd(siteUrl)} />
