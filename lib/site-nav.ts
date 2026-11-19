@@ -20,9 +20,8 @@ export const SITE_EMAIL_ADDRESS = 'mail@collegedecision.in';
 export const COMPANY_INFO = {
   name: 'Hytrix Technology LLP',
   gstin: '09AAQFH0700E1ZO',
-  /** Phone intentionally empty: the old number is off; set a new one here when available. */
-  phone: '' as string,
-  phoneE164: '' as string,
+  phone: '8765848732' as string,
+  phoneE164: '+918765848732' as string,
   streetAddress: 'D-54, Arjun Tower, Vibhuti Khand',
   locality: 'Lucknow',
   region: 'Uttar Pradesh',
