@@ -90,7 +90,9 @@
   display: grid; place-items: center; width: 40px; height: 40px;
   border-radius: 50%; background: rgba(255,255,255,.18); font-weight: 800;
 }
-.cds-header h2 { margin: 0; font-size: 1.05rem; line-height: 1.2; }
+.cds-header h1,
+.cds-header h2,
+.cds-header-title { margin: 0; font-size: 1.05rem; line-height: 1.2; font-weight: 750; }
 .cds-online { display: inline-flex; align-items: center; gap: 6px; margin: 2px 0 0; font-size: .75rem; opacity: .92; }
 .cds-online i {
   width: 7px; height: 7px; border-radius: 50%; background: #4ade80;
@@ -106,6 +108,63 @@
 .cds-messages {
   flex: 1; overflow-y: auto; padding: 14px 14px 8px;
   background: #f8fafc; display: flex; flex-direction: column; gap: 10px;
+}
+.cds-starters {
+  margin-top: auto;
+  padding: 8px 2px 4px;
+  animation: cds-pop .28s ease-out;
+}
+.cds-starters-label {
+  margin: 0 0 10px;
+  font-size: .78rem;
+  font-weight: 750;
+  letter-spacing: .04em;
+  text-transform: uppercase;
+  color: #64748b;
+}
+.cds-starters-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 8px;
+}
+.cds-starter {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 4px;
+  text-align: left;
+  padding: 12px 12px;
+  border-radius: 14px;
+  border: 1px solid #dbe8ff;
+  background:
+    linear-gradient(180deg, #ffffff 0%, #f8fbff 100%);
+  box-shadow: 0 8px 18px rgba(15, 23, 42, .04);
+  cursor: pointer;
+  transition: border-color .15s ease, transform .15s ease, box-shadow .15s ease;
+}
+.cds-starter:hover {
+  border-color: #93c5fd;
+  transform: translateY(-1px);
+  box-shadow: 0 10px 22px rgba(37, 99, 235, .1);
+}
+.cds-starter strong {
+  font-size: .88rem;
+  color: #0f172a;
+}
+.cds-starter span {
+  font-size: .75rem;
+  line-height: 1.35;
+  color: #64748b;
+}
+.cds-panel-page .cds-starters-grid {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+@media (max-width: 900px) {
+  .cds-panel-page .cds-starters-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+@media (max-width: 520px) {
+  .cds-starters-grid,
+  .cds-panel-page .cds-starters-grid { grid-template-columns: 1fr; }
 }
 .cds-bubble {
   max-width: 88%; padding: 10px 12px; border-radius: 14px;

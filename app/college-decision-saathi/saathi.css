@@ -6,41 +6,8 @@
     linear-gradient(180deg, #f8fbff 0%, #eef4fb 40%, #f7f9fc 100%);
 }
 
-.saathi-hero {
-  padding: 16px 0 4px;
-}
-
-.saathi-hero-inner {
-  max-width: none;
-  width: 100%;
-}
-
-.saathi-title-row {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: baseline;
-  gap: 8px 14px;
-}
-
-.saathi-title-row h1 {
-  margin: 0;
-  font-size: clamp(1.15rem, 2.2vw, 1.45rem);
-  line-height: 1.25;
-  font-weight: 800;
-  color: #0b2447;
-}
-
-.saathi-kicker {
-  margin: 0;
-  font-size: 0.68rem;
-  font-weight: 800;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
-  color: #1d4ed8;
-}
-
 .saathi-chat-section {
-  padding: 8px 0 0;
+  padding: 12px 0 0;
 }
 
 .saathi-chat-loading {
@@ -69,7 +36,7 @@
   inset: auto !important;
   width: 100% !important;
   max-width: none !important;
-  height: min(78vh, 820px) !important;
+  height: min(86vh, 860px) !important;
   max-height: none !important;
   border-radius: 18px;
   border: 1px solid #dbe8ff;
@@ -187,14 +154,8 @@
 }
 
 @media (max-width: 720px) {
-  .saathi-hero {
-    padding-top: 12px;
-  }
-  .saathi-title-row h1 {
-    font-size: 1.1rem;
-  }
   .cds-panel-page {
-    height: min(82vh, 760px) !important;
+    height: min(88vh, 780px) !important;
     border-radius: 14px;
   }
 }

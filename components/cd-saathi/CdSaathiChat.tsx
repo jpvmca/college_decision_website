@@ -503,6 +503,10 @@ export default function CdSaathiChat({ variant = 'widget' }: { variant?: 'widget
     return null;
   }
 
+  const TitleTag = isPage ? 'h1' : 'h2';
+  const userSent = messages.some((m) => m.role === 'user');
+  const showStarters = isPage && !userSent && !busy && messages.some((m) => m.role === 'assistant');
+
   const chatBody = (
     <>
             <header className="cds-header">
@@ -510,7 +514,7 @@ export default function CdSaathiChat({ variant = 'widget' }: { variant?: 'widget
                 CD
               </div>
               <div>
-                <h2>{SAATHI_NAME}</h2>
+                <TitleTag className="cds-header-title">{SAATHI_NAME}</TitleTag>
                 <p className="cds-online">
                   <i aria-hidden="true" /> Online
                 </p>
@@ -573,6 +577,30 @@ export default function CdSaathiChat({ variant = 'widget' }: { variant?: 'widget
                   ) : null}
                 </div>
               ))}
+
+              {showStarters ? (
+                <div className="cds-starters" aria-label="Try asking">
+                  <p className="cds-starters-label">Try one of these to start</p>
+                  <div className="cds-starters-grid">
+                    {[
+                      { title: 'Colleges by city', text: 'Show me Lucknow colleges', hint: 'City shortlist with logos' },
+                      { title: 'Course + budget', text: 'MBA colleges under 10 lakh', hint: 'Fees-first shortlist' },
+                      { title: 'Exam path', text: 'Which colleges accept JEE Main?', hint: 'Entrance → colleges' },
+                      { title: 'One college', text: 'Tell me about Lucknow University', hint: 'Fees, type, placements' }
+                    ].map((item) => (
+                      <button
+                        key={item.title}
+                        type="button"
+                        className="cds-starter"
+                        onClick={() => void send(item.text)}
+                      >
+                        <strong>{item.title}</strong>
+                        <span>{item.hint}</span>
+                      </button>
+                    ))}
+                  </div>
+                </div>
+              ) : null}
             </div>
 
             {chips.length && !busy ? (

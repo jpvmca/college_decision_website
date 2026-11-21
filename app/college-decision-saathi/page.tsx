@@ -59,15 +59,6 @@ const FAQS = [
 export default function SaathiPage() {
   return (
     <main className="saathi-page">
-      <section className="saathi-hero">
-        <div className="wrap saathi-hero-inner">
-          <div className="saathi-title-row">
-            <h1>{SAATHI_NAME}</h1>
-            <span className="saathi-kicker">College Decision AI buddy</span>
-          </div>
-        </div>
-      </section>
-
       <section className="saathi-chat-section" aria-label={`${SAATHI_NAME} chat`}>
         <div className="wrap">
           <CdSaathiPageClient />
