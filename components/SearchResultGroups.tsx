@@ -2,7 +2,7 @@
 
 import Link from 'next/link';
 import { highlight, SUGGEST_GROUPS, type SuggestItem, type SuggestResult } from '../lib/typeahead';
-import { UnpublishedCollegeViewButton } from './UnpublishedCollegeModal';
+import CollegeViewDetailsModal from './CollegeViewDetailsModal';
 
 function isUnpublishedCollege(item: SuggestItem) {
   return item.type === 'college' && item.isPublished === false;
@@ -21,7 +21,7 @@ export default function SearchResultGroups({ results, keyword }: { results: Sugg
               <strong>{highlight(item.title, mark)}</strong>
               {item.subtitle && <small>{item.subtitle}</small>}
             </div>
-            <UnpublishedCollegeViewButton instituteId={Number(item.id)} />
+            <CollegeViewDetailsModal instituteId={Number(item.id)} buttonLabel="View" buttonClassName="view-button search-hit-view" />
           </div>
         : <Link className="search-hit" key={`${item.type}-${item.id}`} href={item.href}>
             <strong>{highlight(item.title, mark)}</strong>

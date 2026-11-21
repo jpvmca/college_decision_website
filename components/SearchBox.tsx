@@ -4,7 +4,7 @@ import { FormEvent, KeyboardEvent, useEffect, useId, useMemo, useRef, useState }
 import { useRouter } from 'next/navigation';
 import { Search, Building2, ClipboardList, BookOpen, FileText, Loader2, X } from 'lucide-react';
 import { EMPTY_SUGGEST, SUGGEST_GROUPS, highlight, type SuggestItem, type SuggestResult } from '../lib/typeahead';
-import UnpublishedCollegeModal from './UnpublishedCollegeModal';
+import CollegeViewDetailsModal from './CollegeViewDetailsModal';
 
 const DEBOUNCE_MS = 200;
 const MIN_CHARS = 2;
@@ -156,6 +156,6 @@ export default function SearchBox({ initialQuery = '', variant = 'header', autoF
         onMouseEnter={() => setActive(flat.length - 1)} onClick={(e) => { e.preventDefault(); go(allHref); }}>See all results for “{q}” →</a>}
       {loading && groups.length > 0 && <span className="ta-loading-bar" aria-hidden="true" />}
     </div>}
-    <UnpublishedCollegeModal instituteId={previewId} open={previewId != null} onClose={() => setPreviewId(null)} />
+    {previewId != null ? <CollegeViewDetailsModal instituteId={previewId} open onClose={() => setPreviewId(null)} /> : null}
   </div>;
 }
