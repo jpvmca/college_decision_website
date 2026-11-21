@@ -669,35 +669,37 @@ export default function CdSaathiChat({ variant = 'widget' }: { variant?: 'widget
               ) : null}
             </div>
 
-            {chips.length && !busy ? (
-              <div className="cds-chips">
-                {chips.map((chip) => (
-                  <button key={chip.id} type="button" className="cds-chip" onClick={() => void send(chip.label, chip.id)}>
-                    {chip.label}
-                  </button>
-                ))}
-              </div>
-            ) : null}
+            <div className="cds-dock">
+              {chips.length && !busy ? (
+                <div className="cds-chips">
+                  {chips.map((chip) => (
+                    <button key={chip.id} type="button" className="cds-chip" onClick={() => void send(chip.label, chip.id)}>
+                      {chip.label}
+                    </button>
+                  ))}
+                </div>
+              ) : null}
 
-            <form
-              className="cds-composer"
-              onSubmit={(e) => {
-                e.preventDefault();
-                void send();
-              }}
-            >
-              <input
-                value={input}
-                onChange={(e) => setInput(e.target.value)}
-                placeholder={typingPlaceholder || 'Ask about colleges, fees, exams…'}
-                maxLength={1000}
-                disabled={busy}
-                aria-label={`Message ${SAATHI_NAME}`}
-              />
-              <button type="submit" disabled={busy || !input.trim()}>
-                Send
-              </button>
-            </form>
+              <form
+                className="cds-composer"
+                onSubmit={(e) => {
+                  e.preventDefault();
+                  void send();
+                }}
+              >
+                <input
+                  value={input}
+                  onChange={(e) => setInput(e.target.value)}
+                  placeholder={typingPlaceholder || 'Ask about colleges, fees, exams…'}
+                  maxLength={1000}
+                  disabled={busy}
+                  aria-label={`Message ${SAATHI_NAME}`}
+                />
+                <button type="submit" disabled={busy || !input.trim()}>
+                  Send
+                </button>
+              </form>
+            </div>
     </>
   );
 
