@@ -34,6 +34,54 @@ const OPEN_KEY = 'cd_saathi_open';
 
 const CARD_BATCH = 10;
 
+const PLACEHOLDER_PROMPTS = [
+  'Show me Lucknow colleges…',
+  'MBA colleges under ₹10 lakh…',
+  'Which colleges accept JEE Main?…',
+  'Best BTech colleges in Pune…',
+  'Tell me about CAT exam…',
+  'Fees for engineering in Delhi…',
+  'Compare Amity vs Lucknow University…',
+  'NEET colleges in Uttar Pradesh…'
+];
+
+function useTypingPlaceholder(active: boolean, prompts: string[]) {
+  const [text, setText] = useState(prompts[0] || '');
+  useEffect(() => {
+    if (!active || !prompts.length) return;
+    let promptIdx = 0;
+    let charIdx = 0;
+    let deleting = false;
+    let timer = 0;
+    const tick = () => {
+      const full = prompts[promptIdx] || '';
+      if (!deleting) {
+        charIdx += 1;
+        setText(full.slice(0, charIdx));
+        if (charIdx >= full.length) {
+          deleting = true;
+          timer = window.setTimeout(tick, 1600);
+          return;
+        }
+        timer = window.setTimeout(tick, 42 + Math.random() * 36);
+        return;
+      }
+      charIdx -= 1;
+      setText(full.slice(0, Math.max(0, charIdx)));
+      if (charIdx <= 0) {
+        deleting = false;
+        promptIdx = (promptIdx + 1) % prompts.length;
+        timer = window.setTimeout(tick, 320);
+        return;
+      }
+      timer = window.setTimeout(tick, 22);
+    };
+    timer = window.setTimeout(tick, 400);
+    return () => window.clearTimeout(timer);
+  }, [active, prompts]);
+  return text;
+}
+
 function CdsCollegeCards(props: {
   cards: CollegeCard[];
   msgId: string;
@@ -506,6 +554,8 @@ export default function CdSaathiChat({ variant = 'widget' }: { variant?: 'widget
   const TitleTag = isPage ? 'h1' : 'h2';
   const userSent = messages.some((m) => m.role === 'user');
   const showStarters = isPage && !userSent && !busy && messages.some((m) => m.role === 'assistant');
+  const typingPlaceholder = useTypingPlaceholder(open && !input && !busy, PLACEHOLDER_PROMPTS);
+  const firstAssistantId = messages.find((m) => m.role === 'assistant')?.id;
 
   const chatBody = (
     <>
@@ -532,51 +582,67 @@ export default function CdSaathiChat({ variant = 'widget' }: { variant?: 'widget
             </header>
 
             <div className="cds-messages" ref={listRef} aria-live="polite">
-              {messages.map((msg) => (
-                <div key={msg.id}>
-                  <div className={`cds-bubble cds-bubble-${msg.role}`}>
-                    {msg.streaming && !msg.text ? (
-                      <div className="cds-typing" aria-label={`${SAATHI_NAME} is typing`}>
-                        <span /><span /><span />
+              {messages.map((msg) => {
+                const isWelcome = msg.role === 'assistant' && msg.id === firstAssistantId && !userSent;
+                return (
+                  <div key={msg.id} className={`cds-msg cds-msg-${msg.role}`}>
+                    {isWelcome ? (
+                      <div className="cds-welcome">
+                        <p className="cds-welcome-kicker">College · Course · Exam buddy</p>
+                        <p className="cds-welcome-text">{msg.text}</p>
+                        <div className="cds-welcome-tags" aria-hidden="true">
+                          <span>Colleges</span>
+                          <span>Courses</span>
+                          <span>Exams</span>
+                          <span>Fees</span>
+                        </div>
                       </div>
                     ) : (
-                      msg.text
+                      <div className={`cds-bubble cds-bubble-${msg.role}`}>
+                        {msg.streaming && !msg.text ? (
+                          <div className="cds-typing" aria-label={`${SAATHI_NAME} is typing`}>
+                            <span /><span /><span />
+                          </div>
+                        ) : (
+                          msg.text
+                        )}
+                      </div>
                     )}
+                    {msg.role === 'assistant' && msg.cards?.length ? (
+                      <CdsCollegeCards
+                        cards={msg.cards}
+                        msgId={msg.id}
+                        chatSessionId={chatSessionId}
+                        track={track}
+                        rich={isPage}
+                        hideOnNavigate={hideOnNavigate}
+                        onViewUnpublished={(id) => setPreviewCollegeId(id)}
+                        onCounselling={() => openSiteEnquiry()}
+                      />
+                    ) : null}
+                    {msg.role === 'assistant' && msg.messageId && !msg.streaming && !isWelcome ? (
+                      <div className="cds-feedback">
+                        <button
+                          type="button"
+                          className={msg.feedback === 1 ? 'is-on' : undefined}
+                          aria-label="Helpful"
+                          onClick={() => void onFeedback(msg, 1)}
+                        >
+                          👍
+                        </button>
+                        <button
+                          type="button"
+                          className={msg.feedback === -1 ? 'is-on' : undefined}
+                          aria-label="Not helpful"
+                          onClick={() => void onFeedback(msg, -1)}
+                        >
+                          👎
+                        </button>
+                      </div>
+                    ) : null}
                   </div>
-                  {msg.role === 'assistant' && msg.cards?.length ? (
-                    <CdsCollegeCards
-                      cards={msg.cards}
-                      msgId={msg.id}
-                      chatSessionId={chatSessionId}
-                      track={track}
-                      rich={isPage}
-                      hideOnNavigate={hideOnNavigate}
-                      onViewUnpublished={(id) => setPreviewCollegeId(id)}
-                      onCounselling={() => openSiteEnquiry()}
-                    />
-                  ) : null}
-                  {msg.role === 'assistant' && msg.messageId && !msg.streaming ? (
-                    <div className="cds-feedback">
-                      <button
-                        type="button"
-                        className={msg.feedback === 1 ? 'is-on' : undefined}
-                        aria-label="Helpful"
-                        onClick={() => void onFeedback(msg, 1)}
-                      >
-                        👍
-                      </button>
-                      <button
-                        type="button"
-                        className={msg.feedback === -1 ? 'is-on' : undefined}
-                        aria-label="Not helpful"
-                        onClick={() => void onFeedback(msg, -1)}
-                      >
-                        👎
-                      </button>
-                    </div>
-                  ) : null}
-                </div>
-              ))}
+                );
+              })}
 
               {showStarters ? (
                 <div className="cds-starters" aria-label="Try asking">
@@ -623,7 +689,7 @@ export default function CdSaathiChat({ variant = 'widget' }: { variant?: 'widget
               <input
                 value={input}
                 onChange={(e) => setInput(e.target.value)}
-                placeholder="Ask about colleges, fees, exams, courses…"
+                placeholder={typingPlaceholder || 'Ask about colleges, fees, exams…'}
                 maxLength={1000}
                 disabled={busy}
                 aria-label={`Message ${SAATHI_NAME}`}
