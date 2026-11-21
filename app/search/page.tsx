@@ -87,7 +87,6 @@ export default async function SearchPage({ searchParams }: { searchParams: Promi
         </div>
         <div className="ls-hero-visual"><HeroPhoto src="/colleges-hero.webp" alt="Search colleges, exams, courses and decision guides" /></div>
       </div>
-      {keyword ? <HeroStats prefix="ls" stats={[{ icon: Search, value: String(total), label: total === 1 ? 'Match' : 'Matches' }]} /> : null}
     </section>
     <div className="ls-search-box"><SearchBox variant="page" initialQuery={keyword} autoFocus={!keyword} /></div>
     {keyword && groups.length ? <SearchResultGroups results={results} keyword={keyword} /> : <div className="card no-results"><h2>{keyword ? `No results for “${keyword}”` : 'Start typing to search'}</h2><p>Try a shorter name, a college abbreviation, or browse <Link href="/colleges">colleges</Link>, <Link href="/exams">exams</Link>, <Link href="/courses">courses</Link> and <Link href="/articles">guides</Link>.</p></div>}
