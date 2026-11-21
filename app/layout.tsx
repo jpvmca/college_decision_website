@@ -7,7 +7,11 @@ import SiteMenu from '../components/SiteMenu';
 import SiteFooter from '../components/SiteFooter';
 import GoogleTagManager from '../components/GoogleTagManager';
 import StudentLeadPopup from '../components/StudentLeadPopup';
+import JourneyTracker from '../components/tracking/JourneyTracker';
+import CdSaathiLazy from '../components/cd-saathi/CdSaathiLazy';
 import NavigationProgress from '../components/NavigationProgress';
+import { Suspense } from 'react';
+import './cd-saathi.css';
 import AdsenseLoader from '../components/ads/AdsenseLoader';
 import AdSlot from '../components/ads/AdSlot';
 import JsonLd from '../components/JsonLd';
@@ -97,6 +101,10 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
           <SiteFooter />
           </div>
         <StudentLeadPopup />
+        <Suspense fallback={null}>
+          <JourneyTracker />
+        </Suspense>
+        <CdSaathiLazy />
         <AdsenseLoader />
       </body>
     </html>

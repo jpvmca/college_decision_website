@@ -3,6 +3,7 @@
 import { useCallback, useEffect, useRef, useState } from 'react';
 import { readPrefs, writePrefs } from '../lib/student-lead';
 import { APPLIED_EVENT, appliedFor, markApplied, openApplyPopup, type ApplyCourse } from '../lib/college-apply';
+import { track } from '../lib/journey/track';
 
 type Props = { collegeSlug: string; collegeName: string; courses: ApplyCourse[]; courseIds?: number[]; label?: string; compact?: boolean };
 
@@ -60,6 +61,7 @@ export default function CollegeApply({ collegeSlug, collegeName, courses, course
 
   function start() {
     setError('');
+    track('click_apply', { college_slug: collegeSlug });
     const { token, submittedAt } = readPrefs();
     const list = remaining.length ? remaining : scoped;
     if (!token || !submittedAt) {

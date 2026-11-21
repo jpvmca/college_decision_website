@@ -4,6 +4,7 @@ import { useState } from 'react';
 import { FileDown } from 'lucide-react';
 import { readPrefs, writePrefs } from '../lib/student-lead';
 import { fetchBrochure, openBrochurePopup, startDownload, type ApplyCourse } from '../lib/college-apply';
+import { track } from '../lib/journey/track';
 
 /**
  * "Download brochure": visitors who have not filled the enquiry form get it first (popup in brochure mode,
@@ -21,6 +22,7 @@ export default function BrochureDownload({ collegeSlug, collegeName, courses, si
 
   async function onClick() {
     setError('');
+    track('click_download_brochure', { college_slug: collegeSlug });
     const { token, submittedAt } = readPrefs();
     if (!token || !submittedAt) { popup(); return; }
     setBusy(true);

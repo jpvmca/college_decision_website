@@ -1,8 +1,15 @@
 'use client';
 
 import { useEffect, useRef, useState } from 'react';
+import { track } from '../lib/journey/track';
 
 type Item = { id: string; label: string };
+
+const TAB_EVENTS: Record<string, string> = {
+  fees: 'click_fees_tab',
+  admission: 'click_admission_tab',
+  placements: 'click_placements_tab'
+};
 
 /** Sticky "On this page" tabs that highlight the section currently in view. */
 export default function ProfileSectionNav({ items }: { items: Item[] }) {
@@ -36,6 +43,19 @@ export default function ProfileSectionNav({ items }: { items: Item[] }) {
 
   return <nav ref={navRef} className="cp-nav" aria-label="On this page">
     <span className="cp-nav-label">On this page</span>
-    <div className="cp-nav-track">{items.map((item) => <a key={item.id} href={`#${item.id}`} className={item.id === active ? 'is-active' : undefined} aria-current={item.id === active ? 'true' : undefined}>{item.label}</a>)}</div>
+    <div className="cp-nav-track">{items.map((item) => (
+      <a
+        key={item.id}
+        href={`#${item.id}`}
+        className={item.id === active ? 'is-active' : undefined}
+        aria-current={item.id === active ? 'true' : undefined}
+        onClick={() => {
+          const eventName = TAB_EVENTS[item.id];
+          if (eventName) track(eventName, { section: item.id });
+        }}
+      >
+        {item.label}
+      </a>
+    ))}</div>
   </nav>;
 }

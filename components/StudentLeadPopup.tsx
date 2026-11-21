@@ -9,6 +9,7 @@ import {
 import { APPLY_OPEN_EVENT, fetchBrochure, markApplied, startDownload, type ApplyRequest } from '../lib/college-apply';
 import Recaptcha, { RECAPTCHA_ENABLED, type RecaptchaHandle } from './Recaptcha';
 import { suggestEmail, validateEmail, validateMobile, validateName } from '../lib/lead-validation';
+import { track } from '../lib/journey/track';
 
 // Delay (seconds) before the popup opens; set NEXT_PUBLIC_STUDENT_POPUP_DELAY_SECONDS in .env (default 5, 0 allowed).
 const SHOW_AFTER_MS = (() => {
@@ -80,7 +81,13 @@ export default function StudentLeadPopup() {
   }, [pathname]);
 
   useEffect(() => {
-    const manual = () => { if (!readPrefs().submittedAt) setOpen(true); };
+    // Explicit open (CD Saathi counselling, header CTA, etc.) — always show the site enquiry popup.
+    const manual = () => {
+      setApply(null);
+      setDone(false);
+      setErrors({});
+      setOpen(true);
+    };
     const onApply = (e: Event) => {
       const req = (e as CustomEvent<ApplyRequest>).detail;
       if (!req?.collegeSlug) return;
@@ -285,6 +292,11 @@ export default function StudentLeadPopup() {
         setBrochureUrl(file.url);
         startDownload(file.url);
       }
+      track('lead_submitted', {
+        college_slug: apply?.collegeSlug || ctx.collegeSlug || null,
+        course_id: Number(form.courseId) || null,
+        cta: brochure ? 'brochure' : apply ? 'apply_button' : 'popup'
+      });
       setDone(true);
     } catch {
       setErrors({ form: 'We couldn’t reach the server. Please check your connection and try again.' });

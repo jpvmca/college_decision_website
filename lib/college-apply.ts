@@ -23,6 +23,12 @@ export function openApplyPopup(req: ApplyRequest) {
   window.dispatchEvent(new CustomEvent<ApplyRequest>(APPLY_OPEN_EVENT, { detail: req }));
 }
 
+/** Opens the existing site enquiry / free-counselling popup (StudentLeadPopup). */
+export function openEnquiryPopup() {
+  if (typeof window === 'undefined') return;
+  window.dispatchEvent(new Event('cd-open-lead-form'));
+}
+
 /** Opens the enquiry popup before a brochure download (unregistered visitors). */
 export function openBrochurePopup(req: Omit<ApplyRequest, 'mode'>) {
   window.dispatchEvent(new CustomEvent<ApplyRequest>(APPLY_OPEN_EVENT, { detail: { ...req, mode: 'brochure' } }));

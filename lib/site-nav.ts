@@ -33,6 +33,9 @@ export const COMPARE_HREF = '/compare-colleges-2026';
 /** Homepage "Find your best-fit college" decision tool section. */
 export const BEST_FIT_HREF = '/#decision-title';
 export const CONTACT_HREF = '/contact';
+/** Full-page CollegeDecision Saathi chat. */
+export const SAATHI_HREF = '/college-decision-saathi';
+export const SAATHI_NAME = 'CollegeDecision Saathi';
 
 export const NAV_STREAMS: NavStream[] = [
   {
@@ -1024,6 +1027,7 @@ export const FOOTER_COMPANY: NavLink[] = [
   { href: '/about', label: 'About us' },
   { href: '/contact', label: 'Contact' },
   { href: '/articles', label: 'Guides & articles' },
+  { href: SAATHI_HREF, label: SAATHI_NAME },
   { href: COMPARE_HREF, label: 'Compare colleges' },
   { href: '/privacy-policy', label: 'Privacy policy' },
   { href: '/terms-and-conditions', label: 'Terms & conditions' },

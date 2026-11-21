@@ -1,0 +1,200 @@
+.saathi-page {
+  padding-bottom: 48px;
+  background:
+    radial-gradient(1200px 420px at 10% -10%, rgba(37, 99, 235, 0.1), transparent 55%),
+    radial-gradient(900px 380px at 90% 0%, rgba(14, 165, 233, 0.08), transparent 50%),
+    linear-gradient(180deg, #f8fbff 0%, #eef4fb 40%, #f7f9fc 100%);
+}
+
+.saathi-hero {
+  padding: 16px 0 4px;
+}
+
+.saathi-hero-inner {
+  max-width: none;
+  width: 100%;
+}
+
+.saathi-title-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 8px 14px;
+}
+
+.saathi-title-row h1 {
+  margin: 0;
+  font-size: clamp(1.15rem, 2.2vw, 1.45rem);
+  line-height: 1.25;
+  font-weight: 800;
+  color: #0b2447;
+}
+
+.saathi-kicker {
+  margin: 0;
+  font-size: 0.68rem;
+  font-weight: 800;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: #1d4ed8;
+}
+
+.saathi-chat-section {
+  padding: 8px 0 0;
+}
+
+.saathi-chat-loading {
+  min-height: 420px;
+  display: grid;
+  place-items: center;
+  border-radius: 18px;
+  background: #fff;
+  border: 1px solid #dbe8ff;
+  color: #64748b;
+  font-weight: 650;
+  font-size: 0.9rem;
+}
+
+.cds-page-root {
+  position: relative;
+  z-index: 1;
+}
+
+.cds-page-shell {
+  width: 100%;
+}
+
+.cds-panel-page {
+  position: relative !important;
+  inset: auto !important;
+  width: 100% !important;
+  max-width: none !important;
+  height: min(78vh, 820px) !important;
+  max-height: none !important;
+  border-radius: 18px;
+  border: 1px solid #dbe8ff;
+  box-shadow: 0 18px 40px rgba(15, 23, 42, 0.08);
+}
+
+.saathi-below {
+  padding: 20px 0 0;
+}
+
+.saathi-lead {
+  margin: 0 0 22px;
+  font-size: 0.9rem;
+  line-height: 1.55;
+  color: #475569;
+}
+
+.saathi-block {
+  margin: 0 0 28px;
+}
+
+.saathi-block h2 {
+  margin: 0 0 4px;
+  font-size: 1.05rem;
+  font-weight: 800;
+  color: #0b2447;
+}
+
+.saathi-block-lead {
+  margin: 0 0 14px;
+  font-size: 0.84rem;
+  color: #64748b;
+}
+
+.saathi-how {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: grid;
+  gap: 12px;
+}
+
+.saathi-how li {
+  display: grid;
+  grid-template-columns: 28px 1fr;
+  gap: 12px;
+  align-items: start;
+  padding: 12px 14px;
+  background: #fff;
+  border: 1px solid #e2eaf6;
+  border-radius: 12px;
+}
+
+.saathi-how-num {
+  display: grid;
+  place-items: center;
+  width: 28px;
+  height: 28px;
+  border-radius: 8px;
+  background: #eff6ff;
+  color: #1d4ed8;
+  font-size: 0.78rem;
+  font-weight: 800;
+}
+
+.saathi-how strong {
+  display: block;
+  margin: 0 0 4px;
+  font-size: 0.9rem;
+  color: #0f172a;
+}
+
+.saathi-how p {
+  margin: 0;
+  font-size: 0.84rem;
+  line-height: 1.5;
+  color: #475569;
+}
+
+.saathi-faq {
+  display: grid;
+  gap: 8px;
+}
+
+.saathi-faq-item {
+  border: 1px solid #e2eaf6;
+  border-radius: 12px;
+  background: #fff;
+}
+
+.saathi-faq-item[open] {
+  border-color: #c9d8f0;
+  background: #fbfdff;
+}
+
+.saathi-faq-item > summary {
+  padding: 12px 14px;
+  cursor: pointer;
+  list-style: none;
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: #0f172a;
+}
+
+.saathi-faq-item > summary::-webkit-details-marker {
+  display: none;
+}
+
+.saathi-faq-item > p {
+  margin: 0;
+  padding: 0 14px 14px;
+  font-size: 0.86rem;
+  line-height: 1.55;
+  color: #475569;
+}
+
+@media (max-width: 720px) {
+  .saathi-hero {
+    padding-top: 12px;
+  }
+  .saathi-title-row h1 {
+    font-size: 1.1rem;
+  }
+  .cds-panel-page {
+    height: min(82vh, 760px) !important;
+    border-radius: 14px;
+  }
+}
