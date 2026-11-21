@@ -78,16 +78,7 @@ export default async function SearchPage({ searchParams }: { searchParams: Promi
   const groups = SUGGEST_GROUPS.map((g) => ({ ...g, items: results[g.key] })).filter((g) => g.items.length);
   const total = groups.reduce((n, g) => n + g.items.length, 0);
   return <main className="section ls-page"><div className="wrap">
-    <section className="ls-hero">
-      <div className="ls-hero-inner">
-        <div className="ls-hero-copy">
-          <span className="ls-kicker"><Search size={15} aria-hidden="true" /> Search</span>
-          <h1>{keyword ? `Search results for “${keyword}”` : 'Search colleges, exams, courses and guides'}</h1>
-          <p>{keyword ? `${total} match${total === 1 ? '' : 'es'}${results.fuzzy ? ' (close matches — check the spelling)' : ''}. Published colleges open their profile; others can be opened with View.` : 'Type a college name or short name (IIT, NMIMS), an entrance exam (CAT, JEE) or a course (MBA, B.Tech).'}</p>
-        </div>
-        <div className="ls-hero-visual"><HeroPhoto src="/colleges-hero.webp" alt="Search colleges, exams, courses and decision guides" /></div>
-      </div>
-    </section>
+    <h1 className="search-compact-title">{keyword ? `Search results for “${keyword}”` : 'Search colleges, exams, courses and guides'}<span>{keyword ? ` · ${total} match${total === 1 ? '' : 'es'}${results.fuzzy ? ' (close matches, check the spelling)' : ''}` : ''}</span></h1>
     <div className="ls-search-box"><SearchBox variant="page" initialQuery={keyword} autoFocus={!keyword} /></div>
     {keyword && groups.length ? <SearchResultGroups results={results} keyword={keyword} /> : <div className="card no-results"><h2>{keyword ? `No results for “${keyword}”` : 'Start typing to search'}</h2><p>Try a shorter name, a college abbreviation, or browse <Link href="/colleges">colleges</Link>, <Link href="/exams">exams</Link>, <Link href="/courses">courses</Link> and <Link href="/articles">guides</Link>.</p></div>}
   </div></main>;

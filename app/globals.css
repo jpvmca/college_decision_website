@@ -223,3 +223,8 @@ main.section{padding-top:24px;padding-bottom:24px}
 .nav-progress.is-active { opacity: 1; animation: nav-progress-grow 8s cubic-bezier(.1, .7, .2, 1) forwards; }
 @keyframes nav-progress-grow { 0% { width: 0; } 10% { width: 35%; } 50% { width: 70%; } 100% { width: 92%; } }
 @media (prefers-reduced-motion: reduce) { .nav-progress.is-active { animation: none; width: 70%; } }
+
+/* Search page compact title (hero removed) */
+.search-compact-title{font-size:20px;line-height:1.3;margin:4px 0 12px;font-weight:700}
+.search-compact-title span{font-size:14px;font-weight:500;color:#64748b}
+@media (max-width:640px){.search-compact-title{font-size:17px}}
