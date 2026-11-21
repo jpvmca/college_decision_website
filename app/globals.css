@@ -140,10 +140,10 @@ a{color:var(--blue);text-decoration:none}a:hover{text-decoration:underline}.auto
 .typeahead .ta-group{padding:4px 0}
 .typeahead .ta-group+.ta-group{border-top:1px solid #eef2f7}
 .typeahead .ta-group-label{display:flex;align-items:center;gap:6px;padding:6px 13px 2px;color:#64748b;font-size:11px;font-weight:800;letter-spacing:.06em;text-transform:uppercase}
-.typeahead a.ta-option{display:block;border:0;padding:7px 13px;color:inherit;text-decoration:none;cursor:pointer;border-left:3px solid transparent}
-.typeahead a.ta-option strong{font-weight:600;font-size:14px;line-height:1.3;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.typeahead a.ta-option small{font-size:12px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.typeahead a.ta-option.is-active,.typeahead a.ta-option:hover{background:#eff6ff;border-left-color:#2563eb}
+.typeahead .ta-option{display:block;width:100%;border:0;background:transparent;padding:7px 13px;color:inherit;text-decoration:none;cursor:pointer;border-left:3px solid transparent;text-align:left;font:inherit}
+.typeahead .ta-option strong{font-weight:600;font-size:14px;line-height:1.3;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.typeahead .ta-option small{font-size:12px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.typeahead .ta-option.is-active,.typeahead .ta-option:hover{background:#eff6ff;border-left-color:#2563eb}
 .typeahead mark{background:none;color:#1d4ed8;font-weight:800;padding:0}
 .typeahead .ta-all{display:block;padding:10px 13px;border-top:1px solid #e2e8f0;color:#2563eb;font-weight:700;text-decoration:none;background:#f8fafc}
 .typeahead .ta-all.is-active,.typeahead .ta-all:hover{background:#eff6ff}
@@ -168,6 +168,23 @@ a{color:var(--blue);text-decoration:none}a:hover{text-decoration:underline}.auto
 .search-hit strong{display:block;font-size:15px;line-height:1.35}
 .search-hit small{display:block;color:var(--muted);margin-top:3px}
 .search-hit mark{background:#dbeafe;color:inherit;border-radius:3px;padding:0 1px}
+.search-hit.is-preview{display:flex;flex-direction:column;align-items:flex-start;gap:10px}
+.search-hit-view{margin-top:2px}
+.modal-backdrop.search-unpublished-backdrop{z-index:80;padding:24px 12px;overflow-y:auto;align-items:safe center}
+.search-unpublished-modal{width:min(640px,100%);max-height:min(90vh,720px)}
+.search-unpublished-facts{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px;margin:16px 0 8px}
+.search-unpublished-fact{background:#f8fafc;border:1px solid var(--line);border-radius:10px;padding:12px}
+.search-unpublished-fact small{display:block;color:var(--muted);font-size:11px;font-weight:800;letter-spacing:.04em;text-transform:uppercase}
+.search-unpublished-fact strong{display:block;margin-top:4px;font-size:15px;line-height:1.35}
+.search-unpublished-block h3{margin:18px 0 8px}
+.search-unpublished-block p{margin:0;color:var(--text,#172033)}
+.search-unpublished-courses{margin:0;padding-left:18px;display:grid;gap:4px}
+.search-unpublished-website{margin:18px 0 0}
+.search-unpublished-website a{font-weight:700}
+@media(max-width:400px){
+  .search-unpublished-modal{padding:20px 14px}
+  .search-unpublished-facts{grid-template-columns:1fr}
+}
 .course-geo-links{margin-top:28px;display:grid;gap:20px}.course-geo-links h2{margin:0 0 10px}.course-geo-links ul{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:8px}.course-geo-links li{padding:8px 12px;border:1px solid var(--line);border-radius:10px;background:#f8fafc;font-size:14px}.course-geo-links a{color:#254b87;text-decoration:none;font-weight:600}.course-geo-links a:hover{text-decoration:underline}.course-geo-links span{color:var(--muted);font-size:12px}
 
 .college-profile-toc{position:sticky;top:0;z-index:5;display:flex;gap:6px 14px;align-items:center;overflow-x:auto;white-space:nowrap;margin:0 0 24px;padding:10px 12px;border:1px solid var(--line);border-radius:12px;background:#fff;font-size:14px;scrollbar-width:thin}.college-profile-toc strong{color:var(--navy)}.college-profile-toc a{text-decoration:none}.college-profile-page section[id]{scroll-margin-top:64px}

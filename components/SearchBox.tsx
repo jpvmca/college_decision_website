@@ -4,6 +4,7 @@ import { FormEvent, KeyboardEvent, useEffect, useId, useMemo, useRef, useState }
 import { useRouter } from 'next/navigation';
 import { Search, Building2, ClipboardList, BookOpen, FileText, Loader2, X } from 'lucide-react';
 import { EMPTY_SUGGEST, SUGGEST_GROUPS, highlight, type SuggestItem, type SuggestResult } from '../lib/typeahead';
+import UnpublishedCollegeModal from './UnpublishedCollegeModal';
 
 const DEBOUNCE_MS = 200;
 const MIN_CHARS = 2;
@@ -22,6 +23,7 @@ export default function SearchBox({ initialQuery = '', variant = 'header', autoF
   const [loading, setLoading] = useState(false);
   const [failed, setFailed] = useState(false);
   const [active, setActive] = useState(-1);
+  const [previewId, setPreviewId] = useState<number | null>(null);
   const cache = useRef(new Map<string, SuggestResult>());
   const root = useRef<HTMLDivElement>(null);
   const input = useRef<HTMLInputElement>(null);
@@ -67,7 +69,8 @@ export default function SearchBox({ initialQuery = '', variant = 'header', autoF
 
   const groups = useMemo(() => SUGGEST_GROUPS.map((g) => ({ ...g, items: data[g.key] as SuggestItem[] })).filter((g) => g.items.length), [data]);
   // Flat option list for keyboard navigation; last option is "See all results".
-  const flat = useMemo(() => [...groups.flatMap((g) => g.items.map((item) => ({ href: item.href }))), { href: `/search?q=${encodeURIComponent(q)}` }], [groups, q]);
+  const flat = useMemo(() => [...groups.flatMap((g) => g.items), { type: 'all' as const, href: `/search?q=${encodeURIComponent(q)}` }], [groups, q]);
+  const isUnpublished = (item: { type?: string; isPublished?: boolean }) => item.type === 'college' && item.isPublished === false;
   const optionId = (i: number) => `${listId}-opt-${i}`;
   const showPanel = open && enough;
   const allHref = `/search?q=${encodeURIComponent(q)}`;
@@ -78,9 +81,18 @@ export default function SearchBox({ initialQuery = '', variant = 'header', autoF
     router.push(href);
   }
 
+  function openItem(item: SuggestItem | { type: 'all'; href: string }) {
+    if (isUnpublished(item) && 'id' in item) {
+      setOpen(false);
+      setPreviewId(Number(item.id));
+      return;
+    }
+    if (item.href) go(item.href);
+  }
+
   function submit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
-    if (active >= 0 && flat[active]) { go(flat[active].href); return; }
+    if (active >= 0 && flat[active]) { openItem(flat[active]); return; }
     if (q) go(allHref);
   }
 
@@ -130,11 +142,13 @@ export default function SearchBox({ initialQuery = '', variant = 'header', autoF
           {g.items.map((item) => {
             n += 1;
             const i = n;
-            return <a key={`${item.type}-${item.id}`} id={optionId(i)} role="option" aria-selected={active === i} className={`ta-option${active === i ? ' is-active' : ''}`} href={item.href}
-              onMouseEnter={() => setActive(i)} onClick={(e) => { if (e.metaKey || e.ctrlKey || e.shiftKey) return; e.preventDefault(); go(item.href); }}>
-              <strong>{highlight(item.title, data.fuzzy ? '' : q)}</strong>
-              {item.subtitle && <small>{item.type === 'listing' ? 'Listing · ' : ''}{item.subtitle}</small>}
-            </a>;
+            const unpublished = isUnpublished(item);
+            const body = <><strong>{highlight(item.title, data.fuzzy ? '' : q)}</strong>{(item.subtitle || unpublished) && <small>{item.type === 'listing' ? 'Listing · ' : ''}{item.subtitle || ''}{item.subtitle && unpublished ? ' · ' : ''}{unpublished ? 'View details' : ''}</small>}</>;
+            return unpublished
+              ? <button type="button" key={`${item.type}-${item.id}`} id={optionId(i)} role="option" aria-selected={active === i} className={`ta-option${active === i ? ' is-active' : ''}`}
+                  onMouseEnter={() => setActive(i)} onClick={() => openItem(item)}>{body}</button>
+              : <a key={`${item.type}-${item.id}`} id={optionId(i)} role="option" aria-selected={active === i} className={`ta-option${active === i ? ' is-active' : ''}`} href={item.href}
+                  onMouseEnter={() => setActive(i)} onClick={(e) => { if (e.metaKey || e.ctrlKey || e.shiftKey) return; e.preventDefault(); openItem(item); }}>{body}</a>;
           })}
         </div>;
       })}
@@ -142,5 +156,6 @@ export default function SearchBox({ initialQuery = '', variant = 'header', autoF
         onMouseEnter={() => setActive(flat.length - 1)} onClick={(e) => { e.preventDefault(); go(allHref); }}>See all results for “{q}” →</a>}
       {loading && groups.length > 0 && <span className="ta-loading-bar" aria-hidden="true" />}
     </div>}
+    <UnpublishedCollegeModal instituteId={previewId} open={previewId != null} onClose={() => setPreviewId(null)} />
   </div>;
 }

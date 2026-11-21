@@ -5,9 +5,10 @@ import { api } from '../../lib/api';
 import CollegeDecisionCard, { CollegeDecisionResult } from '../../components/CollegeDecisionCard';
 import CollegeDecisionFilter from '../../components/CollegeDecisionFilter';
 import SearchBox from '../../components/SearchBox';
+import SearchResultGroups from '../../components/SearchResultGroups';
 import HeroPhoto from '../../components/HeroPhoto';
 import HeroStats from '../../components/HeroStats';
-import { EMPTY_SUGGEST, SUGGEST_GROUPS, highlight, type SuggestResult } from '../../lib/typeahead';
+import { EMPTY_SUGGEST, SUGGEST_GROUPS, type SuggestResult } from '../../lib/typeahead';
 
 type DecisionResponse = { data: CollegeDecisionResult[]; pagination: { page: number; perPage: number; total: number; totalPages: number } };
 
@@ -26,7 +27,7 @@ export default async function SearchPage({ searchParams }: { searchParams: Promi
   let decisionResults: DecisionResponse = { data: [], pagination: { page: 1, perPage: 10, total: 0, totalPages: 0 } };
   if (keyword) {
     try {
-      const response = await api<{ data: SuggestResult }>(`/search/suggest?q=${encodeURIComponent(keyword.slice(0, 80))}&limit=20`);
+      const response = await api<{ data: SuggestResult }>(`/search/suggest?q=${encodeURIComponent(keyword.slice(0, 80))}&limit=20`, { cache: 'no-store' });
       results = response.data;
     } catch {
       results = EMPTY_SUGGEST;
@@ -82,16 +83,13 @@ export default async function SearchPage({ searchParams }: { searchParams: Promi
         <div className="ls-hero-copy">
           <span className="ls-kicker"><Search size={15} aria-hidden="true" /> Search</span>
           <h1>{keyword ? `Search results for “${keyword}”` : 'Search colleges, exams, courses and guides'}</h1>
-          <p>{keyword ? `${total} match${total === 1 ? '' : 'es'}${results.fuzzy ? ' (close matches — check the spelling)' : ''}. Colleges show published profiles only.` : 'Type a college name or short name (IIT, NMIMS), an entrance exam (CAT, JEE) or a course (MBA, B.Tech).'}</p>
+          <p>{keyword ? `${total} match${total === 1 ? '' : 'es'}${results.fuzzy ? ' (close matches — check the spelling)' : ''}. Published colleges open their profile; others can be opened with View.` : 'Type a college name or short name (IIT, NMIMS), an entrance exam (CAT, JEE) or a course (MBA, B.Tech).'}</p>
         </div>
         <div className="ls-hero-visual"><HeroPhoto src="/colleges-hero.webp" alt="Search colleges, exams, courses and decision guides" /></div>
       </div>
       {keyword ? <HeroStats prefix="ls" stats={[{ icon: Search, value: String(total), label: total === 1 ? 'Match' : 'Matches' }]} /> : null}
     </section>
     <div className="ls-search-box"><SearchBox variant="page" initialQuery={keyword} autoFocus={!keyword} /></div>
-    {keyword && groups.length ? <div className="search-groups">{groups.map((g) => <section className="search-group" key={g.key} aria-labelledby={`sg-${g.key}`}>
-      <h2 id={`sg-${g.key}`}>{g.label} <small>{g.items.length}{g.items.length >= 20 ? '+' : ''}</small></h2>
-      <div className="search-group-list">{g.items.map((item) => <Link className="search-hit" key={`${item.type}-${item.id}`} href={item.href}><strong>{highlight(item.title, results.fuzzy ? '' : keyword)}</strong>{item.subtitle && <small>{item.type === 'listing' ? 'Listing · ' : ''}{item.subtitle}</small>}</Link>)}</div>
-    </section>)}</div> : <div className="card no-results"><h2>{keyword ? `No results for “${keyword}”` : 'Start typing to search'}</h2><p>Try a shorter name, a college abbreviation, or browse <Link href="/colleges">colleges</Link>, <Link href="/exams">exams</Link>, <Link href="/courses">courses</Link> and <Link href="/articles">guides</Link>.</p></div>}
+    {keyword && groups.length ? <SearchResultGroups results={results} keyword={keyword} /> : <div className="card no-results"><h2>{keyword ? `No results for “${keyword}”` : 'Start typing to search'}</h2><p>Try a shorter name, a college abbreviation, or browse <Link href="/colleges">colleges</Link>, <Link href="/exams">exams</Link>, <Link href="/courses">courses</Link> and <Link href="/articles">guides</Link>.</p></div>}
   </div></main>;
 }

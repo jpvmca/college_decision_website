@@ -1,6 +1,6 @@
 import type { ReactNode } from 'react';
 
-export type SuggestItem = { type: 'college' | 'exam' | 'course' | 'listing' | 'article'; id: number | string; title: string; subtitle: string | null; href: string; logo?: string | null };
+export type SuggestItem = { type: 'college' | 'exam' | 'course' | 'listing' | 'article'; id: number | string; title: string; subtitle: string | null; href: string; logo?: string | null; isPublished?: boolean };
 export type SuggestResult = { q: string; colleges: SuggestItem[]; exams: SuggestItem[]; courses: SuggestItem[]; articles: SuggestItem[]; total: number; fuzzy: boolean; tookMs?: number };
 export const SUGGEST_GROUPS = [
   { key: 'colleges', label: 'Colleges' },
