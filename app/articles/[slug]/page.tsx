@@ -11,6 +11,8 @@ import AdSlot from '../../../components/ads/AdSlot';
 import { getAdSlot } from '../../../lib/ads';
 import CollegeComparisonArticle from '../../../components/articles/CollegeComparisonArticle';
 import { staticImageUrl } from '../../../lib/image';
+import LastUpdatedByline from '../../../components/LastUpdatedByline';
+import { jsonLdAuthor } from '../../../lib/page-byline';
 
 export const revalidate = 900;
 
@@ -26,6 +28,7 @@ type GeneratedArticle = {
   title: string;
   publishedAt?: string | null;
   publicationUpdatedAt?: string | null;
+  authorName?: string | null;
   imageUrl?: string | null;
   course: { name: string; slug: string };
   exam?: { id: number; name: string; slug: string; applyUrl?: string | null };
@@ -249,7 +252,7 @@ export default async function ArticleDetailPage({ params }: { params: Promise<{ 
     const comparisonJsonLd = {
       '@context': 'https://schema.org',
       '@graph': [
-        { '@type': 'Article', headline: article.h1 || article.title, mainEntityOfPage: `${getSiteUrl()}/articles/${article.slug}`, about: { '@type': 'Course', name: article.course.name } },
+        { '@type': 'Article', headline: article.h1 || article.title, mainEntityOfPage: `${getSiteUrl()}/articles/${article.slug}`, about: { '@type': 'Course', name: article.course.name }, datePublished: article.publishedAt || article.publicationUpdatedAt || undefined, dateModified: article.publicationUpdatedAt || article.publishedAt || undefined, author: jsonLdAuthor(article.authorName) },
         { '@type': 'ItemList', name: `${article.course.name} college comparison`, itemListElement: [article.collegeA, article.collegeB].map((college, index) => ({ '@type': 'ListItem', position: index + 1, name: String((college as { name?: string })?.name || 'College') })) },
         { '@type': 'BreadcrumbList', itemListElement: [{ '@type': 'ListItem', position: 1, name: 'Home', item: getSiteUrl() }, { '@type': 'ListItem', position: 2, name: 'Articles', item: `${getSiteUrl()}/articles` }, { '@type': 'ListItem', position: 3, name: article.title, item: `${getSiteUrl()}/articles/${article.slug}` }] }
       ]
@@ -262,6 +265,7 @@ export default async function ArticleDetailPage({ params }: { params: Promise<{ 
           <div className="ls-hero-copy">
             <span className="ls-kicker"><BadgeCheck size={15} aria-hidden="true" /> College comparison</span>
             <h1>{article.h1 || article.title}</h1>
+            <LastUpdatedByline updatedAt={article.publicationUpdatedAt || article.publishedAt} authorName={article.authorName} />
             <p>Compare recorded fees, eligibility, admission routes and placements before you shortlist.</p>
             <div className="ls-hero-actions">
               <Link prefetch={false} className="button ls-btn-primary" href="/compare-colleges-2026">Compare colleges <ArrowRight size={16} aria-hidden="true" /></Link>
@@ -297,13 +301,9 @@ export default async function ArticleDetailPage({ params }: { params: Promise<{ 
         description: seo.intro,
         mainEntityOfPage: { '@type': 'WebPage', '@id': `${siteUrl}/articles/${article.slug}` },
         about: { '@type': 'Course', name: article.course.name, keywords: seo.secondaryKeywords },
-        datePublished: article.publishedAt || undefined,
+        datePublished: article.publishedAt || article.publicationUpdatedAt || undefined,
         dateModified: article.publicationUpdatedAt || article.publishedAt || undefined,
-        author: {
-          '@type': 'Organization',
-          name: 'College Decision',
-          url: siteUrl
-        },
+        author: jsonLdAuthor(article.authorName),
         publisher: {
           '@type': 'Organization',
           name: 'College Decision',
@@ -331,6 +331,7 @@ export default async function ArticleDetailPage({ params }: { params: Promise<{ 
         <div className="ls-hero-copy">
           <span className="ls-kicker"><FileText size={15} aria-hidden="true" /> Student decision guide</span>
           <h1>{article.title}</h1>
+          <LastUpdatedByline updatedAt={article.publicationUpdatedAt || article.publishedAt} authorName={article.authorName} />
           <p className="ls-hero-lead"><AutoLinkedText text={seo.intro} entities={linkableEntities} /></p>
           <div className="ls-hero-actions">
             <Link prefetch={false} className="button ls-btn-primary" href="/compare-colleges-2026">Compare colleges <ArrowRight size={16} aria-hidden="true" /></Link>

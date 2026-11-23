@@ -21,6 +21,9 @@ import { getClosingCombos, parseRankSegment } from '../../lib/closing';
 import ClosingCollegesPage, { closingMetadata } from '../../components/ClosingCollegesPage';
 import { CourseFilterMobileButton, CourseFilterSidebar, type CityPageOption, type StatePageOption } from '../../components/CourseFilterPanel';
 import { staticImageUrl } from '../../lib/image';
+import { LISTING_SEO_YEAR, buildCourseListingSeo, listingSeoInputFromPage } from '../../lib/listing-seo';
+import LastUpdatedByline from '../../components/LastUpdatedByline';
+import { jsonLdAuthor } from '../../lib/page-byline';
 
 /**
  * Course listing pages: /{key}-colleges (e.g. /mba-colleges, /engineering-colleges).
@@ -34,7 +37,6 @@ type ListingImage = { path: string; width: number; height: number; updatedAt?: s
 type CourseListing = { course: CourseFacet; data: ListedCollege[]; pagination: ListPagination; image?: ListingImage | null; cityPage?: CityPageOption | null };
 
 const PAGE_SIZE = 20;
-const CURRENT_YEAR = new Date().getFullYear();
 
 function stateCourseSegment(segment: string) {
   const match = /^(.+)-colleges-in-([a-z0-9-]+)$/.exec(segment);
@@ -123,14 +125,6 @@ function heroImage(result: CourseListing) {
   };
 }
 
-function seoTitle(label: string) {
-  return `${label} Colleges by Profile & Budget: Fees & Placements`;
-}
-
-function seoDescription(label: string) {
-  return `Compare ${label} colleges in India based on your profile and budget. Explore fees, course focus and placement outcomes to shortlist the right college.`;
-}
-
 export async function generateMetadata({ params, searchParams }: { params: Params; searchParams: SearchParams }): Promise<Metadata> {
   {
     const [{ listing: seg }, q] = await Promise.all([params, searchParams]);
@@ -149,18 +143,22 @@ export async function generateMetadata({ params, searchParams }: { params: Param
   const path = cityPage || statePage ? `/${listing}` : courseListingHref(result.course.key);
   const cityName = cityPage?.cityName || '';
   const stateName = cityPage?.stateName || (statePage ? humanizeState(statePage.stateSlug) : '');
-  const baseTitle = cityPage
-    ? `${label} Colleges in ${cityName} (${stateName}) ${CURRENT_YEAR} – Fees, Admission & Placement`
-    : statePage
-      ? `${label} Colleges in ${stateName} ${CURRENT_YEAR}: Fees, Admission & Placements`
-    : seoTitle(label);
-  const title = baseTitle;
-  const description = seoDescription(label);
-  const pageDescription = cityPage
-    ? `Explore ${result.pagination.total.toLocaleString('en-IN')}+ ${label.toLowerCase()} colleges in ${cityName}, ${stateName}. Compare fees, courses, admission process, cut-offs, placements and rankings. Filter by locality, budget and exam to shortlist the best ${label.toLowerCase()} colleges in ${cityName} for ${CURRENT_YEAR}.`
-    : statePage
-      ? `Explore ${result.pagination.total.toLocaleString('en-IN')}+ ${label.toLowerCase()} colleges in ${stateName}. Compare fees, courses, admission process, cut-offs, placements and rankings. Filter by locality and course to shortlist the best ${label.toLowerCase()} colleges in ${stateName} for ${CURRENT_YEAR}.`
-      : description;
+  const summary = await getListingSummary(result.course.courseSlug, cityPage?.stateSlug || statePage?.stateSlug || null, cityPage?.citySlug || null);
+  const seo = buildCourseListingSeo({
+    courseKey: result.course.key,
+    courseLabel: label,
+    scope: cityPage ? 'city' : statePage ? 'state' : 'national',
+    cityName,
+    stateName,
+    collegeCount: result.pagination.total,
+    cityNames: (summary?.cities || []).map((item) => item.name),
+    stateNames: (summary?.states || []).map((item) => item.name),
+    publicCount: summary?.publicCount ?? null,
+    privateCount: summary?.privateCount ?? null,
+    fees: summary?.fees ?? null
+  });
+  const title = seo.title;
+  const pageDescription = seo.description;
   const image = heroImage(result);
   const ogImages = image
     ? [{ url: image.url, width: image.width, height: image.height, alt: image.alt }]
@@ -169,39 +167,18 @@ export async function generateMetadata({ params, searchParams }: { params: Param
     // absolute: bypass the root layout's "%s | College Decision" template.
     title: { absolute: title },
     description: pageDescription,
-    ...((cityPage || statePage) ? {
-      keywords: [
-        ...(cityPage ? [
-          `${label} colleges in ${cityName} ${stateName}`,
-          `${label} colleges in ${cityName}`,
-          `${cityName} ${label} colleges`,
-          `${label} admission ${cityName}`,
-          `${label} fees ${cityName}`,
-          `best ${label} colleges in ${cityName}`,
-          `top ${label} colleges ${cityName}`,
-          `${label} colleges ${cityName} ${CURRENT_YEAR}`,
-          `${label} placement ${cityName}`
-        ] : [
-          `${stateName} ${label} colleges`,
-          `${label} admission ${stateName}`,
-          `${label} fees ${stateName}`,
-          `best ${label} colleges ${stateName}`,
-          `${label} colleges ${stateName} ${CURRENT_YEAR}`,
-          `top ${label} colleges in ${stateName}`,
-          `${label} placement ${stateName}`
-        ])
-      ]
-    } : {}),
+    keywords: seo.keywords,
+    other: { 'focus-keyword': seo.focusKeyword },
     // One URL per listing; further colleges load client-side ("Load more"), never via ?page=.
     alternates: { canonical: path },
     openGraph: {
-      title: baseTitle,
+      title,
       description: pageDescription,
       url: path,
       type: 'website',
       images: ogImages
     },
-    twitter: { card: 'summary_large_image', title: baseTitle, description: pageDescription, images: ogImages.map((item) => item.url) },
+    twitter: { card: 'summary_large_image', title, description: pageDescription, images: ogImages.map((item) => item.url) },
     robots: { index: true, follow: true }
   };
 }
@@ -233,20 +210,26 @@ export default async function CourseCollegesPage({ params, searchParams }: { par
   const pageUrl = canonicalUrl;
   const cityName = cityPage?.cityName || '';
   const stateName = cityPage?.stateName || (statePage ? humanizeState(statePage.stateSlug) : '');
-  const heading = cityPage
-    ? `${label} Colleges in ${cityName} (${stateName}) ${CURRENT_YEAR}`
-    : statePage
-      ? `${label} Colleges in ${stateName} ${CURRENT_YEAR}`
-    : seoTitle(label);
   const totalLabel = pagination.total.toLocaleString('en-IN');
   const image = heroImage(result);
   const summary = await getListingSummary(course.courseSlug, cityPage?.stateSlug || statePage?.stateSlug || null, cityPage?.citySlug || null);
-  const countText = pagination.total.toLocaleString('en-IN');
-  const intro = cityPage
-    ? `College Decision lists ${countText} published ${label} colleges in ${cityName}, ${stateName}. Use this list to compare published fees, admission routes and placements, then confirm every figure on the official college site.`
-    : statePage
-      ? `College Decision lists ${countText} published ${label} colleges in ${stateName}. Use this list to compare published fees, admission routes and placements, then confirm every figure on the official college site.`
-      : `Find ${label} colleges for different profiles and budgets. India has ${countText} published colleges offering ${label} in our database, listed with the most complete fee, course and placement information first so you can shortlist faster.`;
+  const scope = cityPage ? 'city' as const : statePage ? 'state' as const : 'national' as const;
+  const seo = listingSeoInputFromPage({
+    courseKey: course.key,
+    courseLabel: label,
+    scope,
+    cityName,
+    stateName,
+    collegeCount: pagination.total,
+    cityNames: (summary?.cities || []).map((item) => item.name),
+    stateNames: (summary?.states || []).map((item) => item.name),
+    publicCount: summary?.publicCount ?? null,
+    privateCount: summary?.privateCount ?? null,
+    fees: summary?.fees ?? null
+  });
+  const heading = seo.title;
+  const introParagraphs = seo.intro;
+  const contentHeadings = seo.headings;
   const courseStates = statePages.data.filter((item) => item.courseSlug === course.courseSlug);
   const courseCities = cityPages.data.filter((item) => item.courseSlug === course.courseSlug);
   const stats = [
@@ -264,18 +247,18 @@ export default async function CourseCollegesPage({ params, searchParams }: { par
         '@id': `${pageUrl}#webpage`,
         url: pageUrl,
         name: heading,
-        description: cityPage
-          ? `Explore ${totalLabel}+ ${label.toLowerCase()} colleges in ${cityName}, ${stateName}. Compare fees, courses, admission process, cut-offs, placements and rankings.`
-          : seoDescription(label),
+        description: seo.description,
         isPartOf: { '@id': `${siteUrl}/#website` },
         breadcrumb: { '@id': `${pageUrl}#breadcrumb` },
         mainEntity: { '@id': `${pageUrl}#itemlist` },
+        author: jsonLdAuthor(),
+        ...(summary?.lastUpdated ? { dateModified: summary.lastUpdated } : {}),
         ...(image ? { primaryImageOfPage: { '@type': 'ImageObject', url: image.url, width: image.width, height: image.height, caption: image.alt }, image: image.url } : {})
       },
       {
         '@type': 'ItemList',
         '@id': `${pageUrl}#itemlist`,
-        name: cityPage ? `${label} colleges in ${cityName}, ${stateName}` : `${label} colleges in India`,
+        name: contentHeadings.list,
         numberOfItems: pagination.total,
         itemListElement: result.data.map((college, index) => {
           const collegeUrl = college.published_slug ? `${siteUrl}/colleges/${college.published_slug}` : `${pageUrl}#college-${index + 1}`;
@@ -315,7 +298,8 @@ export default async function CourseCollegesPage({ params, searchParams }: { par
         <div className="ls-hero-copy">
           <span className="ls-kicker"><BadgeCheck size={15} aria-hidden="true" /> {kicker}</span>
           <h1>{heading}</h1>
-          <p>{intro}</p>
+          <LastUpdatedByline updatedAt={summary?.lastUpdated} />
+          {introParagraphs.map((paragraph) => <p key={paragraph}>{paragraph}</p>)}
           <div className="ls-hero-actions">
             <Link prefetch={false} className="button ls-btn-primary" href="/compare-colleges-2026">Compare colleges <ArrowRight size={16} aria-hidden="true" /></Link>
             {course.courseSlug ? <Link prefetch={false} className="button ls-btn-ghost" href={`/courses/${course.courseSlug}`}>{label} course guide</Link> : <Link prefetch={false} className="button ls-btn-ghost" href="/courses">Browse courses</Link>}
@@ -338,7 +322,7 @@ export default async function CourseCollegesPage({ params, searchParams }: { par
       stateSlug={cityPage?.stateSlug || statePage?.stateSlug || null}
       siblingStates={courseStates.map((item) => ({ stateSlug: item.stateSlug, stateName: item.stateName, count: item.count, href: `/${course.key}-colleges-in-${item.stateSlug}` }))}
       summary={summary}
-      year={CURRENT_YEAR}
+      year={LISTING_SEO_YEAR}
     /> : null}
     <AdSlot slotKey="listing_top" className="listing-ad" />
     <div className="listing-layout">
@@ -346,7 +330,7 @@ export default async function CourseCollegesPage({ params, searchParams }: { par
         <CourseFilterMobileButton percentileGroups={percentileGroups} facets={facets.data} totalColleges={facets.totalColleges} selectedKey={course.key} selectedState={cityPage?.stateSlug || statePage?.stateSlug || null} selectedCity={cityPage?.citySlug || null} statePages={statePages.data} cityPages={cityPages.data} />
         <div className="ls-head">
           <p className="ls-eyebrow"><Building2 size={14} aria-hidden="true" /> College list</p>
-          <h2>Browse {label} Colleges</h2>
+          <h2>{contentHeadings.list}</h2>
         </div>
         <p className="ls-count">{totalLabel} {label} colleges · load more to continue</p>
         {statePage || cityPage

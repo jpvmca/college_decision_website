@@ -1,6 +1,7 @@
 import Link from 'next/link';
 import { BadgeCheck, ChevronDown, ClipboardList } from 'lucide-react';
 import JsonLd from './JsonLd';
+import LastUpdatedByline from './LastUpdatedByline';
 import ExamCutoffsClient from './ExamCutoffsClient';
 import CutoffExpand from './CutoffExpand';
 import CutoffTakeaways from './CutoffTakeaways';
@@ -9,6 +10,7 @@ import { Fragment } from 'react';
 import { ExamCutoffs, type ExamCutoffResponse } from './Cutoffs';
 import AdSlot from './ads/AdSlot';
 import { batchLabel, breadcrumbJsonLd, cutoffYearHeading, examProgrammeWord, examYearNote, examYearOf, examTargetPhrase, faqJsonLd, fitDescription, fitTitle, formatMetric, isAdmissionKeyed, metricWord, pendingExamYear, siteUrl, type ExamCutoffSummary } from '../lib/cutoffs';
+import { jsonLdAuthor } from '../lib/page-byline';
 
 export const cleanName = (s: string) => s.replace(/\s+/g, ' ').trim();
 
@@ -121,8 +123,11 @@ export default function ExamCutoffPage({ summary, blocks, activeYear, finder, co
   if (isMinimum) faqs.push({ question: `What is the difference between eligibility and shortlist cutoffs?`, answer: `An eligibility cutoff is the minimum ${metric} an institute needs before it considers an application at all; most institutes then rank eligible candidates on a composite score (academics, work experience, diversity) and call far fewer for interview. A shortlist cutoff is the figure an institute says it actually used for its interview shortlist. The Type column on this page shows which one each college published.` });
   if (metric === 'rank') faqs.push({ question: `What do opening and closing ranks mean in the ${name} cutoff?`, answer: `The opening rank is the best rank and the closing rank is the last rank admitted to a programme in a given round, category and seat pool. Your rank must be at or below the closing rank to have had a seat in that round.` });
   const faqLd = faqJsonLd(faqs.filter((f) => f.answer.trim()));
+  const heading = activeYear ? examCutoffTitle(summary, activeYear) : examCutoffOverviewTitle(summary);
+  const pageUrl = `${siteUrl()}${activeYear ? yearHref(activeYear) : `/exams/${slug}/cutoff`}`;
 
   return <main className="section college-profile-page cp-page"><div className="wrap">
+    <JsonLd data={{ '@context': 'https://schema.org', '@type': 'WebPage', url: pageUrl, name: heading, dateModified: summary.updatedAt || undefined, author: jsonLdAuthor() }} />
     <JsonLd data={breadcrumbJsonLd(siteUrl(), crumbs)} />
     {faqLd && <JsonLd data={faqLd} />}
     <nav className="breadcrumb cp-breadcrumb" aria-label="Breadcrumb"><Link prefetch={false} href="/">Home</Link><span aria-hidden="true">›</span><Link prefetch={false} href="/exams">Exams</Link><span aria-hidden="true">›</span><Link prefetch={false} href={`/exams/${slug}`}>{name}</Link><span aria-hidden="true">›</span>
@@ -131,7 +136,8 @@ export default function ExamCutoffPage({ summary, blocks, activeYear, finder, co
     <header className="cp-hero">
       <div className="cp-hero-copy">
         <p className="cp-eyebrow">Cutoff</p>
-        <h1>{activeYear ? examCutoffTitle(summary, activeYear) : examCutoffOverviewTitle(summary)}</h1>
+        <h1>{heading}</h1>
+        <LastUpdatedByline updatedAt={summary.updatedAt} />
       </div>
       <p className="cp-hero-lead">{isMinimum
         ? `College-wise ${name} ${shownExamYear} ${metric === 'score' ? 'scores' : 'percentiles'} published for ${isAdmissionKeyed(yearInfo) ? `${batchLabel(yearInfo.year)} ` : ''}admissions, taken from each institute's admission policy wherever it is available: the overall figure and, where given, sectional figures${yearInfo.categories === 1 ? ' (only General-category figures are published)' : ' for every category'}. These are published minimum eligibility or shortlisting criteria, depending on the institute.`

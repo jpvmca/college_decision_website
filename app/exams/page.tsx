@@ -8,16 +8,20 @@ import { getAdSlot } from '../../lib/ads';
 import { daysUntil, formatDate as examFormatDate } from '../../lib/exam-format';
 import HeroPhoto from '../../components/HeroPhoto';
 import HeroStats from '../../components/HeroStats';
+import LastUpdatedByline from '../../components/LastUpdatedByline';
+import { jsonLdAuthor } from '../../lib/page-byline';
 import { staticImageUrl } from '../../lib/image';
 
 // Backend listDirectory caps perPage at 30, so the page walks every page and hands the full list to the client.
 const EXAM_BATCH = 30;
 
+const examListInit = { next: { revalidate: 900, tags: ['exams'] } };
+
 async function loadExamDirectory(): Promise<ExamList> {
-  const first = await api<ExamList>(`/exams?page=1&perPage=${EXAM_BATCH}`);
+  const first = await api<ExamList>(`/exams?page=1&perPage=${EXAM_BATCH}`, examListInit);
   const totalPages = Math.max(1, first.pagination.totalPages || 1);
   if (totalPages === 1) return first;
-  const rest = await Promise.all(Array.from({ length: totalPages - 1 }, (_, index) => api<ExamList>(`/exams?page=${index + 2}&perPage=${EXAM_BATCH}`)));
+  const rest = await Promise.all(Array.from({ length: totalPages - 1 }, (_, index) => api<ExamList>(`/exams?page=${index + 2}&perPage=${EXAM_BATCH}`, examListInit)));
   const seen = new Set(first.data.map((exam) => exam.id));
   const data = [...first.data];
   for (const page of rest) {
@@ -50,7 +54,7 @@ export default async function ExamsPage() {
   const jsonLd = {
     '@context': 'https://schema.org',
     '@graph': [
-      { '@type': 'CollectionPage', '@id': `${pageUrl}#collectionpage`, url: pageUrl, name: heading, description: 'Entrance exams in India with next exam dates, registration status, fees, linked programmes and colleges accepting each exam.', isPartOf: { '@id': `${siteUrl}/#website` }, breadcrumb: { '@id': `${pageUrl}#breadcrumb` }, mainEntity: { '@id': `${pageUrl}#itemlist` } },
+      { '@type': 'CollectionPage', '@id': `${pageUrl}#collectionpage`, url: pageUrl, name: heading, description: 'Entrance exams in India with next exam dates, registration status, fees, linked programmes and colleges accepting each exam.', isPartOf: { '@id': `${siteUrl}/#website` }, breadcrumb: { '@id': `${pageUrl}#breadcrumb` }, mainEntity: { '@id': `${pageUrl}#itemlist` }, author: jsonLdAuthor(), dateModified: result.updatedAt || undefined },
       { '@type': 'ItemList', '@id': `${pageUrl}#itemlist`, name: heading, numberOfItems: result.pagination.total, itemListElement: result.data.map((exam, index) => { const examUrl = exam.published_slug ? `${siteUrl}/exams/${exam.published_slug}` : `${pageUrl}#exam-${index + 1}`; return { '@type': 'ListItem', position: index + 1, url: examUrl, name: exam.name }; }) },
       { '@type': 'BreadcrumbList', '@id': `${pageUrl}#breadcrumb`, itemListElement: [{ '@type': 'ListItem', position: 1, name: 'Home', item: siteUrl }, { '@type': 'ListItem', position: 2, name: 'Exams', item: `${siteUrl}/exams` }, ...(activeCourse ? [{ '@type': 'ListItem', position: 3, name: activeCourse.name, item: pageUrl }] : [])] }
     ]
@@ -69,6 +73,7 @@ export default async function ExamsPage() {
         <div className="ex-hero-copy">
           <span className="ex-kicker"><BadgeCheck size={15} aria-hidden="true" /> Entrance exam guides</span>
           <h1>{heading}</h1>
+          <LastUpdatedByline updatedAt={result.updatedAt} />
           <p>Compare exam dates, registration status, application fees, linked programmes and the colleges that accept each exam, then open the full exam profile before you apply.</p>
         </div>
         <div className="ex-hero-visual">

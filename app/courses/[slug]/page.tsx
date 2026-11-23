@@ -15,6 +15,8 @@ import AdSlot from '../../../components/ads/AdSlot';
 import { splitLongParagraphs } from '../../../lib/readable-html';
 import { plainText } from '../../../lib/readable-text';
 import { courseListingHref, getCourseFacets } from '../../../lib/listings';
+import LastUpdatedByline from '../../../components/LastUpdatedByline';
+import { jsonLdAuthor } from '../../../lib/page-byline';
 
 function SectionHead({ icon: Icon, title, subtitle }: { icon: LucideIcon; title: string; subtitle?: string }) {
   return <div className="cp-section-head"><span className="cp-section-icon"><Icon size={20} strokeWidth={2} aria-hidden="true" /></span><div><h2>{title}</h2>{subtitle ? <p>{subtitle}</p> : null}</div></div>;
@@ -48,6 +50,7 @@ type CourseProfile = {
   articles: Array<{ slug: string; title: string; articleType?: string; imageUrl?: string | null; publishedAt?: string | null }>;
   reviewSummary: { count: number; averageRating: number | null; ratingBreakdown: Array<{ rating: number; count: number }> };
   updatedAt?: string | null;
+  authorName?: string | null;
 };
 
 export const revalidate = 900;
@@ -243,7 +246,7 @@ export default async function CourseProfilePage({ params }: { params: Promise<{ 
         headline: seo.title,
         description: seo.description,
         mainEntityOfPage: pageUrl,
-        author: { '@type': 'Organization', name: 'College Decision', url: siteUrl },
+        author: jsonLdAuthor(profile.authorName),
         publisher: { '@type': 'Organization', name: 'College Decision', url: siteUrl, logo: { '@type': 'ImageObject', url: absoluteUrl('/logo.svg', siteUrl) } },
         dateModified: profile.updatedAt || undefined
       },
@@ -276,6 +279,7 @@ export default async function CourseProfilePage({ params }: { params: Promise<{ 
         <div className="cp-hero-copy">
           <p className="cp-eyebrow">Course profile · {currentYear}</p>
           <h1>{seo.h1}</h1>
+          <LastUpdatedByline updatedAt={profile.updatedAt} authorName={profile.authorName} />
           <div className="cp-hero-meta"><span><GraduationCap size={15} aria-hidden="true" /> {profile.course.mode || 'Course'} · India</span></div>
         </div>
       </div>

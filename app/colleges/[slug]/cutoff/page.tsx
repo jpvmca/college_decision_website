@@ -17,6 +17,8 @@ import {
   buildHowToRead, buildIntroParagraphs, buildLead, clean, coverageRows,
   extraFaqs, hasRealMetric, locationOf, trendTable, uniqueSources, type LoadedSection
 } from '../../../../lib/college-cutoff-copy';
+import LastUpdatedByline from '../../../../components/LastUpdatedByline';
+import { jsonLdAuthor } from '../../../../lib/page-byline';
 
 export const revalidate = 900;
 
@@ -84,15 +86,21 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   };
 }
 
-function EmptyCutoffPage({ slug, name }: { slug: string; name: string }) {
+function cutoffPageJsonLd(url: string, name: string, dateModified?: string | Date | null) {
+  return { '@context': 'https://schema.org', '@type': 'WebPage', url, name, dateModified: dateModified || undefined, author: jsonLdAuthor() };
+}
+
+function EmptyCutoffPage({ slug, name, lastUpdated }: { slug: string; name: string; lastUpdated?: string | Date | null }) {
   const crumbs = [{ name: 'Home', path: '/' }, { name: 'Colleges', path: '/colleges' }, { name, path: `/colleges/${slug}` }, { name: 'Cutoff', path: `/colleges/${slug}/cutoff` }];
   return <main className="section college-profile-page cp-page"><div className="wrap">
+    <JsonLd data={cutoffPageJsonLd(`${siteUrl()}/colleges/${slug}/cutoff`, `${name} cutoff`, lastUpdated)} />
     <JsonLd data={breadcrumbJsonLd(siteUrl(), crumbs)} />
     <nav className="breadcrumb cp-breadcrumb" aria-label="Breadcrumb"><Link prefetch={false} href="/">Home</Link><span aria-hidden="true">›</span><Link prefetch={false} href="/colleges">Colleges</Link><span aria-hidden="true">›</span><Link prefetch={false} href={`/colleges/${slug}`}>{name}</Link><span aria-hidden="true">›</span><span aria-current="page">Cutoff</span></nav>
     <header className="cp-hero">
       <div className="cp-hero-copy">
         <p className="cp-eyebrow">Cutoff</p>
         <h1>{name} cutoff</h1>
+        <LastUpdatedByline updatedAt={lastUpdated} />
       </div>
       <p className="cp-hero-lead">CollegeDecision does not currently have official cutoff ranks, scores or percentiles for {name} in its database. We do not invent cutoffs. Check the college profile for courses and admissions, and the official counselling or institute website for the latest lists.</p>
       <div className="cp-hero-actions">
@@ -108,7 +116,7 @@ export default async function CollegeCutoffPage({ params }: { params: Promise<{ 
   if (!s) notFound();
   const name = clean(s.institute.name);
   const sections = await loadSections(slug, s);
-  if (!sections.length) return <EmptyCutoffPage slug={slug} name={name} />;
+  if (!sections.length) return <EmptyCutoffPage slug={slug} name={name} lastUpdated={s.lastUpdated} />;
 
   const { title } = titleFor(s);
   const location = locationOf(s);
@@ -139,6 +147,7 @@ export default async function CollegeCutoffPage({ params }: { params: Promise<{ 
   const logo = s.institute.logo ? instituteLogoUrl(s.institute.logo) : null;
 
   return <main className="section college-profile-page cp-page"><div className="wrap">
+    <JsonLd data={cutoffPageJsonLd(`${siteUrl()}/colleges/${slug}/cutoff`, title, s.lastUpdated)} />
     <JsonLd data={breadcrumbJsonLd(siteUrl(), crumbs)} />
     {faqLd && <JsonLd data={faqLd} />}
     <nav className="breadcrumb cp-breadcrumb" aria-label="Breadcrumb"><Link prefetch={false} href="/">Home</Link><span aria-hidden="true">›</span><Link prefetch={false} href="/colleges">Colleges</Link><span aria-hidden="true">›</span><Link prefetch={false} href={`/colleges/${slug}`}>{name}</Link><span aria-hidden="true">›</span><span aria-current="page">Cutoff</span></nav>
@@ -147,6 +156,7 @@ export default async function CollegeCutoffPage({ params }: { params: Promise<{ 
       <div className="cp-hero-copy">
         <p className="cp-eyebrow">Cutoff</p>
         <h1>{title}</h1>
+        <LastUpdatedByline updatedAt={s.lastUpdated} />
         <div className="cp-hero-meta">
           <span><MapPin size={15} aria-hidden="true" /> {location || 'India'}</span>
           <span><Target size={15} aria-hidden="true" /> {s.exams.map((e) => clean(e.name)).join(', ')}</span>

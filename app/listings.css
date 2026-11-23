@@ -281,3 +281,11 @@ a.ls-course h2 { color: var(--ls-ink); }
 @media (max-width: 640px) {
   .listing-guide.is-compact .collapsible-content-body { font-size: 15px; }
 }
+
+.page-byline { display: flex; flex-wrap: wrap; align-items: center; gap: 6px 8px; margin: 4px 0 10px; color: #b7c9de; font-size: 13px; line-height: 1.45; }
+.page-byline-sep { opacity: .7; }
+.ls-hero-copy > .page-byline { max-width: none; margin: -4px 0 12px; color: #b7c9de; font-size: 13px; line-height: 1.45; }
+.cp-hero-copy > .page-byline { margin: 6px 0 8px; color: #cfe0f5; font-size: 13px; }
+@media (max-width: 640px) {
+  .page-byline, .ls-hero-copy > .page-byline, .cp-hero-copy > .page-byline { font-size: 12.5px; }
+}

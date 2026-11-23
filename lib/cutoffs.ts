@@ -5,6 +5,7 @@ export const CUTOFF_REVALIDATE = 900;
 const opts = (tag: string) => ({ next: { revalidate: CUTOFF_REVALIDATE, tags: ['cutoffs', tag] } });
 
 export type CollegeCutoffSummary = {
+  lastUpdated?: string | null;
   institute: { id: number; name: string; slug: string; city: string | null; state: string | null; logo?: string | null } | null;
   exams: Array<{
     exam_id: number; slug: string; name: string; metric: 'rank' | 'score' | 'percentile'; published: boolean;
@@ -15,13 +16,14 @@ export type CollegeCutoffSummary = {
 export type ExamCutoffSummary = {
   exam: { id: number; slug: string; name: string };
   years: Array<{ year: number; exam_year?: number; rows: number; institutes: number; programmes: number; metric: 'rank' | 'score' | 'percentile'; aggregator: boolean; categories?: number }>;
+  updatedAt?: string | null;
 };
 
 async function safe<T>(fn: () => Promise<T>): Promise<T | null> {
   try { return await fn(); } catch { return null; }
 }
 export const getCollegeCutoffSummary = (slug: string) =>
-  safe(() => api<CollegeCutoffSummary>(`/colleges/${encodeURIComponent(slug)}/cutoffs/summary`, opts(`college:${slug}`)));
+  safe(() => api<CollegeCutoffSummary>(`/colleges/${encodeURIComponent(slug)}/cutoffs/summary?v=lu1`, opts(`college:${slug}`)));
 export const getCollegeExamCutoffs = (slug: string, exam: string, perPage = 50) =>
   safe(() => api<CollegeCutoffResponse>(`/colleges/${encodeURIComponent(slug)}/cutoffs?exam=${encodeURIComponent(exam)}&perPage=${perPage}`, opts(`college:${slug}`)));
 export const getCollegeYearRows = (slug: string, exam: string, year: number) =>

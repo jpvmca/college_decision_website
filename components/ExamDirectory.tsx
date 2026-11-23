@@ -53,6 +53,7 @@ export type ExamList = {
   courses?: CourseFacet[];
   upcoming?: UpcomingExam[];
   pagination: { page: number; perPage: number; total: number; totalPages: number };
+  updatedAt?: string | null;
 };
 
 export default function ExamDirectory({ initial, total, courses, adFeed = null }: { initial: Exam[]; total: number; courses: CourseFacet[]; adFeed?: AdFeed | null }) {

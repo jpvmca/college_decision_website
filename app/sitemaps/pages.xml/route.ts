@@ -1,4 +1,5 @@
 import { NextResponse } from 'next/server';
+import { formatLastUpdatedIst } from '../../../lib/page-byline';
 
 export const runtime = 'nodejs';
 export const dynamic = 'force-dynamic';
@@ -15,6 +16,17 @@ export async function GET() {
   try {
     const base = (process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3001').replace(/\/+$/, '');
     const lastmod = today();
+    const backend = process.env.BACKEND_API_URL || 'http://127.0.0.1:4000/api/v1';
+    let examsLastmod = lastmod;
+    try {
+      const response = await fetch(`${backend}/exams?page=1&perPage=1`, { cache: 'no-store' });
+      if (response.ok) {
+        const payload = await response.json() as { updatedAt?: string | null };
+        examsLastmod = formatLastUpdatedIst(payload.updatedAt)?.dateTime || lastmod;
+      }
+    } catch {
+      // Directory timestamp unavailable: keep today's date for /exams only as a last resort.
+    }
     const pages = [
       [`${base}/`, 'weekly', '1.0'],
       [`${base}/articles`, 'daily', '0.9'],
@@ -30,9 +42,10 @@ export async function GET() {
       [`${base}/terms-and-conditions`, 'yearly', '0.2'],
       [`${base}/disclaimer`, 'yearly', '0.2']
     ];
-    const urls = pages.map(([url, changeFrequency, priority]) =>
-      `<url><loc>${xml(url)}</loc><lastmod>${lastmod}</lastmod><changefreq>${changeFrequency}</changefreq><priority>${priority}</priority></url>`
-    ).join('');
+    const urls = pages.map(([url, changeFrequency, priority]) => {
+      const pageLastmod = url === `${base}/exams` ? examsLastmod : lastmod;
+      return `<url><loc>${xml(url)}</loc><lastmod>${pageLastmod}</lastmod><changefreq>${changeFrequency}</changefreq><priority>${priority}</priority></url>`;
+    }).join('');
     return new NextResponse(`<?xml version="1.0" encoding="UTF-8"?><urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">${urls}</urlset>`, {
       headers: {
         'Content-Type': 'application/xml; charset=utf-8',

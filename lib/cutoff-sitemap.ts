@@ -8,7 +8,7 @@ export const SITEMAP_CACHE_CONTROL = `public, max-age=${SITEMAP_REVALIDATE}, s-m
 
 export type SitemapEntry = { loc: string; lastmod?: string | null; changefreq: string; priority: string };
 
-type Payload = { colleges?: Array<{ slug: string; updatedAt?: string | null }>; exams?: Array<{ slug: string; years?: number[] }> };
+type Payload = { colleges?: Array<{ slug: string; updatedAt?: string | null }>; exams?: Array<{ slug: string; years?: number[]; updatedAt?: string | null }> };
 type Facet = { key: string; courseIds: number[]; courseSlug: string };
 type PercentileCombo = { course_id: number; course_slug: string; exam_slug: string };
 type ClosingCombo = { course_id: number; course_slug: string; exam_slug: string; kind: string; levels: number[] };
@@ -55,25 +55,32 @@ function facetFor(facets: Facet[], c: { course_id: number; course_slug: string }
   return facets.find((x) => x.courseIds.includes(c.course_id) || x.courseSlug === c.course_slug);
 }
 
-/** /colleges/{slug}/cutoff. The backend lists only colleges with a published exam, so every page returns 200. */
+function isoLastmod(value?: string | Date | null): string | undefined {
+  if (!value) return undefined;
+  const date = value instanceof Date ? value : new Date(value);
+  return Number.isNaN(date.getTime()) ? undefined : date.toISOString();
+}
+
+/** /colleges/{slug}/cutoff. The backend lists only colleges with a published exam, so every page returns 200.
+ *  lastmod is GREATEST(institute.updated_at, max cutoff ts), falling back to the institute date only. */
 export function collegeCutoffEntries(payload: Payload): SitemapEntry[] {
   const base = siteBase();
-  const fallback = latestCutoffUpdate(payload);
   return (payload.colleges || []).map((c) => ({
     loc: `${base}/colleges/${c.slug}/cutoff`,
-    lastmod: c.updatedAt ? new Date(c.updatedAt).toISOString() : fallback,
+    lastmod: isoLastmod(c.updatedAt),
     changefreq: 'monthly',
     priority: '0.6'
   }));
 }
 
-/** /exams/{slug}/cutoff and /exams/{slug}/cutoff/{year} for multi-year exams. */
+/** /exams/{slug}/cutoff and /exams/{slug}/cutoff/{year} for multi-year exams.
+ *  lastmod is the per-exam GREATEST(exam, exam_contents, institute_cutoffs), same as the byline. */
 export function examCutoffEntries(payload: Payload): SitemapEntry[] {
   const base = siteBase();
-  const lastmod = latestCutoffUpdate(payload);
   const out: SitemapEntry[] = [];
   (payload.exams || []).forEach((e) => {
     if (!e.years?.length) return;
+    const lastmod = isoLastmod(e.updatedAt);
     out.push({ loc: `${base}/exams/${e.slug}/cutoff`, lastmod, changefreq: 'monthly', priority: '0.7' });
     if (e.years.length > 1) e.years.forEach((y) => out.push({ loc: `${base}/exams/${e.slug}/cutoff/${y}`, lastmod, changefreq: 'yearly', priority: '0.6' }));
   });
@@ -129,7 +136,7 @@ async function buildSitemapXml(kind: CutoffSitemapKind): Promise<string> {
 }
 
 /** Built XML is cached in the Next data cache; a backend error throws, so failures are never cached. */
-const cachedSitemapXml = unstable_cache(buildSitemapXml, ['cutoff-sitemap-xml-v2'], { revalidate: SITEMAP_REVALIDATE, tags: SITEMAP_TAGS });
+const cachedSitemapXml = unstable_cache(buildSitemapXml, ['cutoff-sitemap-xml-v3'], { revalidate: SITEMAP_REVALIDATE, tags: SITEMAP_TAGS });
 
 export async function cutoffSitemapResponse(kind: CutoffSitemapKind) {
   try {

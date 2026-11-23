@@ -57,12 +57,14 @@ export type ListingSummary = {
   exams?: Array<{ name: string; slug: string; count: number }>;
   topColleges?: Array<{ name: string; slug: string; city: string | null; state: string | null }>;
   fees: { n: number; min: number; max: number; median: number | null } | null;
+  lastUpdated?: string | null;
 };
 
 export async function getListingSummary(courseSlug: string, stateSlug?: string | null, citySlug?: string | null): Promise<ListingSummary | null> {
   const params = new URLSearchParams({ course: courseSlug });
   if (stateSlug) params.set('state', stateSlug);
   if (citySlug) params.set('city', citySlug);
+  params.set('v', 'lu1');
   try {
     const result = await api<{ data: ListingSummary }>(`/colleges/listing-summary?${params}`, listingFetchOptions([`listing-summary:${courseSlug}:${stateSlug || ''}:${citySlug || ''}`]));
     return result?.data || null;

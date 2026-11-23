@@ -17,6 +17,8 @@ import { EVENT_STATUS_BADGE, eventDateLabel, formatShortDate, type ExamEvent } f
 import { ExamCutoffs, type ExamCutoffResponse } from '../../../components/Cutoffs';
 import { findPublishedHref } from '../../../lib/linkable-entities';
 import { splitLongParagraphs } from '../../../lib/readable-html';
+import LastUpdatedByline from '../../../components/LastUpdatedByline';
+import { jsonLdAuthor } from '../../../lib/page-byline';
 
 type ExamProfile = {
   exam: {
@@ -240,7 +242,7 @@ export default async function ExamProfilePage({ params }: { params: Promise<{ sl
         description: seo.description,
         mainEntityOfPage: pageUrl,
         image: seo.pack.ogImage ? imageUrl : undefined,
-        author: { '@type': 'Organization', name: 'College Decision', url: siteUrl },
+        author: jsonLdAuthor(),
         publisher: { '@type': 'Organization', name: 'College Decision', url: siteUrl, logo: { '@type': 'ImageObject', url: absoluteUrl('/logo.svg', siteUrl) } },
         dateModified: profile.updatedAt || undefined
       },
@@ -272,6 +274,7 @@ export default async function ExamProfilePage({ params }: { params: Promise<{ sl
         <div className="cp-hero-copy">
           <p className="cp-eyebrow">Exam profile · {currentYear}</p>
           <h1>{seo.h1}</h1>
+          <LastUpdatedByline updatedAt={profile.updatedAt} />
           <div className="cp-hero-meta"><span><ClipboardList size={15} aria-hidden="true" /> {metaBits.join(' · ') || 'Entrance exam'} · India</span></div>
         </div>
       </div>

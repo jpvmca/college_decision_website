@@ -38,6 +38,7 @@
 .ex-kicker svg { color: #5eead4; }
 .ex-hero h1 { margin: 14px 0 12px; color: #fff; font-size: clamp(28px, 4vw, 44px); line-height: 1.1; letter-spacing: -.03em; }
 .ex-hero-copy > p { max-width: 540px; margin: 0; color: #dbe7f7; font-size: 16px; line-height: 1.65; }
+.ex-hero-copy > .page-byline { max-width: none; margin: -4px 0 12px; color: #b7c9de; font-size: 13px; line-height: 1.45; }
 .ex-hero-visual { min-width: 0; }
 .ex-hero-visual img { display: block; width: 100%; height: auto; border-radius: 16px; box-shadow: 0 16px 36px rgba(3, 15, 35, .35); background: #e8f0fb; }
 

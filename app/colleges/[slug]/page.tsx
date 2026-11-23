@@ -21,6 +21,8 @@ import { formatProgrammeDuration, isoProgrammeDuration } from '../../../lib/dura
 import { plainText, readableLines, PROGRAMME_HEADING_START, isShortText, withFullStop } from '../../../lib/readable-text';
 import { staticImageUrl } from '../../../lib/image';
 import { claimHref, getCollegeVerification, VERIFICATION_POLICY_HREF, type CollegeVerification } from '../../../lib/college-verification';
+import LastUpdatedByline from '../../../components/LastUpdatedByline';
+import { jsonLdAuthor } from '../../../lib/page-byline';
 
 type CollegeProfile = {
   institute: {
@@ -713,7 +715,7 @@ export default async function CollegeProfilePage({ params }: { params: Promise<{
         headline: profileSeo(profile, name, city, currentYear).title,
         description: `Evidence-based college profile covering courses, fees, admissions, placements and reviews for ${name}.`,
         mainEntityOfPage: pageUrl,
-        author: { '@type': 'Organization', name: 'College Decision', url: siteUrl },
+        author: jsonLdAuthor(),
         publisher: { '@type': 'Organization', name: 'College Decision', url: siteUrl, logo: { '@type': 'ImageObject', url: absoluteUrl('/logo.svg', siteUrl) } },
         dateModified: profile.updatedAt || undefined
       },
@@ -774,6 +776,7 @@ export default async function CollegeProfilePage({ params }: { params: Promise<{
         <div className="cp-hero-copy">
           <p className="cp-eyebrow">College profile · {currentYear}</p>
           <h1>{name}{city ? `, ${city}` : ''}</h1>
+          <LastUpdatedByline updatedAt={profile.updatedAt} />
           <div className="cp-hero-meta">
             <span><MapPin size={15} aria-hidden="true" /> {location || 'India'}</span>
             <span><Landmark size={15} aria-hidden="true" /> <span className="cp-capitalize">{profile.institute.instituteType || 'College'}</span>{profile.institute.isUniversity ? ' · University' : ''}</span>
