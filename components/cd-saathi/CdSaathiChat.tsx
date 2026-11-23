@@ -301,7 +301,17 @@ function nudgeDelayMs(pathname: string) {
   return 18000;
 }
 
-export default function CdSaathiChat({ variant = 'widget' }: { variant?: 'widget' | 'page' }) {
+/**
+ * Loaded only on demand: the floating widget is mounted by CdSaathiLazy after the visitor clicks
+ * the FAB (`autoOpen`), and the full page variant mounts on /college-decision-saathi.
+ */
+export default function CdSaathiChat({
+  variant = 'widget',
+  autoOpen = false
+}: {
+  variant?: 'widget' | 'page';
+  autoOpen?: boolean;
+}) {
   const pathname = usePathname() || '/';
   const isPage = variant === 'page';
   const [open, setOpen] = useState(isPage);
@@ -317,6 +327,8 @@ export default function CdSaathiChat({ variant = 'widget' }: { variant?: 'widget
   const listRef = useRef<HTMLDivElement>(null);
   const abortRef = useRef<AbortController | null>(null);
   const booted = useRef(false);
+  // One in-flight session start, so a double open (StrictMode, double click) doesn't create two sessions.
+  const sessionStart = useRef<Promise<number> | null>(null);
 
   const pageUrl = useMemo(() => {
     if (typeof window === 'undefined') return pathname;
@@ -388,18 +400,26 @@ export default function CdSaathiChat({ variant = 'widget' }: { variant?: 'widget
 
   const ensureSession = useCallback(async () => {
     if (chatSessionId) return chatSessionId;
-    const data = await startChatSession({
-      visitorId: getVisitorId(),
-      sessionId: getSessionId(),
-      pageUrl
+    if (sessionStart.current) return sessionStart.current;
+    const task = (async () => {
+      const data = await startChatSession({
+        visitorId: getVisitorId(),
+        sessionId: getSessionId(),
+        pageUrl
+      });
+      setChatSessionId(data.chatSessionId);
+      setChips(data.quickReplies || []);
+      setMessages((prev) => {
+        if (prev.length) return prev;
+        return [{ id: `g-${data.chatSessionId}`, role: 'assistant', text: data.greeting, messageId: undefined }];
+      });
+      return data.chatSessionId;
+    })();
+    sessionStart.current = task;
+    task.catch(() => {
+      sessionStart.current = null;
     });
-    setChatSessionId(data.chatSessionId);
-    setChips(data.quickReplies || []);
-    setMessages((prev) => {
-      if (prev.length) return prev;
-      return [{ id: `g-${data.chatSessionId}`, role: 'assistant', text: data.greeting, messageId: undefined }];
-    });
-    return data.chatSessionId;
+    return task;
   }, [chatSessionId, pageUrl]);
 
   const openChat = useCallback(async () => {
@@ -537,10 +557,13 @@ export default function CdSaathiChat({ variant = 'widget' }: { variant?: 'widget
   };
 
   useEffect(() => {
-    if (!isPage) return;
+    if (!isPage && !autoOpen) return;
     void openChat();
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [isPage]);
+  }, [isPage, autoOpen]);
+
+  // Hooks must run before the early return below (route changes can hide the widget).
+  const typingPlaceholder = useTypingPlaceholder(open && !input && !busy, PLACEHOLDER_PROMPTS);
 
   // Keep the floating widget off panel/legal pages and the full Saathi page (dedicated UI there).
   if (
@@ -554,7 +577,6 @@ export default function CdSaathiChat({ variant = 'widget' }: { variant?: 'widget
   const TitleTag = isPage ? 'h1' : 'h2';
   const userSent = messages.some((m) => m.role === 'user');
   const showStarters = isPage && !userSent && !busy && messages.some((m) => m.role === 'assistant');
-  const typingPlaceholder = useTypingPlaceholder(open && !input && !busy, PLACEHOLDER_PROMPTS);
   const firstAssistantId = messages.find((m) => m.role === 'assistant')?.id;
 
   const chatBody = (

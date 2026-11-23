@@ -2,10 +2,12 @@
 
 import { useEffect, useRef } from 'react';
 import { usePathname, useSearchParams } from 'next/navigation';
-import { flushQueue, getVisitorId, trackPageLeave, trackPageView } from '../../lib/journey/track';
+import { flushOnHide, getVisitorId, trackPageLeave, trackPageView } from '../../lib/journey/track';
 
 /**
  * Mount once in root layout. Tracks SPA navigations, dwell, and scroll depth.
+ * Everything is queued in lib/journey/track (one batched POST every ~12s or 20 items);
+ * the only out-of-band send is a sendBeacon when the tab is hidden or the page unloads.
  * Never throws into the UI.
  */
 export default function JourneyTracker() {
@@ -14,6 +16,7 @@ export default function JourneyTracker() {
   const startedAt = useRef(Date.now());
   const maxScroll = useRef(0);
   const lastPath = useRef('');
+  const leaveSent = useRef(false);
 
   useEffect(() => {
     try {
@@ -41,7 +44,8 @@ export default function JourneyTracker() {
   useEffect(() => {
     const flushLeave = () => {
       try {
-        if (!lastPath.current) return;
+        if (!lastPath.current || leaveSent.current) return;
+        leaveSent.current = true;
         const dwell = (Date.now() - startedAt.current) / 1000;
         trackPageLeave(lastPath.current, dwell, maxScroll.current);
       } catch {
@@ -49,13 +53,17 @@ export default function JourneyTracker() {
       }
     };
 
-    const onVisibility = () => {
-      if (document.visibilityState === 'hidden') flushLeave();
+    const onHide = () => {
+      flushLeave();
+      flushOnHide();
     };
-    window.addEventListener('pagehide', flushLeave);
+    const onVisibility = () => {
+      if (document.visibilityState === 'hidden') onHide();
+    };
+    window.addEventListener('pagehide', onHide);
     document.addEventListener('visibilitychange', onVisibility);
     return () => {
-      window.removeEventListener('pagehide', flushLeave);
+      window.removeEventListener('pagehide', onHide);
       document.removeEventListener('visibilitychange', onVisibility);
     };
   }, []);
@@ -63,11 +71,11 @@ export default function JourneyTracker() {
   useEffect(() => {
     try {
       const search = searchParams?.toString() ? `?${searchParams.toString()}` : '';
-      if (lastPath.current && lastPath.current !== pathname) {
+      if (lastPath.current && lastPath.current !== pathname && !leaveSent.current) {
         const dwell = (Date.now() - startedAt.current) / 1000;
         trackPageLeave(lastPath.current, dwell, maxScroll.current);
-        void flushQueue(true);
       }
+      leaveSent.current = false;
       startedAt.current = Date.now();
       maxScroll.current = 0;
       lastPath.current = pathname || '/';

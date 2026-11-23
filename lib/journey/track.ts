@@ -9,7 +9,18 @@ const CONSENT_KEY = 'cd_consent';
 const LANDING_KEY = 'cd_landing';
 const SEQ_KEY = 'cd_page_seq';
 const SESSION_IDLE_MS = 30 * 60 * 1000;
-const FLUSH_MS = 3000;
+/**
+ * Client-side batching: events queue in memory and go out as one POST at most every FLUSH_MS,
+ * or as soon as MAX_QUEUE items are waiting. Tab hide / pagehide flushes with sendBeacon.
+ * Navigations never trigger their own request.
+ */
+const FLUSH_MS = 12000;
+const MAX_QUEUE = 20;
+const MAX_BATCH = 50;
+const MAX_BODY_BYTES = 60000;
+const MAX_PROPS_CHARS = 2000;
+const BOT_UA =
+  /bot|crawl|spider|slurp|facebookexternalhit|preview|wget|curl|python-requests|headless|lighthouse|pingdom|uptimerobot|semrush|ahrefs|bytespider|gptbot|claudebot|perplexity|google-inspectiontool|chrome-lighthouse/i;
 const ENDPOINT = '/api/track/batch';
 
 type Consent = { analytics: boolean; marketing: boolean; decided: boolean };
@@ -158,13 +169,37 @@ function deviceType() {
   return 'desktop';
 }
 
+let botChecked: boolean | null = null;
+function isBotClient() {
+  if (botChecked !== null) return botChecked;
+  try {
+    botChecked = typeof navigator !== 'undefined' && BOT_UA.test(navigator.userAgent || '');
+  } catch {
+    botChecked = false;
+  }
+  return botChecked;
+}
+
 function enqueue(item: QueueItem) {
+  if (typeof window === 'undefined' || isBotClient()) return;
   queue.push(item);
-  if (queue.length >= 20) {
+  // Hard cap so a stuck tab can't grow memory without bound.
+  if (queue.length > MAX_BATCH * 4) queue = queue.slice(-MAX_BATCH * 4);
+  if (queue.length >= MAX_QUEUE) {
     void flushQueue();
     return;
   }
   if (!flushTimer) flushTimer = setTimeout(() => void flushQueue(), FLUSH_MS);
+}
+
+function safeProps(props: Record<string, unknown>) {
+  try {
+    const raw = JSON.stringify(props ?? {});
+    if (raw.length <= MAX_PROPS_CHARS) return props;
+    return { truncated: true };
+  } catch {
+    return {};
+  }
 }
 
 async function sendBatch(items: QueueItem[], useBeacon: boolean) {
@@ -181,7 +216,14 @@ async function sendBatch(items: QueueItem[], useBeacon: boolean) {
     utm: readUtm(window.location.search),
     items
   };
-  const body = JSON.stringify(payload);
+  let body = JSON.stringify(payload);
+  if (body.length > MAX_BODY_BYTES) {
+    // Oversized batch: keep only page views (small, most useful), never block the page.
+    payload.items = items.filter((i) => i.type === 'page_view').slice(0, 20);
+    if (!payload.items.length) return true;
+    body = JSON.stringify(payload);
+    if (body.length > MAX_BODY_BYTES) return true;
+  }
   if (useBeacon && typeof navigator.sendBeacon === 'function') {
     try {
       const blob = new Blob([body], { type: 'application/json' });
@@ -212,18 +254,35 @@ export async function flushQueue(useBeacon = false) {
   }
   if (!queue.length) return;
   flushing = true;
-  const batch = queue.splice(0, 50);
-  touchSession();
-  let ok = await sendBatch(batch, useBeacon);
-  if (!ok) {
-    // One silent retry
-    ok = await sendBatch(batch, false);
+  try {
+    while (queue.length) {
+      const batch = queue.splice(0, MAX_BATCH);
+      touchSession();
+      // Beacon is fire-and-forget on unload; no retry there (the page is going away).
+      const ok = await sendBatch(batch, useBeacon);
+      if (!ok) {
+        // Drop on failure to avoid retry storms against a struggling backend; never throw into UI.
+        queue = [];
+        break;
+      }
+      if (!useBeacon) break; // timer flushes send one batch; the next timer picks up the rest
+    }
+  } finally {
+    flushing = false;
+    if (queue.length && !flushTimer) flushTimer = setTimeout(() => void flushQueue(), FLUSH_MS);
   }
-  if (!ok) {
-    // Drop to avoid infinite growth; never throw into UI
-    queue = [];
+}
+
+/** Flush everything with sendBeacon (tab hidden / page unloading). */
+export function flushOnHide() {
+  if (flushing) {
+    // A timer flush is in flight; beacon the remainder so nothing is lost on unload.
+    if (!queue.length) return;
+    const batch = queue.splice(0, MAX_BATCH);
+    void sendBatch(batch, true);
+    return;
   }
-  flushing = false;
+  void flushQueue(true);
 }
 
 export function trackPageView(path: string, search = '') {
@@ -267,7 +326,6 @@ export function trackPageLeave(path: string, dwellSeconds: number, maxScroll: nu
       viewed_at: new Date().toISOString(),
       entities: parsePageEntities(path)
     });
-    void flushQueue(true);
   } catch {
     // never throw
   }
@@ -280,7 +338,7 @@ export function track(eventName: string, props: Record<string, unknown> = {}) {
     enqueue({
       type: 'event',
       event_name: String(eventName).slice(0, 80),
-      props,
+      props: safeProps(props),
       page_path: typeof window !== 'undefined' ? window.location.pathname : undefined,
       created_at: new Date().toISOString()
     });
