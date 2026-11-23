@@ -138,7 +138,7 @@ function CandidateCard({
   return (
     <article className="card" key={uniqueCollege ? String(candidate.institute_id) : `${candidate.institute_name}-${candidate.programme_name}-${index}`}>
       <div className="institute-heading">
-        <h3>{index + 1}. {candidate.published_slug ? <Link href={`/colleges/${candidate.published_slug}`}>{getCandidateHeading(candidate, uniqueCollege)}</Link> : getCandidateHeading(candidate, uniqueCollege)}</h3>
+        <h3>{index + 1}. {candidate.published_slug ? <Link prefetch={false} href={`/colleges/${candidate.published_slug}`}>{getCandidateHeading(candidate, uniqueCollege)}</Link> : getCandidateHeading(candidate, uniqueCollege)}</h3>
         <InstituteLogo src={candidate.logo} alt={`${candidate.institute_name} logo`} />
       </div>
       <p className="muted">{candidate.institute_type === 'public' ? 'Government or public institution' : 'Private institution'} · {candidate.city || 'Location not listed'}, {candidate.state || 'India'}</p>
@@ -186,7 +186,7 @@ function CandidateCard({
                   : getCandidateNote(candidate, uniqueCollege)}
         </small>
         <div className="card-action-buttons">
-          {candidate.published_slug ? <Link className="view-button" href={`/colleges/${candidate.published_slug}`}>View college profile</Link> : <CollegeDetailsModal instituteId={candidate.institute_id} courseId={candidate.course_id} courseName={candidate.programme_name} />}
+          {candidate.published_slug ? <Link prefetch={false} className="view-button" href={`/colleges/${candidate.published_slug}`}>View college profile</Link> : <CollegeDetailsModal instituteId={candidate.institute_id} courseId={candidate.course_id} courseName={candidate.programme_name} />}
           <DecisionActions
             showCompare={showCompare}
             instituteId={candidate.institute_id}

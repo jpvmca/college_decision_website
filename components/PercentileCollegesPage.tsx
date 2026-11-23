@@ -66,7 +66,7 @@ export async function percentileMetadata(segment: string, query: Query): Promise
 }
 
 function CollegeLink({ c }: { c: FinderCollege }) {
-  return <><Link href={`/colleges/${c.slug}/cutoff`}>{c.name}</Link>{c.city ? <small className="muted"> · {c.city}{c.state ? `, ${c.state}` : ''}</small> : null}</>;
+  return <><Link prefetch={false} href={`/colleges/${c.slug}/cutoff`}>{c.name}</Link>{c.city ? <small className="muted"> · {c.city}{c.state ? `, ${c.state}` : ''}</small> : null}</>;
 }
 function Source({ c }: { c: FinderCollege }) {
   return c.source_url ? <a href={c.source_url} target="_blank" rel="noopener nofollow">{c.aggregator ? 'Aggregator*' : 'Official'}</a> : <>—</>;
@@ -140,7 +140,7 @@ export default async function PercentileCollegesPage({ segment, query }: { segme
   return <main className="section college-profile-page cp-page"><div className="wrap">
     <JsonLd data={breadcrumbJsonLd(siteUrl(), crumbs)} />
     {faqLd && !searching && <JsonLd data={faqLd} />}
-    <nav className="breadcrumb cp-breadcrumb" aria-label="Breadcrumb"><Link href="/">Home</Link><span aria-hidden="true">›</span><Link href="/colleges">Colleges</Link><span aria-hidden="true">›</span><Link href={courseListingHref(facet.key)}>{label} Colleges</Link><span aria-hidden="true">›</span><span aria-current="page">Accepting {level} Percentile in {exam}</span></nav>
+    <nav className="breadcrumb cp-breadcrumb" aria-label="Breadcrumb"><Link prefetch={false} href="/">Home</Link><span aria-hidden="true">›</span><Link prefetch={false} href="/colleges">Colleges</Link><span aria-hidden="true">›</span><Link prefetch={false} href={courseListingHref(facet.key)}>{label} Colleges</Link><span aria-hidden="true">›</span><span aria-current="page">Accepting {level} Percentile in {exam}</span></nav>
     <header className="cp-hero">
       <div className="cp-hero-copy">
         <p className="cp-eyebrow">{exam} percentile</p>
@@ -151,8 +151,8 @@ export default async function PercentileCollegesPage({ segment, query }: { segme
         : `None of the ${clean.totalWithData} ${label} colleges with published ${exam} ${year} minimums has a General-category overall minimum of ${level} percentile or less.`}{examYearNote}</p>
       <div className="cp-hero-badges"><span className="cp-pill is-verified"><BadgeCheck size={15} aria-hidden="true" /> Minimum shortlisting criteria</span></div>
       <div className="cutoff-year-links" role="navigation" aria-label={`${exam} percentile levels`}>
-        {PERCENTILE_LEVELS.map((l) => <Link key={l} className={`button${l === level ? ' primary' : ''}`} aria-current={l === level ? 'page' : undefined} href={percentileHref(facet.key, l, r.exam)}>Accepting {l} Percentile</Link>)}
-        <Link className="button" href={`/exams/${r.exam}/cutoff`}>{exam} cutoff for all colleges</Link>
+        {PERCENTILE_LEVELS.map((l) => <Link prefetch={false} key={l} className={`button${l === level ? ' primary' : ''}`} aria-current={l === level ? 'page' : undefined} href={percentileHref(facet.key, l, r.exam)}>Accepting {l} Percentile</Link>)}
+        <Link prefetch={false} className="button" href={`/exams/${r.exam}/cutoff`}>{exam} cutoff for all colleges</Link>
       </div>
     </header>
     <section className="cp-insight">
@@ -179,7 +179,7 @@ export default async function PercentileCollegesPage({ segment, query }: { segme
 
     <section className="cutoff-section">
       <h2>{searching ? `All ${label} colleges accepting ${level} percentile (General category)` : `${exam} ${year} minimum percentiles by category`}</h2>
-      {list.length ? <CleanTable list={list} /> : <p>No college is listed at this level. Try <Link href={percentileHref(facet.key, PERCENTILE_LEVELS.find((l) => l > level) || 95, r.exam)}>a higher percentile level</Link> or see the <Link href={`/exams/${r.exam}/cutoff`}>{exam} cutoff for all colleges</Link>.</p>}
+      {list.length ? <CleanTable list={list} /> : <p>No college is listed at this level. Try <Link prefetch={false} href={percentileHref(facet.key, PERCENTILE_LEVELS.find((l) => l > level) || 95, r.exam)}>a higher percentile level</Link> or see the <Link prefetch={false} href={`/exams/${r.exam}/cutoff`}>{exam} cutoff for all colleges</Link>.</p>}
       <p className="muted">Values are minimum overall percentiles; &ldquo;Not available&rdquo; means the institute does not publish a figure for that category. * Aggregator: the official document could not be retrieved, so the figure comes from a secondary source. Colleges without published {exam} minimums are not listed.</p>
     </section>
 

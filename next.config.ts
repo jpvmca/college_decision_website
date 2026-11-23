@@ -9,10 +9,15 @@ const securityHeaders = [
 ];
 
 const nextConfig: NextConfig = {
+  // NEXT_DIST_DIR lets a production build run in a separate folder (e.g. `.next-build`) while the live
+  // server keeps serving `.next`; swap the folders, then restart. Defaults to the usual `.next`.
+  distDir: process.env.NEXT_DIST_DIR || '.next',
   poweredByHeader: false,
   reactStrictMode: true,
   images: {
     // Upload images are served from S3 (NEXT_PUBLIC_IMAGE_BASE_URL); keep the API origin for the /uploads fallback.
+    // Optimised images are keyed by URL; uploads get a new timestamped filename when replaced.
+    minimumCacheTTL: 604800,
     remotePatterns: [
       { protocol: 'https', hostname: 'cd-mrd-file-storage.s3.ap-south-1.amazonaws.com', pathname: '/cd/uploads/public/**' },
       { protocol: 'https', hostname: 'api.collegedecision.in', pathname: '/uploads/**' }
@@ -44,6 +49,11 @@ const nextConfig: NextConfig = {
       {
         source: '/sitemap.xml',
         headers: [{ key: 'Cache-Control', value: 'public, max-age=3600, s-maxage=3600, stale-while-revalidate=86400' }]
+      },
+      {
+        // Files in /public (logos, icons, illustrations, fonts). Not content-hashed, so a week rather than immutable.
+        source: '/:file((?!_next/|api/).*\\.(?:svg|png|jpg|jpeg|webp|avif|gif|ico|woff|woff2|ttf))',
+        headers: [{ key: 'Cache-Control', value: 'public, max-age=604800, stale-while-revalidate=86400' }]
       },
       {
         source: '/:file(.*hero.*\\.webp)',

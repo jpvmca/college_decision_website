@@ -14,11 +14,11 @@ export async function GET(
   const backendUrl = process.env.BACKEND_API_URL || 'http://127.0.0.1:4000/api/v1';
   const response = await fetch(
     `${backendUrl}/articles/${encodeURIComponent(slug)}?page=${page}&perPage=${perPage}`,
-    { cache: 'no-store' }
+    { next: { revalidate: 900, tags: ['articles', `article:${slug}`] } }
   );
   const body = await response.text();
   return new NextResponse(body, {
     status: response.status,
-    headers: { 'content-type': 'application/json' }
+    headers: { 'content-type': 'application/json', ...(response.ok ? { 'cache-control': 'public, max-age=60, s-maxage=600, stale-while-revalidate=3600' } : { 'cache-control': 'no-store' }) }
   });
 }

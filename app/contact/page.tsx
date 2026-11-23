@@ -42,7 +42,7 @@ export default function ContactPage() {
     }
   }
   return <main className="section ls-page"><div className="wrap">
-    <nav className="breadcrumb ls-crumb" aria-label="Breadcrumb"><Link href="/">Home</Link><span aria-hidden="true">›</span><span aria-current="page">Contact</span></nav>
+    <nav className="breadcrumb ls-crumb" aria-label="Breadcrumb"><Link prefetch={false} href="/">Home</Link><span aria-hidden="true">›</span><span aria-current="page">Contact</span></nav>
     <section className="ls-hero">
       <div className="ls-hero-inner is-solo">
         <div className="ls-hero-copy">
@@ -54,7 +54,7 @@ export default function ContactPage() {
     </section>
     <div className="ls-prose">
     <div className="grid">
-      <article className="card"><span className="pill">Corrections</span><h2>Report a data issue</h2><p>Include the institute name, course name, page URL, field that looks incorrect and the official page or document supporting your correction.</p><p><a href="mailto:mail@collegedecision.in">mail@collegedecision.in</a></p><p className="muted">Represent a college? <Link href="/for-colleges/claim">Claim your college profile</Link> to verify it and request updates directly. <Link href="/for-colleges/verification-policy">How verification works</Link>.</p></article>
+      <article className="card"><span className="pill">Corrections</span><h2>Report a data issue</h2><p>Include the institute name, course name, page URL, field that looks incorrect and the official page or document supporting your correction.</p><p><a href="mailto:mail@collegedecision.in">mail@collegedecision.in</a></p><p className="muted">Represent a college? <Link prefetch={false} href="/for-colleges/claim">Claim your college profile</Link> to verify it and request updates directly. <Link prefetch={false} href="/for-colleges/verification-policy">How verification works</Link>.</p></article>
       <article className="card"><span className="pill">General</span><h2>Ask a question</h2><p>For partnership, editorial or general platform questions, write to our team with a clear subject and the context we need to respond.</p><p><a href="mailto:mail@collegedecision.in">mail@collegedecision.in</a></p></article>
     </div>
     <article className="card contact-company">

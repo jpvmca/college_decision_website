@@ -45,7 +45,7 @@ export const getAdConfig = cache(async (): Promise<AdConfig | null> => {
   const testMode = process.env.ADS_TEST_MODE === 'true';
   if (process.env.ADS_ENABLED !== 'true' && !testMode) return null;
   try {
-    const result = await api<{ data: AdConfig }>('/ads/config', { next: { revalidate: 120, tags: [ADS_TAG] } });
+    const result = await api<{ data: AdConfig }>('/ads/config', { next: { revalidate: 900, tags: [ADS_TAG] } });
     if (!result.data.enabled && !testMode) return null;
     return { ...result.data, enabled: true, testMode };
   } catch {

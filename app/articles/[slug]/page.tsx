@@ -1,9 +1,9 @@
 import type { Metadata } from 'next';
-import { notFound, permanentRedirect, redirect } from 'next/navigation';
+import { notFound, redirect } from 'next/navigation';
 import Link from 'next/link';
 import { ArrowRight, BadgeCheck, FileText } from 'lucide-react';
 import HeroPhoto from '../../../components/HeroPhoto';
-import { api, imageSrcSet, imageUrl as sizedImageUrl, mediaUrl } from '../../../lib/api';
+import { api, isNotFoundError, imageSrcSet, imageUrl as sizedImageUrl, mediaUrl } from '../../../lib/api';
 import { getLinkableEntities } from '../../../lib/linkable-entities';
 import AutoLinkedText from '../../../components/AutoLinkedText';
 import ArticleCollegeList from '../../../components/ArticleCollegeList';
@@ -12,7 +12,13 @@ import { getAdSlot } from '../../../lib/ads';
 import CollegeComparisonArticle from '../../../components/articles/CollegeComparisonArticle';
 import { staticImageUrl } from '../../../lib/image';
 
-export const revalidate = 300;
+export const revalidate = 900;
+
+// ISR: each article renders on first visit, then is served from cache (time-based + on-demand revalidation).
+// ?page= on an article URL is 301'd to the clean URL in proxy.ts, so the page never reads searchParams.
+export async function generateStaticParams() {
+  return [];
+}
 
 type GeneratedArticle = {
   type: string;
@@ -81,10 +87,11 @@ function getResponsiveImageSources(rawImageUrl: string, preserveAspectRatio = fa
 
 async function getArticle(slug: string, page = 1): Promise<GeneratedArticle | null> {
   try {
-    const response = await api<{ data: GeneratedArticle }>(`/articles/${slug}?page=${page}&perPage=20`, { cache: 'no-store' });
+    const response = await api<{ data: GeneratedArticle }>(`/articles/${slug}?page=${page}&perPage=20`, { next: { revalidate: 900, tags: ['articles', `article:${slug}`] } });
     return response.data;
-  } catch {
-    return null;
+  } catch (error) {
+    if (isNotFoundError(error)) return null;
+    throw error;
   }
 }
 
@@ -231,10 +238,8 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   };
 }
 
-export default async function ArticleDetailPage({ params, searchParams }: { params: Promise<{ slug: string }>; searchParams: Promise<{ page?: string }> }) {
+export default async function ArticleDetailPage({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params;
-  const query = await searchParams;
-  if (query.page) permanentRedirect(`/articles/${slug}`);
   const article = await getArticle(slug, 1);
   if (!article) notFound();
   if (article.type === 'college-comparison' && article.collegeA && article.collegeB) {
@@ -251,7 +256,7 @@ export default async function ArticleDetailPage({ params, searchParams }: { para
     };
     return <main className="section ls-page"><div className="wrap">
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(comparisonJsonLd) }} />
-      <nav className="breadcrumb ls-crumb" aria-label="Breadcrumb"><Link href="/">Home</Link><span aria-hidden="true">›</span><Link href="/articles">Articles</Link><span aria-hidden="true">›</span><span aria-current="page">{breadcrumbTitle}</span></nav>
+      <nav className="breadcrumb ls-crumb" aria-label="Breadcrumb"><Link prefetch={false} href="/">Home</Link><span aria-hidden="true">›</span><Link prefetch={false} href="/articles">Articles</Link><span aria-hidden="true">›</span><span aria-current="page">{breadcrumbTitle}</span></nav>
       <section className="ls-hero">
         <div className="ls-hero-inner">
           <div className="ls-hero-copy">
@@ -259,8 +264,8 @@ export default async function ArticleDetailPage({ params, searchParams }: { para
             <h1>{article.h1 || article.title}</h1>
             <p>Compare recorded fees, eligibility, admission routes and placements before you shortlist.</p>
             <div className="ls-hero-actions">
-              <Link className="button ls-btn-primary" href="/compare-colleges-2026">Compare colleges <ArrowRight size={16} aria-hidden="true" /></Link>
-              <Link className="button ls-btn-ghost" href="/articles">More guides</Link>
+              <Link prefetch={false} className="button ls-btn-primary" href="/compare-colleges-2026">Compare colleges <ArrowRight size={16} aria-hidden="true" /></Link>
+              <Link prefetch={false} className="button ls-btn-ghost" href="/articles">More guides</Link>
             </div>
           </div>
           <div className="ls-hero-visual">
@@ -319,7 +324,7 @@ export default async function ArticleDetailPage({ params, searchParams }: { para
   const summaryLabel = isAveragePackageExceedsFeesArticle(article.type) ? `Recorded average package exceeds recorded fees in ${article.location?.name || 'India'}` : isHighestPackageArticle(article.type) ? `Colleges in ${article.state?.name || 'selected state'} with at least ₹${article.packageThresholdLakh || 15} lakh highest package` : isGovAvgPackageArticle(article.type) ? `Government colleges in ${article.state?.name || 'selected state'} ranked by average package` : isExamAdmissionArticle(article.type) ? `MBA colleges accepting ${article.exam?.name || 'the selected entrance exam'}` : article.budgetLakh ? `Budget guide: up to ₹${article.budgetLakh} lakh` : article.type.includes('admission') ? 'Course admission and eligibility guide' : 'Course fee guide';
   return <main className="section ls-page"><div className="wrap">
     <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
-    <nav className="breadcrumb ls-crumb" aria-label="Breadcrumb"><Link href="/">Home</Link><span aria-hidden="true">›</span><Link href="/articles">Articles</Link><span aria-hidden="true">›</span><span aria-current="page">{article.title}</span></nav>
+    <nav className="breadcrumb ls-crumb" aria-label="Breadcrumb"><Link prefetch={false} href="/">Home</Link><span aria-hidden="true">›</span><Link prefetch={false} href="/articles">Articles</Link><span aria-hidden="true">›</span><span aria-current="page">{article.title}</span></nav>
     <AdSlot slotKey="article_top" />
     <section className="ls-hero">
       <div className="ls-hero-inner">
@@ -328,8 +333,8 @@ export default async function ArticleDetailPage({ params, searchParams }: { para
           <h1>{article.title}</h1>
           <p className="ls-hero-lead"><AutoLinkedText text={seo.intro} entities={linkableEntities} /></p>
           <div className="ls-hero-actions">
-            <Link className="button ls-btn-primary" href="/compare-colleges-2026">Compare colleges <ArrowRight size={16} aria-hidden="true" /></Link>
-            <Link className="button ls-btn-ghost" href="/articles">All guides</Link>
+            <Link prefetch={false} className="button ls-btn-primary" href="/compare-colleges-2026">Compare colleges <ArrowRight size={16} aria-hidden="true" /></Link>
+            <Link prefetch={false} className="button ls-btn-ghost" href="/articles">All guides</Link>
           </div>
         </div>
         <div className="ls-hero-visual">
@@ -363,7 +368,7 @@ export default async function ArticleDetailPage({ params, searchParams }: { para
     <AdSlot slotKey="article_end" />
     {relatedVisible.length > 0 && <section className="related-guides" aria-labelledby="related-guides-heading">
       <div className="ls-head"><p className="ls-eyebrow"><FileText size={14} aria-hidden="true" /> Related</p><h2 id="related-guides-heading">Related Student Decision Guides</h2></div>
-      <div className="related-guide-list">{relatedVisible.map((guide) => <Link className="related-guide" href={`/articles/${guide.slug}`} key={guide.slug}><strong>{guide.title}</strong><span>{guide.description}</span></Link>)}</div>
+      <div className="related-guide-list">{relatedVisible.map((guide) => <Link prefetch={false} className="related-guide" href={`/articles/${guide.slug}`} key={guide.slug}><strong>{guide.title}</strong><span>{guide.description}</span></Link>)}</div>
     </section>}
   </div></main>;
 }

@@ -6,7 +6,7 @@ export default function PopularStrip() {
     <nav className="wrap popular-strip-inner" aria-label="Popular searches">
       <span className="popular-strip-label">Popular</span>
       <ul>
-        {POPULAR_LINKS.map((link) => <li key={link.href}><Link href={link.href}>{link.label}</Link></li>)}
+        {POPULAR_LINKS.map((link) => <li key={link.href}><Link prefetch={false} href={link.href}>{link.label}</Link></li>)}
       </ul>
     </nav>
   </div>;

@@ -18,7 +18,12 @@ import {
   extraFaqs, hasRealMetric, locationOf, trendTable, uniqueSources, type LoadedSection
 } from '../../../../lib/college-cutoff-copy';
 
-export const revalidate = 600;
+export const revalidate = 900;
+
+// ISR: render each path on first visit, then serve cached HTML (time-based + on-demand revalidation).
+export async function generateStaticParams() {
+  return [];
+}
 
 const CAT_LABEL: Record<string, string> = { OPEN: 'General', EWS: 'EWS', OBC_NCL: 'OBC-NCL', SC: 'SC', ST: 'ST', PWD: 'PwD' };
 
@@ -83,7 +88,7 @@ function EmptyCutoffPage({ slug, name }: { slug: string; name: string }) {
   const crumbs = [{ name: 'Home', path: '/' }, { name: 'Colleges', path: '/colleges' }, { name, path: `/colleges/${slug}` }, { name: 'Cutoff', path: `/colleges/${slug}/cutoff` }];
   return <main className="section college-profile-page cp-page"><div className="wrap">
     <JsonLd data={breadcrumbJsonLd(siteUrl(), crumbs)} />
-    <nav className="breadcrumb cp-breadcrumb" aria-label="Breadcrumb"><Link href="/">Home</Link><span aria-hidden="true">›</span><Link href="/colleges">Colleges</Link><span aria-hidden="true">›</span><Link href={`/colleges/${slug}`}>{name}</Link><span aria-hidden="true">›</span><span aria-current="page">Cutoff</span></nav>
+    <nav className="breadcrumb cp-breadcrumb" aria-label="Breadcrumb"><Link prefetch={false} href="/">Home</Link><span aria-hidden="true">›</span><Link prefetch={false} href="/colleges">Colleges</Link><span aria-hidden="true">›</span><Link prefetch={false} href={`/colleges/${slug}`}>{name}</Link><span aria-hidden="true">›</span><span aria-current="page">Cutoff</span></nav>
     <header className="cp-hero">
       <div className="cp-hero-copy">
         <p className="cp-eyebrow">Cutoff</p>
@@ -91,7 +96,7 @@ function EmptyCutoffPage({ slug, name }: { slug: string; name: string }) {
       </div>
       <p className="cp-hero-lead">CollegeDecision does not currently have official cutoff ranks, scores or percentiles for {name} in its database. We do not invent cutoffs. Check the college profile for courses and admissions, and the official counselling or institute website for the latest lists.</p>
       <div className="cp-hero-actions">
-        <Link className="button ls-btn-primary" href={`/colleges/${slug}`}><Building2 size={15} aria-hidden="true" /> View {name} overview</Link>
+        <Link prefetch={false} className="button ls-btn-primary" href={`/colleges/${slug}`}><Building2 size={15} aria-hidden="true" /> View {name} overview</Link>
       </div>
     </header>
   </div></main>;
@@ -136,7 +141,7 @@ export default async function CollegeCutoffPage({ params }: { params: Promise<{ 
   return <main className="section college-profile-page cp-page"><div className="wrap">
     <JsonLd data={breadcrumbJsonLd(siteUrl(), crumbs)} />
     {faqLd && <JsonLd data={faqLd} />}
-    <nav className="breadcrumb cp-breadcrumb" aria-label="Breadcrumb"><Link href="/">Home</Link><span aria-hidden="true">›</span><Link href="/colleges">Colleges</Link><span aria-hidden="true">›</span><Link href={`/colleges/${slug}`}>{name}</Link><span aria-hidden="true">›</span><span aria-current="page">Cutoff</span></nav>
+    <nav className="breadcrumb cp-breadcrumb" aria-label="Breadcrumb"><Link prefetch={false} href="/">Home</Link><span aria-hidden="true">›</span><Link prefetch={false} href="/colleges">Colleges</Link><span aria-hidden="true">›</span><Link prefetch={false} href={`/colleges/${slug}`}>{name}</Link><span aria-hidden="true">›</span><span aria-current="page">Cutoff</span></nav>
     <AdSlot slotKey="cutoff_top" />
     <header className="cp-hero">
       <div className="cp-hero-copy">
@@ -151,9 +156,9 @@ export default async function CollegeCutoffPage({ params }: { params: Promise<{ 
       <p className="cp-hero-lead">{lead}</p>
       {intros.map((p, i) => <p key={i} className="cp-hero-lead">{p}</p>)}
       <div className="cp-hero-actions">
-        <Link className="button ls-btn-primary" href={`/colleges/${slug}`}><Building2 size={15} aria-hidden="true" /> View {name} overview</Link>
+        <Link prefetch={false} className="button ls-btn-primary" href={`/colleges/${slug}`}><Building2 size={15} aria-hidden="true" /> View {name} overview</Link>
         {s.exams.filter((e) => e.published).map((e) => (
-          <Link key={e.slug} className="button" href={`/exams/${e.slug}/cutoff`}>{clean(e.name)} cutoff for all colleges</Link>
+          <Link prefetch={false} key={e.slug} className="button" href={`/exams/${e.slug}/cutoff`}>{clean(e.name)} cutoff for all colleges</Link>
         ))}
       </div>
     </header>
@@ -185,7 +190,7 @@ export default async function CollegeCutoffPage({ params }: { params: Promise<{ 
       const trend = trendTable(sections, exam.slug);
       return <Fragment key={exam.slug}><section id={`${exam.slug}-cutoff`} className="cutoff-section">
         <p className="muted">{clean(exam.name)} cutoff years: {exam.years.map((y) => <a key={y.year} href={`#${exam.slug}-${y.year}`} style={{ marginRight: '0.6rem' }}>{y.year}</a>)}
-          {exam.published && <> · <Link href={`/exams/${exam.slug}/cutoff`}>{clean(exam.name)} cutoff for all colleges</Link></>}</p>
+          {exam.published && <> · <Link prefetch={false} href={`/exams/${exam.slug}/cutoff`}>{clean(exam.name)} cutoff for all colleges</Link></>}</p>
         {trend && <div className="detail-table-wrap" style={{ marginBottom: '1.2rem' }}><table className="detail-table cutoff-table">
           <caption className="muted">General (OPEN) gender-neutral closing ranks by year{trend.rows[0]?.quota ? ` · ${trend.rows[0].quota} quota preferred when several quotas exist` : ''}. A lower rank is more competitive; year-to-year movement is not a forecast.</caption>
           <thead><tr><th scope="col">Programme</th>{trend.years.map((y) => <th scope="col" key={y}>{trend.examName} {y}</th>)}</tr></thead>
@@ -210,9 +215,9 @@ export default async function CollegeCutoffPage({ params }: { params: Promise<{ 
     <section className="cutoff-section" aria-labelledby="cutoff-related-links">
       <h2 id="cutoff-related-links">Related pages</h2>
       <ul>
-        <li><Link href={`/colleges/${slug}`}>{name} college profile</Link> — courses, fees and admissions overview.</li>
+        <li><Link prefetch={false} href={`/colleges/${slug}`}>{name} college profile</Link> — courses, fees and admissions overview.</li>
         {s.exams.filter((e) => e.published).map((e) => (
-          <li key={e.slug}><Link href={`/exams/${e.slug}/cutoff`}>{clean(e.name)} cutoffs for all colleges</Link></li>
+          <li key={e.slug}><Link prefetch={false} href={`/exams/${e.slug}/cutoff`}>{clean(e.name)} cutoffs for all colleges</Link></li>
         ))}
       </ul>
     </section>

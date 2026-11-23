@@ -48,7 +48,7 @@ export default async function CoursesPage() {
   ].filter((item): item is { icon: typeof GraduationCap; value: number; label: string } => Boolean(item));
   return <main className="section ls-page"><div className="wrap">
     <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
-    <nav className="breadcrumb ls-crumb" aria-label="Breadcrumb"><Link href="/">Home</Link><span aria-hidden="true">›</span><span aria-current="page">Courses</span></nav>
+    <nav className="breadcrumb ls-crumb" aria-label="Breadcrumb"><Link prefetch={false} href="/">Home</Link><span aria-hidden="true">›</span><span aria-current="page">Courses</span></nav>
     <section className="ls-hero">
       <div className="ls-hero-inner">
         <div className="ls-hero-copy">
@@ -56,8 +56,8 @@ export default async function CoursesPage() {
           <h1>Courses in India 2026</h1>
           <p>Explore courses, programme coverage and the colleges connected with each study path. Use course information to compare fees, eligibility, admissions and outcomes.</p>
           <div className="ls-hero-actions">
-            <Link className="button ls-btn-primary" href="/colleges">Browse colleges <ArrowRight size={16} aria-hidden="true" /></Link>
-            <Link className="button ls-btn-ghost" href="/compare-colleges-2026">Compare colleges</Link>
+            <Link prefetch={false} className="button ls-btn-primary" href="/colleges">Browse colleges <ArrowRight size={16} aria-hidden="true" /></Link>
+            <Link prefetch={false} className="button ls-btn-ghost" href="/compare-colleges-2026">Compare colleges</Link>
           </div>
         </div>
         <div className="ls-hero-visual">

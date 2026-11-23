@@ -78,7 +78,7 @@ function CollegeProfileLink({
   const href = collegeHref(college);
   if (href && !usedHrefs.has(href)) {
     usedHrefs.add(href);
-    return <Link className={className} href={href}>{children}</Link>;
+    return <Link prefetch={false} className={className} href={href}>{children}</Link>;
   }
   return className ? <span className={className}>{children}</span> : <>{children}</>;
 }
@@ -225,7 +225,7 @@ export default function CollegeComparisonArticle({
     <p>{scoreLeader === 'equal recorded score' ? <><CollegeName college={a} className="conclusion-college" /> and <CollegeName college={b} className="conclusion-college" /> have an equal recorded decision score. Your preferred branch, comparable tuition cost, admission route and location should guide the final choice.</> : <><strong className="conclusion-winner">{scoreLeaderNode}</strong> has the higher recorded evidence score, but this does not make it a universal winner. Choose <CollegeName college={a} className="conclusion-college" /> if its available branches, recorded cost and admission route fit your priorities; choose <CollegeName college={b} className="conclusion-college" /> if its programmes, location or placement evidence better match your goals.</>}</p>
     <p className="notice"><strong>Final takeaway:</strong> Compare the exact branch and programme cost first, then verify eligibility, active entrance-exam mappings and the latest official placement information before admission.</p>
     <p className="notice"><strong>Data note:</strong> A dash means the information is not available in the current records. This page does not invent values or treat different years and fee types as directly comparable.</p>
-    <p><Link href="/compare-colleges-2026">Compare other colleges side by side →</Link></p>
+    <p><Link prefetch={false} href="/compare-colleges-2026">Compare other colleges side by side →</Link></p>
     {comparisonFaqs.length ? <><JsonLd data={faqJsonLd(comparisonFaqs)} /><h2>FAQs</h2><div className="cp-faq">{comparisonFaqs.map((f) => <details className="cp-faq-item" key={f.question}><summary><h3>{f.question}</h3></summary><p>{f.answer}</p></details>)}</div></> : null}
   </section>;
 }

@@ -15,7 +15,7 @@ type LinkableEntitiesResponse = {
 export async function getLinkableEntities(): Promise<LinkableEntity[]> {
   try {
     const response = await api<LinkableEntitiesResponse>('/seo/linkable-entities', {
-      next: { revalidate: 300, tags: ['seo:linkable-entities'] }
+      next: { revalidate: 1800, tags: ['seo:linkable-entities'] }
     });
     return flattenLinkableEntities(response.data);
   } catch {

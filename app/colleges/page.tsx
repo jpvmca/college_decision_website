@@ -115,7 +115,7 @@ export default async function CollegesPage() {
   return <main className="section ls-page"><div className="wrap">
     <JsonLd data={jsonLd} />
     <JsonLd data={breadcrumbLd} />
-    <nav className="breadcrumb ls-crumb" aria-label="Breadcrumb"><Link href="/">Home</Link><span aria-hidden="true">›</span><span aria-current="page">Colleges</span></nav>
+    <nav className="breadcrumb ls-crumb" aria-label="Breadcrumb"><Link prefetch={false} href="/">Home</Link><span aria-hidden="true">›</span><span aria-current="page">Colleges</span></nav>
     <section className="ls-hero">
       <div className="ls-hero-inner">
         <div className="ls-hero-copy">
@@ -123,8 +123,8 @@ export default async function CollegesPage() {
           <h1>Colleges in India 2026</h1>
           <p>Browse active colleges by name, location, institute type and programme coverage. Use the list as a starting point, then compare course fees, admission routes and placements before applying.</p>
           <div className="ls-hero-actions">
-            <Link className="button ls-btn-primary" href="/compare-colleges-2026">Compare colleges <ArrowRight size={16} aria-hidden="true" /></Link>
-            <Link className="button ls-btn-ghost" href="/courses">Browse courses</Link>
+            <Link prefetch={false} className="button ls-btn-primary" href="/compare-colleges-2026">Compare colleges <ArrowRight size={16} aria-hidden="true" /></Link>
+            <Link prefetch={false} className="button ls-btn-ghost" href="/courses">Browse courses</Link>
           </div>
         </div>
         <div className="ls-hero-visual">

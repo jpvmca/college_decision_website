@@ -9,8 +9,8 @@ export async function GET(request: NextRequest) {
   const course = (q.get('course') || '').trim().toLowerCase();
   if (course && !/^[a-z0-9-]{1,80}$/.test(course)) return NextResponse.json({ error: 'Invalid course' }, { status: 400 });
   try {
-    const result = await api(`/exams?page=${page}&perPage=${perPage}${course ? `&course=${encodeURIComponent(course)}` : ''}`, { cache: 'no-store' });
-    return NextResponse.json(result, { headers: { 'X-Robots-Tag': 'noindex' } });
+    const result = await api(`/exams?page=${page}&perPage=${perPage}${course ? `&course=${encodeURIComponent(course)}` : ''}`, { next: { revalidate: 900, tags: ['exams'] } });
+    return NextResponse.json(result, { headers: { 'X-Robots-Tag': 'noindex', 'cache-control': 'public, max-age=60, s-maxage=600, stale-while-revalidate=3600' } });
   } catch {
     return NextResponse.json({ error: 'Unable to load exams' }, { status: 502 });
   }

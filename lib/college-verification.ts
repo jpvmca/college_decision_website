@@ -54,7 +54,7 @@ export async function getCollegeVerification(slug: string, profile?: { institute
   if (inline) return inline;
   try {
     const response = await api<{ data?: MaybeStatus } & Record<string, unknown>>(`/colleges/${encodeURIComponent(slug)}/verification`, {
-      next: { revalidate: 300 },
+      next: { revalidate: 1800, tags: ['colleges', `college:${slug}`] },
       signal: AbortSignal.timeout(1500)
     });
     return readStatus(response?.data) || readStatus(response) || { verified: false };

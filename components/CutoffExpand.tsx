@@ -14,7 +14,7 @@ export default function CutoffExpand({ label, total, visible = 4, href, children
   if (total <= visible) return <>{children}</>;
   if (href) return <>
     <div className="cutoff-collapsed">{children}</div>
-    <p><Link className="button" href={href}>{label}</Link></p>
+    <p><Link prefetch={false} className="button" href={href}>{label}</Link></p>
   </>;
   return <>
     <div id={id} className={open ? undefined : 'cutoff-collapsed'}>{children}</div>

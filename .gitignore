@@ -5,3 +5,6 @@ out
 .env
 .env.*
 !.env.example
+
+# Side-by-side production builds (NEXT_DIST_DIR=.next-build etc.)
+/.next-*/

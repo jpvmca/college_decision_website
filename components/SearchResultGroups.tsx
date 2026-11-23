@@ -23,7 +23,7 @@ export default function SearchResultGroups({ results, keyword }: { results: Sugg
             </div>
             <CollegeViewDetailsModal instituteId={Number(item.id)} buttonLabel="View" buttonClassName="view-button search-hit-view" />
           </div>
-        : <Link className="search-hit" key={`${item.type}-${item.id}`} href={item.href}>
+        : <Link prefetch={false} className="search-hit" key={`${item.type}-${item.id}`} href={item.href}>
             <strong>{highlight(item.title, mark)}</strong>
             {item.subtitle && <small>{item.type === 'listing' ? 'Listing · ' : ''}{item.subtitle}</small>}
           </Link>

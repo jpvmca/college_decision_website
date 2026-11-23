@@ -7,7 +7,7 @@ import { staticImageUrl } from '../lib/image';
 function FooterColumn({ title, links }: { title: string; links: NavLink[] }) {
   return <nav className="footer-col" aria-label={title}>
     <p className="footer-col-title">{title}</p>
-    <ul>{links.map((link) => <li key={link.href}><Link href={link.href}>{link.label}</Link></li>)}</ul>
+    <ul>{links.map((link) => <li key={link.href}><Link prefetch={false} href={link.href}>{link.label}</Link></li>)}</ul>
   </nav>;
 }
 
@@ -37,7 +37,7 @@ export default function SiteFooter() {
       </div>
       <div className="footer-bottom">
         <span>© {new Date().getFullYear()} College Decision, operated by {COMPANY_INFO.name}. A research and comparison resource: confirm fees, dates and cutoffs with official sources before applying.</span>
-        <nav className="footer-links" aria-label="Legal"><Link href="/privacy-policy">Privacy</Link><Link href="/terms-and-conditions">Terms</Link><Link href="/disclaimer">Disclaimer</Link></nav>
+        <nav className="footer-links" aria-label="Legal"><Link prefetch={false} href="/privacy-policy">Privacy</Link><Link prefetch={false} href="/terms-and-conditions">Terms</Link><Link prefetch={false} href="/disclaimer">Disclaimer</Link></nav>
       </div>
     </div>
   </footer>;

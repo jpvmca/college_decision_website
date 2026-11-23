@@ -62,7 +62,7 @@ export default async function ExamsPage() {
   ].filter((item): item is { icon: typeof ClipboardCheck; value: number; label: string } => Boolean(item));
   return <main className="section ex-page"><div className="wrap">
     <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
-    <nav className="breadcrumb ex-crumb" aria-label="Breadcrumb"><Link href="/">Home</Link><span aria-hidden="true">›</span><span aria-current="page">Exams</span></nav>
+    <nav className="breadcrumb ex-crumb" aria-label="Breadcrumb"><Link prefetch={false} href="/">Home</Link><span aria-hidden="true">›</span><span aria-current="page">Exams</span></nav>
 
     <section className="ex-hero">
       <div className="ex-hero-inner">
@@ -88,7 +88,7 @@ export default async function ExamsPage() {
       <ol className="ex-upcoming-list">{upcoming.map((item) => {
         const days = daysUntil(item.exam_start_date);
         const date = new Date(`${item.exam_start_date.slice(0, 10)}T00:00:00Z`);
-        return <li key={item.slug}><Link href={`/exams/${item.slug}`}>
+        return <li key={item.slug}><Link prefetch={false} href={`/exams/${item.slug}`}>
           <span className="ex-date"><strong>{date.getUTCDate()}</strong><small>{date.toLocaleDateString('en-IN', { month: 'short', timeZone: 'UTC' })}</small></span>
           <span className="ex-upcoming-copy"><strong>{item.name}</strong><small>{examFormatDate(item.exam_start_date)}</small></span>
           <em className={days <= 14 ? 'is-soon' : undefined}>{days === 0 ? 'Today' : `${days} day${days === 1 ? '' : 's'} left`}</em>

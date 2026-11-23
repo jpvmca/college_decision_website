@@ -15,7 +15,7 @@ export default function AutoLinkedText({
     <>
       {parts.map((part, index) =>
         part.type === 'link' ? (
-          <Link key={`${part.href}-${index}`} href={part.href} className={options?.className || 'auto-entity-link'}>
+          <Link prefetch={false} key={`${part.href}-${index}`} href={part.href} className={options?.className || 'auto-entity-link'}>
             {part.value}
           </Link>
         ) : (

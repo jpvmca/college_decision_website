@@ -66,7 +66,7 @@ export default function CollegeCutoffsClient({ slug, collegeName, initial, examH
 
   return <div id="cutoffs" className="cutoff-block" aria-busy={loading}>
     <h3>{examName} Cutoff {applied.year}{applied.round ? ` – Round ${applied.round}${isFinal ? ' (final)' : ''}` : ''}</h3>
-    <p className="muted">{nonRank ? 'Published cut-offs' : 'Opening and closing ranks'} for {collegeName} by programme, category, quota and seat pool. {examLink ? <>See all colleges on the <Link href={examLink}>{examName} page</Link>.</> : null}</p>
+    <p className="muted">{nonRank ? 'Published cut-offs' : 'Opening and closing ranks'} for {collegeName} by programme, category, quota and seat pool. {examLink ? <>See all colleges on the <Link prefetch={false} href={examLink}>{examName} page</Link>.</> : null}</p>
     <div className="cutoff-filters" role="group" aria-label="Cutoff filters">
       {!lockExam && facets.exams.length > 1 && sel('exam', 'Exam', facets.exams.map((e) => ({ value: e.slug, label: e.name.replace(/\s+/g, ' ') })))}
       {sel('year', 'Year', facets.years.map((y) => ({ value: String(y), label: String(y) })))}

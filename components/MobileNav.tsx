@@ -134,18 +134,18 @@ export default function MobileNav() {
     <div className="nav-links nav-primary">
       {links.map((link) => {
         const Icon = link.icon;
-        return <Link key={link.href} href={link.href} aria-current={link.current(pathname) ? 'page' : undefined}>
+        return <Link prefetch={false} key={link.href} href={link.href} aria-current={link.current(pathname) ? 'page' : undefined}>
           <Icon size={15} aria-hidden="true" /> {link.label}
         </Link>;
       })}
-      <Link className="nav-talk" href={CONTACT_HREF} aria-current={pathname === CONTACT_HREF ? 'page' : undefined}>
+      <Link prefetch={false} className="nav-talk" href={CONTACT_HREF} aria-current={pathname === CONTACT_HREF ? 'page' : undefined}>
         <MessageCircle size={15} aria-hidden="true" /> Talk to us
       </Link>
-      <Link className="nav-college-login" href={panel ? '/college' : '/college/login'} aria-current={inPanel ? 'page' : undefined} title={panel ? 'Open your college panel' : 'Sign in to manage your college profile'}>
+      <Link prefetch={false} className="nav-college-login" href={panel ? '/college' : '/college/login'} aria-current={inPanel ? 'page' : undefined} title={panel ? 'Open your college panel' : 'Sign in to manage your college profile'}>
         {panel ? <LayoutDashboard size={15} aria-hidden="true" /> : <LogIn size={15} aria-hidden="true" />} <span className="ncl-full">{panel ? 'College panel' : 'College login'}</span><span className="ncl-short" aria-hidden="true">{panel ? 'Panel' : 'Login'}</span>
       </Link>
     </div>
-    <Link className="nav-login-compact" href={panel ? '/college' : '/college/login'} aria-current={inPanel ? 'page' : undefined} aria-label={panel ? 'College panel' : 'College login'}>
+    <Link prefetch={false} className="nav-login-compact" href={panel ? '/college' : '/college/login'} aria-current={inPanel ? 'page' : undefined} aria-label={panel ? 'College panel' : 'College login'}>
       {panel ? <LayoutDashboard size={15} aria-hidden="true" /> : <LogIn size={15} aria-hidden="true" />}<span>{panel ? 'Panel' : 'Login'}</span>
     </Link>
     <button className="mobile-menu-toggle" type="button" aria-expanded={open} aria-controls="site-navigation" onClick={() => setOpen((value) => !value)}>

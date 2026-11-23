@@ -9,7 +9,7 @@ function Column({ title, links, id }: { title: string; links: NavLink[]; id: str
   return <div className="mega-col">
     <p className="mega-col-title" id={id}>{title}</p>
     <ul aria-labelledby={id}>
-      {links.map((link) => <li key={link.href}><Link href={link.href}>{link.label}</Link></li>)}
+      {links.map((link) => <li key={link.href}><Link prefetch={false} href={link.href}>{link.label}</Link></li>)}
     </ul>
   </div>;
 }
@@ -25,7 +25,7 @@ export default function SiteMenu() {
       <div className="menu-mobile-only menu-primary">
         {PRIMARY_LINKS.map((link, index) => {
           const Icon = PRIMARY_ICONS[index] || Building2;
-          return <Link key={link.href} href={link.href}><Icon size={16} aria-hidden="true" /> {link.label}</Link>;
+          return <Link prefetch={false} key={link.href} href={link.href}><Icon size={16} aria-hidden="true" /> {link.label}</Link>;
         })}
       </div>
       <ul className="mega-list">
@@ -42,8 +42,8 @@ export default function SiteMenu() {
                     <p className="mega-col-title" id={`${base}-exams`}>Exams &amp; cutoffs</p>
                     <ul aria-labelledby={`${base}-exams`}>
                       {stream.exams.map((exam) => <li key={exam.href} className="mega-exam">
-                        <Link href={exam.href}>{exam.label}</Link>
-                        {exam.cutoff && <Link className="mega-cutoff" href={exam.cutoff} aria-label={`${exam.label} cutoff`}>Cutoff</Link>}
+                        <Link prefetch={false} href={exam.href}>{exam.label}</Link>
+                        {exam.cutoff && <Link prefetch={false} className="mega-cutoff" href={exam.cutoff} aria-label={`${exam.label} cutoff`}>Cutoff</Link>}
                       </li>)}
                     </ul>
                   </div>
@@ -58,7 +58,7 @@ export default function SiteMenu() {
             <summary><GitCompareArrows size={15} aria-hidden="true" />Compare<ChevronDown size={14} aria-hidden="true" /></summary>
             <div className="mega-panel mega-panel-compare">
               <div className="mega-compare-lead">
-                <Link className="mega-compare-tool" href={COMPARE_HREF}>
+                <Link prefetch={false} className="mega-compare-tool" href={COMPARE_HREF}>
                   <strong>Compare colleges side by side</strong>
                   <span>Fees, admission routes, cutoffs and placements in one table.</span>
                 </Link>
@@ -71,15 +71,15 @@ export default function SiteMenu() {
         </li>
       </ul>
       <div className="menu-actions">
-        <Link className="menu-saathi" href={SAATHI_HREF} aria-label={SAATHI_NAME}>
+        <Link prefetch={false} className="menu-saathi" href={SAATHI_HREF} aria-label={SAATHI_NAME}>
           <MessageCircle size={14} aria-hidden="true" />
           <span className="menu-saathi-full">{SAATHI_NAME}</span>
           <span className="menu-saathi-short">Saathi</span>
         </Link>
-        <Link className="menu-forcolleges" href={FOR_COLLEGES_NAV_HREF} aria-label="For colleges"><Building2 size={14} aria-hidden="true" /><span>For colleges</span></Link>
-        <Link className="menu-bestfit" href={BEST_FIT_HREF}><Sparkles size={15} aria-hidden="true" /><span>Find your best-fit college</span></Link>
-        <Link className="menu-talk menu-mobile-only" href={CONTACT_HREF}><MessageCircle size={15} aria-hidden="true" />Talk to us</Link>
-        <Link className="menu-college-login menu-mobile-only" href="/college/login"><LogIn size={15} aria-hidden="true" />College login</Link>
+        <Link prefetch={false} className="menu-forcolleges" href={FOR_COLLEGES_NAV_HREF} aria-label="For colleges"><Building2 size={14} aria-hidden="true" /><span>For colleges</span></Link>
+        <Link prefetch={false} className="menu-bestfit" href={BEST_FIT_HREF}><Sparkles size={15} aria-hidden="true" /><span>Find your best-fit college</span></Link>
+        <Link prefetch={false} className="menu-talk menu-mobile-only" href={CONTACT_HREF}><MessageCircle size={15} aria-hidden="true" />Talk to us</Link>
+        <Link prefetch={false} className="menu-college-login menu-mobile-only" href="/college/login"><LogIn size={15} aria-hidden="true" />College login</Link>
       </div>
     </div>
   </div>;

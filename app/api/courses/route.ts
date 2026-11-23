@@ -6,8 +6,8 @@ export async function GET(request: NextRequest) {
   const page = Math.max(1, Number(request.nextUrl.searchParams.get('page')) || 1);
   const perPage = Math.min(50, Math.max(1, Number(request.nextUrl.searchParams.get('perPage')) || 20));
   try {
-    const result = await api(`/courses?page=${page}&perPage=${perPage}`, { cache: 'no-store' });
-    return NextResponse.json(result, { headers: { 'X-Robots-Tag': 'noindex' } });
+    const result = await api(`/courses?page=${page}&perPage=${perPage}`, { next: { revalidate: 900, tags: ['courses'] } });
+    return NextResponse.json(result, { headers: { 'X-Robots-Tag': 'noindex', 'cache-control': 'public, max-age=60, s-maxage=600, stale-while-revalidate=3600' } });
   } catch {
     return NextResponse.json({ error: 'Unable to load courses' }, { status: 502 });
   }

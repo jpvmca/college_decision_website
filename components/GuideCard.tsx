@@ -52,13 +52,13 @@ export default function GuideCard({ article, pill, index }: { article: GuideArti
   return <article className="ls-course" id={index != null ? `guide-${index + 1}` : undefined}>
     <div className="ls-course-media">
       {image
-        ? <Link href={href} tabIndex={-1} aria-hidden="true"><img className="course-card-image" src={image.src} srcSet={image.srcSet} sizes={image.sizes} alt="" width="1200" height="675" loading="lazy" decoding="async" /></Link>
-        : <Link href={href} className="ls-guide-fallback" tabIndex={-1} aria-hidden="true" />}
+        ? <Link prefetch={false} href={href} tabIndex={-1} aria-hidden="true"><img className="course-card-image" src={image.src} srcSet={image.srcSet} sizes={image.sizes} alt="" width="1200" height="675" loading="lazy" decoding="async" /></Link>
+        : <Link prefetch={false} href={href} className="ls-guide-fallback" tabIndex={-1} aria-hidden="true" />}
       {options > 0 && <span className="ls-course-tag">{options.toLocaleString('en-IN')} options</span>}
     </div>
     <div className="ls-course-body">
       <div className="ls-course-top"><span className="ls-tag">{label}</span></div>
-      <h2><Link href={href}>{article.title}</Link></h2>
+      <h2><Link prefetch={false} href={href}>{article.title}</Link></h2>
       <p className="ls-course-lead">{article.content || 'Compare fees, eligibility, admission route and outcomes before making a college decision.'}</p>
       <div className="ls-guide-facts">
         <span><CheckCircle2 size={14} aria-hidden="true" /> {articleFactLabel(article.articleType)}</span>
@@ -66,7 +66,7 @@ export default function GuideCard({ article, pill, index }: { article: GuideArti
         {article.placementCount ? <span><CheckCircle2 size={14} aria-hidden="true" /> {article.placementCount} placement-linked</span> : null}
         {article.examCount ? <span><CheckCircle2 size={14} aria-hidden="true" /> {article.examCount} entrance routes</span> : null}
       </div>
-      <Link className="ls-course-link" href={href}>Read guide <ArrowRight size={15} aria-hidden="true" /></Link>
+      <Link prefetch={false} className="ls-course-link" href={href}>Read guide <ArrowRight size={15} aria-hidden="true" /></Link>
     </div>
   </article>;
 }

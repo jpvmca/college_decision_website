@@ -63,13 +63,37 @@ export function instituteLogoUrl(value: string | null | undefined) {
   return imageUrl(value, 96, { quality: 85 });
 }
 
+/**
+ * Public pages are ISR: their backend reads go through Next's data cache and are refreshed on a timer
+ * (fallback) or on demand via /api/admin/cache/clear (tags/paths sent by the backend on admin edits).
+ * Never use this for user-specific data; that stays in client components / no-store route handlers.
+ */
+export const PUBLIC_REVALIDATE_SECONDS = 900;
+/** College profiles: the backend notifies the website (tag college:{slug} + /colleges/{slug} path) on edits. */
+export const PROFILE_REVALIDATE_SECONDS = 1800;
+
+export function publicFetchInit(tags: string[], revalidate = PUBLIC_REVALIDATE_SECONDS): RequestInit {
+  return { next: { revalidate, tags } };
+}
+
+/** Thrown by api() for a non-2xx backend response; status lets callers tell a real 404 from a backend failure. */
+export class ApiError extends Error {
+  constructor(public status: number) {
+    super(`API request failed: ${status}`);
+  }
+}
+
+export function isNotFoundError(error: unknown) {
+  return error instanceof ApiError && (error.status === 404 || error.status === 410);
+}
+
 export async function api<T>(path: string, init?: RequestInit): Promise<T> {
   const requestInit = { ...init };
-  if (!requestInit.cache && !requestInit.next) requestInit.next = { revalidate: 60 };
+  if (!requestInit.cache && !requestInit.next) requestInit.next = { revalidate: PUBLIC_REVALIDATE_SECONDS, tags: ['public'] };
   const response = await fetch(`${apiUrl}${path}`, {
     ...requestInit
   });
-  if (!response.ok) throw new Error(`API request failed: ${response.status}`);
+  if (!response.ok) throw new ApiError(response.status);
   return response.json() as Promise<T>;
 }
 

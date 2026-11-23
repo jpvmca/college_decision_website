@@ -13,7 +13,7 @@ export default function LinkedTextParts({
     <>
       {parts.map((part, index) =>
         part.type === 'link' ? (
-          <Link key={`${part.href}-${index}`} href={part.href} className={className}>
+          <Link prefetch={false} key={`${part.href}-${index}`} href={part.href} className={className}>
             {part.value}
           </Link>
         ) : (

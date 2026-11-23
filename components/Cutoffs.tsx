@@ -112,7 +112,7 @@ export function ExamCutoffs({ examLabel, cutoffs, collegeHref, heading }: { exam
           const secs = q?.sections || [];
           const basis = q?.basis || row.best?.cutoff_basis || null;
           return <tr key={row.institute_id}>
-            <th scope="row">{href ? <Link href={href}>{row.institute_name}</Link> : row.institute_name}{row.city ? <small className="muted"> · {row.city}</small> : null}
+            <th scope="row">{href ? <Link prefetch={false} href={href}>{row.institute_name}</Link> : row.institute_name}{row.city ? <small className="muted"> · {row.city}</small> : null}
               {isScore && q?.programme ? <small className="muted"><br />{q.programme}</small> : null}
               {rowCats.length > 0 && <details className="cutoff-cats"><summary>All categories</summary>
                 <table className="detail-table"><thead><tr><th scope="col">Category</th>{secs.map((s) => <th scope="col" key={s}>{secLabel(s)}</th>)}</tr></thead>
@@ -140,7 +140,7 @@ export function ExamCutoffs({ examLabel, cutoffs, collegeHref, heading }: { exam
         const href = row.published_slug ? collegeHref(row.published_slug) : null;
         return <tr key={row.institute_id}>
           <td>{(cutoffs.pagination.page - 1) * cutoffs.pagination.perPage + index + 1}</td>
-          <th scope="row">{href ? <Link href={href.endsWith("/cutoff") ? href : `${href}#cutoffs`}>{row.institute_name}</Link> : row.institute_name}{row.city ? <small className="muted"> · {row.city}</small> : null}</th>
+          <th scope="row">{href ? <Link prefetch={false} href={href.endsWith("/cutoff") ? href : `${href}#cutoffs`}>{row.institute_name}</Link> : row.institute_name}{row.city ? <small className="muted"> · {row.city}</small> : null}</th>
           <td>{row.best?.program_name || '—'}{row.best?.quota ? <small className="muted"> · {QUOTA_SHORT[row.best.quota] || row.best.quota}</small> : null}</td>
           <td>{metric === 'rank' || !metric ? rankText(row.best_value) : row.best_value == null ? NOT_AVAILABLE : Number(row.best_value)}</td>
         </tr>;

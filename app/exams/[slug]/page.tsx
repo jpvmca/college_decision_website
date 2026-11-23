@@ -3,7 +3,7 @@ import { notFound } from 'next/navigation';
 import Link from 'next/link';
 import type { LucideIcon } from 'lucide-react';
 import { ArrowRight, BadgeCheck, BookOpen, Building2, CalendarDays, ChevronDown, ClipboardList, GraduationCap, Lightbulb, Target, TriangleAlert } from 'lucide-react';
-import { api, instituteLogoUrl, mediaUrl } from '../../../lib/api';
+import { api, instituteLogoUrl, isNotFoundError, mediaUrl } from '../../../lib/api';
 import { stripEmbeddedFaqs } from '../../../lib/strip-embedded-faqs';
 import AdSlot from '../../../components/ads/AdSlot';
 import { getAdSlot, splitBeforeNthH2 } from '../../../lib/ads';
@@ -87,13 +87,18 @@ type ExamProfile = {
   updatedAt?: string | null;
 };
 
-export const revalidate = 300;
+export const revalidate = 900;
+
+// ISR: render each path on first visit, then serve cached HTML (time-based + on-demand revalidation).
+export async function generateStaticParams() {
+  return [];
+}
 
 async function getExamCutoffs(slug: string) {
   try {
     // Short revalidate + 'cutoffs' tag so newly added cutoff rows are not hidden behind a cached empty result.
     return await api<ExamCutoffResponse>(`/exams/${encodeURIComponent(slug)}/cutoffs?perPage=25`, {
-      next: { revalidate: 60, tags: [`exam:${slug}`, 'cutoffs'] }
+      next: { revalidate: 900, tags: ['exams', `exam:${slug}`, 'cutoffs'] }
     });
   } catch {
     return null;
@@ -103,11 +108,12 @@ async function getExamCutoffs(slug: string) {
 async function getExam(slug: string) {
   try {
     const response = await api<{ data: ExamProfile }>(`/exams/${encodeURIComponent(slug)}`, {
-      next: { revalidate: 300, tags: [`exam:${slug}`] }
+      next: { revalidate: 900, tags: ['exams', `exam:${slug}`] }
     });
     return response.data;
-  } catch {
-    return null;
+  } catch (error) {
+    if (isNotFoundError(error)) return null;
+    throw error;
   }
 }
 
@@ -258,7 +264,7 @@ export default async function ExamProfilePage({ params }: { params: Promise<{ sl
   const safeCourseHref = courseHref && linkableEntities.some((entity) => entity.href === courseHref) ? courseHref : null;
   return <main className="section college-profile-page cp-page"><div className="wrap">
     <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
-    <nav className="breadcrumb cp-breadcrumb" aria-label="Breadcrumb"><Link href="/">Home</Link><span aria-hidden="true">›</span><Link href="/exams">Exams</Link><span aria-hidden="true">›</span><span aria-current="page">{name}</span></nav>
+    <nav className="breadcrumb cp-breadcrumb" aria-label="Breadcrumb"><Link prefetch={false} href="/">Home</Link><span aria-hidden="true">›</span><Link prefetch={false} href="/exams">Exams</Link><span aria-hidden="true">›</span><span aria-current="page">{name}</span></nav>
     <AdSlot slotKey="exam_top" />
     <header className="cp-hero">
       <div className="cp-hero-top">
@@ -272,9 +278,9 @@ export default async function ExamProfilePage({ params }: { params: Promise<{ sl
       <p className="cp-hero-lead"><AutoLinkedText text={seo.intro} entities={linkableEntities} options={{ excludeHrefs: autoLinkExclude }} /></p>
       <div className="cp-hero-badges"><span className="cp-pill is-verified"><BadgeCheck size={15} aria-hidden="true" /> Evidence-backed profile</span></div>
       <div className="cp-hero-actions">
-        {examCutoffs?.data.length ? <Link className="button ls-btn-primary" href={`/exams/${slug}/cutoff`}><Target size={15} aria-hidden="true" /> {name} Cutoff</Link> : <Link className="button ls-btn-primary" href="/compare-colleges-2026">Compare colleges <ArrowRight size={16} aria-hidden="true" /></Link>}
+        {examCutoffs?.data.length ? <Link prefetch={false} className="button ls-btn-primary" href={`/exams/${slug}/cutoff`}><Target size={15} aria-hidden="true" /> {name} Cutoff</Link> : <Link prefetch={false} className="button ls-btn-primary" href="/compare-colleges-2026">Compare colleges <ArrowRight size={16} aria-hidden="true" /></Link>}
         {profile.exam.applyUrl ? <a className="button cp-btn-ghost" href={profile.exam.applyUrl} target="_blank" rel="noopener noreferrer">Official {name} information</a> : null}
-        {safeCourseHref && profile.exam.course?.name ? <Link className="button cp-btn-ghost" href={safeCourseHref}>{profile.exam.course.name} course</Link> : null}
+        {safeCourseHref && profile.exam.course?.name ? <Link prefetch={false} className="button cp-btn-ghost" href={safeCourseHref}>{profile.exam.course.name} course</Link> : null}
       </div>
     </header>
     <section className="cp-glance" aria-labelledby="exam-highlights-heading">
@@ -345,7 +351,7 @@ export default async function ExamProfilePage({ params }: { params: Promise<{ sl
 
     {(examCutoffs?.data.length || seo.intent === 'cutoff') ? <ExamCutoffs examLabel={seo.label} cutoffs={examCutoffs} collegeHref={(collegeSlug) => findPublishedHref(linkableEntities, 'college', collegeSlug) || `/colleges/${collegeSlug}`} /> : null}
 
-    {profile.colleges.length > 0 && <section className="cp-card"><SectionHead icon={Building2} title={`Colleges accepting ${seo.label}: ${profile.colleges.length} listed`} subtitle={`Browse published college profiles mapped to ${seo.label}. Prefer institutes with fees and placement evidence when shortlisting.`} />{seo.pack.collegesNote && <p className="muted">{seo.pack.collegesNote.text}{seo.pack.collegesNote.href && seo.pack.collegesNote.linkText ? <> <Link href={seo.pack.collegesNote.href}>{seo.pack.collegesNote.linkText}</Link>.</> : null}</p>}<div className="college-programme-grid">{profile.colleges.map((college) => {
+    {profile.colleges.length > 0 && <section className="cp-card"><SectionHead icon={Building2} title={`Colleges accepting ${seo.label}: ${profile.colleges.length} listed`} subtitle={`Browse published college profiles mapped to ${seo.label}. Prefer institutes with fees and placement evidence when shortlisting.`} />{seo.pack.collegesNote && <p className="muted">{seo.pack.collegesNote.text}{seo.pack.collegesNote.href && seo.pack.collegesNote.linkText ? <> <Link prefetch={false} href={seo.pack.collegesNote.href}>{seo.pack.collegesNote.linkText}</Link>.</> : null}</p>}<div className="college-programme-grid">{profile.colleges.map((college) => {
       const href = college.published_slug ? `/colleges/${college.published_slug}` : null;
       const card = <>
         <div className="home-college-heading">
@@ -356,15 +362,15 @@ export default async function ExamProfilePage({ params }: { params: Promise<{ sl
           </div>
         </div>
       </>;
-      return href ? <Link className="card" href={href} key={college.id}>{card}</Link> : <article className="card" key={college.id}>{card}</article>;
+      return href ? <Link prefetch={false} className="card" href={href} key={college.id}>{card}</Link> : <article className="card" key={college.id}>{card}</article>;
     })}</div></section>}
 
-    {profile.exam.course?.publishedSlug && <p className="article-backlink"><Link href={`/courses/${profile.exam.course.publishedSlug}`}>{seo.label} for {profile.exam.course.name}: course fees, exams & careers</Link></p>}
+    {profile.exam.course?.publishedSlug && <p className="article-backlink"><Link prefetch={false} href={`/courses/${profile.exam.course.publishedSlug}`}>{seo.label} for {profile.exam.course.name}: course fees, exams & careers</Link></p>}
     {(() => {
       const ranked = rankExamArticles(profile.articles.map((a) => ({ ...a, articleType: a.articleType })), profile.exam.slug);
       const list = ranked.length ? ranked : profile.articles;
       if (!list.length) return null;
-      return <section className="cp-card"><SectionHead icon={BookOpen} title={`${seo.label} accepting-colleges & related guides`} /><div className="college-programme-grid">{list.map((article) => <Link className="card" href={`/articles/${article.slug}`} key={article.slug}><h3>{articleAnchorTitle(article, seo.label)}</h3><p className="muted">{(article.articleType || 'exam').replace(/-/g, ' ')} guide for {seo.label}</p></Link>)}</div></section>;
+      return <section className="cp-card"><SectionHead icon={BookOpen} title={`${seo.label} accepting-colleges & related guides`} /><div className="college-programme-grid">{list.map((article) => <Link prefetch={false} className="card" href={`/articles/${article.slug}`} key={article.slug}><h3>{articleAnchorTitle(article, seo.label)}</h3><p className="muted">{(article.articleType || 'exam').replace(/-/g, ' ')} guide for {seo.label}</p></Link>)}</div></section>;
     })()}
     <AdSlot slotKey="exam_end" />
     {faqs.length > 0 && <section className="cp-card"><SectionHead icon={ClipboardList} title="Frequently asked questions" /><div className="cp-faq">{faqs.map((faq) => <details className="cp-faq-item" key={faq.question}><summary><h3>{faq.question}</h3><ChevronDown size={18} aria-hidden="true" /></summary><p>{faq.answer}</p></details>)}</div></section>}

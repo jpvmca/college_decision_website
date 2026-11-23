@@ -103,13 +103,13 @@ export default function ExamDirectory({ initial, total, courses, adFeed = null }
       const mark = <ExamLogo src={exam.logo} examName={exam.name} courseName={exam.course_name} size={56} fallback={<span aria-hidden="true">{initials}</span>} />;
       return <Fragment key={exam.id}><article className={`article-card exam-card ex-card is-${state}`} id={course ? undefined : `exam-${index + 1}`}>
         <div className="exam-card-heading">
-          {profileHref ? <Link className="ex-logo" href={profileHref}>{mark}</Link> : <span className="ex-logo">{mark}</span>}
+          {profileHref ? <Link prefetch={false} className="ex-logo" href={profileHref}>{mark}</Link> : <span className="ex-logo">{mark}</span>}
           <div className="exam-card-copy">
             <div className="ex-card-top">
-              {exam.course_published_slug ? <Link className="ex-tag" href={`/courses/${exam.course_published_slug}`}>{exam.course_name}</Link> : <span className="ex-tag">{exam.course_name || 'Entrance exam'}</span>}
+              {exam.course_published_slug ? <Link prefetch={false} className="ex-tag" href={`/courses/${exam.course_published_slug}`}>{exam.course_name}</Link> : <span className="ex-tag">{exam.course_name || 'Entrance exam'}</span>}
               <span className={`exam-state exam-state-${state}`}>{STATE_LABEL[state]}</span>
             </div>
-            <h2>{profileHref ? <Link href={profileHref}>{exam.name}</Link> : exam.name}</h2>
+            <h2>{profileHref ? <Link prefetch={false} href={profileHref}>{exam.name}</Link> : exam.name}</h2>
             {exam.full_name && exam.full_name.toLowerCase() !== exam.name.toLowerCase() ? <p className="exam-card-fullname">{exam.full_name}</p> : null}
           </div>
         </div>
@@ -124,7 +124,7 @@ export default function ExamDirectory({ initial, total, courses, adFeed = null }
         {exam.colleges.length > 0 ? <div className="exam-card-row">
           <span className="exam-card-label">Accepted by</span>
           <div className="ex-colleges">
-            {exam.colleges.slice(0, 4).map((college) => <Link key={college.slug} href={`/colleges/${college.slug}`}>{college.name}</Link>)}
+            {exam.colleges.slice(0, 4).map((college) => <Link prefetch={false} key={college.slug} href={`/colleges/${college.slug}`}>{college.name}</Link>)}
             {extraColleges > 0 ? <span className="ex-more">+{extraColleges.toLocaleString('en-IN')} more</span> : null}
           </div>
         </div> : null}
@@ -135,7 +135,7 @@ export default function ExamDirectory({ initial, total, courses, adFeed = null }
             <span><BookOpen size={14} aria-hidden="true" /> {Number(exam.programme_count || 0).toLocaleString('en-IN')} programmes</span>
             {exam.review_count ? <span className="is-rating"><Star size={14} aria-hidden="true" /> {Number(exam.average_rating).toFixed(1)}/5 · {Number(exam.review_count).toLocaleString('en-IN')} reviews</span> : null}
           </div>
-          {profileHref ? <Link className="ex-card-link" href={profileHref}>View exam profile <ArrowRight size={14} aria-hidden="true" /></Link> : null}
+          {profileHref ? <Link prefetch={false} className="ex-card-link" href={profileHref}>View exam profile <ArrowRight size={14} aria-hidden="true" /></Link> : null}
         </div>
       </article>{adAt.has(index + 1) && adFeed ? <AdSlotClient slot={adFeed.slot} settings={adFeed.settings} className="ad-in-list" /> : null}</Fragment>;
     }) : <div className="card ex-empty"><h2>Exam list unavailable</h2><p>Please try again shortly.</p></div>}</div>

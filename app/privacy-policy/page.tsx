@@ -11,7 +11,7 @@ export const metadata: Metadata = {
 
 export default function PrivacyPolicyPage() {
   return <main className="section ls-page"><div className="wrap">
-    <nav className="breadcrumb ls-crumb" aria-label="Breadcrumb"><Link href="/">Home</Link><span aria-hidden="true">›</span><span aria-current="page">Privacy Policy</span></nav>
+    <nav className="breadcrumb ls-crumb" aria-label="Breadcrumb"><Link prefetch={false} href="/">Home</Link><span aria-hidden="true">›</span><span aria-current="page">Privacy Policy</span></nav>
     <section className="ls-hero">
       <div className="ls-hero-inner is-solo">
         <div className="ls-hero-copy">

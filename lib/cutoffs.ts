@@ -1,7 +1,7 @@
 import { api } from './api';
 import type { CollegeCutoffResponse, ExamCutoffResponse } from '../components/Cutoffs';
 
-export const CUTOFF_REVALIDATE = 600;
+export const CUTOFF_REVALIDATE = 900;
 const opts = (tag: string) => ({ next: { revalidate: CUTOFF_REVALIDATE, tags: ['cutoffs', tag] } });
 
 export type CollegeCutoffSummary = {

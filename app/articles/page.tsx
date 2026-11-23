@@ -151,7 +151,7 @@ export default async function ArticlesPage({ searchParams }: { searchParams: Pro
   ].filter((item): item is { icon: typeof FileText; value: number; label: string } => Boolean(item));
   return <main className="section ls-page"><div className="wrap">
     <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
-    <nav className="breadcrumb ls-crumb" aria-label="Breadcrumb"><Link href="/">Home</Link><span aria-hidden="true">›</span><span aria-current="page">Articles</span></nav>
+    <nav className="breadcrumb ls-crumb" aria-label="Breadcrumb"><Link prefetch={false} href="/">Home</Link><span aria-hidden="true">›</span><span aria-current="page">Articles</span></nav>
     <section className="ls-hero">
       <div className="ls-hero-inner">
         <div className="ls-hero-copy">
@@ -159,8 +159,8 @@ export default async function ArticlesPage({ searchParams }: { searchParams: Pro
           <h1>Compare colleges with a clearer plan</h1>
           <p>Explore course-by-course guides that bring fees, admission routes, eligibility and outcomes into one practical comparison.</p>
           <div className="ls-hero-actions">
-            <Link className="button ls-btn-primary" href="/compare-colleges-2026">Compare colleges directly <ArrowRight size={16} aria-hidden="true" /></Link>
-            <Link className="button ls-btn-ghost" href="/colleges">Browse colleges</Link>
+            <Link prefetch={false} className="button ls-btn-primary" href="/compare-colleges-2026">Compare colleges directly <ArrowRight size={16} aria-hidden="true" /></Link>
+            <Link prefetch={false} className="button ls-btn-ghost" href="/colleges">Browse colleges</Link>
           </div>
         </div>
         <div className="ls-hero-visual">
@@ -192,8 +192,8 @@ export default async function ArticlesPage({ searchParams }: { searchParams: Pro
 
 function Pagination({ page, totalPages, budget, type }: { page: number; totalPages: number; budget: number; type: ArticleType }) {
   return <nav className="pagination" aria-label="Article pages">
-    {page > 1 && <Link className="page-arrow" href={articlesHref(page - 1, type, budget)}><ArrowLeft size={15} aria-hidden="true" /> Previous</Link>}
-    <div className="page-numbers">{getPageItems(totalPages, page).map((item, index) => item === 'ellipsis' ? <span className="page-ellipsis" key={`ellipsis-${index}`}>…</span> : <Link className={item === page ? 'page-number current' : 'page-number'} aria-current={item === page ? 'page' : undefined} key={item} href={articlesHref(item, type, budget)}>{item}</Link>)}</div>
-    {page < totalPages && <Link className="page-arrow" href={articlesHref(page + 1, type, budget)}>Next <ArrowRight size={15} aria-hidden="true" /></Link>}
+    {page > 1 && <Link prefetch={false} className="page-arrow" href={articlesHref(page - 1, type, budget)}><ArrowLeft size={15} aria-hidden="true" /> Previous</Link>}
+    <div className="page-numbers">{getPageItems(totalPages, page).map((item, index) => item === 'ellipsis' ? <span className="page-ellipsis" key={`ellipsis-${index}`}>…</span> : <Link prefetch={false} className={item === page ? 'page-number current' : 'page-number'} aria-current={item === page ? 'page' : undefined} key={item} href={articlesHref(item, type, budget)}>{item}</Link>)}</div>
+    {page < totalPages && <Link prefetch={false} className="page-arrow" href={articlesHref(page + 1, type, budget)}>Next <ArrowRight size={15} aria-hidden="true" /></Link>}
   </nav>;
 }

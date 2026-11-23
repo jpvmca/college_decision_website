@@ -70,14 +70,14 @@ function CourseLabel({
   if (!entities?.length) return <>{name}</>;
   // Prefer exact course-name match; also try a leading clean token like "MBA" / "B.Tech".
   const exact = findPublishedHrefByName(entities, 'course', name);
-  if (exact) return <Link href={exact} className="auto-entity-link">{name}</Link>;
+  if (exact) return <Link prefetch={false} href={exact} className="auto-entity-link">{name}</Link>;
   const leading = name.split(/[\s/–—-]+/).filter(Boolean)[0];
   if (leading && leading.length >= 2 && leading.toLowerCase() !== name.toLowerCase()) {
     const leadHref = findPublishedHrefByName(entities, 'course', leading);
     if (leadHref) {
       return (
         <>
-          <Link href={leadHref} className="auto-entity-link">{leading}</Link>
+          <Link prefetch={false} href={leadHref} className="auto-entity-link">{leading}</Link>
           {name.slice(leading.length)}
         </>
       );
@@ -96,7 +96,7 @@ export default function CollegeDecisionCard({ item, showCompare = true, showRevi
       <div className="college-card-title-row">
         <InstituteLogo src={item.logo} alt={`${item.instituteName} college logo`} />
         <div>
-          <h3>{item.publishedSlug ? <Link href={`/colleges/${item.publishedSlug}`}>{item.instituteName}</Link> : item.instituteName}</h3>
+          <h3>{item.publishedSlug ? <Link prefetch={false} href={`/colleges/${item.publishedSlug}`}>{item.instituteName}</Link> : item.instituteName}</h3>
           <strong><CourseLabel name={item.programmeName} entities={linkableEntities} /></strong>
         </div>
       </div>

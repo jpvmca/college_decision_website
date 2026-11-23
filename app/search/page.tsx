@@ -63,8 +63,8 @@ export default async function SearchPage({ searchParams }: { searchParams: Promi
             <h1>{decisionResults.pagination.total.toLocaleString('en-IN')} colleges match your preferences</h1>
             <p>Compare programme, location, fee and admission context before deciding.</p>
             <div className="ls-hero-actions">
-              <Link className="button ls-btn-primary" href="/compare-colleges-2026">Compare colleges <ArrowRight size={16} aria-hidden="true" /></Link>
-              <Link className="button ls-btn-ghost" href="/colleges">Browse all colleges</Link>
+              <Link prefetch={false} className="button ls-btn-primary" href="/compare-colleges-2026">Compare colleges <ArrowRight size={16} aria-hidden="true" /></Link>
+              <Link prefetch={false} className="button ls-btn-ghost" href="/colleges">Browse all colleges</Link>
             </div>
           </div>
           <div className="ls-hero-visual"><HeroPhoto src="/colleges-hero.webp" alt="Students comparing colleges that match their preferences" /></div>
@@ -72,7 +72,7 @@ export default async function SearchPage({ searchParams }: { searchParams: Promi
         <HeroStats prefix="ls" stats={[{ icon: Search, value: decisionResults.pagination.total.toLocaleString('en-IN'), label: 'Matching colleges' }]} />
       </section>
       {decisionResults.data.length ? <div className="decision-results-list">{decisionResults.data.map((item) => <CollegeDecisionCard key={item.programmeId} item={item} showCompare={decisionResults.pagination.total > 1} />)}</div> : <div className="card no-results"><h2>No colleges found</h2><p>Try selecting a wider budget or removing a branch, city, or exam filter.</p></div>}
-      {decisionResults.pagination.totalPages > 1 && <nav className="decision-pagination" aria-label="College result pages"><Link className="page-arrow" href={buildPageUrl(Math.max(1, page - 1))} aria-disabled={page <= 1}>Previous</Link><span>Page {page} of {decisionResults.pagination.totalPages}</span><Link className="page-arrow" href={buildPageUrl(Math.min(decisionResults.pagination.totalPages, page + 1))} aria-disabled={page >= decisionResults.pagination.totalPages}>Next</Link></nav>}
+      {decisionResults.pagination.totalPages > 1 && <nav className="decision-pagination" aria-label="College result pages"><Link prefetch={false} className="page-arrow" href={buildPageUrl(Math.max(1, page - 1))} aria-disabled={page <= 1}>Previous</Link><span>Page {page} of {decisionResults.pagination.totalPages}</span><Link prefetch={false} className="page-arrow" href={buildPageUrl(Math.min(decisionResults.pagination.totalPages, page + 1))} aria-disabled={page >= decisionResults.pagination.totalPages}>Next</Link></nav>}
     </div></main>;
   }
   const groups = SUGGEST_GROUPS.map((g) => ({ ...g, items: results[g.key] })).filter((g) => g.items.length);
@@ -80,6 +80,6 @@ export default async function SearchPage({ searchParams }: { searchParams: Promi
   return <main className="section ls-page"><div className="wrap">
     <h1 className="search-compact-title">{keyword ? `Search results for “${keyword}”` : 'Search colleges, exams, courses and guides'}<span>{keyword ? ` · ${total} match${total === 1 ? '' : 'es'}${results.fuzzy ? ' (close matches, check the spelling)' : ''}` : ''}</span></h1>
     <div className="ls-search-box"><SearchBox variant="page" initialQuery={keyword} autoFocus={!keyword} /></div>
-    {keyword && groups.length ? <SearchResultGroups results={results} keyword={keyword} /> : <div className="card no-results"><h2>{keyword ? `No results for “${keyword}”` : 'Start typing to search'}</h2><p>Try a shorter name, a college abbreviation, or browse <Link href="/colleges">colleges</Link>, <Link href="/exams">exams</Link>, <Link href="/courses">courses</Link> and <Link href="/articles">guides</Link>.</p></div>}
+    {keyword && groups.length ? <SearchResultGroups results={results} keyword={keyword} /> : <div className="card no-results"><h2>{keyword ? `No results for “${keyword}”` : 'Start typing to search'}</h2><p>Try a shorter name, a college abbreviation, or browse <Link prefetch={false} href="/colleges">colleges</Link>, <Link prefetch={false} href="/exams">exams</Link>, <Link prefetch={false} href="/courses">courses</Link> and <Link prefetch={false} href="/articles">guides</Link>.</p></div>}
   </div></main>;
 }

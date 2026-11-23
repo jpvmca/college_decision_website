@@ -22,7 +22,7 @@ export function parseRankSegment(segment: string) {
   const m = RANK_PATTERN.exec(segment || '');
   return m ? { courseKey: m[1], level: Number(m[2]), exam: m[3] } : null;
 }
-const opts = { next: { revalidate: 600, tags: ['cutoffs', 'closing'] } };
+const opts = { next: { revalidate: 900, tags: ['cutoffs', 'closing'] } };
 export async function getClosingCombos(): Promise<ClosingCombo[]> {
   try { return (await api<{ data: ClosingCombo[] }>('/cutoffs/closing-combos', opts)).data; } catch { return []; }
 }

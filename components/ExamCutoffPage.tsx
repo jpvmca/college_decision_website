@@ -85,7 +85,7 @@ function YearCompare({ name, metric, years, blocks }: { name: string; metric: st
     <p>Same colleges compared on the General-category figure used in each year table ({unit}). Blank cells mean that college has no published figure for that year in our records.</p>
     <div className="detail-table-wrap"><table className="detail-table cutoff-table">
       <thead><tr><th scope="col">College</th>{yearLabels.map((y) => <th key={y.year} scope="col">{name} {examYearOf(y)}</th>)}</tr></thead>
-      <tbody>{rows.map((r) => <tr key={r.name}><th scope="row">{r.slug ? <Link href={`/colleges/${r.slug}/cutoff`}>{r.name}</Link> : r.name}</th>{yearLabels.map((y) => <td key={y.year}>{r.values[y.year] == null ? "—" : formatMetric(r.values[y.year]!, metric === "rank" ? "rank" : metric === "percentile" ? "percentile" : "score")}</td>)}</tr>)}</tbody>
+      <tbody>{rows.map((r) => <tr key={r.name}><th scope="row">{r.slug ? <Link prefetch={false} href={`/colleges/${r.slug}/cutoff`}>{r.name}</Link> : r.name}</th>{yearLabels.map((y) => <td key={y.year}>{r.values[y.year] == null ? "—" : formatMetric(r.values[y.year]!, metric === "rank" ? "rank" : metric === "percentile" ? "percentile" : "score")}</td>)}</tr>)}</tbody>
     </table></div>
   </section>;
 }
@@ -125,8 +125,8 @@ export default function ExamCutoffPage({ summary, blocks, activeYear, finder, co
   return <main className="section college-profile-page cp-page"><div className="wrap">
     <JsonLd data={breadcrumbJsonLd(siteUrl(), crumbs)} />
     {faqLd && <JsonLd data={faqLd} />}
-    <nav className="breadcrumb cp-breadcrumb" aria-label="Breadcrumb"><Link href="/">Home</Link><span aria-hidden="true">›</span><Link href="/exams">Exams</Link><span aria-hidden="true">›</span><Link href={`/exams/${slug}`}>{name}</Link><span aria-hidden="true">›</span>
-      {activeYear ? <><Link href={`/exams/${slug}/cutoff`}>Cutoff</Link><span aria-hidden="true">›</span><span aria-current="page">{shownExamYear}</span></> : <span aria-current="page">Cutoff</span>}</nav>
+    <nav className="breadcrumb cp-breadcrumb" aria-label="Breadcrumb"><Link prefetch={false} href="/">Home</Link><span aria-hidden="true">›</span><Link prefetch={false} href="/exams">Exams</Link><span aria-hidden="true">›</span><Link prefetch={false} href={`/exams/${slug}`}>{name}</Link><span aria-hidden="true">›</span>
+      {activeYear ? <><Link prefetch={false} href={`/exams/${slug}/cutoff`}>Cutoff</Link><span aria-hidden="true">›</span><span aria-current="page">{shownExamYear}</span></> : <span aria-current="page">Cutoff</span>}</nav>
     <AdSlot slotKey="cutoff_top" />
     <header className="cp-hero">
       <div className="cp-hero-copy">
@@ -140,10 +140,10 @@ export default function ExamCutoffPage({ summary, blocks, activeYear, finder, co
           : `${name} cutoffs for ${summary.years.map((y) => examYearOf(y)).join(', ')}, latest year first.`} {metric === 'rank' ? 'Each college shows its lowest final-round closing rank; open a college to see every programme, round, category and quota.' : isMinimum ? '' : 'Figures are the published cutoff scores.'}</p>
       <div className="cp-hero-badges"><span className="cp-pill is-verified"><BadgeCheck size={15} aria-hidden="true" /> {yearInfo.institutes} {yearInfo.institutes === 1 ? 'college' : 'colleges'} with records</span></div>
       {isMultiYear(summary) && <div className="cutoff-year-links" role="navigation" aria-label={`${name} cutoff years`}>
-        {summary.years.map((y) => <Link key={y.year} className={`button${y.year === activeYear ? ' primary' : ''}`} href={yearHref(y.year)} aria-current={y.year === activeYear ? 'page' : undefined}>{name} {examYearOf(y)} Cutoff{isAdmissionKeyed(y) ? ` (${batchLabel(y.year)})` : ''}</Link>)}
-        <Link className="button" href={`/exams/${slug}`}>{name} exam details</Link>
+        {summary.years.map((y) => <Link prefetch={false} key={y.year} className={`button${y.year === activeYear ? ' primary' : ''}`} href={yearHref(y.year)} aria-current={y.year === activeYear ? 'page' : undefined}>{name} {examYearOf(y)} Cutoff{isAdmissionKeyed(y) ? ` (${batchLabel(y.year)})` : ''}</Link>)}
+        <Link prefetch={false} className="button" href={`/exams/${slug}`}>{name} exam details</Link>
       </div>}
-      {!isMultiYear(summary) && <div className="cp-hero-actions"><Link className="button cp-btn-ghost" href={`/exams/${slug}`}><ClipboardList size={15} aria-hidden="true" /> {name} exam details</Link></div>}
+      {!isMultiYear(summary) && <div className="cp-hero-actions"><Link prefetch={false} className="button cp-btn-ghost" href={`/exams/${slug}`}><ClipboardList size={15} aria-hidden="true" /> {name} exam details</Link></div>}
     </header>
     <p className="muted">{yearInfo.institutes} {yearInfo.institutes === 1 ? 'college currently has' : 'colleges currently have'} {name} {shownExamYear} cutoff records{shownColleges !== yearInfo.institutes ? ` (${shownColleges} in the table below with its default filters${slug === 'jee-main' ? ', B.E./B.Tech' : ''})` : ''}{yearInfo.aggregator ? '; some figures are from secondary publications and are marked' : ''}.</p>
     {note && <p className="muted"><strong>Note:</strong> {note}</p>}

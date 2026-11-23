@@ -20,7 +20,7 @@ type ComparisonArticle = {
 
 async function getLatestComparisonArticles(): Promise<ComparisonArticle[]> {
   try {
-    const response = await api<{ data: ComparisonArticle[] }>('/articles?type=college-comparison&page=1&perPage=20', { next: { revalidate: 300 } });
+    const response = await api<{ data: ComparisonArticle[] }>('/articles?type=college-comparison&page=1&perPage=20', { next: { revalidate: 900, tags: ['articles'] } });
     return response.data || [];
   } catch {
     return [];
@@ -65,7 +65,7 @@ export default async function CompareCollegesPage() {
     <main className="section ls-page cm-page">
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(applicationSchema) }} />
       <div className="wrap">
-        <nav className="breadcrumb ls-crumb" aria-label="Breadcrumb"><Link href="/">Home</Link><span aria-hidden="true">›</span><span aria-current="page">Compare colleges</span></nav>
+        <nav className="breadcrumb ls-crumb" aria-label="Breadcrumb"><Link prefetch={false} href="/">Home</Link><span aria-hidden="true">›</span><span aria-current="page">Compare colleges</span></nav>
         <section className="ls-hero">
           <div className="ls-hero-inner">
             <div className="ls-hero-copy">
@@ -73,8 +73,8 @@ export default async function CompareCollegesPage() {
               <h1>Compare Colleges in India by Fees, Courses, Placements and Admission</h1>
               <p>Choose up to four colleges and compare the details that matter before you apply. Search by college name, display name or URL keyword.</p>
               <div className="ls-hero-actions">
-                <Link className="button ls-btn-primary" href="#compare-tool">Start comparing <ArrowRight size={16} aria-hidden="true" /></Link>
-                <Link className="button ls-btn-ghost" href="/articles">Read decision guides</Link>
+                <Link prefetch={false} className="button ls-btn-primary" href="#compare-tool">Start comparing <ArrowRight size={16} aria-hidden="true" /></Link>
+                <Link prefetch={false} className="button ls-btn-ghost" href="/articles">Read decision guides</Link>
               </div>
               <div className="cm-hero-points">
                 <span><CheckCircle2 size={16} aria-hidden="true" /> Programme-level data</span>
@@ -111,7 +111,7 @@ export default async function CompareCollegesPage() {
           <div className="ls-courses">
             {comparisonArticles.map((article) => {
               const image = imageUrl(article.imageUrl, 768, { height: 432, quality: 78 }) || comparisonImage;
-              return <Link className="ls-course" href={`/articles/${article.slug}`} key={article.id}>
+              return <Link prefetch={false} className="ls-course" href={`/articles/${article.slug}`} key={article.id}>
                 <div className="ls-course-media">
                   <img className="course-card-image" src={image} alt="" width="640" height="360" loading="lazy" />
                 </div>
@@ -146,7 +146,7 @@ export default async function CompareCollegesPage() {
               <li>Separate average and highest placement packages.</li>
               <li>Verify the latest official eligibility and admission notice.</li>
             </ol>
-            <Link className="text-link" href="/articles">Read decision guides <ArrowRight size={16} aria-hidden="true" /></Link>
+            <Link prefetch={false} className="text-link" href="/articles">Read decision guides <ArrowRight size={16} aria-hidden="true" /></Link>
           </aside>
         </div>
       </section>

@@ -9,8 +9,8 @@ export async function GET(request: NextRequest) {
   const type = /^[a-z-]{1,40}$/.test(q.get('type') || '') ? q.get('type') : 'all';
   const budget = [1, 3, 5, 10].includes(Number(q.get('budget'))) ? Number(q.get('budget')) : 5;
   try {
-    const result = await api(`/articles?page=${page}&perPage=${perPage}&budget=${budget}&type=${type}`, { cache: 'no-store' });
-    return NextResponse.json(result, { headers: { 'X-Robots-Tag': 'noindex' } });
+    const result = await api(`/articles?page=${page}&perPage=${perPage}&budget=${budget}&type=${type}`, { next: { revalidate: 900, tags: ['articles'] } });
+    return NextResponse.json(result, { headers: { 'X-Robots-Tag': 'noindex', 'cache-control': 'public, max-age=60, s-maxage=600, stale-while-revalidate=3600' } });
   } catch {
     return NextResponse.json({ error: 'Unable to load articles' }, { status: 502 });
   }

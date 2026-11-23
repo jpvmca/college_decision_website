@@ -8,7 +8,7 @@ import { notFound } from 'next/navigation';
 import Link from 'next/link';
 import { ArrowLeftRight, ArrowUpRight, BadgeCheck, BookOpen, BriefcaseBusiness, Building2, CalendarDays, ChevronDown, ClipboardCheck, Clock, Globe2, GraduationCap, HelpCircle, Images, IndianRupee, Landmark, Lightbulb, MapPin, ShieldCheck, Star, Target, TrendingUp, Trophy, Users, type LucideIcon } from 'lucide-react';
 import ProfileSectionNav from '../../../components/ProfileSectionNav';
-import { api, imageUrl, instituteLogoUrl } from '../../../lib/api';
+import { api, imageUrl, instituteLogoUrl, isNotFoundError, PROFILE_REVALIDATE_SECONDS } from '../../../lib/api';
 import { OFFICIAL_WEBSITE_REL, toAbsoluteExternalUrl } from '../../../lib/external-url';
 import { getLinkableEntities, findPublishedHref, findPublishedHrefByName } from '../../../lib/linkable-entities';
 import { CollegeCutoffs, type CollegeCutoffResponse } from '../../../components/Cutoffs';
@@ -100,12 +100,21 @@ type CollegeProfile = {
   updatedAt?: string | null;
 };
 
+// ISR: profiles are cached HTML, rebuilt at most every 30 min or on demand when the backend posts
+// tag college:{slug} / path /colleges/{slug} to /api/admin/cache/clear. Paths render on first visit.
+export const revalidate = 1800;
+export async function generateStaticParams() {
+  return [];
+}
+
+const profileFetch = (slug: string) => ({ next: { revalidate: PROFILE_REVALIDATE_SECONDS, tags: ['colleges', 'profiles', `college:${slug}`] } });
+
 // Default cutoff table only (server-rendered for SEO). Filters run client-side via /api/college-cutoffs;
 // the page URL never carries filter params.
 // React cache(): one backend call per request even though generateMetadata and the page both ask.
 const getCollegeCutoffs = cache(async (slug: string) => {
   try {
-    return await api<CollegeCutoffResponse>(`/colleges/${encodeURIComponent(slug)}/cutoffs?perPage=25`, { cache: 'no-store' });
+    return await api<CollegeCutoffResponse>(`/colleges/${encodeURIComponent(slug)}/cutoffs?perPage=25`, profileFetch(slug));
   } catch {
     return null;
   }
@@ -113,10 +122,13 @@ const getCollegeCutoffs = cache(async (slug: string) => {
 
 const getCollege = cache(async (slug: string) => {
   try {
-    const response = await api<{ data: CollegeProfile }>(`/colleges/${encodeURIComponent(slug)}`, { cache: 'no-store' });
+    const response = await api<{ data: CollegeProfile }>(`/colleges/${encodeURIComponent(slug)}`, profileFetch(slug));
     return response.data;
-  } catch {
-    return null;
+  } catch (error) {
+    // Only a real backend 404 becomes a (cacheable) 404 page. A backend failure throws, so ISR keeps serving
+    // the last good copy instead of caching a 404 for a live college.
+    if (isNotFoundError(error)) return null;
+    throw error;
   }
 });
 
@@ -620,7 +632,7 @@ export default async function CollegeProfilePage({ params }: { params: Promise<{
   ] as Array<[string, number | null | undefined]>).filter((row): row is [string, number] => typeof row[1] === 'number' && row[1] > 0);
   const examLinks = (separator = ', ') => profile.exams.map((exam, index) => {
     const href = findPublishedHref(linkableEntities, 'exam', exam.slug);
-    return <span key={exam.id}>{index ? separator : ''}{href ? <Link href={href}>{exam.name}</Link> : exam.name}</span>;
+    return <span key={exam.id}>{index ? separator : ''}{href ? <Link prefetch={false} href={href}>{exam.name}</Link> : exam.name}</span>;
   });
   const toc = [
     { id: 'about', label: 'About', show: Boolean(profile.about || location || profile.institute.establishmentYear || officialWebsite) },
@@ -753,7 +765,7 @@ export default async function CollegeProfilePage({ params }: { params: Promise<{
   const adThin = !String(profile.about || '').trim() && profile.programmes.length === 0;
   return <main className="section college-profile-page cp-page"><div className="wrap">
     <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
-    <nav className="breadcrumb cp-breadcrumb" aria-label="Breadcrumb"><Link href="/">Home</Link><span aria-hidden="true">›</span><Link href="/colleges">Colleges</Link><span aria-hidden="true">›</span><span aria-current="page">{name}</span></nav>
+    <nav className="breadcrumb cp-breadcrumb" aria-label="Breadcrumb"><Link prefetch={false} href="/">Home</Link><span aria-hidden="true">›</span><Link prefetch={false} href="/colleges">Colleges</Link><span aria-hidden="true">›</span><span aria-current="page">{name}</span></nav>
     <AdSlot slotKey="college_top" thin={adThin} />
 
     <header className="cp-hero">
@@ -776,20 +788,20 @@ export default async function CollegeProfilePage({ params }: { params: Promise<{
         {rating && profile.reviewSummary.count > 0 ? <span className="cp-pill is-rating"><Stars value={rating} /><strong>{rating.toFixed(1)}/5</strong> from {profile.reviewSummary.count} student ratings</span> : null}
         {verification.verified
           ? verification.verificationDue
-            ? <Link className="cp-pill is-claim-verified is-verification-due" href={VERIFICATION_POLICY_HREF} title="Claimed by the college; its yearly re-verification is due"><ShieldCheck size={15} aria-hidden="true" /> Verified by college · Verification due</Link>
+            ? <Link prefetch={false} className="cp-pill is-claim-verified is-verification-due" href={VERIFICATION_POLICY_HREF} title="Claimed by the college; its yearly re-verification is due"><ShieldCheck size={15} aria-hidden="true" /> Verified by college · Verification due</Link>
             : verification.claimed === false
-              ? <Link className="cp-pill is-claim-verified" href={VERIFICATION_POLICY_HREF} title="Profile verified by the CollegeDecision team"><ShieldCheck size={15} aria-hidden="true" /> Verified</Link>
-              : <Link className="cp-pill is-claim-verified" href={VERIFICATION_POLICY_HREF} title="Profile claimed and verified by the college"><ShieldCheck size={15} aria-hidden="true" /> Verified by college</Link>
+              ? <Link prefetch={false} className="cp-pill is-claim-verified" href={VERIFICATION_POLICY_HREF} title="Profile verified by the CollegeDecision team"><ShieldCheck size={15} aria-hidden="true" /> Verified</Link>
+              : <Link prefetch={false} className="cp-pill is-claim-verified" href={VERIFICATION_POLICY_HREF} title="Profile claimed and verified by the college"><ShieldCheck size={15} aria-hidden="true" /> Verified by college</Link>
           : null}
         {bestRank ? <span className="cp-pill is-rank"><Trophy size={14} aria-hidden="true" /> {bestRank.label}{bestRank.year ? ` ${bestRank.year}` : ''} <strong>#{bestRank.rank}</strong>{bestRank.course ? ` · ${bestRank.course}` : ''}</span> : null}
       </div>
       <div className="cp-hero-actions">
         <CollegeApply collegeSlug={slug} collegeName={name} courses={applyCourses} label={`Apply to ${name.length > 28 ? 'this college' : name}`} />
         {profile.brochure?.available ? <BrochureDownload collegeSlug={slug} collegeName={name} courses={applyCourses} sizeBytes={profile.brochure.sizeBytes} /> : null}
-        <Link className="button cp-btn-ghost" href="#courses">Explore courses</Link>
-        <Link className="button cp-btn-ghost" href="/compare-colleges-2026"><ArrowLeftRight size={15} aria-hidden="true" /> Compare colleges</Link>
+        <Link prefetch={false} className="button cp-btn-ghost" href="#courses">Explore courses</Link>
+        <Link prefetch={false} className="button cp-btn-ghost" href="/compare-colleges-2026"><ArrowLeftRight size={15} aria-hidden="true" /> Compare colleges</Link>
         {officialWebsite && <a className="button cp-btn-ghost" href={officialWebsite} target="_blank" rel={OFFICIAL_WEBSITE_REL}><Globe2 size={15} aria-hidden="true" /> Official website</a>}
-        {cutoffs?.data?.length ? <Link className="button cp-btn-ghost" href={`/colleges/${slug}/cutoff`}><Target size={15} aria-hidden="true" /> View cutoff</Link> : null}
+        {cutoffs?.data?.length ? <Link prefetch={false} className="button cp-btn-ghost" href={`/colleges/${slug}/cutoff`}><Target size={15} aria-hidden="true" /> View cutoff</Link> : null}
       </div>
     </header>
 
@@ -862,7 +874,7 @@ export default async function CollegeProfilePage({ params }: { params: Promise<{
               </div>
               {(duration || showCourseLink) && <div className="cp-programme-meta">
                 {duration ? <span className="cp-chip"><Clock size={13} aria-hidden="true" /> {duration}</span> : null}
-                {showCourseLink && courseHref ? <Link className="cp-programme-link" href={courseHref}>{text(programme.course_name)} profile <ArrowUpRight size={13} aria-hidden="true" /></Link> : null}
+                {showCourseLink && courseHref ? <Link prefetch={false} className="cp-programme-link" href={courseHref}>{text(programme.course_name)} profile <ArrowUpRight size={13} aria-hidden="true" /></Link> : null}
               </div>}
             </div>;
           };
@@ -901,7 +913,7 @@ export default async function CollegeProfilePage({ params }: { params: Promise<{
       })()}</>}
       {profile.exams.length > 0 && <><h3>Entrance Exams Accepted</h3><div className="cp-exam-chips">{profile.exams.map((exam) => {
         const href = findPublishedHref(linkableEntities, 'exam', exam.slug);
-        return href ? <Link key={exam.id} href={href}>{exam.name}<ArrowUpRight size={13} aria-hidden="true" /></Link> : <span key={exam.id}>{exam.name}</span>;
+        return href ? <Link prefetch={false} key={exam.id} href={href}>{exam.name}<ArrowUpRight size={13} aria-hidden="true" /></Link> : <span key={exam.id}>{exam.name}</span>;
       })}</div></>}
       <h3>How to Apply</h3>
       <ol className="cp-steps">
@@ -979,7 +991,7 @@ export default async function CollegeProfilePage({ params }: { params: Promise<{
 
     {profile.comparisonGuides.length > 0 && <section id="compare" className="cp-card">
       <SectionHeading icon={ArrowLeftRight} subtitle="Side-by-side guides on fees, branches and placements">Compare {name}</SectionHeading>
-      <div className="cp-compare-grid">{profile.comparisonGuides.map((guide) => <Link className="cp-compare-card" href={`/articles/${guide.slug}`} key={guide.slug}>
+      <div className="cp-compare-grid">{profile.comparisonGuides.map((guide) => <Link prefetch={false} className="cp-compare-card" href={`/articles/${guide.slug}`} key={guide.slug}>
         <span className="cp-compare-icon"><ArrowLeftRight size={16} aria-hidden="true" /></span>
         <div><h3>{stripSiteSuffix(text(guide.title, guide.h1 || 'College comparison guide'))}</h3><p>{guide.other_college_name ? `Compare ${name} with ${guide.other_college_name}` : 'Read the published comparison guide'}</p></div>
         <ArrowUpRight className="cp-compare-arrow" size={18} aria-hidden="true" />
@@ -994,7 +1006,7 @@ export default async function CollegeProfilePage({ params }: { params: Promise<{
     {!(verification.claimed ?? verification.verified) && <aside className="cp-claim-cta" aria-label="Claim this college profile">
       <Building2 size={20} aria-hidden="true" />
       <div><strong>Do you represent {name}?</strong><p>Claim this profile to verify it and keep courses, fees, admissions and contact details accurate. Every update is reviewed before it is published.</p></div>
-      <div className="cp-claim-cta-actions"><Link className="button" href={claimLink} rel="nofollow">Claim this profile</Link><Link href={VERIFICATION_POLICY_HREF}>How verification works</Link></div>
+      <div className="cp-claim-cta-actions"><Link prefetch={false} className="button" href={claimLink} rel="nofollow">Claim this profile</Link><Link prefetch={false} href={VERIFICATION_POLICY_HREF}>How verification works</Link></div>
     </aside>}
     <div className="cp-data-note"><ShieldCheck size={18} aria-hidden="true" /><p><strong>Data note:</strong> Fees, placements, rankings and reviews are recorded evidence and may change by batch, category, role, recruiter mix or academic year. Verify the latest official information before applying.</p></div>
   </div></main>;

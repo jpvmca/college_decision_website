@@ -101,11 +101,11 @@ export default function ListingGuide({
             {(summary.privateCount || summary.publicCount) ? <tr><th scope="row">Private / public</th><td>{summary.privateCount.toLocaleString('en-IN')} / {summary.publicCount.toLocaleString('en-IN')}</td></tr> : null}
             {topStates.length && placeKind === 'india' ? <tr><th scope="row">States with most listings</th><td>{listNames(topStates)}</td></tr> : null}
             {topCities.length ? <tr><th scope="row">Cities with most listings</th><td>{listNames(topCities)}</td></tr> : null}
-            {exams.length ? <tr><th scope="row">Exams mapped in this list</th><td>{exams.map((exam, i) => <span key={exam.slug}>{i ? ', ' : ''}<Link href={`/exams/${exam.slug}`}>{exam.name}</Link> ({exam.count.toLocaleString('en-IN')})</span>)}</td></tr> : null}
+            {exams.length ? <tr><th scope="row">Exams mapped in this list</th><td>{exams.map((exam, i) => <span key={exam.slug}>{i ? ', ' : ''}<Link prefetch={false} href={`/exams/${exam.slug}`}>{exam.name}</Link> ({exam.count.toLocaleString('en-IN')})</span>)}</td></tr> : null}
             {summary.fees && summary.fees.n >= 3 ? <tr><th scope="row">Annual fee (published sample)</th><td>Median {inr(summary.fees.median || 0)} · {inr(summary.fees.min)}–{inr(summary.fees.max)} ({summary.fees.n.toLocaleString('en-IN')} colleges)</td></tr> : <tr><th scope="row">Annual fee</th><td>{total === 0 ? 'No colleges are listed, so no fee range is shown' : 'Too few published fee records for a range'}</td></tr>}
             {directoryColleges.length ? <tr><th scope="row">Colleges listed first on this page</th><td>{directoryColleges.map((college, i) => {
               const place = [college.city, college.state].filter(Boolean).join(', ');
-              return <span key={college.slug}>{i ? '; ' : ''}<Link href={`/colleges/${college.slug}`}>{college.name}</Link>{place ? ` (${place})` : ''}</span>;
+              return <span key={college.slug}>{i ? '; ' : ''}<Link prefetch={false} href={`/colleges/${college.slug}`}>{college.name}</Link>{place ? ` (${place})` : ''}</span>;
             })}</td></tr> : null}
           </tbody>
         </table>
@@ -123,9 +123,9 @@ export default function ListingGuide({
           </ul>
         </>}
       {placeKind === 'india'
-        ? <p>See the <Link href={`/courses/${courseSlug}`}>{label} course guide</Link> for eligibility and subject pattern{nearby.length ? ', and the related state lists below if you want to compare in one state' : ''}.</p>
-        : <p>See the <Link href={`/courses/${courseSlug}`}>{label} course guide</Link> for eligibility and subject pattern, and the all-India <Link href={courseListingHref(courseKey)}>{label} college list</Link> if you want to compare outside {loc}.</p>}
-      {nearby.length ? <p>Related state lists: {nearby.map((s, i) => <span key={s.stateSlug}>{i ? ', ' : ''}<Link href={s.href}>{label} colleges in {s.stateName}</Link></span>)}.</p> : null}
+        ? <p>See the <Link prefetch={false} href={`/courses/${courseSlug}`}>{label} course guide</Link> for eligibility and subject pattern{nearby.length ? ', and the related state lists below if you want to compare in one state' : ''}.</p>
+        : <p>See the <Link prefetch={false} href={`/courses/${courseSlug}`}>{label} course guide</Link> for eligibility and subject pattern, and the all-India <Link prefetch={false} href={courseListingHref(courseKey)}>{label} college list</Link> if you want to compare outside {loc}.</p>}
+      {nearby.length ? <p>Related state lists: {nearby.map((s, i) => <span key={s.stateSlug}>{i ? ', ' : ''}<Link prefetch={false} href={s.href}>{label} colleges in {s.stateName}</Link></span>)}.</p> : null}
       <h2>{label} colleges in {loc}: FAQs</h2>
       <div className="cp-faq">{faqs.map((f) => <details className="cp-faq-item" key={f.question}><summary><h3>{f.question}</h3><ChevronDown size={18} aria-hidden="true" /></summary><p>{f.answer}</p></details>)}</div>
       </CollapsibleContent>

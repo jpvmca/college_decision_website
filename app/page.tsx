@@ -102,10 +102,10 @@ export default async function HomePage() {
             <h1>Compare College Fees, Admission & Placements in India</h1>
             <p>Compare fees, admission routes, placements, hostel costs and real decision trade-offs from structured college data.</p>
             <div className="hp-hero-actions">
-              <Link className="button hp-btn-primary" href="/compare-colleges-2026">Compare colleges <ArrowRight size={17} aria-hidden="true" /></Link>
-              <Link className="button hp-btn-ghost" href="/articles">Explore decision articles <ArrowRight size={17} aria-hidden="true" /></Link>
+              <Link prefetch={false} className="button hp-btn-primary" href="/compare-colleges-2026">Compare colleges <ArrowRight size={17} aria-hidden="true" /></Link>
+              <Link prefetch={false} className="button hp-btn-ghost" href="/articles">Explore decision articles <ArrowRight size={17} aria-hidden="true" /></Link>
             </div>
-            {quickLinks.length > 0 && <div className="hp-quick"><span>Popular:</span>{quickLinks.map((link) => <Link key={link.href} href={link.href}>{link.label}</Link>)}</div>}
+            {quickLinks.length > 0 && <div className="hp-quick"><span>Popular:</span>{quickLinks.map((link) => <Link prefetch={false} key={link.href} href={link.href}>{link.label}</Link>)}</div>}
           </div>
           <div className="hp-hero-visual" aria-hidden="true">
             <div className="hp-hero-glow" />
@@ -127,12 +127,12 @@ export default async function HomePage() {
         <div className="wrap">
           <div className="hp-heading">
             <div><p className="hp-eyebrow"><CalendarDays size={14} aria-hidden="true" /> Exam calendar</p><h2 id="hp-upcoming-heading">Upcoming entrance exams</h2></div>
-            <Link className="hp-view-all" href="/exams">All exam dates <ArrowRight size={16} aria-hidden="true" /></Link>
+            <Link prefetch={false} className="hp-view-all" href="/exams">All exam dates <ArrowRight size={16} aria-hidden="true" /></Link>
           </div>
           <ol className="hp-upcoming-list">{upcoming.map((item) => {
             const days = daysUntil(item.exam_start_date);
             const date = new Date(`${item.exam_start_date.slice(0, 10)}T00:00:00Z`);
-            return <li key={item.slug}><Link href={`/exams/${item.slug}`}>
+            return <li key={item.slug}><Link prefetch={false} href={`/exams/${item.slug}`}>
               <span className="hp-date"><strong>{date.getUTCDate()}</strong><small>{date.toLocaleDateString('en-IN', { month: 'short', timeZone: 'UTC' })}</small></span>
               <span className="hp-upcoming-copy"><strong>{item.name}</strong><small>{examFormatDate(item.exam_start_date)}</small></span>
               <em className={days <= 14 ? 'is-soon' : undefined}>{days === 0 ? 'Today' : `${days} day${days === 1 ? '' : 's'} left`}</em>
@@ -158,7 +158,7 @@ export default async function HomePage() {
         <div className="wrap">
           <div className="hp-heading">
             <div><p className="hp-eyebrow">Start your shortlist</p><h2>Popular colleges</h2></div>
-            <Link className="hp-view-all" href="/colleges">View all colleges <ArrowRight size={16} aria-hidden="true" /></Link>
+            <Link prefetch={false} className="hp-view-all" href="/colleges">View all colleges <ArrowRight size={16} aria-hidden="true" /></Link>
           </div>
           <div className="hp-grid">
             {colleges.map((college) => {
@@ -183,11 +183,11 @@ export default async function HomePage() {
                       {college.nirf_rank ? <span className="hp-tag is-rank"><Trophy size={12} aria-hidden="true" /> NIRF #{college.nirf_rank}</span> : null}
                     </div>
                   </div>
-                  <h3>{college.published_slug ? <Link href={href}>{collegeName}</Link> : collegeName}</h3>
+                  <h3>{college.published_slug ? <Link prefetch={false} href={href}>{collegeName}</Link> : collegeName}</h3>
                   <p className="hp-loc"><MapPin size={14} aria-hidden="true" /> {[college.city, college.state].filter(Boolean).join(', ') || 'India'}</p>
                   {facts.length > 0 && <dl className="hp-facts">{facts.map((fact) => <div key={fact.label}><dt>{fact.label}</dt><dd>{fact.value}</dd></div>)}</dl>}
                   <p className="hp-college-courses"><strong>{programmeCount.toLocaleString('en-IN')} programmes</strong>{courseNames.length ? <> · {courseNames.slice(0, 4).join(', ')}{courseNames.length > 4 ? ` +${courseNames.length - 4} more` : ''}</> : null}</p>
-                  <Link className="hp-card-link" href={href}>{college.published_slug ? 'View college profile' : 'View more'} <ArrowRight size={14} aria-hidden="true" /></Link>
+                  <Link prefetch={false} className="hp-card-link" href={href}>{college.published_slug ? 'View college profile' : 'View more'} <ArrowRight size={14} aria-hidden="true" /></Link>
                 </article>
               );
             })}
@@ -199,7 +199,7 @@ export default async function HomePage() {
         <div className="wrap">
           <div className="hp-heading">
             <div><p className="hp-eyebrow">Explore study paths</p><h2>Popular courses</h2></div>
-            <Link className="hp-view-all" href="/courses">View all courses <ArrowRight size={16} aria-hidden="true" /></Link>
+            <Link prefetch={false} className="hp-view-all" href="/courses">View all courses <ArrowRight size={16} aria-hidden="true" /></Link>
           </div>
           <div className="hp-grid">
             {courses.map((course) => {
@@ -208,13 +208,13 @@ export default async function HomePage() {
               return <article className="hp-card hp-course" key={course.id}>
                 <div className="hp-course-media"><CourseImage src={course.image_url} alt={`${course.name} course guide`} />{course.review_count ? <span className="hp-media-tag">{Number(course.review_count).toLocaleString('en-IN')} reviews</span> : null}</div>
                 <div className="hp-course-body">
-                  <h3>{href ? <Link href={href}>{course.name}</Link> : course.name}</h3>
+                  <h3>{href ? <Link prefetch={false} href={href}>{course.name}</Link> : course.name}</h3>
                   <dl className="hp-facts is-two">
                     <div><dt>Colleges</dt><dd>{Number(course.institute_count || 0).toLocaleString('en-IN')}</dd></div>
                     <div><dt>Programmes</dt><dd>{Number(course.programme_count || 0).toLocaleString('en-IN')}</dd></div>
                   </dl>
                   {rating ? <p className="hp-rating"><Star size={14} aria-hidden="true" /> <strong>{rating.toFixed(1)}/5</strong> average rating</p> : null}
-                  {href ? <Link className="hp-card-link" href={href}>View course profile <ArrowRight size={14} aria-hidden="true" /></Link> : null}
+                  {href ? <Link prefetch={false} className="hp-card-link" href={href}>View course profile <ArrowRight size={14} aria-hidden="true" /></Link> : null}
                 </div>
               </article>;
             })}
@@ -226,7 +226,7 @@ export default async function HomePage() {
         <div className="wrap">
           <div className="hp-heading">
             <div><p className="hp-eyebrow">Plan your application</p><h2>Popular entrance exams</h2></div>
-            <Link className="hp-view-all" href="/exams">View all exams <ArrowRight size={16} aria-hidden="true" /></Link>
+            <Link prefetch={false} className="hp-view-all" href="/exams">View all exams <ArrowRight size={16} aria-hidden="true" /></Link>
           </div>
           <div className="hp-grid">
             {exams.map((exam) => {
@@ -234,14 +234,14 @@ export default async function HomePage() {
               return <article className="hp-card hp-exam" key={exam.id}>
                 <div className="hp-exam-top">
                   <span className="hp-logo"><ExamLogo src={exam.logo} examName={exam.name} courseName={exam.course_name} size={44} /></span>
-                  <div><h3>{href ? <Link href={href}>{exam.name}</Link> : exam.name}</h3><span className="hp-tag">{exam.course_name || 'Entrance exam'}</span></div>
+                  <div><h3>{href ? <Link prefetch={false} href={href}>{exam.name}</Link> : exam.name}</h3><span className="hp-tag">{exam.course_name || 'Entrance exam'}</span></div>
                 </div>
                 <dl className="hp-facts is-two">
                   <div><dt>Colleges</dt><dd>{Number(exam.institute_count || 0).toLocaleString('en-IN')}</dd></div>
                   <div><dt>Programmes</dt><dd>{Number(exam.programme_count || 0).toLocaleString('en-IN')}</dd></div>
                 </dl>
                 {exam.review_count ? <p className="hp-rating"><Star size={14} aria-hidden="true" /> <strong>{Number(exam.average_rating).toFixed(1)}/5</strong> from {Number(exam.review_count).toLocaleString('en-IN')} course reviews</p> : null}
-                {href ? <Link className="hp-card-link" href={href}>View exam profile <ArrowRight size={14} aria-hidden="true" /></Link> : null}
+                {href ? <Link prefetch={false} className="hp-card-link" href={href}>View exam profile <ArrowRight size={14} aria-hidden="true" /></Link> : null}
               </article>;
             })}
           </div>
@@ -252,16 +252,16 @@ export default async function HomePage() {
         <div className="wrap">
           <div className="hp-heading">
             <div><p className="hp-eyebrow">Start with a useful question</p><h2>Popular decision guides</h2><p>Explore current course guides organised around the questions students ask before applying.</p></div>
-            <Link className="hp-view-all" href="/articles">View all decision guides <ArrowRight size={16} aria-hidden="true" /></Link>
+            <Link prefetch={false} className="hp-view-all" href="/articles">View all decision guides <ArrowRight size={16} aria-hidden="true" /></Link>
           </div>
           <div className="hp-guides">
             {popularGuides.map((guide) => <article className="hp-card hp-guide" key={guide.slug}>
-              {guide.imageUrl && (() => { const image = getGuideImageSources(guide.imageUrl); return <Link className="hp-guide-media" href={`/articles/${guide.slug}`} tabIndex={-1} aria-hidden="true"><img src={image.src} srcSet={image.srcSet} sizes="(max-width: 760px) 100vw, 360px" alt={guide.title} width="640" height="360" loading="lazy" decoding="async" /></Link>; })()}
+              {guide.imageUrl && (() => { const image = getGuideImageSources(guide.imageUrl); return <Link prefetch={false} className="hp-guide-media" href={`/articles/${guide.slug}`} tabIndex={-1} aria-hidden="true"><img src={image.src} srcSet={image.srcSet} sizes="(max-width: 760px) 100vw, 360px" alt={guide.title} width="640" height="360" loading="lazy" decoding="async" /></Link>; })()}
               <div className="hp-guide-body">
                 <span className="hp-tag">{typeLabel(guide.articleType)}</span>
-                <h3><Link href={`/articles/${guide.slug}`}>{guide.title}</Link></h3>
+                <h3><Link prefetch={false} href={`/articles/${guide.slug}`}>{guide.title}</Link></h3>
                 <p>{guide.content || 'Review the latest published course, fee and admission information before applying.'}</p>
-                <Link className="hp-card-link" href={`/articles/${guide.slug}`}>Read guide <ArrowRight size={15} aria-hidden="true" /></Link>
+                <Link prefetch={false} className="hp-card-link" href={`/articles/${guide.slug}`}>Read guide <ArrowRight size={15} aria-hidden="true" /></Link>
               </div>
             </article>)}
             {!popularGuides.length && <p className="muted">New decision guides will appear here after they are published.</p>}
@@ -274,8 +274,8 @@ export default async function HomePage() {
           <div className="hp-cta">
             <div><h2>Shortlisted a few colleges?</h2><p>Put them side by side on fees, cutoffs, placements and ratings before you apply.</p></div>
             <div className="hp-cta-actions">
-              <Link className="button hp-btn-primary" href="/compare-colleges-2026"><ArrowLeftRight size={17} aria-hidden="true" /> Compare colleges</Link>
-              <Link className="button hp-btn-ghost" href="/colleges">Browse colleges</Link>
+              <Link prefetch={false} className="button hp-btn-primary" href="/compare-colleges-2026"><ArrowLeftRight size={17} aria-hidden="true" /> Compare colleges</Link>
+              <Link prefetch={false} className="button hp-btn-ghost" href="/colleges">Browse colleges</Link>
             </div>
           </div>
           <AdSlot slotKey="home_bottom" />

@@ -14,7 +14,7 @@ export async function GET(request: NextRequest) {
   const backendUrl = process.env.BACKEND_API_URL || 'http://127.0.0.1:4000/api/v1';
   const query = new URLSearchParams({ instituteId });
   if (courseId) query.set('courseId', courseId);
-  const response = await fetch(`${backendUrl}/colleges/details?${query.toString()}`, { cache: 'no-store' }).catch(() => null);
+  const response = await fetch(`${backendUrl}/colleges/details?${query.toString()}`, { next: { revalidate: 1800, tags: ['colleges', `college-id:${instituteId}`] } }).catch(() => null);
   if (!response) return NextResponse.json({ error: 'Details unavailable' }, { status: 502 });
   const body = await response.text();
   if (!response.ok) {
@@ -25,7 +25,7 @@ export async function GET(request: NextRequest) {
     if (payload.data && payload.data.about) {
       payload.data.about = readableHtml(payload.data.about, { headingShift: 1 }) || payload.data.about;
     }
-    return NextResponse.json(payload, { headers: { 'content-type': 'application/json' } });
+    return NextResponse.json(payload, { headers: { 'content-type': 'application/json', 'cache-control': 'public, max-age=60, s-maxage=600, stale-while-revalidate=3600' } });
   } catch {
     return new NextResponse(body, { status: response.status, headers: { 'content-type': 'application/json' } });
   }

@@ -20,9 +20,9 @@ export default function NotFound() {
             Try searching for another course or browse the latest decision guides.
           </p>
           <div className="ls-hero-actions">
-            <Link className="button ls-btn-primary" href="/articles">Browse published guides <ArrowRight size={16} aria-hidden="true" /></Link>
-            <Link className="button ls-btn-ghost" href="/search"><Search size={15} aria-hidden="true" /> Search guides</Link>
-            <Link className="button ls-btn-ghost" href="/">Return to homepage</Link>
+            <Link prefetch={false} className="button ls-btn-primary" href="/articles">Browse published guides <ArrowRight size={16} aria-hidden="true" /></Link>
+            <Link prefetch={false} className="button ls-btn-ghost" href="/search"><Search size={15} aria-hidden="true" /> Search guides</Link>
+            <Link prefetch={false} className="button ls-btn-ghost" href="/">Return to homepage</Link>
           </div>
         </div>
       </div>

@@ -12,8 +12,15 @@ function strippedParams(pathname: string): string[] {
   // Course, state and city college listings: /mba-colleges, /mba-colleges-in-maharashtra, /mba-colleges-in-pune-maharashtra.
   // Percentile/rank finder pages (/...-colleges-accepting-...) use their query string as a search form and are excluded.
   if (/^\/[a-z0-9-]+-colleges(-in-[a-z0-9-]+)?$/.test(pathname) && !pathname.includes('-colleges-accepting-')) return ['page'];
+  // Article pages are ISR and never paginate by URL (more colleges load client-side).
+  if (/^\/articles\/[^/]+$/.test(pathname)) return ['page'];
   return [];
 }
+
+/** Percentile/rank finder landing pages: /{course}-colleges-accepting-{level}-{exam}. */
+const FINDER_PATH = /^\/[a-z0-9-]+-colleges-accepting-[a-z0-9-]+$/;
+/** Internal dynamic route that renders a finder search (the ISR listing route never reads searchParams). */
+const LISTING_QUERY_PREFIX = '/listing-query';
 
 export function proxy(request: NextRequest) {
   // This application has no Server Actions. Reject malformed/bot action
@@ -33,6 +40,15 @@ export function proxy(request: NextRequest) {
       return NextResponse.redirect(url, 301);
     }
     return NextResponse.next();
+  }
+  // The rewritten request comes back through the proxy with the internal path; let it through. A direct visit
+  // only gets a noindex page whose canonical is the public URL, so it needs no special handling.
+  if (pathname.startsWith(`${LISTING_QUERY_PREFIX}/`)) return NextResponse.next();
+  // Finder search with a query string: render per request (noindex) without making the clean URL dynamic.
+  if (FINDER_PATH.test(pathname) && searchParams.size > 0) {
+    const url = request.nextUrl.clone();
+    url.pathname = `${LISTING_QUERY_PREFIX}${pathname}`;
+    return NextResponse.rewrite(url);
   }
   const strip = strippedParams(pathname).filter((name) => searchParams.has(name));
   if (strip.length && request.method === 'GET') {

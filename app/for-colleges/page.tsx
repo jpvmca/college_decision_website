@@ -24,7 +24,7 @@ const steps = [
 
 export default function ForCollegesPage() {
   return <main className="section ls-page"><div className="wrap">
-    <nav className="breadcrumb ls-crumb" aria-label="Breadcrumb"><Link href="/">Home</Link><span aria-hidden="true">›</span><span aria-current="page">For colleges</span></nav>
+    <nav className="breadcrumb ls-crumb" aria-label="Breadcrumb"><Link prefetch={false} href="/">Home</Link><span aria-hidden="true">›</span><span aria-current="page">For colleges</span></nav>
     <section className="ls-hero">
       <div className="ls-hero-inner is-solo">
         <div className="ls-hero-copy">
@@ -32,8 +32,8 @@ export default function ForCollegesPage() {
           <h1>Claim and verify your college profile</h1>
           <p>Help students see accurate information about your institution. Once your claim is approved, your profile shows a verified badge and you can request updates to the details students rely on.</p>
           <div className="ls-hero-actions">
-            <Link className="button primary" href={CLAIM_HREF} rel="nofollow">Claim your profile</Link>
-            <Link className="button" href={VERIFICATION_POLICY_HREF}>Read the verification policy</Link>
+            <Link prefetch={false} className="button primary" href={CLAIM_HREF} rel="nofollow">Claim your profile</Link>
+            <Link prefetch={false} className="button" href={VERIFICATION_POLICY_HREF}>Read the verification policy</Link>
           </div>
         </div>
       </div>
@@ -58,9 +58,9 @@ export default function ForCollegesPage() {
         <li>Claiming or verifying a profile does not change rankings, student ratings or the order of listing pages.</li>
         <li>Each college profile has one owner account. Our team can transfer ownership if the authorised contact changes.</li>
         <li>College representatives cannot edit or remove student reviews and ratings.</li>
-        <li>Found an error but do not represent the college? <Link href="/contact">Report a data issue</Link> instead.</li>
+        <li>Found an error but do not represent the college? <Link prefetch={false} href="/contact">Report a data issue</Link> instead.</li>
       </ul>
-      <p><Link className="button primary" href={CLAIM_HREF} rel="nofollow">Start a claim</Link></p>
+      <p><Link prefetch={false} className="button primary" href={CLAIM_HREF} rel="nofollow">Start a claim</Link></p>
     </div>
   </div></main>;
 }

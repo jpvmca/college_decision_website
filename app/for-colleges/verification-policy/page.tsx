@@ -17,7 +17,7 @@ export const metadata: Metadata = {
 
 export default function VerificationPolicyPage() {
   return <main className="section ls-page"><div className="wrap">
-    <nav className="breadcrumb ls-crumb" aria-label="Breadcrumb"><Link href="/">Home</Link><span aria-hidden="true">›</span><Link href={FOR_COLLEGES_HREF}>For colleges</Link><span aria-hidden="true">›</span><span aria-current="page">Verification policy</span></nav>
+    <nav className="breadcrumb ls-crumb" aria-label="Breadcrumb"><Link prefetch={false} href="/">Home</Link><span aria-hidden="true">›</span><Link prefetch={false} href={FOR_COLLEGES_HREF}>For colleges</Link><span aria-hidden="true">›</span><span aria-current="page">Verification policy</span></nav>
     <section className="ls-hero">
       <div className="ls-hero-inner is-solo">
         <div className="ls-hero-copy">
@@ -55,7 +55,7 @@ export default function VerificationPolicyPage() {
       <h2>Questions and disputes</h2>
       <p>If you believe a profile was claimed by someone who is not authorised, or you want to dispute a decision, write to <a href="mailto:mail@collegedecision.in">mail@collegedecision.in</a> with the college name and profile link.</p>
 
-      <p><Link className="button primary" href={CLAIM_HREF} rel="nofollow">Claim your college profile</Link></p>
+      <p><Link prefetch={false} className="button primary" href={CLAIM_HREF} rel="nofollow">Claim your college profile</Link></p>
     </div>
   </div></main>;
 }

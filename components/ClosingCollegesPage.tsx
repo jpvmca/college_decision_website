@@ -83,10 +83,10 @@ function CollegeTable({ list, kind, showGap }: { list: ClosingCollege[]; kind: C
       const shown = c.programmes.slice(0, SHOW_PROGRAMMES);
       const quotas = Array.from(new Set(c.programmes.map((p) => QUOTA[p.quota || ''] || p.quota || '—')));
       return <tr key={c.institute_id}>
-        <th scope="row"><Link href={`/colleges/${c.slug}/cutoff`}>{c.name}</Link>{c.city ? <small className="muted"> · {c.city}{c.state ? `, ${c.state}` : ''}</small> : null}</th>
+        <th scope="row"><Link prefetch={false} href={`/colleges/${c.slug}/cutoff`}>{c.name}</Link>{c.city ? <small className="muted"> · {c.city}{c.state ? `, ${c.state}` : ''}</small> : null}</th>
         <td><ul className="cutoff-branch-list">{shown.map((p, i) => <li key={`${p.program_name}-${p.quota}-${p.gender_pool}-${i}`}>{p.program_name}: <strong>{fmtVal(kind, p.closing)}</strong>
           {p.gender_pool === 'FEMALE_ONLY' ? <small className="muted"> (female-only)</small> : null}{showGap && p.gap !== null ? <small className={p.gap >= 0 ? 'finder-gap-pos' : 'finder-gap-neg'}> {p.gap >= 0 ? '+' : ''}{kind === 'rank' ? fmtRank(p.gap) : p.gap}</small> : null}</li>)}
-          {c.programmes.length > SHOW_PROGRAMMES && <li className="muted">+{c.programmes.length - SHOW_PROGRAMMES} more · <Link href={`/colleges/${c.slug}/cutoff`}>all branches</Link></li>}</ul></td>
+          {c.programmes.length > SHOW_PROGRAMMES && <li className="muted">+{c.programmes.length - SHOW_PROGRAMMES} more · <Link prefetch={false} href={`/colleges/${c.slug}/cutoff`}>all branches</Link></li>}</ul></td>
         <td>{quotas.join(', ')}</td>
       </tr>;
     })}</tbody></table></div>;
@@ -128,7 +128,7 @@ export default async function ClosingCollegesPage({ segment, query, kind }: { se
   return <main className="section college-profile-page cp-page"><div className="wrap">
     <JsonLd data={breadcrumbJsonLd(siteUrl(), crumbs)} />
     {faqLd && !searching && <JsonLd data={faqLd} />}
-    <nav className="breadcrumb cp-breadcrumb" aria-label="Breadcrumb"><Link href="/">Home</Link><span aria-hidden="true">›</span><Link href="/colleges">Colleges</Link><span aria-hidden="true">›</span><Link href={courseListingHref(facet.key)}>{label} Colleges</Link><span aria-hidden="true">›</span><span aria-current="page">Accepting {levelText(kind, level)} in {exam}</span></nav>
+    <nav className="breadcrumb cp-breadcrumb" aria-label="Breadcrumb"><Link prefetch={false} href="/">Home</Link><span aria-hidden="true">›</span><Link prefetch={false} href="/colleges">Colleges</Link><span aria-hidden="true">›</span><Link prefetch={false} href={courseListingHref(facet.key)}>{label} Colleges</Link><span aria-hidden="true">›</span><span aria-current="page">Accepting {levelText(kind, level)} in {exam}</span></nav>
     <header className="cp-hero">
       <div className="cp-hero-copy">
         <p className="cp-eyebrow">{exam} {kind === 'rank' ? 'rank' : 'percentile'}</p>
@@ -139,8 +139,8 @@ export default async function ClosingCollegesPage({ segment, query, kind }: { se
         : `No listed college had a ${year} final-round ${cond} in ${exam}.`}</p>
       <div className="cp-hero-badges"><span className="cp-pill is-verified"><BadgeCheck size={15} aria-hidden="true" /> {year} final counselling round</span></div>
       <div className="cutoff-year-links" role="navigation" aria-label={`${exam} ${kind} levels`}>
-        {sortedLevels.map((l) => <Link key={l} className={`button${l === level ? ' primary' : ''}`} aria-current={l === level ? 'page' : undefined} href={hrefFor(combo, facet.key, l)}>Accepting {levelText(kind, l)}</Link>)}
-        <Link className="button" href={`/exams/${r.exam}/cutoff`}>{exam} cutoff for all colleges</Link>
+        {sortedLevels.map((l) => <Link prefetch={false} key={l} className={`button${l === level ? ' primary' : ''}`} aria-current={l === level ? 'page' : undefined} href={hrefFor(combo, facet.key, l)}>Accepting {levelText(kind, l)}</Link>)}
+        <Link prefetch={false} className="button" href={`/exams/${r.exam}/cutoff`}>{exam} cutoff for all colleges</Link>
       </div>
     </header>
     <section className="cp-insight">

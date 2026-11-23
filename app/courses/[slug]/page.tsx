@@ -3,7 +3,7 @@ import { notFound } from 'next/navigation';
 import Link from 'next/link';
 import type { LucideIcon } from 'lucide-react';
 import { ArrowRight, BadgeCheck, BookOpen, Building2, ChevronDown, ClipboardCheck, GraduationCap, IndianRupee, Lightbulb, Star, TriangleAlert } from 'lucide-react';
-import { api, imageSrcSet, imageUrl as sizedImageUrl, mediaUrl } from '../../../lib/api';
+import { api, isNotFoundError, imageSrcSet, imageUrl as sizedImageUrl, mediaUrl } from '../../../lib/api';
 import { courseDisplayName, courseSeo as buildCourseSeo } from '../../../lib/course-seo';
 import { autoLinkHtml } from '../../../lib/auto-link-entities';
 import { getLinkableEntities } from '../../../lib/linkable-entities';
@@ -50,16 +50,22 @@ type CourseProfile = {
   updatedAt?: string | null;
 };
 
-export const revalidate = 300;
+export const revalidate = 900;
+
+// ISR: render each path on first visit, then serve cached HTML (time-based + on-demand revalidation).
+export async function generateStaticParams() {
+  return [];
+}
 
 async function getCourse(slug: string) {
   try {
     const response = await api<{ data: CourseProfile }>(`/courses/${encodeURIComponent(slug)}`, {
-      next: { revalidate: 300, tags: [`course:${slug}`] }
+      next: { revalidate: 900, tags: ['courses', `course:${slug}`] }
     });
     return response.data;
-  } catch {
-    return null;
+  } catch (error) {
+    if (isNotFoundError(error)) return null;
+    throw error;
   }
 }
 
@@ -262,7 +268,7 @@ export default async function CourseProfilePage({ params }: { params: Promise<{ 
 
   return <main className="section college-profile-page cp-page"><div className="wrap">
     <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
-    <nav className="breadcrumb cp-breadcrumb" aria-label="Breadcrumb"><Link href="/">Home</Link><span aria-hidden="true">›</span><Link href="/courses">Courses</Link><span aria-hidden="true">›</span><span aria-current="page">{seo.displayName}</span></nav>
+    <nav className="breadcrumb cp-breadcrumb" aria-label="Breadcrumb"><Link prefetch={false} href="/">Home</Link><span aria-hidden="true">›</span><Link prefetch={false} href="/courses">Courses</Link><span aria-hidden="true">›</span><span aria-current="page">{seo.displayName}</span></nav>
     <AdSlot slotKey="course_top" />
     <header className="cp-hero">
       <div className="cp-hero-top">
@@ -276,8 +282,8 @@ export default async function CourseProfilePage({ params }: { params: Promise<{ 
       <p className="cp-hero-lead"><AutoLinkedText text={seo.intro} entities={linkableEntities} options={{ excludeHrefs: [`/courses/${slug}`] }} /></p>
       <div className="cp-hero-badges"><span className="cp-pill is-verified"><BadgeCheck size={15} aria-hidden="true" /> Evidence-backed profile</span></div>
       <div className="cp-hero-actions">
-        <Link className="button ls-btn-primary" href="/compare-colleges-2026">Compare colleges <ArrowRight size={16} aria-hidden="true" /></Link>
-        {listing && listingHref ? <Link className="button cp-btn-ghost" href={listingHref}>{listing.label} colleges</Link> : <Link className="button cp-btn-ghost" href="/colleges">Browse colleges</Link>}
+        <Link prefetch={false} className="button ls-btn-primary" href="/compare-colleges-2026">Compare colleges <ArrowRight size={16} aria-hidden="true" /></Link>
+        {listing && listingHref ? <Link prefetch={false} className="button cp-btn-ghost" href={listingHref}>{listing.label} colleges</Link> : <Link prefetch={false} className="button cp-btn-ghost" href="/colleges">Browse colleges</Link>}
       </div>
     </header>
     <section className="cp-glance" aria-labelledby="course-highlights-heading">
@@ -300,7 +306,7 @@ export default async function CourseProfilePage({ params }: { params: Promise<{ 
 
     {!profile.course.htmlContent && (profile.fees?.min_total_fee || profile.fees?.max_total_fee || profile.exams.length > 0) && <section className="cp-card college-profile-columns">
       {(profile.fees?.min_total_fee || profile.fees?.max_total_fee) && <div><SectionHead icon={IndianRupee} title="Fees" /><p>Recorded total fees for {name} range from <strong>{money(profile.fees?.min_total_fee)}</strong> to <strong>{money(profile.fees?.max_total_fee)}</strong>. Confirm the current academic year, category, hostel, mess, deposits and other charges before applying.</p></div>}
-      {profile.exams.length > 0 && <div><SectionHead icon={ClipboardCheck} title="Admission exams and routes" /><div className="profile-chips">{profile.exams.map((exam) => <Link key={exam.id} href={`/exams/${exam.slug}`}>{exam.name}</Link>)}</div></div>}
+      {profile.exams.length > 0 && <div><SectionHead icon={ClipboardCheck} title="Admission exams and routes" /><div className="profile-chips">{profile.exams.map((exam) => <Link prefetch={false} key={exam.id} href={`/exams/${exam.slug}`}>{exam.name}</Link>)}</div></div>}
     </section>}
 
     {!profile.course.htmlContent && (profile.placements.length > 0 || profile.reviewSummary.count > 0) && <section className="cp-card college-profile-columns">
@@ -317,8 +323,8 @@ export default async function CourseProfilePage({ params }: { params: Promise<{ 
     
     <AdSlot slotKey="course_mid_1" />
     {(seo.crossLink || profile.exams.length > 0) && <section className="cp-card college-profile-columns" aria-label="Related pathways">
-      {seo.crossLink ? <div><h2>Related course guide</h2><p>{seo.crossLink.note} <Link href={seo.crossLink.href}>{seo.crossLink.anchor}</Link></p></div> : null}
-      {profile.exams.length > 0 ? <div><h2>Entrance exams for {seo.displayName}</h2><div className="profile-chips">{profile.exams.map((exam) => <Link key={`link-${exam.id}`} href={`/exams/${exam.slug}`}>{exam.name} exam guide</Link>)}</div></div> : null}
+      {seo.crossLink ? <div><h2>Related course guide</h2><p>{seo.crossLink.note} <Link prefetch={false} href={seo.crossLink.href}>{seo.crossLink.anchor}</Link></p></div> : null}
+      {profile.exams.length > 0 ? <div><h2>Entrance exams for {seo.displayName}</h2><div className="profile-chips">{profile.exams.map((exam) => <Link prefetch={false} key={`link-${exam.id}`} href={`/exams/${exam.slug}`}>{exam.name} exam guide</Link>)}</div></div> : null}
     </section>}
 
     {profile.articles.length > 0 && <section className="cp-card"><SectionHead icon={BookOpen} title={`${seo.displayName} guides`} />{(() => {
@@ -329,8 +335,8 @@ export default async function CourseProfilePage({ params }: { params: Promise<{ 
       });
       const otherArticles = profile.articles.filter((article) => !feeArticles.includes(article));
       return <>
-        {feeArticles.length > 0 && <div className="college-programme-grid" style={{ marginBottom: '1rem' }}>{feeArticles.map((article) => <Link className="card" href={`/articles/${article.slug}`} key={article.slug}><h3>{text(article.title, article.slug)}</h3><p className="muted">Fee / package guide for {seo.displayName}</p></Link>)}</div>}
-        {otherArticles.length > 0 && <div className="college-programme-grid">{otherArticles.map((article) => <Link className="card" href={`/articles/${article.slug}`} key={article.slug}><h3>{text(article.title, article.slug)}</h3><p className="muted">Read the published {article.articleType ? article.articleType.replace(/-/g, ' ') : 'course'} guide</p></Link>)}</div>}
+        {feeArticles.length > 0 && <div className="college-programme-grid" style={{ marginBottom: '1rem' }}>{feeArticles.map((article) => <Link prefetch={false} className="card" href={`/articles/${article.slug}`} key={article.slug}><h3>{text(article.title, article.slug)}</h3><p className="muted">Fee / package guide for {seo.displayName}</p></Link>)}</div>}
+        {otherArticles.length > 0 && <div className="college-programme-grid">{otherArticles.map((article) => <Link prefetch={false} className="card" href={`/articles/${article.slug}`} key={article.slug}><h3>{text(article.title, article.slug)}</h3><p className="muted">Read the published {article.articleType ? article.articleType.replace(/-/g, ' ') : 'course'} guide</p></Link>)}</div>}
       </>;
     })()}</section>}
     <AdSlot slotKey="course_end" />

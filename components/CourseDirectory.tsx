@@ -39,12 +39,12 @@ export default function CourseDirectory({ initial, total, perPage, adFeed = null
       const programmes = Number(course.programme_count || 0);
       const reviews = Number(course.review_count || 0);
       const rating = course.average_rating == null || course.average_rating === '' ? null : Number(course.average_rating);
-      const heading = href ? <Link href={href}>{course.name}</Link> : course.name;
+      const heading = href ? <Link prefetch={false} href={href}>{course.name}</Link> : course.name;
       const media = <CourseImage src={course.image_url} alt={`${course.name} course`} />;
       return <Fragment key={course.id}>
         <article className="ls-course" id={`course-${index + 1}`}>
           <div className="ls-course-media">
-            {href ? <Link href={href}>{media}</Link> : media}
+            {href ? <Link prefetch={false} href={href}>{media}</Link> : media}
             <span className="ls-course-tag">{formatCount(colleges)} colleges</span>
           </div>
           <div className="ls-course-body">
@@ -64,7 +64,7 @@ export default function CourseDirectory({ initial, total, perPage, adFeed = null
                 <span>{formatCount(reviews)} review{reviews === 1 ? '' : 's'}</span>
               </> : <span>Reviews not listed</span>}
             </p>
-            {href ? <Link className="ls-course-link" href={href}>View course profile <ArrowRight size={15} aria-hidden="true" /></Link> : null}
+            {href ? <Link prefetch={false} className="ls-course-link" href={href}>View course profile <ArrowRight size={15} aria-hidden="true" /></Link> : null}
           </div>
         </article>
         {ads.has(index + 1) && adFeed ? <AdSlotClient slot={adFeed.slot} settings={adFeed.settings} className="ad-in-list" /> : null}

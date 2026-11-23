@@ -20,7 +20,7 @@ export type FinderResult = {
   totalWithData: number; inScope: number; noRequirement: number; nearMissWindow: number; matched: FinderCollege[]; nearMiss: FinderCollege[];
 };
 
-const opts = { next: { revalidate: 600, tags: ['cutoffs', 'percentile'] } };
+const opts = { next: { revalidate: 900, tags: ['cutoffs', 'percentile'] } };
 export async function getPercentileCombos(): Promise<PercentileCombo[]> {
   try { return (await api<{ data: PercentileCombo[] }>('/cutoffs/percentile-combos', opts)).data; } catch { return []; }
 }
