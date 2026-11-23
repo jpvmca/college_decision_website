@@ -4,7 +4,12 @@ import { notFound } from 'next/navigation';
 import ExamCutoffPage, { examCutoffDescription, examCutoffMetaTitle } from '../../../../components/ExamCutoffPage';
 import { getExamCutoffSummary, getExamYearCutoffs, siteUrl } from '../../../../lib/cutoffs';
 
-export const revalidate = 600;
+export const revalidate = 900;
+
+// ISR: render each path on first visit, then serve cached HTML (time-based + on-demand revalidation).
+export async function generateStaticParams() {
+  return [];
+}
 
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
   const { slug } = await params;

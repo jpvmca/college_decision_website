@@ -4,7 +4,12 @@ import { notFound, permanentRedirect, redirect } from 'next/navigation';
 import ExamCutoffPage, { examCutoffDescription, examCutoffMetaTitle, isMultiYear } from '../../../../../components/ExamCutoffPage';
 import { examYearOf, getExamCutoffSummary, getExamYearCutoffs, siteUrl } from '../../../../../lib/cutoffs';
 
-export const revalidate = 600;
+export const revalidate = 900;
+
+// ISR: render each path on first visit, then serve cached HTML (time-based + on-demand revalidation).
+export async function generateStaticParams() {
+  return [];
+}
 
 /**
  * The URL year is the exam year (/exams/cat/cutoff/2025 = CAT 2025 data, used for 2026–28 admissions).
