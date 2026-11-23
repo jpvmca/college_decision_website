@@ -31,12 +31,13 @@ export default function StudentLeadPopup() {
   const [options, setOptions] = useState<FormOptions | null>(null);
   const [cities, setCities] = useState<FormCity[]>([]);
   const [country, setCountry] = useState<{ id: number | null; code: string; name: string | null; phoneCode: string | null }>({ id: null, code: 'IN', name: 'India', phoneCode: '+91' });
-  const [form, setForm] = useState({ name: '', mobile: '', email: '', courseId: '', stateId: '', cityId: '', website: '' });
+  const [form, setForm] = useState({ name: '', mobile: '', email: '', courseId: '', stateId: '', cityId: '', hp_leave_blank: '' });
   const [editingLocation, setEditingLocation] = useState(false);
   const [errors, setErrors] = useState<Errors>({});
   const [submitting, setSubmitting] = useState(false);
   const [done, setDone] = useState(false);
   const openedAt = useRef(0);
+  const submittingRef = useRef(false);
   const nameRef = useRef<HTMLInputElement>(null);
   const formRef = useRef<HTMLFormElement>(null);
   const [touched, setTouched] = useState<Partial<Record<Field, boolean>>>({});
@@ -185,7 +186,7 @@ export default function StudentLeadPopup() {
   // Keep partially entered details so the form stays filled on the next page.
   useEffect(() => {
     if (!open || done) return;
-    const { website: _hp, ...draft } = form;
+    const { hp_leave_blank: _hp, ...draft } = form;
     void _hp;
     const timer = window.setTimeout(() => writePrefs({ draft }), 300);
     return () => window.clearTimeout(timer);
@@ -239,7 +240,7 @@ export default function StudentLeadPopup() {
 
   async function submit(event: React.FormEvent) {
     event.preventDefault();
-    if (submitting) return;
+    if (submitting || submittingRef.current) return;
     const found = validateAll();
     setErrors(found);
     setTouched({ name: true, mobile: true, email: true, courseId: true, stateId: true, cityId: true });
@@ -247,6 +248,7 @@ export default function StudentLeadPopup() {
     if (first) { focusField(first); return; }
     const recaptchaToken = brochure && hasCaptcha ? captcha.current?.getToken() || '' : undefined;
     if (brochure && hasCaptcha && !recaptchaToken) { setErrors({ form: 'Please complete the "I\'m not a robot" check.' }); return; }
+    submittingRef.current = true;
     setSubmitting(true);
     let utm: Record<string, string | null> = {};
     try { utm = JSON.parse(window.sessionStorage.getItem(LEAD_UTM_KEY) || '{}'); } catch { /* ignore */ }
@@ -262,7 +264,7 @@ export default function StudentLeadPopup() {
           collegeSlug: apply ? apply.collegeSlug : ctx.pageType === 'college_profile' || ctx.pageType === 'college_cutoff' ? ctx.collegeSlug : null,
           apply: Boolean(apply) && !brochure, brochure, recaptchaToken,
           pageUrl: `${window.location.pathname}`.slice(0, 255), pageType: ctx.pageType, cta: brochure ? 'brochure' : apply ? 'apply_button' : 'popup_auto_5s',
-          website: form.website, elapsedMs: Date.now() - openedAt.current, ...utm
+          ...utm, hp_leave_blank: form.hp_leave_blank, elapsedMs: Date.now() - openedAt.current
         })
       });
       const json = await res.json().catch(() => ({}));
@@ -302,6 +304,7 @@ export default function StudentLeadPopup() {
       setErrors({ form: 'We couldn’t reach the server. Please check your connection and try again.' });
     } finally {
       if (brochure) captcha.current?.reset();
+      submittingRef.current = false;
       setSubmitting(false);
     }
   }
@@ -404,7 +407,7 @@ export default function StudentLeadPopup() {
                   </label>
                 </>
               ))}
-              <input className="lead-hp" tabIndex={-1} autoComplete="off" aria-hidden="true" name="website" value={form.website} onChange={set('website')} />
+              <input className="lead-hp" tabIndex={-1} autoComplete="off" aria-hidden="true" name="hp_leave_blank" value={form.hp_leave_blank} onChange={set('hp_leave_blank')} />
             </div>
             {brochure && hasCaptcha ? <Recaptcha ref={captcha} className="lead-captcha" /> : null}
             {errors.form && <p className="lead-error" role="alert">{errors.form}</p>}
