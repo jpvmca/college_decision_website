@@ -1,6 +1,7 @@
 import { NextResponse } from 'next/server';
 import { courseListingHref, listingFetchOptions } from '../../../lib/listings';
 import { getGeoLandingPages } from '../../../lib/geo-pages';
+import { REDIRECTED_LISTING_PATHS } from '../../../lib/listing-redirected-paths';
 
 export const runtime = 'nodejs';
 // Rollout toggles must be visible without waiting for the previous sitemap cache.
@@ -31,13 +32,14 @@ export async function GET() {
     const { statePages, cityPages } = await getGeoLandingPages();
     const allowed = allowlist();
     // Backend only returns eligible courses (>= MIN_COLLEGES_FOR_LISTING), sorted by college count desc. Page-1 URLs only.
-    const entries = (payload.data || []).filter((entry) => !allowed || allowed.has(entry.key)).sort((a, b) => b.count - a.count);
+    // URLs that next.config.ts 301s elsewhere are left out (a sitemap must list final URLs only).
+    const entries = (payload.data || []).filter((entry) => (!allowed || allowed.has(entry.key)) && !REDIRECTED_LISTING_PATHS.has(courseListingHref(entry.key))).sort((a, b) => b.count - a.count);
     const body = `<?xml version="1.0" encoding="UTF-8"?>` +
       `<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">` +
       entries.map((entry) => `<url><loc>${xml(`${base}${courseListingHref(entry.key)}`)}</loc>${entry.lastmod ? `<lastmod>${entry.lastmod}</lastmod>` : ''}<changefreq>weekly</changefreq><priority>0.8</priority></url>`).join('') +
       // The backend returns only courses enabled in the admin rollout control.
-      statePages.filter((entry) => !allowed || allowed.has(entry.facet.key)).map((entry) => `<url><loc>${xml(`${base}${entry.href}`)}</loc>${entry.lastmod ? `<lastmod>${xml(entry.lastmod)}</lastmod>` : ''}<changefreq>weekly</changefreq><priority>0.7</priority></url>`).join('') +
-      cityPages.filter((entry) => !allowed || allowed.has(entry.facet.key)).map((entry) => `<url><loc>${xml(`${base}${entry.href}`)}</loc>${entry.lastmod ? `<lastmod>${xml(entry.lastmod)}</lastmod>` : ''}<changefreq>weekly</changefreq><priority>0.6</priority></url>`).join('') +
+      statePages.filter((entry) => (!allowed || allowed.has(entry.facet.key)) && !REDIRECTED_LISTING_PATHS.has(entry.href)).map((entry) => `<url><loc>${xml(`${base}${entry.href}`)}</loc>${entry.lastmod ? `<lastmod>${xml(entry.lastmod)}</lastmod>` : ''}<changefreq>weekly</changefreq><priority>0.7</priority></url>`).join('') +
+      cityPages.filter((entry) => (!allowed || allowed.has(entry.facet.key)) && !REDIRECTED_LISTING_PATHS.has(entry.href)).map((entry) => `<url><loc>${xml(`${base}${entry.href}`)}</loc>${entry.lastmod ? `<lastmod>${xml(entry.lastmod)}</lastmod>` : ''}<changefreq>weekly</changefreq><priority>0.6</priority></url>`).join('') +
       `</urlset>`;
     return new NextResponse(body, { headers: { 'Content-Type': 'application/xml; charset=utf-8', 'Cache-Control': 'no-store, max-age=0' } });
   } catch {

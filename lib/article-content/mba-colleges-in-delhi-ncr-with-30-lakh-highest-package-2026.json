@@ -1,0 +1,94 @@
+{
+  "slug": "mba-colleges-in-delhi-ncr-with-30-lakh-highest-package-2026",
+  "updatedOn": "24 Nov 2026",
+  "intro": [
+    "This page lists MBA / PGDM colleges in Delhi NCR with ₹30 lakh highest package in our records. It is a historical view of {{count}} published colleges, not a promise that the next batch will see the same offer.",
+    "Ranked colleges come first. After them, colleges follow in the order our records hold."
+  ],
+  "listLead": "The first cards include MDI Gurgaon, FORE School of Management, IIFT Delhi, FMS Delhi, DTU, IIT Delhi, IMI Delhi, JNU and Delhi School of Economics. Read the programme name, because some cards show an executive or short course.",
+  "snapshot": [
+    "Among these {{count}} colleges, the median recorded average package is {{pkgMedian}}, and the recorded averages range from {{pkgMin}} to {{pkgMax}}. The highest package we hold is {{highestMax}}.",
+    "Placement years in our file run from {{pkgYearMin}} to {{pkgYearMax}}, so an older year should be read as history. Most of the first colleges are public ({{public}}), with {{private}} private institutes, and CAT is the exam most often linked here."
+  ],
+  "firstCollegesLead": [
+    "MDI Gurgaon is listed first, with a recorded PGDM fee of ₹9.34 lakh and a 2024 average of ₹26 lakh, plus a highest of ₹63 lakh. Confirm the current PGDM fee on the official MDI site.",
+    "MDI’s admission page says CAT 2026 is required for its PGDM programmes. IIFT’s card shows an executive diploma fee of ₹2.42 lakh, which is not the full-time MBA cost.",
+    "The Department of Management Studies at IIT Delhi is listed with the full-time MBA tuition of ₹12 lakh and a 2025 average of ₹22.53 lakh. IIFT is listed with the full-time MBA in International Business, with a recorded total of ₹21.82 lakh."
+  ],
+  "sections": [
+    {
+      "heading": "Highest package is not the same as average package",
+      "paragraphs": [
+        "A highest package is usually one offer in a batch, and it can sit far above the average. On this list the recorded averages run from {{pkgMin}} to {{pkgMax}}, even though every college has a highest package of at least ₹{{threshold}} lakh in our file.",
+        "FORE School of Management’s figure in our records is from 2020, which is older than the others. Always read the year, and confirm the latest official placement report."
+      ]
+    }
+  ],
+  "compare": {
+    "heading": "How to compare MBA / PGDM colleges in Delhi NCR with ₹30 lakh highest package",
+    "paragraphs": [
+      "Use this list of top MBA / PGDM colleges in Delhi NCR 2026 as a shortlist, then compare the official placement report and the fee for the full-time programme, not a short course on the same card.",
+      "These checks usually matter more than one standout offer:"
+    ],
+    "bullets": [
+      "The year of the placement report, especially where our records go back several years.",
+      "The average package and the share of the batch placed, not only the highest offer.",
+      "Whether the card shows a full-time MBA or PGDM, or an executive or development programme.",
+      "The entrance test (most colleges here are linked to CAT) and the official fee notice for the current batch."
+    ]
+  },
+  "links": [
+    {
+      "label": "MBA / PGDM course guide",
+      "href": "/courses/mba"
+    },
+    {
+      "label": "Best MBA colleges in Delhi NCR",
+      "href": "/mba-colleges-in-delhi-ncr"
+    },
+    {
+      "label": "MBA colleges in Delhi NCR where average package exceeds fees",
+      "href": "/articles/mba-colleges-in-delhi-ncr-where-average-package-exceeds-fees-2026"
+    },
+    {
+      "label": "MBA colleges accepting CAT 2026",
+      "href": "/articles/mba-colleges-accepting-cat-2026-admission-process"
+    },
+    {
+      "label": "CAT exam guide",
+      "href": "/exams/cat"
+    }
+  ],
+  "faqs": [
+    {
+      "question": "How many MBA colleges in Delhi NCR have a ₹30 lakh highest package here?",
+      "answer": "{{count}} published MBA / PGDM colleges in Delhi NCR have a recorded highest package of at least ₹{{threshold}} lakh in our file. Colleges without that figure on record do not appear on this list."
+    },
+    {
+      "question": "Does a ₹30 lakh highest package mean the average is also that high?",
+      "answer": "No, the highest package is usually one offer, while the recorded averages on this list range from {{pkgMin}} to {{pkgMax}}, with a median of {{pkgMedian}}."
+    },
+    {
+      "question": "Which IIT Delhi fee should I use for the full-time MBA?",
+      "answer": "Use the Department of Management Studies card, which records the full-time MBA tuition of ₹12 lakh. A short Management Development Programme fee is no longer used as the MBA card figure."
+    },
+    {
+      "question": "Are these placement figures guaranteed?",
+      "answer": "No, they are historical records from years in our file running from {{pkgYearMin}} to {{pkgYearMax}}, so confirm the latest official placement report before you rely on a number."
+    },
+    {
+      "question": "Which exam do these Delhi NCR colleges accept?",
+      "answer": "Most colleges on this list are linked to CAT in our records, and MDI Gurgaon states that CAT 2026 is required for its PGDM programmes. Confirm the current test on each college’s admission page."
+    }
+  ],
+  "sources": [
+    {
+      "label": "MDI Gurgaon, PGDM admissions page (CAT 2026 required)",
+      "url": "https://mdi.ac.in/admissions/post-graduate-diploma-in-management-pgdm"
+    },
+    {
+      "label": "MDI Gurgaon placement reports",
+      "url": "https://mdi.ac.in/placements/placement-report"
+    }
+  ]
+}

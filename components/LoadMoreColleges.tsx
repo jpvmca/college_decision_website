@@ -5,6 +5,7 @@ import { ArrowDown } from 'lucide-react';
 import { CollegeListResults, type ListedCollege } from './CollegeListResults';
 import type { LinkableEntity } from '../lib/auto-link-entities';
 import type { AdFeed } from '../lib/ads';
+import type { FeedPlacement } from '../lib/ad-feed';
 
 type Props = {
   initial: ListedCollege[];
@@ -17,9 +18,11 @@ type Props = {
   linkableEntities: LinkableEntity[];
   /** listing_feed ad slot; null when ads are off. */
   adFeed?: AdFeed | null;
+  /** Course listing pages pass a denser-cap placement; other lists omit this. */
+  adPlacement?: FeedPlacement;
 };
 
-export default function LoadMoreColleges({ initial, total, perPage, query = '', endpoint, linkableEntities, adFeed = null }: Props) {
+export default function LoadMoreColleges({ initial, total, perPage, query = '', endpoint, linkableEntities, adFeed = null, adPlacement }: Props) {
   const [colleges, setColleges] = useState(initial);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
@@ -50,7 +53,7 @@ export default function LoadMoreColleges({ initial, total, perPage, query = '', 
   }
 
   return <>
-    <CollegeListResults colleges={colleges} total={total} linkableEntities={linkableEntities} adFeed={adFeed} />
+    <CollegeListResults colleges={colleges} total={total} linkableEntities={linkableEntities} adFeed={adFeed} adPlacement={adPlacement} />
     {hasMore && <div className="load-more-wrap">
       <button className="button secondary" type="button" onClick={loadMore} disabled={loading}>
         {loading ? 'Loading colleges…' : error ? 'Try again' : 'Load more'}

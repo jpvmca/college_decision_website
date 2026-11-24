@@ -1,0 +1,69 @@
+{
+  "slug": "mba-colleges-in-haryana-with-50-lakh-highest-package-2026",
+  "updatedOn": "24 Nov 2026",
+  "intro": [
+    "We list {{count}} MBA / PGDM colleges in Haryana where our records show a highest package of at least ₹{{threshold}} lakh. All four are private, and two of them qualify on placement years from 2016 and 2019.",
+    "These MBA colleges in Haryana with ₹50 lakh highest package should be read with the year and the average in view. A high offer in an old batch does not describe the top MBA colleges in Haryana 2026 on its own."
+  ],
+  "listLead": "Master's Union and IBS Gurgaon have the more recent records (2023 and 2022). BIMT and PIET clear the cut only on 2016 and 2019 figures, which may not show in the table that starts from 2020.",
+  "snapshot": [
+    "Master's Union's 2023 MBA row shows an average of ₹34 LPA and a highest of ₹57 LPA in our records. IBS Gurgaon's 2022 PGPM Finance row shows an average of ₹22 LPA and a highest of ₹53 LPA.",
+    "BIMT's 2016 highest of ₹56 LPA sits beside an average of ₹5 LPA. PIET's 2019 highest of ₹54 LPA sits beside an average of ₹3 LPA. Those gaps are a warning, not a typical salary."
+  ],
+  "firstCollegesLead": [
+    "IIM Rohtak is not on this ₹{{threshold}} lakh list because the highest package we hold for it is ₹36 LPA in 2023, which is below the cut. It remains 19th in the NIRF 2025 Management ranking."
+  ],
+  "compare": {
+    "heading": "How to read a ₹50 lakh highest package in Haryana",
+    "paragraphs": [
+      "None of these four colleges is in the official NIRF 2025 Management top 100. Judge them by the official placement report and the average, not by a single old high offer."
+    ],
+    "bullets": [
+      "Prefer 2022 or 2023 records over 2016 or 2019 figures.",
+      "Look at the average beside the highest; a ₹50 lakh-plus offer next to a ₹3–5 LPA average is not a typical outcome.",
+      "Confirm the programme, city and entrance test on the official admission page."
+    ]
+  },
+  "links": [
+    {
+      "label": "MBA / PGDM course guide",
+      "href": "/courses/mba"
+    },
+    {
+      "label": "Best MBA colleges in Haryana",
+      "href": "/mba-colleges-in-haryana"
+    },
+    {
+      "label": "MBA colleges in Haryana with ₹30 lakh highest package",
+      "href": "/articles/mba-colleges-in-haryana-with-30-lakh-highest-package-2026"
+    },
+    {
+      "label": "Best MBA colleges in Delhi NCR",
+      "href": "/mba-colleges-in-delhi-ncr"
+    }
+  ],
+  "faqs": [
+    {
+      "question": "Which MBA colleges in Haryana with ₹50 lakh highest package are listed here?",
+      "answer": "{{count}} private colleges: Master's Union, BIMT, PIET and IBS Gurgaon. IIM Rohtak is not included because the highest package we hold for it is below ₹{{threshold}} lakh."
+    },
+    {
+      "question": "Which of these records are recent?",
+      "answer": "Master's Union's figure is from 2023 and IBS Gurgaon's is from 2022. BIMT's qualifying year is 2016 and PIET's is 2019, so those two need a fresh official report."
+    },
+    {
+      "question": "Why is IIM Rohtak missing from this list?",
+      "answer": "Our 2023 record for IIM Rohtak shows a highest package of ₹36 LPA, which is below this page's ₹{{threshold}} lakh cut. The institute is still 19th in the NIRF 2025 Management ranking."
+    },
+    {
+      "question": "Are these packages guaranteed?",
+      "answer": "No. They are historical records, and two of them are several years old. Confirm the latest official placement report before you treat any figure as current."
+    }
+  ],
+  "sources": [
+    {
+      "label": "NIRF 2025 Management ranking",
+      "url": "https://www.nirfindia.org/Rankings/2025/ManagementRanking.html"
+    }
+  ]
+}

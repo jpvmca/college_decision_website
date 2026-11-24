@@ -1,0 +1,94 @@
+{
+  "slug": "medical-admission-eligibility",
+  "updatedOn": "24 Nov 2026",
+  "intro": [
+    "MBBS admission and eligibility 2026 in India still runs through a single national test, NEET (UG). This page maps {{count}} MBBS colleges in our records, from AIIMS Delhi and JIPMER Puducherry to state and private medical colleges.",
+    "Ranked colleges come first, and after them published colleges follow in the order our records hold. Counselling itself is done by MCC or the state authority, not by this list."
+  ],
+  "listLead": "The first cards include AIIMS Delhi, JIPMER, Christian Medical College Vellore, AFMC Pune and Maulana Azad Medical College. A missing fee on a card only means we do not hold that figure yet.",
+  "snapshot": [
+    "Every college currently shown in the first set of results is linked to NEET in our records. Maharashtra, Karnataka, Kerala, Tamil Nadu, Delhi NCR and Punjab appear most often among these campuses.",
+    "Use the list of top MBBS colleges in India 2026 as a shortlist, then read the NMC eligibility rule and the counselling brochure that applies to your quota."
+  ],
+  "firstCollegesLead": [
+    "AIIMS Delhi is listed first in our records, with a NIRF 2025 medical rank of 1. JIPMER, CMC Vellore, AFMC and Maulana Azad Medical College follow, and each fills MBBS seats through NEET-based counselling, not a separate campus test.",
+    "Where a fee is shown, such as ₹25 lakh for the MBBS at Dr D.Y. Patil Vidyapeeth, Pune, confirm the current year on the official fee notice, and treat placement figures as historical records, not a promise."
+  ],
+  "sections": [
+    {
+      "heading": "NEET (UG) eligibility for MBBS in 2026",
+      "paragraphs": [
+        "NTA conducts NEET (UG) as the single entrance test for undergraduate medical seats under the National Medical Commission Act, 2019. NTA itself does not allot seats or decide eligibility policy; those sit with NMC and the counselling authorities.",
+        "NMC’s Graduate Medical Education rules require the candidate to have completed 17 years of age on or before 31 December of the year of admission, and to have passed Class 12."
+      ],
+      "bullets": [
+        "NTA states that Class 12 should include Physics, Chemistry, Biology or Biotechnology, and English as core subjects.",
+        "For admission, NMC has used NEET percentile cut-offs of the 50th percentile for the general category, the 45th percentile for general PwD, and the 40th percentile for SC, ST and OBC. Confirm the figure published for the current year.",
+        "All MBBS admissions have to go through common counselling, as NMC regulations require."
+      ]
+    }
+  ],
+  "compare": {
+    "heading": "How to compare MBBS colleges before you fill a counselling choice",
+    "paragraphs": [
+      "The NEET score only gets you into the counselling process. The college you finally join depends on your rank, category, quota and the fee you can manage.",
+      "Before you lock a choice, check these points on the official pages:"
+    ],
+    "bullets": [
+      "Whether the seat is All India Quota, state quota, central institute, or a management or NRI seat, and the fee that goes with that seat.",
+      "The college’s NMC recognition and the number of sanctioned MBBS seats for the current year.",
+      "Bond, service or hostel rules, which are often in the state counselling brochure rather than on the college card.",
+      "For AFMC, the additional Services selection process after NEET, which is set out on the college’s own admission notice."
+    ]
+  },
+  "links": [
+    {
+      "label": "MBBS course guide",
+      "href": "/courses/medical"
+    },
+    {
+      "label": "Best MBBS colleges in India",
+      "href": "/mbbs-colleges"
+    },
+    {
+      "label": "NEET exam guide",
+      "href": "/exams/neet"
+    }
+  ],
+  "faqs": [
+    {
+      "question": "Is NEET compulsory for MBBS admission in 2026?",
+      "answer": "Yes, NTA conducts NEET (UG) as the single national entrance test for MBBS seats under the NMC Act, and admissions go through common counselling."
+    },
+    {
+      "question": "What is the eligibility for MBBS admission in 2026?",
+      "answer": "You should have completed 17 years of age by 31 December of the admission year, passed Class 12 with Physics, Chemistry, Biology or Biotechnology, and English, and qualified NEET (UG) at the percentile set for your category."
+    },
+    {
+      "question": "Who allots the MBBS seats?",
+      "answer": "NTA only conducts the exam, while MCC handles All India Quota and many central-institute seats, and each state authority handles state-quota counselling."
+    },
+    {
+      "question": "Do AIIMS and JIPMER still have a separate MBBS entrance test?",
+      "answer": "No, AIIMS Delhi, JIPMER and other central institutes on this list admit MBBS students through NEET-based counselling, which you should confirm on the official counselling notice."
+    },
+    {
+      "question": "How many MBBS colleges are listed here?",
+      "answer": "Our records currently show {{count}} MBBS colleges. A college without a fee on its card is still on the admission list; it only means we do not yet hold that fee."
+    }
+  ],
+  "sources": [
+    {
+      "label": "NTA, National Eligibility cum Entrance Test (UG)",
+      "url": "https://www.nta.gov.in/exams/neet/"
+    },
+    {
+      "label": "NTA NEET eligibility criteria page",
+      "url": "https://neet.nta.nic.in/document/eligibility-criteria/"
+    },
+    {
+      "label": "National Medical Commission, Graduate Medical Education admission guidance",
+      "url": "https://nmc.org.in/"
+    }
+  ]
+}

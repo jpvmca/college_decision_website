@@ -1,0 +1,99 @@
+{
+  "slug": "engineering-admission-eligibility",
+  "updatedOn": "24 Nov 2026",
+  "intro": [
+    "This page explains B.Tech / B.E. admission and eligibility 2026, using our records for {{count}} programme options across India. The tests and cut-offs still sit with JoSAA, the state authorities and each institute.",
+    "Ranked colleges come first in the list. After them, published colleges follow in the order our records hold."
+  ],
+  "listLead": "The first cards include IIT Delhi, IIT Bombay, IIT Madras, IIT Kanpur and IIT Roorkee. A missing fee on a card only means we do not hold that figure yet, not that the institute is closed to applications.",
+  "snapshot": [
+    "The first campuses shown are the older IITs, which admit through JEE Advanced after JEE Main. The full list is much wider, and includes NITs, IIITs, state colleges and private universities that use JEE Main or a state CET.",
+    "Use the list of top B.Tech / B.E. colleges in India 2026 to shortlist campuses, then read the eligibility rule that actually applies to that institute."
+  ],
+  "firstCollegesLead": [
+    "IIT Delhi is listed first, with a recorded CSE fee of ₹2.49 lakh and a 2024 average package of ₹25 lakh, plus a highest of ₹200 lakh. That fee may be one year rather than the four-year total.",
+    "Those placement figures are a historical record, not a promise. IIT Bombay, IIT Madras and IIT Kanpur appear next, and you should confirm the current JEE Advanced process and the official fee notice."
+  ],
+  "sections": [
+    {
+      "heading": "JEE Main, JEE Advanced and Class 12 eligibility in 2026",
+      "paragraphs": [
+        "NTA conducts JEE Main, which is used for admission to NITs, IIITs and other centrally funded technical institutes through JoSAA and CSAB.",
+        "For those institutes, NTA says you need at least 75% marks in Class 12, or a place in the board’s top 20 percentile, with 65% for SC and ST.",
+        "The JEE Advanced 2026 brochure, with IIT Roorkee as the organising institute, says Indian candidates must be among the top 2,50,000 in the JEE Main B.E./B.Tech paper.",
+        "A candidate can attempt Advanced at most twice in two consecutive years. IIT admission also requires at least 75% in Class 12, or a top-20 percentile board rank, with 65% for SC, ST and PwD."
+      ]
+    }
+  ],
+  "compare": {
+    "heading": "How to compare B.Tech / B.E. colleges before you apply",
+    "paragraphs": [
+      "Decide first whether you are aiming at an IIT, an NIT or a state college, because the entrance test is not the same.",
+      "Then check these points on the official pages:"
+    ],
+    "bullets": [
+      "The entrance route for 2026 (JEE Advanced, JEE Main and JoSAA, or a state CET such as TNEA or MHT CET) and the cut-off for your category.",
+      "The Class 12 mark or percentile rule that the institute actually applies.",
+      "The official fee notice for the branch you want, including hostel and mess charges.",
+      "The latest official placement report for that branch, treated as a historical record rather than a promise."
+    ]
+  },
+  "links": [
+    {
+      "label": "B.Tech / B.E. course guide",
+      "href": "/courses/engineering"
+    },
+    {
+      "label": "Best engineering colleges in India",
+      "href": "/engineering-colleges"
+    },
+    {
+      "label": "Top engineering colleges with fees 2026",
+      "href": "/articles/top-engineering-colleges-in-india-with-fees-2026"
+    },
+    {
+      "label": "JEE Main exam guide",
+      "href": "/exams/jee-main"
+    },
+    {
+      "label": "JEE Advanced exam guide",
+      "href": "/exams/jee-advanced"
+    }
+  ],
+  "faqs": [
+    {
+      "question": "What is the eligibility for B.Tech admission in 2026?",
+      "answer": "For NITs, IIITs and CFTIs, NTA says you need JEE Main plus at least 75% in Class 12, or a top-20 percentile board rank, with 65% for SC and ST. IIT admission also needs JEE Advanced and a similar Class 12 rule."
+    },
+    {
+      "question": "Who can appear for JEE Advanced 2026?",
+      "answer": "The official brochure says Indian candidates must be among the top 2,50,000 in the JEE Main B.E./B.Tech paper, and can attempt Advanced at most twice in two consecutive years, besides meeting the age and Class 12 appearance rules."
+    },
+    {
+      "question": "Is JEE Main enough for IIT admission?",
+      "answer": "No, IIT admission is through JEE Advanced, and you qualify for that test only after meeting the JEE Main rank rule and the other official criteria."
+    },
+    {
+      "question": "How many engineering colleges are listed here?",
+      "answer": "Our records currently show {{count}} B.Tech / B.E. programme options. The first cards are well-known IITs, but the full list also includes NITs, state colleges and private universities."
+    },
+    {
+      "question": "Are the IIT fees on these cards the full four-year cost?",
+      "answer": "Not always, because a card such as IIT Delhi CSE at ₹2.49 lakh may be one year rather than the complete programme, so read the official fee notice before you budget."
+    }
+  ],
+  "sources": [
+    {
+      "label": "NTA, Joint Entrance Examination (Main)",
+      "url": "https://www.nta.gov.in/exams/jee/"
+    },
+    {
+      "label": "JEE (Advanced) 2026 information brochure, IIT Roorkee",
+      "url": "https://jeeadv.ac.in"
+    },
+    {
+      "label": "NIRF 2025 Engineering ranking",
+      "url": "https://www.nirfindia.org/Rankings/2025/EngineeringRanking.html"
+    }
+  ]
+}

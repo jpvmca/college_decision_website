@@ -1,0 +1,89 @@
+{
+  "slug": "mba-government-colleges-in-rajasthan-by-average-package",
+  "updatedOn": "2026-11-24",
+  "intro": [
+    "This page lists the best government MBA / PGDM colleges in Rajasthan by the average packages in our records. We currently link {{count}} programme options at {{colleges}} colleges tagged as public in our file.",
+    "IIM Udaipur and MNIT Jaipur are the national institutes here, with Central University of Rajasthan and other public campuses. Banasthali Vidyapith is a private women's university and is no longer tagged as public in our file."
+  ],
+  "listLead": "IIM Udaipur appears first, but the opening card may be a Management Development Programme rather than the two-year MBA. Read the programme name before you compare packages or fees.",
+  "snapshot": [
+    "For colleges with a recorded average package, the median is {{pkgMedian}}, in a range from {{pkgMin}} to {{pkgMax}}. The recorded years run from {{pkgYearMin}} to {{pkgYearMax}}.",
+    "In the official NIRF 2025 Management ranking, IIM Udaipur is 21 and MNIT Jaipur is 62. Use those official ranks when you compare top MBA / PGDM colleges in Rajasthan 2026."
+  ],
+  "firstCollegesLead": [
+    "IIM Udaipur has a 2024 recorded average of ₹19 LPA and a highest of ₹47 LPA on an MBA Finance row. One fee in our file is ₹20 lakh for a supply-chain MBA, so confirm the official notice.",
+    "MNIT Jaipur has a 2023 recorded average of ₹9 LPA. Central University of Rajasthan has a 2025 recorded average of ₹4 LPA. Confirm both figures in the official placement reports."
+  ],
+  "sections": [
+    {
+      "heading": "Admission exams and a tagging issue",
+      "paragraphs": [
+        "CAT is the exam most often tagged here. Some older records still mention Rajasthan MAT, but current RTU material points to RMAP rather than a standalone RMAT 2026 exam.",
+        "Banasthali Vidyapith is a private deemed university and no longer appears on this government list. Confirm the institute type on the official site for any other campus you are unsure about."
+      ]
+    }
+  ],
+  "compare": {
+    "heading": "How to compare the best government MBA / PGDM colleges in Rajasthan",
+    "paragraphs": [
+      "Start with IIM Udaipur and MNIT Jaipur, then decide whether a specialised MBA in insurance, footwear or a private women's university belongs on your shortlist.",
+      "Use these checks:"
+    ],
+    "bullets": [
+      "Whether the IIM Udaipur card is the two-year MBA or a management development programme.",
+      "The official fee notice, especially where our file shows ₹20 lakh for a supply-chain MBA.",
+      "The official NIRF 2025 ranks: IIM Udaipur 21 and MNIT Jaipur 62.",
+      "CAT, or RMAP where a state university still uses that process."
+    ]
+  },
+  "links": [
+    {
+      "label": "MBA / PGDM course guide",
+      "href": "/courses/mba"
+    },
+    {
+      "label": "Best MBA colleges in Rajasthan",
+      "href": "/mba-colleges-in-rajasthan"
+    },
+    {
+      "label": "CAT exam page",
+      "href": "/exams/cat"
+    },
+    {
+      "label": "Rajasthan MAT exam page",
+      "href": "/exams/rajasthan-mat"
+    },
+    {
+      "label": "Best MBA colleges in India",
+      "href": "/mba-colleges"
+    }
+  ],
+  "faqs": [
+    {
+      "question": "How many government MBA colleges in Rajasthan are on this list?",
+      "answer": "Our records link {{count}} programme options at {{colleges}} colleges tagged as public, including IIM Udaipur, MNIT Jaipur and Central University of Rajasthan."
+    },
+    {
+      "question": "What is the typical average package on this list?",
+      "answer": "Among colleges with a recorded average, the median is {{pkgMedian}}, from {{pkgMin}} to {{pkgMax}}, for years {{pkgYearMin}} to {{pkgYearMax}}. These are historical records, not offers."
+    },
+    {
+      "question": "What are the official NIRF 2025 ranks here?",
+      "answer": "IIM Udaipur is 21 and MNIT Jaipur is 62 in the official NIRF 2025 Management ranking."
+    },
+    {
+      "question": "Is Banasthali Vidyapith on this government list?",
+      "answer": "No. It is a private women's deemed university, and it is no longer tagged as public in our file. Use this list only for colleges that are still marked as public."
+    }
+  ],
+  "sources": [
+    {
+      "label": "NIRF 2025 Management ranking",
+      "url": "https://www.nirfindia.org/Rankings/2025/ManagementRanking.html"
+    },
+    {
+      "label": "RTU UTD admission procedure",
+      "url": "https://udrtukota.ac.in/UTD/admission-procedure/"
+    }
+  ]
+}

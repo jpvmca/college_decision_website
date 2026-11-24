@@ -12,6 +12,8 @@ import InstituteLogo from './InstituteLogo';
 import LinkedTextParts from './LinkedTextParts';
 import { linkAdmissionRouteParts, type LinkableEntity } from '../lib/auto-link-entities';
 import { formatLpa } from '../lib/packages';
+import { DEFAULT_FEE_FLOOR } from '../lib/article-seo';
+import { displayNirfLabel } from '../lib/nirf-rank';
 
 export type ArticleCandidate = {
   institute_id: number;
@@ -34,6 +36,10 @@ export type ArticleCandidate = {
   average_package?: number | string | null;
   nirf_rank?: number | string | null;
   nirf_out_of?: number | string | null;
+  nirf_year?: number | string | null;
+  nirf_category?: string | null;
+  nirf_band?: string | null;
+  nirf_label?: string | null;
   admission_routes?: string | null;
   highest_package?: number | string | null;
   placement_year?: number | string | null;
@@ -52,10 +58,14 @@ type Props = {
   excludeExamSlugs?: string[];
   /** article_feed ad slot (in-feed after every Nth card); null when ads are off. */
   adFeed?: AdFeed | null;
+  /** Course-wise minimum quotable fee from the article API (`feeFloor`). */
+  feeFloor?: number;
 };
 
-function formatFee(value: string) {
+// Fees below the course-wise floor (backend config/fee-floors.ts, sent as `feeFloor`) are treated as data errors.
+function formatFee(value: string, feeFloor: number = DEFAULT_FEE_FLOOR) {
   const amount = Number(value);
+  if (Number.isFinite(amount) && amount > 0 && amount < feeFloor) return 'Fee to be confirmed';
   return Number.isFinite(amount) && amount > 0
     ? new Intl.NumberFormat('en-IN', { style: 'currency', currency: 'INR', maximumFractionDigits: 0 }).format(amount)
     : 'Fee available on request';
@@ -86,7 +96,7 @@ function isUniqueCollegeArticle(type: string) {
 function getCandidateNote(candidate: ArticleCandidate, uniqueCollege = false) {
   const programmeCount = Number(candidate.qualifying_programme_count || 0);
   if (uniqueCollege && programmeCount > 1) {
-    return `${programmeCount} qualifying programmes at this college. Showing the lowest recorded fee. Use View college details for the full programme list.`;
+    return `${programmeCount} programmes with a recorded fee at this college. Showing the main full-time programme where we hold its fee. Use View college details for the full programme list.`;
   }
   if (!candidate.eligibility) {
     return 'Eligibility is not listed for this option. Confirm the latest admission notice before applying.';
@@ -109,7 +119,7 @@ function getCourseContext(candidate: ArticleCandidate, uniqueCollege = false) {
   const institute = candidate.institute_name || 'this institute';
   const programme = candidate.programme_name || 'Programme';
   if (uniqueCollege) {
-    return `Lowest recorded fee: ${programme} at ${institute}${location ? `, ${location}` : ''}`;
+    return `Fee shown for: ${programme} at ${institute}${location ? `, ${location}` : ''}`;
   }
   return `${programme} at ${institute}${location ? `, ${location}` : ''}`;
 }
@@ -121,7 +131,8 @@ function CandidateCard({
   uniqueCollege,
   showCompare,
   linkableEntities = [],
-  excludeExamSlugs = []
+  excludeExamSlugs = [],
+  feeFloor = DEFAULT_FEE_FLOOR
 }: {
   candidate: ArticleCandidate;
   index: number;
@@ -130,6 +141,7 @@ function CandidateCard({
   showCompare: boolean;
   linkableEntities?: LinkableEntity[];
   excludeExamSlugs?: string[];
+  feeFloor?: number;
 }) {
   const admissionLabel = candidate.admission_routes || 'Check the latest official admission notice.';
   const admissionParts = articleType.includes('admission') && linkableEntities.length
@@ -143,12 +155,12 @@ function CandidateCard({
       </div>
       <p className="muted">{candidate.institute_type === 'public' ? 'Government or public institution' : 'Private institution'} · {candidate.city || 'Location not listed'}, {candidate.state || 'India'}</p>
       <p className="course-context"><strong>Course:</strong> {getCourseContext(candidate, uniqueCollege)}</p>
-      {(candidate.average_year_fee || candidate.average_package || candidate.highest_package || candidate.nirf_rank) && (
+      {(candidate.average_year_fee || candidate.average_package || candidate.highest_package || displayNirfLabel({ label: candidate.nirf_label, year: candidate.nirf_year, category: candidate.nirf_category, courseId: candidate.course_id, rank: candidate.nirf_rank, outOf: candidate.nirf_out_of })) && (
         <div className="article-college-highlights">
-          {candidate.average_year_fee && <span>Average yearly fee: <strong>{formatFee(String(candidate.average_year_fee))}</strong></span>}
+          {candidate.average_year_fee && <span>Average yearly fee: <strong>{formatFee(String(candidate.average_year_fee), feeFloor)}</strong></span>}
           {candidate.average_package && <span>Average placement: <strong>{formatPackage(candidate.average_package)}</strong></span>}
           {candidate.highest_package && <span>Highest placement: <strong>{formatPackage(candidate.highest_package)}</strong></span>}
-          {candidate.nirf_rank && <span>NIRF: <strong>Rank {candidate.nirf_rank}{candidate.nirf_out_of ? ` / ${candidate.nirf_out_of}` : ''}</strong></span>}
+          {displayNirfLabel({ label: candidate.nirf_label, year: candidate.nirf_year, category: candidate.nirf_category, courseId: candidate.course_id, rank: candidate.nirf_rank, outOf: candidate.nirf_out_of }) && <span><strong>{displayNirfLabel({ label: candidate.nirf_label, year: candidate.nirf_year, category: candidate.nirf_category, courseId: candidate.course_id, rank: candidate.nirf_rank, outOf: candidate.nirf_out_of })}</strong></span>}
         </div>
       )}
       <p><strong>Duration:</strong> {candidate.duration || 'Check the current programme duration.'}</p>
@@ -156,7 +168,7 @@ function CandidateCard({
       {isAveragePackageExceedsFeesArticle(articleType) ? (
         <>
           <p className="price">{formatPackage(candidate.average_package)} average package</p>
-          <p><strong>Recorded fee:</strong> {formatFee(candidate.min_total_fee || '')}</p>
+          <p><strong>Recorded fee:</strong> {formatFee(candidate.min_total_fee || '', feeFloor)}</p>
         </>
       ) : isHighestPackageArticle(articleType) ? (
         <>
@@ -171,7 +183,7 @@ function CandidateCard({
       ) : articleType.includes('admission') ? (
         <p><strong>Admission route:</strong> {admissionParts?.length ? <LinkedTextParts parts={admissionParts} /> : admissionLabel}</p>
       ) : (
-        <p className="price">{formatFee(candidate.min_total_fee || '')} lowest recorded fee</p>
+        <p className="price">{formatFee(candidate.min_total_fee || '', feeFloor)} recorded total fee</p>
       )}
       <div className="card-actions">
         <small>
@@ -195,7 +207,7 @@ function CandidateCard({
             programmeName={candidate.programme_name}
             duration={candidate.duration}
             eligibility={candidate.eligibility}
-            fee={formatFee(candidate.min_total_fee || '')}
+            fee={formatFee(candidate.min_total_fee || '', feeFloor)}
             feeRecordCount={candidate.fee_record_count}
             instituteType={candidate.institute_type}
             city={candidate.city}
@@ -221,7 +233,8 @@ export default function ArticleCollegeList({
   summaryLabel,
   linkableEntities = [],
   excludeExamSlugs = [],
-  adFeed = null
+  adFeed = null,
+  feeFloor = DEFAULT_FEE_FLOOR
 }: Props) {
   const [candidates, setCandidates] = useState(initialCandidates);
   const [page, setPage] = useState(initialPage);
@@ -263,6 +276,7 @@ export default function ArticleCollegeList({
             showCompare={candidateCount > 1}
             linkableEntities={linkableEntities}
             excludeExamSlugs={excludeExamSlugs}
+            feeFloor={feeFloor}
           />
           {adPositions.has(index + 1) && adFeed && <AdSlotClient slot={adFeed.slot} settings={adFeed.settings} className="ad-in-list" />}
         </Fragment>

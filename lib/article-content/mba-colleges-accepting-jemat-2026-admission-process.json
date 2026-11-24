@@ -1,0 +1,97 @@
+{
+  "slug": "mba-colleges-accepting-jemat-2026-admission-process",
+  "updatedOn": "2026-11-24",
+  "intro": [
+    "Our published list of MBA colleges accepting JEMAT 2026 currently shows {{published}} colleges, drawn from {{count}} programme cards. They are West Bengal institutes on the official MAKAUT participating list, including campuses in Durgapur, Kolkata, Kalyani, Hooghly, Darjeeling and Haldia.",
+    "JEMAT 2026 was conducted by MAKAUT, West Bengal, for MBA admissions in the state. The official portal scheduled the computer-based test on 7 June 2026, with online applications from 10 May to 1 June 2026."
+  ],
+  "listLead": "These cards are the top MBA / PGDM colleges accepting JEMAT 2026 in our published records. Some colleges appear more than once because we hold several MBA specialisations for them.",
+  "snapshot": [
+    "We hold {{colleges}} published colleges on this list, all in West Bengal. The official JEMAT process still covers a wider set of MAKAUT and other state MBA programmes, including some campuses that are not yet published in our file.",
+    "Haldia Institute of Technology has a recorded MBA fee of ₹2.401 lakh. BCET's first cards have no recorded fee. A recorded average of ₹3 lakh appears for both in our data, and should be treated as historical."
+  ],
+  "firstCollegesLead": [
+    "Some colleges, such as BCET, Durgapur, occupy more than one specialisation row. That is a listing shape issue, not a ranking of one college over the others.",
+    "Haldia Institute of Technology is listed under Kolkata in our records. Confirm the official campus location before you plan travel, because the institute is commonly associated with Haldia."
+  ],
+  "sections": [
+    {
+      "heading": "Official JEMAT 2026 admission rules",
+      "paragraphs": [
+        "MAKAUT's official JEMAT pages say the test is a state-level exam for MBA, MHA and some AICTE-approved PG diploma programmes, conducted for the Government of West Bengal.",
+        "The 2026 brochure required a 3- or 4-year bachelor's degree in arts, science, commerce, engineering, technology, medical, dental, agriculture or another professional course from a recognised university. Foreign students were not eligible to sit the test."
+      ],
+      "bullets": [
+        "Online applications opened on 10 May 2026 and closed on 1 June 2026, as extended on the official portal.",
+        "The computer-based test was held on 7 June 2026, with rank cards issued on 20 June 2026 and e-counselling later in July.",
+        "MAKAUT notes that colleges may also admit using a national test such as CAT or MAT, and that qualifying JEMAT does not by itself guarantee a seat."
+      ]
+    }
+  ],
+  "compare": {
+    "heading": "How to shortlist MBA colleges accepting JEMAT 2026",
+    "paragraphs": [
+      "Use the official MAKAUT participating-college list for a complete 2026 picture. Our published list covers the official campuses we have tagged and published so far, not every institute on the official brochure."
+    ],
+    "bullets": [
+      "The official JEMAT participating-college list and counselling allotment, not only the published cards on this page.",
+      "The official MBA fee notice, especially at BCET, where our fee cell is blank.",
+      "Whether the college also accepts CAT or MAT, as MAKAUT allows.",
+      "The official campus city, because one of our location fields does not match the usual Haldia campus."
+    ]
+  },
+  "links": [
+    {
+      "label": "MBA / PGDM course guide",
+      "href": "/courses/mba"
+    },
+    {
+      "label": "JEMAT exam guide",
+      "href": "/exams/jemat"
+    },
+    {
+      "label": "Best MBA colleges in West Bengal",
+      "href": "/mba-colleges-in-west-bengal"
+    },
+    {
+      "label": "MBA colleges in West Bengal where package exceeds fees",
+      "href": "/articles/mba-colleges-in-west-bengal-where-average-package-exceeds-fees-2026"
+    },
+    {
+      "label": "CAT exam guide",
+      "href": "/exams/cat"
+    }
+  ],
+  "faqs": [
+    {
+      "question": "How many MBA colleges accepting JEMAT 2026 are on this list?",
+      "answer": "We currently list {{published}} published colleges, from {{count}} programme cards. Officially, JEMAT is used across a wider set of West Bengal MBA programmes, including some campuses that are not yet published in our file."
+    },
+    {
+      "question": "Who conducted JEMAT 2026, and when was the test?",
+      "answer": "MAKAUT, West Bengal, conducted the computer-based JEMAT on 7 June 2026. Applications ran from 10 May to 1 June 2026, as published on the official portal."
+    },
+    {
+      "question": "What was the eligibility for JEMAT 2026?",
+      "answer": "The official 2026 brochure required a 3- or 4-year recognised bachelor's degree in a listed faculty, including professional courses. Final-year students could apply, and foreign students were not eligible to sit the test."
+    },
+    {
+      "question": "Does a JEMAT rank guarantee admission?",
+      "answer": "No. MAKAUT states that mere qualification does not make a candidate eligible for admission to a chosen college. Colleges may also use CAT or MAT, and each has its own criteria."
+    }
+  ],
+  "sources": [
+    {
+      "label": "MAKAUT official JEMAT admissions page",
+      "url": "https://www.makautwb.ac.in/page.php?id=313"
+    },
+    {
+      "label": "JEMAT 2026 official application portal",
+      "url": "https://cetmat.formflix.com/jemat/"
+    },
+    {
+      "label": "JEMAT 2026 official brochure (MAKAUT)",
+      "url": "https://cetmat.formflix.com/JEMAT_BROCHURE-2026.pdf"
+    }
+  ]
+}

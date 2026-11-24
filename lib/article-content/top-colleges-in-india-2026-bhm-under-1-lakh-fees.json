@@ -1,0 +1,82 @@
+{
+  "slug": "top-colleges-in-india-2026-bhm-under-1-lakh-fees",
+  "updatedOn": "24 Nov 2026",
+  "intro": [
+    "We hold a recorded main-programme fee of up to ₹{{budget}} lakh for {{count}} published BHM colleges in India. This list of the best BHM colleges under ₹{{budget}} lakh mixes hotel-management degrees with tourism and diploma cards, so read the programme name first.",
+    "Abhi Institute of Hotel Management, Delhi, is listed with BHMCT and a fee range of ₹30,000–₹1.40 lakh, which already crosses the ₹1 lakh cap at the top end. Jamia Millia Islamia's tourism department follows, with a recorded BTTM fee of ₹30,085.",
+    "Delhi NCR and Punjab have the most colleges here. NCHMCT JEE is the main recorded entrance test, though several cards are not IHM-style BHM programmes."
+  ],
+  "listLead": "These are the top BHM colleges in India 2026 with a recorded fee of up to ₹1 lakh. Some first cards are BA Tourism, B.Sc Hotel Management, or a diploma in front office, not a full BHM degree.",
+  "snapshot": [
+    "Across {{feeN}} published colleges with a recorded fee, the median total is {{feeMedian}}, and the middle half sits between {{feeP25}} and {{feeP75}}.",
+    "{{private}} colleges are private, {{public}} is public, and one has no ownership type. Five records have a fee band that can exceed ₹1 lakh even though the minimum is under the cap.",
+    "NCHMCT JEE is tagged at 12 colleges. A hotel-management degree that admits through NCHMCT JEE may have a different official fee from the tourism or diploma card shown here."
+  ],
+  "firstCollegesLead": [
+    "Jamia's recorded programme is a Bachelor's in Tourism and Travel Management, not a BHM. Roorkee College of Engineering is listed with BA Tourism Management at ₹39,600, which is also not a hotel-management degree.",
+    "Dangayach College of Hotel Management, Jaipur, is listed with a Diploma in Front Office at ₹50,000. Management and Design Academy, Delhi, is listed with an Advanced Diploma in Hotel Management at the same figure."
+  ],
+  "sections": [
+    {
+      "heading": "Degrees, diplomas and tourism courses on this BHM list",
+      "paragraphs": [
+        "If you want a full Bachelor of Hotel Management, skip cards that are clearly a one-year diploma or a tourism BA, even when the recorded fee is attractive.",
+        "Hope Institute of Hospitality Management and Rayat Bahra Institute of Management have recorded BHM fees of ₹50,000. Confirm whether that is annual or for the full course."
+      ]
+    }
+  ],
+  "compare": {
+    "heading": "How to compare the best BHM colleges under ₹1 lakh",
+    "paragraphs": [
+      "A university BTTM, a private BHM, and a front-office diploma are not the same qualification, even when all three appear on a BHM fee list.",
+      "Check these official points:"
+    ],
+    "bullets": [
+      "The exact award on the official brochure: BHM, BHMCT, B.Sc Hotel Management, BTTM, or a diploma.",
+      "Whether the fee is for one year or the full programme, and whether uniforms, labs or internships are extra.",
+      "The admission test, including NCHMCT JEE where it applies, and any university-level process.",
+      "The official campus city, because Delhi, Jaipur, Mohali and Jalandhar living costs differ."
+    ]
+  },
+  "links": [
+    {
+      "label": "BHM course guide",
+      "href": "/courses/bhm"
+    },
+    {
+      "label": "Best BHM colleges in India",
+      "href": "/bhm-colleges"
+    },
+    {
+      "label": "NCHMCT JEE exam guide",
+      "href": "/exams/nchmct-jee"
+    },
+    {
+      "label": "Mass-communication colleges under ₹1 lakh",
+      "href": "/articles/top-colleges-in-india-2026-mass-communication-under-1-lakh-fees"
+    }
+  ],
+  "faqs": [
+    {
+      "question": "How many BHM colleges in India have fees under ₹1 lakh here?",
+      "answer": "We list {{published}} published colleges with a recorded main-programme fee up to ₹{{budget}} lakh. Some of those programmes are tourism degrees or diplomas, not a full BHM."
+    },
+    {
+      "question": "What is a typical fee on this BHM list?",
+      "answer": "The median recorded total is {{feeMedian}}, and the middle half falls between {{feeP25}} and {{feeP75}}. Confirm the official full-course fee, especially where our card shows a range."
+    },
+    {
+      "question": "Why does the first college show a fee above ₹1 lakh?",
+      "answer": "Abhi Institute of Hotel Management has a recorded range of ₹30,000–₹1.40 lakh. Our filter uses the main recorded fee, and the upper end can exceed the cap, so read both numbers on the card."
+    },
+    {
+      "question": "Do all colleges here admit through NCHMCT JEE?",
+      "answer": "No. NCHMCT JEE is recorded at 12 colleges on this list. Others may use a university process or direct admission. Check the official brochure."
+    },
+    {
+      "question": "Is this a ranking of the best BHM colleges under ₹1 lakh?",
+      "answer": "It is a fee filter, not a ranking of kitchens, internships or hotel tie-ups. Use the programme name and the official fee notice before you shortlist."
+    }
+  ],
+  "sources": []
+}

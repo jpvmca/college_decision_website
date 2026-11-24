@@ -21,7 +21,8 @@
 .popular-guides-view-all:hover{text-decoration:underline}
 .button.secondary{background:#e8eef9;color:#17345f}
 .decision-backdrop{position:fixed;z-index:30;inset:0;display:flex;align-items:center;justify-content:center;background:#17203399;padding:20px}
-.decision-modal{position:relative;max-height:90vh;overflow:auto;width:min(900px,100%);background:linear-gradient(145deg,#fff 0%,#f7faff 100%);border:1px solid #c9d8f2;border-top:5px solid #2563eb;border-radius:20px;padding:32px;box-shadow:0 24px 80px #17203366;color:#172033}
+.modal-backdrop.decision-modal-backdrop{position:fixed;inset:0;z-index:1100;display:flex;align-items:safe center;justify-content:center;padding:16px;overflow-y:auto}
+.decision-modal{position:relative;max-height:min(90vh, calc(100dvh - 32px));overflow-y:auto;width:min(900px,100%);background:linear-gradient(145deg,#fff 0%,#f7faff 100%);border:1px solid #c9d8f2;border-top:5px solid #2563eb;border-radius:20px;padding:32px;box-shadow:0 24px 80px #17203366;color:#172033}
 .inline-decision-shell{width:100%}
 .inline-decision-form{position:relative;width:min(900px,100%);margin:0 auto;background:linear-gradient(145deg,#fff 0%,#f7faff 100%);border:1px solid #c9d8f2;border-top:5px solid #2563eb;border-radius:18px;padding:24px;box-shadow:0 18px 50px #1720331f;color:#172033}
 .inline-decision-form h2{color:#172554;font-size:clamp(26px,4vw,36px);line-height:1.15;margin:4px 0 8px}

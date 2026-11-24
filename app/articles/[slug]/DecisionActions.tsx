@@ -1,6 +1,7 @@
 'use client';
 
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
+import { createPortal } from 'react-dom';
 import { GitCompareArrows, GraduationCap, X } from 'lucide-react';
 import { formatLpa } from '../../../lib/packages';
 
@@ -99,12 +100,31 @@ export default function DecisionActions(props: Props) {
     setCompared(next);
   }
 
+
+  useEffect(() => {
+    if (!compareOpen && !admissionOpen) return;
+    const overflow = document.body.style.overflow;
+    document.body.style.overflow = 'hidden';
+    const onKey = (event: KeyboardEvent) => {
+      if (event.key !== 'Escape') return;
+      event.preventDefault();
+      setCompareOpen(false);
+      setAdmissionOpen(false);
+    };
+    document.addEventListener('keydown', onKey);
+    return () => {
+      document.removeEventListener('keydown', onKey);
+      document.body.style.overflow = overflow;
+    };
+  }, [compareOpen, admissionOpen]);
+
   return <>
     <div className="decision-actions">
       {props.showCompare !== false && <button className="view-button" type="button" onClick={compareCollege} disabled={detailsLoading}><GitCompareArrows size={16} aria-hidden="true" /> {detailsLoading ? 'Loading…' : 'Compare This College'}</button>}
       <button className="admission-button" type="button" onClick={checkAdmission} disabled={detailsLoading}><GraduationCap size={16} aria-hidden="true" /> {detailsLoading ? 'Loading…' : 'Check admission'}</button>
     </div>
-    {compareOpen && <div className="modal-backdrop" role="presentation" onMouseDown={(event) => event.target === event.currentTarget && setCompareOpen(false)}>
+    {(compareOpen || admissionOpen) ? createPortal(<>
+    {compareOpen && <div className="modal-backdrop decision-modal-backdrop" role="presentation" onMouseDown={(event) => event.target === event.currentTarget && setCompareOpen(false)}>
       <section className="decision-modal" role="dialog" aria-modal="true" aria-labelledby="compare-title">
         <button className="modal-close" type="button" aria-label="Close comparison" onClick={() => setCompareOpen(false)}><X size={22} aria-hidden="true" /></button>
         <p className="eyebrow">COLLEGE COMPARISON</p>
@@ -113,7 +133,7 @@ export default function DecisionActions(props: Props) {
         <div className="compare-grid">{compared.map((item) => <article className="compare-card" key={`${item.instituteId}-${item.courseId}`}><button className="compare-remove" type="button" onClick={() => removeCollege(item.instituteId, item.courseId)}>Remove</button><h3>{item.instituteName}</h3><p className="compare-programme">{item.programmeName}</p><dl><div><dt>College type</dt><dd>{item.instituteType === 'public' ? 'Government / public' : item.instituteType || 'Not listed'}</dd></div><div><dt>Location</dt><dd>{[item.city, item.state].filter(Boolean).join(', ') || 'Not listed'}</dd></div><div><dt>Duration</dt><dd>{item.duration || 'Not listed'}</dd></div><div><dt>Recorded fee</dt><dd>{item.fee}</dd></div><div><dt>Fee records</dt><dd>{item.feeRecordCount ? `${item.feeRecordCount} records` : 'Not listed'}</dd></div><div><dt>Average package</dt><dd>{packageLabel(item.averagePackage, item.placementYear)}</dd></div><div><dt>Highest package</dt><dd>{packageLabel(item.highestPackage, item.placementYear)}</dd></div><div><dt>Eligibility</dt><dd>{item.eligibility || 'Check the latest official notice.'}</dd></div><div><dt>Admission route</dt><dd>{item.admissionRoutes || 'Not listed'}</dd></div></dl></article>)}</div>
       </section>
     </div>}
-    {admissionOpen && <div className="modal-backdrop" role="presentation" onMouseDown={(event) => event.target === event.currentTarget && setAdmissionOpen(false)}>
+    {admissionOpen && <div className="modal-backdrop decision-modal-backdrop" role="presentation" onMouseDown={(event) => event.target === event.currentTarget && setAdmissionOpen(false)}>
       <section className="decision-modal admission-modal" role="dialog" aria-modal="true" aria-labelledby="admission-title">
         <button className="modal-close" type="button" aria-label="Close admission details" onClick={() => setAdmissionOpen(false)}><X size={22} aria-hidden="true" /></button>
         <p className="eyebrow">ADMISSION CHECK</p>
@@ -134,5 +154,6 @@ export default function DecisionActions(props: Props) {
         <div className="notice"><strong>Before applying:</strong> confirm the current academic year, required subjects, minimum marks, entrance exam, counselling process and application deadline with the institution.</div>
       </section>
     </div>}
+    </>, document.body) : null}
   </>;
 }

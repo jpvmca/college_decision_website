@@ -1,0 +1,98 @@
+{
+  "slug": "mba-government-colleges-in-uttar-pradesh-by-average-package",
+  "updatedOn": "24 Nov 2026",
+  "intro": [
+    "We list {{count}} government MBA / PGDM programme options across {{colleges}} public institutes in Uttar Pradesh. The list is meant to help you compare the best government MBA colleges in Uttar Pradesh by recorded average package.",
+    "IIM Lucknow, IIT Kanpur and Banaras Hindu University sit near the top. They lead the top MBA colleges in Uttar Pradesh 2026, and the remaining public institutes follow by package."
+  ],
+  "listLead": "IIM Lucknow and Banaras Hindu University appear more than once because we hold several programmes. The Noida campus of IIM Lucknow is listed separately from the Lucknow campus.",
+  "snapshot": [
+    "Among these {{colleges}} public colleges, the median recorded average package is {{pkgMedian}}, from placement years {{pkgYearMin}} to {{pkgYearMax}}.",
+    "Recorded averages run from {{pkgMin}} to {{pkgMax}}. The highest single figure we hold is {{highestMax}}, which is not a typical offer.",
+    "CAT is the main entrance route on this list. A few programmes also mention CUET PG or GMAT, so check the official notice for the campus you want."
+  ],
+  "firstCollegesLead": [
+    "IIM Lucknow is 5th in the official NIRF 2025 Management ranking. Its 2025–27 PGP fee notice lists ₹10.95 lakh in year one and ₹9.80 lakh in year two, or ₹20.75 lakh in all.",
+    "Our card now shows that official two-year total of ₹20.75 lakh. IIT Kanpur also appears twice: as the institute and as Industrial and Management Engineering."
+  ],
+  "sections": [
+    {
+      "heading": "NIRF 2025 ranks for government MBA colleges in Uttar Pradesh",
+      "paragraphs": [
+        "In the official NIRF 2025 Management ranking, IIM Lucknow is 5th, IIT Kanpur is 27th, Banaras Hindu University is 60th, and Madan Mohan Malaviya University of Technology is 83rd.",
+        "The Noida campus of IIM Lucknow is not ranked separately. Use the parent institute's rank, and confirm placements for the programme taught on that campus."
+      ]
+    }
+  ],
+  "compare": {
+    "heading": "How to compare the best government MBA colleges in Uttar Pradesh",
+    "paragraphs": [
+      "A two-year PGP at IIM Lucknow, an MBA at a university faculty, and a specialised course in footwear or petroleum are not interchangeable.",
+      "Before you shortlist, check the official documents for:"
+    ],
+    "bullets": [
+      "The full two-year fee, not a single-year total that can look lower than it is.",
+      "The placement year and the exact programme behind the average and highest figures.",
+      "Whether the campus is Lucknow, Noida, Varanasi, Kanpur or another city, because the peer group differs.",
+      "The entrance test and category cut-off for the latest cycle."
+    ]
+  },
+  "links": [
+    {
+      "label": "MBA / PGDM course guide",
+      "href": "/courses/mba"
+    },
+    {
+      "label": "Best MBA colleges in Uttar Pradesh",
+      "href": "/mba-colleges-in-uttar-pradesh"
+    },
+    {
+      "label": "Best MBA colleges in India",
+      "href": "/mba-colleges"
+    },
+    {
+      "label": "MBA colleges with ₹50 lakh highest package in Uttar Pradesh",
+      "href": "/articles/mba-colleges-in-uttar-pradesh-with-50-lakh-highest-package-2026"
+    },
+    {
+      "label": "MBA colleges accepting CAT",
+      "href": "/exams/cat"
+    }
+  ],
+  "faqs": [
+    {
+      "question": "How many government MBA colleges in Uttar Pradesh are listed here?",
+      "answer": "We hold {{count}} programme options at {{colleges}} public institutes. IIM Lucknow, Banaras Hindu University and a few others appear more than once because we hold several programmes."
+    },
+    {
+      "question": "What is IIM Lucknow's official MBA fee for 2025–27?",
+      "answer": "The institute's PGP fee notice for 2025–27 lists ₹10.95 lakh in the first year and ₹9.80 lakh in the second year, or ₹20.75 lakh in all, plus mess charges. Our card now shows that official two-year total of ₹20.75 lakh."
+    },
+    {
+      "question": "What average package do these government colleges report?",
+      "answer": "The median recorded average is {{pkgMedian}}, with recorded averages from {{pkgMin}} to {{pkgMax}}. Some rows, such as MNNIT Allahabad in 2015, are old, so check the latest official report."
+    },
+    {
+      "question": "Is the Noida campus of IIM Lucknow ranked on its own?",
+      "answer": "No. In the NIRF 2025 Management ranking the parent institute, IIM Lucknow, is 5th. The Noida campus is not given a separate rank."
+    },
+    {
+      "question": "Why does IIT Kanpur appear twice?",
+      "answer": "One row is listed under the institute, with a 2017 placement year. The other is Industrial and Management Engineering, with a 2023 MBA average of ₹18 LPA in our records. Both refer to IIT Kanpur."
+    }
+  ],
+  "sources": [
+    {
+      "label": "NIRF 2025 Management ranking",
+      "url": "https://www.nirfindia.org/Rankings/2025/ManagementRanking.html"
+    },
+    {
+      "label": "IIM Lucknow PGP fee structure 2025–27",
+      "url": "https://iiml.ac.in/sites/default/files/2025-05/Fee%20Structure_2025-27.pdf"
+    },
+    {
+      "label": "IIM Lucknow PGP programme page",
+      "url": "https://www.iiml.ac.in/master-business-administration"
+    }
+  ]
+}

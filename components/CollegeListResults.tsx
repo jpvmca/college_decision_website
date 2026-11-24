@@ -3,7 +3,7 @@
 import { Fragment } from 'react';
 import Link from 'next/link';
 import AdSlotClient from './ads/AdSlotClient';
-import { feedPositions } from '../lib/ad-feed';
+import { feedPositions, type FeedPlacement } from '../lib/ad-feed';
 import type { AdFeed } from '../lib/ads';
 import CollegeDecisionCard from './CollegeDecisionCard';
 import type { LinkableEntity } from '../lib/auto-link-entities';
@@ -31,6 +31,10 @@ export type ListedCollege = {
   highest_package: number | string | null;
   nirf_rank: number | string | null;
   nirf_out_of: number | string | null;
+  nirf_year?: number | string | null;
+  nirf_category?: string | null;
+  nirf_band?: string | null;
+  nirf_label?: string | null;
   review_count: number | string | null;
   average_rating: number | string | null;
   admission_routes: string | null;
@@ -38,12 +42,12 @@ export type ListedCollege = {
 
 export type ListPagination = { page: number; perPage: number; total: number; totalPages: number };
 
-export function CollegeListResults({ colleges, total, linkableEntities, adFeed = null }: { colleges: ListedCollege[]; total: number; linkableEntities: LinkableEntity[]; adFeed?: AdFeed | null }) {
-  // listing_feed: after card 5, then every feedEvery cards.
-  const adPositions = feedPositions(adFeed, colleges.length, 5);
+export function CollegeListResults({ colleges, total, linkableEntities, adFeed = null, adPlacement }: { colleges: ListedCollege[]; total: number; linkableEntities: LinkableEntity[]; adFeed?: AdFeed | null; adPlacement?: FeedPlacement }) {
+  // Default: after card 5, then every feedEvery cards. Course listings pass adPlacement to cap density.
+  const adPositions = feedPositions(adFeed, colleges.length, adPlacement?.first ?? 5, adPlacement);
   return <div className="decision-results-list">
     {colleges.length ? colleges.map((college, index) => <Fragment key={college.id}>{(
-      college.programme_id && college.course_id ? <div id={`college-${index + 1}`} key={college.id}><CollegeDecisionCard showReviews={false} showCompare={total > 1} item={{
+      college.programme_id && college.course_id ? <div id={`college-${index + 1}`} key={college.id}><CollegeDecisionCard showReviews={false} showCompare={total > 1} feeLabel="Total fees" item={{
         instituteId: college.id,
         courseId: Number(college.course_id || 0),
         programmeId: Number(college.programme_id || 0),
@@ -61,6 +65,10 @@ export function CollegeListResults({ colleges, total, linkableEntities, adFeed =
         highestPackage: college.highest_package,
         nirfRank: college.nirf_rank,
         nirfOutOf: college.nirf_out_of,
+        nirfYear: college.nirf_year,
+        nirfCategory: college.nirf_category,
+        nirfBand: college.nirf_band,
+        nirfLabel: college.nirf_label,
         reviewCount: college.review_count,
         averageRating: college.average_rating,
         eligibility: college.eligibility,

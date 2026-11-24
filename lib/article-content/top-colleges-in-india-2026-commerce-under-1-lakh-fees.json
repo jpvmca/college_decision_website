@@ -1,0 +1,86 @@
+{
+  "slug": "top-colleges-in-india-2026-commerce-under-1-lakh-fees",
+  "updatedOn": "24 Nov 2026",
+  "intro": [
+    "We hold a recorded main-programme fee of up to ₹{{budget}} lakh for {{count}} published BCom colleges in India. This list of the best BCom colleges under ₹{{budget}} lakh starts with Delhi University colleges, then other cities.",
+    "Hindu College is listed with B.Com (Hons) at ₹26,000, Hansraj College at ₹17,200–₹18,200, and Lady Shri Ram College for Women at ₹21,290, all in our records for 2023-linked placement years. Confirm the latest official college or university fee circular.",
+    "Uttar Pradesh, Rajasthan, Delhi NCR, Maharashtra, Karnataka and Punjab have the most listings. CUET UG is the main recorded entrance test."
+  ],
+  "listLead": "These are the top BCom colleges in India 2026 with a recorded main-programme fee of up to ₹1 lakh. The first Delhi cards are well-known colleges; later cards include many private colleges with similar fee bands.",
+  "snapshot": [
+    "Across {{feeN}} published colleges with a recorded fee, the median total is {{feeMedian}}, and the middle half sits between {{feeP25}} and {{feeP75}}.",
+    "{{private}} colleges are private, {{public}} are public, and a few have no ownership type. Delhi, Jaipur, Lucknow and Bangalore are the leading cities on this list.",
+    "A low recorded total at a public college can still miss examination or society charges. Use the official fee circular for the year you will join."
+  ],
+  "firstCollegesLead": [
+    "Loyola College, Chennai, is listed with B.Com General at ₹31,960 and a 2023 average package of ₹8 lakh in our records. That placement figure is historical, not a promise.",
+    "Some later fees sit close to ₹11,000. We already drop fees under ₹10,000 from this kind of list, but a figure just above that line may still be an annual tuition rather than a three-year total."
+  ],
+  "sections": [
+    {
+      "heading": "Delhi University colleges and the rest of this BCom list",
+      "paragraphs": [
+        "DU college fees change by year and by college society charges. Our Hindu, Hansraj and LSR figures should be checked against the latest official circular before you budget.",
+        "CUET UG is recorded at nine colleges here. Many other BCom admissions follow a university or state process that is not tagged on the card."
+      ]
+    }
+  ],
+  "compare": {
+    "heading": "How to compare the best BCom colleges under ₹1 lakh",
+    "paragraphs": [
+      "A Delhi University honours programme and a private BCom can share this budget and still differ in cut-offs, internships and class size.",
+      "Check these official points:"
+    ],
+    "bullets": [
+      "The latest official college fee circular, including society, exam and practical charges.",
+      "Whether the programme is B.Com (Hons) or B.Com General, which is not always interchangeable.",
+      "The admission route, including CUET UG where it applies.",
+      "Living costs in Delhi, Jaipur, Lucknow or Bangalore, which are not part of the tuition figure."
+    ]
+  },
+  "links": [
+    {
+      "label": "BCom course guide",
+      "href": "/courses/commerce"
+    },
+    {
+      "label": "Best BCom colleges in India",
+      "href": "/bcom-colleges"
+    },
+    {
+      "label": "CUET UG exam guide",
+      "href": "/exams/cuet-ug"
+    },
+    {
+      "label": "BBA colleges under ₹1 lakh",
+      "href": "/articles/top-colleges-in-india-2026-bba-under-1-lakh-fees"
+    },
+    {
+      "label": "MA colleges under ₹1 lakh",
+      "href": "/articles/top-colleges-in-india-2026-ma-under-1-lakh-fees"
+    }
+  ],
+  "faqs": [
+    {
+      "question": "How many BCom colleges in India have fees under ₹1 lakh here?",
+      "answer": "We list {{published}} published BCom colleges with a recorded main-programme fee up to ₹{{budget}} lakh. Colleges without a usable fee on file are excluded."
+    },
+    {
+      "question": "What is a typical BCom fee on this list?",
+      "answer": "The median recorded total is {{feeMedian}}, and the middle half falls between {{feeP25}} and {{feeP75}}. Delhi University college circulars can differ from our stored figure, so confirm the latest official amount."
+    },
+    {
+      "question": "What BCom fees do Hindu, Hansraj and LSR show in our records?",
+      "answer": "Hindu College is listed at ₹26,000, Hansraj at ₹17,200–₹18,200, and Lady Shri Ram College for Women at ₹21,290, for B.Com (Hons). These are our records, not a substitute for the latest official circular."
+    },
+    {
+      "question": "Do these colleges admit through CUET UG?",
+      "answer": "CUET UG is recorded at nine colleges on this list, including many Delhi University colleges. Other universities may use their own process. Check the official admission page."
+    },
+    {
+      "question": "Is this a ranking of the best BCom colleges under ₹1 lakh?",
+      "answer": "No. It is a fee filter of the best BCom colleges under ₹1 lakh in our records. Cut-offs and course quality still need a separate check."
+    }
+  ],
+  "sources": []
+}

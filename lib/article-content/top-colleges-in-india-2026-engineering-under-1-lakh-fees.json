@@ -1,0 +1,90 @@
+{
+  "slug": "top-colleges-in-india-2026-engineering-under-1-lakh-fees",
+  "updatedOn": "24 Nov 2026",
+  "intro": [
+    "We hold a recorded main-programme fee of up to ₹{{budget}} lakh for {{count}} published B.Tech / B.E. colleges in India. This list is for students looking at the best B.Tech / B.E. colleges under ₹1 lakh, and it needs a careful reading of each card.",
+    "Ranked colleges that fit the budget come first, then the rest are ordered by recorded total fee, lowest first. A low figure can be one-year tuition, so do not treat every card as a four-year cost."
+  ],
+  "listLead": "The first cards include SV University College of Engineering in Tirupati, Government Engineering College Thrissur, and NIT Hamirpur. The NIT Hamirpur card shows ₹15,000 for B.Tech Civil, which should be checked on the official fee notice.",
+  "snapshot": [
+    "Across the {{feeN}} published colleges here, the median recorded fee is {{feeMedian}}. The middle half sits between {{feeP25}} and {{feeP75}}.",
+    "Most listings are private ({{private}}), with {{public}} public institutes. Tamil Nadu, Madhya Pradesh, Maharashtra, Uttar Pradesh, Punjab and Andhra Pradesh have the most colleges on this budget list.",
+    "JEE Main is the exam most often linked here, followed by TNEA and other state tests. Use the list of top B.Tech / B.E. colleges in India 2026 as a shortlist, then confirm the official fee notice."
+  ],
+  "firstCollegesLead": [
+    "SV University College of Engineering shows a recorded CSE fee of ₹10,800–₹17,350, and GECT Thrissur shows ₹11,610–₹13,350, both with 2023 placement figures in our records. Confirm whether those fees are one year or the full four-year programme.",
+    "NIT Hamirpur’s Civil Engineering card at ₹15,000 is almost certainly not the complete B.Tech cost, and the branch on the card is Civil, not Computer Science. Some later private-college fees also look like a single-year figure."
+  ],
+  "sections": [
+    {
+      "heading": "How to read an engineering fee under ₹1 lakh",
+      "paragraphs": [
+        "Public-college tuition is often published by year or semester, plus hostel and mess charges separately. A card under ₹1 lakh may therefore be one academic year, especially at an NIT or a state university.",
+        "Fees under ₹10,000 are treated as data errors and are not quoted as a minimum. Always open the official fee notice before you budget for four years."
+      ]
+    }
+  ],
+  "compare": {
+    "heading": "How to compare the best B.Tech / B.E. colleges under ₹1 lakh",
+    "paragraphs": [
+      "Start with the branch and the fee notice, not only the number on the card.",
+      "Then check these points on the official site:"
+    ],
+    "bullets": [
+      "Whether the fee is for one year or the full programme, and whether hostel, mess and institute fees are included.",
+      "The branch on the card, because a Civil Engineering fee is not a substitute for the Computer Science fee at the same campus.",
+      "The entrance route (JEE Main, TNEA, or another state CET) and the cut-off for your category.",
+      "The latest official placement report for that branch, with the year clearly stated."
+    ]
+  },
+  "links": [
+    {
+      "label": "B.Tech / B.E. course guide",
+      "href": "/courses/engineering"
+    },
+    {
+      "label": "Best engineering colleges in India",
+      "href": "/engineering-colleges"
+    },
+    {
+      "label": "Engineering colleges under ₹5 lakh",
+      "href": "/articles/top-colleges-in-india-2026-engineering-under-5-lakh-fees"
+    },
+    {
+      "label": "Top engineering colleges with fees 2026",
+      "href": "/articles/top-engineering-colleges-in-india-with-fees-2026"
+    },
+    {
+      "label": "JEE Main exam guide",
+      "href": "/exams/jee-main"
+    }
+  ],
+  "faqs": [
+    {
+      "question": "How many engineering colleges here have a fee under ₹1 lakh?",
+      "answer": "{{count}} published B.Tech / B.E. colleges in our records have a main-programme fee of up to ₹{{budget}} lakh, and colleges without a recorded fee do not appear on this budget list."
+    },
+    {
+      "question": "Is the NIT Hamirpur fee of ₹15,000 for the full B.Tech?",
+      "answer": "Almost certainly not, because official NIT charges are usually published by semester or year, so treat ₹15,000 as a figure to verify on the institute fee notice, not as a four-year total."
+    },
+    {
+      "question": "What is the typical fee on this under-₹1-lakh list?",
+      "answer": "Among the {{feeN}} published colleges here, the median recorded fee is {{feeMedian}}, and the middle half falls between {{feeP25}} and {{feeP75}}."
+    },
+    {
+      "question": "Why are IITs not on this under-₹1-lakh list?",
+      "answer": "The IIT fees we hold are above ₹1 lakh, so those campuses appear on the wider engineering fee list and on the under-₹5-lakh list instead."
+    },
+    {
+      "question": "Are these low fees always for the full four-year programme?",
+      "answer": "Not always, because some public-college figures look like one-year tuition, so confirm the official fee notice before you shortlist a college on price alone."
+    }
+  ],
+  "sources": [
+    {
+      "label": "NTA, Joint Entrance Examination (Main)",
+      "url": "https://www.nta.gov.in/exams/jee/"
+    }
+  ]
+}

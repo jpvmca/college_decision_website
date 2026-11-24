@@ -1,0 +1,95 @@
+{
+  "slug": "mba-colleges-in-pune-where-average-package-exceeds-fees-2026",
+  "updatedOn": "24 Nov 2026",
+  "intro": [
+    "{{count}} published MBA / PGDM colleges in Pune have a recorded average package higher than their recorded total fee. This shortlist of the best MBA / PGDM colleges in Pune where average package exceeds fees should be read with the programme name on each card.",
+    "NICMAR University is listed first, but the card is for a PGP in Health, Safety and Environment Management, not a general MBA. Allana Institute follows with MBA in Production and Operations Management.",
+    "There is no separate Pune MBA listing page on our site at present, so use the Maharashtra listing alongside this article when you want the wider city and state set."
+  ],
+  "listLead": "These are the top MBA / PGDM colleges in Pune 2026 that pass this fee–package filter in our records. One college has no ownership type on file, and several first cards are specialised programmes rather than a flagship MBA.",
+  "snapshot": [
+    "Among the {{feeN}} colleges with a recorded fee, the median total is {{feeMedian}}, and the middle half sits between {{feeP25}} and {{feeP75}}.",
+    "{{private}} colleges are private, and one has no ownership type in our records. Recorded average packages range from {{pkgMin}} to {{pkgMax}}, from {{pkgYearMin}} to {{pkgYearMax}}.",
+    "CAT and MAH MBA CET are the main recorded entrance tests, with ATMA also appearing. The highest recorded package is {{highestMax}}, which is not the average."
+  ],
+  "firstCollegesLead": [
+    "NICMAR's recorded 2023 average of ₹9 lakh belongs to the PGP HSEM card, with a fee of about ₹3.75 lakh. Confirm the official fee and placements for the MBA or ACM programme if that is the course you want.",
+    "Dhole Patil College of Engineering shows MBA Financial Management at ₹35,000. A figure that low is often an annual or partial tuition, so open the official notice before you compare it with packages."
+  ],
+  "sections": [
+    {
+      "heading": "Specialised programmes on the Pune value list",
+      "paragraphs": [
+        "IIMS Pune is listed with a PGDM in Supply Chain and Operations Management. RIIM Pune's card is titled MBA Employability Index, which is not a standard degree name.",
+        "When the title is unusual, treat our fee and package as a lead to the official brochure, not as the last word."
+      ]
+    }
+  ],
+  "compare": {
+    "heading": "How to judge the best MBA / PGDM colleges in Pune where average package exceeds fees",
+    "paragraphs": [
+      "Pune has many private B-schools with similar recorded averages around ₹5–7 lakh. The difference often sits in the official fee, the CET cut-off and the programme focus.",
+      "Check these official points:"
+    ],
+    "bullets": [
+      "The full official fee for the exact MBA, MMS or PGDM, not only the specialised title on our card.",
+      "Whether the latest intake uses MAH MBA CET, CAT or ATMA, and the category cut-off.",
+      "The official placement report year, which on this list runs from {{pkgYearMin}} to {{pkgYearMax}}.",
+      "Living costs in Pune, which are not included in the tuition figures here."
+    ]
+  },
+  "links": [
+    {
+      "label": "MBA / PGDM course guide",
+      "href": "/courses/mba"
+    },
+    {
+      "label": "Best MBA colleges in Maharashtra",
+      "href": "/mba-colleges-in-maharashtra"
+    },
+    {
+      "label": "MBA colleges in Maharashtra where package exceeds fees",
+      "href": "/articles/mba-colleges-in-maharashtra-where-average-package-exceeds-fees-2026"
+    },
+    {
+      "label": "MAH MBA CET admission article",
+      "href": "/articles/mba-colleges-accepting-mah-mba-cet-2026-admission-process"
+    },
+    {
+      "label": "CAT exam guide",
+      "href": "/exams/cat"
+    }
+  ],
+  "faqs": [
+    {
+      "question": "How many MBA colleges in Pune have an average package above fees?",
+      "answer": "We list {{published}} published colleges in Pune on this filter. Colleges without both a recorded fee and a recorded average package are left out."
+    },
+    {
+      "question": "Is NICMAR's first-card fee the cost of its MBA?",
+      "answer": "Not necessarily. Our first card is a PGP in Health, Safety and Environment Management, with a recorded fee of about ₹3.75 lakh and a 2023 average of ₹9 lakh. Check the official MBA or ACM fee if that is your target programme."
+    },
+    {
+      "question": "Which exams do these Pune colleges accept?",
+      "answer": "CAT is the most frequently recorded test, followed by MAH MBA CET and ATMA. Confirm the current CAP or institute-level process on the official admission page."
+    },
+    {
+      "question": "Why is one Pune MBA fee as low as ₹35,000?",
+      "answer": "Dhole Patil College of Engineering is listed with MBA Financial Management at ₹35,000 in our records. That may be an annual or partial fee, so confirm the official full-programme amount."
+    },
+    {
+      "question": "Are the placement figures guaranteed?",
+      "answer": "No. They are historical records from {{pkgYearMin}} to {{pkgYearMax}}. Use the latest official placement report for the same programme."
+    }
+  ],
+  "sources": [
+    {
+      "label": "NIRF 2025 Management ranking",
+      "url": "https://www.nirfindia.org/rankings/2025/ManagementRanking.html"
+    },
+    {
+      "label": "MAH MBA CET official CET Cell site",
+      "url": "https://cetcell.mahacet.org/"
+    }
+  ]
+}

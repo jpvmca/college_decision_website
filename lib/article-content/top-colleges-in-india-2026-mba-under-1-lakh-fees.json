@@ -1,0 +1,85 @@
+{
+  "slug": "top-colleges-in-india-2026-mba-under-1-lakh-fees",
+  "updatedOn": "24 Nov 2026",
+  "intro": [
+    "We hold a recorded main-programme fee of up to ₹{{budget}} lakh for {{count}} published MBA / PGDM colleges in India. This list is for students looking at the best MBA / PGDM colleges under ₹1 lakh.",
+    "Ranked colleges come first, then the rest are ordered by recorded total fee, lowest first. A low figure can be one-year tuition or a short course, so do not treat every card as a two-year MBA cost."
+  ],
+  "listLead": "The list now opens with colleges whose recorded full-time programme total is at or below ₹1 lakh, starting with BK School of Business Management. IIT Delhi's full-time MBA tuition of ₹12 lakh is above this cap, so it is not on this budget list.",
+  "snapshot": [
+    "Across the {{feeN}} published colleges here, the median recorded fee is {{feeMedian}}. The middle half sits between {{feeP25}} and {{feeP75}}.",
+    "Most listings are private ({{private}}), with {{public}} public institutes. Tamil Nadu, Uttar Pradesh, Madhya Pradesh, Punjab, Rajasthan and Telangana have the most colleges on this budget list.",
+    "CAT is the exam most often linked here, followed by CMAT, TANCET and TS ICET. Use the list of top MBA / PGDM colleges in India 2026 as a shortlist, then confirm the official fee notice."
+  ],
+  "firstCollegesLead": [
+    "IIT Delhi's official full-time MBA tuition is ₹12 lakh, so it is not on this under-₹1 lakh list. The first cards here are colleges whose recorded programme totals fall within the cap.",
+    "Later cards include Central University of Odisha at ₹17,220 and several Tamil Nadu private colleges at ₹17,500 or ₹20,500 in our records. Confirm whether those figures are one year or the full programme."
+  ],
+  "sections": [
+    {
+      "heading": "How to read an MBA fee under ₹1 lakh",
+      "paragraphs": [
+        "A genuine two-year MBA at a well-known public institute is rarely this inexpensive, so a low card often reflects one-year tuition, a specialised diploma, or an incomplete record. Fees under ₹10,000 are treated as data errors and are not quoted as a minimum.",
+        "JNU’s MBA fee in our wider file is ₹359, which we do not treat as a usable figure. Always open the official fee notice before you budget."
+      ]
+    }
+  ],
+  "compare": {
+    "heading": "How to compare the best MBA / PGDM colleges under ₹1 lakh",
+    "paragraphs": [
+      "Start with the programme name, not the number, because a short course and a two-year MBA are not priced the same way.",
+      "Then check these points on the official site:"
+    ],
+    "bullets": [
+      "Whether the fee is for one year or the full two-year programme, and whether hostel or exam charges are included.",
+      "Whether the award is an MBA degree or a PGDM, and whether the programme is approved for the current year.",
+      "The entrance test used in the latest cycle, and the cut-off for your category.",
+      "The latest official placement report, treated as a historical record rather than a promise."
+    ]
+  },
+  "links": [
+    {
+      "label": "MBA / PGDM course guide",
+      "href": "/courses/mba"
+    },
+    {
+      "label": "Best MBA colleges in India",
+      "href": "/mba-colleges"
+    },
+    {
+      "label": "Top MBA colleges with fees 2026",
+      "href": "/articles/top-mba-colleges-in-india-with-fees-2026"
+    },
+    {
+      "label": "MBA colleges under ₹3 lakh",
+      "href": "/articles/top-colleges-in-india-2026-mba-under-3-lakh-fees"
+    },
+    {
+      "label": "MBA colleges under ₹5 lakh",
+      "href": "/articles/top-colleges-in-india-2026-mba-under-5-lakh-fees"
+    }
+  ],
+  "faqs": [
+    {
+      "question": "How many MBA colleges here have a fee under ₹1 lakh?",
+      "answer": "{{count}} published MBA / PGDM colleges in our records have a main-programme fee of up to ₹{{budget}} lakh, and colleges without a recorded fee do not appear on this budget list."
+    },
+    {
+      "question": "Is IIT Delhi’s MBA really under ₹1 lakh?",
+      "answer": "No. IIT Delhi's official full-time MBA tuition is ₹12 lakh, which is above this cap, so it is not on this list."
+    },
+    {
+      "question": "What is the typical fee on this under-₹1-lakh list?",
+      "answer": "Among the {{feeN}} published colleges here, the median recorded fee is {{feeMedian}}, and the middle half falls between {{feeP25}} and {{feeP75}}."
+    },
+    {
+      "question": "Why are some very low MBA fees not shown as the minimum?",
+      "answer": "Fees under ₹10,000 are treated as data errors in our system and are not quoted as a minimum, including a JNU MBA figure of ₹359 in our wider file."
+    },
+    {
+      "question": "Are these low fees always for the full two-year MBA?",
+      "answer": "Not always, because some cards look like one-year tuition or a shorter programme, so confirm the official fee notice before you shortlist a college on price alone."
+    }
+  ],
+  "sources": []
+}

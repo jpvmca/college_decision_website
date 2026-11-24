@@ -1,0 +1,81 @@
+{
+  "slug": "mba-government-colleges-in-kerala-by-average-package",
+  "updatedOn": "2026-11-24",
+  "intro": [
+    "This page lists the best government MBA / PGDM colleges in Kerala by the average packages in our records. We currently link {{count}} programme options at {{colleges}} colleges tagged as public in our file.",
+    "IIM Kozhikode and NIT Calicut are the two public institutes on this list. Private and government-aided campuses, including St Aloysius College, Edathua, and St Joseph's College of Engineering and Technology, Kottayam, are no longer tagged as public in our file."
+  ],
+  "listLead": "IIM Kozhikode appears first on the official 2025 flagship PGP card (mean ₹28.18 LPA, highest ₹81 LPA), followed by NIT Calicut's official MBA figures.",
+  "snapshot": [
+    "Only two public colleges have recorded averages here, so we have not quoted a package median in this text. Read each official report, and be careful where an average and a highest figure do not line up.",
+    "IIM Kozhikode is 3rd, and NIT Calicut is 85th, in the official NIRF 2025 Management ranking. Use those official ranks when you compare top MBA / PGDM colleges in Kerala 2026."
+  ],
+  "firstCollegesLead": [
+    "Our IIM Kozhikode card shows a recorded average of ₹31 LPA, while the first table has a 2023 highest of ₹25 LPA and no average on that row. Confirm both in the official placement report.",
+    "NIT Calicut's official CCD report for 2025-26 lists an MBA average of ₹9.31 LPA and a highest of ₹15 LPA (minimum ₹5.50 LPA). Use that official row, not any older inconsistent record."
+  ],
+  "sections": [
+    {
+      "heading": "Which colleges are on this government list",
+      "paragraphs": [
+        "IIM Kozhikode and NIT Calicut are national public institutes, and they are the colleges tagged as public on this Kerala government MBA list.",
+        "St Aloysius College, Edathua, is a privately managed aided college, and St Joseph's College of Engineering and Technology, Palai, is a private self-financing college, so they no longer appear here."
+      ]
+    }
+  ],
+  "compare": {
+    "heading": "How to compare the best government MBA / PGDM colleges in Kerala",
+    "paragraphs": [
+      "Start with IIM Kozhikode and NIT Calicut, and confirm the official placement report and programme name before you compare packages.",
+      "Use these checks:"
+    ],
+    "bullets": [
+      "The official report year and programme name on each card, including IIM Kozhikode's 2025 flagship PGP and NIT Calicut's MBA.",
+      "The official placement report, especially where our NIT Calicut average and highest do not agree.",
+      "The official NIRF 2025 ranks: IIM Kozhikode 3 and NIT Calicut 85.",
+      "CAT, CMAT or MAT, depending on the campus, and the official fee notice."
+    ]
+  },
+  "links": [
+    {
+      "label": "MBA / PGDM course guide",
+      "href": "/courses/mba"
+    },
+    {
+      "label": "Best MBA colleges in Kerala",
+      "href": "/mba-colleges-in-kerala"
+    },
+    {
+      "label": "CAT exam page",
+      "href": "/exams/cat"
+    },
+    {
+      "label": "Best MBA colleges in India",
+      "href": "/mba-colleges"
+    }
+  ],
+  "faqs": [
+    {
+      "question": "How many government MBA colleges in Kerala are on this list?",
+      "answer": "Our records link {{count}} programme options at {{colleges}} colleges tagged as public, currently IIM Kozhikode and NIT Calicut."
+    },
+    {
+      "question": "What is IIM Kozhikode's NIRF rank?",
+      "answer": "In the official NIRF 2025 Management ranking, IIM Kozhikode is 3 and NIT Calicut is 85."
+    },
+    {
+      "question": "Why do the NIT Calicut figures look inconsistent?",
+      "answer": "The official NIT Calicut CCD 2025-26 MBA row lists an average of ₹9.31 LPA and a highest of ₹15 LPA. Use that official report, not any older inconsistent record."
+    },
+    {
+      "question": "Are these packages guaranteed?",
+      "answer": "No. They are historical records from {{pkgYearMin}} to {{pkgYearMax}} in our file. Confirm the latest official report before you decide."
+    }
+  ],
+  "sources": [
+    {
+      "label": "NIRF 2025 Management ranking",
+      "url": "https://www.nirfindia.org/Rankings/2025/ManagementRanking.html"
+    }
+  ]
+}

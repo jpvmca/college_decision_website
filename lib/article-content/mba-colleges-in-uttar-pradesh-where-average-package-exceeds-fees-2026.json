@@ -1,0 +1,85 @@
+{
+  "slug": "mba-colleges-in-uttar-pradesh-where-average-package-exceeds-fees-2026",
+  "updatedOn": "24 Nov 2026",
+  "intro": [
+    "This page lists MBA colleges in Uttar Pradesh where the recorded average package exceeds the recorded fee. It is a way to scan the best MBA colleges in Uttar Pradesh where average package exceeds fees.",
+    "We currently show {{count}} published colleges on this filter. Ranked colleges come first, and you should still read the programme name and the placement year on each card."
+  ],
+  "listLead": "The first cards include IIM Lucknow, IMT Ghaziabad, BIMTECH in Greater Noida, Jaipuria Lucknow, IIIT Allahabad and FMS Banaras Hindu University. Some cards show a specialised programme, so compare the official MBA or PGDM fee.",
+  "snapshot": [
+    "Across the {{feeN}} published colleges here, the median recorded fee is {{feeMedian}}, and the middle half sits between {{feeP25}} and {{feeP75}}. The median recorded average package is {{pkgMedian}}, with averages ranging from {{pkgMin}} to {{pkgMax}}.",
+    "Placement years in our file run from {{pkgYearMin}} to {{pkgYearMax}}. Greater Noida and Ghaziabad have the most colleges on this list, followed by Lucknow.",
+    "Most colleges here are private ({{private}}), with {{public}} public institutes. CAT is the exam most often linked here."
+  ],
+  "firstCollegesLead": [
+    "IIM Lucknow is listed first, with a recorded PGP total of ₹20.75 lakh, matching the official 2025–27 notice of ₹10.95 lakh in year one and ₹9.80 lakh in year two, and a 2023 average package of ₹35 lakh, plus a highest of ₹100 lakh.",
+    "IMT Ghaziabad’s card shows a PGDM Dual Country Programme, BIMTECH shows a retail and aviation PGDM, and Noida International University shows a diploma fee of ₹60,000. Those are not automatically the flagship two-year MBA at the same campus."
+  ],
+  "sections": [
+    {
+      "heading": "What “average package exceeds fees” actually means",
+      "paragraphs": [
+        "The filter only compares the average package and the fee we hold for the programme on the card. It does not adjust for hostel costs, the year of the data, or how many students in the batch received that average.",
+        "A high average at IIM Lucknow or IIIT Allahabad sits beside much lower figures at later private colleges, so read the year and the official report before you treat the gap as a current return."
+      ]
+    }
+  ],
+  "compare": {
+    "heading": "How to compare the best MBA colleges in Uttar Pradesh where average package exceeds fees",
+    "paragraphs": [
+      "Use this list of top MBA colleges in Uttar Pradesh 2026 as a shortlist, then compare the official fee notice and the official placement report for the same programme.",
+      "These checks usually matter more than the raw gap on the card:"
+    ],
+    "bullets": [
+      "Whether the card shows the flagship MBA or PGDM, or a specialised, dual-country or diploma programme.",
+      "The year of the placement report, especially where our records go back several years.",
+      "Whether the fee is for one year or the full two-year programme.",
+      "The entrance test (CAT is the most common link here) and the cut-off for your category."
+    ]
+  },
+  "links": [
+    {
+      "label": "MBA / PGDM course guide",
+      "href": "/courses/mba"
+    },
+    {
+      "label": "Best MBA colleges in Uttar Pradesh",
+      "href": "/mba-colleges-in-uttar-pradesh"
+    },
+    {
+      "label": "MBA colleges in Greater Noida where average package exceeds fees",
+      "href": "/articles/mba-colleges-in-greater-noida-where-average-package-exceeds-fees-2026"
+    },
+    {
+      "label": "Top MBA colleges with fees 2026",
+      "href": "/articles/top-mba-colleges-in-india-with-fees-2026"
+    },
+    {
+      "label": "CAT exam guide",
+      "href": "/exams/cat"
+    }
+  ],
+  "faqs": [
+    {
+      "question": "How many MBA colleges in Uttar Pradesh are on this value list?",
+      "answer": "{{count}} published MBA colleges in Uttar Pradesh currently meet this filter in our records, meaning the recorded average package is higher than the recorded fee for the programme on the card."
+    },
+    {
+      "question": "Does this mean the average salary will pay back the fee?",
+      "answer": "No, the comparison uses historical package and fee figures in our file, and it does not include hostel or personal costs, so it is not a guarantee of a financial return."
+    },
+    {
+      "question": "Why do some well-known colleges show a specialised programme on the card?",
+      "answer": "Our system lists the main programme where we hold a fee, which may be a retail, dual-country or diploma course rather than the flagship MBA, so always read the programme name."
+    },
+    {
+      "question": "What is a typical fee and average package here?",
+      "answer": "The median recorded fee is {{feeMedian}}, and the median recorded average package is {{pkgMedian}}, with placement years in our file running from {{pkgYearMin}} to {{pkgYearMax}}."
+    },
+    {
+      "question": "Which exam do these colleges accept?",
+      "answer": "CAT is the exam most often linked here, with some colleges also linked to MAT, XAT or other tests. Confirm the current process on the official admission page."
+    }
+  ],
+  "sources": []
+}

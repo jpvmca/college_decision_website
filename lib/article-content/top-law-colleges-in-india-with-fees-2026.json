@@ -1,0 +1,85 @@
+{
+  "slug": "top-law-colleges-in-india-with-fees-2026",
+  "updatedOn": "24 Nov 2026",
+  "intro": [
+    "We hold a recorded total fee for {{count}} published LLB colleges in India. This guide puts the top LLB colleges in India with fees for 2026 in one place, so you can compare a three-year law degree by cost before you apply.",
+    "Ranked colleges with a fee on file come first. After them, colleges are ordered by recorded fee, lowest first. Some well-known law faculties are missing because we do not yet hold a quotable fee for them."
+  ],
+  "listLead": "The first card is IIT Kharagpur's LLB (Hons), then the list continues with central and state university law departments at lower recorded fees. Read the duration; most of these programmes are three-year LLB courses after a first degree.",
+  "snapshot": [
+    "Across the {{feeN}} published colleges on this list, the median recorded total fee is {{feeMedian}}. The middle half of colleges sits between {{feeP25}} and {{feeP75}}.",
+    "{{private}} of the colleges are private and {{public}} are public. State tests such as LAWCET and MH CET Law appear most often in our exam tags for this page.",
+    "That mix is useful when you compare top LLB colleges in India 2026, but a recorded fee may be for one year or for the full three years, so check the official notice."
+  ],
+  "firstCollegesLead": [
+    "IIT Kharagpur has a recorded LLB (Hons) fee of ₹2.45 lakh for three years in our files. Confirm the current official notice, including hostel and other charges, before you treat that as the full cost.",
+    "Central University of Haryana, Kakatiya University and several other public departments then appear with recorded fees between about ₹11,000 and ₹26,000. Those figures often look like a single year."
+  ],
+  "sections": [
+    {
+      "heading": "Ranked LLB faculties missing a fee on this page",
+      "paragraphs": [
+        "Symbiosis Law School, Pune, the Faculty of Law at Delhi University, Lloyd Law College, Madhusudan Law University and the law department at Babasaheb Bhimrao Ambedkar University are among the ranked names missing from this fee list.",
+        "They are absent because we do not hold a quotable total fee for them yet. You can still find them on the LLB colleges listing and on each official site."
+      ]
+    }
+  ],
+  "compare": {
+    "heading": "How to compare the top LLB colleges in India with fees",
+    "paragraphs": [
+      "A three-year LLB after graduation is not the same product as a five-year BA LLB. Compare this page with the integrated law fee list only after you have chosen the route that fits your qualification.",
+      "Then check these points:"
+    ],
+    "bullets": [
+      "Whether the recorded fee is for one year or the full three years, and what else is billed separately.",
+      "The entrance test used by the university, such as a state law CET, and the eligibility rule for graduates.",
+      "Whether a well-known faculty is missing only because we do not hold its fee yet.",
+      "The official fee notification for the year you are joining."
+    ]
+  },
+  "links": [
+    {
+      "label": "LLB course guide",
+      "href": "/courses/law"
+    },
+    {
+      "label": "Best LLB colleges in India",
+      "href": "/llb-colleges"
+    },
+    {
+      "label": "Top integrated law colleges in India with fees 2026",
+      "href": "/articles/top-integrated-law-colleges-in-india-with-fees-2026"
+    },
+    {
+      "label": "MH CET Law exam page",
+      "href": "/exams/mh-cet-law"
+    },
+    {
+      "label": "LAWCET exam page",
+      "href": "/exams/lawcet"
+    }
+  ],
+  "faqs": [
+    {
+      "question": "How many LLB colleges have fees listed here?",
+      "answer": "{{count}} published LLB colleges have a recorded total fee in our records. The list only covers colleges with a fee on file, so the full number of three-year LLB campuses is higher."
+    },
+    {
+      "question": "What is the typical LLB fee in India in 2026?",
+      "answer": "Among the {{feeN}} published colleges here, the median recorded fee is {{feeMedian}}, and the middle half falls between {{feeP25}} and {{feeP75}}. Confirm whether a figure is for one year or the full three-year LLB."
+    },
+    {
+      "question": "Why does IIT Kharagpur appear first on an LLB fee list?",
+      "answer": "IIT Kharagpur is first among the colleges on this list that have both a ranking tag and a recorded fee. Our file shows ₹2.45 lakh for its LLB (Hons) over three years. Confirm that on the official notice."
+    },
+    {
+      "question": "Why are Delhi University's Faculty of Law and SLS Pune missing?",
+      "answer": "They are in our ranking, but we do not hold a quotable total fee for them yet, so they cannot be placed in a fee list. You can still find them on the LLB colleges page."
+    },
+    {
+      "question": "Which exams are linked to these LLB colleges?",
+      "answer": "In our records, LAWCET and MH CET Law are the tests most often tagged to this list. Always use the university's current admission notice, because exam tags in a database can be incomplete."
+    }
+  ],
+  "sources": []
+}

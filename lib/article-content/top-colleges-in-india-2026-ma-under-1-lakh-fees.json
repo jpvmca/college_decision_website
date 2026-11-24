@@ -1,0 +1,82 @@
+{
+  "slug": "top-colleges-in-india-2026-ma-under-1-lakh-fees",
+  "updatedOn": "24 Nov 2026",
+  "intro": [
+    "We hold a recorded main-programme fee of up to ₹{{budget}} lakh for {{count}} published MA colleges in India. This list of the best MA colleges under ₹{{budget}} lakh starts with Delhi University colleges, then a wide set of state and private colleges.",
+    "Miranda House is listed with MA English at ₹14,530, and Hindu College at ₹24,250. Several later cards sit at exactly ₹10,000, which is our lowest quotable fee, so confirm whether that official amount is annual.",
+    "Maharashtra, Haryana, Delhi NCR, Madhya Pradesh, Rajasthan and Tamil Nadu have the most listings. CUET PG is the main recorded entrance test."
+  ],
+  "listLead": "These are the top MA colleges in India 2026 with a recorded main-programme fee of up to ₹1 lakh. Cards are tied to a subject such as English, History or Education, so compare the official subject, not only the college name.",
+  "snapshot": [
+    "Across {{feeN}} published colleges with a recorded fee, the median total is {{feeMedian}}, and the middle half sits between {{feeP25}} and {{feeP75}}.",
+    "{{private}} colleges are private, {{public}} are public, and one has no ownership type. Delhi, Jaipur, Bhopal, Faridabad and Pune appear most often.",
+    "Three records have a fee band that can exceed ₹1 lakh. A public-university MA can still add exam or alumni charges that are not in our stored total."
+  ],
+  "firstCollegesLead": [
+    "Shikshan Maharshi Dadasaheb Limaya College, Navi Mumbai, and Vidyant Hindu PG College, Lucknow, are both listed near ₹10,000 for MA History. Treat those figures as a prompt to open the official two-year fee notice.",
+    "Mithibai College of Arts, Mumbai, is listed with MA English at ₹10,838. Central University of Odisha is listed at ₹10,720 for MA English. Both need an official, current circular."
+  ],
+  "sections": [
+    {
+      "heading": "Subject, duration and entrance tests",
+      "paragraphs": [
+        "An MA English card and an MA Education card are not interchangeable, even when the recorded fees are close.",
+        "CUET PG is recorded at four colleges here. Many university MA admissions still use a department entrance test or merit list that is not tagged on the card."
+      ]
+    }
+  ],
+  "compare": {
+    "heading": "How to compare the best MA colleges under ₹1 lakh",
+    "paragraphs": [
+      "A Delhi University MA and a state-college MA can share this budget and still differ in supervision, library access and official yearly fees.",
+      "Check these official points:"
+    ],
+    "bullets": [
+      "The official subject and duration, and whether the fee is annual or for both years.",
+      "The latest college or university fee circular, including exam charges.",
+      "The admission route, including CUET PG or a department test.",
+      "Hostel and city living costs, which are not included in the tuition figure."
+    ]
+  },
+  "links": [
+    {
+      "label": "MA course guide",
+      "href": "/courses/ma"
+    },
+    {
+      "label": "Best MA colleges in India",
+      "href": "/ma-colleges"
+    },
+    {
+      "label": "CUET PG exam guide",
+      "href": "/exams/cuet-pg"
+    },
+    {
+      "label": "BCom colleges under ₹1 lakh",
+      "href": "/articles/top-colleges-in-india-2026-commerce-under-1-lakh-fees"
+    }
+  ],
+  "faqs": [
+    {
+      "question": "How many MA colleges in India have fees under ₹1 lakh here?",
+      "answer": "We list {{published}} published MA colleges with a recorded main-programme fee up to ₹{{budget}} lakh. Colleges without a usable fee on file are excluded."
+    },
+    {
+      "question": "What is a typical MA fee on this list?",
+      "answer": "The median recorded total is {{feeMedian}}, and the middle half falls between {{feeP25}} and {{feeP75}}. Confirm whether the official notice is for one year or the full MA."
+    },
+    {
+      "question": "What do Miranda House and Hindu College show for MA English?",
+      "answer": "Our records list Miranda House at ₹14,530 and Hindu College at ₹24,250 for MA English. Use the latest official college circular, because university fees change by year."
+    },
+    {
+      "question": "Why do some MA fees sit at ₹10,000?",
+      "answer": "₹10,000 is the lowest figure we treat as quotable. Anything under ₹10,000 is dropped as a likely data error. A fee at the floor may still be annual, so check the official notice."
+    },
+    {
+      "question": "Is this a ranking of the best MA colleges under ₹1 lakh?",
+      "answer": "No. It is a fee filter. Subject, department and the official circular should guide the shortlist."
+    }
+  ],
+  "sources": []
+}

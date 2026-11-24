@@ -37,6 +37,7 @@ export default function StudentLeadPopup() {
   const [submitting, setSubmitting] = useState(false);
   const [done, setDone] = useState(false);
   const openedAt = useRef(0);
+  const openSource = useRef<'auto' | 'manual'>('auto');
   const submittingRef = useRef(false);
   const nameRef = useRef<HTMLInputElement>(null);
   const formRef = useRef<HTMLFormElement>(null);
@@ -76,7 +77,10 @@ export default function StudentLeadPopup() {
   useEffect(() => {
     if (readPrefs().submittedAt || NO_POPUP.test(pathname)) return;
     const timer = window.setTimeout(() => {
-      if (!readPrefs().submittedAt) setOpen(true);
+      if (!readPrefs().submittedAt) {
+        openSource.current = 'auto';
+        setOpen(true);
+      }
     }, SHOW_AFTER_MS);
     return () => window.clearTimeout(timer);
   }, [pathname]);
@@ -84,6 +88,7 @@ export default function StudentLeadPopup() {
   useEffect(() => {
     // Explicit open (CD Saathi counselling, header CTA, etc.) — always show the site enquiry popup.
     const manual = () => {
+      openSource.current = 'manual';
       setApply(null);
       setDone(false);
       setErrors({});
@@ -263,7 +268,7 @@ export default function StudentLeadPopup() {
           stateId: isIndia ? Number(form.stateId) || null : null, cityId: isIndia ? Number(form.cityId) || null : null,
           collegeSlug: apply ? apply.collegeSlug : ctx.pageType === 'college_profile' || ctx.pageType === 'college_cutoff' ? ctx.collegeSlug : null,
           apply: Boolean(apply) && !brochure, brochure, recaptchaToken,
-          pageUrl: `${window.location.pathname}`.slice(0, 255), pageType: ctx.pageType, cta: brochure ? 'brochure' : apply ? 'apply_button' : 'popup_auto_5s',
+          pageUrl: `${window.location.pathname}${window.location.search}`.slice(0, 255), pageType: ctx.pageType, cta: brochure ? 'brochure' : apply ? 'apply_button' : openSource.current === 'manual' ? 'popup_manual' : 'popup_auto_5s',
           ...utm, hp_leave_blank: form.hp_leave_blank, elapsedMs: Date.now() - openedAt.current
         })
       });
@@ -281,6 +286,12 @@ export default function StudentLeadPopup() {
         return;
       }
       const d = json.data || {};
+      // Honeypot and near-instant posts return 201 with { received: true } and no token.
+      // Do not mark the student as registered or show success, or they cannot retry.
+      if (!d.token) {
+        setErrors({ form: 'Something went wrong. Please try again.' });
+        return;
+      }
       writePrefs({
         submittedAt: Date.now(), courseId: Number(form.courseId), token: d.token || null, draft: {},
         ...(isIndia ? { stateId: Number(form.stateId) || null, stateName, cityId: Number(form.cityId) || null, cityName: cityName || null } : {}),

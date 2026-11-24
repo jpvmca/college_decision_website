@@ -1,0 +1,82 @@
+{
+  "slug": "top-design-ug-colleges-in-india-with-fees-2026",
+  "updatedOn": "24 Nov 2026",
+  "intro": [
+    "We hold a recorded total fee for {{count}} published Bachelor Of Design colleges in India. This guide lists the top Bachelor Of Design colleges in India with fees for 2026, but you should read the programme name on every card.",
+    "Ranked design institutes come first when we hold their fee. On this page, several well-known campuses, including NIFT and Symbiosis Institute of Design, are missing because we do not yet hold a quotable fee for them."
+  ],
+  "listLead": "With those ranked campuses absent, the cards you see first are mainly private colleges ordered by recorded fee, lowest first. Some programmes are a one-year certificate, a B.Sc, or an interior-design course rather than a four-year Bachelor of Design.",
+  "snapshot": [
+    "Across the {{feeN}} published colleges on this list, the median recorded total fee is {{feeMedian}}. The middle half of colleges sits between {{feeP25}} and {{feeP75}}.",
+    "Almost all colleges here are private ({{private}}), with {{public}} public institute in our classification. Haryana, Maharashtra, Madhya Pradesh and Punjab have the most listings.",
+    "Only two colleges on this list are tagged to UCEED in our records. If you are comparing top Bachelor Of Design colleges in India 2026, also look at the ranked institutes that sit outside this fee list."
+  ],
+  "firstCollegesLead": [
+    "The first card, Academy of Art and Design, Mumbai, shows a Pattern Making and Garment Construction programme at ₹24,000 for one year in our files. That is not a four-year Bachelor of Design fee.",
+    "Other early cards include a B.Sc in Animation at Roorkee College of Engineering and a two-year B.Design at CT Group, Shahpur. Confirm the award and duration on the official notice before you compare them."
+  ],
+  "sections": [
+    {
+      "heading": "Why NIFT and other ranked design institutes are missing",
+      "paragraphs": [
+        "Our fee list can only include colleges with a quotable total fee on file. In this set, multiple NIFT campuses and Symbiosis Institute of Design, Pune, are in the ranking but have no fee we can show.",
+        "If you want those institutes, use the Bachelor of Design colleges listing and the official NIFT or college fee notice, not only the cards on this page."
+      ]
+    }
+  ],
+  "compare": {
+    "heading": "How to compare the top Bachelor Of Design colleges in India with fees",
+    "paragraphs": [
+      "Do not rank a one-year certificate against a four-year B.Des on the raw fee. Align the award, the duration and the year of the notice first.",
+      "Then check these points:"
+    ],
+    "bullets": [
+      "Whether the card is a Bachelor of Design, a B.Sc, an interior-design degree, or a short professional course.",
+      "The official full-programme fee, including materials, studio and hostel charges where they are billed separately.",
+      "The entrance test, such as UCEED or a university's own design test, and the portfolio or studio requirement.",
+      "Whether a ranked institute is missing only because we do not hold its fee yet."
+    ]
+  },
+  "links": [
+    {
+      "label": "Bachelor of Design course guide",
+      "href": "/courses/design-ug"
+    },
+    {
+      "label": "Best Bachelor of Design colleges in India",
+      "href": "/bdes-colleges"
+    },
+    {
+      "label": "UCEED exam page",
+      "href": "/exams/uceed"
+    },
+    {
+      "label": "Top BA colleges in India with fees 2026",
+      "href": "/articles/top-arts-colleges-in-india-with-fees-2026"
+    }
+  ],
+  "faqs": [
+    {
+      "question": "How many Bachelor of Design colleges have fees listed here?",
+      "answer": "{{count}} published Bachelor Of Design colleges have a recorded total fee in our records. The list only covers colleges with a fee on file, so the full number of design campuses in India is higher."
+    },
+    {
+      "question": "What is the typical Bachelor of Design fee in India in 2026?",
+      "answer": "Among the {{feeN}} published colleges here, the median recorded fee is {{feeMedian}}, and the middle half falls between {{feeP25}} and {{feeP75}}. Those figures mix different awards and durations, so read the programme name."
+    },
+    {
+      "question": "Why are NIFT campuses missing from this fee list?",
+      "answer": "Several NIFT campuses, and Symbiosis Institute of Design, Pune, are in our ranking, but we do not hold a quotable total fee for them yet. You can still find them on the Bachelor of Design colleges listing."
+    },
+    {
+      "question": "Is the first college on this list a four-year B.Des?",
+      "answer": "Not in our records. The first card is a one-year Pattern Making and Garment Construction course at ₹24,000. Use the official notice and the programme name, not only the position in the list."
+    }
+  ],
+  "sources": [
+    {
+      "label": "UCEED official information (IIT admissions)",
+      "url": "https://www.uceed.iitb.ac.in/"
+    }
+  ]
+}

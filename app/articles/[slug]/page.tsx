@@ -10,9 +10,13 @@ import ArticleCollegeList from '../../../components/ArticleCollegeList';
 import AdSlot from '../../../components/ads/AdSlot';
 import { getAdSlot } from '../../../lib/ads';
 import CollegeComparisonArticle from '../../../components/articles/CollegeComparisonArticle';
+import ComparisonGuide from '../../../components/ComparisonGuide';
 import { staticImageUrl } from '../../../lib/image';
 import LastUpdatedByline from '../../../components/LastUpdatedByline';
 import { jsonLdAuthor } from '../../../lib/page-byline';
+import ArticleGuide from '../../../components/ArticleGuide';
+import { getArticleContent } from '../../../lib/article-content';
+import { articleHeadings, articleTokens, defaultArticleIntro, defaultListLead, fillTokens, type ArticleGuideSummary, type ArticleSeoInput } from '../../../lib/article-seo';
 
 export const revalidate = 900;
 
@@ -37,6 +41,8 @@ type GeneratedArticle = {
   location?: { name: string; slug: string };
   budgetLakh: number | null;
   packageThresholdLakh?: number | null;
+  thresholdFallback?: boolean;
+  thresholdQualifyingCount?: number;
   candidateCount: number;
   h1?: string;
   metaTitle?: string | null;
@@ -45,6 +51,10 @@ type GeneratedArticle = {
   collegeA?: Record<string, unknown>;
   collegeB?: Record<string, unknown>;
   pagination: { page: number; perPage: number; total: number; totalPages: number };
+  /** Data summary for the article guide (page 1 only). */
+  guideSummary?: ArticleGuideSummary | null;
+  /** Course-wise minimum quotable fee (backend config/fee-floors.ts). */
+  feeFloor?: number | null;
   candidates: Array<{
     institute_id: number;
     course_id: number;
@@ -66,6 +76,10 @@ type GeneratedArticle = {
     average_package?: number | string | null;
     nirf_rank?: number | string | null;
     nirf_out_of?: number | string | null;
+    nirf_year?: number | string | null;
+    nirf_category?: string | null;
+    nirf_band?: string | null;
+    nirf_label?: string | null;
     admission_routes?: string | null;
     highest_package?: number | string | null;
     placement_year?: number | string | null;
@@ -157,8 +171,12 @@ function getSeoContext(article: GeneratedArticle) {
     return {
       primaryKeyword: `${cleanCourseName} colleges in ${stateName} with ${threshold} lakh highest package`,
       secondaryKeywords: [`${cleanCourseName} placement ${stateName}`, `${cleanCourseName} colleges ${stateName} highest package`, `${cleanCourseName} admission ${stateName}`],
-      intro: `This guide compares ${cleanCourseName} colleges in ${stateName} with recorded highest placement packages of at least ₹${threshold} lakh. Use the figures as historical evidence, then verify the latest placement report, fees and admission requirements with each college.`,
-      optionsHeading: `${cleanCourseName} colleges in ${stateName} with ₹${threshold} lakh highest package`
+      intro: article.thresholdFallback
+        ? `No ${cleanCourseName} college in ${stateName} in our records has a 2020-or-later non-executive highest package of ₹${threshold} lakh or more. This guide lists the highest recorded packages in the state instead. Use the figures as historical evidence, then verify the latest placement report, fees and admission requirements with each college.`
+        : `This guide compares ${cleanCourseName} colleges in ${stateName} with recorded highest placement packages of at least ₹${threshold} lakh. Use the figures as historical evidence, then verify the latest placement report, fees and admission requirements with each college.`,
+      optionsHeading: article.thresholdFallback
+        ? `${cleanCourseName} colleges in ${stateName} by highest package`
+        : `${cleanCourseName} colleges in ${stateName} with ₹${threshold} lakh highest package`
     };
   }
   if (isGovAvgPackageArticle(article.type)) {
@@ -249,6 +267,20 @@ export default async function ArticleDetailPage({ params }: { params: Promise<{ 
     if (article.slug !== slug) redirect(`/articles/${article.slug}`);
     const breadcrumbTitle = article.title.replace(/\s*\|\s*College Decision\s*$/, '');
     const linkableEntities = await getLinkableEntities();
+    const articleContent = await getArticleContent(article.slug);
+    const collegeAName = String((article.collegeA as { name?: string } | undefined)?.name || 'College A');
+    const collegeBName = String((article.collegeB as { name?: string } | undefined)?.name || 'College B');
+    const guideTokens: Record<string, string> = {
+      nameA: collegeAName,
+      nameB: collegeBName,
+      course: article.course.name,
+      year: '2026',
+      cityA: String((article.collegeA as { location?: { city?: string } } | undefined)?.location?.city || ''),
+      cityB: String((article.collegeB as { location?: { city?: string } } | undefined)?.location?.city || '')
+    };
+    const introParagraphs = articleContent?.intro?.length
+      ? articleContent.intro.map((paragraph) => paragraph.replace(/\{\{([a-zA-Z0-9]+)\}\}/g, (_, key: string) => guideTokens[key] ?? `{{${key}}}`))
+      : ['Compare recorded fees, eligibility, admission routes and placements before you shortlist.'];
     const comparisonJsonLd = {
       '@context': 'https://schema.org',
       '@graph': [
@@ -266,7 +298,7 @@ export default async function ArticleDetailPage({ params }: { params: Promise<{ 
             <span className="ls-kicker"><BadgeCheck size={15} aria-hidden="true" /> College comparison</span>
             <h1>{article.h1 || article.title}</h1>
             <LastUpdatedByline updatedAt={article.publicationUpdatedAt || article.publishedAt} authorName={article.authorName} />
-            <p>Compare recorded fees, eligibility, admission routes and placements before you shortlist.</p>
+            {introParagraphs.map((paragraph, index) => <p className={index === 0 ? 'ls-hero-lead' : 'ls-hero-lead ls-hero-lead-more'} key={paragraph}><AutoLinkedText text={paragraph} entities={linkableEntities} /></p>)}
             <div className="ls-hero-actions">
               <Link prefetch={false} className="button ls-btn-primary" href="/compare-colleges-2026">Compare colleges <ArrowRight size={16} aria-hidden="true" /></Link>
               <Link prefetch={false} className="button ls-btn-ghost" href="/articles">More guides</Link>
@@ -280,7 +312,8 @@ export default async function ArticleDetailPage({ params }: { params: Promise<{ 
           </div>
         </div>
       </section>
-      <CollegeComparisonArticle article={article as unknown as Parameters<typeof CollegeComparisonArticle>[0]['article']} linkableEntities={linkableEntities} />
+      {articleContent ? <ComparisonGuide content={articleContent} tokens={guideTokens} /> : null}
+      <CollegeComparisonArticle article={article as unknown as Parameters<typeof CollegeComparisonArticle>[0]['article']} linkableEntities={linkableEntities} content={articleContent} />
       <AdSlot slotKey="article_end" />
     </div></main>;
   }
@@ -321,7 +354,27 @@ export default async function ArticleDetailPage({ params }: { params: Promise<{ 
       }
     ]
   };
-  const summaryLabel = isAveragePackageExceedsFeesArticle(article.type) ? `Recorded average package exceeds recorded fees in ${article.location?.name || 'India'}` : isHighestPackageArticle(article.type) ? `Colleges in ${article.state?.name || 'selected state'} with at least ₹${article.packageThresholdLakh || 15} lakh highest package` : isGovAvgPackageArticle(article.type) ? `Government colleges in ${article.state?.name || 'selected state'} ranked by average package` : isExamAdmissionArticle(article.type) ? `MBA colleges accepting ${article.exam?.name || 'the selected entrance exam'}` : article.budgetLakh ? `Budget guide: up to ₹${article.budgetLakh} lakh` : article.type.includes('admission') ? 'Course admission and eligibility guide' : 'Course fee guide';
+  const articleContent = await getArticleContent(article.slug);
+  const guideSummary = article.guideSummary || null;
+  const seoInput: ArticleSeoInput = {
+    type: article.type,
+    course: article.course,
+    exam: article.exam || null,
+    state: article.state || null,
+    location: article.location || null,
+    budgetLakh: article.budgetLakh,
+    packageThresholdLakh: article.packageThresholdLakh ?? null,
+    thresholdFallback: article.thresholdFallback === true,
+    thresholdQualifyingCount: article.thresholdQualifyingCount,
+    candidateCount: article.candidateCount
+  };
+  const guideHeadings = articleHeadings(seoInput);
+  const guideTokens = articleTokens(seoInput, guideSummary);
+  const introParagraphs = articleContent?.intro?.length
+    ? articleContent.intro.map((paragraph) => fillTokens(paragraph, guideTokens))
+    : guideSummary ? defaultArticleIntro(seoInput, guideSummary) : [seo.intro];
+  const listLead = articleContent?.listLead ? fillTokens(articleContent.listLead, guideTokens) : defaultListLead(seoInput, guideSummary);
+  const summaryLabel = isAveragePackageExceedsFeesArticle(article.type) ? `Recorded average package exceeds recorded fees in ${article.location?.name || 'India'}` : isHighestPackageArticle(article.type) ? (article.thresholdFallback ? `No college in ${article.state?.name || 'the selected state'} crossed ₹${article.packageThresholdLakh || 15} lakh; list shows the highest recorded packages instead` : `Colleges in ${article.state?.name || 'selected state'} with at least ₹${article.packageThresholdLakh || 15} lakh highest package`) : isGovAvgPackageArticle(article.type) ? `Government colleges in ${article.state?.name || 'selected state'} ranked by average package` : isExamAdmissionArticle(article.type) ? `MBA colleges accepting ${article.exam?.name || 'the selected entrance exam'}` : article.budgetLakh ? `Budget guide: up to ₹${article.budgetLakh} lakh` : article.type.includes('admission') ? 'Course admission and eligibility guide' : 'Course fee guide';
   return <main className="section ls-page"><div className="wrap">
     <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
     <nav className="breadcrumb ls-crumb" aria-label="Breadcrumb"><Link prefetch={false} href="/">Home</Link><span aria-hidden="true">›</span><Link prefetch={false} href="/articles">Articles</Link><span aria-hidden="true">›</span><span aria-current="page">{article.title}</span></nav>
@@ -332,7 +385,7 @@ export default async function ArticleDetailPage({ params }: { params: Promise<{ 
           <span className="ls-kicker"><FileText size={15} aria-hidden="true" /> Student decision guide</span>
           <h1>{article.title}</h1>
           <LastUpdatedByline updatedAt={article.publicationUpdatedAt || article.publishedAt} authorName={article.authorName} />
-          <p className="ls-hero-lead"><AutoLinkedText text={seo.intro} entities={linkableEntities} /></p>
+          {introParagraphs.map((paragraph, index) => <p className={index === 0 ? 'ls-hero-lead' : 'ls-hero-lead ls-hero-lead-more'} key={paragraph}><AutoLinkedText text={paragraph} entities={linkableEntities} /></p>)}
           <div className="ls-hero-actions">
             <Link prefetch={false} className="button ls-btn-primary" href="/compare-colleges-2026">Compare colleges <ArrowRight size={16} aria-hidden="true" /></Link>
             <Link prefetch={false} className="button ls-btn-ghost" href="/articles">All guides</Link>
@@ -348,8 +401,10 @@ export default async function ArticleDetailPage({ params }: { params: Promise<{ 
     </section>
     <div className="notice"><strong>Before you apply:</strong> {isAveragePackageExceedsFeesArticle(article.type) || isHighestPackageArticle(article.type) || isGovAvgPackageArticle(article.type) ? 'placement packages are historical leads and can change by batch, role and recruiter mix. Confirm the latest official fee and placement report before deciding.' : isExamAdmissionArticle(article.type) ? `exam routes and college requirements can change. Confirm the current ${article.exam?.name || 'entrance exam'} notice and each institution's official admission process before applying.` : article.type.includes('admission') ? 'eligibility and admission routes can change by institution and academic year. Confirm the latest official notice before applying.' : 'treat these figures as fee leads, not final quotes. Confirm the academic year, currency, duration, hostel, mess, deposits and current admission rules with the institution.'}</div>
     {isExamAdmissionArticle(article.type) && article.exam?.applyUrl && <p className="article-backlink"><a href={article.exam.applyUrl} target="_blank" rel="noopener noreferrer">Open official {article.exam.name} information</a></p>}
+    <ArticleGuide article={seoInput} summary={guideSummary} content={articleContent} />
     <AdSlot slotKey="article_middle" />
-    <div className="ls-head"><p className="ls-eyebrow"><FileText size={14} aria-hidden="true" /> Your options</p><h2>{seo.optionsHeading}</h2></div>
+    <div className="ls-head"><p className="ls-eyebrow"><FileText size={14} aria-hidden="true" /> Your options</p><h2>{guideHeadings.list}</h2></div>
+    {listLead ? <p className="article-list-lead">{listLead}</p> : null}
     <ArticleCollegeList
       slug={article.slug}
       articleType={article.type}
@@ -360,12 +415,9 @@ export default async function ArticleDetailPage({ params }: { params: Promise<{ 
       summaryLabel={summaryLabel}
       linkableEntities={linkableEntities}
       excludeExamSlugs={isExamAdmissionArticle(article.type) && article.exam?.slug ? [article.exam.slug] : []}
+      feeFloor={article.feeFloor || guideSummary?.feeFloor || undefined}
       adFeed={articleAdFeed}
     />
-    <section className="ls-panel">
-      <div className="ls-head"><p className="ls-eyebrow">How to use this guide</p><h2>Make a better shortlist</h2></div>
-      <p>{isAveragePackageExceedsFeesArticle(article.type) ? 'Use the package-above-fees result as a shortlist signal, then compare programme quality, fee coverage, eligibility, admission route and the latest official placement report.' : isHighestPackageArticle(article.type) ? 'Start with colleges that meet the package threshold, then compare programme quality, fees, eligibility, admission route and the latest official placement report before applying.' : isGovAvgPackageArticle(article.type) ? 'Start with the government colleges that report stronger average packages in your chosen state. Then compare eligibility, fees, admission route, facilities and the latest official placement report before applying.' : 'Start with the colleges that match your preferred location and admission route. Then compare the complete programme cost, duration, eligibility, entrance exam, facilities, learning resources, and recent placement information. A low displayed fee is useful only when it is current and complete.'}</p>
-    </section>
     <AdSlot slotKey="article_end" />
     {relatedVisible.length > 0 && <section className="related-guides" aria-labelledby="related-guides-heading">
       <div className="ls-head"><p className="ls-eyebrow"><FileText size={14} aria-hidden="true" /> Related</p><h2 id="related-guides-heading">Related Student Decision Guides</h2></div>

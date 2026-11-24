@@ -1,0 +1,94 @@
+{
+  "slug": "mba-colleges-in-delhi-ncr-with-50-lakh-highest-package-2026",
+  "updatedOn": "2026-11-24",
+  "intro": [
+    "We list {{count}} MBA / PGDM colleges in Delhi NCR with a recorded highest package of at least ₹{{threshold}} lakh. These MBA colleges in Delhi NCR with ₹50 lakh highest package are in our file, not a promise of that pay.",
+    "MDI Gurgaon, FMS Delhi, IIFT, IIT Delhi and IMI Delhi sit on this short list. They are among the top MBA colleges in Delhi NCR 2026, and FMS now qualifies on its official 2025 flagship MBA report."
+  ],
+  "listLead": "Read the programme and the placement year on each card. Older executive-programme rows from before 2020, and DTU's older executive record, are no longer used to qualify a college on this page.",
+  "snapshot": [
+    "Across these {{colleges}} colleges, the median recorded average package is {{pkgMedian}}, from placement years {{pkgYearMin}} to {{pkgYearMax}}.",
+    "Recorded averages run from {{pkgMin}} to {{pkgMax}}. The highest single figure we hold is {{highestMax}} at IIFT's MBA in International Business for 2023.",
+    "Most of the colleges here are linked to CAT, and several are public. FMS Delhi now qualifies on its official 2025 flagship MBA report: an average CTC of ₹30.1 LPA and a highest domestic CTC of ₹1.01 Cr."
+  ],
+  "firstCollegesLead": [
+    "MDI Gurgaon is 9th in the official NIRF 2025 Management ranking, and its PGDM row for 2024 shows an average of ₹26 LPA and a highest of ₹63 LPA in our records.",
+    "IIFT is 17th and IIT Delhi is 4th on that same NIRF list. The IIFT card now shows the full-time MBA in International Business at ₹21.82 lakh, and the Department of Management Studies at IIT Delhi shows the full-time MBA tuition of ₹12 lakh."
+  ],
+  "sections": [
+    {
+      "heading": "How recent the Delhi NCR placement figures are",
+      "paragraphs": [
+        "FMS Delhi now qualifies on the official Finals Placement Report 2025 for the flagship MBA, with an average CTC of ₹30.1 LPA and a highest domestic CTC of ₹1.01 Cr. DTU's older executive record is no longer used.",
+        "Use each institute's latest official placement report, especially where a card still shows a 2023 or 2024 record rather than a later official report."
+      ]
+    }
+  ],
+  "compare": {
+    "heading": "How to read highest-package figures in Delhi NCR",
+    "paragraphs": [
+      "A highest package is one top offer in a recorded year. Compare it with the average, the year, and whether the programme is full-time, evening or executive.",
+      "Before you shortlist, check:"
+    ],
+    "bullets": [
+      "The official NIRF 2025 Management ranks: IIT Delhi 4th, MDI 9th, IIFT 17th and IMI Delhi 40th.",
+      "Whether the fee on the card is for the same programme as the placement figure.",
+      "The IIT Delhi DMS admission page, which lists ₹12 lakh tuition for the two-year full-time MBA.",
+      "The latest official placement report, especially the official FMS 2025 flagship MBA figures and any later report."
+    ]
+  },
+  "links": [
+    {
+      "label": "MBA / PGDM course guide",
+      "href": "/courses/mba"
+    },
+    {
+      "label": "Best MBA colleges in Delhi NCR",
+      "href": "/mba-colleges-in-delhi-ncr"
+    },
+    {
+      "label": "MBA colleges in Delhi NCR with ₹30 lakh highest package",
+      "href": "/articles/mba-colleges-in-delhi-ncr-with-30-lakh-highest-package-2026"
+    },
+    {
+      "label": "Best MBA colleges in India",
+      "href": "/mba-colleges"
+    },
+    {
+      "label": "MBA colleges accepting CAT",
+      "href": "/exams/cat"
+    }
+  ],
+  "faqs": [
+    {
+      "question": "Which MBA colleges in Delhi NCR with ₹50 lakh highest package are on this list?",
+      "answer": "{{count}} colleges: MDI Gurgaon, FMS Delhi, IIFT, IIT Delhi and IMI Delhi. Each has at least one recent non-executive programme in our records with a highest package of ₹{{threshold}} lakh or more."
+    },
+    {
+      "question": "What average packages do these colleges report?",
+      "answer": "The median recorded average is {{pkgMedian}}, with recorded averages from {{pkgMin}} to {{pkgMax}}. FMS Delhi now has official 2025 flagship MBA figures on the card."
+    },
+    {
+      "question": "Does FMS Delhi now have a recent flagship-MBA package here?",
+      "answer": "Yes. The official FMS Finals Placement Report 2025 lists an average CTC of ₹30.1 LPA and a highest domestic CTC of ₹1.01 Cr for the flagship MBA."
+    },
+    {
+      "question": "What is the recorded full-time MBA fee for IIT Delhi?",
+      "answer": "The Department of Management Studies card, and the official IIT Delhi DMS admission page, list tuition of ₹12 lakh for the two-year full-time MBA."
+    },
+    {
+      "question": "Are these packages guaranteed for 2026?",
+      "answer": "No. They are historical records from {{pkgYearMin}} to {{pkgYearMax}} in our file. Offers change with every batch and recruiter mix, so use the latest official report."
+    }
+  ],
+  "sources": [
+    {
+      "label": "NIRF 2025 Management ranking",
+      "url": "https://www.nirfindia.org/Rankings/2025/ManagementRanking.html"
+    },
+    {
+      "label": "IIT Delhi DMS MBA admission page (tuition for the full-time MBA)",
+      "url": "https://dms.iitd.ac.in/admission-mba/"
+    }
+  ]
+}

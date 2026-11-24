@@ -1,0 +1,72 @@
+{
+  "slug": "mba-government-colleges-in-punjab-by-average-package",
+  "updatedOn": "24 Nov 2026",
+  "intro": [
+    "This page lists the best government MBA / PGDM colleges in Punjab by the average packages in our records. We currently link {{count}} programme options at {{colleges}} public colleges.",
+    "IIM Amritsar is the national institute on this list, with NIPER Mohali and several state engineering-college MBA programmes. Packages are historical records from {{pkgYearMin}} to {{pkgYearMax}}."
+  ],
+  "listLead": "IIM Amritsar appears first. The first-colleges table may show the Master of Human Resource Management rather than the flagship MBA, so read the programme name before you compare fees or packages.",
+  "snapshot": [
+    "For colleges with a recorded average package, the median is {{pkgMedian}}, and the highest recorded average is {{pkgMax}}. The recorded years run from {{pkgYearMin}} to {{pkgYearMax}}.",
+    "The lowest averages in our file look too thin to treat as a reliable floor, so read each official report when you compare top MBA / PGDM colleges in Punjab 2026."
+  ],
+  "firstCollegesLead": [
+    "IIM Amritsar has a 2024 recorded average of ₹20 LPA and a highest of ₹59 LPA. In the official NIRF 2025 Management ranking, IIM Amritsar is 64, which may differ from an older number on a card.",
+    "Sant Longowal Institute and the School of Management Studies, Patiala, have recorded averages of ₹5 LPA. Guru Nanak Dev Engineering College's figure is from 2020, so treat it as an old record."
+  ],
+  "compare": {
+    "heading": "How to compare the best government MBA / PGDM colleges in Punjab",
+    "paragraphs": [
+      "IIM Amritsar's MBA and its HRM programme are not the same product as an MBA at a state engineering college. Compare the award, the year and the official report.",
+      "Use these checks:"
+    ],
+    "bullets": [
+      "Whether the IIM Amritsar card is the flagship MBA or the Master of Human Resource Management.",
+      "The year of the package, especially where our records go back to {{pkgYearMin}}.",
+      "The official NIRF 2025 rank for IIM Amritsar, which is 64.",
+      "CAT and each campus's own admission notice."
+    ]
+  },
+  "links": [
+    {
+      "label": "MBA / PGDM course guide",
+      "href": "/courses/mba"
+    },
+    {
+      "label": "Best MBA colleges in Punjab",
+      "href": "/mba-colleges-in-punjab"
+    },
+    {
+      "label": "CAT exam page",
+      "href": "/exams/cat"
+    },
+    {
+      "label": "Best MBA colleges in India",
+      "href": "/mba-colleges"
+    }
+  ],
+  "faqs": [
+    {
+      "question": "How many government MBA colleges in Punjab are on this list?",
+      "answer": "Our records link {{count}} programme options at {{colleges}} public colleges, including IIM Amritsar, NIPER Mohali, Sant Longowal Institute and several state engineering-college MBA programmes."
+    },
+    {
+      "question": "What is the typical average package on this list?",
+      "answer": "Among colleges with a recorded average, the median is {{pkgMedian}}, and the highest recorded average is {{pkgMax}}, for years {{pkgYearMin}} to {{pkgYearMax}}. We have not treated the lowest figures as a reliable floor."
+    },
+    {
+      "question": "What is IIM Amritsar's NIRF rank?",
+      "answer": "In the official NIRF 2025 Management ranking, IIM Amritsar is 64."
+    },
+    {
+      "question": "Are these packages guaranteed?",
+      "answer": "No. They are historical records from {{pkgYearMin}} to {{pkgYearMax}}. Confirm the latest official placement report, and be careful with very low averages in our file."
+    }
+  ],
+  "sources": [
+    {
+      "label": "NIRF 2025 Management ranking",
+      "url": "https://www.nirfindia.org/Rankings/2025/ManagementRanking.html"
+    }
+  ]
+}

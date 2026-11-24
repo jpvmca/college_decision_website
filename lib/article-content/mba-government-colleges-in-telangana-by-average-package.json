@@ -1,0 +1,89 @@
+{
+  "slug": "mba-government-colleges-in-telangana-by-average-package",
+  "updatedOn": "24 Nov 2026",
+  "intro": [
+    "We list {{count}} government MBA / PGDM programme options across {{colleges}} public institutes in Telangana. Use this page to compare the best government MBA colleges in Telangana by the average packages we hold.",
+    "Most of these institutes are in Hyderabad, with one each in Warangal and Khammam. Ranked colleges lead the top MBA colleges in Telangana 2026, and the rest follow by recorded package."
+  ],
+  "listLead": "Each card is a programme row, so a university such as NIT Warangal or Osmania may appear more than once. Read the programme name before you compare averages.",
+  "snapshot": [
+    "Across the {{colleges}} public colleges here, the median recorded average package is {{pkgMedian}}, from placement years {{pkgYearMin}} to {{pkgYearMax}}.",
+    "The recorded averages run from {{pkgMin}} to {{pkgMax}}. The highest single offer in our file is {{highestMax}}, which is not a typical outcome.",
+    "CAT is linked to 7 of these colleges and TS ICET to 5. Confirm the current admission notice for the programme you want."
+  ],
+  "firstCollegesLead": [
+    "University of Hyderabad's MBA shows a 2023 average of ₹11 LPA and a highest of ₹15 LPA in our records. NIT Warangal's MBA rows for 2023 show an average of ₹17 LPA.",
+    "MANAGE is 95th in the NIRF 2025 Management ranking, but the placement year we hold for its PGDM (Agri Business) is 2018. Treat that figure as historical."
+  ],
+  "sections": [
+    {
+      "heading": "What the NIRF 2025 Management list shows for Telangana",
+      "paragraphs": [
+        "In the official NIRF 2025 Management ranking, MANAGE is 95th. University of Hyderabad and NIT Warangal do not appear in that top 100, so do not treat a number on a card as a current Management rank."
+      ]
+    }
+  ],
+  "compare": {
+    "heading": "How to compare the best government MBA colleges in Telangana",
+    "paragraphs": [
+      "Start with the programme type. A two-year MBA at a university and a specialised PGDM in agri-business or insurance are built for different careers.",
+      "Then check these points in the official notice and placement report:"
+    ],
+    "bullets": [
+      "Whether the average is for the latest passing-out batch, and which programme it covers.",
+      "The gap between the average and the highest offer; one large offer can lift the top figure.",
+      "The entrance test actually used (CAT, TS ICET, or another route) and the fee for the full two years.",
+      "Whether the institute is a university department, an IIT/NIT school, or a specialised national academy."
+    ]
+  },
+  "links": [
+    {
+      "label": "MBA / PGDM course guide",
+      "href": "/courses/mba"
+    },
+    {
+      "label": "Best MBA colleges in Telangana",
+      "href": "/mba-colleges-in-telangana"
+    },
+    {
+      "label": "Best MBA colleges in India",
+      "href": "/mba-colleges"
+    },
+    {
+      "label": "MBA colleges accepting CAT",
+      "href": "/exams/cat"
+    },
+    {
+      "label": "MBA colleges accepting TS ICET",
+      "href": "/exams/tsicet"
+    }
+  ],
+  "faqs": [
+    {
+      "question": "How many government MBA colleges in Telangana are on this list?",
+      "answer": "We hold {{count}} programme options at {{colleges}} public institutes. The row count is higher than the college count because some universities list more than one MBA or PGDM."
+    },
+    {
+      "question": "What average package do government MBA colleges in Telangana report?",
+      "answer": "The median recorded average among these {{colleges}} colleges is {{pkgMedian}}, and the recorded averages run from {{pkgMin}} to {{pkgMax}}. These are historical figures, not offers for the next batch."
+    },
+    {
+      "question": "Which entrance exams do these Telangana colleges use?",
+      "answer": "In our records, CAT is linked to 7 colleges and TS ICET to 5. Some also appear with ATMA or CMAT. Always confirm the latest official admission notice."
+    },
+    {
+      "question": "Is the ₹88 Lakh highest package typical?",
+      "answer": "No. That figure is the highest single record we hold for NIT Warangal's MBA in 2023. Use the average, and the official placement report, when you compare colleges."
+    },
+    {
+      "question": "Why is MANAGE's placement year so old?",
+      "answer": "The only MANAGE placement year in this list is 2018. The institute is still 95th in the NIRF 2025 Management ranking, so check its latest official report before you decide."
+    }
+  ],
+  "sources": [
+    {
+      "label": "NIRF 2025 Management ranking",
+      "url": "https://www.nirfindia.org/Rankings/2025/ManagementRanking.html"
+    }
+  ]
+}

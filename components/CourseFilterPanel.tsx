@@ -5,7 +5,7 @@ import { courseListingHref, type CourseFacet } from '../lib/listings';
 
 export type StatePageOption = { courseSlug: string; stateSlug: string; stateName: string; count: number };
 export type CityPageOption = StatePageOption & { citySlug: string; cityName: string };
-type Props = { percentileGroups?: PercentileGroup[]; selectedPercentileHref?: string | null; facets: CourseFacet[]; totalColleges: number; selectedKey?: string | null; selectedState?: string | null; selectedCity?: string | null; statePages?: StatePageOption[]; cityPages?: CityPageOption[] };
+type Props = { percentileGroups?: PercentileGroup[]; selectedPercentileHref?: string | null; facets: CourseFacet[]; totalColleges: number; selectedKey?: string | null; selectedState?: string | null; selectedCity?: string | null; statePages?: StatePageOption[]; cityPages?: CityPageOption[]; hideCourseFilter?: boolean };
 
 export type CourseFilterOption = { key: string; label: string; count: number; href: string };
 
@@ -19,8 +19,7 @@ const formatCount = (value: number) => value.toLocaleString('en-IN');
  * Right-hand "Filter by Course" sidebar. Options are real <a href> links styled as radios
  * so crawlers can follow them; selecting one navigates to /{key}-colleges.
  */
-export function CourseFilterSidebar({ percentileGroups = [], selectedPercentileHref = null, facets, totalColleges, selectedKey = null, selectedState = null, selectedCity = null, statePages = [], cityPages = [] }: Props) {
-  if (!facets.length) return null;
+export function CourseFilterSidebar({ percentileGroups = [], selectedPercentileHref = null, facets, totalColleges, selectedKey = null, selectedState = null, selectedCity = null, statePages = [], cityPages = [], hideCourseFilter = false }: Props) {
   const selectedFacet = facets.find((facet) => facet.key === selectedKey);
   const states = selectedFacet
     ? statePages.filter((item) => item.courseSlug === selectedFacet.courseSlug).sort((a, b) => b.count - a.count)
@@ -28,14 +27,21 @@ export function CourseFilterSidebar({ percentileGroups = [], selectedPercentileH
   const cities = selectedFacet && selectedState
     ? cityPages.filter((item) => item.courseSlug === selectedFacet.courseSlug && item.stateSlug === selectedState).sort((a, b) => b.count - a.count || a.cityName.localeCompare(b.cityName))
     : [];
-  return <aside className="course-filter-panel" aria-labelledby="course-filter-heading">
-    <h2 id="course-filter-heading">Filter by Course</h2>
-    <nav aria-label="Filter colleges by course">
+  const hasLocationFilters = Boolean(selectedFacet && states.length > 0);
+  const hasOtherFilters = percentileGroups.length > 0;
+  if (hideCourseFilter) {
+    if (!hasLocationFilters && !hasOtherFilters) return null;
+  } else if (!facets.length) {
+    return null;
+  }
+  return <aside className="course-filter-panel" aria-labelledby="listing-filter-heading">
+    <h2 id="listing-filter-heading">{hideCourseFilter ? 'Filters' : 'Filter by Course'}</h2>
+    {!hideCourseFilter && <nav aria-label="Filter colleges by course">
       <ul className="course-filter-list">
         <li><Link prefetch={false} href="/colleges" className="course-filter-option" aria-current={!selectedKey ? 'page' : undefined}><span className="course-filter-radio" aria-hidden="true" /><span className="course-filter-label">All courses</span>{totalColleges > 0 && <span className="course-filter-count">({formatCount(totalColleges)})</span>}</Link></li>
         {facets.map((facet) => <li key={facet.key}><Link prefetch={false} href={courseListingHref(facet.key)} className="course-filter-option" aria-current={facet.key === selectedKey ? 'page' : undefined}><span className="course-filter-radio" aria-hidden="true" /><span className="course-filter-label">{facet.label}</span><span className="course-filter-count">({formatCount(facet.count)})</span></Link></li>)}
       </ul>
-    </nav>
+    </nav>}
     {selectedFacet && states.length > 0 && <section className="state-filter-section" aria-labelledby="state-filter-heading">
       <h3 id="state-filter-heading">Filter by State</h3>
       <nav aria-label={`Filter ${selectedFacet.label} colleges by state`}>
@@ -71,8 +77,11 @@ export function CourseFilterSidebar({ percentileGroups = [], selectedPercentileH
   </aside>;
 }
 
-export function CourseFilterMobileButton({ percentileGroups = [], selectedPercentileHref = null, facets, totalColleges, selectedKey = null, selectedState = null, selectedCity = null, statePages = [], cityPages = [] }: Props) {
+export function CourseFilterMobileButton({ percentileGroups = [], selectedPercentileHref = null, facets, totalColleges, selectedKey = null, selectedState = null, selectedCity = null, statePages = [], cityPages = [], hideCourseFilter = false }: Props) {
   if (!facets.length) return null;
   const selected = facets.find((facet) => facet.key === selectedKey) || null;
-  return <CourseFilterMobile options={toOptions(facets)} totalColleges={totalColleges} selectedKey={selected?.key || null} selectedLabel={selected?.label || null} stateOptions={selected ? statePages.filter((item) => item.courseSlug === selected.courseSlug).sort((a, b) => b.count - a.count) : []} cityOptions={selected && selectedState ? cityPages.filter((item) => item.courseSlug === selected.courseSlug && item.stateSlug === selectedState).sort((a, b) => b.count - a.count || a.cityName.localeCompare(b.cityName)) : []} selectedState={selectedState} selectedCity={selectedCity} percentileGroups={percentileGroups} selectedPercentileHref={selectedPercentileHref} />;
+  const stateOptions = selected ? statePages.filter((item) => item.courseSlug === selected.courseSlug).sort((a, b) => b.count - a.count) : [];
+  const cityOptions = selected && selectedState ? cityPages.filter((item) => item.courseSlug === selected.courseSlug && item.stateSlug === selectedState).sort((a, b) => b.count - a.count || a.cityName.localeCompare(b.cityName)) : [];
+  if (hideCourseFilter && !stateOptions.length && !percentileGroups.length) return null;
+  return <CourseFilterMobile options={toOptions(facets)} totalColleges={totalColleges} selectedKey={selected?.key || null} selectedLabel={selected?.label || null} stateOptions={stateOptions} cityOptions={cityOptions} selectedState={selectedState} selectedCity={selectedCity} percentileGroups={percentileGroups} selectedPercentileHref={selectedPercentileHref} hideCourseFilter={hideCourseFilter} />;
 }

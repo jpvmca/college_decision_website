@@ -1,0 +1,81 @@
+{
+  "slug": "mba-government-colleges-in-gujarat-by-average-package",
+  "updatedOn": "24 Nov 2026",
+  "intro": [
+    "This page lists the best government MBA / PGDM colleges in Gujarat by the average packages in our records. We currently link {{count}} programme options at only {{colleges}} public colleges.",
+    "IIM Ahmedabad dominates this short list. The other two campuses are Veer Narmad South Gujarat University, Surat, and the GH Patel Postgraduate Institute of Business Management, Anand."
+  ],
+  "listLead": "IIM Ahmedabad appears first. The opening card may be an executive PGPX row rather than the flagship PGP, so read the programme name before you compare packages.",
+  "snapshot": [
+    "Only {{colleges}} colleges are on this page, so we have not quoted a package median in this text. The three recorded averages should be read one by one, with the year of each official report.",
+    "IIM Ahmedabad is 1st in the official NIRF 2025 Management ranking. That is the right context when you compare top MBA / PGDM colleges in Gujarat 2026 on this government list."
+  ],
+  "firstCollegesLead": [
+    "For IIM Ahmedabad, our table shows a 2024 average of ₹36 LPA and a highest of ₹55 LPA on a recorded MBA Finance row, with a recorded total fee of ₹26.50 lakh. Confirm the flagship PGP figures in the official placement report and fee notice.",
+    "Veer Narmad South Gujarat University has a 2022 recorded average of ₹2 LPA, and GH Patel Institute a 2023 recorded average of ₹4 LPA. Those years and figures need a check against the latest official reports."
+  ],
+  "sections": [
+    {
+      "heading": "Why this Gujarat list is so short",
+      "paragraphs": [
+        "A government package list can only include public colleges with a recorded average package. In Gujarat, our file currently qualifies only three campuses.",
+        "Other government or university departments may exist, but they are not on this page until we hold a usable average package for them."
+      ]
+    }
+  ],
+  "compare": {
+    "heading": "How to compare the best government MBA / PGDM colleges in Gujarat",
+    "paragraphs": [
+      "IIM Ahmedabad is not comparable with a state university MBA on package alone. Compare the programme, the official fee and the year of the data.",
+      "Use these checks:"
+    ],
+    "bullets": [
+      "Whether you are looking at the flagship PGP or an executive programme such as PGPX.",
+      "The official placement report year, not only the average on our card.",
+      "The official fee notice; our IIM Ahmedabad recorded total of ₹26.50 lakh should be confirmed against the current official notice.",
+      "CAT and each institute's own interview process."
+    ]
+  },
+  "links": [
+    {
+      "label": "MBA / PGDM course guide",
+      "href": "/courses/mba"
+    },
+    {
+      "label": "Best MBA colleges in Gujarat",
+      "href": "/mba-colleges-in-gujarat"
+    },
+    {
+      "label": "CAT exam page",
+      "href": "/exams/cat"
+    },
+    {
+      "label": "Best MBA colleges in India",
+      "href": "/mba-colleges"
+    }
+  ],
+  "faqs": [
+    {
+      "question": "How many government MBA colleges in Gujarat are on this list?",
+      "answer": "Our records link {{count}} programme options at only {{colleges}} public colleges: IIM Ahmedabad, Veer Narmad South Gujarat University, and the GH Patel Institute in Anand."
+    },
+    {
+      "question": "What package does IIM Ahmedabad show here?",
+      "answer": "Our table records a 2024 average of ₹36 LPA and a highest of ₹55 LPA for an MBA Finance row. Confirm the official PGP placement report, because an executive programme can sit first on a card."
+    },
+    {
+      "question": "What is IIM Ahmedabad's NIRF rank?",
+      "answer": "In the official NIRF 2025 Management ranking, IIM Ahmedabad is ranked 1."
+    },
+    {
+      "question": "Why is there no package median on this page?",
+      "answer": "Only three colleges have a recorded average package here, which is too few for a stable median. Read each official report instead of a single mid-point figure."
+    }
+  ],
+  "sources": [
+    {
+      "label": "NIRF 2025 Management ranking",
+      "url": "https://www.nirfindia.org/Rankings/2025/ManagementRanking.html"
+    }
+  ]
+}

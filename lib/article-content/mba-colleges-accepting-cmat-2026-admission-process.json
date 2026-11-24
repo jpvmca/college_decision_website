@@ -1,0 +1,93 @@
+{
+  "slug": "mba-colleges-accepting-cmat-2026-admission-process",
+  "updatedOn": "24 Nov 2026",
+  "intro": [
+    "Our records link {{count}} MBA / PGDM programme options to CMAT, the Common Management Admission Test conducted by NTA. This page explains MBA colleges accepting CMAT 2026, including eligibility and the usual steps after the test.",
+    "Ranked colleges come first, then the other published colleges in alphabetical order. Confirm the current CMAT bulletin and each college’s own process before you apply."
+  ],
+  "listLead": "After any ranked campus, the list is mostly alphabetical, so a college near the top of the later cards is not automatically more selective. Always check the college’s admission page to confirm that it still accepts CMAT for the programme you want.",
+  "snapshot": [
+    "Maharashtra, Rajasthan, Madhya Pradesh, Haryana, Punjab and Uttar Pradesh have the most CMAT-linked listings in our records. Pune, Indore, Bangalore, Jaipur, Kolkata and Mumbai are the cities that appear most often.",
+    "Among the colleges here with an average package in our records, the median figure is {{pkgMedian}}, and the recorded averages range from {{pkgMin}} to {{pkgMax}}. Use the list of top MBA / PGDM colleges in India 2026 as a shortlist after you have a score."
+  ],
+  "firstCollegesLead": [
+    "The early cards in our file are largely alphabetical, and many of them have no fee or placement figure yet. That only means we do not hold those details, not that the college is unofficial.",
+    "Where a fee is shown, such as ₹4.87 lakh at Ahalia School of Management or ₹20,500 at Annai Mathammal Sheela Engineering College, confirm whether it is one year or the full two-year programme."
+  ],
+  "sections": [
+    {
+      "heading": "CMAT 2026 eligibility, as NTA published it",
+      "paragraphs": [
+        "NTA’s CMAT-2026 process was announced in the official information bulletin on the CMAT website, cmat.nta.nic.in. Eligibility is a bachelor’s degree in any discipline from a recognised university.",
+        "Final-year undergraduate students could also apply if their result was to be declared before admission for 2026–27, as the official notification set out. Always read the latest bulletin for the cycle you plan to use."
+      ]
+    }
+  ],
+  "compare": {
+    "heading": "How to compare MBA colleges accepting CMAT 2026",
+    "paragraphs": [
+      "A CMAT score is only one admission input, and each college then applies its own cut-off, group discussion or interview.",
+      "Before you apply, check these points on the official pages:"
+    ],
+    "bullets": [
+      "Whether the college still accepts CMAT for the batch you want, rather than relying only on our exam link.",
+      "The official fee notice for the full-time MBA or PGDM, not a shorter course on the same campus.",
+      "The approval status of the programme, and the campus where classes actually run.",
+      "The latest official placement report, treated as a historical record rather than a promise."
+    ]
+  },
+  "links": [
+    {
+      "label": "MBA / PGDM course guide",
+      "href": "/courses/mba"
+    },
+    {
+      "label": "Best MBA colleges in India",
+      "href": "/mba-colleges"
+    },
+    {
+      "label": "CMAT exam guide",
+      "href": "/exams/cmat"
+    },
+    {
+      "label": "MBA colleges accepting CAT 2026",
+      "href": "/articles/mba-colleges-accepting-cat-2026-admission-process"
+    },
+    {
+      "label": "MBA colleges accepting MAT 2026",
+      "href": "/articles/mba-colleges-accepting-mat-2026-admission-process"
+    }
+  ],
+  "faqs": [
+    {
+      "question": "Who can apply for CMAT 2026?",
+      "answer": "NTA’s official notification said a bachelor’s degree in any discipline is required, and final-year students could apply if their result would be declared before 2026–27 admissions."
+    },
+    {
+      "question": "How many MBA colleges accepting CMAT 2026 are listed here?",
+      "answer": "Our records currently link {{count}} MBA / PGDM programme options to CMAT. Confirm on the college’s admission page that it still accepts CMAT for the programme you want."
+    },
+    {
+      "question": "Where is the official CMAT website?",
+      "answer": "NTA published the CMAT-2026 bulletin at cmat.nta.nic.in, and also listed nta.ac.in as a related official site."
+    },
+    {
+      "question": "Is a CMAT score enough for admission?",
+      "answer": "No, colleges usually add a group discussion, interview or academic score after CMAT, so read the current admission process on that campus."
+    },
+    {
+      "question": "Why are the first colleges on this list not well-known IIMs?",
+      "answer": "After any ranked campus, our remaining CMAT list is largely alphabetical, so the first names are not a quality ranking on their own."
+    }
+  ],
+  "sources": [
+    {
+      "label": "NTA, public notice inviting CMAT-2026 applications (17 October 2025)",
+      "url": "http://nta.ac.in/Download/Notice/Notice_20251017143944.pdf"
+    },
+    {
+      "label": "NTA, CMAT official website",
+      "url": "https://cmat.nta.nic.in/"
+    }
+  ]
+}

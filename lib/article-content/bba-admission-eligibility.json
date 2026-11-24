@@ -1,0 +1,106 @@
+{
+  "slug": "bba-admission-eligibility",
+  "updatedOn": "24 Nov 2026",
+  "intro": [
+    "This page explains BBA / BBM / BBS admission and eligibility 2026, using our records for {{count}} programme options across India. The tests and cut-offs still sit with each university, so treat this as a map, not a substitute for the official notice.",
+    "Ranked colleges come first in the list. After them, published colleges follow in the order our records hold."
+  ],
+  "listLead": "The first cards include well-known undergraduate business campuses such as Shaheed Sukhdev College of Business Studies in Delhi and NMIMS in Mumbai. A missing fee on a card only means we do not hold that figure yet.",
+  "snapshot": [
+    "Most of the colleges shown first are private, with a smaller set of public colleges. Karnataka, Tamil Nadu, Delhi NCR, Maharashtra and Uttar Pradesh appear often in our records.",
+    "Use the list of top BBA / BBM / BBS colleges in India 2026 to shortlist campuses, then read the eligibility rule that actually applies to that university."
+  ],
+  "firstCollegesLead": [
+    "Shaheed Sukhdev College of Business Studies, a University of Delhi college, admits to its BMS and BBA (FIA) programmes through CUET (UG) 2026, as its own 2026–27 admission FAQ states. Confirm the exact CUET subject combination in Delhi University’s undergraduate bulletin.",
+    "NMIMS Mumbai, Mount Carmel College, Loyola College and Madras Christian College also appear early on this list. Each campus runs its own test or merit process, so check the current admission page before you apply."
+  ],
+  "sections": [
+    {
+      "heading": "Main admission routes for BBA in 2026",
+      "paragraphs": [
+        "There is no single national BBA entrance test: Delhi University colleges use CUET (UG), while IIM Indore’s five-year Integrated Programme in Management uses IPMAT, which is a different route from a three-year BBA.",
+        "Private universities may use their own test, a national test such as UGAT, or Class 12 marks. Always read the latest notice for that campus."
+      ],
+      "bullets": [
+        "Typical academic baseline: pass Class 12 from a recognised board. Some colleges also set a minimum aggregate, often around 50%, which you should verify on the official page.",
+        "For DU programmes, appearing in the required CUET (UG) 2026 subjects is mandatory, as the University of Delhi bulletin states.",
+        "IPMAT is for integrated management programmes at participating IIMs, not for every BBA college on this list."
+      ]
+    }
+  ],
+  "compare": {
+    "heading": "How to compare BBA / BBM / BBS colleges before you apply",
+    "paragraphs": [
+      "Decide first whether you want a three-year BBA, a BMS, or a five-year integrated programme. The entrance test and the degree are not the same.",
+      "Then check these points on the official admission notice:"
+    ],
+    "bullets": [
+      "The exact award (BBA, BBM, BMS or BBA (FIA)) and whether it is a university degree.",
+      "The entrance test for 2026 (CUET UG, IPMAT, a university test, or Class 12 merit) and the cut-off for your category.",
+      "The fee for the full three years, including any additional charges the prospectus lists separately.",
+      "Whether hostel seats are guaranteed, and the latest official placement report for that undergraduate programme."
+    ]
+  },
+  "links": [
+    {
+      "label": "BBA / BBM / BBS course guide",
+      "href": "/courses/bba"
+    },
+    {
+      "label": "Best BBA colleges in India",
+      "href": "/bba-colleges"
+    },
+    {
+      "label": "BBA colleges under ₹1 lakh",
+      "href": "/articles/top-colleges-in-india-2026-bba-under-1-lakh-fees"
+    },
+    {
+      "label": "CUET UG exam guide",
+      "href": "/exams/cuet-ug"
+    },
+    {
+      "label": "IPMAT exam guide",
+      "href": "/exams/ipmat"
+    }
+  ],
+  "faqs": [
+    {
+      "question": "What is the eligibility for BBA admission in 2026?",
+      "answer": "Most colleges ask for a Class 12 pass from a recognised board, sometimes with a minimum aggregate. Delhi University BMS and BBA (FIA) seats are filled through CUET (UG) 2026, as SSCBS and the DU bulletin set out."
+    },
+    {
+      "question": "Is CUET UG compulsory for every BBA college?",
+      "answer": "No, CUET (UG) is the route for University of Delhi and some other universities, while many private colleges use their own test or Class 12 marks."
+    },
+    {
+      "question": "What is the difference between BBA, BBM and BMS?",
+      "answer": "All three are undergraduate business degrees, but the award and the university rules differ. Read the programme name on the card and on the college prospectus before you compare them as if they were identical."
+    },
+    {
+      "question": "Does IPMAT get you into every BBA college on this list?",
+      "answer": "No, IPMAT is the entrance test for IIM Indore’s Integrated Programme in Management and for other institutes that officially accept it, not a general BBA ticket."
+    },
+    {
+      "question": "How many BBA colleges are listed here?",
+      "answer": "Our records currently show {{count}} BBA / BBM / BBS programme options. The count includes campuses with an admission record, not only colleges that already have a fee on file."
+    }
+  ],
+  "sources": [
+    {
+      "label": "Shaheed Sukhdev College of Business Studies, FAQs for BMS, BBA FIA and B.Sc. CS admissions 2026",
+      "url": "https://sscbs.du.ac.in/faqs-for-bms-bba-fia-b-sc-c-s-admissions-2026/"
+    },
+    {
+      "label": "University of Delhi, Bulletin of Information for undergraduate admissions 2026–27",
+      "url": "https://ihe.du.ac.in/wp-content/uploads/2026/01/BOI_UG_2026_27.pdf"
+    },
+    {
+      "label": "IIM Indore, Integrated Programme in Management 2026–31 notification",
+      "url": "https://iimidr.ac.in/wp-content/uploads/2026/02/IPM-notifications-2026-31-English.pdf"
+    },
+    {
+      "label": "NTA CUET (UG)",
+      "url": "https://cuet.nta.nic.in/"
+    }
+  ]
+}

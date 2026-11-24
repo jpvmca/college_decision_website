@@ -1,0 +1,91 @@
+{
+  "slug": "mba-colleges-in-punjab-where-average-package-exceeds-fees-2026",
+  "updatedOn": "24 Nov 2026",
+  "intro": [
+    "{{count}} published MBA / PGDM colleges in Punjab have a recorded average package higher than their recorded total fee. This page is a first filter for the best MBA / PGDM colleges in Punjab where average package exceeds fees.",
+    "IIM Amritsar is the only public institute here and the fee outlier. It is ranked 64 in the NIRF 2025 Management ranking, after 47 in 2024. The listed programme is Master of Human Resource Management, not the MBA.",
+    "Most other colleges on this list have recorded fees around ₹1 lakh or less, and recorded averages close to ₹4 lakh. Those two groups are not directly comparable on fee alone."
+  ],
+  "listLead": "These are the top MBA / PGDM colleges in Punjab 2026 on this value filter. Chandigarh, Mohali and Jalandhar account for most of the private colleges after IIM Amritsar.",
+  "snapshot": [
+    "Among the {{feeN}} colleges with a recorded fee, the median total is {{feeMedian}}, and the middle half sits between {{feeP25}} and {{feeP75}}.",
+    "{{private}} colleges are private and {{public}} is public. Recorded average packages range from {{pkgMin}} to {{pkgMax}}, from {{pkgYearMin}} to {{pkgYearMax}}.",
+    "CAT is the most common recorded test, with CMAT and Punjab MET also appearing. The highest recorded package is {{highestMax}}, at IIM Amritsar for 2024, which is not the average of ₹20 lakh in our records."
+  ],
+  "firstCollegesLead": [
+    "IIM Amritsar's card shows a Master of Human Resource Management fee of ₹10.5 lakh and a 2024 average package of ₹20 lakh. Confirm the official MBA fee if you are applying to the flagship MBA, not the HRM programme.",
+    "Several Chandigarh and Mohali private colleges have recorded fees near ₹90,000–₹1.25 lakh. Check whether those figures are annual or for the full course, and look up the official 2023 or later placement report."
+  ],
+  "sections": [
+    {
+      "heading": "IIM Amritsar and the rest of this Punjab list",
+      "paragraphs": [
+        "NIRF 2025 Management places IIM Amritsar at 64. That is an institute rank, and it does not make the recorded average a promise for a later batch.",
+        "Apeejay Institute of Management, Jalandhar, has a 2020 placement year in our records. Treat that average as outdated until you see a newer official report."
+      ]
+    }
+  ],
+  "compare": {
+    "heading": "How to judge the best MBA / PGDM colleges in Punjab where average package exceeds fees",
+    "paragraphs": [
+      "Separate IIM Amritsar from the private colleges around Chandigarh, Mohali and Jalandhar before you compare fee–package gaps.",
+      "Then check these official points:"
+    ],
+    "bullets": [
+      "The official fee for the MBA or the HRM programme, not a mix of the two.",
+      "Whether admission is through CAT or another test such as CMAT or Punjab MET.",
+      "The official placement year, especially where our year is 2020 or earlier.",
+      "The city you would live in, because Chandigarh, Mohali, Jalandhar, Amritsar and Patiala differ in costs."
+    ]
+  },
+  "links": [
+    {
+      "label": "MBA / PGDM course guide",
+      "href": "/courses/mba"
+    },
+    {
+      "label": "Best MBA colleges in Punjab",
+      "href": "/mba-colleges-in-punjab"
+    },
+    {
+      "label": "Best MBA colleges in India",
+      "href": "/mba-colleges"
+    },
+    {
+      "label": "CAT exam guide",
+      "href": "/exams/cat"
+    },
+    {
+      "label": "MBA colleges with fees in India",
+      "href": "/articles/top-mba-colleges-in-india-with-fees-2026"
+    }
+  ],
+  "faqs": [
+    {
+      "question": "How many MBA colleges in Punjab have an average package above fees?",
+      "answer": "We list {{published}} published colleges in Punjab on this filter. Both a recorded total fee and a recorded average package are required for a college to appear."
+    },
+    {
+      "question": "What is IIM Amritsar's NIRF 2025 Management rank?",
+      "answer": "IIM Amritsar is ranked 64 in the official NIRF 2025 Management ranking, after 47 in 2024."
+    },
+    {
+      "question": "Is the ₹10.5 lakh fee on the IIM Amritsar card for the MBA?",
+      "answer": "Our card lists Master of Human Resource Management at ₹10.5 lakh, with a 2024 average package of ₹20 lakh. Confirm the official fee for the MBA if that is the programme you want."
+    },
+    {
+      "question": "Which exams do these Punjab colleges accept?",
+      "answer": "CAT is the most frequently recorded test, followed by CMAT and Punjab MET. Check the latest brochure for cut-offs and interviews."
+    },
+    {
+      "question": "Are the placement figures guaranteed?",
+      "answer": "No. They are historical records from {{pkgYearMin}} to {{pkgYearMax}}. IIM Amritsar's 2024 average of ₹20 lakh is one batch's record, not a promise."
+    }
+  ],
+  "sources": [
+    {
+      "label": "NIRF 2025 Management ranking",
+      "url": "https://www.nirfindia.org/rankings/2025/ManagementRanking.html"
+    }
+  ]
+}

@@ -1,0 +1,104 @@
+{
+  "slug": "mba-colleges-accepting-mah-mba-cet-2026-admission-process",
+  "updatedOn": "24 Nov 2026",
+  "intro": [
+    "We list {{published}} published MBA / PGDM colleges, from {{count}} programme listings, that are tagged as accepting the Maharashtra MBA Common Entrance Test. This guide to MBA colleges accepting Maharashtra MBA Common Entrance Test 2026 also sets out official CET Cell rules for 2026-27.",
+    "The State Common Entrance Test Cell, Maharashtra, conducted MAH MBA/MMS CET 2026. A public notice dated 26 April 2026 fixed the second attempt on 9 May 2026. Online registration had opened in January 2026.",
+    "Our first cards are in alphabetical order, so well-known colleges may appear later. Pune has the most tagged colleges, followed by Mumbai and Nashik."
+  ],
+  "listLead": "These are the top MBA / PGDM colleges accepting Maharashtra MBA Common Entrance Test 2026 in our records, listed alphabetically rather than by rank. They are also the top MBA / PGDM colleges in {{place}} 2026 that we have tagged for this test.",
+  "snapshot": [
+    "All published colleges on this list are in Maharashtra. {{private}} are private, {{public}} is public, and one has no ownership type in our records.",
+    "We do not hold a usable fee snapshot for this full CET list. Some cards show a fee, such as Amrutvahini College of Engineering at ₹1.14 lakh, but many first cards are blank.",
+    "Recorded average packages, where we have them, range from {{pkgMin}} to {{pkgMax}}, with a median of {{pkgMedian}}. Those figures are historical and often missing on the first cards."
+  ],
+  "firstCollegesLead": [
+    "AISSMS Institute of Management and several neighbouring Pune colleges appear first because of alphabetical order, with multiple MBA specialisation rows each. Department of Management Sciences, Pune University (PUMBA), is the public department in the first group.",
+    "One college is stored as \"ASM&rsquo;s Institute of Professional Studies\", with an HTML entity in the name and in its slug. That is a data-cleaning issue, not the official college name."
+  ],
+  "sections": [
+    {
+      "heading": "Official MAH MBA CET 2026 process",
+      "paragraphs": [
+        "The official information brochure for MBA/MMS admissions in 2026-27 required the candidate to be a citizen of India and to have a minimum three-year bachelor's degree from a recognised university, with further category rules in the brochure.",
+        "Admission to participating MBA and MMS programmes is through the official CET and the later CAP rounds run by the CET Cell, not through a test score alone."
+      ],
+      "bullets": [
+        "CET Cell published the information brochure and registration notices on cetcell.mahacet.org.",
+        "The official 26 April 2026 public notice set the second-attempt MBA/MMS CET on 9 May 2026.",
+        "CAP for 2026-27 followed later in the year, under separate CET Cell admission notices."
+      ]
+    }
+  ],
+  "compare": {
+    "heading": "How to shortlist MBA colleges accepting Maharashtra MBA Common Entrance Test 2026",
+    "paragraphs": [
+      "A Pune private college and a university department such as PUMBA can both accept the CET and still differ in official fees, CAP cut-offs and programme type (MBA or MMS).",
+      "Check these official points:"
+    ],
+    "bullets": [
+      "The official CAP cut-off for your category and the exact course code, not only our tag.",
+      "The official fee approved for the college, because many cards here have no recorded fee.",
+      "Whether the programme is MBA, MMS or a specialised shift, including second-shift titles in our records.",
+      "The official campus city, and whether you will apply under Maharashtra state candidature."
+    ]
+  },
+  "links": [
+    {
+      "label": "MBA / PGDM course guide",
+      "href": "/courses/mba"
+    },
+    {
+      "label": "MAH MBA CET exam guide",
+      "href": "/exams/mah-mba-cet"
+    },
+    {
+      "label": "Best MBA colleges in Maharashtra",
+      "href": "/mba-colleges-in-maharashtra"
+    },
+    {
+      "label": "MBA colleges in Maharashtra where package exceeds fees",
+      "href": "/articles/mba-colleges-in-maharashtra-where-average-package-exceeds-fees-2026"
+    },
+    {
+      "label": "MBA colleges in Pune where package exceeds fees",
+      "href": "/articles/mba-colleges-in-pune-where-average-package-exceeds-fees-2026"
+    }
+  ],
+  "faqs": [
+    {
+      "question": "How many MBA colleges accepting Maharashtra MBA Common Entrance Test 2026 are on this list?",
+      "answer": "We list {{published}} published colleges, drawn from {{count}} programme listings, tagged for this test. The official CAP college list can be larger, so confirm the college in the CET Cell brochure as well."
+    },
+    {
+      "question": "When was the MAH MBA CET 2026 second attempt held?",
+      "answer": "A CET Cell public notice dated 26 April 2026 scheduled the second attempt of MAH MBA/MMS CET 2026 on 9 May 2026. Always use the official CET Cell site for any later correction."
+    },
+    {
+      "question": "What is the basic eligibility for MAH MBA/MMS CET?",
+      "answer": "The official 2026-27 information brochure required the candidate to be a citizen of India and to hold a minimum three-year bachelor's degree from a recognised university. Read the brochure for category-wise marks rules."
+    },
+    {
+      "question": "Does a CET score guarantee a seat?",
+      "answer": "No. Seats are allotted through the official CAP rounds, using the CET score, category and college options. A score without a CAP allotment is not an admission."
+    },
+    {
+      "question": "Why do so many first colleges have no fee on the card?",
+      "answer": "We do not hold a recorded total fee for many CET-tagged programmes. A blank cell is missing data, not a zero fee. Use the official fee approved for that college."
+    }
+  ],
+  "sources": [
+    {
+      "label": "State Common Entrance Test Cell, Maharashtra",
+      "url": "https://cetcell.mahacet.org/"
+    },
+    {
+      "label": "MAH MBA/MMS CET 2026 official information brochure",
+      "url": "https://cetcell.mahacet.org/wp-content/uploads/2023/12/MAH-MBA-MMS-CET-2026-Information-Brochure.pdf"
+    },
+    {
+      "label": "CET Cell public notice, 26 April 2026 (second attempt date)",
+      "url": "https://cetcell.mahacet.org/wp-content/uploads/2026/04/PUBLIC-NOTICE-for-MBA_MHT_Second-Attmp.-Exam-Date.pdf"
+    }
+  ]
+}

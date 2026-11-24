@@ -11,9 +11,15 @@ import { api, imageSrcSet, imageUrl, mediaUrl } from '../../lib/api';
 import { getLinkableEntities } from '../../lib/linkable-entities';
 import { LISTINGS_CACHE_VERSION, courseListingHref, getCourseFacets, getListingSummary, listingFetchOptions, parseCourseListingSegment, type CourseFacet } from '../../lib/listings';
 import ListingGuide from '../../components/ListingGuide';
+import ListingSummaryTable from '../../components/ListingSummaryTable';
+import ListingRelatedLinks from '../../components/ListingRelatedLinks';
+import { buildListingRelatedLinks, getPublishedListingArticleSlugs } from '../../lib/listing-related-links';
+import { CITY_PAGE_MIN_COLLEGES, isCityPageMinException } from '../../lib/listing-city-exceptions';
+import { getListingContentOverride } from '../../lib/listing-content';
 import { type ListedCollege, type ListPagination } from '../../components/CollegeListResults';
 import LoadMoreColleges from '../../components/LoadMoreColleges';
 import { getAdSlot } from '../../lib/ads';
+import { COURSE_LISTING_ADS } from '../../lib/course-listing-ads';
 import AdSlot from '../../components/ads/AdSlot';
 import PercentileCollegesPage, { percentileMetadata } from '../../components/PercentileCollegesPage';
 import { cutoffGroupsFor, getPercentileCombos, parsePercentileSegment } from '../../lib/percentile';
@@ -37,6 +43,7 @@ type ListingImage = { path: string; width: number; height: number; updatedAt?: s
 type CourseListing = { course: CourseFacet; data: ListedCollege[]; pagination: ListPagination; image?: ListingImage | null; cityPage?: CityPageOption | null };
 
 const PAGE_SIZE = 20;
+const MIN_COLLEGES_FOR_STATE_PAGE = 10;
 
 function stateCourseSegment(segment: string) {
   const match = /^(.+)-colleges-in-([a-z0-9-]+)$/.exec(segment);
@@ -72,7 +79,10 @@ const loadListing = cache(async (segment: string, page: number): Promise<CourseL
         `/colleges?page=${page}&perPage=${PAGE_SIZE}&course=${encodeURIComponent(facet.courseSlug)}&state=${encodeURIComponent(cityPage.stateSlug)}&city=${encodeURIComponent(cityPage.citySlug)}`,
         listingFetchOptions([`colleges:${facet.courseSlug}:${cityPage.stateSlug}:${cityPage.citySlug}`])
       );
-      if (result.pagination.total < 15) return null;
+      const belowCityMinimum = result.pagination.total < CITY_PAGE_MIN_COLLEGES
+        && !isCityPageMinException(facet.courseSlug, cityPage.citySlug, cityPage.stateSlug)
+        && !isCityPageMinException(facet.key, cityPage.citySlug, cityPage.stateSlug);
+      if (belowCityMinimum) return null;
       return { course: facet, data: result.data, pagination: result.pagination, cityPage };
     } catch {
       return null;
@@ -87,7 +97,7 @@ const loadListing = cache(async (segment: string, page: number): Promise<CourseL
         `/colleges?page=${page}&perPage=${PAGE_SIZE}&course=${encodeURIComponent(facet.courseSlug)}&state=${encodeURIComponent(statePage.stateSlug)}`,
         listingFetchOptions([`colleges:${facet.courseSlug}:${statePage.stateSlug}`])
       );
-      if (result.pagination.total < 15) return null;
+      if (result.pagination.total < MIN_COLLEGES_FOR_STATE_PAGE) return null;
       return {
         course: facet,
         data: result.data,
@@ -155,6 +165,7 @@ export async function generateMetadata({ params, searchParams }: { params: Param
     stateNames: (summary?.states || []).map((item) => item.name),
     publicCount: summary?.publicCount ?? null,
     privateCount: summary?.privateCount ?? null,
+    otherCount: summary?.otherCount ?? null,
     fees: summary?.fees ?? null
   });
   const title = seo.title;
@@ -225,10 +236,12 @@ export default async function CourseCollegesPage({ params, searchParams }: { par
     stateNames: (summary?.states || []).map((item) => item.name),
     publicCount: summary?.publicCount ?? null,
     privateCount: summary?.privateCount ?? null,
+    otherCount: summary?.otherCount ?? null,
     fees: summary?.fees ?? null
   });
   const heading = seo.title;
-  const introParagraphs = seo.intro;
+  const contentOverride = getListingContentOverride(listing);
+  const introParagraphs = contentOverride?.intro?.length ? contentOverride.intro : seo.intro;
   const contentHeadings = seo.headings;
   const courseStates = statePages.data.filter((item) => item.courseSlug === course.courseSlug);
   const courseCities = cityPages.data.filter((item) => item.courseSlug === course.courseSlug);
@@ -289,7 +302,21 @@ export default async function CourseCollegesPage({ params, searchParams }: { par
   ], `${pageUrl}#breadcrumb`);
 
   const listingAdFeed = await getAdSlot('listing_feed', { thin: !result.data.length });
-  return <main className="section ls-page"><div className="wrap">
+  const relatedGroups = buildListingRelatedLinks({
+    course,
+    facets: facets.data,
+    statePages: statePages.data,
+    cityPages: cityPages.data,
+    placeKind: cityPage ? 'city' : statePage ? 'state' : 'india',
+    currentHref: path,
+    stateSlug: cityPage?.stateSlug || statePage?.stateSlug || null,
+    stateName: cityPage?.stateName || (statePage ? stateName : null),
+    citySlug: cityPage?.citySlug || null,
+    cityName: cityPage?.cityName || null,
+    exams: summary?.exams || [],
+    articleSlugs: await getPublishedListingArticleSlugs()
+  });
+  return <main className="section ls-page ls-course-listing"><div className="wrap">
     <JsonLd data={jsonLd} />
     <JsonLd data={breadcrumbLd} />
     <nav className="breadcrumb ls-crumb" aria-label="Breadcrumb"><Link prefetch={false} href="/">Home</Link><span aria-hidden="true">›</span><Link prefetch={false} href="/colleges">Colleges</Link><span aria-hidden="true">›</span><span aria-current="page">{cityPage ? `${label} Colleges in ${cityName}` : statePage ? `${label} Colleges in ${stateName}` : `${label} Colleges`}</span></nav>
@@ -321,25 +348,38 @@ export default async function CourseCollegesPage({ params, searchParams }: { par
       placeKind={cityPage ? 'city' : statePage ? 'state' : 'india'}
       stateSlug={cityPage?.stateSlug || statePage?.stateSlug || null}
       siblingStates={courseStates.map((item) => ({ stateSlug: item.stateSlug, stateName: item.stateName, count: item.count, href: `/${course.key}-colleges-in-${item.stateSlug}` }))}
+      listingSlug={listing}
       summary={summary}
       year={LISTING_SEO_YEAR}
+      listedColleges={result.data.slice(0, 5).map((college) => ({
+        name: college.display_name || college.full_name,
+        slug: college.published_slug || college.slug,
+        city: college.city,
+        state: college.state
+      }))}
     /> : null}
     <AdSlot slotKey="listing_top" className="listing-ad" />
     <div className="listing-layout">
       <div className="listing-main">
-        <CourseFilterMobileButton percentileGroups={percentileGroups} facets={facets.data} totalColleges={facets.totalColleges} selectedKey={course.key} selectedState={cityPage?.stateSlug || statePage?.stateSlug || null} selectedCity={cityPage?.citySlug || null} statePages={statePages.data} cityPages={cityPages.data} />
+        <CourseFilterMobileButton hideCourseFilter percentileGroups={percentileGroups} facets={facets.data} totalColleges={facets.totalColleges} selectedKey={course.key} selectedState={cityPage?.stateSlug || statePage?.stateSlug || null} selectedCity={cityPage?.citySlug || null} statePages={statePages.data} cityPages={cityPages.data} />
+        <ListingSummaryTable
+          colleges={result.data}
+          heading={`Top ${Math.min(10, result.data.length)} ${label} colleges in ${cityPage ? cityName : statePage ? stateName : 'India'} ${LISTING_SEO_YEAR}`}
+          year={LISTING_SEO_YEAR}
+        />
         <div className="ls-head">
           <p className="ls-eyebrow"><Building2 size={14} aria-hidden="true" /> College list</p>
           <h2>{contentHeadings.list}</h2>
         </div>
         <p className="ls-count">{totalLabel} {label} colleges · load more to continue</p>
         {statePage || cityPage
-          ? <LoadMoreColleges initial={result.data} total={pagination.total} perPage={pagination.perPage} query={`course=${encodeURIComponent(course.courseSlug)}&state=${encodeURIComponent(cityPage?.stateSlug || statePage?.stateSlug || '')}${cityPage ? `&city=${encodeURIComponent(cityPage.citySlug)}` : ''}`} linkableEntities={linkableEntities} adFeed={listingAdFeed} />
-          : <LoadMoreColleges initial={result.data} total={pagination.total} perPage={pagination.perPage} endpoint={`/api/course-listing/${encodeURIComponent(course.key)}`} linkableEntities={linkableEntities} adFeed={listingAdFeed} />}
+          ? <LoadMoreColleges initial={result.data} total={pagination.total} perPage={pagination.perPage} query={`course=${encodeURIComponent(course.courseSlug)}&state=${encodeURIComponent(cityPage?.stateSlug || statePage?.stateSlug || '')}${cityPage ? `&city=${encodeURIComponent(cityPage.citySlug)}` : ''}`} linkableEntities={linkableEntities} adFeed={listingAdFeed} adPlacement={{ first: COURSE_LISTING_ADS.inline.firstAfter, every: COURSE_LISTING_ADS.inline.every, max: COURSE_LISTING_ADS.inline.max, includeLast: true }} />
+          : <LoadMoreColleges initial={result.data} total={pagination.total} perPage={pagination.perPage} endpoint={`/api/course-listing/${encodeURIComponent(course.key)}`} linkableEntities={linkableEntities} adFeed={listingAdFeed} adPlacement={{ first: COURSE_LISTING_ADS.inline.firstAfter, every: COURSE_LISTING_ADS.inline.every, max: COURSE_LISTING_ADS.inline.max, includeLast: true }} />}
         <p className="ls-note">Fees and placement figures are shown only where colleges have reported them; confirm the latest numbers on the official college website before applying.</p>
       </div>
-      <CourseFilterSidebar percentileGroups={percentileGroups} facets={facets.data} totalColleges={facets.totalColleges} selectedKey={course.key} selectedState={cityPage?.stateSlug || statePage?.stateSlug || null} selectedCity={cityPage?.citySlug || null} statePages={statePages.data} cityPages={cityPages.data} />
+      <CourseFilterSidebar hideCourseFilter percentileGroups={percentileGroups} facets={facets.data} totalColleges={facets.totalColleges} selectedKey={course.key} selectedState={cityPage?.stateSlug || statePage?.stateSlug || null} selectedCity={cityPage?.citySlug || null} statePages={statePages.data} cityPages={cityPages.data} />
     </div>
+    <ListingRelatedLinks groups={relatedGroups} />
     <AdSlot slotKey="listing_bottom" className="listing-ad" />
   </div></main>;
 }

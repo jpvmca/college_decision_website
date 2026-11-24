@@ -1,0 +1,100 @@
+{
+  "slug": "mba-colleges-accepting-tsicet-2026-admission-process",
+  "updatedOn": "24 Nov 2026",
+  "intro": [
+    "TS ICET is the Telangana Integrated Common Entrance Test for MBA and MCA seats in the state. This page lists MBA colleges accepting TS ICET 2026 from our records, and points you to the official counselling body.",
+    "We currently link {{count}} MBA / PGDM programme options at {{colleges}} colleges to this exam. {{published}} of those colleges have a published profile, including {{public}} public institutes.",
+    "The 2026 test was notified as TG ICET, and was conducted on behalf of the Telangana Council of Higher Education. Use icet.tgche.ac.in for the live notice, even if older pages still say TS ICET."
+  ],
+  "listLead": "The first cards are mostly private colleges in alphabetical order, so better-known Hyderabad campuses may appear further down. Some recorded fees are missing, and one figure in our file is too low to quote.",
+  "snapshot": [
+    "Our records place many of these colleges in Telangana, especially Hyderabad and Warangal, but they also tag a large group in Andhra Pradesh. Official TG ICET counselling is for Telangana universities, so verify any Andhra campus on the official seat list.",
+    "For colleges with a recorded average package, the median is {{pkgMedian}}, in a range from {{pkgMin}} to {{pkgMax}}. These are historical averages, not offers for the next batch.",
+    "When you compare top MBA / PGDM colleges in India 2026 that use a state test, start with the official TGCHE seat matrix, then use our fee and placement rows as a second check."
+  ],
+  "firstCollegesLead": [
+    "The opening cards have little or no fee and placement on file. That is a data gap, not a sign that the MBA is free or that placements are unreported on the college site.",
+    "Further down, campuses such as Badruka College PG Centre in Hyderabad have a recorded average package of ₹8 LPA in our files. Confirm the year and the official report before you rely on that figure."
+  ],
+  "sections": [
+    {
+      "heading": "How official Telangana ICET admissions work",
+      "paragraphs": [
+        "The 2026 notification was issued for TG ICET, on behalf of the Telangana Council of Higher Education, for MBA and MCA programmes of universities in Telangana. Andhra Pradesh now runs its own ICET, so the two states should not be mixed up.",
+        "After the test, seats are allotted through the official counselling process. A college tag in our database is not a substitute for the current seat matrix."
+      ],
+      "bullets": [
+        "Read the latest eligibility, dates and fee rules only on icet.tgche.ac.in or the TGCHE notice.",
+        "Check whether a college is in the Telangana counselling list, especially if our card shows an Andhra Pradesh address.",
+        "Treat a recorded fee of a few thousand rupees as a data error until the official fee notice says otherwise."
+      ]
+    }
+  ],
+  "compare": {
+    "heading": "How to shortlist MBA colleges accepting TS ICET 2026",
+    "paragraphs": [
+      "Use the official TG ICET list to see which campuses are actually participating this year, then compare location, fee and placements.",
+      "These checks will keep the shortlist honest:"
+    ],
+    "bullets": [
+      "Telangana versus Andhra Pradesh: official TG ICET is for Telangana universities; Andhra admissions use a separate state test.",
+      "Government and university colleges versus private affiliated colleges, because the fee and cut-off differ.",
+      "The official two-year fee, not a missing or clearly broken figure on our card.",
+      "The year of any placement figure. Our averages are historical records, not promises."
+    ]
+  },
+  "links": [
+    {
+      "label": "MBA / PGDM course guide",
+      "href": "/courses/mba"
+    },
+    {
+      "label": "Best MBA colleges in India",
+      "href": "/mba-colleges"
+    },
+    {
+      "label": "TS ICET exam page",
+      "href": "/exams/tsicet"
+    },
+    {
+      "label": "MBA colleges in Telangana",
+      "href": "/mba-colleges-in-telangana"
+    },
+    {
+      "label": "MBA colleges in Andhra Pradesh",
+      "href": "/mba-colleges-in-andhra-pradesh"
+    }
+  ],
+  "faqs": [
+    {
+      "question": "How many MBA colleges accept TS ICET in this list?",
+      "answer": "Our records link {{count}} MBA / PGDM programme options at {{colleges}} colleges to TS ICET. {{published}} of those colleges have a published profile. The official TGCHE counselling list for a given year may be different."
+    },
+    {
+      "question": "Is TS ICET the same as TG ICET?",
+      "answer": "The 2026 official notification used the name TG ICET, under the Telangana Council of Higher Education. Older documents and our exam name still say TS ICET. Use icet.tgche.ac.in for the current process."
+    },
+    {
+      "question": "Do Andhra Pradesh colleges take TS ICET?",
+      "answer": "Official TG ICET counselling is for MBA and MCA programmes of universities in Telangana. Andhra Pradesh has a separate state ICET. If an Andhra campus appears here, confirm it on the official seat list before you apply."
+    },
+    {
+      "question": "Where should I check eligibility and dates?",
+      "answer": "Use the official TG ICET notice on icet.tgche.ac.in, or the Telangana Council of Higher Education site. Eligibility and dates change by year, so we have not copied an unofficial marks rule here."
+    },
+    {
+      "question": "Are the packages on this page guaranteed?",
+      "answer": "No. For colleges with a recorded average package, the median is {{pkgMedian}}, from {{pkgMin}} to {{pkgMax}}. Many colleges here have no package on file. Check the latest official placement report."
+    }
+  ],
+  "sources": [
+    {
+      "label": "TGCHE official website",
+      "url": "https://tgche.ac.in/"
+    },
+    {
+      "label": "TG ICET official portal (TGCHE)",
+      "url": "https://icet.tgche.ac.in/"
+    }
+  ]
+}

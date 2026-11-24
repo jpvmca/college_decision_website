@@ -289,3 +289,75 @@ a.ls-course h2 { color: var(--ls-ink); }
 @media (max-width: 640px) {
   .page-byline, .ls-hero-copy > .page-byline, .cp-hero-copy > .page-byline { font-size: 12.5px; }
 }
+
+/* Contextual related lists at the bottom of course listing pages. */
+.listing-related {
+  margin: 28px 0 0;
+  padding: 22px 24px;
+  border: 1px solid var(--ls-line);
+  border-radius: 18px;
+  background: #fff;
+  box-shadow: var(--ls-shadow);
+}
+.listing-related .ls-head { margin-top: 0; }
+.listing-related-group + .listing-related-group { margin-top: 16px; }
+.listing-related-group h3 {
+  margin: 0 0 8px;
+  color: var(--ls-ink);
+  font-size: 15px;
+  font-weight: 750;
+}
+.listing-related-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 10px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.listing-related-links a {
+  display: inline-flex;
+  padding: 7px 12px;
+  border: 1px solid var(--ls-line);
+  border-radius: 999px;
+  background: var(--ls-soft);
+  color: var(--ls-navy);
+  font-size: 13.5px;
+  font-weight: 650;
+}
+.listing-related-links a:hover {
+  border-color: #c6d6f0;
+  background: var(--ls-blue-soft);
+  text-decoration: none;
+  color: var(--ls-navy);
+}
+@media (max-width: 760px) {
+  .listing-related { padding: 18px 16px; }
+}
+
+.listing-summary-table { margin: 0 0 22px; }
+.listing-summary-table .ls-head { margin-bottom: 8px; }
+.ls-rank-note {
+  margin: 0 0 12px;
+  color: var(--ls-muted, #4b5563);
+  font-size: 14.5px;
+  line-height: 1.55;
+}
+.listing-top-table { width: 100%; border-collapse: collapse; }
+.listing-top-table th, .listing-top-table td {
+  padding: 10px 12px;
+  text-align: left;
+  vertical-align: top;
+  border-bottom: 1px solid var(--ls-line, #e5e7eb);
+}
+.listing-top-table thead th {
+  font-size: 12.5px;
+  letter-spacing: .02em;
+  text-transform: uppercase;
+  color: var(--ls-muted, #4b5563);
+}
+.listing-top-table tbody th { font-weight: 650; }
+@media (max-width: 760px) {
+  .listing-summary-table .detail-table-wrap { margin-left: -4px; margin-right: -4px; }
+  .listing-top-table { min-width: 640px; }
+}

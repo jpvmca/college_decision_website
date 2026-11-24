@@ -1,0 +1,86 @@
+{
+  "slug": "top-llm-colleges-in-india-with-fees-2026",
+  "updatedOn": "24 Nov 2026",
+  "intro": [
+    "We hold a recorded total fee for {{count}} published LLM colleges in India. This guide puts the top LLM colleges in India with fees for 2026 in one place, but you must read the programme name on the first cards.",
+    "Ranked colleges with a fee on file come first. Several national law universities are missing because we do not yet hold a quotable LLM fee for them."
+  ],
+  "listLead": "The opening cards are not all Master of Law degrees. NLSIU appears first with a Master of Public Policy, and National Law University, Delhi, appears with a one-year postgraduate diploma. Look at the award before you compare fees.",
+  "snapshot": [
+    "Across the {{feeN}} published colleges on this list, the median recorded total fee is {{feeMedian}}. The middle half of colleges sits between {{feeP25}} and {{feeP75}}.",
+    "{{public}} of the colleges are public and {{private}} are private. After the first cards, several central universities appear with lower recorded LLM fees.",
+    "CLAT PG and CUET PG are tagged only to a small number of colleges in our file. Use the official notice when you compare top LLM colleges in India 2026."
+  ],
+  "firstCollegesLead": [
+    "NLSIU's first fee in our table is ₹2.04 lakh for the two-year Master of Public Policy, not an LLM. IIT Kharagpur has a recorded Master of Law fee of ₹2.85 lakh for two years.",
+    "National Law University, Delhi, is shown with a one-year PGD in Tourism and Environmental Law at ₹13,000. Lucknow University's recorded LLM fee is ₹12,990 for two years. Confirm each official notice."
+  ],
+  "sections": [
+    {
+      "heading": "Ranked LLM campuses missing a fee on this page",
+      "paragraphs": [
+        "NUJS, GNLU, NALSAR, NLU Odisha, Chanakya National Law University, Faculty of Law, Delhi University, and Symbiosis Law School, Pune, are among the ranked campuses missing from this fee list.",
+        "They are missing because we do not hold a quotable fee for them yet. An LLM search should start with those official sites as well as the cards below."
+      ]
+    }
+  ],
+  "compare": {
+    "heading": "How to compare the top LLM colleges in India with fees",
+    "paragraphs": [
+      "An LLM, a Master of Public Policy and a one-year postgraduate diploma are different awards. Compare fees only after you have fixed the degree you want.",
+      "Then check these points:"
+    ],
+    "bullets": [
+      "The exact award and duration on the official notice, not only the college name on the card.",
+      "Whether the recorded fee is for one year or the full master's programme.",
+      "The entrance test, which may be CLAT PG, CUET PG or a university exam.",
+      "Whether a well-known NLU is missing only because we do not hold its fee yet."
+    ]
+  },
+  "links": [
+    {
+      "label": "LLM course guide",
+      "href": "/courses/llm"
+    },
+    {
+      "label": "Best LLM colleges in India",
+      "href": "/llm-colleges"
+    },
+    {
+      "label": "CLAT exam page",
+      "href": "/exams/clat"
+    },
+    {
+      "label": "NLSIU Bangalore",
+      "href": "/colleges/national-law-school-of-india-university-nlsiu-karnataka-bangalore"
+    },
+    {
+      "label": "Top integrated law colleges in India with fees 2026",
+      "href": "/articles/top-integrated-law-colleges-in-india-with-fees-2026"
+    }
+  ],
+  "faqs": [
+    {
+      "question": "How many LLM colleges have fees listed here?",
+      "answer": "{{count}} published LLM colleges have a recorded total fee in our records. Some first cards are not LLM degrees, and several ranked NLUs are missing because we do not hold their fee yet."
+    },
+    {
+      "question": "What is the typical LLM fee in India in 2026?",
+      "answer": "Among the {{feeN}} published colleges here, the median recorded fee is {{feeMedian}}, and the middle half falls between {{feeP25}} and {{feeP75}}. Read the programme name, because this median mixes LLM and a few non-LLM postgraduate courses."
+    },
+    {
+      "question": "Why does NLSIU show a Master of Public Policy on an LLM page?",
+      "answer": "That is the first programme with a fee on file for NLSIU in this list. It is a two-year MPP at a recorded ₹2.04 lakh, not an LLM. Confirm LLM fees, if offered, on the official NLSIU notice."
+    },
+    {
+      "question": "Why are NALSAR, GNLU and NUJS missing from this fee list?",
+      "answer": "They are in our ranking, but we do not hold a quotable total fee for them yet, so they cannot be placed in a fee list. You can still find them on the LLM colleges page."
+    }
+  ],
+  "sources": [
+    {
+      "label": "NLSIU official site",
+      "url": "https://www.nls.ac.in/"
+    }
+  ]
+}

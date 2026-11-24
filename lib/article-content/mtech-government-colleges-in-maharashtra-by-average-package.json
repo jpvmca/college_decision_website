@@ -1,0 +1,89 @@
+{
+  "slug": "mtech-government-colleges-in-maharashtra-by-average-package",
+  "updatedOn": "2026-11-24",
+  "intro": [
+    "This page orders government M.Tech / M.E. colleges in Maharashtra by the average package we hold on file. It is a way to scan the best government M.Tech / M.E. colleges in Maharashtra, not a promise of the same salary for the next batch.",
+    "We currently list {{count}} government M.Tech / M.E. programme records for the state. Ranked or higher-package campuses come first."
+  ],
+  "listLead": "The first cards include the Department of Computer Science, Savitribai Phule Pune University, IIT Bombay, government engineering colleges at Karad and Aurangabad, ICT Mumbai, VNIT Nagpur, COEP Pune and VJTI Mumbai. A missing fee only means we do not hold that figure yet.",
+  "snapshot": [
+    "Among the government colleges here with an average package in our records, the median figure is {{pkgMedian}}, and the recorded averages range from {{pkgMin}} to {{pkgMax}}.",
+    "The placement years in our file run from {{pkgYearMin}} to {{pkgYearMax}}, so an older year should be read as history, not as a current offer. All ten of the first package records are linked to GATE."
+  ],
+  "firstCollegesLead": [
+    "The first card, Department of Computer Science, Savitribai Phule Pune University, shows a 2023 average of ₹9 lakh and a highest of ₹28 lakh. IIT Bombay appears next, with a NIRF 2025 engineering rank of 3, but no placement figure on this card.",
+    "ICT Mumbai and VNIT Nagpur show 2023 averages of ₹4 lakh in our records, with NIRF 2025 engineering ranks of 41 and 39. Those figures are historical records for that year, not a promise."
+  ],
+  "sections": [
+    {
+      "heading": "GATE and CCMT for government M.Tech seats",
+      "paragraphs": [
+        "Most government M.Tech seats in Maharashtra, including those at VNIT Nagpur, are filled using a GATE score. CCMT 2026 is the common counselling platform for M.Tech admissions at NITs, IIEST Shibpur, and some IIITs and CFTIs.",
+        "The CCMT 2026 brochure says a candidate needs a valid GATE score from 2024, 2025 or 2026, and at least 6.5 CGPA or 60% in the qualifying degree for the general, EWS and OBC categories, with a relaxation for SC, ST and PwD."
+      ]
+    }
+  ],
+  "compare": {
+    "heading": "How to compare the best government M.Tech / M.E. colleges in Maharashtra",
+    "paragraphs": [
+      "Use this list of top M.Tech / M.E. colleges in Maharashtra 2026 as a shortlist, then compare the official placement report and the GATE paper required for that specialisation.",
+      "These checks usually matter more than a small gap in the average package:"
+    ],
+    "bullets": [
+      "The exact M.Tech specialisation, because a computer science average is not a substitute for a core-branch figure at the same campus.",
+      "The year of the placement report, especially where our records go back several years.",
+      "Whether the seat is filled through CCMT, an IIT’s own GATE process, or a state admission route.",
+      "The official fee notice and any stipend or teaching-assistantship rules, which the package table does not show."
+    ]
+  },
+  "links": [
+    {
+      "label": "M.Tech / M.E. course guide",
+      "href": "/courses/mtech"
+    },
+    {
+      "label": "Best M.Tech colleges in India",
+      "href": "/mtech-colleges"
+    },
+    {
+      "label": "GATE exam guide",
+      "href": "/exams/gate"
+    }
+  ],
+  "faqs": [
+    {
+      "question": "How many government M.Tech colleges in Maharashtra are listed here?",
+      "answer": "Our records currently show {{count}} government M.Tech / M.E. programme options in Maharashtra. Only some of those have an average package on file, and those are the figures used to order the early cards."
+    },
+    {
+      "question": "What is a typical average package at these colleges?",
+      "answer": "Among the government colleges here with an average package in our records, the median is {{pkgMedian}}, and the recorded averages range from {{pkgMin}} to {{pkgMax}}. The highest package we hold is {{highestMax}}."
+    },
+    {
+      "question": "Is GATE compulsory for these government M.Tech seats?",
+      "answer": "GATE is the exam linked to the first package records on this list. NITs and several CFTIs admit through CCMT 2026 on a GATE score from 2024, 2025 or 2026, while IIT Bombay runs its own GATE-based process."
+    },
+    {
+      "question": "Are these packages guaranteed?",
+      "answer": "No, they are historical records from the years we hold, which in this file run from {{pkgYearMin}} to {{pkgYearMax}}, so confirm the latest official placement report before you rely on a number."
+    },
+    {
+      "question": "Why does IIT Bombay show no package on its card?",
+      "answer": "We do not yet hold an M.Tech average package for IIT Bombay in this list, even though the institute appears early because of its ranking. Check the official placement report for the current M.Tech batch."
+    }
+  ],
+  "sources": [
+    {
+      "label": "CCMT 2026 admissions portal",
+      "url": "https://ccmt.admissions.nic.in/"
+    },
+    {
+      "label": "IIT Bombay, M.Tech brochure 2026–27",
+      "url": "https://acad.iitb.ac.in/sites/default/files/MTECH%20BROUCHURE2026-27.pdf"
+    },
+    {
+      "label": "NIRF 2025 Engineering ranking",
+      "url": "https://www.nirfindia.org/Rankings/2025/EngineeringRanking.html"
+    }
+  ]
+}

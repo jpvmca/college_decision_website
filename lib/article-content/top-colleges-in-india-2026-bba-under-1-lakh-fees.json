@@ -1,0 +1,81 @@
+{
+  "slug": "top-colleges-in-india-2026-bba-under-1-lakh-fees",
+  "updatedOn": "24 Nov 2026",
+  "intro": [
+    "We hold a recorded main-programme fee of up to ₹{{budget}} lakh for {{count}} published BBA / BBM / BBS colleges in India. This list is for students looking at the best BBA / BBM / BBS colleges under ₹1 lakh.",
+    "Ranked colleges that fit the budget come first, then the rest are ordered by recorded total fee, lowest first. A low figure can be one-year tuition, so read the programme name on the card."
+  ],
+  "listLead": "The first cards include Deen Dayal Upadhyaya College in Delhi, MS Ramaiah College in Bangalore, and the College of Vocational Studies, also in Delhi. The last of those shows a recorded BMS fee of ₹10,000, which should be checked on the official notice.",
+  "snapshot": [
+    "Across the {{feeN}} published colleges here, the median recorded fee is {{feeMedian}}. The middle half sits between {{feeP25}} and {{feeP75}}.",
+    "Most listings are private ({{private}}), with {{public}} public institutes. Uttar Pradesh, Maharashtra, Madhya Pradesh, Haryana, Karnataka and Delhi NCR have the most colleges on this budget list.",
+    "Use the list of top BBA / BBM / BBS colleges in India 2026 as a shortlist, then confirm the official fee notice and the admission test."
+  ],
+  "firstCollegesLead": [
+    "Deen Dayal Upadhyaya College, a University of Delhi campus, is listed first, with a recorded BMS fee of ₹20,430 and a 2022 average package of ₹4 lakh. Delhi University undergraduate business seats are filled through CUET (UG) 2026, as the official bulletin sets out.",
+    "Uttarakhand Open University also appears early, which is an open university rather than a regular campus. Confirm the teaching model and whether a low fee is for one year or the full programme."
+  ],
+  "compare": {
+    "heading": "How to compare the best BBA / BBM / BBS colleges under ₹1 lakh",
+    "paragraphs": [
+      "Start with the award and the fee notice, because a BMS, a BBA and an integrated programme are not priced the same way.",
+      "Then check these points on the official site:"
+    ],
+    "bullets": [
+      "Whether the fee is for one year or the full programme, and whether university or exam charges are included.",
+      "Whether the college is a regular campus or an open or distance programme.",
+      "The entrance route for 2026, including CUET UG for Delhi University colleges.",
+      "The latest official placement report for that undergraduate programme, treated as a historical record rather than a promise."
+    ]
+  },
+  "links": [
+    {
+      "label": "BBA / BBM / BBS course guide",
+      "href": "/courses/bba"
+    },
+    {
+      "label": "Best BBA colleges in India",
+      "href": "/bba-colleges"
+    },
+    {
+      "label": "Top BBA colleges with fees 2026",
+      "href": "/articles/top-bba-colleges-in-india-with-fees-2026"
+    },
+    {
+      "label": "BBA admission and eligibility",
+      "href": "/articles/bba-admission-eligibility"
+    },
+    {
+      "label": "CUET UG exam guide",
+      "href": "/exams/cuet-ug"
+    }
+  ],
+  "faqs": [
+    {
+      "question": "How many BBA colleges here have a fee under ₹1 lakh?",
+      "answer": "{{count}} published BBA / BBM / BBS colleges in our records have a main-programme fee of up to ₹{{budget}} lakh, and colleges without a recorded fee do not appear on this budget list."
+    },
+    {
+      "question": "What is the typical fee on this under-₹1-lakh list?",
+      "answer": "Among the {{feeN}} published colleges here, the median recorded fee is {{feeMedian}}, and the middle half falls between {{feeP25}} and {{feeP75}}."
+    },
+    {
+      "question": "Is a ₹10,000 fee the cheapest full BBA programme?",
+      "answer": "Not necessarily, because ₹10,000 is only the lowest figure we treat as quotable, and it may be one-year tuition, so confirm the official notice before you budget."
+    },
+    {
+      "question": "How do Delhi University BMS admissions work in 2026?",
+      "answer": "The University of Delhi bulletin says undergraduate business seats are filled through CUET (UG) 2026. Confirm the required subjects in the official bulletin."
+    },
+    {
+      "question": "Why is an open university on this list?",
+      "answer": "Uttarakhand Open University has a recorded BBA fee under ₹1 lakh in our file, but the teaching model is not the same as a regular campus, so read the official prospectus."
+    }
+  ],
+  "sources": [
+    {
+      "label": "University of Delhi, Bulletin of Information for undergraduate admissions 2026–27",
+      "url": "https://ihe.du.ac.in/wp-content/uploads/2026/01/BOI_UG_2026_27.pdf"
+    }
+  ]
+}

@@ -1,0 +1,109 @@
+{
+  "slug": "mba-colleges-accepting-nmat-2026-admission-process",
+  "updatedOn": "24 Nov 2026",
+  "intro": [
+    "NMAT by GMAC is a computer-based test used by NMIMS and a wider set of MBA / PGDM campuses. This guide lists MBA colleges accepting NMAT 2026 from our records, then explains how the official process works.",
+    "We currently link {{count}} programme options at {{colleges}} colleges to NMAT. {{private}} of those colleges are private, and {{published}} have a published profile.",
+    "Ranked colleges appear first, which is why SPJIMR and NMIMS sit at the top of the cards. Always confirm on the college's own admission page that NMAT is accepted for the exact programme you want."
+  ],
+  "listLead": "The first cards are ranked institutes with an NMAT tag in our records. Some cards show an executive or non-flagship programme, so read the programme name before you compare fees or placements.",
+  "snapshot": [
+    "For colleges with a recorded average package, the median is {{pkgMedian}}, and the range runs from {{pkgMin}} to {{pkgMax}}. These are historical averages, not offers for the next batch.",
+    "Most of the {{colleges}} colleges are in Karnataka, Maharashtra, Haryana, Telangana and Uttar Pradesh, with Bangalore, Hyderabad and Mumbai showing up most often.",
+    "We do not hold a fee summary for this exam list, so use the first-colleges table and official fee notices when you compare cost at the top MBA / PGDM colleges in India 2026 that accept NMAT."
+  ],
+  "firstCollegesLead": [
+    "NMIMS officially admits to its MBA programmes through NMAT by GMAC, and asks for a bachelor's degree with at least 50% aggregate marks. Work experience is desirable, not mandatory, on the official 2026 handout.",
+    "SPJIMR appears first because of our ranking, but the card may show the General Management Programme rather than the flagship PGDM. Confirm on SPJIMR's admission page whether NMAT applies to the programme you want."
+  ],
+  "sections": [
+    {
+      "heading": "What the official NMAT process looks like",
+      "paragraphs": [
+        "NMAT is conducted by the Graduate Management Admission Council. You register on mba.com, then book a test slot at a centre; NMIMS says it does not accept the online home-proctored score.",
+        "NMIMS also states that it accepts only the first NMAT attempt in a testing cycle, even though GMAC may allow retakes. Check that rule if you plan a second attempt."
+      ],
+      "bullets": [
+        "Register for NMAT on the official GMAC site and keep the registration number.",
+        "If you want NMIMS, complete the separate NMIMS application (step 2) after you have an NMAT ID.",
+        "Each college sets its own cut-off, interview and eligibility, so the exam score is only the first filter."
+      ]
+    }
+  ],
+  "compare": {
+    "heading": "How to shortlist MBA colleges accepting NMAT 2026",
+    "paragraphs": [
+      "Start with colleges that officially name NMAT on their admission page, then compare the programme, campus and fee notice.",
+      "Use these checks before you lock a preference list:"
+    ],
+    "bullets": [
+      "Whether the college accepts only the first NMAT attempt, as NMIMS does, or will consider a retake.",
+      "The programme on the card: a flagship two-year MBA is not the same as an executive or specialised course.",
+      "The official fee notice for the full programme, because this list has no fee median and some cards have no fee at all.",
+      "NIRF and placement figures by year. In the NIRF 2025 Management ranking, SPJIMR is 20 and NMIMS Mumbai is 24.",
+      "The interview or written-ability round each campus adds after the NMAT score."
+    ]
+  },
+  "links": [
+    {
+      "label": "MBA / PGDM course guide",
+      "href": "/courses/mba"
+    },
+    {
+      "label": "Best MBA colleges in India",
+      "href": "/mba-colleges"
+    },
+    {
+      "label": "NMAT exam page",
+      "href": "/exams/nmat"
+    },
+    {
+      "label": "MBA colleges in Maharashtra",
+      "href": "/mba-colleges-in-maharashtra"
+    },
+    {
+      "label": "MBA colleges accepting XAT 2026",
+      "href": "/articles/mba-colleges-accepting-xat-2026-admission-process"
+    }
+  ],
+  "faqs": [
+    {
+      "question": "How many MBA colleges accept NMAT in this list?",
+      "answer": "Our records link {{count}} MBA / PGDM programme options at {{colleges}} colleges to NMAT. {{published}} of those colleges have a published profile. The full set of campuses that accept NMAT can change each year."
+    },
+    {
+      "question": "Who conducts NMAT and where do I apply?",
+      "answer": "NMAT by GMAC is conducted by the Graduate Management Admission Council. Register on the official site at mba.com/exams/nmat, then apply separately to each college, including NMIMS if that is your target."
+    },
+    {
+      "question": "Does NMIMS accept a second NMAT attempt?",
+      "answer": "NMIMS's official admissions FAQ says it accepts only the first NMAT attempt in a cycle, and it does not accept the home-proctored test. Other colleges may follow a different rule, so read each notice."
+    },
+    {
+      "question": "What eligibility does NMIMS ask for?",
+      "answer": "The official NMIMS NMAT 2026 handout asks for a bachelor's degree in any discipline from a recognised university, with at least 50% aggregate marks. Two years of work experience is described as desirable, not compulsory, for the regular MBA."
+    },
+    {
+      "question": "Are the packages on this page guaranteed?",
+      "answer": "No. Among colleges with a recorded average package, the median is {{pkgMedian}}, and the range is {{pkgMin}} to {{pkgMax}}. These are historical records from our files and must be checked in the latest official placement report."
+    }
+  ],
+  "sources": [
+    {
+      "label": "NMAT by GMAC official exam page",
+      "url": "https://www.mba.com/exams/nmat"
+    },
+    {
+      "label": "NMIMS NMAT admissions (official)",
+      "url": "https://nmat.nmims.edu/"
+    },
+    {
+      "label": "NMIMS NMAT 2026 admission handout (official PDF)",
+      "url": "https://nmat.nmims.edu/docs/Handout_Admission_NMAT_2026_compressed.pdf"
+    },
+    {
+      "label": "NIRF 2025 Management ranking",
+      "url": "https://www.nirfindia.org/Rankings/2025/ManagementRanking.html"
+    }
+  ]
+}

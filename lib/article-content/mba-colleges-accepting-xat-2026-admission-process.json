@@ -1,0 +1,108 @@
+{
+  "slug": "mba-colleges-accepting-xat-2026-admission-process",
+  "updatedOn": "24 Nov 2026",
+  "intro": [
+    "XAT is the Xavier Aptitude Test, conducted by XLRI Jamshedpur on behalf of XAMI. This page lists MBA colleges accepting XAT 2026 from our records, starting with XLRI itself.",
+    "We currently link {{count}} MBA / PGDM programme options at {{colleges}} colleges to XAT. {{published}} of those colleges have a published profile. Several of them also appear in the official NIRF 2025 Management list.",
+    "The official XAT 2026 exam was held on 4 January 2026. XLRI says more than 250 institutes use the score. Confirm each college's current admission page, because not every campus on a long list uses XAT for every programme."
+  ],
+  "listLead": "XLRI appears first, but the opening card may be a Fellow Programme rather than the flagship Business Management or Human Resource Management PGDM. Read the programme name before you compare fees.",
+  "snapshot": [
+    "The {{colleges}} colleges are spread across Karnataka, Maharashtra, Odisha, Delhi NCR and Uttar Pradesh, with Bangalore, Bhubaneswar and Delhi appearing most often. {{private}} are private and {{public}} is public in our classification.",
+    "For colleges with a recorded average package, the median is {{pkgMedian}}, in a range from {{pkgMin}} to {{pkgMax}}. These are historical records, not offers for the next batch.",
+    "XLRI is 10th in the NIRF 2025 Management ranking. That official rank is the one to use when you compare top MBA / PGDM colleges in India 2026 that accept XAT."
+  ],
+  "firstCollegesLead": [
+    "Our table may show XLRI's Master in Human Resource Development and Management at a recorded fee of ₹14.30 lakh, with a 2024 average of ₹30 LPA and a highest of ₹75 LPA. Confirm that programme against XLRI's official BM and HRM notice.",
+    "Some later cards show unusually low fees, such as ₹50,000 at Alliance University or ₹47,000 for a programme at AIMS Institutes. Those figures may not be the full-time flagship fee, so use the official notice."
+  ],
+  "sections": [
+    {
+      "heading": "Official XAT 2026 rules",
+      "paragraphs": [
+        "XAT 2026 was a computer-based test on 4 January 2026, conducted by XLRI on behalf of XAMI. Registration on xatonline.in ran from 10 July to 5 December 2025, with the score card available from 31 January to 31 March 2026.",
+        "For XLRI's BM and HRM programmes, the official prospectus asked for a bachelor's degree of at least three years in any discipline. Candidates whose final exams would not be over by 12 June 2026 were not to be admitted."
+      ],
+      "bullets": [
+        "A XAT score can be used at XLRI and at XAT associate institutions; each campus still runs its own shortlist and interview.",
+        "XLRI's shortlist for BM and HRM is based on XAT scores, with academic background and work experience also considered later.",
+        "There is no minimum percentage stated in the official XAT bulletin to sit the exam itself; individual colleges may set their own marks rule."
+      ]
+    }
+  ],
+  "compare": {
+    "heading": "How to shortlist MBA colleges accepting XAT 2026",
+    "paragraphs": [
+      "Start with campuses that name XAT on their official admission page, then compare programme, fee and the latest placement report.",
+      "Use these checks:"
+    ],
+    "bullets": [
+      "Whether you are looking at XLRI's flagship BM or HRM, or at another programme that happens to sit first in our table.",
+      "The official two-year fee notice, especially where our card shows a clearly partial figure.",
+      "NIRF 2025 Management ranks from the official list, for example XLRI at 10, Amrita Vishwa Vidyapeetham at 26 and BIMTECH at 61.",
+      "The year of any placement figure. Our averages are historical records, not promises."
+    ]
+  },
+  "links": [
+    {
+      "label": "MBA / PGDM course guide",
+      "href": "/courses/mba"
+    },
+    {
+      "label": "Best MBA colleges in India",
+      "href": "/mba-colleges"
+    },
+    {
+      "label": "XAT exam page",
+      "href": "/exams/xat"
+    },
+    {
+      "label": "XLRI Jamshedpur",
+      "href": "/colleges/xlri-jamshedpur-jharkhand-jamshedpur"
+    },
+    {
+      "label": "MBA colleges accepting CAT 2026",
+      "href": "/articles/mba-colleges-accepting-cat-2026-admission-process"
+    }
+  ],
+  "faqs": [
+    {
+      "question": "How many MBA colleges accept XAT in this list?",
+      "answer": "Our records link {{count}} MBA / PGDM programme options at {{colleges}} colleges to XAT. XLRI states that more than 250 institutes use the score, so the official associate list may be longer than this page."
+    },
+    {
+      "question": "When was XAT 2026 held?",
+      "answer": "The official exam was on Sunday, 4 January 2026. Registration closed on 5 December 2025, and the score card could be downloaded between 31 January and 31 March 2026, as per the XAT 2026 e-bulletin."
+    },
+    {
+      "question": "What is the eligibility for XAT and XLRI?",
+      "answer": "To sit XAT, you need a bachelor's degree of at least three years, or to be in the final year. For XLRI BM and HRM, the 2026 prospectus required that final exams be over by 12 June 2026."
+    },
+    {
+      "question": "What is XLRI's NIRF rank?",
+      "answer": "In the NIRF 2025 Management ranking, XLRI is ranked 10."
+    },
+    {
+      "question": "Are the packages on this page guaranteed?",
+      "answer": "No. For colleges with a recorded average package, the median is {{pkgMedian}}, from {{pkgMin}} to {{pkgMax}}. XLRI's 2024 record in our files is an average of ₹30 LPA and a highest of ₹75 LPA, which is historical, not a promise."
+    }
+  ],
+  "sources": [
+    {
+      "label": "XAT 2026 official site",
+      "url": "https://www.xatonline.in/"
+    },
+    {
+      "label": "XAT 2026 e-bulletin (official PDF)",
+      "url": "https://www.xatonline.in/assets/pdf/XAT-e_Bulletin-2026.pdf"
+    },
+    {
+      "label": "XLRI admissions prospectus 2026 (official PDF)",
+      "url": "https://www.xatonline.in/assets/pdf/XLRI_Admission_Prospectus_2026.pdf"
+    },
+    {
+      "label": "NIRF 2025 Management ranking",
+      "url": "https://www.nirfindia.org/Rankings/2025/ManagementRanking.html"
+    }
+  ]
+}

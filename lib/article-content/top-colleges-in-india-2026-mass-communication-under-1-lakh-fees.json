@@ -1,0 +1,82 @@
+{
+  "slug": "top-colleges-in-india-2026-mass-communication-under-1-lakh-fees",
+  "updatedOn": "24 Nov 2026",
+  "intro": [
+    "We hold a recorded main-programme fee of up to ₹{{budget}} lakh for {{count}} published Mass-Communication colleges in India. This list of the best Mass-Communication colleges under ₹{{budget}} lakh is made up entirely of private colleges in our records.",
+    "Dr Zakir Husain Institute, Patna, is listed first with a Bachelor of Journalism and Mass Communication at ₹15,000. Amity University, Patna, follows with B.A. Journalism and Mass Communication at ₹32,000.",
+    "Uttar Pradesh and Madhya Pradesh have the most listings. SET and GGSIPU CET are the only recorded entrance tests, and most colleges are untagged."
+  ],
+  "listLead": "These are the top Mass-Communication colleges in India 2026 with a recorded main-programme fee of up to ₹1 lakh. Titles vary between BJMC and B.A. Journalism, so compare the official award, not only the fee.",
+  "snapshot": [
+    "Across {{feeN}} published colleges with a recorded fee, the median total is {{feeMedian}}, and the middle half sits between {{feeP25}} and {{feeP75}}.",
+    "All {{published}} colleges are private. Two records have a fee band that can exceed ₹1 lakh even though the minimum is under the cap.",
+    "Patna, Indore, Delhi, Gwalior and Noida appear more than once. A city count is not a measure of newsroom training quality."
+  ],
+  "firstCollegesLead": [
+    "Rayat Bahra Institute of Management, Hoshiarpur, and CT Group of Institutions, Jalandhar, have recorded BJMC fees of ₹35,000 and ₹38,850. Confirm whether those official fees are annual.",
+    "Amity University, Patna, has a 2023 average package of ₹5 lakh in our records. That figure is historical and may not be published for every journalism batch."
+  ],
+  "sections": [
+    {
+      "heading": "What a journalism fee under ₹1 lakh may miss",
+      "paragraphs": [
+        "Studio, lab and fieldwork charges are often billed separately. A low tuition can still leave a larger official bill.",
+        "If you need a university degree title, check whether the official award is BJMC, B.A. Journalism, or another variant before you apply."
+      ]
+    }
+  ],
+  "compare": {
+    "heading": "How to compare the best Mass-Communication colleges under ₹1 lakh",
+    "paragraphs": [
+      "Private journalism colleges at this budget differ widely in studios, internships and university affiliation. The recorded fee is only the first filter.",
+      "Check these official points:"
+    ],
+    "bullets": [
+      "The official award and duration, and whether the fee is annual or for the full course.",
+      "Affiliation and approval, plus any studio or workshop charges.",
+      "The admission test, including SET or a university CET where it applies.",
+      "The official campus city, because Patna, Indore, Meerut and Delhi living costs differ."
+    ]
+  },
+  "links": [
+    {
+      "label": "Mass-communication course guide",
+      "href": "/courses/mass-communication"
+    },
+    {
+      "label": "Best mass-communication colleges in India",
+      "href": "/mass-communication-colleges"
+    },
+    {
+      "label": "BHM colleges under ₹1 lakh",
+      "href": "/articles/top-colleges-in-india-2026-bhm-under-1-lakh-fees"
+    },
+    {
+      "label": "BCA colleges under ₹1 lakh",
+      "href": "/articles/top-colleges-in-india-2026-bca-under-1-lakh-fees"
+    }
+  ],
+  "faqs": [
+    {
+      "question": "How many mass-communication colleges have fees under ₹1 lakh here?",
+      "answer": "We list {{published}} published Mass-Communication colleges with a recorded main-programme fee up to ₹{{budget}} lakh. All of them are private in our records."
+    },
+    {
+      "question": "What is a typical fee on this list?",
+      "answer": "The median recorded total is {{feeMedian}}, and the middle half falls between {{feeP25}} and {{feeP75}}. Confirm the official full-course fee and any studio charges."
+    },
+    {
+      "question": "Are there public mass-communication colleges on this list?",
+      "answer": "Not in our current published set. All {{published}} colleges here are recorded as private, so a public-university journalism department would appear only if we hold a qualifying fee for it."
+    },
+    {
+      "question": "What programme does the first college offer?",
+      "answer": "Dr Zakir Husain Institute, Patna, is listed with a Bachelor of Journalism and Mass Communication at ₹15,000. Confirm the official duration and fee notice before you treat that as a three-year total."
+    },
+    {
+      "question": "Is this a ranking of the best Mass-Communication colleges under ₹1 lakh?",
+      "answer": "No. It is a fee filter. Internships, studios and affiliation should guide the shortlist along with the official fee."
+    }
+  ],
+  "sources": []
+}

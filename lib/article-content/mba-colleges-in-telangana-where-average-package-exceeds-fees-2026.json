@@ -1,0 +1,91 @@
+{
+  "slug": "mba-colleges-in-telangana-where-average-package-exceeds-fees-2026",
+  "updatedOn": "24 Nov 2026",
+  "intro": [
+    "{{count}} published MBA / PGDM colleges in Telangana have a recorded average package higher than their recorded total fee. This list of the best MBA / PGDM colleges in Telangana where average package exceeds fees starts with NIT Warangal, then Hyderabad colleges.",
+    "NIT Warangal is listed with MBA Finance at ₹1.335 lakh and a 2023 average of ₹17 lakh. Its card also shows a highest package of ₹88 lakh, and an older NIRF figure of 100 that we have not treated as a 2025 rank.",
+    "Ten of the {{published}} colleges are in Hyderabad and one is in Warangal. Most Hyderabad fees are modest, and several may be annual figures."
+  ],
+  "listLead": "These are the top MBA / PGDM colleges in Telangana 2026 on this value filter. After NIT Warangal, the Hyderabad names overlap with our Hyderabad city article, including Osmania University departments.",
+  "snapshot": [
+    "Across {{feeN}} colleges with a recorded fee, the median total is {{feeMedian}}, and the middle half sits between {{feeP25}} and {{feeP75}}.",
+    "{{private}} colleges are private and {{public}} are public. Every recorded average on this list is from {{pkgYearMin}}.",
+    "TS ICET is the most common recorded test, with CAT appearing at fewer colleges. The highest recorded package is {{highestMax}}, at NIT Warangal, which is one 2023 offer, not the ₹17 lakh average."
+  ],
+  "firstCollegesLead": [
+    "Osmania University's Department of Business Management is listed with MBA in Technology Management at ₹40,000 and a 2023 average of ₹8 lakh. Confirm the official general MBA fee if that is your course.",
+    "Sri Indu College, which also appears on the Hyderabad list, has a recorded MBA fee of ₹27,000. Treat that as a prompt to check whether the official notice is annual."
+  ],
+  "sections": [
+    {
+      "heading": "NIT Warangal and the Hyderabad cluster",
+      "paragraphs": [
+        "NIT Warangal's 2023 average of ₹17 lakh sits well above the Hyderabad private-college averages of about ₹4–8 lakh in our records. Compare official reports, not only our cards.",
+        "CMR College of Engineering & Technology has a recorded highest package of ₹58 lakh against a ₹4 lakh average in 2023. Use the average, and the official report, when you plan."
+      ]
+    }
+  ],
+  "compare": {
+    "heading": "How to judge the best MBA / PGDM colleges in Telangana where average package exceeds fees",
+    "paragraphs": [
+      "A National Institute MBA and an affiliated-college MBA can both pass this filter and still differ sharply in official fees, tests and batch size.",
+      "Check these official points:"
+    ],
+    "bullets": [
+      "The official two-year MBA fee, especially where our figure is under ₹1 lakh.",
+      "Whether admission is through CAT at NIT Warangal or through TS ICET counselling at Hyderabad colleges.",
+      "The 2023 official placement report, since every recorded average here is from that year.",
+      "The exact specialisation on the card, such as MBA Finance or Technology Management."
+    ]
+  },
+  "links": [
+    {
+      "label": "MBA / PGDM course guide",
+      "href": "/courses/mba"
+    },
+    {
+      "label": "Best MBA colleges in Telangana",
+      "href": "/mba-colleges-in-telangana"
+    },
+    {
+      "label": "MBA colleges in Hyderabad where package exceeds fees",
+      "href": "/articles/mba-colleges-in-hyderabad-where-average-package-exceeds-fees-2026"
+    },
+    {
+      "label": "TS ICET exam guide",
+      "href": "/exams/tsicet"
+    },
+    {
+      "label": "CAT exam guide",
+      "href": "/exams/cat"
+    }
+  ],
+  "faqs": [
+    {
+      "question": "How many MBA colleges in Telangana have an average package above fees?",
+      "answer": "We list {{published}} published colleges in Telangana on this filter. A college needs both a recorded fee and a recorded average package to appear."
+    },
+    {
+      "question": "What was NIT Warangal's recorded average package?",
+      "answer": "Our records show a 2023 average of ₹17 lakh for the MBA Finance card, and a highest package of ₹88 lakh. The highest figure is one offer, not a typical package, and it is not a guarantee."
+    },
+    {
+      "question": "Do most Telangana colleges on this list take TS ICET?",
+      "answer": "TS ICET is the most frequently recorded test here, and CAT appears at fewer colleges, including NIT Warangal. Confirm the latest admission route in the official brochure."
+    },
+    {
+      "question": "Why do some Telangana MBA fees look very low?",
+      "answer": "The median recorded total is {{feeMedian}}. Some Hyderabad affiliated-college figures may be annual. Check the official fee notice before you treat them as a two-year cost."
+    },
+    {
+      "question": "Are the placement figures guaranteed?",
+      "answer": "No. Every recorded average on this Telangana list is from {{pkgYearMin}}. Use the college's latest official placement report."
+    }
+  ],
+  "sources": [
+    {
+      "label": "NIRF 2025 Management ranking",
+      "url": "https://www.nirfindia.org/rankings/2025/ManagementRanking.html"
+    }
+  ]
+}

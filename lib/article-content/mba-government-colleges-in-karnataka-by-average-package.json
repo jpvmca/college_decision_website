@@ -1,0 +1,72 @@
+{
+  "slug": "mba-government-colleges-in-karnataka-by-average-package",
+  "updatedOn": "24 Nov 2026",
+  "intro": [
+    "This page lists the best government MBA / PGDM colleges in Karnataka by the average packages in our records. We currently link {{count}} programme options at {{colleges}} colleges, of which {{published}} have a published profile.",
+    "IIM Bangalore is the national institute on this short list, alongside NIT Surathkal and Kousali Institute of Management Studies, Dharwad. One college in our file has no published slug, so it cannot be linked here."
+  ],
+  "listLead": "IIM Bangalore appears first. The opening card may be the Post Graduate Programme in Public Policy and Management rather than the flagship PGP, so read the programme name before you compare packages.",
+  "snapshot": [
+    "Only a handful of colleges have a recorded average package here, so we have not quoted a median in this text. Read each official report on its own.",
+    "IIM Bangalore is 2nd in the official NIRF 2025 Management ranking. That official rank is the one to use when you compare top MBA / PGDM colleges in Karnataka 2026 on this government list."
+  ],
+  "firstCollegesLead": [
+    "Our table records a 2023 average of ₹36 LPA at IIM Bangalore, and a highest of ₹33 LPA on the same row. A highest below the average is a data warning, so rely on the official IIMB placement report.",
+    "Kousali Institute of Management Studies has a 2023 recorded average of ₹4 LPA. NIT Surathkal has no placement year in our first table, so use its official report."
+  ],
+  "compare": {
+    "heading": "How to compare the best government MBA / PGDM colleges in Karnataka",
+    "paragraphs": [
+      "IIM Bangalore's flagship PGP and a public-policy or specialised programme are not the same product. Compare them separately from the NIT and university MBAs.",
+      "Use these checks:"
+    ],
+    "bullets": [
+      "The exact programme on the card, not only the institute name.",
+      "The official placement report, especially where our highest and average figures do not line up.",
+      "The official NIRF 2025 rank for IIM Bangalore, which is 2.",
+      "CAT, GMAT or Karnataka PGCET, depending on the campus."
+    ]
+  },
+  "links": [
+    {
+      "label": "MBA / PGDM course guide",
+      "href": "/courses/mba"
+    },
+    {
+      "label": "Best MBA colleges in Karnataka",
+      "href": "/mba-colleges-in-karnataka"
+    },
+    {
+      "label": "CAT exam page",
+      "href": "/exams/cat"
+    },
+    {
+      "label": "Karnataka PGCET exam page",
+      "href": "/exams/pgcet"
+    }
+  ],
+  "faqs": [
+    {
+      "question": "How many government MBA colleges in Karnataka are on this list?",
+      "answer": "Our records link {{count}} programme options at {{colleges}} colleges, of which {{published}} are published. IIM Bangalore, NIT Surathkal and Kousali Institute of Management Studies are the named published campuses."
+    },
+    {
+      "question": "What package does IIM Bangalore show here?",
+      "answer": "Our 2023 record shows an average of ₹36 LPA. The highest on the same row is ₹33 LPA, which does not line up, so use the official IIMB placement report."
+    },
+    {
+      "question": "What is IIM Bangalore's NIRF rank?",
+      "answer": "In the official NIRF 2025 Management ranking, IIM Bangalore is ranked 2."
+    },
+    {
+      "question": "Why is there no package median on this page?",
+      "answer": "Too few colleges here have a recorded average package for a stable median. Read each official report instead of a single mid-point figure."
+    }
+  ],
+  "sources": [
+    {
+      "label": "NIRF 2025 Management ranking",
+      "url": "https://www.nirfindia.org/Rankings/2025/ManagementRanking.html"
+    }
+  ]
+}

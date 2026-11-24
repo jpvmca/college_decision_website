@@ -1,0 +1,69 @@
+{
+  "slug": "mba-colleges-in-karnataka-with-50-lakh-highest-package-2026",
+  "updatedOn": "2026-11-24",
+  "intro": [
+    "We list {{count}} MBA / PGDM colleges in Karnataka, all in Bangalore, where our records show a highest package of at least ₹{{threshold}} lakh. IIM Bangalore is the clear anchor of this short list of MBA colleges in Karnataka with ₹50 lakh highest package.",
+    "IIM Bangalore is 2nd in the official NIRF 2025 Management ranking and leads the top MBA colleges in Karnataka 2026. The other qualifying row is an older IBS Bengaluru record, so read each year carefully."
+  ],
+  "listLead": "The IIM Bangalore card that meets this threshold is a 2023 PGP Finance record, with an average of ₹30 LPA and a highest of ₹100 LPA in our file. The official 2025 PGP report publishes a mean of ₹34.88 LPA and a median of ₹32.61 LPA, but it does not publish a highest CTC, so that 2025 row cannot be used for this threshold.",
+  "snapshot": [
+    "IBS Bengaluru's MBA Finance row for 2022 shows an average of ₹9 LPA and a highest of ₹53 LPA in our records. An older 2016 MS Ramaiah Institute of Technology record is no longer used, because this page now only considers placement years from 2020 onward.",
+    "A 2016 figure is too old to treat as a current outcome, so Ramaiah is not on this page. Use the latest official report if you are considering that campus."
+  ],
+  "firstCollegesLead": [
+    "The official IIM Bangalore Placement Report 2025 lists a mean CTC of ₹34.88 LPA and a median of ₹32.61 LPA, and does not publish a highest CTC. Older programme rows where the highest is below the average should not be used."
+  ],
+  "compare": {
+    "heading": "How to read highest-package figures in Karnataka",
+    "paragraphs": [
+      "IIM Bangalore, IBS Bengaluru and an engineering-college MBA are three different options. The shared ₹{{threshold}} lakh threshold is not a shared peer group."
+    ],
+    "bullets": [
+      "Match the programme on the card with the official PGP or MBA report.",
+      "Ignore or re-check any row where the highest package is lower than the average.",
+      "Treat a 2022 or 2023 record as historical, and use the official 2025 IIM Bangalore PGP mean and median as the latest audited figures we have."
+    ]
+  },
+  "links": [
+    {
+      "label": "MBA / PGDM course guide",
+      "href": "/courses/mba"
+    },
+    {
+      "label": "Best MBA colleges in Karnataka",
+      "href": "/mba-colleges-in-karnataka"
+    },
+    {
+      "label": "Best MBA colleges in India",
+      "href": "/mba-colleges"
+    },
+    {
+      "label": "MBA colleges accepting CAT",
+      "href": "/exams/cat"
+    }
+  ],
+  "faqs": [
+    {
+      "question": "Which MBA colleges in Karnataka with ₹50 lakh highest package are listed here?",
+      "answer": "{{count}} colleges in Bangalore: IIM Bangalore and IBS Bengaluru. MS Ramaiah Institute of Technology is no longer listed, because its only qualifying record in our file was from 2016."
+    },
+    {
+      "question": "What is IIM Bangalore's NIRF rank?",
+      "answer": "IIM Bangalore is 2nd in the official NIRF 2025 Management ranking. The qualifying package row in our file is still a 2023 PGP Finance record (highest ₹100 LPA, average ₹30 LPA), because the official 2025 PGP report does not publish a highest CTC."
+    },
+    {
+      "question": "Why is the IIM Bangalore card still a 2023 record?",
+      "answer": "Those older public-policy or business-analytics rows should not be used. The official 2025 PGP report lists a mean of ₹34.88 LPA and a median of ₹32.61 LPA, and does not publish a highest CTC."
+    },
+    {
+      "question": "Why is MS Ramaiah Institute of Technology no longer on this list?",
+      "answer": "Its only qualifying record in our file was from 2016, and this page now uses placement years from 2020 onward. Confirm the latest official MBA placement report before you compare it with IIM Bangalore."
+    }
+  ],
+  "sources": [
+    {
+      "label": "NIRF 2025 Management ranking",
+      "url": "https://www.nirfindia.org/Rankings/2025/ManagementRanking.html"
+    }
+  ]
+}

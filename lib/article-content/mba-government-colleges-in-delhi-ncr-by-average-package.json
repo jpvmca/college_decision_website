@@ -1,0 +1,85 @@
+{
+  "slug": "mba-government-colleges-in-delhi-ncr-by-average-package",
+  "updatedOn": "24 Nov 2026",
+  "intro": [
+    "This page lists the best government MBA / PGDM colleges in Delhi NCR by the average packages in our records. We currently link {{count}} programme options at {{colleges}} public colleges.",
+    "FMS, IIT Delhi, IIFT and Jamia Millia Islamia are among the campuses here. Packages are historical records, not offers, and some years in our file go back to {{pkgYearMin}}."
+  ],
+  "listLead": "Ranked colleges appear first, then other public campuses. Several cards have no fee on file, and one IIFT row may show an executive diploma rather than the flagship MBA, so read the programme name.",
+  "snapshot": [
+    "For the {{colleges}} colleges with a recorded average package, the median is {{pkgMedian}}, and the range runs from {{pkgMin}} to {{pkgMax}}. The recorded years run from {{pkgYearMin}} to {{pkgYearMax}}.",
+    "Almost all of these campuses are in Delhi, and CAT is the exam most often tagged in our records. Use the official placement report when you compare top MBA / PGDM colleges in Delhi NCR 2026."
+  ],
+  "firstCollegesLead": [
+    "In our records, IIFT has a 2023 average of ₹28 LPA and a highest of ₹82 LPA, and FMS Delhi has a recorded average of ₹26 LPA. Confirm both in the latest official reports.",
+    "IIT Delhi's Department of Management Studies has a 2025 recorded average of ₹22.53 LPA and a highest of ₹43.55 LPA. In the official NIRF 2025 Management ranking, IIT Delhi is 4 and IIFT is 17."
+  ],
+  "sections": [
+    {
+      "heading": "How to read NIRF ranks on this Delhi NCR list",
+      "paragraphs": [
+        "In the official NIRF 2025 Management ranking, IIT Delhi is 4, IIFT is 17, Jamia Millia Islamia is 28, Guru Gobind Singh Indraprastha University is 76 and Jamia Hamdard is 87.",
+        "FMS is part of the University of Delhi and is not listed as a separate institute in that NIRF 2025 top 100 table, so do not invent a rank for it."
+      ]
+    }
+  ],
+  "compare": {
+    "heading": "How to compare the best government MBA / PGDM colleges in Delhi NCR",
+    "paragraphs": [
+      "A high average package is only one filter. Compare the programme, the official fee and the year of the placement report before you shortlist.",
+      "Use these checks:"
+    ],
+    "bullets": [
+      "Whether the card is a full-time MBA or an executive or specialised diploma, especially at IIFT.",
+      "The year of the package. Our records here run from {{pkgYearMin}} to {{pkgYearMax}}, and older years should be treated with care.",
+      "The official NIRF 2025 Management rank, which may differ from the number on a card.",
+      "CAT and each campus's own shortlist and interview rules."
+    ]
+  },
+  "links": [
+    {
+      "label": "MBA / PGDM course guide",
+      "href": "/courses/mba"
+    },
+    {
+      "label": "Best MBA colleges in Delhi NCR",
+      "href": "/mba-colleges-in-delhi-ncr"
+    },
+    {
+      "label": "CAT exam page",
+      "href": "/exams/cat"
+    },
+    {
+      "label": "IIFT Delhi",
+      "href": "/colleges/indian-institute-of-foreign-trade-iift-delhi-ncr-delhi"
+    },
+    {
+      "label": "Best MBA colleges in India",
+      "href": "/mba-colleges"
+    }
+  ],
+  "faqs": [
+    {
+      "question": "How many government MBA colleges in Delhi NCR are on this list?",
+      "answer": "Our records link {{count}} MBA / PGDM programme options at {{colleges}} public colleges in Delhi NCR. All {{published}} of those colleges have a published profile."
+    },
+    {
+      "question": "What is the typical average package on this list?",
+      "answer": "Among colleges with a recorded average, the median is {{pkgMedian}}, from {{pkgMin}} to {{pkgMax}}. These are historical figures from {{pkgYearMin}} to {{pkgYearMax}}, not promises for the next batch."
+    },
+    {
+      "question": "Which campuses have the stronger recorded packages?",
+      "answer": "In our file, IIFT and a Jamia Millia Islamia programme show recorded averages of ₹28 LPA, and FMS Delhi shows ₹26 LPA. Check the official report and the exact programme before you compare them."
+    },
+    {
+      "question": "What is IIT Delhi's NIRF rank?",
+      "answer": "In the official NIRF 2025 Management ranking, IIT Delhi is 4 and IIFT is 17."
+    }
+  ],
+  "sources": [
+    {
+      "label": "NIRF 2025 Management ranking",
+      "url": "https://www.nirfindia.org/Rankings/2025/ManagementRanking.html"
+    }
+  ]
+}

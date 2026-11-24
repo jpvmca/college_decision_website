@@ -1,0 +1,84 @@
+{
+  "slug": "mba-government-colleges-in-uttarakhand-by-average-package",
+  "updatedOn": "24 Nov 2026",
+  "intro": [
+    "We list {{count}} government MBA / PGDM programme options, but they belong to only {{colleges}} public institutes in Uttarakhand. This page is a short list of the best government MBA colleges in Uttarakhand for which we hold a package record.",
+    "IIM Kashipur accounts for most of the rows. It leads the top MBA colleges in Uttarakhand 2026, followed by Doon University and the Institute of Cooperative Management in Dehradun."
+  ],
+  "listLead": "Eighteen of the {{count}} rows belong to IIM Kashipur, including doctoral and executive options. Read the programme name on each card so you do not compare a PGP with a fellow programme.",
+  "snapshot": [
+    "Only {{colleges}} public colleges appear here, all in Kashipur or Dehradun. Because the college count is small, treat every figure as a single-institute record, not a state average.",
+    "Our placement years for this list run from {{pkgYearMin}} to {{pkgYearMax}}. The older years are a weak guide to the next batch, so prefer the latest official report."
+  ],
+  "firstCollegesLead": [
+    "IIM Kashipur is 23rd in the official NIRF 2025 Management ranking. Some of its cards still carry a 2016 executive or fellow programme figure, which is not the current two-year PGP outcome.",
+    "Doon University's MBA and the Institute of Cooperative Management's MBA both show a 2023 highest package of ₹8 LPA in our records, with averages of ₹3 LPA and ₹4 LPA."
+  ],
+  "sections": [
+    {
+      "heading": "A government MBA college in Uttarakhand that is not on this list",
+      "paragraphs": [
+        "IIT Roorkee is 22nd in the NIRF 2025 Management ranking, one place above IIM Kashipur, but it does not appear in this government list. If you are comparing public options in the state, check IIT Roorkee's own MBA page as well."
+      ]
+    }
+  ],
+  "compare": {
+    "heading": "How to compare the best government MBA colleges in Uttarakhand",
+    "paragraphs": [
+      "Three colleges are not a large sample, so compare programme by programme rather than looking for a state-wide pattern.",
+      "Use the official documents to check:"
+    ],
+    "bullets": [
+      "Whether the card shows a two-year PGP or MBA, or an executive or fellow programme.",
+      "The placement year; a 2016 figure should be replaced by the latest official report.",
+      "The full fee, hostel cost and entrance test (CAT is the usual route at IIM Kashipur).",
+      "How IIM Kashipur compares with IIT Roorkee, which is ranked 22nd in NIRF 2025 Management but is missing here."
+    ]
+  },
+  "links": [
+    {
+      "label": "MBA / PGDM course guide",
+      "href": "/courses/mba"
+    },
+    {
+      "label": "Best MBA colleges in Uttarakhand",
+      "href": "/mba-colleges-in-uttarakhand"
+    },
+    {
+      "label": "Best MBA colleges in India",
+      "href": "/mba-colleges"
+    },
+    {
+      "label": "MBA colleges accepting CAT",
+      "href": "/exams/cat"
+    }
+  ],
+  "faqs": [
+    {
+      "question": "How many government MBA colleges in Uttarakhand are on this page?",
+      "answer": "Only {{colleges}} public institutes, even though the list has {{count}} rows. Most rows are different programmes at IIM Kashipur."
+    },
+    {
+      "question": "What is IIM Kashipur's NIRF rank?",
+      "answer": "IIM Kashipur is 23rd in the official NIRF 2025 Management ranking. That rank is for the institute, not for every executive or fellow programme on the cards."
+    },
+    {
+      "question": "Why is IIT Roorkee missing from this government list?",
+      "answer": "We do not have it in this file, even though IIT Roorkee is 22nd in the NIRF 2025 Management ranking. Check its official MBA page if you want another public option in Uttarakhand."
+    },
+    {
+      "question": "Are the Dehradun package figures current?",
+      "answer": "Doon University and the Institute of Cooperative Management both have 2023 placement years in our records. They are still historical figures, so confirm them in each college's latest official report."
+    },
+    {
+      "question": "Should I use an average package from 2016?",
+      "answer": "No. A 2016 figure is too old for a 2026 decision. Use it only as a marker that we hold some data, and then open the latest official placement report."
+    }
+  ],
+  "sources": [
+    {
+      "label": "NIRF 2025 Management ranking",
+      "url": "https://www.nirfindia.org/Rankings/2025/ManagementRanking.html"
+    }
+  ]
+}

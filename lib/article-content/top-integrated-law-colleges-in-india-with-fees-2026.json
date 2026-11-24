@@ -1,0 +1,94 @@
+{
+  "slug": "top-integrated-law-colleges-in-india-with-fees-2026",
+  "updatedOn": "24 Nov 2026",
+  "intro": [
+    "We hold a recorded total fee for {{count}} published Integrated Law colleges in India. This guide puts the top Integrated Law colleges in India with fees for 2026 in one place, starting with NLSIU Bangalore and NLIU Bhopal.",
+    "Ranked colleges with a fee on file come first. Several other national law universities are missing from this fee list because we do not yet hold a quotable total fee for them."
+  ],
+  "listLead": "The first two cards are NLSIU and NLIU, then the list continues by recorded fee, lowest first. Most programmes are five-year BA LLB courses, but some recorded fees look like a single year rather than the full five years.",
+  "snapshot": [
+    "Across the {{feeN}} published colleges on this list, the median recorded total fee is {{feeMedian}}. The middle half of colleges sits between {{feeP25}} and {{feeP75}}.",
+    "{{private}} of the colleges are private and {{public}} are public. Uttar Pradesh, Haryana and Karnataka have the most listings, and 20 colleges are tagged to CLAT in our records.",
+    "Use that exam tag as a starting point for the top Integrated Law colleges in India 2026, then confirm the current CLAT or state-law admission notice for the campus you want."
+  ],
+  "firstCollegesLead": [
+    "NLSIU Bangalore has a recorded BA LLB fee of ₹3.14 lakh, and NLIU Bhopal a recorded BA LLB (Hons) fee of ₹1.80 lakh, each listed as five years. Confirm whether those figures are one year or the full programme.",
+    "Fees under ₹10,000 are kept off this list. A BA LLB row for the Faculty of Law at Banaras Hindu University in our file was below that floor and is not quoted here."
+  ],
+  "sections": [
+    {
+      "heading": "Ranked law universities missing a fee on this page",
+      "paragraphs": [
+        "A fee list can only show colleges with a quotable total fee. In our records, NUJS Kolkata, GNLU, NALSAR, HNLU, NLU Odisha, Chanakya National Law University, Faculty of Law, Delhi University, and Symbiosis Law School, Pune, are among the ranked campuses missing from this page.",
+        "You can still look them up on the integrated law or BA LLB listings and on each university's official fee notice."
+      ]
+    }
+  ],
+  "compare": {
+    "heading": "How to compare the top Integrated Law colleges in India with fees",
+    "paragraphs": [
+      "A five-year BA LLB at a national law university and a five-year course at a private college should be compared on the annual and total fee, the entrance test, and the official rules, not only on the order of our cards.",
+      "Check these points:"
+    ],
+    "bullets": [
+      "Whether the recorded fee is for one year or all five years, and whether hostel and mess are included.",
+      "The entrance test: CLAT for many NLUs, or a state test such as LAWCET or MH CET Law.",
+      "Whether a well-known NLU is missing only because we do not hold its fee yet.",
+      "The official university fee notification for the year you are joining, which can change annually."
+    ]
+  },
+  "links": [
+    {
+      "label": "Integrated Law course guide",
+      "href": "/courses/integrated-law"
+    },
+    {
+      "label": "Best BA LLB colleges in India",
+      "href": "/ba-llb-colleges"
+    },
+    {
+      "label": "CLAT exam page",
+      "href": "/exams/clat"
+    },
+    {
+      "label": "NLSIU Bangalore",
+      "href": "/colleges/national-law-school-of-india-university-nlsiu-karnataka-bangalore"
+    },
+    {
+      "label": "Top LLB colleges in India with fees 2026",
+      "href": "/articles/top-law-colleges-in-india-with-fees-2026"
+    }
+  ],
+  "faqs": [
+    {
+      "question": "How many integrated law colleges have fees listed here?",
+      "answer": "{{count}} published Integrated Law colleges have a recorded total fee in our records. Ranked universities without a quotable fee are not placed in this list."
+    },
+    {
+      "question": "What is the typical integrated law fee in India in 2026?",
+      "answer": "Among the {{feeN}} published colleges here, the median recorded fee is {{feeMedian}}, and the middle half falls between {{feeP25}} and {{feeP75}}. Check whether a figure is for one year or the full five-year BA LLB."
+    },
+    {
+      "question": "What fee do you hold for NLSIU and NLIU?",
+      "answer": "Our records show ₹3.14 lakh for the BA LLB at NLSIU Bangalore and ₹1.80 lakh for the BA LLB (Hons) at NLIU Bhopal, each listed as a five-year programme. Confirm the current official fee notice, including whether the amount is annual."
+    },
+    {
+      "question": "Why are NALSAR, GNLU and NUJS missing from this fee list?",
+      "answer": "They are in our ranking, but we do not hold a quotable total fee for them yet, so they cannot be placed in a fee list. You can still find them on the BA LLB colleges page."
+    },
+    {
+      "question": "Which exam is used for these colleges?",
+      "answer": "In our records, CLAT is linked to 20 colleges on this list, with smaller numbers tagged to LAWCET, AILET and MH CET Law. Each university publishes its own admission rule for the year."
+    }
+  ],
+  "sources": [
+    {
+      "label": "NLSIU official B.A., LL.B. (Hons.) programme page",
+      "url": "https://www.nls.ac.in/programme/ba-llb-hons/"
+    },
+    {
+      "label": "Consortium of NLUs / CLAT 2026 NLSIU brochure",
+      "url": "https://clat2026.consortiumofnlus.ac.in/clat-2026/nlus/brochure/NLSIU.pdf"
+    }
+  ]
+}

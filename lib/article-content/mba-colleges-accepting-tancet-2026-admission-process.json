@@ -1,0 +1,108 @@
+{
+  "slug": "mba-colleges-accepting-tancet-2026-admission-process",
+  "updatedOn": "24 Nov 2026",
+  "intro": [
+    "TANCET is the Tamil Nadu Common Entrance Test, conducted by Anna University for MBA and MCA admissions in the state. This page lists MBA colleges accepting TANCET 2026 from our records.",
+    "We currently link {{count}} MBA / PGDM programme options at {{colleges}} colleges to TANCET. {{published}} of those colleges have a published profile, including {{public}} public institutes.",
+    "Anna University's official 2026 notice asked for a recognised bachelor's degree of at least three years, with 50% marks, or 45% for the reserved categories of Tamil Nadu named in that notice."
+  ],
+  "listLead": "The first cards are mostly private engineering-college MBA programmes in alphabetical order, so well-known university departments may appear further down. Several recorded fees look like a single year or a government-quota figure.",
+  "snapshot": [
+    "Almost all of the {{colleges}} colleges we can place are in Tamil Nadu, with Chennai, Coimbatore, Erode, Salem and Tiruchirappalli showing up most often. A couple of campuses outside the state are tagged here and should be verified.",
+    "For colleges with a recorded average package, the median is {{pkgMedian}}. We have not treated the lowest recorded figure as a reliable floor, because some averages in the file look too low to use without a check.",
+    "Anna University is 88th in the NIRF 2025 Management ranking. Use that official rank, not an older number on a card, when you compare top MBA / PGDM colleges in India 2026 that take TANCET."
+  ],
+  "firstCollegesLead": [
+    "College of Engineering, Guindy, has a recorded MBA in Tourism Management fee of ₹42,920 and a 2023 average package of ₹6 LPA in our files. The Department of Management Studies at Anna University is also on this list, with a NIRF tag in our records.",
+    "Many neighbouring cards show a fee of ₹17,500. That often looks like a one-year or government-quota figure, so confirm the full programme cost on the official fee notice before you compare colleges."
+  ],
+  "sections": [
+    {
+      "heading": "Official TANCET MBA rules",
+      "paragraphs": [
+        "The Government of Tamil Nadu authorised Anna University to conduct TANCET 2026 for MBA and MCA, along with CEETA-PG for engineering postgraduate courses. Applications were accepted only online through the official TANCET site.",
+        "For the 2026 cycle, Anna University later issued score cards. If you are planning the next cycle, use tancet.annauniv.edu for the new notification rather than last year's dates."
+      ],
+      "bullets": [
+        "MBA eligibility in the official 2026 table was a recognised bachelor's degree of minimum three years.",
+        "The marks rule was at least 50%, or 45% for BC, BCM, MBC, SC, SCA and ST candidates belonging to Tamil Nadu.",
+        "A TANCET score is followed by the state's counselling and each college's own document checks."
+      ]
+    }
+  ],
+  "compare": {
+    "heading": "How to shortlist MBA colleges accepting TANCET 2026",
+    "paragraphs": [
+      "Compare government and university departments with private affiliated colleges on fee, location and the official counselling rank list, not only on the order of our cards.",
+      "Work through these checks:"
+    ],
+    "bullets": [
+      "Whether the college is in the current Tamil Nadu MBA counselling list, not only tagged to TANCET in our database.",
+      "Whether a recorded fee is for one year or two, and whether it is a government-quota fee.",
+      "Anna University's official NIRF 2025 Management rank of 88, if you are using rank as a filter.",
+      "The year of any placement figure. Our averages are historical records, not offers."
+    ]
+  },
+  "links": [
+    {
+      "label": "MBA / PGDM course guide",
+      "href": "/courses/mba"
+    },
+    {
+      "label": "Best MBA colleges in India",
+      "href": "/mba-colleges"
+    },
+    {
+      "label": "TANCET exam page",
+      "href": "/exams/tancet"
+    },
+    {
+      "label": "MBA colleges in Tamil Nadu",
+      "href": "/mba-colleges-in-tamil-nadu"
+    },
+    {
+      "label": "Government MBA colleges in Tamil Nadu",
+      "href": "/articles/mba-government-colleges-in-tamil-nadu-by-average-package"
+    }
+  ],
+  "faqs": [
+    {
+      "question": "How many MBA colleges accept TANCET in this list?",
+      "answer": "Our records link {{count}} MBA / PGDM programme options at {{colleges}} colleges to TANCET. {{published}} of those colleges have a published profile. The official counselling list for a given year may differ."
+    },
+    {
+      "question": "Who conducts TANCET?",
+      "answer": "Anna University, Chennai, conducts TANCET on behalf of the Government of Tamil Nadu for MBA and MCA admissions. The official site is tancet.annauniv.edu."
+    },
+    {
+      "question": "What is the eligibility for MBA through TANCET?",
+      "answer": "The official 2026 eligibility table asked for a recognised bachelor's degree of at least three years, with 50% marks, or 45% for BC, BCM, MBC, SC, SCA and ST candidates belonging to Tamil Nadu."
+    },
+    {
+      "question": "Which well-known campuses take TANCET?",
+      "answer": "In our records, the Department of Management Studies at Anna University and the College of Engineering, Guindy, are on this list, along with many affiliated private colleges in Chennai, Coimbatore and other cities."
+    },
+    {
+      "question": "Are the fees and packages on the cards complete?",
+      "answer": "Not always. Several cards show ₹17,500, which may be a one-year or quota figure. The median recorded average package is {{pkgMedian}}, but some low averages need a check against the official report."
+    }
+  ],
+  "sources": [
+    {
+      "label": "TANCET official site, Anna University",
+      "url": "https://tancet.annauniv.edu/tancet/index.html"
+    },
+    {
+      "label": "TANCET 2026 qualifying examination and eligibility (official PDF)",
+      "url": "https://tancet.annauniv.edu/tancet/QUALIFYING%20EXAMINATION%20AND%20ELIGIBILITY.pdf"
+    },
+    {
+      "label": "TANCET / CEETA-PG 2026 information brochure (official PDF)",
+      "url": "https://tancet.annauniv.edu/tancet/Information%20Brochure%202026.pdf"
+    },
+    {
+      "label": "NIRF 2025 Management ranking",
+      "url": "https://www.nirfindia.org/Rankings/2025/ManagementRanking.html"
+    }
+  ]
+}

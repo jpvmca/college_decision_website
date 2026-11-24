@@ -1,0 +1,82 @@
+{
+  "slug": "top-colleges-in-india-2026-bca-under-1-lakh-fees",
+  "updatedOn": "24 Nov 2026",
+  "intro": [
+    "We hold a recorded main-programme fee of up to ₹{{budget}} lakh for {{count}} published BCA colleges in India. This list of the best BCA colleges under ₹{{budget}} lakh is a fee filter, not a national ranking of teaching quality.",
+    "MS Ramaiah College of Arts, Science and Commerce and Mount Carmel College, both in Bangalore, lead the first cards, with recorded BCA fees of ₹85,000 and ₹95,666. Later cards show much lower figures that may be annual tuition.",
+    "Most colleges here are private. Uttar Pradesh, Tamil Nadu, Madhya Pradesh, Karnataka, Maharashtra and Punjab have the most listings."
+  ],
+  "listLead": "These are the top BCA colleges in India 2026 with a recorded main-programme fee of up to ₹1 lakh. A few colleges have a fee range that crosses ₹1 lakh, so read the minimum and maximum on the card.",
+  "snapshot": [
+    "Across {{feeN}} published colleges with a recorded fee, the median total is {{feeMedian}}, and the middle half sits between {{feeP25}} and {{feeP75}}.",
+    "{{private}} colleges are private, {{public}} are public, and {{count}} is the list size. A handful of records have no ownership type.",
+    "GGSIPU CET is the only entrance test with a recorded count on this list. Many BCA admissions are college-level or through a state or university process that is not tagged here."
+  ],
+  "firstCollegesLead": [
+    "Prestige Institute of Management and Research, Indore, and St Xavier's College, Ahmedabad, have recorded BCA fees close to ₹33,000. St Xavier's has no ownership type in our records.",
+    "St Joseph's College, Devagiri, is listed at ₹11,333, and a few Uttar Pradesh and Tamil Nadu colleges are close to ₹12,000. Figures that low are often annual, so confirm the official full-course fee."
+  ],
+  "sections": [
+    {
+      "heading": "How to read a BCA fee under ₹1 lakh",
+      "paragraphs": [
+        "Our filter uses the main recorded BCA fee. If a college also offers a higher-fee specialised BCA, that programme may not be the one on the card.",
+        "Aliah University, Kolkata, is one of the public colleges near the top, with a recorded fee range of ₹12,900–₹14,100. Check the official notice for the latest year."
+      ]
+    }
+  ],
+  "compare": {
+    "heading": "How to compare the best BCA colleges under ₹1 lakh",
+    "paragraphs": [
+      "A Bangalore private college and a public university BCA can both fit this budget and still differ in labs, internships and entrance rules.",
+      "Check these official points:"
+    ],
+    "bullets": [
+      "Whether the fee is for one year or the full three-year BCA, and what exam or laboratory charges add.",
+      "The admission route, including CUET, a university CET, or direct college admission.",
+      "The official programme name, so you are not comparing a general BCA with a specialised or honours variant.",
+      "The city and living costs, which are not included in the tuition figures here."
+    ]
+  },
+  "links": [
+    {
+      "label": "BCA course guide",
+      "href": "/courses/bca"
+    },
+    {
+      "label": "Best BCA colleges in India",
+      "href": "/bca-colleges"
+    },
+    {
+      "label": "BCA colleges with fees in India",
+      "href": "/articles/top-bca-colleges-in-india-with-fees-2026"
+    },
+    {
+      "label": "MCA colleges under ₹1 lakh",
+      "href": "/articles/top-colleges-in-india-2026-mca-under-1-lakh-fees"
+    }
+  ],
+  "faqs": [
+    {
+      "question": "How many BCA colleges in India have fees under ₹1 lakh here?",
+      "answer": "We list {{published}} published BCA colleges with a recorded main-programme fee up to ₹{{budget}} lakh. Colleges without a usable fee on file are not in this budget list."
+    },
+    {
+      "question": "What is a typical BCA fee on this list?",
+      "answer": "Among the {{feeN}} colleges, the median recorded total is {{feeMedian}}, and the middle half falls between {{feeP25}} and {{feeP75}}. Confirm whether the official notice is annual or for the full course."
+    },
+    {
+      "question": "Why do some BCA fees look as low as ₹12,000?",
+      "answer": "A few early cards show figures just above ₹10,000. We do not treat fees under ₹10,000 as valid minimums. Confirm the official full-course fee before you treat a low figure as the complete cost."
+    },
+    {
+      "question": "Are government BCA colleges included?",
+      "answer": "Yes. {{public}} public colleges are on this list, alongside {{private}} private colleges. Public does not automatically mean a lower official fee in every city."
+    },
+    {
+      "question": "Is this a ranking of the best BCA colleges in India?",
+      "answer": "No. It is a fee filter for the best BCA colleges under ₹1 lakh in our records. Use the college site and, where relevant, the BCA colleges in India listing to compare academics."
+    }
+  ],
+  "sources": []
+}

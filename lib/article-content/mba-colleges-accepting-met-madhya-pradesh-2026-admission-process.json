@@ -1,0 +1,96 @@
+{
+  "slug": "mba-colleges-accepting-met-madhya-pradesh-2026-admission-process",
+  "updatedOn": "24 Nov 2026",
+  "intro": [
+    "We list {{published}} published MBA / PGDM colleges, from {{count}} programme listings, that are tagged under MET Madhya Pradesh. This page on MBA colleges accepting MET Madhya Pradesh 2026 needs an important official caveat about the 2026-27 admission route.",
+    "Directorate of Technical Education, Madhya Pradesh, runs MBA counselling for the state. For recent cycles, including coverage of 2026 counselling, DTE MP has used CMAT scores rather than a separate state MET. Our exam tag name should not be read as a standalone 2026 test.",
+    "All published colleges here are in Madhya Pradesh, mainly in Bhopal and Indore. Several first-page colleges are unpublished in our records, and many first cards have no programme fee."
+  ],
+  "listLead": "These are the top MBA / PGDM colleges in {{place}} 2026 that we have tagged under MET Madhya Pradesh. The first names are in list order, and some early colleges are unpublished, so they may not appear as live college pages.",
+  "snapshot": [
+    "{{private}} published colleges are private and {{public}} is public. Bhopal and Indore have eight published colleges each in our snapshot, with smaller counts in Gwalior, Jabalpur and Dewas.",
+    "We do not hold a usable fee snapshot for this full list. Where averages exist, the recorded median is {{pkgMedian}}, ranging from {{pkgMin}} to {{pkgMax}}. Those figures are historical.",
+    "Use the official DTE MP counselling process and CMAT, not this tag name alone, when you plan a 2026-27 MP MBA application."
+  ],
+  "firstCollegesLead": [
+    "Several first cards, including Bhartiya Vidya Mandir College of Management, have no recorded programme or fee. Makhanlal Chaturvedi Vishwavidyalaya is the public college, with a recorded MBA fee of ₹62,410 and a 2023 average of ₹8 lakh.",
+    "Malwa Institute of Science & Technology, Indore, is listed with an MBA fee of ₹52,500 and a 2023 average of ₹4 lakh. Confirm both official notices, because those fees may be annual."
+  ],
+  "sections": [
+    {
+      "heading": "Official MP MBA admissions in 2026, and our exam tag",
+      "paragraphs": [
+        "DTE MP publishes MBA counselling rules and schedules on its official portal. Current public explanations of the process, and DTE counselling material for 2026, describe CMAT as the entrance score used for the state merit list.",
+        "We have not found a separate official 2026 \"MET Madhya Pradesh\" MBA question paper or application page to match this tag. Treat the tag as a historical or internal label, and follow DTE MP and CMAT for the current cycle."
+      ],
+      "bullets": [
+        "Confirm the current DTE MP counselling notice before you apply, including any CMAT requirement.",
+        "Check whether a college also accepts CAT or another test for a management quota or a later round.",
+        "Ignore blank fees on our cards and use the official college or DTE fee data."
+      ]
+    }
+  ],
+  "compare": {
+    "heading": "How to shortlist MBA colleges tagged under MET Madhya Pradesh",
+    "paragraphs": [
+      "A Bhopal private college and a public university MBA can both appear on this tagged list and still use official 2026-27 DTE counselling on CMAT.",
+      "Check these official points:"
+    ],
+    "bullets": [
+      "The latest DTE MP MBA counselling notice and CMAT merit-list rule.",
+      "The official two-year MBA fee, especially where our card is blank or close to ₹50,000–₹60,000.",
+      "Whether the college is published on our site, because some first-page names are unpublished.",
+      "The official campus city in Madhya Pradesh."
+    ]
+  },
+  "links": [
+    {
+      "label": "MBA / PGDM course guide",
+      "href": "/courses/mba"
+    },
+    {
+      "label": "Best MBA colleges in Madhya Pradesh",
+      "href": "/mba-colleges-in-madhya-pradesh"
+    },
+    {
+      "label": "CMAT admission article",
+      "href": "/articles/mba-colleges-accepting-cmat-2026-admission-process"
+    },
+    {
+      "label": "MET Madhya Pradesh exam page",
+      "href": "/exams/met-madhya-pradesh"
+    },
+    {
+      "label": "MBA colleges in Madhya Pradesh where package exceeds fees",
+      "href": "/articles/mba-colleges-in-madhya-pradesh-where-average-package-exceeds-fees-2026"
+    }
+  ],
+  "faqs": [
+    {
+      "question": "How many MBA colleges accepting MET Madhya Pradesh 2026 are on this list?",
+      "answer": "We list {{published}} published colleges, drawn from {{count}} programme listings, under this tag. Some further colleges on the first page are unpublished. The official DTE MP counselling list can differ."
+    },
+    {
+      "question": "Is MET Madhya Pradesh the official MBA entrance test in 2026?",
+      "answer": "We have not found a separate official 2026 MET MBA test conducted by DTE MP. Official counselling material for the state MBA process uses CMAT scores. Follow the latest DTE MP notice, not this tag name alone."
+    },
+    {
+      "question": "How should I apply for an MBA in Madhya Pradesh in 2026-27?",
+      "answer": "Use the official DTE MP counselling portal and the CMAT process described in the current admission notice. Confirm each college's accepted tests and official fee before you fill choices."
+    },
+    {
+      "question": "Why do so many first colleges have no fee or programme name?",
+      "answer": "Several tagged colleges have no recorded MBA fee or programme title in our table. A blank cell is missing data, not a zero fee. Use the official college or DTE fee information."
+    },
+    {
+      "question": "Are the placement figures guaranteed?",
+      "answer": "No. Where we hold averages, they range from {{pkgMin}} to {{pkgMax}}, with a median of {{pkgMedian}}. They are historical records and should be checked against the latest official report."
+    }
+  ],
+  "sources": [
+    {
+      "label": "Directorate of Technical Education, Madhya Pradesh (official portal)",
+      "url": "https://dte.mponline.gov.in/"
+    }
+  ]
+}

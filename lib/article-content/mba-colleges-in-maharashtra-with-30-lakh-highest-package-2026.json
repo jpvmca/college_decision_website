@@ -1,0 +1,90 @@
+{
+  "slug": "mba-colleges-in-maharashtra-with-30-lakh-highest-package-2026",
+  "updatedOn": "24 Nov 2026",
+  "intro": [
+    "We list {{count}} MBA / PGDM colleges in Maharashtra where our records show a highest package of at least ₹{{threshold}} lakh. Mumbai and Pune account for almost all of them.",
+    "These MBA colleges in Maharashtra with ₹30 lakh highest package include IIM Mumbai, IIT Bombay, SPJIMR, SIBM Pune and JBIMS. They are part of the top MBA colleges in Maharashtra 2026, but some cards still show the wrong programme or an old year."
+  ],
+  "listLead": "Ranked colleges appear first, then the rest by recorded package. Read the programme name: the IIT Bombay card may show an Executive MBA fee, and one JBIMS card still shows a weak MHRD row.",
+  "snapshot": [
+    "Across these {{colleges}} colleges, the median recorded average package is {{pkgMedian}}, from placement years {{pkgYearMin}} to {{pkgYearMax}}.",
+    "Recorded averages run from {{pkgMin}} to {{pkgMax}}. The highest single figure we hold is {{highestMax}}, on JBIMS's MMS Finance row for 2024.",
+    "Twelve of the fifteen colleges are listed as private, and three as public. Some placement years, including 2015 and 2017, are too old to use without the latest official report."
+  ],
+  "firstCollegesLead": [
+    "In the official NIRF 2025 Management ranking, IIM Mumbai is 6th, SIBM Pune is 11th, IIT Bombay is 14th, SPJIMR is 20th and IIM Nagpur is 25th.",
+    "SPJIMR's PGDM Finance row for 2024 shows an average of ₹33 LPA and a highest of ₹81 LPA in our records. JBIMS's MMS Finance row for 2024 shows ₹26 LPA and ₹87 LPA; ignore the MHRD card that shows ₹1 LPA and ₹4 LPA."
+  ],
+  "sections": [
+    {
+      "heading": "Programme names that do not match the flagship course",
+      "paragraphs": [
+        "The IIT Bombay card may display an Executive MBA fee of ₹21 lakh, while the qualifying placement row in our file is MBA Finance for 2024. Confirm the full-time MBA fee on the official SJMSOM page.",
+        "Several later cards, including Regenesys (2015) and NMIMS (2017), clear this threshold on older years. Treat those as historical records only."
+      ]
+    }
+  ],
+  "compare": {
+    "heading": "How to compare MBA colleges in Maharashtra with ₹30 lakh highest package",
+    "paragraphs": [
+      "A highest package is one top offer. Compare it with the average, the year, the official NIRF rank and the exact programme.",
+      "Before you shortlist, check:"
+    ],
+    "bullets": [
+      "The official 2025 Management ranks for IIM Mumbai, SIBM Pune, IIT Bombay, SPJIMR, NMIMS and IIM Nagpur.",
+      "Whether the fee and the placement figure belong to the same programme.",
+      "The entrance test actually used (CAT, SNAP, MAH MBA CET, NMAT or another route).",
+      "The latest official placement report, especially where our year is before 2022."
+    ]
+  },
+  "links": [
+    {
+      "label": "MBA / PGDM course guide",
+      "href": "/courses/mba"
+    },
+    {
+      "label": "Best MBA colleges in Maharashtra",
+      "href": "/mba-colleges-in-maharashtra"
+    },
+    {
+      "label": "MBA colleges in Maharashtra with ₹15 lakh highest package",
+      "href": "/articles/mba-colleges-in-maharashtra-with-15-lakh-highest-package-2026"
+    },
+    {
+      "label": "MBA colleges in Maharashtra with ₹50 lakh highest package",
+      "href": "/articles/mba-colleges-in-maharashtra-with-50-lakh-highest-package-2026"
+    },
+    {
+      "label": "MBA colleges accepting CAT",
+      "href": "/exams/cat"
+    }
+  ],
+  "faqs": [
+    {
+      "question": "Which MBA colleges in Maharashtra with ₹30 lakh highest package are listed here?",
+      "answer": "{{count}} colleges, mostly in Mumbai and Pune, including IIM Mumbai, IIT Bombay, SPJIMR, SIBM Pune, JBIMS, IIM Nagpur and others. Each has a highest-package record of at least ₹{{threshold}} lakh in our file."
+    },
+    {
+      "question": "What average packages do these colleges report?",
+      "answer": "The median recorded average is {{pkgMedian}}, with recorded averages from {{pkgMin}} to {{pkgMax}}. MIT WPU has a highest-package figure in our file but no usable average."
+    },
+    {
+      "question": "Why does one JBIMS card show a ₹1 Lakh average?",
+      "answer": "That MHRD row looks wrong and should not be used. The MMS Finance row for 2024 in our file shows an average of ₹26 LPA and a highest of ₹87 LPA. Confirm both in the official report."
+    },
+    {
+      "question": "What are the NIRF 2025 ranks for the leading colleges here?",
+      "answer": "IIM Mumbai is 6th, SIBM Pune is 11th, IIT Bombay is 14th, SPJIMR is 20th, NMIMS is 24th and IIM Nagpur is 25th in the official NIRF 2025 Management ranking."
+    },
+    {
+      "question": "Are older years such as 2015 still useful?",
+      "answer": "Only as a marker that a college once cleared this threshold in our file. A 2015 or 2017 figure should be replaced by the latest official placement report."
+    }
+  ],
+  "sources": [
+    {
+      "label": "NIRF 2025 Management ranking",
+      "url": "https://www.nirfindia.org/Rankings/2025/ManagementRanking.html"
+    }
+  ]
+}

@@ -11,6 +11,7 @@ import { daysUntil, formatDate as examFormatDate } from '../lib/exam-format';
 import { ArrowLeftRight, ArrowRight, BadgeCheck, BookOpen, Building2, CalendarDays, ChartNoAxesCombined, ClipboardCheck, FileText, GraduationCap, IndianRupee, MapPin, ShieldCheck, Sparkles, Star, Trophy } from 'lucide-react';
 import HeroPhoto from '../components/HeroPhoto';
 import HeroStats from '../components/HeroStats';
+import { displayNirfLabel } from '../lib/nirf-rank';
 
 type CourseSummary = { id: number; name: string; slug?: string; image_url?: string | null; published_slug?: string | null; institute_count: number; programme_count: number; review_count: number | string | null; average_rating: number | string | null };
 type ExamSummary = { id: number; name: string; published_slug?: string | null; course_name: string | null; institute_count: number; programme_count: number; review_count: number | string | null; average_rating: number | string | null; logo?: string | null };
@@ -27,7 +28,12 @@ type CollegeSummary = {
   course_names?: string | null;
   lowest_fee?: number | string | null;
   average_package?: number | string | null;
-  nirf_rank?: number | null;
+  nirf_rank?: number | string | null;
+  nirf_label?: string | null;
+  nirf_year?: number | string | null;
+  nirf_category?: string | null;
+  nirf_out_of?: number | string | null;
+  course_id?: number | null;
   review_count?: number | string | null;
   average_rating?: number | string | null;
 };
@@ -180,7 +186,7 @@ export default async function HomePage() {
                     <span className="hp-logo"><InstituteLogo src={college.logo} alt={`${collegeName} college logo`} /></span>
                     <div className="hp-tags">
                       <span className="hp-tag">{college.institute_type === 'public' ? 'Public' : college.institute_type === 'private' ? 'Private' : 'College'}</span>
-                      {college.nirf_rank ? <span className="hp-tag is-rank"><Trophy size={12} aria-hidden="true" /> NIRF #{college.nirf_rank}</span> : null}
+                      {displayNirfLabel({ label: college.nirf_label, year: college.nirf_year, category: college.nirf_category, courseId: college.course_id, rank: college.nirf_rank, outOf: college.nirf_out_of }) ? <span className="hp-tag is-rank"><Trophy size={12} aria-hidden="true" /> {displayNirfLabel({ label: college.nirf_label, year: college.nirf_year, category: college.nirf_category, courseId: college.course_id, rank: college.nirf_rank, outOf: college.nirf_out_of })}</span> : null}
                     </div>
                   </div>
                   <h3>{college.published_slug ? <Link prefetch={false} href={href}>{collegeName}</Link> : collegeName}</h3>

@@ -1,0 +1,69 @@
+{
+  "slug": "mba-colleges-in-punjab-with-50-lakh-highest-package-2026",
+  "updatedOn": "24 Nov 2026",
+  "intro": [
+    "We list {{count}} MBA / PGDM colleges in Punjab where our records show a highest package of at least ₹{{threshold}} lakh: IIM Amritsar and the Mohali campus of the Indian School of Business.",
+    "These MBA colleges in Punjab with ₹50 lakh highest package are very different from each other. IIM Amritsar is a public two-year MBA, while ISB Mohali offers a post-graduate programme with a much higher fee in our records."
+  ],
+  "listLead": "ISB is often thought of as a Hyderabad school; the campus on this Punjab list is Mohali. Confirm which campus, which programme and which placement year you are reading.",
+  "snapshot": [
+    "IIM Amritsar is 64th in the official NIRF 2025 Management ranking. Its 2024 MBA row in our file shows an average of ₹20 LPA and a highest of ₹59 LPA.",
+    "ISB Mohali's PGP row for 2022 shows an average of ₹34 LPA and a highest of ₹72 LPA in our records, with a recorded total fee of ₹38.67 lakh, matching the official 2026–27 shared-accommodation grand total including GST. That placement year should be checked against a newer official report."
+  ],
+  "firstCollegesLead": [
+    "The two colleges on this short list are among the top MBA colleges in Punjab 2026 by this measure, but they do not share a fee band, an entrance test or a campus type. Compare them only after you line up those basics."
+  ],
+  "compare": {
+    "heading": "How to read highest-package figures in Punjab",
+    "paragraphs": [
+      "A public IIM and ISB's Mohali campus are not substitutes. Look at fee, programme length, work-experience rules and the official report, not only the highest package."
+    ],
+    "bullets": [
+      "IIM Amritsar's official NIRF 2025 Management rank is 64th; ISB does not appear in that top 100 list.",
+      "Our ISB fee record is ₹38.67 lakh for the official 2026–27 PGP shared-accommodation grand total, which is a different cost level from a public IIM.",
+      "The ISB placement year in our file is 2022, so prefer the latest official report."
+    ]
+  },
+  "links": [
+    {
+      "label": "MBA / PGDM course guide",
+      "href": "/courses/mba"
+    },
+    {
+      "label": "Best MBA colleges in Punjab",
+      "href": "/mba-colleges-in-punjab"
+    },
+    {
+      "label": "Best MBA colleges in India",
+      "href": "/mba-colleges"
+    },
+    {
+      "label": "MBA colleges accepting CAT",
+      "href": "/exams/cat"
+    }
+  ],
+  "faqs": [
+    {
+      "question": "Which MBA colleges in Punjab with ₹50 lakh highest package are listed here?",
+      "answer": "{{count}} colleges: IIM Amritsar and ISB Mohali. IIM Amritsar's 2024 row shows a highest of ₹59 LPA, and ISB Mohali's 2022 PGP row shows a highest of ₹72 LPA, in our file."
+    },
+    {
+      "question": "What is IIM Amritsar's NIRF rank?",
+      "answer": "IIM Amritsar is 64th in the official NIRF 2025 Management ranking. Use that 2025 rank rather than any older number on a card."
+    },
+    {
+      "question": "Is ISB Mohali the same as ISB Hyderabad?",
+      "answer": "They are campuses of the same school, but this Punjab page lists the Mohali campus. Confirm the campus, the PGP batch and the official placement report before you compare offers."
+    },
+    {
+      "question": "Are these packages guaranteed for 2026?",
+      "answer": "No. They are historical records, and the ISB figure in our file is from 2022. Offers change with every batch, so use the latest official report."
+    }
+  ],
+  "sources": [
+    {
+      "label": "NIRF 2025 Management ranking",
+      "url": "https://www.nirfindia.org/Rankings/2025/ManagementRanking.html"
+    }
+  ]
+}

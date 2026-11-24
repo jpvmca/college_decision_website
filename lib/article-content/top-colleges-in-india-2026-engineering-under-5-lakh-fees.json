@@ -1,0 +1,98 @@
+{
+  "slug": "top-colleges-in-india-2026-engineering-under-5-lakh-fees",
+  "updatedOn": "24 Nov 2026",
+  "intro": [
+    "We hold a recorded main-programme fee of up to ₹{{budget}} lakh for {{count}} published B.Tech / B.E. colleges in India. This list is for students looking at the best B.Tech / B.E. colleges under ₹5 lakh.",
+    "Ranked colleges come first, then the rest are ordered by recorded total fee, lowest first. A low figure can be one-year tuition, so read the programme name on the card."
+  ],
+  "listLead": "The first cards include IIT Delhi, IIT Roorkee, IIT Guwahati, NIT Trichy and IIT Kharagpur, each with a recorded fee at or under ₹5 lakh in our file. Check whether that figure is for one year or the full four-year programme.",
+  "snapshot": [
+    "Across the {{feeN}} published colleges here, the median recorded fee is {{feeMedian}}. The middle half sits between {{feeP25}} and {{feeP75}}.",
+    "Most listings are private ({{private}}), with {{public}} public institutes. Tamil Nadu, Maharashtra, Uttar Pradesh, Madhya Pradesh, Haryana and Punjab have the most colleges on this budget list.",
+    "JEE Main is the exam most often linked here, followed by state counselling tests such as TNEA, MHT CET and KCET."
+  ],
+  "firstCollegesLead": [
+    "IIT Delhi’s B.Tech in Computer Science and Engineering is ₹2.49 lakh in our records, with a 2024 average package of ₹25 lakh and a highest of ₹200 lakh, which is a historical record for that year, not a promise.",
+    "Some later public-college fees look unusually low, such as ₹10,800–₹17,350 at SV University College of Engineering and ₹15,000 for B.Tech Civil at NIT Hamirpur, so confirm the full four-year cost on the official fee notice."
+  ],
+  "sections": [
+    {
+      "heading": "How to read a fee that sits under ₹5 lakh",
+      "paragraphs": [
+        "IITs and NITs often publish tuition by year or semester, plus hostel and mess charges separately, so a card total under ₹5 lakh may be one academic year rather than the complete B.Tech cost.",
+        "NTA’s JEE Main page says admission to NITs, IIITs and other CFTIs also requires at least 75% in Class 12, or a place in the board’s top 20 percentile (65% for SC and ST)."
+      ]
+    }
+  ],
+  "compare": {
+    "heading": "How to compare the best B.Tech / B.E. colleges under ₹5 lakh",
+    "paragraphs": [
+      "Use this list of top B.Tech / B.E. colleges in India 2026 as a starting shortlist, then compare the official fee notice, not only the number on the card.",
+      "These checks usually matter more than a small gap in the recorded fee:"
+    ],
+    "bullets": [
+      "Whether the fee is for one year or the full programme, and whether hostel, mess and institute fees are included.",
+      "The branch on the card. A Civil Engineering fee is not a substitute for the Computer Science fee at the same campus.",
+      "The entrance route (JEE Advanced for IITs, JEE Main and JoSAA for NITs, or a state CET) and the cut-off for your category.",
+      "The latest official placement report for that branch, with the year clearly stated."
+    ]
+  },
+  "links": [
+    {
+      "label": "B.Tech / B.E. course guide",
+      "href": "/courses/engineering"
+    },
+    {
+      "label": "Best engineering colleges in India",
+      "href": "/engineering-colleges"
+    },
+    {
+      "label": "Engineering colleges under ₹1 lakh",
+      "href": "/articles/top-colleges-in-india-2026-engineering-under-1-lakh-fees"
+    },
+    {
+      "label": "Top engineering colleges with fees 2026",
+      "href": "/articles/top-engineering-colleges-in-india-with-fees-2026"
+    },
+    {
+      "label": "JEE Main exam guide",
+      "href": "/exams/jee-main"
+    }
+  ],
+  "faqs": [
+    {
+      "question": "How many engineering colleges here have a fee under ₹5 lakh?",
+      "answer": "{{count}} published B.Tech / B.E. colleges in our records have a main-programme fee of up to ₹{{budget}} lakh, and colleges without a recorded fee do not appear on this budget list."
+    },
+    {
+      "question": "Are IIT fees really under ₹5 lakh for the full B.Tech?",
+      "answer": "Not always, because our card for IIT Delhi CSE shows ₹2.49 lakh, which may be one year rather than the four-year total, so read the latest official fee notice before you budget for the full programme."
+    },
+    {
+      "question": "What exams do these colleges accept?",
+      "answer": "JEE Main is the most common link in our records, followed by state processes such as TNEA, MHT CET and KCET. IITs on this list admit through JEE Advanced after JEE Main."
+    },
+    {
+      "question": "What Class 12 marks do NIT and IIT admissions need?",
+      "answer": "NTA says NIT, IIIT and CFTI admissions need at least 75% in Class 12, or a top-20 percentile board rank (65% for SC and ST)."
+    },
+    {
+      "question": "Are the placement packages guaranteed?",
+      "answer": "No, they are the latest placement year in our records for that programme, and they change with every batch, so confirm them in the institute’s official placement report."
+    }
+  ],
+  "sources": [
+    {
+      "label": "NTA, Joint Entrance Examination (Main)",
+      "url": "https://www.nta.gov.in/exams/jee/"
+    },
+    {
+      "label": "JEE (Advanced) 2026 information brochure, IIT Roorkee",
+      "url": "https://jeeadv.ac.in"
+    },
+    {
+      "label": "NIRF 2025 Engineering ranking",
+      "url": "https://www.nirfindia.org/Rankings/2025/EngineeringRanking.html"
+    }
+  ]
+}

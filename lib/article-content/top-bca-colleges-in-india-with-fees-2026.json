@@ -1,0 +1,68 @@
+{
+  "slug": "top-bca-colleges-in-india-with-fees-2026",
+  "updatedOn": "24 Nov 2026",
+  "intro": [
+    "We hold a recorded total fee for {{count}} published BCA colleges in India. This page gathers the top BCA colleges in India with fees 2026, so you can see what a three-year programme costs before you shortlist it.",
+    "The colleges at the top follow our verified 2026 ranking where we hold a fee. After them, colleges are ordered by recorded total fee, lowest first."
+  ],
+  "listLead": "The first cards include SICSR Pune, Loyola College in Chennai, MS Ramaiah College in Bangalore, Jain University, Mount Carmel College and Prestige Institute, Indore. Read the programme name, and check whether the fee is for one year or the full course.",
+  "snapshot": [
+    "Across the {{feeN}} published colleges on this list, the median recorded total fee is {{feeMedian}}. The middle half of colleges sits between {{feeP25}} and {{feeP75}}.",
+    "A low figure is worth a second look. Most colleges here are private ({{private}}), with {{public}} public institutes, and Uttar Pradesh, Karnataka, Maharashtra and Tamil Nadu have the most listings.",
+    "Bangalore, Ahmedabad, Jaipur, Lucknow, Chennai and Indore are the cities that appear most often. Use the list of top BCA colleges in India 2026 as a starting shortlist."
+  ],
+  "firstCollegesLead": [
+    "SICSR Pune is listed first, with a recorded BCA fee of ₹1.93 lakh and a 2023 average package of ₹6 lakh, plus a highest of ₹18 lakh. Those placement figures are a historical record for 2023, not a promise.",
+    "Christ University, Kristu Jayanti College, St Joseph’s College and Madras Christian College are missing from this fee list because we do not yet hold a total fee for them. Some later cards show fees just above ₹11,000, which should be checked on the official notice."
+  ],
+  "compare": {
+    "heading": "How to compare the top BCA colleges in India with fees 2026",
+    "paragraphs": [
+      "Start with the fee notice, not only the card, because a three-year BCA fee and a one-year tuition figure are not the same thing.",
+      "Then check these points on the official site:"
+    ],
+    "bullets": [
+      "Whether the published fee is for the full three years or for one year, and whether lab or exam charges are included.",
+      "The admission route for 2026, which may be a university test, CUET UG, or Class 12 marks.",
+      "Whether the college awards a university BCA degree, and the campus where the classes actually run.",
+      "The latest official placement report for the BCA batch, treated as a historical record rather than a promise."
+    ]
+  },
+  "links": [
+    {
+      "label": "BCA course guide",
+      "href": "/courses/bca"
+    },
+    {
+      "label": "Best BCA colleges in India",
+      "href": "/bca-colleges"
+    },
+    {
+      "label": "BBA admission and eligibility",
+      "href": "/articles/bba-admission-eligibility"
+    }
+  ],
+  "faqs": [
+    {
+      "question": "How many BCA colleges in India have fees listed here?",
+      "answer": "{{count}} published BCA colleges have a recorded total fee in our records, and colleges without a fee on file are not placed on this list."
+    },
+    {
+      "question": "What is the typical BCA fee in India in 2026?",
+      "answer": "Among the {{feeN}} published colleges here, the median recorded total fee is {{feeMedian}}, and the middle half falls between {{feeP25}} and {{feeP75}}."
+    },
+    {
+      "question": "Why are Christ University and MCC missing from this fee list?",
+      "answer": "They are well-known undergraduate campuses, but we do not hold a total BCA fee for them yet, so they cannot be placed in a fee list."
+    },
+    {
+      "question": "Is the lowest BCA fee on this list the cheapest three-year course?",
+      "answer": "Not necessarily, because some later cards show figures just above ₹11,000 that may be one-year tuition, so confirm the full programme cost on the official fee notice."
+    },
+    {
+      "question": "Are the placement figures guaranteed?",
+      "answer": "No, they are the latest placement year in our records for that programme, and they change with every batch, so confirm them in the college’s official placement report."
+    }
+  ],
+  "sources": []
+}

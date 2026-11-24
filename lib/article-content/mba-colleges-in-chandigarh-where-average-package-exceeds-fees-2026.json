@@ -1,0 +1,77 @@
+{
+  "slug": "mba-colleges-in-chandigarh-where-average-package-exceeds-fees-2026",
+  "updatedOn": "2026-11-24",
+  "intro": [
+    "This page lists MBA colleges in Chandigarh where the recorded average package exceeds the recorded fee. It is a way to scan the best MBA colleges in Chandigarh where average package exceeds fees, not a promise for the next batch.",
+    "We currently show {{count}} published colleges on this filter, all with a Chandigarh campus in our records: Panjab University, GGDSD College and UIAMS. Nearby Punjab campuses that were earlier tagged to Chandigarh have been moved to their official cities."
+  ],
+  "listLead": "The first cards include Panjab University, RIMT University, DOABA Institute of Engineering and Technology, Goswami Ganesh Dutta SD College, and the University Institute of Applied Management Sciences. Confirm the official campus address before you travel or apply.",
+  "snapshot": [
+    "Across the {{feeN}} published colleges here, the median recorded fee is {{feeMedian}}, and the middle half sits between {{feeP25}} and {{feeP75}}. The median recorded average package is {{pkgMedian}}, with averages ranging from {{pkgMin}} to {{pkgMax}}.",
+    "Every package year in this snapshot is {{pkgYearMin}}. CAT is the exam linked to these colleges in our records.",
+    "Use the list of top MBA colleges in Chandigarh 2026 as a shortlist, then compare the official fee notice and placement report."
+  ],
+  "firstCollegesLead": [
+    "Panjab University is listed first, with a recorded MBA fee of ₹1.33 lakh and a 2023 average package of ₹5 lakh, plus a highest of ₹15 lakh. Confirm the current official fee for the programme you want, including any sectoral MBA at UIAMS.",
+    "Goswami Ganesh Dutta SD College shows a recorded fee of ₹24,000 for an entrepreneurship and family business MBA. Check whether that figure is one year or the full programme."
+  ],
+  "compare": {
+    "heading": "How to compare the best MBA colleges in Chandigarh where average package exceeds fees",
+    "paragraphs": [
+      "The recorded averages on this list sit in a fairly narrow band, so the location of the campus and the official fee matter as much as the gap on the card.",
+      "Before you apply, check these points:"
+    ],
+    "bullets": [
+      "The official campus city, especially where our card says Chandigarh but the institute is known to run from a Punjab town.",
+      "Whether the fee is for one year or the full two-year programme.",
+      "The year of the placement report, which is 2023 for every package in this snapshot.",
+      "Whether the college uses CAT only, or also PU-MET or another test, for the current batch."
+    ]
+  },
+  "links": [
+    {
+      "label": "MBA / PGDM course guide",
+      "href": "/courses/mba"
+    },
+    {
+      "label": "Best MBA colleges in Punjab",
+      "href": "/mba-colleges-in-punjab"
+    },
+    {
+      "label": "MBA colleges accepting Punjab MET 2026",
+      "href": "/articles/mba-colleges-accepting-punjab-met-2026-admission-process"
+    },
+    {
+      "label": "CAT exam guide",
+      "href": "/exams/cat"
+    }
+  ],
+  "faqs": [
+    {
+      "question": "How many MBA colleges in Chandigarh are on this value list?",
+      "answer": "{{count}} published MBA colleges currently meet this filter in our records, meaning the recorded average package is higher than the recorded fee for the programme on the card."
+    },
+    {
+      "question": "Are all of these campuses inside Chandigarh city?",
+      "answer": "The colleges currently on this list have a Chandigarh campus in our records: Panjab University, GGDSD and UIAMS. Nearby Punjab campuses that were earlier tagged to Chandigarh have been corrected."
+    },
+    {
+      "question": "What is a typical fee and average package here?",
+      "answer": "The median recorded fee is {{feeMedian}}, and the median recorded average package is {{pkgMedian}}, with recorded averages ranging from {{pkgMin}} to {{pkgMax}}."
+    },
+    {
+      "question": "Does a higher average than the fee guarantee a financial return?",
+      "answer": "No, the comparison uses historical 2023 package figures and the fee we hold, and it does not include hostel or personal costs."
+    },
+    {
+      "question": "Which exam do these colleges accept?",
+      "answer": "These colleges are linked to CAT in our records. UIAMS sectoral MBA programmes also use official PU-MET, which you should confirm on the official notice."
+    }
+  ],
+  "sources": [
+    {
+      "label": "Panjab University, Management Entrance Test 2026 portal (UIAMS sectoral MBA)",
+      "url": "https://met.puchd.ac.in/"
+    }
+  ]
+}

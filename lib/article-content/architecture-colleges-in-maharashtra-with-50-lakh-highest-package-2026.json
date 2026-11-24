@@ -1,0 +1,69 @@
+{
+  "slug": "architecture-colleges-in-maharashtra-with-50-lakh-highest-package-2026",
+  "updatedOn": "24 Nov 2026",
+  "intro": [
+    "We currently hold only {{count}} B.Arch college in Maharashtra that meets this page's ₹{{threshold}} lakh highest-package test. That college is NMIMS in Mumbai, so this is a short list, not a wide survey of B.Arch colleges in Maharashtra with ₹50 lakh highest package.",
+    "The figure comes from our 2023 placement record for the Bachelor of Architecture. It is a historical high, not a typical offer, and it should be checked in the official placement report."
+  ],
+  "listLead": "With only one college here, read the 2023 average and highest figures together. A single high offer can clear the ₹{{threshold}} lakh mark even when most of the batch earns much less.",
+  "snapshot": [
+    "For NMIMS's B.Arch programme, our 2023 record shows an average of ₹27 LPA and a highest of ₹68 LPA. There is no second college on this list to compare against.",
+    "Admission to B.Arch programmes in India usually goes through NATA, along with the institute's own rules. Confirm the current NATA cycle and NMIMS's official admission notice."
+  ],
+  "firstCollegesLead": [
+    "The only card is Narsee Monjee Institute of Management Studies, Mumbai. We do not hold a fee for this B.Arch row, and we have not treated any Management-category NIRF rank as an architecture rank."
+  ],
+  "compare": {
+    "heading": "How to read a ₹50 lakh highest package at a B.Arch college",
+    "paragraphs": [
+      "A highest package is the top offer in a recorded year, not the amount most graduates received. Use the average, the year, and the official report before you draw a conclusion."
+    ],
+    "bullets": [
+      "Confirm that the figure is for the five-year B.Arch programme, not for NMIMS's MBA or other degrees.",
+      "Check whether the 2023 highest includes an exceptional or international offer.",
+      "Compare this record with other top B.Arch colleges in Maharashtra 2026 on the main B.Arch listing, even if they do not meet this threshold in our file."
+    ]
+  },
+  "links": [
+    {
+      "label": "B.Arch course guide",
+      "href": "/courses/architecture"
+    },
+    {
+      "label": "Best B.Arch colleges in India",
+      "href": "/barch-colleges"
+    },
+    {
+      "label": "NATA exam guide",
+      "href": "/exams/nata"
+    },
+    {
+      "label": "Best MBA colleges in Maharashtra",
+      "href": "/mba-colleges-in-maharashtra"
+    }
+  ],
+  "faqs": [
+    {
+      "question": "Which B.Arch colleges in Maharashtra with ₹50 lakh highest package are listed here?",
+      "answer": "Only {{count}}: NMIMS, Mumbai. In our 2023 records, its B.Arch programme has a highest package of ₹68 LPA and an average of ₹27 LPA."
+    },
+    {
+      "question": "Is a ₹68 Lakh highest package typical for this course?",
+      "answer": "No. The average in the same 2023 record is ₹27 LPA. The highest is a single top offer and can change from one batch to the next."
+    },
+    {
+      "question": "Which exam do I need for B.Arch at NMIMS?",
+      "answer": "Our records link this programme to NATA, but institutes also set their own eligibility and counselling rules. Check the current official admission notice and the NATA information bulletin."
+    },
+    {
+      "question": "Why are other architecture colleges in Maharashtra missing?",
+      "answer": "This page only includes colleges where we hold a highest package of at least ₹{{threshold}} lakh for B.Arch. Other colleges remain on the main B.Arch listing even if they do not meet that cut."
+    }
+  ],
+  "sources": [
+    {
+      "label": "NIRF 2025 rankings portal (used only to avoid citing a Management rank as an architecture rank)",
+      "url": "https://www.nirfindia.org/Rankings/2025/ManagementRanking.html"
+    }
+  ]
+}

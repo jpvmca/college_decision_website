@@ -1,0 +1,104 @@
+{
+  "slug": "mba-colleges-accepting-ap-icet-2026-admission-process",
+  "updatedOn": "24 Nov 2026",
+  "intro": [
+    "We list {{published}} published MBA / PGDM colleges, from {{count}} programme listings, that are tagged as accepting AP ICET. This guide to MBA colleges accepting AP ICET 2026 also sets out the official 2026 test rules from APSCHE.",
+    "Andhra University conducted AP ICET 2026 on 2 May 2026, on behalf of APSCHE, for first-year MBA and MCA admissions in Andhra Pradesh for 2026-27. Online applications opened on 5 February 2026.",
+    "Our published list is mostly private affiliated colleges, with one public college in the first group, Government College, Rajahmundry. Many first cards have no recorded fee, so use the official college notice for costs."
+  ],
+  "listLead": "These are the top MBA / PGDM colleges accepting AP ICET 2026 in our records. The first names are in alphabetical order, not a ranking, and they are the top MBA / PGDM colleges in {{place}} 2026 that we have tagged for this test.",
+  "snapshot": [
+    "All {{published}} published colleges on this list are in Andhra Pradesh. Visakhapatnam and Vijayawada have the most listings in our records, followed by Ananthapur and Kurnool.",
+    "{{private}} colleges are private and {{public}} is public. Several later programme rows belong to the same college, which is why the programme count is higher than the college count.",
+    "We do not hold a usable fee snapshot for this AP ICET list. A blank fee on a card is missing data, not a zero fee."
+  ],
+  "firstCollegesLead": [
+    "Al-Ameer College of Engineering & Information Technology, Visakhapatnam, and several other early cards have no recorded MBA fee in our table. Avanthi's Research and Technological Academy and Chaitanya Engineering College are listed at ₹35,000, which may be an annual figure.",
+    "Government College, Rajahmundry, is the public college in the first group. Its stored location details should be checked on the official college page, because our slug and city fields do not match cleanly."
+  ],
+  "sections": [
+    {
+      "heading": "Official AP ICET 2026 admission rules",
+      "paragraphs": [
+        "The official instruction booklet required a 3- or 4-year undergraduate degree from a recognised university, with 50% marks, or 45% for reserved categories, for admission through AP ICET.",
+        "A candidate who passed all three years of a degree in one sitting was not eligible. Final eligibility also has to meet the rules of the university where the candidate takes admission."
+      ],
+      "bullets": [
+        "Registration without a late fee ran from 5 February to 23 March 2026, with later windows attracting additional fees.",
+        "The test was scheduled on 2 May 2026, in two sessions, with results and ranks announced on 16 May 2026.",
+        "Qualifying the test does not by itself guarantee a seat; colleges fill seats through the official counselling process."
+      ]
+    }
+  ],
+  "compare": {
+    "heading": "How to shortlist MBA colleges accepting AP ICET 2026",
+    "paragraphs": [
+      "An affiliated-college MBA and a university campus MBA can both accept AP ICET and still differ in official fees, specialisations and counselling cut-offs.",
+      "Check these official points:"
+    ],
+    "bullets": [
+      "The official APSCHE counselling schedule and the college's last allotted rank, not only our tag.",
+      "The official two-year MBA fee, especially where our card is blank.",
+      "Whether the college offers a general MBA or only a named specialisation.",
+      "The official campus city in Andhra Pradesh, because some of our location fields look inconsistent."
+    ]
+  },
+  "links": [
+    {
+      "label": "MBA / PGDM course guide",
+      "href": "/courses/mba"
+    },
+    {
+      "label": "Best MBA colleges in Andhra Pradesh",
+      "href": "/mba-colleges-in-andhra-pradesh"
+    },
+    {
+      "label": "AP ICET exam guide",
+      "href": "/exams/ap-icet"
+    },
+    {
+      "label": "Best MBA colleges in India",
+      "href": "/mba-colleges"
+    },
+    {
+      "label": "CAT exam guide",
+      "href": "/exams/cat"
+    }
+  ],
+  "faqs": [
+    {
+      "question": "How many MBA colleges accepting AP ICET 2026 are on this list?",
+      "answer": "We list {{published}} published colleges, drawn from {{count}} programme listings, tagged for AP ICET. The official counselling set can be larger, because a college appears here only if we have tagged it."
+    },
+    {
+      "question": "Who conducted AP ICET 2026, and when was the test?",
+      "answer": "Andhra University conducted AP ICET 2026 on 2 May 2026, on behalf of APSCHE. Results and ranks were scheduled for 16 May 2026, as published on the official CET site."
+    },
+    {
+      "question": "What was the eligibility for AP ICET 2026 MBA admission?",
+      "answer": "The official 2026 instruction booklet required a 3- or 4-year recognised undergraduate degree, with 50% marks, or 45% for reserved categories. A degree completed in one sitting was not eligible."
+    },
+    {
+      "question": "Does a qualifying AP ICET rank guarantee admission?",
+      "answer": "No. A rank is used in official counselling, and each college and category has its own cut-off and seat matrix. Confirm the latest counselling rules on the APSCHE CET site."
+    },
+    {
+      "question": "Why do so many AP ICET college cards have no fee?",
+      "answer": "We do not hold a recorded total fee for several colleges on this list. A blank cell is missing data, not a free seat. Use the official college fee notice."
+    }
+  ],
+  "sources": [
+    {
+      "label": "AP ICET 2026 official homepage (APSCHE / Andhra University)",
+      "url": "https://cets.apsche.ap.gov.in/ICET/Icet/ICET_HomePage.aspx"
+    },
+    {
+      "label": "AP ICET 2026 official important dates",
+      "url": "https://cets.apsche.ap.gov.in/ICET/ICETHomePages/ImportantDates.aspx"
+    },
+    {
+      "label": "AP ICET 2026 official instruction booklet",
+      "url": "https://cets.apsche.ap.gov.in/ICET/PDF/APICET2026_InstructionBooklet_V2.pdf"
+    }
+  ]
+}

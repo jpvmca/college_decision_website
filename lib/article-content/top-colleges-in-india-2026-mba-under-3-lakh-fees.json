@@ -1,0 +1,90 @@
+{
+  "slug": "top-colleges-in-india-2026-mba-under-3-lakh-fees",
+  "updatedOn": "24 Nov 2026",
+  "intro": [
+    "We hold a recorded main-programme fee of up to ₹{{budget}} lakh for {{count}} published MBA / PGDM colleges in India. This guide lists the best MBA / PGDM colleges under ₹3 lakh, but you must read the programme name on the first cards.",
+    "Ranked colleges with a qualifying fee come first. That is why IIFT, IIT Delhi and IIT Kharagpur appear at the top, even though some of those fees are for an executive or short course, not a full-time two-year MBA."
+  ],
+  "listLead": "After the ranked cards, colleges are ordered by recorded fee, lowest first. Several early figures look like a one-year or government-quota fee, so compare the official full-programme notice, not only the number on the card.",
+  "snapshot": [
+    "Across the {{feeN}} published colleges on this list, the median recorded total fee is {{feeMedian}}. The middle half of colleges sits between {{feeP25}} and {{feeP75}}.",
+    "{{private}} of the colleges are private and {{public}} are public. CAT is the exam most often tagged here, followed by CMAT, MAT, TANCET and TS ICET.",
+    "Use this page to scan top MBA / PGDM colleges in India 2026 that we can show under the ₹3 lakh cap, then confirm the programme and the official fee before you apply."
+  ],
+  "firstCollegesLead": [
+    "IIFT's recorded full-time MBA in International Business total is ₹21.82 lakh, and IIT Delhi's official full-time MBA tuition is ₹12 lakh. Both are above this cap, so neither flagship appears on this under-₹3 lakh list.",
+    "IIT Kharagpur's recorded flagship MBA total is now ₹13.04 lakh, matching the official 2026–28 GE grand total across four semesters, so it is not on this under-₹3 lakh list."
+  ],
+  "sections": [
+    {
+      "heading": "Why a top institute can appear under ₹3 lakh",
+      "paragraphs": [
+        "This list is built from the main full-time programme where we hold a fee, otherwise from the programme we do hold, as long as that fee is within the budget cap.",
+        "If the only fee on file is an executive diploma or a short MDP, a highly ranked institute can appear here even though its flagship MBA costs more. Always read the programme name."
+      ]
+    }
+  ],
+  "compare": {
+    "heading": "How to shortlist the best MBA / PGDM colleges under ₹3 lakh",
+    "paragraphs": [
+      "Start with the award and the duration, then look at the official fee notice and the entrance test. A government university MBA and a private PGDM at the same headline fee are not always the same product.",
+      "Use these checks:"
+    ],
+    "bullets": [
+      "Whether the card is a two-year full-time MBA or PGDM, or an executive, part-time or short management programme.",
+      "Whether the recorded fee is for one year or the full programme, and whether hostel charges are included.",
+      "The entrance test actually used for the latest cycle, such as CAT, CMAT, MAT or a state test.",
+      "The latest official placement report, if the college publishes one; this budget list has no package median in our summary."
+    ]
+  },
+  "links": [
+    {
+      "label": "MBA / PGDM course guide",
+      "href": "/courses/mba"
+    },
+    {
+      "label": "Best MBA colleges in India",
+      "href": "/mba-colleges"
+    },
+    {
+      "label": "Top MBA colleges in India with fees 2026",
+      "href": "/articles/top-mba-colleges-in-india-with-fees-2026"
+    },
+    {
+      "label": "MBA colleges under ₹1 lakh",
+      "href": "/articles/top-colleges-in-india-2026-mba-under-1-lakh-fees"
+    },
+    {
+      "label": "MBA colleges under ₹5 lakh",
+      "href": "/articles/top-colleges-in-india-2026-mba-under-5-lakh-fees"
+    }
+  ],
+  "faqs": [
+    {
+      "question": "How many MBA colleges under ₹3 lakh are listed here?",
+      "answer": "{{count}} published MBA / PGDM colleges have a recorded main-programme fee up to ₹{{budget}} lakh in our records. Colleges without a quotable fee, or with only a fee above this cap, are not on this page."
+    },
+    {
+      "question": "What is the typical fee on this under ₹3 lakh list?",
+      "answer": "Among the {{feeN}} published colleges here, the median recorded fee is {{feeMedian}}, and the middle half falls between {{feeP25}} and {{feeP75}}. That median includes a mix of two-year degrees and some shorter programmes."
+    },
+    {
+      "question": "Why do IIFT and IIT Delhi show low fees here?",
+      "answer": "Neither flagship is on this list. IIFT's recorded full-time MBA in International Business total is ₹21.82 lakh, and IIT Delhi's official full-time MBA tuition is ₹12 lakh."
+    },
+    {
+      "question": "Is IIT Kharagpur's MBA really under ₹3 lakh?",
+      "answer": "Our card now lists the flagship MBA at ₹13.04 lakh, matching the official 2026–28 VGSoM GE grand total, which is above this cap."
+    },
+    {
+      "question": "Which exams do these colleges accept?",
+      "answer": "In our records, CAT is tagged most often, followed by CMAT, MAT, TANCET and TS ICET. Each college sets its own rule, so use the official admission notice for the cycle you are targeting."
+    }
+  ],
+  "sources": [
+    {
+      "label": "NIRF 2025 Management ranking (IIT Delhi, IIFT context)",
+      "url": "https://www.nirfindia.org/Rankings/2025/ManagementRanking.html"
+    }
+  ]
+}

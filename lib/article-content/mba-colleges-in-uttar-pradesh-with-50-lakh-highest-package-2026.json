@@ -1,0 +1,97 @@
+{
+  "slug": "mba-colleges-in-uttar-pradesh-with-50-lakh-highest-package-2026",
+  "updatedOn": "2026-11-24",
+  "intro": [
+    "We list {{count}} MBA / PGDM colleges in Uttar Pradesh where our records show a highest package of at least ₹{{threshold}} lakh. {{published}} of them have a published profile.",
+    "These MBA colleges in Uttar Pradesh with ₹50 lakh highest package include IIM Lucknow, Banaras Hindu University and IIIT Allahabad. They are part of the top MBA colleges in Uttar Pradesh 2026. IIM Lucknow now qualifies on its official 2025 PGP and PGP-ABM report, not an executive IPMX row."
+  ],
+  "listLead": "IIM Lucknow appears twice: the Lucknow campus and the Noida campus. The Lucknow campus now qualifies on the official 2025 PGP and PGP-ABM report: a mean of ₹32.3 LPA and a highest domestic salary of ₹75 LPA.",
+  "snapshot": [
+    "Across the published colleges here, the median recorded average package is {{pkgMedian}}, from placement years {{pkgYearMin}} to {{pkgYearMax}}.",
+    "Recorded averages run from {{pkgMin}} to {{pkgMax}}. The official IIM Lucknow 2025 flagship figure is a highest domestic salary of ₹75 LPA and a mean of ₹32.3 LPA, covering PGP and PGP-ABM together.",
+    "IIM Lucknow is 5th, Amity University (Gautam Buddha Nagar) is 49th, Banaras Hindu University is 60th, and MMMUT Gorakhpur is 83rd in the official NIRF 2025 Management ranking."
+  ],
+  "firstCollegesLead": [
+    "BHU's MBA row for 2023 shows an average of ₹23 LPA and a highest of ₹120 LPA in our records. IIIT Allahabad's MBA Finance row for 2023 shows ₹30 LPA and ₹82 LPA.",
+    "One unpublished college also meets the numerical cut in our file, on a 2021 record. It is not a published profile, and that year should not be used without the official report."
+  ],
+  "sections": [
+    {
+      "heading": "Flagship PGP fees at IIM Lucknow",
+      "paragraphs": [
+        "The official 2025–27 PGP fee notice lists ₹10.95 lakh in year one and ₹9.80 lakh in year two, or ₹20.75 lakh for the full programme, plus mess charges. Use that notice for the two-year PGP. IIM Lucknow's official 2025 placement figures used on this page cover PGP and PGP-ABM together, not the executive IPMX."
+      ]
+    }
+  ],
+  "compare": {
+    "heading": "How to compare MBA colleges in Uttar Pradesh with ₹50 lakh highest package",
+    "paragraphs": [
+      "A two-year PGP, a university MBA and a private PGDM can all clear this threshold in our file without being interchangeable. IIM Lucknow's official 2025 figures cover PGP and PGP-ABM, not the executive IPMX.",
+      "Check the official documents for:"
+    ],
+    "bullets": [
+      "Whether the figure is for the two-year PGP, PGP-ABM, PGP-SM or another specialised MBA.",
+      "The official 2025 Management ranks, and the fact that the Noida campus is not ranked separately.",
+      "The full two-year fee, especially at IIM Lucknow, where a single-year total can look lower than the official notice.",
+      "The latest official placement report, and whether the college profile is published."
+    ]
+  },
+  "links": [
+    {
+      "label": "MBA / PGDM course guide",
+      "href": "/courses/mba"
+    },
+    {
+      "label": "Best MBA colleges in Uttar Pradesh",
+      "href": "/mba-colleges-in-uttar-pradesh"
+    },
+    {
+      "label": "Government MBA colleges in Uttar Pradesh by average package",
+      "href": "/articles/mba-government-colleges-in-uttar-pradesh-by-average-package"
+    },
+    {
+      "label": "Best MBA colleges in India",
+      "href": "/mba-colleges"
+    },
+    {
+      "label": "MBA colleges accepting CAT",
+      "href": "/exams/cat"
+    }
+  ],
+  "faqs": [
+    {
+      "question": "Which MBA colleges in Uttar Pradesh with ₹50 lakh highest package are listed here?",
+      "answer": "{{count}} colleges, of which {{published}} are published. They include IIM Lucknow and its Noida campus, BHU, IIIT Allahabad, Amity Noida, MMMUT, TMU and I Business Institute."
+    },
+    {
+      "question": "Is the IIM Lucknow figure for the two-year PGP and PGP-ABM?",
+      "answer": "Yes, for the official 2025 report that covers PGP and PGP-ABM together: a mean of ₹32.3 LPA and a highest domestic salary of ₹75 LPA. Confirm any later official report on the IIM Lucknow website."
+    },
+    {
+      "question": "What is IIM Lucknow's official PGP fee?",
+      "answer": "The 2025–27 PGP fee notice lists ₹10.95 lakh in the first year and ₹9.80 lakh in the second year, or ₹20.75 lakh in all, plus mess charges. Confirm any later notice on the official site."
+    },
+    {
+      "question": "What average packages do these colleges report?",
+      "answer": "The median recorded average among the published colleges is {{pkgMedian}}, with recorded averages from {{pkgMin}} to {{pkgMax}}. These are historical figures from {{pkgYearMin}} and {{pkgYearMax}}."
+    },
+    {
+      "question": "Is the Noida campus ranked separately in NIRF?",
+      "answer": "No. IIM Lucknow is 5th in the official NIRF 2025 Management ranking, and the Noida campus is not given a separate rank. Our 2023 PGP-SM row for that campus shows a highest of ₹50 LPA."
+    }
+  ],
+  "sources": [
+    {
+      "label": "NIRF 2025 Management ranking",
+      "url": "https://www.nirfindia.org/Rankings/2025/ManagementRanking.html"
+    },
+    {
+      "label": "IIM Lucknow PGP fee structure 2025–27",
+      "url": "https://iiml.ac.in/sites/default/files/2025-05/Fee%20Structure_2025-27.pdf"
+    },
+    {
+      "label": "IIM Lucknow PGP programme page",
+      "url": "https://www.iiml.ac.in/master-business-administration"
+    }
+  ]
+}

@@ -1,0 +1,81 @@
+{
+  "slug": "mba-colleges-in-delhi-ncr-where-average-package-exceeds-fees-2026",
+  "updatedOn": "24 Nov 2026",
+  "intro": [
+    "This page lists MBA colleges in Delhi NCR where the recorded average package exceeds the recorded fee. It is a way to scan the best MBA colleges in Delhi NCR where average package exceeds fees, not a promise for the next batch.",
+    "We currently show {{count}} published colleges on this filter. Read the programme name on each card, because some fees belong to executive or specialised courses."
+  ],
+  "listLead": "The first cards include MDI Gurgaon, the Department of Management Studies at IIT Delhi, and Jamia Millia Islamia. Later cards include several private PGDM campuses, plus an executive MBA at a much lower recorded fee.",
+  "snapshot": [
+    "Across the {{feeN}} published colleges here, the median recorded fee is {{feeMedian}}, and the middle half sits between {{feeP25}} and {{feeP75}}. The median recorded average package is {{pkgMedian}}, with averages ranging from {{pkgMin}} to {{pkgMax}}.",
+    "Placement years in our file run from {{pkgYearMin}} to {{pkgYearMax}}. Most colleges here are private, and CAT is the exam most often linked here.",
+    "Use the list of top MBA colleges in Delhi NCR 2026 as a shortlist, then compare the official fee notice and placement report for the same programme."
+  ],
+  "firstCollegesLead": [
+    "MDI Gurgaon is listed first, with a recorded PGDM fee of ₹9.34 lakh and a 2024 average of ₹26 lakh, plus a highest of ₹63 lakh. Confirm the current official fee, and note that MDI requires CAT 2026 for its PGDM programmes.",
+    "The Department of Management Studies at IIT Delhi shows an MBA fee of ₹12 lakh and a 2025 average of ₹22.53 lakh in our records. Jamia Millia Islamia shows a recorded MBA fee of ₹23,500, which should be checked on the official notice."
+  ],
+  "compare": {
+    "heading": "How to compare the best MBA colleges in Delhi NCR where average package exceeds fees",
+    "paragraphs": [
+      "A large gap on the card can come from a low fee, a strong average, or a specialised programme being compared with a flagship course. Read both numbers in context.",
+      "Before you apply, check these points:"
+    ],
+    "bullets": [
+      "Whether the card shows a full-time MBA or PGDM, or an executive or specialised programme.",
+      "Whether the fee is for one year or the full two-year programme, especially on low public-university figures.",
+      "The year of the placement report, which in our file runs from {{pkgYearMin}} to {{pkgYearMax}}.",
+      "The entrance test and the official cut-off for your category."
+    ]
+  },
+  "links": [
+    {
+      "label": "MBA / PGDM course guide",
+      "href": "/courses/mba"
+    },
+    {
+      "label": "Best MBA colleges in Delhi NCR",
+      "href": "/mba-colleges-in-delhi-ncr"
+    },
+    {
+      "label": "MBA colleges in Delhi NCR with ₹30 lakh highest package",
+      "href": "/articles/mba-colleges-in-delhi-ncr-with-30-lakh-highest-package-2026"
+    },
+    {
+      "label": "MBA colleges accepting CAT 2026",
+      "href": "/articles/mba-colleges-accepting-cat-2026-admission-process"
+    },
+    {
+      "label": "CAT exam guide",
+      "href": "/exams/cat"
+    }
+  ],
+  "faqs": [
+    {
+      "question": "How many MBA colleges in Delhi NCR are on this value list?",
+      "answer": "{{count}} published MBA colleges in Delhi NCR currently meet this filter in our records, meaning the recorded average package is higher than the recorded fee for the programme on the card."
+    },
+    {
+      "question": "Does this mean the average salary will pay back the fee?",
+      "answer": "No, the comparison uses historical package and fee figures in our file, and it does not include hostel or personal costs, so it is not a guarantee of a financial return."
+    },
+    {
+      "question": "Why is Jamia’s recorded MBA fee so low?",
+      "answer": "Our file shows ₹23,500 for the MBA at Jamia Millia Islamia, which may be one year or an older figure, so confirm the official fee notice before you budget."
+    },
+    {
+      "question": "What is a typical fee and average package here?",
+      "answer": "The median recorded fee is {{feeMedian}}, and the median recorded average package is {{pkgMedian}}, with recorded averages ranging from {{pkgMin}} to {{pkgMax}}."
+    },
+    {
+      "question": "Which exam do these colleges accept?",
+      "answer": "CAT is the exam most often linked here, and MDI Gurgaon states that CAT 2026 is required for its PGDM programmes. Confirm the current test on each college’s admission page."
+    }
+  ],
+  "sources": [
+    {
+      "label": "MDI Gurgaon, PGDM admissions page (CAT 2026 required)",
+      "url": "https://mdi.ac.in/admissions/post-graduate-diploma-in-management-pgdm"
+    }
+  ]
+}

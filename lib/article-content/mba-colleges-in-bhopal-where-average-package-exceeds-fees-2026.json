@@ -1,0 +1,72 @@
+{
+  "slug": "mba-colleges-in-bhopal-where-average-package-exceeds-fees-2026",
+  "updatedOn": "24 Nov 2026",
+  "intro": [
+    "This page lists MBA colleges in Bhopal where the recorded average package exceeds the recorded fee. It is a way to scan the best MBA colleges in Bhopal where average package exceeds fees, not a promise for the next batch.",
+    "We currently show {{count}} published colleges on this filter. Most of the recorded fees here are under ₹1 lakh, so check whether the figure is one year or the full two-year programme."
+  ],
+  "listLead": "The first cards include Sagar Institute of Science and Technology, Makhanlal Chaturvedi Rashtriya Patrakarita Vishwavidyalaya, and several private engineering and university campuses in Bhopal. Read the programme name, because some cards show a specialised MBA.",
+  "snapshot": [
+    "Across the {{feeN}} published colleges here, the median recorded fee is {{feeMedian}}, and the middle half sits between {{feeP25}} and {{feeP75}}. The median recorded average package is {{pkgMedian}}, with averages ranging from {{pkgMin}} to {{pkgMax}}.",
+    "Placement years in our file run from {{pkgYearMin}} to {{pkgYearMax}}. Eight of the nine recorded fees are under ₹1 lakh in our bands.",
+    "Use the list of top MBA colleges in Bhopal 2026 as a shortlist, then compare the official fee notice and placement report."
+  ],
+  "firstCollegesLead": [
+    "SISTec is listed first, with a recorded MBA in banking and financial services at ₹1.30 lakh and a 2023 average package of ₹12 lakh, plus a highest of ₹27 lakh. Those placement figures are a historical record for 2023, not a promise.",
+    "Makhanlal Chaturvedi Rashtriya Patrakarita Vishwavidyalaya is the public university on this list, with a recorded MBA fee of ₹62,410 and a 2023 average of ₹8 lakh. Millennium Group of Institutes shows a recorded fee of ₹20,000, which should be checked on the official notice."
+  ],
+  "compare": {
+    "heading": "How to compare the best MBA colleges in Bhopal where average package exceeds fees",
+    "paragraphs": [
+      "A low fee can make the gap look large even when the average package is modest. Confirm both numbers on official documents for the same programme and year.",
+      "Before you apply, check these points:"
+    ],
+    "bullets": [
+      "Whether the fee is for one year or the full two-year programme, especially on cards under ₹1 lakh.",
+      "Whether the card shows a general MBA or a specialised title such as banking and financial services.",
+      "The year of the placement report, and whether the institute still publishes a current report.",
+      "The entrance test, which in our records is often CAT or the Madhya Pradesh MET."
+    ]
+  },
+  "links": [
+    {
+      "label": "MBA / PGDM course guide",
+      "href": "/courses/mba"
+    },
+    {
+      "label": "Best MBA colleges in Madhya Pradesh",
+      "href": "/mba-colleges-in-madhya-pradesh"
+    },
+    {
+      "label": "MBA colleges under ₹1 lakh",
+      "href": "/articles/top-colleges-in-india-2026-mba-under-1-lakh-fees"
+    },
+    {
+      "label": "CAT exam guide",
+      "href": "/exams/cat"
+    }
+  ],
+  "faqs": [
+    {
+      "question": "How many MBA colleges in Bhopal are on this value list?",
+      "answer": "{{count}} published MBA colleges in Bhopal currently meet this filter in our records, meaning the recorded average package is higher than the recorded fee for the programme on the card."
+    },
+    {
+      "question": "Does this mean the average salary will pay back the fee?",
+      "answer": "No, the comparison uses historical package and fee figures in our file, and it does not include hostel or personal costs, so it is not a guarantee of a financial return."
+    },
+    {
+      "question": "Why are so many Bhopal MBA fees under ₹1 lakh?",
+      "answer": "Those are the fees we hold, and some may be one-year tuition rather than the full two-year cost, so confirm the official notice before you treat them as a complete programme fee."
+    },
+    {
+      "question": "What is a typical fee and average package here?",
+      "answer": "The median recorded fee is {{feeMedian}}, and the median recorded average package is {{pkgMedian}}, with recorded averages ranging from {{pkgMin}} to {{pkgMax}}."
+    },
+    {
+      "question": "Which exam do these colleges accept?",
+      "answer": "Our records most often link these colleges to CAT or the Madhya Pradesh MET, and one college to CMAT. Confirm the current process on the official admission page."
+    }
+  ],
+  "sources": []
+}

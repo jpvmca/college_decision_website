@@ -1,0 +1,69 @@
+{
+  "slug": "mba-colleges-in-madhya-pradesh-with-50-lakh-highest-package-2026",
+  "updatedOn": "2026-11-24",
+  "intro": [
+    "We list {{count}} MBA / PGDM colleges in Madhya Pradesh where our records show a highest package of at least ₹{{threshold}} lakh: IIM Indore and MANIT Bhopal.",
+    "These are the MBA colleges in Madhya Pradesh with ₹50 lakh highest package in our file. IIM Indore leads the top MBA colleges in Madhya Pradesh 2026, now on its official 2025 PGP card, not an older IPM-only row."
+  ],
+  "listLead": "IIM Indore and MANIT Bhopal are both public institutes, in Indore and Bhopal. Compare the five-year IPM, the two-year PGP and the NIT MBA as different programmes.",
+  "snapshot": [
+    "IIM Indore's official Final Placement Report 2025 for the PGP and IPM class of 2023-25 lists an average CTC of ₹29.57 LPA, a median of ₹27 LPA and a highest domestic offer of ₹70 LPA. That is the row which now meets this threshold.",
+    "MANIT Bhopal's MBA row for 2023 shows an average of ₹11 LPA and a highest of ₹82 LPA in our file. The gap between those two numbers is wide, so the official report matters more than the headline."
+  ],
+  "firstCollegesLead": [
+    "IIM Indore is 8th in the official NIRF 2025 Management ranking. MANIT Bhopal is not in that top 100, so do not treat a high offer there as a substitute for a current official report."
+  ],
+  "compare": {
+    "heading": "How to read highest-package figures in Madhya Pradesh",
+    "paragraphs": [
+      "An integrated IPM at IIM Indore and an MBA at MANIT Bhopal have different entry routes, including IPMAT and CAT. Match the placement report to the programme you can actually join."
+    ],
+    "bullets": [
+      "Check whether the figure is for the IPM, the two-year PGP or the NIT MBA.",
+      "Use the official average beside the highest; IIM Indore's official 2025 highest domestic offer is ₹70 LPA, and the official average is ₹29.57 LPA. MANIT Bhopal's recorded 2023 highest should still be checked in its official report.",
+      "Confirm the latest official report and the current entrance-test notice."
+    ]
+  },
+  "links": [
+    {
+      "label": "MBA / PGDM course guide",
+      "href": "/courses/mba"
+    },
+    {
+      "label": "Best MBA colleges in Madhya Pradesh",
+      "href": "/mba-colleges-in-madhya-pradesh"
+    },
+    {
+      "label": "Best MBA colleges in India",
+      "href": "/mba-colleges"
+    },
+    {
+      "label": "IPMAT exam guide",
+      "href": "/exams/ipmat"
+    }
+  ],
+  "faqs": [
+    {
+      "question": "Which MBA colleges in Madhya Pradesh with ₹50 lakh highest package are listed here?",
+      "answer": "{{count}} public colleges: IIM Indore and MANIT Bhopal. IIM Indore now qualifies on the official 2025 PGP and IPM combined report (average ₹29.57 LPA, highest domestic ₹70 LPA). MANIT Bhopal remains on a 2023 MBA record in our file."
+    },
+    {
+      "question": "What is IIM Indore's NIRF rank?",
+      "answer": "IIM Indore is 8th in the official NIRF 2025 Management ranking. The official 2025 report covers the PGP and IPM class together, with an average of ₹29.57 LPA and a highest domestic offer of ₹70 LPA. Match the official report to the programme you will join."
+    },
+    {
+      "question": "Is a ₹114 Lakh highest package typical at IIM Indore?",
+      "answer": "No. In the same 2024 IPM row, the average is ₹30 LPA. The highest is a single top offer and should be confirmed in the official placement report."
+    },
+    {
+      "question": "How should I read MANIT Bhopal's ₹82 Lakh highest package?",
+      "answer": "It sits beside a 2023 average of ₹11 LPA in our records. That gap is large, so use the official MBA placement report rather than the highest figure alone."
+    }
+  ],
+  "sources": [
+    {
+      "label": "NIRF 2025 Management ranking",
+      "url": "https://www.nirfindia.org/Rankings/2025/ManagementRanking.html"
+    }
+  ]
+}

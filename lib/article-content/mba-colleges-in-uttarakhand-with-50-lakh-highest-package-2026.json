@@ -1,0 +1,78 @@
+{
+  "slug": "mba-colleges-in-uttarakhand-with-50-lakh-highest-package-2026",
+  "updatedOn": "2026-11-24",
+  "intro": [
+    "No MBA / PGDM college in Uttarakhand in our records has a 2020-or-later non-executive highest package of ₹{{threshold}} lakh or more. This page still lists the highest recorded packages in the state, with flagship programmes preferred.",
+    "These MBA colleges in Uttarakhand with ₹50 lakh highest package should be read that way. IIM Kashipur and IIT Roorkee lead the top MBA colleges in Uttarakhand 2026 on their official 2025 reports, and neither official highest package reaches ₹{{threshold}} lakh."
+  ],
+  "listLead": "IIM Kashipur's official audited Final Placement Report for the 2023-25 MBA and MBA (Analytics) batch lists a highest CTC of ₹33.12 LPA, an average of ₹14.95 LPA and a median of ₹14.46 LPA. IIT Roorkee's official DoMS MBA report for the same cycle lists an average of ₹17.91 LPA, a median of ₹17.64 LPA and a highest of ₹24 LPA.",
+  "snapshot": [
+    "Because no college crosses ₹{{threshold}} lakh in our 2020-or-later non-executive records, the list of {{count}} colleges is sorted by the highest recorded package instead.",
+    "IIT Roorkee is 22nd and IIM Kashipur is 23rd in the official NIRF 2025 Management ranking. An unverified 2023 Haridwar University record of ₹85 LPA beside a ₹6 LPA average is no longer used."
+  ],
+  "firstCollegesLead": [
+    "A 2022 Uttaranchal University card in our file shows a highest package of ₹26 LPA with no average. That figure has not been confirmed in an official report in this pass, so treat it as a recorded number only.",
+    "Use the official 2025 IIM Kashipur and IIT Roorkee reports as the starting point for any serious Uttarakhand MBA shortlist."
+  ],
+  "compare": {
+    "heading": "How to read highest-package figures in Uttarakhand",
+    "paragraphs": [
+      "A threshold page with no college above ₹{{threshold}} lakh is still useful when the official top figures are shown clearly. IIM Kashipur's official 2025 highest CTC is ₹33.12 LPA, and IIT Roorkee's official 2025 highest is ₹24 LPA."
+    ],
+    "bullets": [
+      "Use IIM Kashipur's official 2025 average of ₹14.95 LPA and median of ₹14.46 LPA beside the highest CTC of ₹33.12 LPA.",
+      "Use IIT Roorkee DoMS official 2025 average of ₹17.91 LPA and median of ₹17.64 LPA beside the highest of ₹24 LPA.",
+      "Do not use the unverified Haridwar University ₹85 LPA figure, and confirm any private-college high that has no average beside it."
+    ]
+  },
+  "links": [
+    {
+      "label": "MBA / PGDM course guide",
+      "href": "/courses/mba"
+    },
+    {
+      "label": "Best MBA colleges in Uttarakhand",
+      "href": "/mba-colleges-in-uttarakhand"
+    },
+    {
+      "label": "Government MBA colleges in Uttarakhand by average package",
+      "href": "/articles/mba-government-colleges-in-uttarakhand-by-average-package"
+    },
+    {
+      "label": "Best MBA colleges in India",
+      "href": "/mba-colleges"
+    }
+  ],
+  "faqs": [
+    {
+      "question": "Do any MBA colleges in Uttarakhand have a ₹50 lakh highest package in this file?",
+      "answer": "No. In our 2020-or-later non-executive records, no Uttarakhand MBA college reaches ₹{{threshold}} lakh. The list instead shows the highest recorded packages in the state."
+    },
+    {
+      "question": "What are the official 2025 packages at IIM Kashipur and IIT Roorkee?",
+      "answer": "IIM Kashipur's official 2023-25 audited report lists a highest CTC of ₹33.12 LPA, an average of ₹14.95 LPA and a median of ₹14.46 LPA. IIT Roorkee's official DoMS MBA 2025 report lists an average of ₹17.91 LPA, a median of ₹17.64 LPA and a highest of ₹24 LPA."
+    },
+    {
+      "question": "Why are IIM Kashipur and IIT Roorkee not above this ₹50 lakh cut?",
+      "answer": "Their official 2025 highest packages are ₹33.12 LPA and ₹24 LPA, both below ₹{{threshold}} lakh. They remain the official benchmark figures on this page, and they are 23rd and 22nd in the official NIRF 2025 Management ranking."
+    },
+    {
+      "question": "Is the Haridwar University ₹85 LPA figure still used?",
+      "answer": "No. That unverified 2023 record is no longer used, because no official placement report was found to support it."
+    }
+  ],
+  "sources": [
+    {
+      "label": "NIRF 2025 Management ranking",
+      "url": "https://www.nirfindia.org/Rankings/2025/ManagementRanking.html"
+    },
+    {
+      "label": "IIM Kashipur official Final Placement Report 2023-25 (audited)",
+      "url": "https://www.iimkashipur.ac.in/uploads/report/176597088439.pdf"
+    },
+    {
+      "label": "DoMS IIT Roorkee official Final Placement Report 2025",
+      "url": "https://iitr.ac.in/Departments/Management%20Studies%20Department/static/MBA/Final_Placement_Report_2025.pdf"
+    }
+  ]
+}

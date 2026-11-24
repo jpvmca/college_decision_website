@@ -1,0 +1,116 @@
+{
+  "slug": "mba-colleges-accepting-snap-2026-admission-process",
+  "updatedOn": "24 Nov 2026",
+  "intro": [
+    "SNAP is the Symbiosis National Aptitude Test, the common entrance for MBA programmes at Symbiosis International (Deemed University). This page lists MBA colleges accepting SNAP 2026 from our records.",
+    "We currently link {{count}} programme options at {{colleges}} colleges to SNAP. Almost all of them are Symbiosis institutes, most of them in Pune.",
+    "SIU's official SNAP 2026 bulletin says registration closes on 25 November 2026, with computer-based tests on 13, 19 and 26 December 2026, and results on 12 January 2027."
+  ],
+  "listLead": "The cards are Symbiosis institutes first, led by SIBM Pune. Read the programme name on each card; a few fee figures in our file look like a single component rather than the full two-year MBA fee.",
+  "snapshot": [
+    "Nine of the {{colleges}} colleges are in Maharashtra, almost all in Pune, with one SIBM campus each in Bangalore and Hyderabad. That is a tight, institute-group list rather than a nationwide mix.",
+    "For colleges with a recorded average package, the median is {{pkgMedian}}, in a range from {{pkgMin}} to {{pkgMax}}. These are historical records and should be checked in the latest official placement report.",
+    "SIBM Pune is 11th in the NIRF 2025 Management ranking, which is useful context when you compare top MBA / PGDM colleges in India 2026 that take SNAP."
+  ],
+  "firstCollegesLead": [
+    "SIBM Pune's official 2026–28 notice lists academic fees of ₹6,55,000 in each of four instalments, or ₹26.20 lakh over two years, before hostel and mess. Our card now shows that official two-year academic total of ₹26.20 lakh, before hostel and mess.",
+    "Some other Symbiosis cards in our file show fees of ₹15,000 to ₹35,000, or a postgraduate diploma rather than the MBA. Treat those as data gaps and use the official institute fee page."
+  ],
+  "sections": [
+    {
+      "heading": "Official SNAP 2026 dates and eligibility",
+      "paragraphs": [
+        "A candidate who wants an MBA at any SIU institute must take the SNAP computer-based test. You may book more than one of the three test dates; SIU will announce how multiple attempts are treated in its bulletin.",
+        "For the general MBA at SIBM Pune, SCMHRD and the other SIBM campuses, the official rule is a graduate degree with at least 50% marks, or 45% for SC and ST candidates. Some specialised programmes add extra subject or work-experience rules."
+      ],
+      "bullets": [
+        "Registration and payment close on 25 November 2026, as per the official SNAP 2026 bulletin.",
+        "Tests are on 13, 19 and 26 December 2026, each 60 minutes, in computer-based mode.",
+        "Results are scheduled for 12 January 2027. After that, each institute runs its own GE-PI or similar shortlist."
+      ]
+    }
+  ],
+  "compare": {
+    "heading": "How to shortlist MBA colleges accepting SNAP 2026",
+    "paragraphs": [
+      "You are usually choosing among Symbiosis institutes, not among unrelated private universities. Compare the programme, campus and official fee, not only the SNAP score.",
+      "Use these checks:"
+    ],
+    "bullets": [
+      "The exact MBA you want, because SCMHRD, SIIB, SCIT, SIDTM and others have specialised programmes with extra eligibility.",
+      "The official two-year fee notice, not a low figure on our card that may be a deposit or a single component.",
+      "NIRF and placement year. SIBM Pune is rank 11 in NIRF 2025.",
+      "Whether you will sit one, two or three SNAP attempts, and how the institute uses the score."
+    ]
+  },
+  "links": [
+    {
+      "label": "MBA / PGDM course guide",
+      "href": "/courses/mba"
+    },
+    {
+      "label": "Best MBA colleges in India",
+      "href": "/mba-colleges"
+    },
+    {
+      "label": "SNAP exam page",
+      "href": "/exams/snap"
+    },
+    {
+      "label": "MBA colleges in Maharashtra",
+      "href": "/mba-colleges-in-maharashtra"
+    },
+    {
+      "label": "Top MBA colleges in India with fees 2026",
+      "href": "/articles/top-mba-colleges-in-india-with-fees-2026"
+    }
+  ],
+  "faqs": [
+    {
+      "question": "How many MBA colleges accept SNAP in this list?",
+      "answer": "Our records link {{count}} programme options at {{colleges}} colleges to SNAP, almost all of them Symbiosis institutes. {{published}} of those colleges have a published profile."
+    },
+    {
+      "question": "When is SNAP 2026 being held?",
+      "answer": "The official SNAP 2026 bulletin lists computer-based tests on 13, 19 and 26 December 2026. Registration closes on 25 November 2026, and results are scheduled for 12 January 2027."
+    },
+    {
+      "question": "What is the eligibility for SNAP MBA programmes?",
+      "answer": "The official SNAP site asks for a graduate degree from a recognised university, with at least 50% marks, or 45% for SC and ST candidates. Some specialised programmes add further academic or work-experience rules."
+    },
+    {
+      "question": "What is the fee at SIBM Pune?",
+      "answer": "The official 2026–28 MBA fee notice lists academic fees of ₹6,55,000 in each of four instalments, which is ₹26.20 lakh over two years, before hostel and mess. Our card now shows that official two-year academic total of ₹26.20 lakh, before hostel and mess."
+    },
+    {
+      "question": "Are the placement figures guaranteed?",
+      "answer": "No. For colleges with a recorded average package, the median is {{pkgMedian}}, from {{pkgMin}} to {{pkgMax}}. Check the institute's latest official placement report, and note the year of each figure."
+    }
+  ],
+  "sources": [
+    {
+      "label": "SNAP 2026 official website",
+      "url": "https://www.snaptest.org/"
+    },
+    {
+      "label": "SNAP 2026 important dates (official)",
+      "url": "https://www.snaptest.org/snap-important-dates"
+    },
+    {
+      "label": "SNAP 2026 bulletin (official PDF)",
+      "url": "https://www.snaptest.org/documents/SNAP-2026-Bulletin.pdf"
+    },
+    {
+      "label": "SIBM Pune MBA fees 2026–28 (official)",
+      "url": "https://sibm.edu/mba_fees_structure"
+    },
+    {
+      "label": "SIBM Pune how to apply (official)",
+      "url": "https://sibm.edu/mba_how_to_apply"
+    },
+    {
+      "label": "NIRF 2025 Management ranking",
+      "url": "https://www.nirfindia.org/Rankings/2025/ManagementRanking.html"
+    }
+  ]
+}

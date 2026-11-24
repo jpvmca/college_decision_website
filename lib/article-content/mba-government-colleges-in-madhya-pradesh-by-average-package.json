@@ -1,0 +1,72 @@
+{
+  "slug": "mba-government-colleges-in-madhya-pradesh-by-average-package",
+  "updatedOn": "24 Nov 2026",
+  "intro": [
+    "This page lists the best government MBA / PGDM colleges in Madhya Pradesh by the average packages in our records. We currently link {{count}} programme options at {{colleges}} public colleges.",
+    "IIM Indore is the main national institute here, with IIFM Bhopal, MANIT, ABV-IIITM Gwalior and several state campuses. Packages are historical records, and some years in our file go back to {{pkgYearMin}}."
+  ],
+  "listLead": "IIM Indore appears first. The opening card may be the five-year Integrated Programme in Management rather than the two-year PGP, so read the programme name before you compare packages.",
+  "snapshot": [
+    "For colleges with a recorded average package, the median is {{pkgMedian}}, in a range from {{pkgMin}} to {{pkgMax}}. The recorded years run from {{pkgYearMin}} to {{pkgYearMax}}.",
+    "Some highest-package figures in our file look unusually high, so confirm them in the official reports when you compare top MBA / PGDM colleges in Madhya Pradesh 2026."
+  ],
+  "firstCollegesLead": [
+    "IIM Indore has a 2024 recorded average of ₹26 LPA on an IPM row, with a highest of ₹100 LPA. Confirm the flagship PGP figures in the official placement report, because IPM and PGP are different programmes.",
+    "IIFM Bhopal and MANIT each have a 2023 recorded average of ₹11 LPA. In the official NIRF 2025 Management ranking, IIM Indore is 8 and ABV-IIITM Gwalior is 93."
+  ],
+  "compare": {
+    "heading": "How to compare the best government MBA / PGDM colleges in Madhya Pradesh",
+    "paragraphs": [
+      "A forestry, tourism or footwear MBA is not the same product as IIM Indore's PGP. Compare the award, the official fee and the year of the data.",
+      "Use these checks:"
+    ],
+    "bullets": [
+      "Whether the IIM Indore card is IPM or the two-year PGP.",
+      "The official placement report, especially where a highest package looks unusually high.",
+      "The official NIRF 2025 ranks for IIM Indore (8) and ABV-IIITM Gwalior (93).",
+      "CAT, IPMAT or CMAT, depending on the campus."
+    ]
+  },
+  "links": [
+    {
+      "label": "MBA / PGDM course guide",
+      "href": "/courses/mba"
+    },
+    {
+      "label": "Best MBA colleges in Madhya Pradesh",
+      "href": "/mba-colleges-in-madhya-pradesh"
+    },
+    {
+      "label": "CAT exam page",
+      "href": "/exams/cat"
+    },
+    {
+      "label": "Best MBA colleges in India",
+      "href": "/mba-colleges"
+    }
+  ],
+  "faqs": [
+    {
+      "question": "How many government MBA colleges in Madhya Pradesh are on this list?",
+      "answer": "Our records link {{count}} programme options at {{colleges}} public colleges, including IIM Indore, IIFM Bhopal, MANIT, ABV-IIITM Gwalior and several state campuses."
+    },
+    {
+      "question": "What is the typical average package on this list?",
+      "answer": "Among colleges with a recorded average, the median is {{pkgMedian}}, from {{pkgMin}} to {{pkgMax}}, for years {{pkgYearMin}} to {{pkgYearMax}}. These are historical records, not offers."
+    },
+    {
+      "question": "What is IIM Indore's NIRF rank?",
+      "answer": "In the official NIRF 2025 Management ranking, IIM Indore is 8 and ABV-IIITM Gwalior is 93."
+    },
+    {
+      "question": "Should I use the highest package figures on this page?",
+      "answer": "Use them only as a starting point. Some recorded highs in our file look unusually large. Confirm each figure in the official placement report for that programme and year."
+    }
+  ],
+  "sources": [
+    {
+      "label": "NIRF 2025 Management ranking",
+      "url": "https://www.nirfindia.org/Rankings/2025/ManagementRanking.html"
+    }
+  ]
+}

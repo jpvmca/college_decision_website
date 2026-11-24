@@ -1,0 +1,97 @@
+{
+  "slug": "engineering-government-colleges-in-punjab-by-average-package",
+  "updatedOn": "24 Nov 2026",
+  "intro": [
+    "This page orders government B.Tech / B.E. colleges in Punjab by the average package we hold on file. It is a way to scan the best government B.Tech / B.E. colleges in Punjab, not a promise of the same salary for the next batch.",
+    "We currently list {{count}} government B.Tech / B.E. programme records for the state. Ranked or higher-package campuses come first."
+  ],
+  "listLead": "The first cards include IIT Ropar, Guru Nanak Dev Engineering College in Ludhiana, NIT Jalandhar, and several state engineering colleges. A missing programme name or fee on a card only means we do not hold that detail yet.",
+  "snapshot": [
+    "Among the government colleges here with an average package in our records, the median figure is {{pkgMedian}}, and the recorded averages range from {{pkgMin}} to {{pkgMax}}.",
+    "Every package year in this snapshot is {{pkgYearMin}}. JEE Main is the exam most often linked here, with some colleges also linked to Punjab CET or JEE Advanced."
+  ],
+  "firstCollegesLead": [
+    "IIT Ropar is listed first, with a recorded B.Tech CSE fee of ₹2.27 lakh and a 2023 average package of ₹21 lakh, plus a highest of ₹55 lakh. Those placement figures are a historical record for 2023, not a promise.",
+    "NIT Jalandhar shows a 2023 CSE average of ₹12 lakh and a highest of ₹42 lakh in our records. Several later cards name a department rather than a full campus, so confirm the official institute name before you apply."
+  ],
+  "sections": [
+    {
+      "heading": "How these government seats are usually filled",
+      "paragraphs": [
+        "IIT Ropar admits through JEE Advanced, after a candidate qualifies JEE Main. NIT Jalandhar and other centrally funded institutes admit through JEE Main and JoSAA counselling, subject to the Class 12 mark rule NTA publishes.",
+        "State government engineering colleges in Punjab may also use a state counselling process linked to JEE Main or Punjab CET. Always read the current admission notice for that campus."
+      ]
+    }
+  ],
+  "compare": {
+    "heading": "How to compare the best government B.Tech / B.E. colleges in Punjab",
+    "paragraphs": [
+      "Use this list of top B.Tech / B.E. colleges in Punjab 2026 as a shortlist, then compare the official placement report for the branch you want.",
+      "These checks usually matter more than a small gap in the average package:"
+    ],
+    "bullets": [
+      "The branch on the card, because a Civil Engineering average is not a substitute for the Computer Science figure at the same campus.",
+      "Whether the recorded fee is for one year or the full four-year programme.",
+      "The entrance route (JEE Advanced, JEE Main and JoSAA, or Punjab CET) and the cut-off for your category.",
+      "The year of the placement report, even when every figure on this snapshot is from the same year."
+    ]
+  },
+  "links": [
+    {
+      "label": "B.Tech / B.E. course guide",
+      "href": "/courses/engineering"
+    },
+    {
+      "label": "Best engineering colleges in Punjab",
+      "href": "/engineering-colleges-in-punjab"
+    },
+    {
+      "label": "JEE Main exam guide",
+      "href": "/exams/jee-main"
+    },
+    {
+      "label": "JEE Advanced exam guide",
+      "href": "/exams/jee-advanced"
+    },
+    {
+      "label": "Punjab CET exam guide",
+      "href": "/exams/cet-punjab"
+    }
+  ],
+  "faqs": [
+    {
+      "question": "How many government engineering colleges in Punjab are listed here?",
+      "answer": "Our records currently show {{count}} government B.Tech / B.E. programme options in Punjab. Only some of those have an average package on file, and those are the figures used to order the early cards."
+    },
+    {
+      "question": "What is a typical average package at these colleges?",
+      "answer": "Among the government colleges here with an average package in our records, the median is {{pkgMedian}}, and the recorded averages range from {{pkgMin}} to {{pkgMax}}. The highest package we hold is {{highestMax}}."
+    },
+    {
+      "question": "Which entrance exams do these colleges use?",
+      "answer": "IIT Ropar admits through JEE Advanced, NIT Jalandhar through JEE Main and JoSAA, and some state colleges are also linked to Punjab CET in our records. Confirm the current process on the official notice."
+    },
+    {
+      "question": "Are these packages guaranteed?",
+      "answer": "No, they are historical records from {{pkgYearMin}} in this file, and they change with every batch, so confirm them in the institute’s official placement report."
+    },
+    {
+      "question": "Why do some cards have no fee or programme name?",
+      "answer": "We do not yet hold that detail for those government campuses, even though we hold a placement year. Check the official fee notice and the exact B.Tech branch before you compare them."
+    }
+  ],
+  "sources": [
+    {
+      "label": "NTA, Joint Entrance Examination (Main)",
+      "url": "https://www.nta.gov.in/exams/jee/"
+    },
+    {
+      "label": "JEE (Advanced) 2026 information brochure",
+      "url": "https://jeeadv.ac.in"
+    },
+    {
+      "label": "NIRF 2025 Engineering ranking",
+      "url": "https://www.nirfindia.org/Rankings/2025/EngineeringRanking.html"
+    }
+  ]
+}

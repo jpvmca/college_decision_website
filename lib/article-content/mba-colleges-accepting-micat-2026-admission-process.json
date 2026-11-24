@@ -1,0 +1,108 @@
+{
+  "slug": "mba-colleges-accepting-micat-2026-admission-process",
+  "updatedOn": "24 Nov 2026",
+  "intro": [
+    "MICAT is MICA Ahmedabad's own admission test for its communication and marketing programmes. This page gathers MBA colleges accepting MICAT 2026 from our records, so you can see how the test is used before you apply.",
+    "Our records currently link {{count}} MBA / PGDM programme options to MICAT, all at {{colleges}} college: MICA, Ahmedabad. Ranked colleges come first; here that is only MICA.",
+    "For the 2026–28 batch, MICA required a CAT, XAT or GMAT score as well as MICAT. Confirm the latest rule on MICA's admissions page before you fill the form."
+  ],
+  "listLead": "The cards below are programme rows for MICA, not ten different colleges. Read the programme name carefully; doctoral FPM rows appear before the flagship PGDM options.",
+  "snapshot": [
+    "This list is unusual among exam pages: {{count}} programme rows sit under {{colleges}} published college in Gujarat. There is no all-India spread to compare.",
+    "We do not hold a usable fee summary for this list, so the snapshot table will not show a fee median. Placement figures in our records also vary by programme, so treat each card on its own.",
+    "If you came here looking for top MBA / PGDM colleges in India 2026 that use a national test, MICAT itself is specific to MICA and is not a common entrance used across many campuses."
+  ],
+  "firstCollegesLead": [
+    "The first table may show a one-year Post Graduate Certificate in Advertising Management and Public Relations at ₹1.30 lakh. That is not MICA's two-year PGDM fee.",
+    "For the PGDM in Communication programmes, our records show a total fee of ₹13 lakh. The 2023 placement record for PGDM Communication Management is an average of ₹20 LPA and a highest of ₹36 LPA."
+  ],
+  "sections": [
+    {
+      "heading": "How MICAT admissions work at MICA",
+      "paragraphs": [
+        "MICAT is a computer-based test that MICA usually holds twice, with the better score counted. For the 2026–28 batch, MICAT I was on 6 December 2025 and MICAT II on 13 February 2026.",
+        "The paper has a psychometric section, a descriptive section, and an aptitude section covering thinking, verbal ability, quantitative ability and general awareness."
+      ],
+      "bullets": [
+        "You must also submit a CAT, XAT or GMAT score; MICAT alone is not enough for the PGDM and PGDM-C.",
+        "Eligibility on the official 2026 notice was a bachelor's degree with at least 50% marks, or equivalent, from a recognised university.",
+        "Shortlisted candidates go through a Group Exercise and Personal Interview. The final merit uses the national test, MICAT, and the GE-PI."
+      ]
+    }
+  ],
+  "compare": {
+    "heading": "How to read MBA colleges accepting MICAT 2026",
+    "paragraphs": [
+      "Because only MICA uses this test in our records, the useful comparison is between MICA's own programmes, not between cities or college types.",
+      "Before you apply, check these points on mica.ac.in:"
+    ],
+    "bullets": [
+      "Whether you are applying to PGDM, PGDM-C, a PGCM, or the Fellow Programme; each has its own test and fee rules.",
+      "Which CAT, XAT or GMAT year MICA will accept for the cycle you are targeting.",
+      "The official fee notice for the two-year PGDM, not the certificate-programme figure that may appear first in our table.",
+      "The latest official placement report. Our 2023 figures are a historical record, not a promise for your batch."
+    ]
+  },
+  "links": [
+    {
+      "label": "MBA / PGDM course guide",
+      "href": "/courses/mba"
+    },
+    {
+      "label": "Best MBA colleges in India",
+      "href": "/mba-colleges"
+    },
+    {
+      "label": "MICAT exam page",
+      "href": "/exams/micat"
+    },
+    {
+      "label": "MICA, Ahmedabad",
+      "href": "/colleges/mica-gujarat-ahmedabad"
+    },
+    {
+      "label": "MBA colleges in Gujarat",
+      "href": "/mba-colleges-in-gujarat"
+    }
+  ],
+  "faqs": [
+    {
+      "question": "How many MBA colleges accept MICAT?",
+      "answer": "In our records, {{count}} MBA / PGDM programme options are linked to MICAT, all at {{colleges}} college, MICA in Ahmedabad. Other colleges may ask for CAT or XAT instead, so confirm on each official admission page."
+    },
+    {
+      "question": "Is MICAT enough for MICA admission?",
+      "answer": "No, not for the PGDM and PGDM-C. MICA's 2026–28 notice said every candidate must also have a CAT, XAT or GMAT score, then sit MICAT and, if shortlisted, the Group Exercise and interview."
+    },
+    {
+      "question": "What is the eligibility for MICAT and MICA's PGDM?",
+      "answer": "The official 2026 notice asked for a bachelor's degree, or equivalent, in any discipline with at least 50% marks from a recognised university. Final-year students could apply, subject to submitting proof by the stated deadlines."
+    },
+    {
+      "question": "When was MICAT held for the 2026–28 batch?",
+      "answer": "MICA held MICAT I on 6 December 2025 and MICAT II on 13 February 2026, with the better score used. Dates change each year, so check mica.ac.in for the cycle you are applying to."
+    },
+    {
+      "question": "What is MICA's NIRF rank?",
+      "answer": "In the NIRF 2025 Management ranking, MICA is ranked 33."
+    }
+  ],
+  "sources": [
+    {
+      "label": "MICA Admissions 2026–28 programme details (official PDF)",
+      "url": "https://www.mica.ac.in/resources/admissions2026/PGP-Program-Details.pdf"
+    },
+    {
+      "label": "MICA PGDM / PGDM-C admissions notice (official)",
+      "url": "https://www.mica.ac.in/wp-content/uploads/2025/10/MICA-PGPPGDM-C-PGDM.pdf"
+    },
+    {
+      "label": "MICA admissions page",
+      "url": "https://www.mica.ac.in/admissions/"
+    },
+    {
+      "label": "NIRF 2025 Management ranking",
+      "url": "https://www.nirfindia.org/Rankings/2025/ManagementRanking.html"
+    }
+  ]
+}

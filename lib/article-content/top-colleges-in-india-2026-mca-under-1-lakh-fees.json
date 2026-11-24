@@ -1,0 +1,86 @@
+{
+  "slug": "top-colleges-in-india-2026-mca-under-1-lakh-fees",
+  "updatedOn": "24 Nov 2026",
+  "intro": [
+    "We hold a recorded main-programme fee of up to ₹{{budget}} lakh for {{count}} published MCA / MCM colleges in India. This list of the best MCA / MCM colleges under ₹{{budget}} lakh is a fee filter across public and private colleges.",
+    "Harcourt Butler Technological University, Kanpur, is listed first with MCA at ₹36,730 and a 2023 average package of ₹3 lakh. Several Tamil Nadu private colleges follow, with recorded fees close to ₹11,667.",
+    "Tamil Nadu, Telangana, Maharashtra and Uttar Pradesh have the most listings. ICET, TANCET, MAH MCA CET, CUET PG, NIMCET and PGCET are the main recorded tests."
+  ],
+  "listLead": "These are the top MCA / MCM colleges in India 2026 with a recorded main-programme fee of up to ₹1 lakh. Fractional fees such as ₹11,666.67 usually look like an annual tuition divided or rounded in our records, so confirm the official amount.",
+  "snapshot": [
+    "Across {{feeN}} published colleges with a recorded fee, the median total is {{feeMedian}}, and the middle half sits between {{feeP25}} and {{feeP75}}.",
+    "{{private}} colleges are private and {{public}} are public. Hyderabad, Pune, Chennai, Bhopal, Coimbatore and Bangalore are the leading cities.",
+    "Only one record has a fee band that can exceed ₹1 lakh. A state-university MCA fee may still be published as an annual figure."
+  ],
+  "firstCollegesLead": [
+    "Government Engineering College, Thrissur, is listed with MCA at ₹12,690 and a 2023 average of ₹5 lakh. Avinashilingam University for Women, Coimbatore, is listed at ₹13,245, with a 2023 average of ₹4 lakh.",
+    "Arunai Engineering College and KLN College of Information Technology both show ₹11,666.67. Treat that exact fraction as a stored annual or computed figure, and use the official notice instead."
+  ],
+  "sections": [
+    {
+      "heading": "State entrance tests for MCA",
+      "paragraphs": [
+        "TANCET, ICET, MAH MCA CET, PGCET and NIMCET appear on this list because MCA admissions are often state- or institute-specific.",
+        "A low recorded fee is useful only when it matches the official programme that the test actually admits you to."
+      ]
+    }
+  ],
+  "compare": {
+    "heading": "How to compare the best MCA / MCM colleges under ₹1 lakh",
+    "paragraphs": [
+      "A public technological university and a private engineering-college MCA can share this cap and still differ in labs, intake and the entrance test you must clear.",
+      "Check these official points:"
+    ],
+    "bullets": [
+      "Whether the fee is annual or for the full MCA, and what laboratory charges add.",
+      "The official entrance test, such as TANCET, ICET, NIMCET or a university process.",
+      "Eligibility, including the required undergraduate subject combination.",
+      "The official placement report, where we hold one, because averages here are historical."
+    ]
+  },
+  "links": [
+    {
+      "label": "MCA course guide",
+      "href": "/courses/mca"
+    },
+    {
+      "label": "Best MCA colleges in India",
+      "href": "/mca-colleges"
+    },
+    {
+      "label": "TANCET exam guide",
+      "href": "/exams/tancet"
+    },
+    {
+      "label": "NIMCET exam guide",
+      "href": "/exams/nimcet"
+    },
+    {
+      "label": "BCA colleges under ₹1 lakh",
+      "href": "/articles/top-colleges-in-india-2026-bca-under-1-lakh-fees"
+    }
+  ],
+  "faqs": [
+    {
+      "question": "How many MCA colleges in India have fees under ₹1 lakh here?",
+      "answer": "We list {{published}} published MCA / MCM colleges with a recorded main-programme fee up to ₹{{budget}} lakh. Colleges without a usable fee on file are excluded."
+    },
+    {
+      "question": "What is a typical MCA fee on this list?",
+      "answer": "The median recorded total is {{feeMedian}}, and the middle half falls between {{feeP25}} and {{feeP75}}. Confirm whether the official notice is annual or for the full MCA."
+    },
+    {
+      "question": "Why do some Tamil Nadu MCA fees show paise, such as ₹11,666.67?",
+      "answer": "That usually means our record stored a computed or annual figure rather than a rounded official total. Use the official fee notice, not the fraction on the card."
+    },
+    {
+      "question": "Which exams do these MCA colleges accept?",
+      "answer": "ICET and TANCET are the most frequently recorded tests, followed by MAH MCA CET, CUET PG, NIMCET and PGCET. Confirm the latest process for the state or university you are applying to."
+    },
+    {
+      "question": "Is this a ranking of the best MCA / MCM colleges under ₹1 lakh?",
+      "answer": "No. It is a fee filter. Labs, eligibility and the official entrance test should guide the shortlist."
+    }
+  ],
+  "sources": []
+}

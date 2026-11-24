@@ -1,0 +1,104 @@
+{
+  "slug": "mba-colleges-accepting-pgcet-2026-admission-process",
+  "updatedOn": "24 Nov 2026",
+  "intro": [
+    "Karnataka PGCET is the state test used for MBA, MCA and M.Tech seats in Karnataka. This page lists MBA colleges accepting Karnataka PGCET 2026 from our records, and explains the official KEA process.",
+    "We currently link {{count}} MBA / PGDM programme options at {{colleges}} colleges to this exam. {{published}} of those colleges have a published profile.",
+    "Official counselling is run by the Karnataka Examinations Authority for institutions in Karnataka. If a campus outside the state appears here, confirm it on the current KEA seat list before you treat PGCET as its route."
+  ],
+  "listLead": "The cards are ordered with ranked colleges first, then other published profiles. Many rows have no fee or placement on file, so the programme name and official KEA allotment matter more than the number on the card.",
+  "snapshot": [
+    "Of the {{colleges}} colleges in this list, most of those we can place are in Karnataka, especially Bangalore and Mysore. Our file also tags some campuses in Andhra Pradesh and Telangana, which you should verify against the official seat matrix.",
+    "For the colleges with a recorded average package, the median is {{pkgMedian}}, in a range from {{pkgMin}} to {{pkgMax}}. These are historical records, not a promise for the next batch.",
+    "We do not hold a fee median for this exam list. When you compare the top MBA / PGDM colleges in India 2026 that take a state test, start with the KEA fee and the college's own notice."
+  ],
+  "firstCollegesLead": [
+    "The first cards are alphabetical as much as ranked, so well-known Karnataka departments may appear later than smaller private colleges.",
+    "AJ Institute of Management in Mangalore has a recorded MBA Finance fee of ₹2.60 lakh and a 2025 average package of ₹4.5 LPA in our files. Confirm both on the institute and KEA notices, because some cards show a lower first-year figure."
+  ],
+  "sections": [
+    {
+      "heading": "How Karnataka PGCET MBA admissions work",
+      "paragraphs": [
+        "The Karnataka Examinations Authority conducts PGCET and then allots MBA seats in government, university, aided and private colleges in the state. For 2026–27, KEA published an information bulletin and ran counselling into November 2026.",
+        "A rank in PGCET does not by itself give you a seat. You still need the required marks in the degree, document verification, and a choice in the official option-entry rounds."
+      ],
+      "bullets": [
+        "The official 2026 bulletin asked for 50% aggregate marks in the bachelor's degree, and 45% for the reserved categories named in the notice.",
+        "Non-Karnataka candidates, as per the bulletin, could only seek seats surrendered by the management, if any were offered.",
+        "Always use cetonline.karnataka.gov.in for dates, the seat matrix and cut-off ranks; those change by round."
+      ]
+    }
+  ],
+  "compare": {
+    "heading": "How to shortlist MBA colleges accepting Karnataka PGCET 2026",
+    "paragraphs": [
+      "Treat the official KEA seat matrix as the source of truth, then use this list to read fees and placements we already hold.",
+      "Work through these checks:"
+    ],
+    "bullets": [
+      "Whether the college is in the current KEA MBA seat matrix for Karnataka, not only tagged to PGCET in our database.",
+      "Government quota versus management quota, because the fee and the rank needed are not the same.",
+      "Whether a card fee is for the full two years or a single year; some of our figures look like one year only.",
+      "The latest official placement report. Our averages are historical and are missing for many colleges on this list."
+    ]
+  },
+  "links": [
+    {
+      "label": "MBA / PGDM course guide",
+      "href": "/courses/mba"
+    },
+    {
+      "label": "Best MBA colleges in India",
+      "href": "/mba-colleges"
+    },
+    {
+      "label": "Karnataka PGCET exam page",
+      "href": "/exams/pgcet"
+    },
+    {
+      "label": "MBA colleges in Karnataka",
+      "href": "/mba-colleges-in-karnataka"
+    },
+    {
+      "label": "MBA colleges accepting TS ICET 2026",
+      "href": "/articles/mba-colleges-accepting-tsicet-2026-admission-process"
+    }
+  ],
+  "faqs": [
+    {
+      "question": "How many MBA colleges accept Karnataka PGCET in this list?",
+      "answer": "Our records link {{count}} MBA / PGDM programme options at {{colleges}} colleges to Karnataka PGCET. {{published}} of those colleges have a published profile. The official KEA seat matrix for a given year may be shorter or longer."
+    },
+    {
+      "question": "Who conducts Karnataka PGCET?",
+      "answer": "The Karnataka Examinations Authority, Bangalore, conducts PGCET and the MBA seat allotment for participating institutions in Karnataka. The official pages are on cetonline.karnataka.gov.in."
+    },
+    {
+      "question": "What is the eligibility for MBA through PGCET?",
+      "answer": "The PGCET-2026 information bulletin asked for 50% aggregate marks in the bachelor's degree, and 45% for the reserved categories listed in that notice. Always read the bulletin for the year you are applying."
+    },
+    {
+      "question": "Can students from outside Karnataka use PGCET?",
+      "answer": "The 2026 bulletin said non-Karnataka candidates could select only seats surrendered by the management, if any. Government-quota seats follow the state admission rules, so check the current notice."
+    },
+    {
+      "question": "Are average packages on this page guaranteed?",
+      "answer": "No. For colleges with a recorded average, the median is {{pkgMedian}}, from {{pkgMin}} to {{pkgMax}}. Many colleges here have no package on file. Use the latest official placement report."
+    }
+  ],
+  "sources": [
+    {
+      "label": "KEA PGCET-2026 official page",
+      "url": "https://cetonline.karnataka.gov.in/KEA/pgcet2026"
+    },
+    {
+      "label": "PGCET-2026 Information Bulletin (official PDF)",
+      "url": "https://cetonline.karnataka.gov.in/keawebentry456/pgcet2026/PGCET_2026_Information_Bulletin26032026english.pdf"
+    },
+    {
+      "label": "KEA home",
+      "url": "https://cetonline.karnataka.gov.in/kea/"
+    }
+  ]
+}

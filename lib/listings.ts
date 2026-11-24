@@ -22,7 +22,7 @@ const RESERVED_KEYS = new Set(['compare', 'compare-colleges', 'all', 'top', 'bes
  * This value is part of the fetch URL only for continuity with already-cached entries;
  * it no longer needs bumping.
  */
-export const LISTINGS_CACHE_VERSION = '2';
+export const LISTINGS_CACHE_VERSION = '4';
 /** Fallback revalidate window (seconds) if on-demand revalidation is not configured. */
 export const LISTINGS_REVALIDATE_SECONDS = 900;
 
@@ -52,6 +52,7 @@ export type ListingSummary = {
   total: number;
   privateCount: number;
   publicCount: number;
+  otherCount?: number;
   cities: Array<{ name: string; slug: string; count: number }>;
   states?: Array<{ name: string; slug: string; count: number }>;
   exams?: Array<{ name: string; slug: string; count: number }>;
@@ -64,7 +65,7 @@ export async function getListingSummary(courseSlug: string, stateSlug?: string |
   const params = new URLSearchParams({ course: courseSlug });
   if (stateSlug) params.set('state', stateSlug);
   if (citySlug) params.set('city', citySlug);
-  params.set('v', 'lu1');
+  params.set('v', 'lu2');
   try {
     const result = await api<{ data: ListingSummary }>(`/colleges/listing-summary?${params}`, listingFetchOptions([`listing-summary:${courseSlug}:${stateSlug || ''}:${citySlug || ''}`]));
     return result?.data || null;

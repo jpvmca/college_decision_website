@@ -1,0 +1,101 @@
+{
+  "slug": "mba-colleges-accepting-gmat-2026-admission-process",
+  "updatedOn": "24 Nov 2026",
+  "intro": [
+    "Our records link {{count}} MBA / PGDM programme options to GMAT. This page explains MBA colleges accepting GMAT 2026, with official detail where we could confirm it, especially for the Indian School of Business.",
+    "Ranked colleges come first, then the other published colleges in alphabetical order. Confirm the current admission page, because some Indian flagship MBAs accept GMAT only for certain categories or programmes."
+  ],
+  "listLead": "The first cards include IIM Calcutta, IIM Lucknow, XLRI Jamshedpur, IIM Indore, IIM Bangalore, ISB Hyderabad, ISB Mohali and IIM Udaipur. A GMAT link in our records is not, by itself, proof that the flagship PGP is open to every GMAT candidate.",
+  "snapshot": [
+    "Among the colleges here with an average package in our records, the median figure is {{pkgMedian}}, and the recorded averages range from {{pkgMin}} to {{pkgMax}}. These are historical figures, not a promise for the next batch.",
+    "Use the list of top MBA / PGDM colleges in India 2026 as a shortlist after you have a score, then read the official GMAT policy for that exact programme."
+  ],
+  "firstCollegesLead": [
+    "ISB’s official admissions pages say the PGP in Management accepts a GMAT or GRE score, and that the regular PGP needs at least two years of full-time work experience. The programme is a one-year residential course at Hyderabad or Mohali.",
+    "ISB’s published PGP fee structure for 2026–27 lists tuition of ₹25.62 lakh, and a grand total of about ₹38.67 lakh for shared accommodation when admission, commitment and GST are included. Our card for ISB Mohali now shows the official shared-accommodation grand total of ₹38.67 lakh, including admission, commitment and GST."
+  ],
+  "sections": [
+    {
+      "heading": "How to read a GMAT-accepting college in India",
+      "paragraphs": [
+        "ISB is a clear GMAT route. Several IIMs and XLRI appear in our GMAT-linked list, but the flagship two-year MBA may still be filled mainly through CAT or XAT, with GMAT reserved for some executive or international categories.",
+        "Always open the current admission policy for the exact programme, rather than assuming one test works for every course on the same campus."
+      ]
+    }
+  ],
+  "compare": {
+    "heading": "How to compare MBA colleges accepting GMAT 2026",
+    "paragraphs": [
+      "Start with the programme and the official test policy, not only the college name.",
+      "Then check these points on the official pages:"
+    ],
+    "bullets": [
+      "Whether GMAT is accepted for the flagship MBA, or only for an executive, one-year, or international category.",
+      "The work-experience rule, which at ISB is two years or more for the regular PGP.",
+      "The official fee notice for the current year, including taxes and accommodation where they are published.",
+      "The latest official placement report, treated as a historical record rather than a promise."
+    ]
+  },
+  "links": [
+    {
+      "label": "MBA / PGDM course guide",
+      "href": "/courses/mba"
+    },
+    {
+      "label": "Best MBA colleges in India",
+      "href": "/mba-colleges"
+    },
+    {
+      "label": "GMAT exam guide",
+      "href": "/exams/gmat"
+    },
+    {
+      "label": "MBA colleges accepting CAT 2026",
+      "href": "/articles/mba-colleges-accepting-cat-2026-admission-process"
+    },
+    {
+      "label": "Top MBA colleges with fees 2026",
+      "href": "/articles/top-mba-colleges-in-india-with-fees-2026"
+    }
+  ],
+  "faqs": [
+    {
+      "question": "Which well-known Indian colleges accept GMAT?",
+      "answer": "ISB officially accepts GMAT or GRE for its PGP in Management. Several IIMs and XLRI are also linked to GMAT in our records, but you should confirm the exact programme and category on the official admission page."
+    },
+    {
+      "question": "How many MBA colleges accepting GMAT 2026 are listed here?",
+      "answer": "Our records currently link {{count}} MBA / PGDM programme options to GMAT. An exam link is a starting clue, not a substitute for the current policy."
+    },
+    {
+      "question": "What is the official ISB PGP fee for 2026–27?",
+      "answer": "ISB’s fee structure lists tuition of ₹25.62 lakh, and a grand total of about ₹38.67 lakh for shared accommodation including admission, commitment and GST. Confirm the PDF for studio housing or instalment options."
+    },
+    {
+      "question": "Is work experience required for ISB?",
+      "answer": "Yes, ISB’s official PGP page says the regular programme needs at least two years of full-time work experience, along with an undergraduate degree."
+    },
+    {
+      "question": "Does a GMAT score replace CAT for every IIM?",
+      "answer": "No, many flagship IIM programmes still use CAT as the main test for Indian candidates, so read the current admission policy before you assume GMAT is enough."
+    }
+  ],
+  "sources": [
+    {
+      "label": "ISB, PGP in Management admissions",
+      "url": "https://admission.isb.edu/admissions/pgplp/"
+    },
+    {
+      "label": "ISB, PGP in Management FAQs (eligibility and work experience)",
+      "url": "https://www.isb.edu/programmes/post-graduate-programmes/pgp-in-management/faqs"
+    },
+    {
+      "label": "ISB, PGP fee structure 2026–27",
+      "url": "https://prodcd.isb.edu/media/ocqbtcby/fee-structure-2026-27.pdf"
+    },
+    {
+      "label": "ISB, application requirements (GMAT or GRE)",
+      "url": "https://pgpapp.isb.edu/user/AppRequirements.html"
+    }
+  ]
+}

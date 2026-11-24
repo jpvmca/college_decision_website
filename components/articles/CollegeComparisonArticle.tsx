@@ -6,6 +6,8 @@ import type { CSSProperties, ReactNode } from 'react';
 import InstituteLogo from '../InstituteLogo';
 import AutoLinkedText from '../AutoLinkedText';
 import type { AutoLinkOptions, LinkableEntity } from '../../lib/auto-link-entities';
+import type { ArticleContent } from '../../lib/article-content';
+import { feeFloorForCourse, formatComparisonNirf, pickPlacement, pickProgrammeFee } from '../../lib/comparison-picks';
 
 type College = {
   id: string;
@@ -19,8 +21,8 @@ type College = {
   programmes?: Array<{ id: number; name: string; duration?: string | null; eligibility?: string | null; description?: string | null }>;
   fees?: Array<{ programme_id: number; programme_name: string; fees: number | string; fee_type?: string | null; fee_duration?: string | null }>;
   exams?: string[];
-  placements?: Array<{ programme_id: number; year?: number | string | null; average_package?: number | string | null; highest_package?: number | string | null }>;
-  rankings?: Array<{ ranking_body?: string | null; rank?: number | string | null; out_of?: number | string | null; year?: number | string | null; course_name?: string | null }>;
+  placements?: Array<{ programme_id: number; programme_name?: string | null; year?: number | string | null; average_package?: number | string | null; highest_package?: number | string | null }>;
+  rankings?: Array<{ ranking_body?: string | null; rank?: number | string | null; out_of?: number | string | null; year?: number | string | null; course_id?: number | string | null; course_name?: string | null }>;
   recruiters?: string[];
 };
 
@@ -30,6 +32,7 @@ type ComparisonArticle = {
   collegeA: College;
   collegeB: College;
   decisionScore?: { collegeA: number; collegeB: number };
+  feeFloor?: number | null;
 };
 
 const unavailable = '-';
@@ -42,8 +45,17 @@ const packageValue = (value: number | string | null | undefined) => {
   const number = Number(value);
   return Number.isFinite(number) && number > 0 ? `₹${number.toLocaleString('en-IN', { maximumFractionDigits: 2 })} lakh` : unavailable;
 };
-const firstFee = (college: College) => college.fees?.length ? money(Math.min(...college.fees.map((fee) => Number(fee.fees)).filter((fee) => Number.isFinite(fee) && fee > 0))) : unavailable;
-const latestPlacement = (college: College) => college.placements?.[0];
+const recordedFee = (college: College, feeFloor: number) => {
+  const picked = pickProgrammeFee(college.fees, feeFloor);
+  return picked ? money(picked.total) : unavailable;
+};
+const recordedPlacement = (college: College) => pickPlacement(college.placements, college.programmes);
+const recordedRank = (college: College, courseSlug?: string | null) => {
+  const nirf = formatComparisonNirf(college.rankings, courseSlug);
+  if (nirf) return nirf;
+  const fallback = college.rankings?.[0];
+  return fallback ? `${fallback.ranking_body || unavailable}: ${fallback.rank || unavailable}` : unavailable;
+};
 const scorePercent = (value: number, total: number) => total > 0 ? (value / total) * 100 : 50;
 const scoreDisplay = (value: number) => String(Math.round(value));
 
@@ -134,13 +146,17 @@ function CollegeColumn({
 
 export default function CollegeComparisonArticle({
   article,
-  linkableEntities = []
+  linkableEntities = [],
+  content
 }: {
   article: ComparisonArticle;
   linkableEntities?: LinkableEntity[];
+  content?: ArticleContent | null;
 }) {
   const a = article.collegeA;
   const b = article.collegeB;
+  const feeFloor = article.feeFloor || feeFloorForCourse(article.course.slug);
+  const hasWrittenGuide = Boolean(content?.sections?.length || content?.faqs?.length);
   const scoreA = article.decisionScore?.collegeA || 0;
   const scoreB = article.decisionScore?.collegeB || 0;
   const totalScore = scoreA + scoreB;
@@ -156,8 +172,8 @@ export default function CollegeComparisonArticle({
   const branchLabel = /B\.? ?Tech|B\.?E\.?/i.test(article.course.name) ? 'B.E.' : article.course.name;
   const sharedExams = (a.exams || []).filter((exam) => (b.exams || []).includes(exam));
   const examLabel = sharedExams[0] || 'the same entrance exam';
-  const placementA = latestPlacement(a);
-  const placementB = latestPlacement(b);
+  const placementA = recordedPlacement(a);
+  const placementB = recordedPlacement(b);
 
   // Page-scoped: at most one Link per college href; first auto-link mention per entity.
   // Pre-claim so same-slug A/B (self-vs pages) still emit only one profile CTA link.
@@ -178,11 +194,11 @@ export default function CollegeComparisonArticle({
     ['Location', [a.location?.city, a.location?.state].filter(Boolean).join(', ') || unavailable, [b.location?.city, b.location?.state].filter(Boolean).join(', ') || unavailable],
     ['Institute type', a.instituteType || unavailable, b.instituteType || unavailable],
     ['Programmes / branches', a.programmes?.length ? `${a.programmes.length} listed` : unavailable, b.programmes?.length ? `${b.programmes.length} listed` : unavailable],
-    ['Recorded fees', firstFee(a), firstFee(b)],
+    ['Recorded fees', recordedFee(a, feeFloor), recordedFee(b, feeFloor)],
     ['Entrance exams', a.exams?.length ? <LinkedProse key="a-exams" text={a.exams.join(', ')} entities={linkableEntities} options={autoLinkOptions} /> : unavailable, b.exams?.length ? <LinkedProse key="b-exams" text={b.exams.join(', ')} entities={linkableEntities} options={autoLinkOptions} /> : unavailable],
-    ['Average placement', placementA?.average_package ? packageValue(placementA.average_package) : unavailable, placementB?.average_package ? packageValue(placementB.average_package) : unavailable],
-    ['Highest placement', placementA?.highest_package ? packageValue(placementA.highest_package) : unavailable, placementB?.highest_package ? packageValue(placementB.highest_package) : unavailable],
-    ['Ranking', a.rankings?.[0] ? `${a.rankings[0].ranking_body || unavailable}: ${a.rankings[0].rank || unavailable}` : unavailable, b.rankings?.[0] ? `${b.rankings[0].ranking_body || unavailable}: ${b.rankings[0].rank || unavailable}` : unavailable]
+    ['Average placement', placementA?.average ? packageValue(placementA.average) : unavailable, placementB?.average ? packageValue(placementB.average) : unavailable],
+    ['Highest placement', placementA?.highest ? packageValue(placementA.highest) : unavailable, placementB?.highest ? packageValue(placementB.highest) : unavailable],
+    ['Ranking', recordedRank(a, article.course.slug), recordedRank(b, article.course.slug)]
   ];
   const nameA = collegeName(a);
   const nameB = collegeName(b);
@@ -196,7 +212,7 @@ export default function CollegeComparisonArticle({
   ];
 
     return <section className="college-comparison-article">
-    <p className="article-intro">This course-wise guide compares recorded programme, fee, admission, placement and ranking evidence for <CollegeName college={a} /> and <CollegeName college={b} />. <LinkedProse text={`Fees and outcomes can change; verify the latest official notification.`} entities={linkableEntities} options={autoLinkOptions} /></p>
+    {hasWrittenGuide ? null : <p className="article-intro">This course-wise guide compares recorded programme, fee, admission, placement and ranking evidence for <CollegeName college={a} /> and <CollegeName college={b} />. <LinkedProse text={`Fees and outcomes can change; verify the latest official notification.`} entities={linkableEntities} options={autoLinkOptions} /></p>}
     <div className="comparison-section-heading"><div><p className="eyebrow">AT A GLANCE</p><h2>Quick comparison</h2></div><span className="comparison-course-badge"><LinkedProse text={article.course.name} entities={linkableEntities} options={autoLinkOptions} /></span></div>
     <div className="comparison-table-wrap"><table className="comparison-table"><thead><tr><th>Factor</th><th><span className="comparison-college-head"><CollegeName college={a} /><InstituteLogo src={a.logo} alt={`${collegeName(a)} logo`} /></span></th><th><span className="comparison-college-head"><CollegeName college={b} /><InstituteLogo src={b.logo} alt={`${collegeName(b)} logo`} /></span></th></tr></thead><tbody>{comparisonRows.filter(([, valueA, valueB]) => valueA !== unavailable || valueB !== unavailable).map(([factor, valueA, valueB]) => <tr key={factor}><th scope="row">{factor}</th><td>{valueA}</td><td>{valueB}</td></tr>)}</tbody></table></div>
     <h2>Decision score</h2>
@@ -205,9 +221,12 @@ export default function CollegeComparisonArticle({
       <div className="comparison-score-legend"><p className="score-winner">Higher recorded score: <strong className={scoreA >= scoreB ? 'score-success-text' : 'score-warning-text'}>{scoreLeaderNode}</strong></p><div><i className={`score-dot ${scoreAStatus}`} /><CollegeName college={a} /><strong className={`${scoreAStatus}-text`}>{scoreDisplay(scoreA)} / 100</strong><span className="score-bar"><b className={scoreAStatus} style={{ width: `${Math.min(scoreA, 100)}%` } as CSSProperties} /></span></div><div><i className={`score-dot ${scoreBStatus}`} /><CollegeName college={b} /><strong className={`${scoreBStatus}-text`}>{scoreDisplay(scoreB)} / 100</strong><span className="score-bar"><b className={scoreBStatus} style={{ width: `${Math.min(scoreB, 100)}%` } as CSSProperties} /></span></div></div>
     </div>
     <p>There is no universal winner. The better fit depends on your preferred <LinkedProse text={article.course.name} entities={linkableEntities} options={autoLinkOptions} /> branch, budget, admission route, location and the quality and year of available evidence.</p>
+    {hasWrittenGuide ? null : <>
     {(a.fees?.length || b.fees?.length) ? <><h2>Which university has lower comparable fees?</h2><p>Compare the recorded tuition cost, fee type and duration for the same or closely matching programme. Annual charges and total fees should not be treated as equivalent.</p></> : null}
     {(a.programmes?.length || b.programmes?.length) ? <><h2>Which {branchLabel} branches are available?</h2><p>Review the programme names below to find the branch that matches your academic and career goals.</p></> : null}
+    </>}
     <h2>Detailed evidence</h2><div className="comparison-detail-grid"><CollegeColumn college={a} entities={linkableEntities} autoLinkOptions={autoLinkOptions} usedCollegeHrefs={usedCollegeHrefs} allowProfileLink={allowProfileLinkA} /><CollegeColumn college={b} entities={linkableEntities} autoLinkOptions={autoLinkOptions} usedCollegeHrefs={usedCollegeHrefs} allowProfileLink={allowProfileLinkB} /></div>
+    {hasWrittenGuide ? null : <>
     {(a.programmes?.length || b.programmes?.length) ? <><h2>What are the eligibility requirements?</h2><p>Eligibility is shown for each recorded programme. Requirements can differ by branch, qualification and admission year.</p></> : null}
     {(a.exams?.length || b.exams?.length) ? <><h2>Do both universities accept <LinkedProse text={examLabel} entities={linkableEntities} options={autoLinkOptions} />?</h2><p>Only active programme-to-exam mappings are shown. Confirm the current admission notification before applying.</p></> : null}
     {(a.placements?.length || b.placements?.length) ? <><h2>Which university has better placement evidence?</h2><p>Compare placement years, programme coverage and the available average or highest package records. Different years or coverage levels do not establish a definitive winner.</p></> : null}
@@ -224,8 +243,9 @@ export default function CollegeComparisonArticle({
     <h2>Conclusion</h2>
     <p>{scoreLeader === 'equal recorded score' ? <><CollegeName college={a} className="conclusion-college" /> and <CollegeName college={b} className="conclusion-college" /> have an equal recorded decision score. Your preferred branch, comparable tuition cost, admission route and location should guide the final choice.</> : <><strong className="conclusion-winner">{scoreLeaderNode}</strong> has the higher recorded evidence score, but this does not make it a universal winner. Choose <CollegeName college={a} className="conclusion-college" /> if its available branches, recorded cost and admission route fit your priorities; choose <CollegeName college={b} className="conclusion-college" /> if its programmes, location or placement evidence better match your goals.</>}</p>
     <p className="notice"><strong>Final takeaway:</strong> Compare the exact branch and programme cost first, then verify eligibility, active entrance-exam mappings and the latest official placement information before admission.</p>
+    </>}
     <p className="notice"><strong>Data note:</strong> A dash means the information is not available in the current records. This page does not invent values or treat different years and fee types as directly comparable.</p>
     <p><Link prefetch={false} href="/compare-colleges-2026">Compare other colleges side by side →</Link></p>
-    {comparisonFaqs.length ? <><JsonLd data={faqJsonLd(comparisonFaqs)} /><h2>FAQs</h2><div className="cp-faq">{comparisonFaqs.map((f) => <details className="cp-faq-item" key={f.question}><summary><h3>{f.question}</h3></summary><p>{f.answer}</p></details>)}</div></> : null}
+    {hasWrittenGuide ? null : comparisonFaqs.length ? <><JsonLd data={faqJsonLd(comparisonFaqs)} /><h2>FAQs</h2><div className="cp-faq">{comparisonFaqs.map((f) => <details className="cp-faq-item" key={f.question}><summary><h3>{f.question}</h3></summary><p>{f.answer}</p></details>)}</div></> : null}
   </section>;
 }

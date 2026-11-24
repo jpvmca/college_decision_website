@@ -1,0 +1,89 @@
+{
+  "slug": "mba-government-colleges-in-west-bengal-by-average-package",
+  "updatedOn": "24 Nov 2026",
+  "intro": [
+    "We list {{count}} government MBA / PGDM programme options across {{colleges}} public institutes in West Bengal. The page is for students comparing the best government MBA colleges in West Bengal by recorded average package.",
+    "IIT Kharagpur and IIM Calcutta dominate the top of the list. They lead the top MBA colleges in West Bengal 2026, with university and NIT programmes following by package."
+  ],
+  "listLead": "IIM Calcutta accounts for 23 of the {{count}} rows, and IIT Kharagpur for 7, so the same institute can appear under more than one programme. Match the programme name with the official brochure.",
+  "snapshot": [
+    "Among these {{colleges}} public colleges, the median recorded average package is {{pkgMedian}}, from placement years {{pkgYearMin}} to {{pkgYearMax}}.",
+    "Recorded averages run from {{pkgMin}} to {{pkgMax}}. The highest single figure we hold is {{highestMax}}, which sits well above the median.",
+    "Most of these colleges use CAT. NIT Durgapur's placement year in our file is 2016, so that row is a poor guide to current outcomes."
+  ],
+  "firstCollegesLead": [
+    "IIM Calcutta is 7th and IIT Kharagpur is 12th in the official NIRF 2025 Management ranking. Our 2023 record for IIM Calcutta's PGP shows an average of ₹29 LPA and a highest of ₹45 LPA.",
+    "IIT Kharagpur's PGDBA row for 2023 shows an average of ₹31 LPA and a highest of ₹52 LPA. Its MBA Finance row for 2024 shows ₹21 LPA and ₹37 LPA. These are different programmes."
+  ],
+  "sections": [
+    {
+      "heading": "Reading NIRF ranks beside this West Bengal list",
+      "paragraphs": [
+        "The official NIRF 2025 Management ranks for IIM Calcutta (7th) and IIT Kharagpur (12th) differ from some older numbers on our cards. Use the 2025 list when you cite a rank, and use each programme's own placement report for pay."
+      ]
+    }
+  ],
+  "compare": {
+    "heading": "How to compare the best government MBA colleges in West Bengal",
+    "paragraphs": [
+      "A PGP at IIM Calcutta, an MBA or PGDBA at IIT Kharagpur, and a university MBA in Midnapore or Kolkata serve different applicants.",
+      "Check the official report for:"
+    ],
+    "bullets": [
+      "The exact programme behind the average — PGP, MBA, PGDBA or a specialised course.",
+      "The placement year, especially where our file still shows 2016 data.",
+      "The full fee and whether hostel and mess are included.",
+      "The city (Kharagpur, Kolkata, Durgapur, Howrah or Darjeeling) and the entrance test used."
+    ]
+  },
+  "links": [
+    {
+      "label": "MBA / PGDM course guide",
+      "href": "/courses/mba"
+    },
+    {
+      "label": "Best MBA colleges in West Bengal",
+      "href": "/mba-colleges-in-west-bengal"
+    },
+    {
+      "label": "Best MBA colleges in India",
+      "href": "/mba-colleges"
+    },
+    {
+      "label": "MBA colleges with ₹50 lakh highest package in West Bengal",
+      "href": "/articles/mba-colleges-in-west-bengal-with-50-lakh-highest-package-2026"
+    },
+    {
+      "label": "MBA colleges accepting CAT",
+      "href": "/exams/cat"
+    }
+  ],
+  "faqs": [
+    {
+      "question": "How many government MBA colleges in West Bengal are listed here?",
+      "answer": "We hold {{count}} programme options at {{colleges}} public institutes. IIM Calcutta and IIT Kharagpur appear many times because we hold several of their programmes."
+    },
+    {
+      "question": "What average packages do these colleges report?",
+      "answer": "The median recorded average is {{pkgMedian}}, with recorded averages from {{pkgMin}} to {{pkgMax}}. The median is pulled down by several university programmes that sit near {{pkgMin}}."
+    },
+    {
+      "question": "What are the NIRF 2025 ranks for IIM Calcutta and IIT Kharagpur?",
+      "answer": "In the official NIRF 2025 Management ranking, IIM Calcutta is 7th and IIT Kharagpur is 12th. Use those ranks rather than any older number on a card."
+    },
+    {
+      "question": "Is Salesian College a government college?",
+      "answer": "It is listed as public in our records, which may mean it is government-aided. Confirm the management type and fee on the college's official site before you treat it as a public university."
+    },
+    {
+      "question": "Should I rely on NIT Durgapur's package figure?",
+      "answer": "Only as a historical marker. Our placement year for NIT Durgapur is 2016. Ask the institute for its latest official MBA placement report."
+    }
+  ],
+  "sources": [
+    {
+      "label": "NIRF 2025 Management ranking",
+      "url": "https://www.nirfindia.org/Rankings/2025/ManagementRanking.html"
+    }
+  ]
+}

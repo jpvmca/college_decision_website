@@ -1,0 +1,102 @@
+{
+  "slug": "mba-colleges-accepting-cat-2026-admission-process",
+  "updatedOn": "24 Nov 2026",
+  "intro": [
+    "Our records link {{count}} MBA / PGDM programme options to CAT, the test used by the Indian Institutes of Management and by many other business schools. This page explains MBA colleges accepting CAT 2026, including eligibility and the usual admission steps after the test.",
+    "Ranked colleges come first, then the other published colleges in alphabetical order. Confirm the current CAT notice and each college’s own process before you apply."
+  ],
+  "listLead": "The first cards include IIM Ahmedabad, IIM Calcutta, IIM Lucknow, IIM Indore, MDI Gurgaon, IIFT Delhi, IIM Bangalore, IIM Kozhikode, SPJIMR Mumbai and IIM Mumbai. A missing fee on a card only means we do not hold that figure yet.",
+  "snapshot": [
+    "Uttar Pradesh, Maharashtra, Karnataka, Tamil Nadu, Haryana and Delhi NCR have the most CAT-linked listings in our records. Bangalore, Delhi, Greater Noida, Pune and Mumbai are the cities that appear most often.",
+    "Among the colleges here with an average package in our records, the median figure is {{pkgMedian}}, and the recorded averages range from {{pkgMin}} to {{pkgMax}}."
+  ],
+  "firstCollegesLead": [
+    "IIM Ahmedabad is listed first, with a recorded total fee of ₹26.50 lakh against an MBA Finance programme and a 2024 average package of ₹36 lakh. Confirm the current PGP fee on the official IIM Ahmedabad site.",
+    "IIFT Delhi’s card shows an executive diploma fee of ₹2.42 lakh, which is not the cost of the full-time MBA. MDI Gurgaon requires CAT 2026 for its PGDM programmes, as its official admission page states."
+  ],
+  "sections": [
+    {
+      "heading": "CAT 2026 eligibility and admission steps",
+      "paragraphs": [
+        "The official CAT 2026 information bulletin says the computer-based test will be held on Sunday, 29 November 2026, in three sessions, and that the only official website is iimcat.ac.in.",
+        "Registration opened at 10:00 am on 3 August 2026 and closed at 5:00 pm on 15 September 2026.",
+        "Eligibility is a bachelor’s degree with at least 50% marks or equivalent CGPA, or 45% for SC, ST and PwD candidates. Final-year students may apply, and can join only provisionally if they submit the certificate each IIM asks for."
+      ]
+    }
+  ],
+  "compare": {
+    "heading": "How to compare MBA colleges accepting CAT 2026",
+    "paragraphs": [
+      "A CAT score is only the first filter, and each college then applies its own shortlisting rule, interview and final merit list.",
+      "Use the list of top MBA / PGDM colleges in India 2026 as a shortlist after you have a score, and check these points on the official pages:"
+    ],
+    "bullets": [
+      "Whether the programme is a two-year full-time MBA or PGDM, or an executive or diploma course, because the card may show a shorter programme.",
+      "The CAT cut-off and the academic profile the college used in the latest cycle, including your category.",
+      "The official fee notice for the full programme, not only the figure on the card.",
+      "The latest official placement report, with the year clearly stated, treated as a historical record rather than a promise."
+    ]
+  },
+  "links": [
+    {
+      "label": "MBA / PGDM course guide",
+      "href": "/courses/mba"
+    },
+    {
+      "label": "Best MBA colleges in India",
+      "href": "/mba-colleges"
+    },
+    {
+      "label": "Top MBA colleges with fees 2026",
+      "href": "/articles/top-mba-colleges-in-india-with-fees-2026"
+    },
+    {
+      "label": "CAT exam guide",
+      "href": "/exams/cat"
+    },
+    {
+      "label": "MBA colleges accepting XAT 2026",
+      "href": "/articles/mba-colleges-accepting-xat-2026-admission-process"
+    }
+  ],
+  "faqs": [
+    {
+      "question": "When is CAT 2026 and who can apply?",
+      "answer": "The official bulletin sets the test for Sunday, 29 November 2026, in three sessions. You need a bachelor’s degree with at least 50% marks, or 45% if you are in the SC, ST or PwD category, and final-year students may also apply."
+    },
+    {
+      "question": "How many MBA colleges accepting CAT 2026 are listed here?",
+      "answer": "Our records currently link {{count}} MBA / PGDM programme options to CAT. Not every campus on the list is an IIM, so confirm on the college’s admission page that it still accepts CAT for the programme you want."
+    },
+    {
+      "question": "Is a CAT score enough for IIM admission?",
+      "answer": "No, the official bulletin says that meeting the minimum eligibility does not ensure shortlisting, because each IIM then applies its own written-ability and interview process."
+    },
+    {
+      "question": "Why does IIFT show a fee of ₹2.42 lakh on this list?",
+      "answer": "For IIFT Delhi we currently hold an executive diploma fee, not the full-time MBA fee, so read the programme name on the card and confirm the official fee notice."
+    },
+    {
+      "question": "Where should I register for CAT 2026?",
+      "answer": "The IIMs say the sole official website is iimcat.ac.in, and that no other site is authorised for CAT 2026 registration."
+    }
+  ],
+  "sources": [
+    {
+      "label": "CAT 2026 information bulletin, iimcat.ac.in",
+      "url": "https://iimcat.ac.in/per/g06/pub/32842/EForms/image/CAT2026/CAT2026InformationBulletin_26-07-2026_V2.pdf"
+    },
+    {
+      "label": "CAT 2026 eligibility note",
+      "url": "https://iimcat.ac.in/per/g06/pub/32842/EForms/image/CAT2026/CAT_2026_Eligibility_26-07-26.pdf"
+    },
+    {
+      "label": "CAT 2026 press release on registration dates",
+      "url": "https://iimcat.ac.in/per/g06/pub/32842/EForms/image/CAT2026/CAT_2026_Press_Release_26-07-2026.pdf"
+    },
+    {
+      "label": "MDI Gurgaon, PGDM admissions page (CAT 2026 required)",
+      "url": "https://mdi.ac.in/admissions/post-graduate-diploma-in-management-pgdm"
+    }
+  ]
+}

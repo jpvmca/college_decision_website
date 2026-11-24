@@ -1,0 +1,61 @@
+{
+  "slug": "top-mba-colleges-in-india-with-fees-2026",
+  "updatedOn": "24 Nov 2026",
+  "intro": [
+    "We hold a recorded total fee for {{count}} published MBA / PGDM colleges in India. This guide puts the top MBA colleges in India with fees for 2026 in one place, so you can see what a programme costs before you shortlist it.",
+    "The colleges at the top follow our verified 2026 MBA ranking. After them, colleges are ordered by recorded total fee, lowest first."
+  ],
+  "listLead": "The first ten cards are ranked colleges with a recorded fee. Each card shows the college's main full-time programme where we hold its fee, so check the programme name before you compare.",
+  "snapshot": [
+    "Across the {{feeN}} published colleges on this list, the median recorded total fee is {{feeMedian}}. The middle half of colleges sits between {{feeP25}} and {{feeP75}}.",
+    "A low figure is worth a second look. Check whether it covers the full two years or only the first year.",
+    "Most colleges here are private ({{private}}), with {{public}} public institutes. Uttar Pradesh, Maharashtra, Tamil Nadu, Karnataka and Haryana have the most listings."
+  ],
+  "firstCollegesLead": [
+    "At IIT Delhi, IIT Bombay and IIFT we only hold an executive or short-course fee, so those figures are not the cost of the full-time MBA.",
+    "Placement figures are the latest year in our records from 2020 onwards. A dash means we do not hold that figure yet."
+  ],
+  "compare": {
+    "heading": "How to compare the top MBA colleges in India with fees",
+    "paragraphs": [
+      "Start with the programme, not the number. A two-year full-time MBA and a one-year executive course are not priced the same way.",
+      "Then check these points on the official fee notice:"
+    ],
+    "bullets": [
+      "Whether the fee is for the full programme or one year, and whether hostel, mess and laptop charges are included.",
+      "Whether the college awards an MBA (a university degree) or a PGDM (an AICTE-approved diploma). The award is different, so check which one you are paying for.",
+      "The entrance test used for the latest cycle (CAT, XAT, MAT, CMAT, NMAT, SNAP or a state test) and the cut-off for your category.",
+      "The most recent official placement report. Use our placement figures as a reference year, not a promise."
+    ]
+  },
+  "links": [
+    { "label": "MBA / PGDM course guide", "href": "/courses/mba" },
+    { "label": "Best MBA colleges in India", "href": "/mba-colleges" },
+    { "label": "MBA colleges under ₹1 lakh", "href": "/articles/top-colleges-in-india-2026-mba-under-1-lakh-fees" },
+    { "label": "MBA colleges under ₹3 lakh", "href": "/articles/top-colleges-in-india-2026-mba-under-3-lakh-fees" },
+    { "label": "MBA colleges under ₹5 lakh", "href": "/articles/top-colleges-in-india-2026-mba-under-5-lakh-fees" }
+  ],
+  "faqs": [
+    {
+      "question": "How many MBA colleges in India have fees listed here?",
+      "answer": "{{count}} published MBA / PGDM colleges have a recorded total fee in our records. The list only covers colleges with a fee on file, so the full number of MBA colleges in India is higher."
+    },
+    {
+      "question": "What is the typical MBA fee in India in 2026?",
+      "answer": "Among the {{feeN}} published colleges here, the median recorded total fee is {{feeMedian}}, and the middle half falls between {{feeP25}} and {{feeP75}}. Top-ranked full-time programmes cost much more: in our records, IIM Ahmedabad's MBA Finance total is ₹26.50 lakh and SPJIMR's official PGDM fee for Indian participants is ₹24.86 lakh, including basic hostel."
+    },
+    {
+      "question": "Why does a top college show a low fee on its card?",
+      "answer": "The Department of Management Studies at IIT Delhi is listed with the full-time MBA tuition of ₹12 lakh. Read the programme name on each card, and confirm the current fee on the official site."
+    },
+    {
+      "question": "Why are IIM Bangalore and IIM Calcutta missing from this fee list?",
+      "answer": "They are in our 2026 MBA ranking, but we do not hold a total fee for them yet, so they cannot be placed in a fee list. You can still find them on the best MBA colleges in India page."
+    },
+    {
+      "question": "Are the placement figures guaranteed?",
+      "answer": "No. They are the latest placement year in our records for each programme, and they change with every batch and recruiter mix. Confirm them in the college's latest official placement report."
+    }
+  ],
+  "sources": []
+}

@@ -1,0 +1,72 @@
+{
+  "slug": "mba-government-colleges-in-haryana-by-average-package",
+  "updatedOn": "24 Nov 2026",
+  "intro": [
+    "This page lists the best government MBA / PGDM colleges in Haryana by the average packages in our records. We currently link {{count}} programme options at {{colleges}} public colleges.",
+    "IIM Rohtak is the main national institute on this list, alongside NIT Kurukshetra and three state universities. Packages are historical records, and some years in our file go back to {{pkgYearMin}}."
+  ],
+  "listLead": "IIM Rohtak appears first. The first-colleges table may show the five-year Integrated Programme in Management rather than the two-year PGP, so read the programme name before you compare fees or packages.",
+  "snapshot": [
+    "For colleges with a recorded average package, the median is {{pkgMedian}}, in a range from {{pkgMin}} to {{pkgMax}}. The recorded years run from {{pkgYearMin}} to {{pkgYearMax}}.",
+    "The campuses are in Rohtak, Hisar, Kurukshetra and Faridabad, and CAT is tagged to all {{colleges}} colleges in our records. Use official reports when you compare top MBA / PGDM colleges in Haryana 2026."
+  ],
+  "firstCollegesLead": [
+    "IIM Rohtak has a 2023 recorded average of ₹18 LPA and a highest of ₹36 LPA in our files. In the official NIRF 2025 Management ranking, IIM Rohtak is 19, which may differ from an older number on a card.",
+    "Guru Jambheshwar University, FDDI Rohtak and J.C. Bose University, YMCA, have recorded 2023 averages of ₹4 LPA or ₹5 LPA. NIT Kurukshetra has no placement year in our first table, so use its official report."
+  ],
+  "compare": {
+    "heading": "How to compare the best government MBA / PGDM colleges in Haryana",
+    "paragraphs": [
+      "IIM Rohtak's two-year PGP and its five-year IPM are different programmes. Compare them separately from the state university and NIT MBAs.",
+      "Use these checks:"
+    ],
+    "bullets": [
+      "The exact award on the card, and whether a fee is for IPM or for the two-year MBA.",
+      "The year of the package, especially where our records go back to {{pkgYearMin}}.",
+      "The official NIRF 2025 rank for IIM Rohtak, which is 19.",
+      "CAT and each campus's own shortlist."
+    ]
+  },
+  "links": [
+    {
+      "label": "MBA / PGDM course guide",
+      "href": "/courses/mba"
+    },
+    {
+      "label": "Best MBA colleges in Haryana",
+      "href": "/mba-colleges-in-haryana"
+    },
+    {
+      "label": "CAT exam page",
+      "href": "/exams/cat"
+    },
+    {
+      "label": "Best MBA colleges in India",
+      "href": "/mba-colleges"
+    }
+  ],
+  "faqs": [
+    {
+      "question": "How many government MBA colleges in Haryana are on this list?",
+      "answer": "Our records link {{count}} programme options at {{colleges}} public colleges in Haryana, including IIM Rohtak, NIT Kurukshetra, Guru Jambheshwar University, FDDI Rohtak and J.C. Bose University, YMCA."
+    },
+    {
+      "question": "What is the typical average package on this list?",
+      "answer": "Among colleges with a recorded average, the median is {{pkgMedian}}, from {{pkgMin}} to {{pkgMax}}, for years {{pkgYearMin}} to {{pkgYearMax}}. These are historical records, not offers."
+    },
+    {
+      "question": "What is IIM Rohtak's NIRF rank?",
+      "answer": "In the official NIRF 2025 Management ranking, IIM Rohtak is 19."
+    },
+    {
+      "question": "Are these packages guaranteed?",
+      "answer": "No. They are historical averages from our records. Confirm the latest official placement report, and note that some years on this page go back to {{pkgYearMin}}."
+    }
+  ],
+  "sources": [
+    {
+      "label": "NIRF 2025 Management ranking",
+      "url": "https://www.nirfindia.org/Rankings/2025/ManagementRanking.html"
+    }
+  ]
+}

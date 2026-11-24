@@ -1,0 +1,82 @@
+{
+  "slug": "top-colleges-in-india-2026-integrated-law-under-1-lakh-fees",
+  "updatedOn": "24 Nov 2026",
+  "intro": [
+    "We hold a recorded main-programme fee of up to ₹{{budget}} lakh for {{count}} published Integrated Law colleges in India. This list of the best Integrated Law colleges under ₹{{budget}} lakh should be read as a fee filter for five-year programmes such as BA LLB.",
+    "DS College, Aligarh, is listed first with BA LLB at ₹10,060, which is only just above our ₹10,000 data floor. A figure that low for a five-year course is often an annual tuition, so confirm the official total.",
+    "Uttar Pradesh, Karnataka, Madhya Pradesh and Punjab have the most listings. CLAT and LAWCET are the main recorded entrance tests."
+  ],
+  "listLead": "These are the top Integrated Law colleges in India 2026 with a recorded main-programme fee of up to ₹1 lakh. The first cards include BA LLB and a Bachelor of Socio Legal Sciences LL.B., which are related but not identical awards.",
+  "snapshot": [
+    "Across {{feeN}} published colleges with a recorded fee, the median total is {{feeMedian}}, and the middle half sits between {{feeP25}} and {{feeP75}}.",
+    "{{private}} colleges are private, {{public}} are public, and a few have no ownership type. Bangalore, Bhopal and Jalandhar are the leading cities on this list.",
+    "Two records have a fee band that can exceed ₹1 lakh. Use the official five-year fee, not only the first-year number, when you budget."
+  ],
+  "firstCollegesLead": [
+    "MS Ramaiah Law College, Bangalore, is listed with BA LLB at ₹16,000, and Adarsha Law College, Warangal, at ₹18,000–₹21,000. Both figures look like annual amounts unless the official notice says otherwise.",
+    "PES Modern Law College, Pune, is listed with B.S.L. LL.B. at ₹22,000 and a 2023 average package of ₹6 lakh. That placement figure is historical and may not be for every integrated-law batch."
+  ],
+  "sections": [
+    {
+      "heading": "Five-year law fees and entrance tests",
+      "paragraphs": [
+        "A five-year integrated law fee is easy to understate if our record stores one year. Multiply only when the official notice is clearly annual, and never invent the missing years.",
+        "CLAT is recorded at six colleges here, and LAWCET at five. Many private colleges also run a separate institute process."
+      ]
+    }
+  ],
+  "compare": {
+    "heading": "How to compare the best Integrated Law colleges under ₹1 lakh",
+    "paragraphs": [
+      "A university BA LLB and a private five-year programme can share this cap and still differ in affiliation, clerkship exposure and official yearly fees.",
+      "Check these official points:"
+    ],
+    "bullets": [
+      "Whether the recorded fee is for one year or the full five years, plus exam and enrolment charges.",
+      "The official award, such as BA LLB, BBA LLB or B.S.L. LL.B.",
+      "The admission test, including CLAT, LAWCET, MH CET Law, or a university process.",
+      "Bar Council of India approval and the university affiliation named on the official site."
+    ]
+  },
+  "links": [
+    {
+      "label": "Integrated Law course guide",
+      "href": "/courses/integrated-law"
+    },
+    {
+      "label": "LLB colleges under ₹1 lakh",
+      "href": "/articles/top-colleges-in-india-2026-law-under-1-lakh-fees"
+    },
+    {
+      "label": "Best LLB colleges in India",
+      "href": "/llb-colleges"
+    },
+    {
+      "label": "CLAT exam guide",
+      "href": "/exams/clat"
+    }
+  ],
+  "faqs": [
+    {
+      "question": "How many integrated law colleges have fees under ₹1 lakh here?",
+      "answer": "We list {{published}} published Integrated Law colleges with a recorded main-programme fee up to ₹{{budget}} lakh. Colleges without a usable fee on file are excluded."
+    },
+    {
+      "question": "What is a typical integrated law fee on this list?",
+      "answer": "The median recorded total is {{feeMedian}}, and the middle half falls between {{feeP25}} and {{feeP75}}. For a five-year course, confirm whether the official notice is annual."
+    },
+    {
+      "question": "Why is the first college fee only about ₹10,000?",
+      "answer": "DS College, Aligarh, is listed with BA LLB at ₹10,060, just above the ₹10,000 floor we treat as a data error. Confirm the official five-year or annual fee before you treat it as the complete cost."
+    },
+    {
+      "question": "Do these colleges admit through CLAT?",
+      "answer": "CLAT is recorded at six colleges on this list, and LAWCET at five. Many others use a state or university test. Check the official admission page."
+    },
+    {
+      "question": "Is this a ranking of the best Integrated Law colleges under ₹1 lakh?",
+      "answer": "No. It is a fee filter. Affiliation, approval and the official five-year fee should guide the shortlist, not the recorded number alone."
+    }
+  ],
+  "sources": []
+}

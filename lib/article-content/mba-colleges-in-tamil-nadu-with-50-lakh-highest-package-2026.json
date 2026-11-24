@@ -1,0 +1,69 @@
+{
+  "slug": "mba-colleges-in-tamil-nadu-with-50-lakh-highest-package-2026",
+  "updatedOn": "2026-11-24",
+  "intro": [
+    "We list {{count}} MBA / PGDM colleges in Tamil Nadu where our records show a highest package of at least ₹{{threshold}} lakh: SRM Institute of Science and Technology and Sathyabama.",
+    "Read these MBA colleges in Tamil Nadu with ₹50 lakh highest package by programme and year. IIM Trichy's official 2024-25 PGPM highest CTC is ₹43.94 LPA, which is below this cut, so it is no longer on this list."
+  ],
+  "listLead": "IIM Trichy's official audited 2024-25 placement report lists a PGPM average CTC of ₹19.27 LPA and a highest of ₹43.94 LPA, both below this threshold, so the institute is not on this page.",
+  "snapshot": [
+    "IIM Trichy is 16th in the official NIRF 2025 Management ranking. SRM Institute of Science and Technology is 56th. Sathyabama is not in that top 100.",
+    "SRM's qualifying row is a 2023 Master of Hospital Administration record, with an average of ₹5 LPA and a highest of ₹57 LPA. That is not a two-year MBA, and the gap is wide."
+  ],
+  "firstCollegesLead": [
+    "Sathyabama's MBA Financial Management row for 2023 shows an average of ₹15 LPA and a highest of ₹54 LPA in our records. Confirm all three official reports before you treat any of these highest figures as current."
+  ],
+  "compare": {
+    "heading": "How to read highest-package figures in Tamil Nadu",
+    "paragraphs": [
+      "A 2017 IIM figure, a hospital-administration course and a 2023 university MBA are not one peer group. Line up the programme and the year first."
+    ],
+    "bullets": [
+      "Prefer IIM Trichy's latest official PGP report over a 2017 highest package in our file.",
+      "Check whether the SRM figure is for the Master of Hospital Administration, not the MBA.",
+      "IIT Madras is 13th in the NIRF 2025 Management ranking but is not on this threshold list; include it in a broader shortlist if relevant."
+    ]
+  },
+  "links": [
+    {
+      "label": "MBA / PGDM course guide",
+      "href": "/courses/mba"
+    },
+    {
+      "label": "Best MBA colleges in Tamil Nadu",
+      "href": "/mba-colleges-in-tamil-nadu"
+    },
+    {
+      "label": "Best MBA colleges in India",
+      "href": "/mba-colleges"
+    },
+    {
+      "label": "MBA colleges accepting CAT",
+      "href": "/exams/cat"
+    }
+  ],
+  "faqs": [
+    {
+      "question": "Which MBA colleges in Tamil Nadu with ₹50 lakh highest package are listed here?",
+      "answer": "{{count}} colleges: SRM Institute of Science and Technology and Sathyabama. Each meets the threshold in our file, but the programmes differ. IIM Trichy's official 2024-25 PGPM highest of ₹43.94 LPA is below this cut."
+    },
+    {
+      "question": "What is IIM Trichy's NIRF rank, and why is it not on this list?",
+      "answer": "IIM Trichy is 16th in the official NIRF 2025 Management ranking. Its official 2024-25 PGPM highest CTC is ₹43.94 LPA, which is below this threshold, so it is not listed here."
+    },
+    {
+      "question": "Is the SRM figure for an MBA?",
+      "answer": "No. The qualifying row is a 2023 Master of Hospital Administration record, with an average of ₹5 LPA and a highest of ₹57 LPA. Check the official report for that exact programme."
+    },
+    {
+      "question": "Are these packages guaranteed for 2026?",
+      "answer": "No. They are historical records. Use the latest official placement report for the programme you will join."
+    }
+  ],
+  "sources": [
+    {
+      "label": "NIRF 2025 Management ranking",
+      "url": "https://www.nirfindia.org/Rankings/2025/ManagementRanking.html"
+    }
+  ]
+}

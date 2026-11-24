@@ -1,0 +1,81 @@
+{
+  "slug": "mba-government-colleges-in-jharkhand-by-average-package",
+  "updatedOn": "2026-11-24",
+  "intro": [
+    "This page lists the best government MBA / PGDM colleges in Jharkhand by the average packages in our records. We currently link {{count}} programme options at only {{colleges}} public colleges: IIM Ranchi and IIT (ISM) Dhanbad.",
+    "That is a very short government list, now using recent official placement reports: IIM Ranchi's 2024-25 figures and IIT (ISM) Dhanbad's 2025-26 MBA averages."
+  ],
+  "listLead": "IIM Ranchi appears first on its official 2024-25 MBA Business Analytics card, then IIT (ISM) Dhanbad on its official 2025-26 full-time MBA average.",
+  "snapshot": [
+    "Only {{colleges}} colleges are on this page, so we have not quoted a package median in this text. Read each official placement report on its own.",
+    "In the official NIRF 2025 Management ranking, IIM Ranchi is 18 and IIT (ISM) Dhanbad is 48. Use those official ranks when you compare top MBA / PGDM colleges in Jharkhand 2026."
+  ],
+  "firstCollegesLead": [
+    "Our cards now follow official reports: IIM Ranchi MBA BA 2024-25 average ₹19.86 LPA and highest ₹27.94 LPA, and IIT (ISM) Dhanbad MBA 2025-26 average ₹11.64 LPA (median ₹12.50 LPA; no course-wise highest was published).",
+    "Our fee file shows ₹8.75 lakh for an MBA in Business Analytics at IIM Ranchi and ₹1.73 lakh for an MBA Finance row at IIT (ISM). Check whether those are current full-programme fees."
+  ],
+  "sections": [
+    {
+      "heading": "Why the Jharkhand package years need care",
+      "paragraphs": [
+        "The cards now use official 2024-25 and 2025-26 figures. Still confirm any later official report before you treat a package as current.",
+        "Both cards are now for full-time MBA programmes. IIM Ranchi still has no separate flagship MBA programme row in our file, so the official MBA BA (and MBA HR) figures are the ones stored."
+      ]
+    }
+  ],
+  "compare": {
+    "heading": "How to compare the best government MBA / PGDM colleges in Jharkhand",
+    "paragraphs": [
+      "With only two campuses here, the useful comparison is between IIM Ranchi and IIT (ISM) Dhanbad, using official reports rather than our older summary years.",
+      "Use these checks:"
+    ],
+    "bullets": [
+      "Whether the card is a full-time MBA or an executive programme.",
+      "The year of the official placement report; the cards now use 2024-25 and 2025-26 official figures.",
+      "The official NIRF 2025 ranks: IIM Ranchi 18 and IIT (ISM) Dhanbad 48.",
+      "CAT and each institute's own admission notice."
+    ]
+  },
+  "links": [
+    {
+      "label": "MBA / PGDM course guide",
+      "href": "/courses/mba"
+    },
+    {
+      "label": "Best MBA colleges in Jharkhand",
+      "href": "/mba-colleges-in-jharkhand"
+    },
+    {
+      "label": "CAT exam page",
+      "href": "/exams/cat"
+    },
+    {
+      "label": "Best MBA colleges in India",
+      "href": "/mba-colleges"
+    }
+  ],
+  "faqs": [
+    {
+      "question": "How many government MBA colleges in Jharkhand are on this list?",
+      "answer": "Our records link {{count}} programme options at only {{colleges}} public colleges: IIM Ranchi and IIT (ISM) Dhanbad."
+    },
+    {
+      "question": "Are the packages on this page current?",
+      "answer": "The cards now use official 2024-25 and 2025-26 figures, but offers still change with every batch. Use each institute's latest official placement report before you compare averages."
+    },
+    {
+      "question": "What are the NIRF 2025 ranks for these two campuses?",
+      "answer": "In the official NIRF 2025 Management ranking, IIM Ranchi is 18 and IIT (Indian School of Mines) Dhanbad is 48."
+    },
+    {
+      "question": "Why might IIT (ISM) show a high average?",
+      "answer": "The IIT (ISM) card is now the official 2025-26 full-time MBA average of ₹11.64 LPA. The official course-wise table did not publish a highest CTC for MBA."
+    }
+  ],
+  "sources": [
+    {
+      "label": "NIRF 2025 Management ranking",
+      "url": "https://www.nirfindia.org/Rankings/2025/ManagementRanking.html"
+    }
+  ]
+}

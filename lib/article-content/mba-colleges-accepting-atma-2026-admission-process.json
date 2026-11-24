@@ -1,0 +1,100 @@
+{
+  "slug": "mba-colleges-accepting-atma-2026-admission-process",
+  "updatedOn": "24 Nov 2026",
+  "intro": [
+    "We list {{published}} published MBA / PGDM colleges, from {{count}} programme listings, that are tagged as accepting ATMA. This guide to MBA colleges accepting ATMA 2026 also sets out the official 2026 test schedule published by AIMS.",
+    "ATMA is the AIMS Test for Management Admissions, a national-level test recognised by AICTE and the Ministry of Education. Official 2026 dates include 22 February, 3 May and 12 July, with a further August date published on the ATMA website.",
+    "Our first cards are in alphabetical order, not a ranking of quality. Maharashtra and Karnataka have the most tagged colleges, with large clusters in Bangalore and Pune."
+  ],
+  "listLead": "These are the top MBA / PGDM colleges accepting ATMA 2026 in our records, and the first names are alphabetical. They are also the top MBA / PGDM colleges in {{place}} 2026 that we have tagged for this test.",
+  "snapshot": [
+    "{{private}} of the published colleges are private, {{public}} are public, and the rest are other or untyped in our records. Bangalore, Pune, Hyderabad, Mumbai and Chennai have the most listings.",
+    "We do not hold a usable fee snapshot for this full ATMA list. Some early cards show a fee, such as AMET University at ₹3 lakh, but many others are blank.",
+    "One institute on the first page is named Acliv Technology and Management Academy (ATMA), which is a college name, not the exam body. Do not confuse the two."
+  ],
+  "firstCollegesLead": [
+    "Acharya Bangalore Business School is listed with a PGDM Global Immersion card and a recorded average package of ₹6 lakh. Aditya School of Business Management, Mumbai, is listed with a PGDM fee of ₹3.90 lakh and a ₹6 lakh average.",
+    "Several first-page colleges have no recorded fee. A blank fee is missing data, not a zero-fee programme."
+  ],
+  "sections": [
+    {
+      "heading": "Official ATMA 2026 test format and eligibility",
+      "paragraphs": [
+        "The official 2026 bulletin describes a three-hour online test with 180 questions in six sections, covering analytical reasoning, verbal skills and quantitative skills, with negative marking.",
+        "AIMS states that candidates need 50% marks in a bachelor's degree from a UGC-recognised university. Final-year students and candidates who have completed CA may also apply, as published on the official site."
+      ],
+      "bullets": [
+        "The official site listed fee concessions of 25% for women candidates and 50% for candidates from notified North Eastern states, with document checks at registration.",
+        "ATMA scores are used by participating institutes for MBA, PGDM, MMS and, in some cases, MCA, subject to local university rules.",
+        "Each college still runs its own cut-off, group discussion or interview, so a test score is not an admission offer."
+      ]
+    }
+  ],
+  "compare": {
+    "heading": "How to shortlist MBA colleges accepting ATMA 2026",
+    "paragraphs": [
+      "A national test score is only one part of admission. Two colleges that both accept ATMA can differ widely in official fees, specialisations and city.",
+      "Check these official points:"
+    ],
+    "bullets": [
+      "Whether the college is on the current ATMA participating-institute list, not only on our tagged list.",
+      "The official fee notice, because many cards on this list have no recorded fee.",
+      "The latest cut-off and selection steps published by the institute.",
+      "The official 2026 test date you registered for, because ATMA is held more than once a year."
+    ]
+  },
+  "links": [
+    {
+      "label": "MBA / PGDM course guide",
+      "href": "/courses/mba"
+    },
+    {
+      "label": "ATMA exam guide",
+      "href": "/exams/atma"
+    },
+    {
+      "label": "Best MBA colleges in India",
+      "href": "/mba-colleges"
+    },
+    {
+      "label": "Best MBA colleges in Karnataka",
+      "href": "/mba-colleges-in-karnataka"
+    },
+    {
+      "label": "Best MBA colleges in Maharashtra",
+      "href": "/mba-colleges-in-maharashtra"
+    }
+  ],
+  "faqs": [
+    {
+      "question": "How many MBA colleges accepting ATMA 2026 are on this list?",
+      "answer": "We list {{published}} published colleges, drawn from {{count}} programme listings, tagged for ATMA. The official participating-institute set can differ, so confirm the college on the AIMS website as well."
+    },
+    {
+      "question": "When was ATMA 2026 held?",
+      "answer": "The official 2026 bulletin listed tests on 22 February, 3 May and 12 July, with a further August date published on www.atmaaims.com. Use the official site for the August date, because published notices have not always used the same August day."
+    },
+    {
+      "question": "What is the eligibility for ATMA 2026?",
+      "answer": "AIMS states that candidates need 50% marks in a bachelor's degree from a UGC-recognised university. Final-year students and candidates who have completed CA may also apply, as published on the official site."
+    },
+    {
+      "question": "Is ATMA recognised for MBA admissions?",
+      "answer": "AIMS describes ATMA as a national-level test recognised by AICTE and the Ministry of Education for admission to MBA, PGDM and related programmes. Each college still applies its own selection rules."
+    },
+    {
+      "question": "Does an ATMA score guarantee admission?",
+      "answer": "No. Institutes use the score along with their own cut-off, academic record and, often, a group discussion or interview. Confirm the latest process on the college admission page."
+    }
+  ],
+  "sources": [
+    {
+      "label": "ATMA official website (AIMS)",
+      "url": "https://www.atmaaims.com/"
+    },
+    {
+      "label": "ATMA 2026 official bulletin",
+      "url": "https://www.atmaaims.com/pdf/ATMA-Bulletin-2026.pdf"
+    }
+  ]
+}

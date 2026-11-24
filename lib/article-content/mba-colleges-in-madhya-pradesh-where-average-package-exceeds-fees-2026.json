@@ -1,0 +1,91 @@
+{
+  "slug": "mba-colleges-in-madhya-pradesh-where-average-package-exceeds-fees-2026",
+  "updatedOn": "24 Nov 2026",
+  "intro": [
+    "{{count}} published MBA / PGDM colleges in Madhya Pradesh have a recorded average package higher than their recorded total fee. Use this list of the best MBA / PGDM colleges in Madhya Pradesh where average package exceeds fees as a starting filter.",
+    "Nine of the {{published}} colleges are in Bhopal, with two in Indore and one in Jabalpur. Recorded fees are modest, and many cards may be showing an annual tuition rather than a two-year total.",
+    "Sagar Institute of Science & Technology, Bhopal, has the highest recorded average here, at ₹12 lakh in 2023. XIDAS, Jabalpur, has the highest recorded fee, for a PGDM Finance programme."
+  ],
+  "listLead": "These are the top MBA / PGDM colleges in Madhya Pradesh 2026 that pass this filter in our records. Several cards are labelled MBA Finance or MBA Banking, so match the official programme before you compare packages.",
+  "snapshot": [
+    "Among the {{feeN}} colleges with a recorded fee, the median total is {{feeMedian}}, and the middle half sits between {{feeP25}} and {{feeP75}}.",
+    "{{private}} colleges are private and {{public}} are public. Recorded average packages range from {{pkgMin}} to {{pkgMax}}, with years from {{pkgYearMin}} to {{pkgYearMax}}.",
+    "MET Madhya Pradesh and CAT are the most common recorded tests on this list, followed by CMAT and ATMA. Official MP MBA counselling for 2026-27 is run by DTE MP on CMAT scores, so confirm which route each college actually uses."
+  ],
+  "firstCollegesLead": [
+    "RKDF University and several Bhopal private colleges show MBA fees close to ₹50,000 in our records. Confirm whether that is the full programme fee or one year's tuition.",
+    "Makhanlal Chaturvedi Rashtriya Patrakarita Vishwavidyalaya and Shri GS Institute of Technology & Science, Indore, are the two public colleges. Their 2023 averages are ₹8 lakh and ₹5 lakh in our records."
+  ],
+  "sections": [
+    {
+      "heading": "Fees, packages and the MP admission route",
+      "paragraphs": [
+        "A low recorded fee can make even a modest average look like a wide gap. The useful comparison is official full-programme fee versus the official average for the same MBA batch.",
+        "Some placement years here go back to 2016. Treat older averages as history, not a current offer list."
+      ]
+    }
+  ],
+  "compare": {
+    "heading": "How to judge the best MBA / PGDM colleges in Madhya Pradesh where average package exceeds fees",
+    "paragraphs": [
+      "Bhopal has most of the colleges, but an Indore public institute can still be the better fit if its official fee and test route are clearer.",
+      "Check these points on official pages:"
+    ],
+    "bullets": [
+      "Whether the fee is annual or for both years, and what hostel or development charges add.",
+      "Whether the college admits through DTE MP counselling on CMAT, or through CAT, ATMA or its own process.",
+      "The official 2023 or later placement report for the same programme named on the card.",
+      "Whether a specialised title such as MBA Banking is the only intake, or a general MBA is also offered."
+    ]
+  },
+  "links": [
+    {
+      "label": "MBA / PGDM course guide",
+      "href": "/courses/mba"
+    },
+    {
+      "label": "Best MBA colleges in Madhya Pradesh",
+      "href": "/mba-colleges-in-madhya-pradesh"
+    },
+    {
+      "label": "Colleges tagged MET Madhya Pradesh",
+      "href": "/articles/mba-colleges-accepting-met-madhya-pradesh-2026-admission-process"
+    },
+    {
+      "label": "CMAT admission article",
+      "href": "/articles/mba-colleges-accepting-cmat-2026-admission-process"
+    },
+    {
+      "label": "Best MBA colleges in India",
+      "href": "/mba-colleges"
+    }
+  ],
+  "faqs": [
+    {
+      "question": "How many MBA colleges in Madhya Pradesh have an average package above fees?",
+      "answer": "We list {{published}} published colleges in Madhya Pradesh on this filter. A college needs both a recorded total fee and a recorded average package to appear."
+    },
+    {
+      "question": "Why are many MBA fees in Madhya Pradesh under ₹1 lakh on this list?",
+      "answer": "The median recorded total is {{feeMedian}}. Some of those figures may be annual tuition at private or state-affiliated colleges. Confirm the full two-year fee on the official notice."
+    },
+    {
+      "question": "Do these colleges admit through MET Madhya Pradesh?",
+      "answer": "Some colleges on this list are tagged with MET Madhya Pradesh or CAT in our records. For the 2026-27 cycle, DTE MP counselling for MBA is based on CMAT, so verify the current route with the college and DTE MP."
+    },
+    {
+      "question": "Which city has the most colleges here?",
+      "answer": "Bhopal has nine of the {{published}} colleges, Indore has two, and Jabalpur has one. City count is not a measure of placement quality."
+    },
+    {
+      "question": "Are the placement figures guaranteed?",
+      "answer": "No. They are historical records from {{pkgYearMin}} to {{pkgYearMax}}. Use the latest official placement report for the programme you intend to join."
+    }
+  ],
+  "sources": [
+    {
+      "label": "DTE MP MBA counselling context (CMAT-based admissions)",
+      "url": "https://dte.mponline.gov.in/"
+    }
+  ]
+}

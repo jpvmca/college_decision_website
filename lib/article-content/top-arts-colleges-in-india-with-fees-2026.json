@@ -1,0 +1,98 @@
+{
+  "slug": "top-arts-colleges-in-india-with-fees-2026",
+  "updatedOn": "24 Nov 2026",
+  "intro": [
+    "We hold a recorded total fee for {{count}} published BA colleges in India. This guide puts the top BA colleges in India with fees for 2026 in one place, so you can see what a programme costs before you shortlist it.",
+    "The colleges at the top follow our verified ranking, including Hindu College, Miranda House, Lady Shri Ram College, St Stephen's and Hansraj. After them, colleges are ordered by recorded fee, lowest first."
+  ],
+  "listLead": "The first cards are ranked Delhi University and other well-known arts colleges with a fee on file. Many of those figures look like an annual college fee, so check whether the official notice is for one year or the full programme.",
+  "snapshot": [
+    "Across the {{feeN}} published colleges on this list, the median recorded total fee is {{feeMedian}}. The middle half of colleges sits between {{feeP25}} and {{feeP75}}.",
+    "Most colleges here are private ({{private}}), with {{public}} public institutes. Tamil Nadu, Delhi NCR and Haryana have the most listings, and 13 colleges are tagged to CUET UG in our records.",
+    "A figure at our {{feeMin}} floor should be checked on the official notice. Some very low BA fees never enter this list, because we do not quote amounts under ₹10,000."
+  ],
+  "firstCollegesLead": [
+    "Miranda House's official 2026–27 prospectus lists the annual fee for B.A. (Honours) English at ₹16,660. Our card now uses that official annual figure, so the recorded three-year total is ₹49,980.",
+    "Hindu College, LSR, St Stephen's, Hansraj, St Xavier's Kolkata and Loyola Chennai also have recorded fees in the ₹16,000 to ₹38,000 range. Confirm on each college site whether that is one year or the full course."
+  ],
+  "sections": [
+    {
+      "heading": "Ranked BA colleges missing a fee on this page",
+      "paragraphs": [
+        "Several well-known ranked colleges do not appear in this fee list because we do not yet hold a quotable total fee for them.",
+        "You can still find them on the BA colleges listing. Among those missing a fee in our file are Kirori Mal College, ARSD, Jesus and Mary College, Sri Venkateswara College, Ramjas, Madras Christian College and Christ University."
+      ]
+    }
+  ],
+  "compare": {
+    "heading": "How to compare the top BA colleges in India with fees",
+    "paragraphs": [
+      "Start with the programme and the year of the fee, not the raw number. A Delhi University annual fee and a private university's four-year total are not comparable until you align the period.",
+      "Then check these points on the official notice:"
+    ],
+    "bullets": [
+      "Whether the fee is for one year or the full BA or BA (Hons) programme, and whether hostel and exam charges are included.",
+      "The admission route, which for many of these colleges is CUET UG, plus any college-level eligibility rule.",
+      "Whether you are looking at a BA (Hons) in English, Journalism, History or another subject; the fee can differ by programme.",
+      "The latest official prospectus. Our figures are a reference, not a substitute for the current year's notice."
+    ]
+  },
+  "links": [
+    {
+      "label": "BA course guide",
+      "href": "/courses/arts"
+    },
+    {
+      "label": "Best BA colleges in India",
+      "href": "/ba-colleges"
+    },
+    {
+      "label": "CUET UG exam page",
+      "href": "/exams/cuet-ug"
+    },
+    {
+      "label": "Hindu College, Delhi",
+      "href": "/colleges/hindu-college-du-delhi-ncr-delhi"
+    },
+    {
+      "label": "Miranda House, Delhi",
+      "href": "/colleges/miranda-house-delhi-ncr-delhi"
+    }
+  ],
+  "faqs": [
+    {
+      "question": "How many BA colleges in India have fees listed here?",
+      "answer": "{{count}} published BA colleges have a recorded total fee in our records. The list only covers colleges with a fee on file, so the full number of BA colleges in India is higher."
+    },
+    {
+      "question": "What is the typical BA fee in India in 2026?",
+      "answer": "Among the {{feeN}} published colleges here, the median recorded fee is {{feeMedian}}, and the middle half falls between {{feeP25}} and {{feeP75}}. Many Delhi University figures in this range are annual fees, so confirm the period on the official notice."
+    },
+    {
+      "question": "Why is Miranda House's fee different from the official prospectus?",
+      "answer": "Miranda House's official 2026–27 prospectus lists ₹16,660 as the annual fee for B.A. (Honours) English. Our card now uses that official annual figure, so the recorded three-year total is ₹49,980. Confirm the prospectus for the year you are joining."
+    },
+    {
+      "question": "Why are Kirori Mal, Christ University and MCC missing from this fee list?",
+      "answer": "They are in our BA ranking, but we do not hold a quotable total fee for them yet, so they cannot be placed in a fee list. You can still find them on the best BA colleges in India page."
+    },
+    {
+      "question": "How do students get into these BA colleges?",
+      "answer": "In our records, CUET UG is the exam most often linked to this list. Individual universities may add their own eligibility rules, so read the current admission notice before you apply."
+    }
+  ],
+  "sources": [
+    {
+      "label": "Miranda House official fee structure page",
+      "url": "https://www.mirandahouse.ac.in/admission/feestructure.php"
+    },
+    {
+      "label": "Miranda House Prospectus 2026–27 (official PDF)",
+      "url": "https://www.mirandahouse.ac.in/files/admission/prospectus/MH%20Final%20Prospectus%202026-2027.pdf"
+    },
+    {
+      "label": "Hindu College, University of Delhi (official)",
+      "url": "https://www.hinducollege.ac.in/"
+    }
+  ]
+}

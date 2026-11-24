@@ -1,0 +1,82 @@
+{
+  "slug": "top-colleges-in-india-2026-polytechnic-under-1-lakh-fees",
+  "updatedOn": "24 Nov 2026",
+  "intro": [
+    "We hold a recorded main-programme fee of up to ₹{{budget}} lakh for {{count}} published Polytechnic Course colleges in India. This list of the best Polytechnic Course colleges under ₹{{budget}} lakh is a fee filter for diploma programmes, and the branch on the card matters.",
+    "Government Polytechnic, Gorakhpur, is listed first with a Paint Technology diploma at ₹10,370. That is a specialised branch, not a general diploma in mechanical or civil engineering.",
+    "Uttar Pradesh has the most colleges here, followed by Madhya Pradesh, Punjab, Haryana and Maharashtra. Most listings are private, with three public institutes in our records."
+  ],
+  "listLead": "These are the top Polytechnic Course colleges in India 2026 with a recorded main-programme fee of up to ₹1 lakh. Some cards are lateral-entry diplomas or second-shift programmes, so read the official title before you compare fees.",
+  "snapshot": [
+    "Across {{feeN}} published colleges with a recorded fee, the median total is {{feeMedian}}, and the middle half sits between {{feeP25}} and {{feeP75}}.",
+    "{{private}} colleges are private and {{public}} are public. Ghaziabad, Hyderabad, Indore and Mathura appear more than once.",
+    "No entrance test is tagged on this list in our records. Many diploma admissions use a state counselling process that is not shown on the card."
+  ],
+  "firstCollegesLead": [
+    "Samskruti College and Ellenki College, both in Hyderabad, are listed with mechanical diploma fees of ₹15,000 and ₹15,500. PMV Polytechnic, Mathura, is listed with a petroleum technology diploma at ₹17,100.",
+    "Hindustan Institute of Technology and Management, Ambala, is listed with a Polytechnic Diploma (Lateral entry) at ₹30,000. A lateral-entry fee is not directly comparable with a first-year diploma fee."
+  ],
+  "sections": [
+    {
+      "heading": "Branch, shift and lateral entry",
+      "paragraphs": [
+        "A paint-technology or petroleum-technology diploma leads to a different job path from mechanical or electrical engineering. Compare official branches, not only tuition.",
+        "State polytechnic counselling fees are often published as an annual amount. Confirm the official duration, usually three years, before you budget."
+      ]
+    }
+  ],
+  "compare": {
+    "heading": "How to compare the best Polytechnic Course colleges under ₹1 lakh",
+    "paragraphs": [
+      "A government polytechnic and a private diploma college can share this cap and still differ in workshops, industry ties and official yearly fees.",
+      "Check these official points:"
+    ],
+    "bullets": [
+      "The official branch and whether the card is a regular, second-shift or lateral-entry diploma.",
+      "Whether the recorded fee is annual or for the full diploma, plus workshop charges.",
+      "The state counselling or institute admission process.",
+      "AICTE or state-board approval named on the official site."
+    ]
+  },
+  "links": [
+    {
+      "label": "Polytechnic course guide",
+      "href": "/courses/polytechnic"
+    },
+    {
+      "label": "Best polytechnic colleges in India",
+      "href": "/polytechnic-colleges"
+    },
+    {
+      "label": "M.Tech colleges under ₹1 lakh",
+      "href": "/articles/top-colleges-in-india-2026-mtech-under-1-lakh-fees"
+    },
+    {
+      "label": "BCA colleges under ₹1 lakh",
+      "href": "/articles/top-colleges-in-india-2026-bca-under-1-lakh-fees"
+    }
+  ],
+  "faqs": [
+    {
+      "question": "How many polytechnic colleges have fees under ₹1 lakh here?",
+      "answer": "We list {{published}} published Polytechnic Course colleges with a recorded main-programme fee up to ₹{{budget}} lakh. Colleges without a usable fee on file are excluded."
+    },
+    {
+      "question": "What is a typical polytechnic fee on this list?",
+      "answer": "The median recorded total is {{feeMedian}}, and the middle half falls between {{feeP25}} and {{feeP75}}. Confirm whether the official notice is annual or for the full diploma."
+    },
+    {
+      "question": "What programme does Government Polytechnic, Gorakhpur, show?",
+      "answer": "Our card lists a Polytechnic Course in Paint Technology at ₹10,370. That is a specialised branch, so check the official branch list if you want mechanical, civil or electrical engineering."
+    },
+    {
+      "question": "Are government polytechnics included?",
+      "answer": "Yes. {{public}} public institutes are on this list, including Government Polytechnic, Gorakhpur, PMV Polytechnic, Mathura, and Shaheed Bhagat Singh College of Engineering & Technology, Firozpur."
+    },
+    {
+      "question": "Is this a ranking of the best Polytechnic Course colleges under ₹1 lakh?",
+      "answer": "No. It is a fee filter. Branch, approval and the official counselling fee should guide the shortlist."
+    }
+  ],
+  "sources": []
+}

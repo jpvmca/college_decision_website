@@ -1,0 +1,95 @@
+{
+  "slug": "mba-colleges-in-haryana-where-average-package-exceeds-fees-2026",
+  "updatedOn": "24 Nov 2026",
+  "intro": [
+    "{{count}} published MBA / PGDM colleges in Haryana have a recorded average package higher than their recorded total fee. Use this list of the best MBA / PGDM colleges in Haryana where average package exceeds fees as a first filter, not a guarantee.",
+    "IIM Rohtak is the only public institute here. In the NIRF 2025 Management ranking it stands at 19, after rank 12 in 2024. Its main programme is listed as the five-year IPM, not the two-year PGP.",
+    "Seven of the {{published}} colleges are in Gurgaon. Most recorded average packages sit well below IIM Rohtak's 2023 average of ₹18 lakh, so compare the year and the programme before you treat the gap as savings."
+  ],
+  "listLead": "The cards below are the top MBA / PGDM colleges in Haryana 2026 on this value filter. Read the programme name on each card, because some fees belong to a specialised or integrated course rather than the flagship MBA.",
+  "snapshot": [
+    "Among the {{feeN}} colleges with a recorded fee, the median total is {{feeMedian}}, and the middle half sits between {{feeP25}} and {{feeP75}}.",
+    "{{private}} colleges are private and {{public}} is public. Recorded average packages range from {{pkgMin}} to {{pkgMax}}, with placement years from {{pkgYearMin}} to {{pkgYearMax}}.",
+    "A high 'highest package' figure, such as {{highestMax}} on this list, is not the same as the average. Always check which year and which programme that figure belongs to."
+  ],
+  "firstCollegesLead": [
+    "IIM Rohtak's official site publishes the full PGP 2025-27 and 2026-28 fee structures. Our record shows ₹8.95 lakh, which looks like a single-year figure, so confirm the two-year total on the institute page.",
+    "Great Lakes, Gurgaon is in the NIRF 2025 Management ranking at 50. Its listed programme is PGDM in Oil and Gas Management."
+  ],
+  "sections": [
+    {
+      "heading": "What official 2025–26 sources add",
+      "paragraphs": [
+        "NIRF Management ranks are for the institute, not one MBA stream. Use them to see reputation, not to predict your package.",
+        "Amity University, Haryana and K.R. Mangalam University appear with specialised MBA titles on their cards. Confirm the fee for the general MBA if that is the course you want."
+      ]
+    }
+  ],
+  "compare": {
+    "heading": "How to compare the best MBA / PGDM colleges in Haryana where average package exceeds fees",
+    "paragraphs": [
+      "The fee–package gap is only useful when both numbers are for the same full-time programme and a recent year.",
+      "Before you shortlist, check these points on the official pages:"
+    ],
+    "bullets": [
+      "Whether the fee is for one year or the full programme, and whether hostel and mess are included.",
+      "Whether the award is an MBA degree or a PGDM diploma, and which entrance test the latest cycle used.",
+      "The official placement report for the same year we show, especially where our year is older than 2023.",
+      "The campus you are applying to. Great Lakes Gurgaon and Great Lakes Chennai are ranked separately in NIRF 2025."
+    ]
+  },
+  "links": [
+    {
+      "label": "MBA / PGDM course guide",
+      "href": "/courses/mba"
+    },
+    {
+      "label": "Best MBA colleges in Haryana",
+      "href": "/mba-colleges-in-haryana"
+    },
+    {
+      "label": "Best MBA colleges in India",
+      "href": "/mba-colleges"
+    },
+    {
+      "label": "MBA colleges with fees in India",
+      "href": "/articles/top-mba-colleges-in-india-with-fees-2026"
+    },
+    {
+      "label": "CAT exam guide",
+      "href": "/exams/cat"
+    }
+  ],
+  "faqs": [
+    {
+      "question": "How many MBA colleges in Haryana have an average package above fees?",
+      "answer": "We currently list {{published}} published MBA / PGDM colleges in Haryana on this filter. The wider set of MBA colleges in the state is larger, because a college needs both a recorded fee and a recorded average package to appear here."
+    },
+    {
+      "question": "Does a higher average package than fees mean a good return?",
+      "answer": "Not by itself. The average is a historical record for one batch and programme, and fees may exclude hostel or later-year charges. Compare the official fee notice with the official placement report for the same course."
+    },
+    {
+      "question": "What is IIM Rohtak's NIRF 2025 Management rank?",
+      "answer": "IIM Rohtak is ranked 19 in the NIRF 2025 Management ranking, after 12 in 2024."
+    },
+    {
+      "question": "Which entrance tests do these Haryana colleges accept?",
+      "answer": "In our records, CAT is the most common test on this list, followed by MAT, ATMA and CMAT. Each college sets its own cut-off and may add a group discussion or interview, so confirm the latest brochure."
+    },
+    {
+      "question": "Are the placement figures guaranteed?",
+      "answer": "No. They are the latest placement years in our records, which here run from {{pkgYearMin}} to {{pkgYearMax}}. Treat them as history and confirm the latest official report before you decide."
+    }
+  ],
+  "sources": [
+    {
+      "label": "NIRF 2025 Management ranking",
+      "url": "https://www.nirfindia.org/rankings/2025/ManagementRanking.html"
+    },
+    {
+      "label": "IIM Rohtak official programme fee page",
+      "url": "https://www.iimrohtak.ac.in/programme-fee.php"
+    }
+  ]
+}

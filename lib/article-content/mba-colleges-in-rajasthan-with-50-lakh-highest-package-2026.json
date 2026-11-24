@@ -1,0 +1,74 @@
+{
+  "slug": "mba-colleges-in-rajasthan-with-50-lakh-highest-package-2026",
+  "updatedOn": "2026-11-24",
+  "intro": [
+    "No MBA / PGDM college in Rajasthan in our records has a 2020-or-later non-executive highest package of ₹{{threshold}} lakh or more. This page still lists the highest recorded packages in the state, with flagship programmes preferred.",
+    "These MBA colleges in Rajasthan with ₹50 lakh highest package should be read that way. IIM Udaipur leads the top MBA colleges in Rajasthan 2026 on its official 2025 two-year MBA report, but that official highest domestic figure is ₹47.65 LPA, just below this cut."
+  ],
+  "listLead": "IIM Udaipur is 21st in the official NIRF 2025 Management ranking. Its official IPRS-audited Two-Year MBA Placement Report for the 2023-25 batch lists a mean maximum earning potential of ₹17.59 LPA, a median of ₹17 LPA, and a highest domestic figure of ₹47.65 LPA.",
+  "snapshot": [
+    "Because no college crosses ₹{{threshold}} lakh in our 2020-or-later non-executive records, the list of {{count}} colleges is sorted by the highest recorded package instead.",
+    "Some private-college cards still show 2023 highs close to this threshold, such as Jaipur Engineering College & Research Centre at ₹44 LPA beside an average of ₹5 LPA. Those recorded gaps are wide and should be checked in each official report."
+  ],
+  "firstCollegesLead": [
+    "Older Arya College and Udai Institute records that once appeared to clear this cut are no longer used, because no official report was found to support those headline figures.",
+    "Start any serious Rajasthan MBA shortlist with IIM Udaipur and the official NIRF 2025 Management list, then confirm each college's latest official placement report."
+  ],
+  "compare": {
+    "heading": "How to read highest-package figures in Rajasthan",
+    "paragraphs": [
+      "A threshold page with no college above ₹{{threshold}} lakh is still useful if the top official figures are shown clearly. IIM Udaipur's official 2025 highest domestic package is ₹47.65 LPA, not ₹50 lakh or more."
+    ],
+    "bullets": [
+      "Use the official IIM Udaipur 2025 mean of ₹17.59 LPA and median of ₹17 LPA beside the highest domestic figure of ₹47.65 LPA.",
+      "Treat a private-college highest package beside a much lower average as a figure that needs official confirmation.",
+      "Do not use the older, unverified Arya College or Udai Institute highs that were removed from this list."
+    ]
+  },
+  "links": [
+    {
+      "label": "MBA / PGDM course guide",
+      "href": "/courses/mba"
+    },
+    {
+      "label": "Best MBA colleges in Rajasthan",
+      "href": "/mba-colleges-in-rajasthan"
+    },
+    {
+      "label": "Best MBA colleges in India",
+      "href": "/mba-colleges"
+    },
+    {
+      "label": "MBA colleges accepting CAT",
+      "href": "/exams/cat"
+    }
+  ],
+  "faqs": [
+    {
+      "question": "Do any MBA colleges in Rajasthan have a ₹50 lakh highest package in this file?",
+      "answer": "No. In our 2020-or-later non-executive records, no Rajasthan MBA college reaches ₹{{threshold}} lakh. The list instead shows the highest recorded packages in the state."
+    },
+    {
+      "question": "What is IIM Udaipur's official 2025 highest package?",
+      "answer": "The official IPRS-audited Two-Year MBA Placement Report for the 2023-25 batch lists a highest domestic maximum earning potential of ₹47.65 LPA, a mean of ₹17.59 LPA and a median of ₹17 LPA."
+    },
+    {
+      "question": "Why is IIM Udaipur not above this ₹50 lakh cut?",
+      "answer": "Its official 2025 highest domestic figure is ₹47.65 LPA, which is below ₹{{threshold}} lakh. It remains the leading recorded figure on this page and is 21st in the official NIRF 2025 Management ranking."
+    },
+    {
+      "question": "Are the older Arya College or Udai Institute figures still used?",
+      "answer": "No. Those unverified records are no longer used, because no official placement report was found to support them."
+    }
+  ],
+  "sources": [
+    {
+      "label": "NIRF 2025 Management ranking",
+      "url": "https://www.nirfindia.org/Rankings/2025/ManagementRanking.html"
+    },
+    {
+      "label": "IIM Udaipur official Two-Year MBA Placement Report 2023-25 (IPRS audited)",
+      "url": "https://placements.iimu.ac.in/wp-content/uploads/2026/01/Two-Year-MBA-Placement-Report-2023-25.pdf"
+    }
+  ]
+}

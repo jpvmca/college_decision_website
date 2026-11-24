@@ -1,0 +1,91 @@
+{
+  "slug": "mba-colleges-in-tamil-nadu-where-average-package-exceeds-fees-2026",
+  "updatedOn": "24 Nov 2026",
+  "intro": [
+    "{{count}} published MBA / PGDM colleges in Tamil Nadu have a recorded average package higher than their recorded total fee. This list of the best MBA / PGDM colleges in Tamil Nadu where average package exceeds fees starts with Chennai, then a wider state set.",
+    "Great Lakes Institute of Management, Chennai, is ranked 37 in the NIRF 2025 Management ranking, after 34 in 2024. The listed programme is PGDM Finance at ₹7.385 lakh.",
+    "Anna University's Department of Management Studies follows, with a recorded MBA Finance fee of ₹75,000 and a 2023 average of ₹12 lakh. Several later cards are specialised, including tourism and hospital administration."
+  ],
+  "listLead": "These are the top MBA / PGDM colleges in Tamil Nadu 2026 on this value filter. Chennai has 11 of the colleges; Coimbatore, Thanjavur and Trichy appear next. Read the programme title before you compare fees.",
+  "snapshot": [
+    "For the {{feeN}} colleges with a recorded fee, the median total is {{feeMedian}}, and the middle half sits between {{feeP25}} and {{feeP75}}.",
+    "{{private}} colleges are private, {{public}} are public, and one has no ownership type in our records. Recorded averages range from {{pkgMin}} to {{pkgMax}}, from {{pkgYearMin}} to {{pkgYearMax}}.",
+    "CAT and TANCET are the main recorded tests. The highest recorded package is {{highestMax}}, on an SRM Master of Hospital Administration card, which is not a general MBA average."
+  ],
+  "firstCollegesLead": [
+    "Great Lakes Chennai and Great Lakes Gurgaon are ranked separately in NIRF 2025, at 37 and 50. Do not mix the two campuses when you read our cards or the official table.",
+    "College of Engineering, Guindy, is listed with MBA Tourism Management at ₹42,920. That is a specialised fee, and it may be annual. Sona School of Management shows MBA Finance at ₹54,000, which also needs an official check."
+  ],
+  "sections": [
+    {
+      "heading": "Public and private options on this Tamil Nadu list",
+      "paragraphs": [
+        "Anna University's Department of Management Studies has a recorded 2023 average of ₹12 lakh, against a much lower fee than Great Lakes. That gap is useful only if the official two-year MBA fee matches our figure.",
+        "Some placement years here go back to 2014. Treat those averages as historical and look for a newer official report."
+      ]
+    }
+  ],
+  "compare": {
+    "heading": "How to judge the best MBA / PGDM colleges in Tamil Nadu where average package exceeds fees",
+    "paragraphs": [
+      "A TANCET-based university MBA and a CAT-based PGDM are not priced the same way. Compare official notices for the same award type.",
+      "Check these points before you apply:"
+    ],
+    "bullets": [
+      "Whether the fee is for MBA, PGDM, tourism or hospital administration, and whether it is a one-year or two-year total.",
+      "The latest TANCET or CAT process used by the college.",
+      "The official placement report year, especially where our year is older than 2023.",
+      "The campus city, because Chennai, Coimbatore, Trichy and Salem differ in living costs."
+    ]
+  },
+  "links": [
+    {
+      "label": "MBA / PGDM course guide",
+      "href": "/courses/mba"
+    },
+    {
+      "label": "Best MBA colleges in Tamil Nadu",
+      "href": "/mba-colleges-in-tamil-nadu"
+    },
+    {
+      "label": "TANCET exam guide",
+      "href": "/exams/tancet"
+    },
+    {
+      "label": "CAT exam guide",
+      "href": "/exams/cat"
+    },
+    {
+      "label": "Best MBA colleges in India",
+      "href": "/mba-colleges"
+    }
+  ],
+  "faqs": [
+    {
+      "question": "How many MBA colleges in Tamil Nadu have an average package above fees?",
+      "answer": "We list {{published}} published colleges in Tamil Nadu on this filter. Both a recorded fee and a recorded average package are required."
+    },
+    {
+      "question": "What is Great Lakes Chennai's NIRF 2025 Management rank?",
+      "answer": "Great Lakes Institute of Management, Chennai, is ranked 37 in the official NIRF 2025 Management ranking, after 34 in 2024. The Gurgaon campus is ranked separately, at 50."
+    },
+    {
+      "question": "Why does an Anna University or Guindy card show a very low MBA fee?",
+      "answer": "DoMS Anna University is listed with MBA Finance at ₹75,000, and CEG is listed with MBA Tourism Management at ₹42,920. Confirm whether those official fees are annual or for the full programme."
+    },
+    {
+      "question": "Which exams do these Tamil Nadu colleges accept?",
+      "answer": "CAT and TANCET are the most frequently recorded tests, with ATMA, CMAT and XAT also appearing. Confirm the latest counselling or institute process."
+    },
+    {
+      "question": "Are the placement figures guaranteed?",
+      "answer": "No. They are historical records from {{pkgYearMin}} to {{pkgYearMax}}. A highest package of {{highestMax}} is one offer, not a typical average."
+    }
+  ],
+  "sources": [
+    {
+      "label": "NIRF 2025 Management ranking",
+      "url": "https://www.nirfindia.org/rankings/2025/ManagementRanking.html"
+    }
+  ]
+}

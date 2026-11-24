@@ -23,6 +23,7 @@ export type ListingSeoInput = {
   stateNames?: string[];
   publicCount?: number | null;
   privateCount?: number | null;
+  otherCount?: number | null;
   fees?: ListingSeoFees;
 };
 
@@ -38,7 +39,7 @@ export type CourseListingSeo = {
 
 export function listingSeoCourseName(courseKey: string, fallbackLabel: string) {
   if (courseKey === 'engineering') return 'Engineering / B.Tech';
-  if (courseKey === 'mba') return 'MBA / PGDM';
+  if (courseKey === 'mba') return 'MBA';
   return fallbackLabel;
 }
 
@@ -111,21 +112,38 @@ export function listingSeoKeywords(courseKey: string, courseName: string, place:
 
 function feeClause(fees: ListingSeoFees) {
   if (!fees || !fees.n || !(fees.min > 0) || !(fees.max > 0)) return '';
-  if (fees.min === fees.max) return ` Recorded annual fees on this list are ${money(fees.min)}.`;
-  return ` Recorded annual fees on this list run from ${money(fees.min)} to ${money(fees.max)}.`;
+  if (fees.min === fees.max) return ` Recorded published total fees on this list are ${money(fees.min)}.`;
+  return ` Recorded published total fees on this list run from ${money(fees.min)} to ${money(fees.max)}.`;
 }
 
 function countVerb(n: number, singular: string, plural: string) {
   return n === 1 ? `1 ${singular}` : `${formatCount(n)} ${plural}`;
 }
 
-function typeClause(publicCount?: number | null, privateCount?: number | null) {
+function allOfType(n: number, singular: string, plural: string) {
+  return n === 1 ? `The college ${singular}` : `All ${formatCount(n)} ${plural}`;
+}
+
+function typeClause(publicCount?: number | null, privateCount?: number | null, otherCount?: number | null, collegeCount?: number | null) {
+  const hasTypeData = publicCount != null || privateCount != null || otherCount != null;
   const pub = Number(publicCount || 0);
   const priv = Number(privateCount || 0);
-  if (pub > 0 && priv > 0) return ` ${countVerb(pub, 'is public', 'are public')} and ${countVerb(priv, 'is private', 'are private')}.`;
-  if (pub > 0) return ` ${countVerb(pub, 'is public', 'are public')}.`;
-  if (priv > 0) return ` ${countVerb(priv, 'is private', 'are private')}.`;
-  return '';
+  const other = Number(otherCount || 0);
+  const typed = pub + priv + other;
+  if (!hasTypeData || typed === 0) return '';
+  // Only write a type split that adds up to the published total.
+  const total = collegeCount != null && Number(collegeCount) === typed ? Number(collegeCount) : typed;
+  if (priv === total && pub === 0 && other === 0) return ` ${allOfType(total, 'is private', 'are private')}.`;
+  if (pub === total && priv === 0 && other === 0) return ` ${allOfType(total, 'is public', 'are public')}.`;
+  if (other === total && pub === 0 && priv === 0) return ` ${allOfType(total, 'has another or unspecified type', 'have another or unspecified type')}.`;
+  const parts: string[] = [];
+  if (pub > 0) parts.push(countVerb(pub, 'is public', 'are public'));
+  if (priv > 0) parts.push(countVerb(priv, 'is private', 'are private'));
+  if (other > 0) parts.push(countVerb(other, 'has another or unspecified type', 'have another or unspecified type'));
+  if (!parts.length) return '';
+  if (parts.length === 1) return ` ${parts[0]}.`;
+  if (parts.length === 2) return ` ${parts[0]} and ${parts[1]}.`;
+  return ` ${parts.slice(0, -1).join(', ')} and ${parts[parts.length - 1]}.`;
 }
 
 /**
@@ -134,14 +152,14 @@ function typeClause(publicCount?: number | null, privateCount?: number | null) {
  */
 export function listingSeoDescription(input: ListingSeoInput, courseName: string, place: string, year = LISTING_SEO_YEAR) {
   const count = formatCount(input.collegeCount);
-  const types = typeClause(input.publicCount, input.privateCount);
+  const types = typeClause(input.publicCount, input.privateCount, input.otherCount, input.collegeCount);
   const fees = feeClause(input.fees || null);
   const topPhrase = `top ${courseName} colleges in ${place} ${year}`;
   const focus = listingFocusKeyword(courseName, place);
 
   if (input.courseKey === 'online-mba' && input.scope === 'national') {
-    const types = typeClause(input.publicCount, input.privateCount);
-    return `${count} published Online MBA colleges are listed here for India.${types} If you are comparing the ${focus}, check UGC-DEB entitlement on the official list (we do not store a DEB flag yet), whether the award is an Online MBA or an Online PGDM, and eligibility, then use the list to scan ${topPhrase}. Only three profiles currently have a published total fee, and those are Online PGDM records, so we are not quoting a typical Online MBA fee range.`;
+    const types = typeClause(input.publicCount, input.privateCount, input.otherCount, input.collegeCount);
+    return `${count} published Online MBA colleges are listed here for India.${types} If you are comparing the ${focus}, check UGC-DEB entitlement on the official list (we do not store a DEB flag yet), whether the award is an Online MBA or an Online PGDM, and eligibility, then use the list to scan ${topPhrase}.${fees}`;
   }
 
   if (input.scope === 'city') {
@@ -233,7 +251,7 @@ export function listingHeroIntro(input: ListingSeoInput): string[] {
   const courseName = listingSeoCourseName(input.courseKey, input.courseLabel);
   const place = listingSeoPlace(input.scope, input.cityName, input.stateName) || 'India';
   const count = formatCount(input.collegeCount);
-  const types = typeClause(input.publicCount, input.privateCount).trim();
+  const types = typeClause(input.publicCount, input.privateCount, input.otherCount, input.collegeCount).trim();
   const fees = feeClause(input.fees || null).trim();
   const focus = listingFocusKeyword(courseName, place);
   const topPhrase = `top ${courseName} colleges in ${place} ${year}`;
@@ -245,7 +263,7 @@ export function listingHeroIntro(input: ListingSeoInput): string[] {
     paras.push(`This page lists ${count} published Online MBA colleges in India.${types ? ` ${types}` : ''}`);
     paras.push(`The programmes are online or blended, so the city next to a name is usually the university's registered office, not a campus you have to move to.`);
     paras.push(`If you are comparing the ${focus}, start with UGC-DEB entitlement on the official UGC-DEB list, the exact award (Online MBA or Online PGDM), and who is eligible. We do not store a DEB approval flag in this database yet.`);
-    paras.push(`Further down is a view of ${topPhrase}, followed by the other published programmes on this list. Only three colleges here currently have a published total fee, all of them Online PGDM records (MDI Gurgaon, Great Lakes Gurgaon and IMI Bhubaneswar), so we are not quoting a typical Online MBA fee range.`);
+    paras.push(`Further down is a view of ${topPhrase}, followed by the other published programmes on this list.${fees ? ` ${fees}` : ''}`);
     return paras;
   }
 

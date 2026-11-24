@@ -1,0 +1,82 @@
+{
+  "slug": "top-colleges-in-india-2026-phd-under-1-lakh-fees",
+  "updatedOn": "24 Nov 2026",
+  "intro": [
+    "We hold a recorded main-programme fee of up to ₹{{budget}} lakh for {{count}} published Ph.D colleges in India. This list of the best Ph.D colleges under ₹{{budget}} lakh mixes university and institute cards, and some stored fees look like semester figures.",
+    "BK School of Business Management, Ahmedabad, and a Navi Mumbai college are both listed at ₹10,000, our lowest quotable fee. Central University of Kashmir follows, with an Integrated M.Phil-Ph.D at ₹11,074.",
+    "Public IITs and NITs appear further down the first cards, often with incomplete short names in our records. Confirm the official circular for tuition, hostel and thesis charges."
+  ],
+  "listLead": "These are the top Ph.D colleges in India 2026 with a recorded main-programme fee of up to ₹1 lakh. Cards may show a general Doctor of Philosophy title or a subject such as Electrical Engineering, which are not interchangeable.",
+  "snapshot": [
+    "Across {{feeN}} published colleges with a recorded fee, the median total is {{feeMedian}}, and the middle half sits between {{feeP25}} and {{feeP75}}.",
+    "This list includes both public and private institutes. A Ph.D fee is often billed each semester, so a stored total close to ₹10,000–₹25,000 should be checked against the official year-wise circular.",
+    "No placement averages are filled on the first cards. That is expected for many doctoral programmes, and a blank cell is not a placement result."
+  ],
+  "firstCollegesLead": [
+    "SIMSREE, Mumbai, is listed with a Ph.D in Management at ₹11,100. NIT Calicut and NIT Silchar appear under short names that omit the campus in the title, with recorded fees of ₹12,125 and ₹15,620.",
+    "IIT Patna and IIT Jodhpur also appear under a short \"Indian Institute of Technology (IIT)\" label, with recorded Ph.D fees of ₹16,500 and ₹20,000. Use the official institute circular and the full campus name."
+  ],
+  "sections": [
+    {
+      "heading": "How to read a doctoral fee under ₹1 lakh",
+      "paragraphs": [
+        "Doctoral fees often change after the coursework year, and many institutes add hostel, medical and thesis-submission charges later.",
+        "IIM Udaipur is listed with a Doctorate in Management Studies card at ₹25,000. Confirm whether that official programme is a Ph.D or a different doctoral award."
+      ]
+    }
+  ],
+  "compare": {
+    "heading": "How to compare the best Ph.D colleges under ₹1 lakh",
+    "paragraphs": [
+      "Supervisor availability and the official circular matter more than a low stored tuition. Two institutes can share this cap and still differ in stipend rules and duration.",
+      "Check these official points:"
+    ],
+    "bullets": [
+      "The official semester or annual fee, plus hostel, medical and thesis charges.",
+      "The exact doctoral award and subject, including any integrated M.Phil-Ph.D structure.",
+      "Eligibility, entrance tests and interview rules on the official admission page.",
+      "The full institute name and campus, because some IIT and NIT cards in our records use a shortened name."
+    ]
+  },
+  "links": [
+    {
+      "label": "Ph.D course guide",
+      "href": "/courses/phd"
+    },
+    {
+      "label": "Best Ph.D colleges in India",
+      "href": "/phd-colleges"
+    },
+    {
+      "label": "M.Tech colleges under ₹1 lakh",
+      "href": "/articles/top-colleges-in-india-2026-mtech-under-1-lakh-fees"
+    },
+    {
+      "label": "MA colleges under ₹1 lakh",
+      "href": "/articles/top-colleges-in-india-2026-ma-under-1-lakh-fees"
+    }
+  ],
+  "faqs": [
+    {
+      "question": "How many Ph.D colleges in India have fees under ₹1 lakh here?",
+      "answer": "We list {{published}} published Ph.D colleges with a recorded main-programme fee up to ₹{{budget}} lakh. Colleges without a usable fee on file are excluded."
+    },
+    {
+      "question": "What is a typical Ph.D fee on this list?",
+      "answer": "The median recorded total is {{feeMedian}}, and the middle half falls between {{feeP25}} and {{feeP75}}. Many official doctoral fees are semester-wise, so confirm the circular for a full year."
+    },
+    {
+      "question": "Why do some Ph.D fees sit at ₹10,000?",
+      "answer": "₹10,000 is the lowest figure we treat as quotable. At BK School of Business Management and one Navi Mumbai college, that amount may be an annual or semester charge. Use the official notice."
+    },
+    {
+      "question": "Are IIT and NIT Ph.D programmes included?",
+      "answer": "Yes. Several IIT and NIT campuses appear on the first cards, sometimes under a shortened name in our records. Confirm the campus and the official fee circular."
+    },
+    {
+      "question": "Is this a ranking of the best Ph.D colleges under ₹1 lakh?",
+      "answer": "No. It is a fee filter. Supervisor, subject and official charges should guide the shortlist, not the stored tuition alone."
+    }
+  ],
+  "sources": []
+}

@@ -1,0 +1,82 @@
+{
+  "slug": "top-colleges-in-india-2026-mtech-under-1-lakh-fees",
+  "updatedOn": "24 Nov 2026",
+  "intro": [
+    "We hold a recorded main-programme fee of up to ₹{{budget}} lakh for {{count}} published M.Tech / M.E. colleges in India. This list of the best M.Tech / M.E. colleges under ₹{{budget}} lakh includes IIT and NIT cards whose stored fees look incomplete.",
+    "IIT Kharagpur is listed first with M.Tech Aerospace Engineering at ₹10,000, which is our lowest quotable fee and is unlikely to be the full official programme cost. NIT Warangal follows, with M.Tech Power Electronics and Drives at ₹82,000.",
+    "Most colleges here are private, but the first cards include public institutes. Confirm the official fee notice, especially for GATE-funded seats, which often have a different official structure."
+  ],
+  "listLead": "These are the top M.Tech / M.E. colleges in India 2026 with a recorded main-programme fee of up to ₹1 lakh. Each card is tied to a branch, such as aerospace, power electronics or mechanical, so compare the same specialisation.",
+  "snapshot": [
+    "Across {{feeN}} published colleges with a recorded fee, the median total is {{feeMedian}}, and the middle half sits between {{feeP25}} and {{feeP75}}.",
+    "{{private}} colleges are private, {{public}} are public, and two have no ownership type. Eight records have a fee band that can exceed ₹1 lakh.",
+    "A stored IIT or NIT fee close to ₹10,000–₹25,000 is often a semester tuition, a hostel component, or an old annual figure. Use the official fee circular for the current admission year."
+  ],
+  "firstCollegesLead": [
+    "IIT Patna appears under the short name \"Indian Institute of Technology (IIT)\" in our records, with M.Tech Mechanical Engineering at ₹21,500. Government Engineering College, Thrissur, is listed at ₹19,190, and RIT Kottayam at ₹13,250.",
+    "SSN College of Engineering, Chennai, is listed with M.Tech Communication Systems at ₹25,000. None of these first-card placement averages are filled in our table, so do not infer a package from a blank cell."
+  ],
+  "sections": [
+    {
+      "heading": "Why an IIT M.Tech fee can look too low",
+      "paragraphs": [
+        "IIT and NIT fee circulars usually split tuition, hostel, mess and one-time charges. Our card may have stored only one of those lines.",
+        "If you hold a GATE stipend, the official out-of-pocket cost can differ from the listed tuition. Always read the current institute notice."
+      ]
+    }
+  ],
+  "compare": {
+    "heading": "How to compare the best M.Tech / M.E. colleges under ₹1 lakh",
+    "paragraphs": [
+      "A public IIT or NIT branch and a private M.E. programme can share this cap in our records and still differ sharply in official fees and GATE cut-offs.",
+      "Check these official points:"
+    ],
+    "bullets": [
+      "The official fee circular for the exact branch, including hostel and one-time charges.",
+      "Whether the recorded figure is a semester, a year, or the full programme.",
+      "GATE or state-entrance eligibility for the seat you want.",
+      "The official institute name and campus, because some IIT and NIT cards in our records omit the campus in the short name."
+    ]
+  },
+  "links": [
+    {
+      "label": "M.Tech course guide",
+      "href": "/courses/mtech"
+    },
+    {
+      "label": "Best M.Tech colleges in India",
+      "href": "/mtech-colleges"
+    },
+    {
+      "label": "MCA colleges under ₹1 lakh",
+      "href": "/articles/top-colleges-in-india-2026-mca-under-1-lakh-fees"
+    },
+    {
+      "label": "Ph.D colleges under ₹1 lakh",
+      "href": "/articles/top-colleges-in-india-2026-phd-under-1-lakh-fees"
+    }
+  ],
+  "faqs": [
+    {
+      "question": "How many M.Tech colleges in India have fees under ₹1 lakh here?",
+      "answer": "We list {{published}} published M.Tech / M.E. colleges with a recorded main-programme fee up to ₹{{budget}} lakh. Colleges without a usable fee on file are excluded."
+    },
+    {
+      "question": "What is a typical M.Tech fee on this list?",
+      "answer": "The median recorded total is {{feeMedian}}, and the middle half falls between {{feeP25}} and {{feeP75}}. For IIT and NIT cards, confirm the official circular before you treat the stored figure as a full cost."
+    },
+    {
+      "question": "Why does IIT Kharagpur show an M.Tech fee of ₹10,000?",
+      "answer": "Our card lists M.Tech Aerospace Engineering at ₹10,000, the lowest figure we treat as quotable. That is unlikely to be the complete official programme fee, so use IIT Kharagpur's current fee notice."
+    },
+    {
+      "question": "Do these colleges admit only through GATE?",
+      "answer": "Many public M.Tech seats use GATE, but this list also includes private and state-college programmes that may use another test or a sponsored route. Check the official admission page."
+    },
+    {
+      "question": "Is this a ranking of the best M.Tech / M.E. colleges under ₹1 lakh?",
+      "answer": "No. It is a fee filter. Branch, GATE cut-off and the official fee circular should guide the shortlist."
+    }
+  ],
+  "sources": []
+}

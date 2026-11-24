@@ -1,0 +1,93 @@
+{
+  "slug": "mba-colleges-accepting-mat-2026-admission-process",
+  "updatedOn": "24 Nov 2026",
+  "intro": [
+    "Our records link {{count}} MBA / PGDM programme options to MAT, the Management Aptitude Test conducted by AIMA. This page explains MBA colleges accepting MAT 2026, including eligibility and the usual steps after the test.",
+    "Ranked colleges come first, then the other published colleges in alphabetical order. Confirm the current MAT notice and each college’s own process before you apply."
+  ],
+  "listLead": "After any ranked campus, the list is mostly alphabetical, so a college near the top of the later cards is not automatically more selective. Always check the college’s admission page to confirm that it still accepts MAT for the programme you want.",
+  "snapshot": [
+    "Haryana, Tamil Nadu, Uttar Pradesh, Kerala, Karnataka and Maharashtra have the most MAT-linked listings in our records. Bangalore, Chennai, Coimbatore, Ghaziabad, Gurgaon and Pune are the cities that appear most often.",
+    "Among the colleges here with an average package in our records, the median figure is {{pkgMedian}}, and the recorded averages range from {{pkgMin}} to {{pkgMax}}. Use the list of top MBA / PGDM colleges in India 2026 as a shortlist after you have a score."
+  ],
+  "firstCollegesLead": [
+    "The first names in our file should be read with care, because an exam-link in our records is not the same as an official admission notice. Confirm on the institute’s current MBA page that MAT is actually accepted for that programme.",
+    "AIMA itself advises candidates to recheck approval and recognition with the college, and notes that a MAT score is not always accepted even by some institutes listed in its bulletin."
+  ],
+  "sections": [
+    {
+      "heading": "MAT December 2026: what AIMA has published",
+      "paragraphs": [
+        "AIMA says graduates in any discipline can apply, and final-year graduation students may also apply. The December 2026 paper-based test is on 20 December 2026, and the computer-based test is on 27 December 2026.",
+        "The test has five sections and 150 questions in 120 minutes, with negative marking of 0.25 for a wrong answer, as AIMA’s MAT page sets out. AIMA also says candidates should register only at the official MAT website."
+      ]
+    }
+  ],
+  "compare": {
+    "heading": "How to compare MBA colleges accepting MAT 2026",
+    "paragraphs": [
+      "A MAT score is only one admission input, and each college then applies its own cut-off, group discussion or interview.",
+      "Before you apply, check these points on the official pages:"
+    ],
+    "bullets": [
+      "Whether the college still accepts MAT for the 2026–27 or 2027–29 batch you want, rather than relying only on our exam link.",
+      "The official fee notice for the full-time MBA or PGDM, not a shorter diploma on the same campus.",
+      "The approval status of the programme, which AIMA asks you to confirm with the institute.",
+      "The latest official placement report, treated as a historical record rather than a promise."
+    ]
+  },
+  "links": [
+    {
+      "label": "MBA / PGDM course guide",
+      "href": "/courses/mba"
+    },
+    {
+      "label": "Best MBA colleges in India",
+      "href": "/mba-colleges"
+    },
+    {
+      "label": "MAT exam guide",
+      "href": "/exams/mat"
+    },
+    {
+      "label": "MBA colleges accepting CMAT 2026",
+      "href": "/articles/mba-colleges-accepting-cmat-2026-admission-process"
+    },
+    {
+      "label": "MBA colleges accepting CAT 2026",
+      "href": "/articles/mba-colleges-accepting-cat-2026-admission-process"
+    }
+  ],
+  "faqs": [
+    {
+      "question": "Who can apply for MAT 2026?",
+      "answer": "AIMA says graduates in any discipline can apply, and final-year graduation students may also apply. Check the official MAT page for the current test dates and fees."
+    },
+    {
+      "question": "How many MBA colleges accepting MAT 2026 are listed here?",
+      "answer": "Our records currently link {{count}} MBA / PGDM programme options to MAT. Confirm on the college’s admission page that it still accepts MAT for the programme you want."
+    },
+    {
+      "question": "When are the MAT December 2026 tests?",
+      "answer": "AIMA’s published schedule puts the paper-based test on 20 December 2026 and the computer-based test on 27 December 2026, with scores expected in the first week of January 2027."
+    },
+    {
+      "question": "Does every college on this list officially accept MAT?",
+      "answer": "Not automatically, because our list is based on exam links in our records, and AIMA itself asks you to recheck with the institute before you apply."
+    },
+    {
+      "question": "Is a MAT score enough for admission?",
+      "answer": "No, colleges usually add a group discussion, interview or academic score after MAT, so read the current admission process on that campus."
+    }
+  ],
+  "sources": [
+    {
+      "label": "AIMA, Management Aptitude Test (MAT) official page",
+      "url": "https://www.aima.in/content/testing-and-assessment/mat/mat"
+    },
+    {
+      "label": "AIMA, MAT test dates",
+      "url": "https://aima.in/mat/test-dates/"
+    }
+  ]
+}

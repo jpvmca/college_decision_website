@@ -1,0 +1,85 @@
+{
+  "slug": "mba-government-colleges-in-maharashtra-by-average-package",
+  "updatedOn": "2026-11-24",
+  "intro": [
+    "This page lists the best government MBA / PGDM colleges in Maharashtra by the average packages in our records. We currently link {{count}} programme options at {{colleges}} colleges tagged as public in our file.",
+    "IIT Bombay, IIM Mumbai and IIM Nagpur are the national institutes here, with JBIMS, SIMSREE, PUMBA and several specialised campuses. Packages are historical, and some years in our file go back to {{pkgYearMin}}."
+  ],
+  "listLead": "IIT Bombay appears first. The fee on one IIT Bombay card is for an Executive MBA, while the first-colleges table shows an MBA Finance row, so read the programme name before you compare fees or packages.",
+  "snapshot": [
+    "For colleges with a recorded average package, the median is {{pkgMedian}}, in a range from {{pkgMin}} to {{pkgMax}}. The recorded years run from {{pkgYearMin}} to {{pkgYearMax}}.",
+    "In the official NIRF 2025 Management ranking, IIM Mumbai is 6, IIT Bombay is 14 and IIM Nagpur is 25. Use those official ranks when you compare top MBA / PGDM colleges in Maharashtra 2026."
+  ],
+  "firstCollegesLead": [
+    "IIT Bombay has a 2024 recorded average of ₹28 LPA and a highest of ₹54 LPA on an MBA Finance row. IIM Mumbai has a 2023 recorded average of ₹27 LPA and a highest of ₹78 LPA on a PGDIM row.",
+    "IIM Nagpur has a 2024 recorded average of ₹16 LPA in our first table. Other rows may differ, so confirm the official report. PUMBA's recorded package year in our file is 2015, which is too old to use as a current picture."
+  ],
+  "sections": [
+    {
+      "heading": "Data issues to watch on this Maharashtra list",
+      "paragraphs": [
+        "Vaikunth Mehta National Institute of Cooperative Management is in Pune. Its published slug still carries an Uttar Pradesh tag, so do not treat that URL as a location proof.",
+        "Indian Institute of Materials Management shows the same NIRF rank as IIM Mumbai in our file, which looks like a bad join. JBIMS is a University of Mumbai department, and SIMSREE is a Government of Maharashtra institute."
+      ]
+    }
+  ],
+  "compare": {
+    "heading": "How to compare the best government MBA / PGDM colleges in Maharashtra",
+    "paragraphs": [
+      "Compare the exact programme, the official fee and the year of the placement report. An executive MBA at IIT Bombay is not the same as IIM Mumbai's PGDIM.",
+      "Use these checks:"
+    ],
+    "bullets": [
+      "The programme on the card, especially Executive MBA versus a full-time MBA or PGDIM.",
+      "The official NIRF 2025 ranks: IIM Mumbai 6, IIT Bombay 14 and IIM Nagpur 25.",
+      "The year of the package, particularly where our records go back to {{pkgYearMin}}.",
+      "CAT or Maharashtra CET, depending on the campus."
+    ]
+  },
+  "links": [
+    {
+      "label": "MBA / PGDM course guide",
+      "href": "/courses/mba"
+    },
+    {
+      "label": "Best MBA colleges in Maharashtra",
+      "href": "/mba-colleges-in-maharashtra"
+    },
+    {
+      "label": "CAT exam page",
+      "href": "/exams/cat"
+    },
+    {
+      "label": "IIT Bombay",
+      "href": "/colleges/indian-institute-of-technology-bombay-iitb-iit-bombay-maharashtra-mumbai"
+    },
+    {
+      "label": "Best MBA colleges in India",
+      "href": "/mba-colleges"
+    }
+  ],
+  "faqs": [
+    {
+      "question": "How many government MBA colleges in Maharashtra are on this list?",
+      "answer": "Our records link {{count}} programme options at {{colleges}} colleges tagged as public, including IIT Bombay, IIM Mumbai, IIM Nagpur, JBIMS, SIMSREE and PUMBA."
+    },
+    {
+      "question": "What is the typical average package on this list?",
+      "answer": "Among colleges with a recorded average, the median is {{pkgMedian}}, from {{pkgMin}} to {{pkgMax}}, for years {{pkgYearMin}} to {{pkgYearMax}}. These are historical records, not offers."
+    },
+    {
+      "question": "What are the official NIRF 2025 ranks here?",
+      "answer": "IIM Mumbai is 6, IIT Bombay is 14 and IIM Nagpur is 25 in the official NIRF 2025 Management ranking."
+    },
+    {
+      "question": "Why does Vaikunth Mehta show an Uttar Pradesh slug?",
+      "answer": "The institute is in Pune, but our published slug still carries an Uttar Pradesh tag. Use the official campus address, not that slug, as location proof."
+    }
+  ],
+  "sources": [
+    {
+      "label": "NIRF 2025 Management ranking",
+      "url": "https://www.nirfindia.org/Rankings/2025/ManagementRanking.html"
+    }
+  ]
+}

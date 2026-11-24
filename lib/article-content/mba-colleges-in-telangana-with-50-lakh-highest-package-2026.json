@@ -1,0 +1,89 @@
+{
+  "slug": "mba-colleges-in-telangana-with-50-lakh-highest-package-2026",
+  "updatedOn": "2026-11-24",
+  "intro": [
+    "We list {{count}} MBA / PGDM colleges in Telangana where our records show a highest package of at least ₹{{threshold}} lakh. They include NIT Warangal, ISB Hyderabad and IBS Hyderabad.",
+    "These MBA colleges in Telangana with ₹50 lakh highest package are a mixed set. ISB Hyderabad now qualifies on its flagship PGP record, not the senior-executive PGPMAX row. Some private-college records still have a very wide gap between average and highest."
+  ],
+  "listLead": "The ISB Hyderabad card that now meets this threshold is the flagship PGP for 2023, with an average of ₹34 LPA and a highest of ₹72 LPA in our records. That is not the senior-executive PGPMAX programme.",
+  "snapshot": [
+    "Across these {{colleges}} colleges, the median recorded average package is {{pkgMedian}}, from placement years {{pkgYearMin}} to {{pkgYearMax}}.",
+    "Recorded averages run from {{pkgMin}} to {{pkgMax}}. The highest single figure we hold is {{highestMax}}, at NIT Warangal's MBA for 2023.",
+    "ICFAI Foundation for Higher Education, Hyderabad, is 46th in the official NIRF 2025 Management ranking. NIT Warangal does not appear in that top 100."
+  ],
+  "firstCollegesLead": [
+    "CMR College of Engineering and Technology's 2023 MBA row shows an average of ₹4 LPA and a highest of ₹58 LPA. BV Raju Institute has a 2023 highest of ₹54 LPA and no average in our file.",
+    "Those two records need the official placement report before you treat them as typical outcomes. IBS Hyderabad's 2022 MBA row shows an average of ₹9 LPA and a highest of ₹53 LPA."
+  ],
+  "sections": [
+    {
+      "heading": "Flagship programmes versus executive programmes",
+      "paragraphs": [
+        "The card now uses the flagship PGP record (average ₹34 LPA, highest ₹72 LPA in our file). Still confirm the official PGP placement report for the Hyderabad campus, and use PGPMAX numbers only if that is the programme you will join."
+      ]
+    }
+  ],
+  "compare": {
+    "heading": "How to compare MBA colleges in Telangana with ₹50 lakh highest package",
+    "paragraphs": [
+      "An NIT MBA, an ISB flagship PGP and a private engineering-college MBA share little except this threshold in our file.",
+      "Check the official documents for:"
+    ],
+    "bullets": [
+      "The exact programme — MBA, flagship PGP or another specialised course.",
+      "The average beside the highest, especially where the average is missing or very low.",
+      "The entrance test (CAT, TS ICET, IBSAT or NMAT) and the current fee notice.",
+      "The latest official placement report for the same campus and programme."
+    ]
+  },
+  "links": [
+    {
+      "label": "MBA / PGDM course guide",
+      "href": "/courses/mba"
+    },
+    {
+      "label": "Best MBA colleges in Telangana",
+      "href": "/mba-colleges-in-telangana"
+    },
+    {
+      "label": "Government MBA colleges in Telangana by average package",
+      "href": "/articles/mba-government-colleges-in-telangana-by-average-package"
+    },
+    {
+      "label": "Best MBA colleges in India",
+      "href": "/mba-colleges"
+    },
+    {
+      "label": "MBA colleges accepting CAT",
+      "href": "/exams/cat"
+    }
+  ],
+  "faqs": [
+    {
+      "question": "Which MBA colleges in Telangana with ₹50 lakh highest package are listed here?",
+      "answer": "{{count}} colleges: NIT Warangal, ISB Hyderabad, CMR College of Engineering and Technology, BV Raju Institute of Technology, and IBS Hyderabad."
+    },
+    {
+      "question": "What average packages do these colleges report?",
+      "answer": "The median recorded average is {{pkgMedian}}, with recorded averages from {{pkgMin}} to {{pkgMax}}. BV Raju Institute has a highest-package figure but no average in our file."
+    },
+    {
+      "question": "Is the ISB figure now for the flagship PGP?",
+      "answer": "The card now shows the flagship PGP for 2023, with an average of ₹34 LPA and a highest of ₹72 LPA in our records. Confirm the official PGP report if that is the programme you want."
+    },
+    {
+      "question": "Is NIT Warangal in the NIRF 2025 Management top 100?",
+      "answer": "No. It does not appear in the official NIRF 2025 Management top 100. Our 2023 MBA record shows an average of ₹17 LPA and a highest of ₹88 LPA, which should be checked in the official report."
+    },
+    {
+      "question": "Are these packages guaranteed?",
+      "answer": "No. They are historical records from {{pkgYearMin}} to {{pkgYearMax}}. Offers change with every batch, so confirm the latest official placement report."
+    }
+  ],
+  "sources": [
+    {
+      "label": "NIRF 2025 Management ranking",
+      "url": "https://www.nirfindia.org/Rankings/2025/ManagementRanking.html"
+    }
+  ]
+}

@@ -1,0 +1,97 @@
+{
+  "slug": "mba-colleges-accepting-ibsat-2026-admission-process",
+  "updatedOn": "2026-11-24",
+  "intro": [
+    "Our published list of MBA colleges accepting IBSAT 2026 currently shows the nine official IBS campuses, including Hyderabad, Mumbai, Bengaluru, Gurgaon, Pune, Kolkata, Ahmedabad, Jaipur and Dehradun. Officially, IBSAT is the common test for MBA and PGPM admissions across these nine campuses.",
+    "IBSAT 2026 is conducted by the ICFAI Foundation for Higher Education. The official site scheduled eight remote-proctored test dates on Saturdays and Sundays from 5 to 27 December 2026."
+  ],
+  "listLead": "These cards are the top MBA / PGDM colleges accepting IBSAT 2026 in our published records. They are the official IBS campuses that use this test for the 2-year MBA or PGPM programme.",
+  "snapshot": [
+    "We hold {{colleges}} published colleges on this IBSAT list, across the official nine IBS campuses. A campus may appear more than once if we hold several MBA or PGPM specialisations for it.",
+    "Our recorded MBA fee for IBS Hyderabad is ₹8.01 lakh, with a recorded average package of ₹9.25 lakh. Confirm both figures on the official IBS admission pages, because official notices can change by campus and year."
+  ],
+  "firstCollegesLead": [
+    "Because every card is the same campus, the first-ten table will repeat IBS Hyderabad rather than show nine campuses. That is a coverage gap in our published tagging, not a sign that other IBS campuses have closed admissions.",
+    "IBS also accepts specified CAT, XAT, NMAT and GMAT scores in place of IBSAT, as stated in its official FAQs, with score-update windows published for the 2026-27 cycle."
+  ],
+  "sections": [
+    {
+      "heading": "Official IBSAT 2026 process",
+      "paragraphs": [
+        "Official eligibility for the MBA or PGPM is a graduation in any discipline with 50% or more marks, with English as the medium of instruction, and at least 15 years of education in a 10+2+3 or 10+2+4 pattern.",
+        "Final-year students may apply, subject to official deadlines for completing graduation and submitting proof, which IBS has published on its FAQ page for this cycle."
+      ],
+      "bullets": [
+        "The official application window published on ibsat.org ran from 1 July 2026 to 22 December 2026, with earlier last dates for the first test weekend.",
+        "Results for each weekend test were scheduled on the following Monday, with selection briefings in January 2027 and the selection process in February 2027.",
+        "IBS Hyderabad, Bangalore, Jaipur and Dehradun offer the MBA, while some other campuses offer the PGPM, as stated in official IBS announcements."
+      ]
+    }
+  ],
+  "compare": {
+    "heading": "How to shortlist MBA colleges accepting IBSAT 2026",
+    "paragraphs": [
+      "Start with the official nine-campus list, then check our published Hyderabad cards for the fee and package we hold. Do not assume a campus is unavailable only because it is missing from this short list."
+    ],
+    "bullets": [
+      "The official campus and award, MBA or PGPM, because they are not the same at every IBS location.",
+      "Whether you will take IBSAT in December 2026 or submit a valid CAT, XAT, NMAT or GMAT score.",
+      "The official fee notice for that campus, not only our ₹8.01 lakh Hyderabad record.",
+      "The official selection briefing and interview dates published for 2027."
+    ]
+  },
+  "links": [
+    {
+      "label": "MBA / PGDM course guide",
+      "href": "/courses/mba"
+    },
+    {
+      "label": "IBSAT exam guide",
+      "href": "/exams/ibsat"
+    },
+    {
+      "label": "Best MBA colleges in Telangana",
+      "href": "/mba-colleges-in-telangana"
+    },
+    {
+      "label": "Best MBA colleges in India",
+      "href": "/mba-colleges"
+    },
+    {
+      "label": "CAT exam guide",
+      "href": "/exams/cat"
+    }
+  ],
+  "faqs": [
+    {
+      "question": "How many MBA colleges accepting IBSAT 2026 are on this list?",
+      "answer": "Our published list currently shows {{colleges}} IBS campuses, from {{count}} programme cards. Officially, IBSAT is the gateway to the nine IBS campuses at Hyderabad, Mumbai, Bengaluru, Gurgaon, Pune, Kolkata, Ahmedabad, Jaipur and Dehradun."
+    },
+    {
+      "question": "When is IBSAT 2026 being held?",
+      "answer": "The official IBSAT site scheduled eight remote-proctored tests on 5, 6, 12, 13, 19, 20, 26 and 27 December 2026, with results on the following Monday after each weekend."
+    },
+    {
+      "question": "What is the eligibility for IBSAT 2026?",
+      "answer": "IBS requires graduation in any discipline with 50% or more marks, English as the medium of instruction, and at least 15 years of education. Candidates whose graduation was not in English must submit a TOEFL, NELT or IELTS score as published by IBS."
+    },
+    {
+      "question": "Can I apply to IBS without IBSAT?",
+      "answer": "Yes. Official IBS FAQs say applicants may also use valid CAT, XAT, NMAT or GMAT scores from the accepted window, and update those scores by the published deadline."
+    }
+  ],
+  "sources": [
+    {
+      "label": "IBSAT 2026 official site",
+      "url": "https://ibsat.org/"
+    },
+    {
+      "label": "IBSAT 2026 official test dates PDF",
+      "url": "https://ibsat.org/IBSAT-2026-TestDates.pdf"
+    },
+    {
+      "label": "IBS official admission FAQs",
+      "url": "https://ibsindia.org/faqs/"
+    }
+  ]
+}

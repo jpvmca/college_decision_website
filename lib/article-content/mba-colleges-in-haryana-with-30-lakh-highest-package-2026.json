@@ -1,0 +1,90 @@
+{
+  "slug": "mba-colleges-in-haryana-with-30-lakh-highest-package-2026",
+  "updatedOn": "24 Nov 2026",
+  "intro": [
+    "We list {{count}} MBA / PGDM colleges in Haryana where our records show a highest package of at least ₹{{threshold}} lakh. These MBA colleges in Haryana with ₹30 lakh highest package range from IIM Rohtak to newer private schools in Gurgaon.",
+    "Four of the eight colleges are in Gurgaon. They form part of the top MBA colleges in Haryana 2026 on this measure, but some qualifying years in our file go back to 2016 and 2019."
+  ],
+  "listLead": "IIM Rohtak is the only public institute here. For BIMT and PIET, the qualifying highest-package years are 2016 and 2019, which may not appear in the on-page table that starts from 2020.",
+  "snapshot": [
+    "Across these {{colleges}} colleges, the median recorded average package is {{pkgMedian}}, from placement years {{pkgYearMin}} to {{pkgYearMax}}.",
+    "Recorded averages run from {{pkgMin}} to {{pkgMax}}. The highest single figure we hold is {{highestMax}}, at Master's Union in 2023.",
+    "Seven of the eight colleges are private. CAT is the most common linked exam, but you should still confirm the test each campus actually uses."
+  ],
+  "firstCollegesLead": [
+    "IIM Rohtak is 19th in the official NIRF 2025 Management ranking. Its PGP row for 2023 shows an average of ₹18 LPA and a highest of ₹36 LPA in our records.",
+    "Master's Union's 2023 MBA row shows an average of ₹34 LPA and a highest of ₹57 LPA in our file. That is a historical record, not a guaranteed 2026 outcome, and the school is not in the NIRF 2025 Management top 100."
+  ],
+  "sections": [
+    {
+      "heading": "Old placement years that still clear this ₹30 lakh cut",
+      "paragraphs": [
+        "BIMT in Gurgaon qualifies on a 2016 MBA Finance record (highest ₹56 LPA, average ₹5 LPA). PIET in Panipat qualifies on a 2019 record (highest ₹54 LPA, average ₹3 LPA).",
+        "Those gaps between average and highest, and the age of the data, are a reason to wait for the latest official report before you treat either college as a ₹30 lakh-plus campus."
+      ]
+    }
+  ],
+  "compare": {
+    "heading": "How to read highest-package figures in Haryana",
+    "paragraphs": [
+      "A public IIM, a new private school and an older engineering-college MBA are not comparable on the highest figure alone.",
+      "Check the official documents for:"
+    ],
+    "bullets": [
+      "The placement year, especially where our file still shows 2016 or 2019.",
+      "The gap between the average and the highest offer.",
+      "Whether you are applying to a two-year PGP, an integrated IPM, or another specialised MBA.",
+      "The entrance test and the latest official fee notice."
+    ]
+  },
+  "links": [
+    {
+      "label": "MBA / PGDM course guide",
+      "href": "/courses/mba"
+    },
+    {
+      "label": "Best MBA colleges in Haryana",
+      "href": "/mba-colleges-in-haryana"
+    },
+    {
+      "label": "MBA colleges in Haryana with ₹50 lakh highest package",
+      "href": "/articles/mba-colleges-in-haryana-with-50-lakh-highest-package-2026"
+    },
+    {
+      "label": "Best MBA colleges in Delhi NCR",
+      "href": "/mba-colleges-in-delhi-ncr"
+    },
+    {
+      "label": "MBA colleges accepting CAT",
+      "href": "/exams/cat"
+    }
+  ],
+  "faqs": [
+    {
+      "question": "Which MBA colleges in Haryana with ₹30 lakh highest package are listed here?",
+      "answer": "{{count}} colleges, including IIM Rohtak, Master's Union, Amity University Haryana, IBS Gurgaon, Manav Rachna, MMU Ambala, BIMT and PIET. Each has a highest-package record of at least ₹{{threshold}} lakh in our file."
+    },
+    {
+      "question": "What average packages do these Haryana colleges report?",
+      "answer": "The median recorded average is {{pkgMedian}}, with recorded averages from {{pkgMin}} to {{pkgMax}}. MMU Ambala has a highest-package figure but no usable average in our file."
+    },
+    {
+      "question": "What is IIM Rohtak's NIRF rank?",
+      "answer": "IIM Rohtak is 19th in the official NIRF 2025 Management ranking. Use that 2025 rank rather than any older number on a card."
+    },
+    {
+      "question": "Why are BIMT and PIET on a 2026 list with old data?",
+      "answer": "They meet the threshold in our file, but the years are 2016 and 2019. Those records are too old to treat as current outcomes; confirm the latest official report."
+    },
+    {
+      "question": "Why is MDI Gurgaon not on this Haryana list?",
+      "answer": "In our listings, MDI is grouped with Delhi NCR rather than with the Haryana state page. You can find it on the Delhi NCR highest-package articles."
+    }
+  ],
+  "sources": [
+    {
+      "label": "NIRF 2025 Management ranking",
+      "url": "https://www.nirfindia.org/Rankings/2025/ManagementRanking.html"
+    }
+  ]
+}

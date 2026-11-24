@@ -14,6 +14,29 @@ import { NextRequest, NextResponse } from 'next/server';
  */
 const TAG_PATTERN = /^[a-z0-9:_-]{1,128}$/i;
 const PATH_PATTERN = /^\/[a-z0-9/_\-\[\]]{1,200}$/i;
+const BACKEND_API = process.env.BACKEND_API_URL || 'http://127.0.0.1:4000/api/v1';
+
+/**
+ * The backend keeps its own SWR copies of listing pages (/colleges, /listings/...). On a full clear or a 'listings'
+ * tag clear, ask it to bump its listing versions so fresh cards are built on the next request. Skipped when the
+ * backend itself sent this clear (it bumps before calling us). Best effort: a failure never blocks the clear.
+ */
+async function bumpBackendListings(request: NextRequest, token: string, tags: string[] | null) {
+  if (request.headers.get('x-cache-clear-source') === 'backend') return false;
+  if (tags && !tags.some((tag) => tag === 'listings' || tag.startsWith('listings:') || tag.startsWith('listing:'))) return false;
+  try {
+    const response = await fetch(`${BACKEND_API}/cache/listings/bump`, {
+      method: 'POST',
+      headers: { 'X-Cache-Clear-Token': token },
+      cache: 'no-store',
+      signal: AbortSignal.timeout(5_000)
+    });
+    return response.ok;
+  } catch {
+    return false;
+  }
+}
+
 const FULL_CLEAR_TAGS = ['public', 'listings', 'listings:facets', 'listings:locations', 'listings:sitemap', 'cutoffs', 'closing', 'percentile', 'colleges', 'profiles', 'exams', 'courses', 'articles', 'ads', 'seo:linkable-entities', 'seo:internal-link-index', 'student-form-options'];
 
 /** '/colleges/[slug]' (route pattern) => type 'page'; '/colleges/some-slug' (concrete URL) => no type. */
@@ -44,12 +67,14 @@ export async function POST(request: NextRequest) {
     // expire: 0 => the next request refetches instead of serving the stale copy once.
     for (const tag of tags) revalidateTag(tag, { expire: 0 });
     for (const value of paths) revalidateOnePath(value);
-    return NextResponse.json({ data: { cleared: true, tags, paths } });
+    const backendListings = await bumpBackendListings(request, provided, tags);
+    return NextResponse.json({ data: { cleared: true, tags, paths, backendListings } });
   }
 
   // Full clear: every page under the root layout (all ISR pages, incl. dynamic [slug]/[listing] routes) ...
   revalidatePath('/', 'layout');
   // ... and every data tag the public pages fetch with, so shared fetches are refetched too.
   for (const tag of FULL_CLEAR_TAGS) revalidateTag(tag, { expire: 0 });
-  return NextResponse.json({ data: { cleared: true } });
+  const backendListings = await bumpBackendListings(request, provided, null);
+  return NextResponse.json({ data: { cleared: true, backendListings } });
 }

@@ -1,0 +1,64 @@
+{
+  "slug": "arts-colleges-in-maharashtra-with-15-lakh-highest-package-2026",
+  "updatedOn": "24 Nov 2026",
+  "intro": [
+    "We list {{count}} BA colleges in Maharashtra, both in Pune, where our records show a highest package of at least ₹{{threshold}} lakh: MIT World Peace University and Symbiosis College of Arts and Commerce.",
+    "These BA colleges in Maharashtra with ₹15 lakh highest package are a short extract, not a full ranking of the top BA colleges in Maharashtra 2026. A high arts offer can come from one media role and is not a typical salary."
+  ],
+  "listLead": "MIT WPU qualifies on a 2022 media-and-communication record, with a highest of ₹44 LPA and no average in our file. Symbiosis College of Arts and Commerce qualifies on a 2023 English record, with an average of ₹5 LPA and a highest of ₹22 LPA.",
+  "snapshot": [
+    "The two programmes are not the same subject. A media and communication degree and an English honours degree lead to different work, even when both clear this threshold in our file.",
+    "We do not hold an official placement report in this pass that independently confirms the ₹44 LPA figure, so treat it as a record in our file and confirm it with the university."
+  ],
+  "firstCollegesLead": [
+    "Our MIT WPU card may also show a B.A. (Hons) English fee of ₹60,000, which is a different programme from the media-and-communication row that meets this cut. Match the fee and the placement figure to the same course."
+  ],
+  "compare": {
+    "heading": "How to read highest-package figures for BA colleges in Maharashtra",
+    "paragraphs": [
+      "Arts placements vary widely by subject and by the few roles at the top of a batch. Use the average, the subject and the official report, not the highest figure alone."
+    ],
+    "bullets": [
+      "Check whether the figure is for English, media and communication, or another BA subject.",
+      "Treat a highest package with no average as incomplete until you see the official report.",
+      "Compare these two Pune colleges with the wider BA listing for Maharashtra, which includes colleges that do not meet this cut."
+    ]
+  },
+  "links": [
+    {
+      "label": "BA course guide",
+      "href": "/courses/arts"
+    },
+    {
+      "label": "Best BA colleges in India",
+      "href": "/ba-colleges"
+    },
+    {
+      "label": "Best BA colleges in Maharashtra",
+      "href": "/ba-colleges-in-maharashtra"
+    },
+    {
+      "label": "Best MBA colleges in Maharashtra",
+      "href": "/mba-colleges-in-maharashtra"
+    }
+  ],
+  "faqs": [
+    {
+      "question": "Which BA colleges in Maharashtra with ₹15 lakh highest package are listed here?",
+      "answer": "{{count}} colleges in Pune: MIT World Peace University and Symbiosis College of Arts and Commerce. Their qualifying rows are a 2022 media-and-communication record and a 2023 English record."
+    },
+    {
+      "question": "What packages do these BA programmes report?",
+      "answer": "MIT WPU's 2022 media-and-communication row shows a highest of ₹44 LPA and no average in our file. Symbiosis Arts' 2023 English row shows an average of ₹5 LPA and a highest of ₹22 LPA."
+    },
+    {
+      "question": "Is a ₹44 Lakh arts package typical?",
+      "answer": "No. It is a single highest offer in our 2022 record, with no average beside it. Confirm the official placement report before you treat it as a usual outcome."
+    },
+    {
+      "question": "Why are other BA colleges in Maharashtra missing?",
+      "answer": "This page only includes colleges where we hold a highest package of at least ₹{{threshold}} lakh for a BA programme. Other colleges remain on the main BA listing for Maharashtra."
+    }
+  ],
+  "sources": []
+}

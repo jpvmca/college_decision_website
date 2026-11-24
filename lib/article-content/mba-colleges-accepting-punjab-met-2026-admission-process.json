@@ -1,0 +1,93 @@
+{
+  "slug": "mba-colleges-accepting-punjab-met-2026-admission-process",
+  "updatedOn": "2026-11-24",
+  "intro": [
+    "Official PU-MET 2026 is the Management Entrance Test for sectoral MBA programmes at UIAMS, Panjab University, Chandigarh. This page now lists that official accepting institute, and explains the 2026 admission process.",
+    "Ranked colleges come first, then the other published colleges in alphabetical order. Confirm the current notice and each college’s own process before you apply."
+  ],
+  "listLead": "The official PU-MET 2026 portal is for admission to sectoral MBA programmes at UIAMS, Panjab University, Chandigarh. Other Punjab campuses that were earlier over-tagged to this exam have been removed, so confirm any other college on its own official notice.",
+  "snapshot": [
+    "The published colleges in our first results are all in Punjab, with Firozpur, Jalandhar, Ludhiana and Mohali appearing more than once. Only some of those colleges have an average package on file.",
+    "Among the colleges here with an average package in our records, the median figure is {{pkgMedian}}, and the recorded averages range from {{pkgMin}} to {{pkgMax}}. Use the list of top MBA / PGDM colleges in Punjab 2026 as a shortlist, then read the official notice."
+  ],
+  "firstCollegesLead": [
+    "The early cards in our file include Bhaddal Institutes, Bhutta College of Engineering and Technology, Chandigarh Business School of Administration, and the School of Management Studies in Patiala. A missing fee on a card only means we do not hold that figure yet.",
+    "Sant Baba Bhag Singh University shows a recorded MBA Finance fee of ₹1 lakh–₹1.03 lakh and a 2023 average package of ₹4 lakh. Those placement figures are a historical record for 2023, not a promise."
+  ],
+  "sections": [
+    {
+      "heading": "What official PU-MET 2026 is for",
+      "paragraphs": [
+        "Panjab University’s Management Entrance Test 2026 portal says the test is for admission to sectoral MBA programmes at the University Institute of Applied Management Sciences (UIAMS). Registration, fee payment and the hard-copy form had official deadlines in April 2026.",
+        "The prospectus lists sectoral MBAs such as retail, banking and insurance, IT and telecommunications, pharmaceutical, and hospital management. PU-MET 2026 is not a statewide test for every MBA college in Punjab."
+      ]
+    }
+  ],
+  "compare": {
+    "heading": "How to compare MBA colleges accepting Punjab MET 2026",
+    "paragraphs": [
+      "Start with the official UIAMS / PU-MET notice. If another college claims to use Punjab MET, confirm it on that college's current prospectus, because the official 2026 process is for UIAMS only.",
+      "Then check these points on the official pages:"
+    ],
+    "bullets": [
+      "The exact MBA specialisation, because UIAMS programmes are sectoral rather than a generic two-year MBA in every case.",
+      "The official fee notice for the full programme, including any university charges.",
+      "The GD and PI schedule, which PU-MET candidates were asked to follow on the UIAMS noticeboard.",
+      "The latest official placement report, treated as a historical record rather than a promise."
+    ]
+  },
+  "links": [
+    {
+      "label": "MBA / PGDM course guide",
+      "href": "/courses/mba"
+    },
+    {
+      "label": "Best MBA colleges in Punjab",
+      "href": "/mba-colleges-in-punjab"
+    },
+    {
+      "label": "Punjab MET exam guide",
+      "href": "/exams/punjab-met"
+    },
+    {
+      "label": "MBA colleges accepting CMAT 2026",
+      "href": "/articles/mba-colleges-accepting-cmat-2026-admission-process"
+    }
+  ],
+  "faqs": [
+    {
+      "question": "What is Punjab MET 2026 used for?",
+      "answer": "The official PU-MET 2026 portal says the test is for admission to sectoral MBA programmes at UIAMS, Panjab University, Chandigarh. It is not a statewide test for every MBA college in Punjab."
+    },
+    {
+      "question": "How many MBA colleges accepting Punjab MET 2026 are listed here?",
+      "answer": "Our records currently link {{count}} MBA / PGDM programme option to official PU-MET 2026, at UIAMS, Panjab University. That matches the official 2026 portal, which is for UIAMS sectoral MBA programmes only."
+    },
+    {
+      "question": "Where is the official PU-MET website?",
+      "answer": "Panjab University published the 2026 process at met.puchd.ac.in, and asked candidates to watch the UIAMS noticeboard for GD and PI updates."
+    },
+    {
+      "question": "Is a PU-MET score enough for admission?",
+      "answer": "No, UIAMS also runs a group discussion and personal interview after the test, as the official portal and noticeboard set out."
+    },
+    {
+      "question": "Are the placement figures on these cards guaranteed?",
+      "answer": "No, they are historical records from the years we hold, so confirm the latest official placement report before you rely on a number."
+    }
+  ],
+  "sources": [
+    {
+      "label": "Panjab University, Management Entrance Test 2026 portal",
+      "url": "https://met.puchd.ac.in/"
+    },
+    {
+      "label": "Panjab University, MET 2026 prospectus for UIAMS sectoral MBA programmes",
+      "url": "https://www.met.puchd.ac.in/pdf/met_prospectus26.pdf"
+    },
+    {
+      "label": "UIAMS, Panjab University noticeboard",
+      "url": "https://uiams.puchd.ac.in/show-noticeboard.php?nbid=4"
+    }
+  ]
+}

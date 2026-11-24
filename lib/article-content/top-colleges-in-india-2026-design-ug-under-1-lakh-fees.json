@@ -1,0 +1,82 @@
+{
+  "slug": "top-colleges-in-india-2026-design-ug-under-1-lakh-fees",
+  "updatedOn": "24 Nov 2026",
+  "intro": [
+    "We hold a recorded main-programme fee of up to ₹{{budget}} lakh for {{count}} published Bachelor Of Design colleges in India. This list of the best Bachelor Of Design colleges under ₹{{budget}} lakh includes cards that are not a full B.Des, so read the programme name.",
+    "The first card is Academy of Art and Design, Mumbai, for Pattern Making and Garment Construction at ₹24,000. That is a skills programme title, not a typical four-year Bachelor of Design.",
+    "Most colleges here are private, and Madhya Pradesh and Punjab have the most listings. There is no separate design listing page on our site at present, so use the course guide with this article."
+  ],
+  "listLead": "These are the top Bachelor Of Design colleges in India 2026 with a recorded fee of up to ₹1 lakh. Later cards include B.Des, Bachelor of Interior Design, and a B.Sc in Animation, which are not interchangeable awards.",
+  "snapshot": [
+    "Across {{feeN}} published colleges with a recorded fee, the median total is {{feeMedian}}, and the middle half sits between {{feeP25}} and {{feeP75}}.",
+    "{{private}} colleges are private, and one has no ownership type. Three records have a fee band that can exceed ₹1 lakh even though the minimum is under the cap.",
+    "No entrance test is tagged on this list in our records. Many design admissions use a college aptitude test or a national design test that is not shown on the card."
+  ],
+  "firstCollegesLead": [
+    "JD Institute of Fashion Technology, Pathankot, is listed with Bachelor of Interior Design at ₹33,000. Roorkee College of Engineering is listed with B.Sc in Animation and Multimedia at ₹49,600, which is not a B.Des.",
+    "CT Group of Institutions, Shahpur, is listed with B.Design at ₹50,000. Confirm whether that official fee is annual or for the full undergraduate course."
+  ],
+  "sections": [
+    {
+      "heading": "What a design fee under ₹1 lakh may actually cover",
+      "paragraphs": [
+        "Studio, material and tool charges are often extra in design programmes. A low tuition figure can still leave a large official bill once those charges are added.",
+        "If your goal is a four-year B.Des, skip cards that are clearly a short certificate, pattern-making course, or a B.Sc variant, even when the fee fits the cap."
+      ]
+    }
+  ],
+  "compare": {
+    "heading": "How to compare the best Bachelor Of Design colleges under ₹1 lakh",
+    "paragraphs": [
+      "The award name matters as much as the fee. A B.Des, a Bachelor of Interior Design, and a one-year making course lead to different next steps.",
+      "Check these official points:"
+    ],
+    "bullets": [
+      "The official award and duration, not only the short title on our card.",
+      "Whether the fee is annual or for the full course, and which studio or material charges are extra.",
+      "The official admission test and portfolio requirements.",
+      "The campus city and the cost of materials, which often exceed tuition at this budget."
+    ]
+  },
+  "links": [
+    {
+      "label": "Bachelor of Design course guide",
+      "href": "/courses/design-ug"
+    },
+    {
+      "label": "BCom colleges under ₹1 lakh",
+      "href": "/articles/top-colleges-in-india-2026-commerce-under-1-lakh-fees"
+    },
+    {
+      "label": "Mass-communication colleges under ₹1 lakh",
+      "href": "/articles/top-colleges-in-india-2026-mass-communication-under-1-lakh-fees"
+    },
+    {
+      "label": "CUET UG exam guide",
+      "href": "/exams/cuet-ug"
+    }
+  ],
+  "faqs": [
+    {
+      "question": "How many design colleges in India have fees under ₹1 lakh here?",
+      "answer": "We list {{published}} published colleges with a recorded main-programme fee up to ₹{{budget}} lakh. Some listed programmes are not a full Bachelor of Design degree."
+    },
+    {
+      "question": "What is a typical fee on this design list?",
+      "answer": "The median recorded total is {{feeMedian}}, and the middle half falls between {{feeP25}} and {{feeP75}}. Confirm the official full-course fee and any studio charges."
+    },
+    {
+      "question": "Is the first college on this list a B.Des programme?",
+      "answer": "Our first card is Pattern Making and Garment Construction at Academy of Art and Design, Mumbai, with a recorded fee of ₹24,000. That title does not read as a standard four-year B.Des, so check the official brochure."
+    },
+    {
+      "question": "Why is there no design colleges listing page linked here?",
+      "answer": "Our Bachelor of Design course guide is live, but a separate design colleges listing URL did not return a page when we checked. Use the course guide and the official college sites alongside this fee list."
+    },
+    {
+      "question": "Is this a ranking of the best Bachelor Of Design colleges under ₹1 lakh?",
+      "answer": "No. It is a fee filter. Programme type, portfolio requirements and official charges should drive the shortlist, not the recorded tuition alone."
+    }
+  ],
+  "sources": []
+}

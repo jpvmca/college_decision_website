@@ -1,0 +1,91 @@
+{
+  "slug": "mba-colleges-in-west-bengal-where-average-package-exceeds-fees-2026",
+  "updatedOn": "24 Nov 2026",
+  "intro": [
+    "{{count}} published MBA / PGDM colleges in West Bengal have a recorded average package higher than their recorded total fee. This list of the best MBA / PGDM colleges in West Bengal where average package exceeds fees starts with IIT Kharagpur.",
+    "IIT Kharagpur is ranked 12 in the NIRF 2025 Management ranking, after 19 in 2024. It lists the flagship MBA at ₹13.04 lakh, matching the official 2026–28 GE grand total across four semesters.",
+    "Nine of the {{published}} colleges are in Kolkata, with one each in Kharagpur, Paschim Medinipur and Darjeeling. After IIT Kharagpur, recorded averages fall sharply."
+  ],
+  "listLead": "These are the top MBA / PGDM colleges in West Bengal 2026 on this value filter. Some Kolkata cards show a supply-chain or PGP title rather than a flagship MBA, so compare official programme names first.",
+  "snapshot": [
+    "For the {{feeN}} colleges with a recorded fee, the median total is {{feeMedian}}, and the middle half sits between {{feeP25}} and {{feeP75}}.",
+    "{{private}} colleges are private and {{public}} are public. Recorded average packages range from {{pkgMin}} to {{pkgMax}}, from {{pkgYearMin}} to {{pkgYearMax}}.",
+    "CAT is the most common recorded test, with ATMA, JEMAT and MAT also appearing. The highest recorded package is {{highestMax}}, at Siliguri Institute of Technology, which is not that college's ₹5 lakh average in 2023."
+  ],
+  "firstCollegesLead": [
+    "IIT Kharagpur's 2024 recorded average of ₹21 lakh sits close to our fee figure only if that fee is complete. The official VGSoM fee notice is the right source for the two-year MBA cost.",
+    "IISWBM, Kolkata, is listed with a PGP in Supply Chain Management at ₹75,000, not a flagship MBA. ISB&M Kolkata is listed with a PGDM in Supply Chain at ₹10.6 lakh and a 2022 average of ₹11 lakh."
+  ],
+  "sections": [
+    {
+      "heading": "Public institutes and Kolkata private colleges",
+      "paragraphs": [
+        "Vidyasagar University is the other public institute, with a recorded MBA fee of ₹80,000 and a 2024 average of ₹4.5 lakh. Confirm the official full-programme fee.",
+        "Haldia Institute of Technology is listed under Kolkata in our records. Check the official campus location before you plan travel or housing."
+      ]
+    }
+  ],
+  "compare": {
+    "heading": "How to judge the best MBA / PGDM colleges in West Bengal where average package exceeds fees",
+    "paragraphs": [
+      "IIT Kharagpur and a Kolkata private PGDM can both pass this filter and still differ in official fees, tests and hostel costs.",
+      "Check these official points:"
+    ],
+    "bullets": [
+      "The official two-year MBA or PGDM fee, especially at IIT Kharagpur, where our recorded fee looks incomplete.",
+      "Whether admission is through CAT, JEMAT, ATMA or MAT in the latest cycle.",
+      "The official placement report year, which here ranges from {{pkgYearMin}} to {{pkgYearMax}}.",
+      "The exact programme title, such as PGP-SCM or PGDM Supply Chain, versus a general MBA."
+    ]
+  },
+  "links": [
+    {
+      "label": "MBA / PGDM course guide",
+      "href": "/courses/mba"
+    },
+    {
+      "label": "Best MBA colleges in West Bengal",
+      "href": "/mba-colleges-in-west-bengal"
+    },
+    {
+      "label": "JEMAT admission article",
+      "href": "/articles/mba-colleges-accepting-jemat-2026-admission-process"
+    },
+    {
+      "label": "CAT exam guide",
+      "href": "/exams/cat"
+    },
+    {
+      "label": "Best MBA colleges in India",
+      "href": "/mba-colleges"
+    }
+  ],
+  "faqs": [
+    {
+      "question": "How many MBA colleges in West Bengal have an average package above fees?",
+      "answer": "We list {{published}} published colleges in West Bengal on this filter. Both a recorded fee and a recorded average package are required."
+    },
+    {
+      "question": "What is IIT Kharagpur's NIRF 2025 Management rank?",
+      "answer": "IIT Kharagpur is ranked 12 in the official NIRF 2025 Management ranking, after 19 in 2024."
+    },
+    {
+      "question": "What is the recorded MBA fee for IIT Kharagpur?",
+      "answer": "Our card now lists the flagship MBA at ₹13.04 lakh, matching the official 2026–28 VGSoM GE grand total across four semesters."
+    },
+    {
+      "question": "Which exams do these West Bengal colleges accept?",
+      "answer": "CAT is the most frequently recorded test, followed by ATMA, JEMAT and MAT. Confirm the latest process on the official admission page."
+    },
+    {
+      "question": "Are the placement figures guaranteed?",
+      "answer": "No. They are historical records from {{pkgYearMin}} to {{pkgYearMax}}. IIT Kharagpur's 2024 average of ₹21 lakh is one batch's record, not a promise."
+    }
+  ],
+  "sources": [
+    {
+      "label": "NIRF 2025 Management ranking",
+      "url": "https://www.nirfindia.org/rankings/2025/ManagementRanking.html"
+    }
+  ]
+}

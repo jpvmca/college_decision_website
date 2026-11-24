@@ -1,0 +1,82 @@
+{
+  "slug": "top-colleges-in-india-2026-law-under-1-lakh-fees",
+  "updatedOn": "24 Nov 2026",
+  "intro": [
+    "We hold a recorded main-programme fee of up to ₹{{budget}} lakh for {{count}} published LLB colleges in India. This list of the best LLB colleges under ₹{{budget}} lakh is a fee filter for three-year LLB programmes in our records.",
+    "Central University of Haryana is listed first, with LLB at ₹10,900–₹15,000. Kakatiya University's Department of Law and Central University of Kashmir follow, also with low public-university fees that may be annual.",
+    "Madhya Pradesh, Gujarat, Maharashtra, Rajasthan and Uttar Pradesh have the most listings. LAWCET is the most commonly recorded test, though many colleges are untagged."
+  ],
+  "listLead": "These are the top LLB colleges in India 2026 with a recorded main-programme fee of up to ₹1 lakh. Public university departments sit near the top; private universities such as RKDF and ITM Gwalior appear next.",
+  "snapshot": [
+    "Across {{feeN}} published colleges with a recorded fee, the median total is {{feeMedian}}, and the middle half sits between {{feeP25}} and {{feeP75}}.",
+    "{{private}} colleges are private, {{public}} are public, and a few have no ownership type. Bhopal, Ahmedabad and Jaipur are the leading cities on this list.",
+    "A CAT tag appears once in our exam counts, which is unusual for LLB and should be verified on the official admission page before you rely on it."
+  ],
+  "firstCollegesLead": [
+    "Jitendra Chauhan College of Law, Mumbai, is listed as public, with LL.B. at ₹28,112. Confirm the official fee for the current year, including university and enrolment charges.",
+    "Department of Law, Maharaja Sayajirao University of Baroda, is listed at ₹25,680, with a 2023 average package of ₹3 lakh. That package is historical and may not be published for every LLB batch."
+  ],
+  "sections": [
+    {
+      "heading": "Three-year LLB fees versus integrated law",
+      "paragraphs": [
+        "This article is for the three-year LLB list. If you want a five-year BA LLB after Class 12, use the integrated law fee article instead.",
+        "A public-university LLB fee close to ₹11,000 may be one year's tuition. Add the remaining years only from the official notice."
+      ]
+    }
+  ],
+  "compare": {
+    "heading": "How to compare the best LLB colleges under ₹1 lakh",
+    "paragraphs": [
+      "A central university LLB and a private university LLB can share this cap and still differ in eligibility, because the three-year LLB usually needs a prior bachelor's degree.",
+      "Check these official points:"
+    ],
+    "bullets": [
+      "Whether the recorded fee is annual or for the full three years, plus exam and bar enrolment charges.",
+      "The eligibility rule for the three-year LLB, including the required bachelor's degree.",
+      "The admission test, such as LAWCET, MH CET Law, or a university process.",
+      "Bar Council of India approval and the official university affiliation."
+    ]
+  },
+  "links": [
+    {
+      "label": "LLB course guide",
+      "href": "/courses/law"
+    },
+    {
+      "label": "Best LLB colleges in India",
+      "href": "/llb-colleges"
+    },
+    {
+      "label": "Integrated law colleges under ₹1 lakh",
+      "href": "/articles/top-colleges-in-india-2026-integrated-law-under-1-lakh-fees"
+    },
+    {
+      "label": "CLAT exam guide",
+      "href": "/exams/clat"
+    }
+  ],
+  "faqs": [
+    {
+      "question": "How many LLB colleges in India have fees under ₹1 lakh here?",
+      "answer": "We list {{published}} published LLB colleges with a recorded main-programme fee up to ₹{{budget}} lakh. Colleges without a usable fee on file are excluded."
+    },
+    {
+      "question": "What is a typical LLB fee on this list?",
+      "answer": "The median recorded total is {{feeMedian}}, and the middle half falls between {{feeP25}} and {{feeP75}}. Confirm whether the official notice is annual or for three years."
+    },
+    {
+      "question": "Is this list for the five-year BA LLB?",
+      "answer": "No. This page is the three-year LLB fee list. The five-year integrated law fee list is a separate article, and the eligibility rules are different."
+    },
+    {
+      "question": "Why are the first public-university fees close to ₹11,000?",
+      "answer": "Central University of Haryana is listed at ₹10,900–₹15,000, and Kakatiya University at ₹11,447. Those figures may be annual. Check the official circular before you budget for three years."
+    },
+    {
+      "question": "Is this a ranking of the best LLB colleges under ₹1 lakh?",
+      "answer": "No. It is a fee filter. Approval, eligibility and the official fee notice should guide the shortlist."
+    }
+  ],
+  "sources": []
+}

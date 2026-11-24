@@ -1,0 +1,100 @@
+{
+  "slug": "top-architecture-colleges-in-india-with-fees-2026",
+  "updatedOn": "24 Nov 2026",
+  "intro": [
+    "We hold a recorded total fee for {{count}} published B.Arch colleges in India. This page gathers the top B.Arch colleges in India with fees 2026, so you can see what a five-year programme costs before you shortlist it.",
+    "The colleges at the top follow our verified 2026 ranking. After them, colleges are ordered by recorded total fee, lowest first."
+  ],
+  "listLead": "The first ten cards are colleges with a recorded fee, including ranked institutes, and each card shows the main B.Arch programme where we hold that fee, so read the programme name before you compare.",
+  "snapshot": [
+    "Across the {{feeN}} published colleges on this list, the median recorded total fee is {{feeMedian}}. The middle half of colleges sits between {{feeP25}} and {{feeP75}}.",
+    "A low figure is worth a second look. Check whether it covers all five years or only one year of tuition.",
+    "Most colleges here are private ({{private}}), with {{public}} public institutes. Karnataka, Maharashtra, Haryana, Tamil Nadu and Uttar Pradesh have the most listings."
+  ],
+  "firstCollegesLead": [
+    "BMS College of Architecture in Bangalore is listed first, with a recorded five-year B.Arch fee of ₹6.50 lakh in our records and a NIRF 2025 Architecture and Planning rank of 20.",
+    "IIT Roorkee, NIT Calicut, IIT Kharagpur and SPA Delhi lead that NIRF list, but they are missing here because we do not yet hold a total fee for them.",
+    "Government Engineering College, Thrissur, shows ₹11,210–₹13,150 and Jadavpur University shows ₹12,000 in our records. Confirm on the official notice whether that is one year or the full course."
+  ],
+  "sections": [
+    {
+      "heading": "NATA and JEE Main for B.Arch in 2026",
+      "paragraphs": [
+        "The Council of Architecture’s NATA 2026 brochure says a candidate must qualify an architecture aptitude test, either NATA or the JEE paper conducted by NTA. Actual seat allotment is done by the state or institute counselling authority, not by NATA itself.",
+        "A CoA public notice dated 8 March 2026 said the main NATA 2026 window would run from 4 April to 13 June 2026, with a maximum of two attempts, plus an extra test on 7 and 8 August 2026."
+      ],
+      "bullets": [
+        "To appear, CoA asked for 10+2 with Physics, Mathematics and one approved subject, or a 10+3 diploma with Mathematics, and at least 45% aggregate in each case.",
+        "The same notice said the NATA 2026 score is valid only for the 2026–27 academic session.",
+        "On this list, 47 colleges are linked to NATA and 6 to JEE Main in our records. Confirm the test the college actually used in the latest cycle."
+      ]
+    }
+  ],
+  "compare": {
+    "heading": "How to compare the top B.Arch colleges in India with fees 2026",
+    "paragraphs": [
+      "Start with the fee notice, not only the card, because a five-year B.Arch fee and a one-year tuition figure are not the same thing.",
+      "Then use this list of top B.Arch colleges in India 2026 as a shortlist, and check these points on the official site:"
+    ],
+    "bullets": [
+      "Whether the published fee is for the full five years or for one year, and whether hostel, mess and studio charges are included.",
+      "The entrance route used in the latest cycle (NATA, JEE Main Paper 2, or a state test such as MAH-AR-CAT) and the cut-off for your category.",
+      "The college’s CoA approval status, and the campus where the B.Arch studio actually runs.",
+      "The latest official placement report. Our placement figures are a recorded year from 2020 onwards, not a promise."
+    ]
+  },
+  "links": [
+    {
+      "label": "B.Arch course guide",
+      "href": "/courses/architecture"
+    },
+    {
+      "label": "Best B.Arch colleges in India",
+      "href": "/barch-colleges"
+    },
+    {
+      "label": "NATA exam guide",
+      "href": "/exams/nata"
+    },
+    {
+      "label": "JEE Main exam guide",
+      "href": "/exams/jee-main"
+    }
+  ],
+  "faqs": [
+    {
+      "question": "How many B.Arch colleges in India have fees listed here?",
+      "answer": "{{count}} published B.Arch colleges have a recorded total fee in our records, and colleges without a fee on file are not placed on this list."
+    },
+    {
+      "question": "What is the typical B.Arch fee in India in 2026?",
+      "answer": "Among the {{feeN}} published colleges here, the median recorded total fee is {{feeMedian}}, and the middle half falls between {{feeP25}} and {{feeP75}}."
+    },
+    {
+      "question": "Why are IIT Roorkee and SPA Delhi missing from this fee list?",
+      "answer": "They lead the NIRF 2025 Architecture and Planning ranking, but we do not hold a total fee for them yet, so they cannot be placed in a fee list."
+    },
+    {
+      "question": "Is the lowest fee on this list the cheapest five-year B.Arch?",
+      "answer": "Not necessarily, because some public-college figures look like one-year tuition, so confirm the full programme cost on the official fee notice."
+    },
+    {
+      "question": "Which entrance exams do these B.Arch colleges use?",
+      "answer": "Most colleges on this list are linked to NATA in our records, and a smaller set to JEE Main. Admission still follows CoA eligibility and the counselling authority for that state or institute."
+    }
+  ],
+  "sources": [
+    {
+      "label": "NIRF 2025 Architecture and Planning ranking",
+      "url": "https://www.nirfindia.org/Rankings/2025/ArchitectureRanking.html"
+    },
+    {
+      "label": "Council of Architecture, NATA 2026 information brochure",
+      "url": "https://coa.org.in/api/media/file/nata-brochure.pdf"
+    },
+    {
+      "label": "Council of Architecture public notice on NATA 2026 (8 March 2026)",
+      "url": "https://www.coa.gov.in/showfile.php?lang=1&level=1&lid=1492&sublinkid=1613"
+    }
+  ]
+}
