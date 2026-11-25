@@ -300,6 +300,30 @@ const nextConfig: NextConfig = {
         destination: '/colleges/narsee-monjee-institute-of-management-studies-nmims-karnataka-bangalore/:path*',
         statusCode: 301
       },
+      // Soft-deleted AISHE clone 64689 (Govt. Dental College, Kozhikkode) -> canonical 41196
+      {
+        source: '/colleges/govt-dental-college-kozhikkode-c-8121',
+        destination: '/colleges/government-dental-college-kozhikode-kerala-kozhikode',
+        statusCode: 301
+      },
+      {
+        source: '/colleges/govt-dental-college-kozhikkode-c-8121/:path*',
+        destination: '/colleges/government-dental-college-kozhikode-kerala-kozhikode/:path*',
+        statusCode: 301
+      },
+
+      // Unpublished twin 68190 (same SVKM BNCP campus, AISHE C-33877) -> canonical 19374
+      {
+        source: '/colleges/shri-vile-parle-kelavani-mandals-dr-bhanuben-nanavati-college-of-pharmacy-gate-no-one-mithibai-college-building-first-floor-v-m-road-vileparle-west-mumbai-c-33877',
+        destination: '/colleges/dr-bhanuben-nanavati-college-of-pharmacy-maharashtra-mumbai',
+        statusCode: 301
+      },
+      {
+        source: '/colleges/shri-vile-parle-kelavani-mandals-dr-bhanuben-nanavati-college-of-pharmacy-gate-no-one-mithibai-college-building-first-floor-v-m-road-vileparle-west-mumbai-c-33877/:path*',
+        destination: '/colleges/dr-bhanuben-nanavati-college-of-pharmacy-maharashtra-mumbai/:path*',
+        statusCode: 301
+      },
+
       // Soft-deleted duplicate IIIT Dharwad (61553) -> canonical 17380
       {
         source: '/colleges/indian-institute-of-information-technology-dharwad-c-56451/:path*',
