@@ -288,6 +288,12 @@ const nextConfig: NextConfig = {
         destination: '/colleges/institute-of-management-development-and-research-maharashtra-pune/:path*',
         statusCode: 301
       },
+      // Soft-deleted duplicate Regency College Hyderabad (32085) -> canonical 4172
+      {
+        source: '/colleges/regency-college-of-culinary-arts-and-hotel-management-telangana-hyderabad/:path*',
+        destination: '/colleges/regency-college-of-hotel-management-and-catering-technology-telangana-hyderabad/:path*',
+        statusCode: 301
+      },
       // Soft-deleted duplicate NMIMS Bangalore (3188) -> canonical 20589
       {
         source: '/colleges/narsee-monjee-institute-of-management-studies-karnataka-bangalore/:path*',
