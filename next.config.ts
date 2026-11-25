@@ -363,12 +363,6 @@ const nextConfig: NextConfig = {
         destination: '/articles/chandigarh-university-vs-chitkara-university-chandigarh-btech-engineering-decision-guide',
         permanent: true
       },
-      // BSc in Himachal Pradesh has 13 published colleges, below MIN_COLLEGES_FOR_LISTING (15)
-      {
-        source: '/bsc-colleges-in-himachal-pradesh',
-        destination: '/bsc-colleges',
-        statusCode: 301
-      },
       // GPMCE (institute 201): AICTE withdrew approval on 24 June 2014 for 2014-15; Delhi High Court upheld the order on 15 September 2014 (W.P.(C) 4007/2014). Unpublished locally 11 Nov 2026 -> Delhi NCR engineering listing
       {
         source: '/colleges/guru-premsukh-memorial-college-of-engineering-delhi-ncr-delhi',
