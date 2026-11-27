@@ -15,7 +15,7 @@ import { CollegeCutoffs, type CollegeCutoffResponse } from '../../../components/
 import { formatLpa } from '../../../lib/packages';
 import ReadableHtml from '../../../components/ReadableHtml';
 import AdSlot from '../../../components/ads/AdSlot';
-import { readableBlocks, splitLead } from '../../../lib/readable-html';
+import { fixHeadingOrder, hasOwnHeadings, readableBlocks, splitLead } from '../../../lib/readable-html';
 import { getLinkResolver } from '../../../lib/internal-link-index';
 import { formatProgrammeDuration, isoProgrammeDuration } from '../../../lib/duration';
 import { plainText, readableLines, PROGRAMME_HEADING_START, isShortText, withFullStop } from '../../../lib/readable-text';
@@ -831,9 +831,12 @@ export default async function CollegeProfilePage({ params }: { params: Promise<{
     {(profile.about || location || profile.institute.establishmentYear || officialWebsite) && <section id="about" className="cp-card">
       <SectionHeading icon={Building2} subtitle="Background, campus, recognition and official website">About {name}</SectionHeading>
       {profile.about && (() => {
-        const { lead, rest } = splitLead(readableBlocks(profile.about, { headingShift: 1, resolveLink: resolveAboutLink }));
+        // Content with its own headings (e.g. "Official website and portals") is not put under the generic default sub-heading.
+        const blocks = readableBlocks(profile.about, { headingShift: 1, resolveLink: resolveAboutLink });
+        const ownHeading = hasOwnHeadings(blocks);
+        const { lead, rest } = splitLead(fixHeadingOrder(blocks, ownHeading ? 2 : 3));
         if (!lead) return null;
-        return <><h3>History and Background</h3><ReadableHtml html={lead} preSanitized />{rest ? <details className="profile-more cp-more"><summary>Read more about {name}<ChevronDown size={16} aria-hidden="true" /></summary><ReadableHtml html={rest} preSanitized /></details> : null}</>;
+        return <>{ownHeading ? null : <h3>History and Background</h3>}<ReadableHtml html={lead} preSanitized />{rest ? <details className="profile-more cp-more"><summary>Read more about {name}<ChevronDown size={16} aria-hidden="true" /></summary><ReadableHtml html={rest} preSanitized /></details> : null}</>;
       })()}
       {(location || profile.institute.establishmentYear) && <><h3>Campus and Location</h3><div className="cp-facts">
         {profile.institute.establishmentYear ? <div><small>Established</small><strong>{profile.institute.establishmentYear}</strong></div> : null}
@@ -906,9 +909,11 @@ export default async function CollegeProfilePage({ params }: { params: Promise<{
     {(eligibilityGroups.length > 0 || profile.exams.length > 0 || profile.admissions) && <section id="admission" className="cp-card">
       <SectionHeading icon={ClipboardCheck} subtitle="Eligibility by course, accepted entrance exams and how to apply">Admission Process and Eligibility</SectionHeading>
       {profile.admissions && (() => {
-        const { lead, rest } = splitLead(readableBlocks(profile.admissions, { headingShift: 1, resolveLink: resolveAboutLink }));
+        const blocks = readableBlocks(profile.admissions, { headingShift: 1, resolveLink: resolveAboutLink });
+        const ownHeading = hasOwnHeadings(blocks);
+        const { lead, rest } = splitLead(fixHeadingOrder(blocks, ownHeading ? 2 : 3));
         if (!lead) return null;
-        return <><h3>Admission Overview</h3><ReadableHtml html={lead} preSanitized />{rest ? <details className="profile-more cp-more"><summary>Read the full admission process<ChevronDown size={16} aria-hidden="true" /></summary><ReadableHtml html={rest} preSanitized /></details> : null}</>;
+        return <>{ownHeading ? null : <h3>Admission Overview</h3>}<ReadableHtml html={lead} preSanitized />{rest ? <details className="profile-more cp-more"><summary>Read the full admission process<ChevronDown size={16} aria-hidden="true" /></summary><ReadableHtml html={rest} preSanitized /></details> : null}</>;
       })()}
       {eligibilityGroups.length > 0 && <><h3>Eligibility Criteria by Course</h3>{(() => {
         const renderEligibility = (group: (typeof eligibilityGroups)[number], index: number) => <details key={group.name} className="cp-accordion" open={index === 0}><summary><span>{group.name}</span><ChevronDown size={18} aria-hidden="true" /></summary><div className="cp-accordion-body"><EligibilityText value={group.eligibility} /></div></details>;

@@ -1,8 +1,17 @@
 /**
  * Readable HTML: sanitises stored (often scraped) rich text and turns long walls
  * of text into short paragraphs. Only markup changes; words are never rewritten.
- * Server-side only, no dependencies.
+ * Server-side only, no dependencies beyond lib/image (pure URL helpers).
+ *
+ * Allowed output (everything else is dropped, keeping its words):
+ *   blocks : p, h2-h4, ul/ol/li, table/caption/thead/tbody/tr/th/td (wrapped in a scrollable .table-wrap),
+ *            figure/figcaption with one <img> (see safeImage: our S3/CDN or same-origin src, real alt required)
+ *   inline : strong, em, b, i, sub, sup, br, a
+ *   links  : internal (relative / collegedecision.in) -> plain <a href="/path">;
+ *            external http(s) -> <a target="_blank" rel="noopener nofollow">; aggregator / competitor hosts are unwrapped;
+ *            javascript:, data:, vbscript:, entity-obfuscated and backslash hrefs are dropped.
  */
+import { IMAGE_BASE_URL, s3ImageUrl, uploadsPath } from './image';
 
 type Node = { tag: string; attrs: Record<string, string>; children: Array<Node | string> };
 
@@ -92,6 +101,8 @@ function escapeAttr(v: string) {
 
 function safeHref(href: string): string | null {
   const h = href.trim().replace(/&amp;/g, '&');
+  // Entity-obfuscated ("&#47;&#47;evil", "java&#115;cript:"), backslash ("/\\evil.com") or control-character hrefs are never kept.
+  if (/&(?:#|[a-z]+;)|\\|[\u0000-\u001f\u007f\s"'<>`]/i.test(h)) return null;
   if (/^(https?:)?\/\//i.test(h) || /^mailto:/i.test(h) || /^tel:/i.test(h) || /^\/(?!\/)/.test(h) || /^#[\w-]+$/.test(h)) return h;
   return null;
 }
@@ -100,6 +111,75 @@ function safeHref(href: string): string | null {
 export type LinkResolver = (href: string) => string | null;
 
 type Opts = { headingShift: number; resolveLink?: LinkResolver };
+
+const OWN_HOST = /(?:^|\.)collegedecision\.in$/i;
+/** Aggregator / competitor sites: their links in scraped text are unwrapped (words kept), never linked. */
+const BLOCKED_LINK_HOST = /(?:^|\.)(?:shiksha\.com|collegedunia\.com|careers360\.com|collegedekho\.com|getmyuni\.com|collegesearch\.in|universitykart\.com|collegebatch\.com|collegedost\.com|zollege\.in|admissionnews\.in|jagranjosh\.com|indcareer\.com|campusoption\.com|kollegeapply\.com)$/i;
+export const EXTERNAL_LINK_REL = 'noopener nofollow';
+
+/** Hosts (and path prefixes) that content images may load from. Same-origin paths ("/images/x.webp") are also allowed. */
+const IMAGE_ORIGINS: Array<{ host: RegExp; path: RegExp }> = [
+  { host: /^cd-mrd-file-storage\.s3\.ap-south-1\.amazonaws\.com$/i, path: /^\/cd\/uploads\/public\// },
+  { host: /^api\.collegedecision\.in$/i, path: /^\/uploads\// },
+  { host: /^(?:www\.)?collegedecision\.in$/i, path: /^\// }
+];
+(() => {
+  try {
+    if (IMAGE_BASE_URL) { const u = new URL(IMAGE_BASE_URL); IMAGE_ORIGINS.push({ host: new RegExp(`^${u.hostname.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}$`, 'i'), path: new RegExp(`^${u.pathname.replace(/\/+$/, '').replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}/`) }); }
+  } catch { /* ignore a malformed env value */ }
+})();
+
+/** Placeholder alt text from scrapers / editors that does not describe the picture. */
+const GENERIC_ALT = /^(?:image|img|photo|picture|pic|thumbnail|video thumbnail|banner|logo|icon|untitled|null|undefined|\d+|[\w-]+\.(?:jpe?g|png|webp|gif|avif|svg))$/i;
+
+/** Validated, normalised image URL (S3 for /uploads paths), or null. */
+function safeImageSrc(raw: string): string | null {
+  const src = String(raw || '').trim().replace(/&amp;/g, '&');
+  if (!src || /&(?:#|[a-z]+;)|\\|[\u0000-\u001f\u007f\s"'<>`]/i.test(src)) return null;
+  if (/^\/(?!\/)/.test(src)) {
+    if (src.split(/[?#]/)[0].split('/').some((part) => part === '..' || part === '.')) return null;
+    return uploadsPath(src) ? s3ImageUrl(src) || src : src;
+  }
+  if (!/^https:\/\//i.test(src)) return null; // no http:, data:, javascript:, protocol-relative
+  let url: URL;
+  try { url = new URL(src); } catch { return null; }
+  if (url.username || url.password || url.port) return null;
+  if (!IMAGE_ORIGINS.some((o) => o.host.test(url.hostname) && o.path.test(url.pathname))) return null;
+  if (uploadsPath(src)) return s3ImageUrl(src) || src;
+  return url.toString();
+}
+
+const dimension = (v: string | undefined) => (/^\d{2,4}$/.test(String(v || '').trim()) && Number(v) >= 16 && Number(v) <= 4000 ? String(Number(v)) : null);
+
+/** Safe <img> markup, or null when the src is not ours or the alt text is missing / placeholder. */
+function safeImage(n: Node): string | null {
+  if (n.tag !== 'img') return null;
+  const src = safeImageSrc(n.attrs.src || '');
+  const alt = plain(String(n.attrs.alt || '')).replace(/\s+/g, ' ').trim();
+  if (!src || alt.length < 3 || GENERIC_ALT.test(alt)) return null;
+  const width = dimension(n.attrs.width);
+  const height = dimension(n.attrs.height);
+  const sized = width && height ? ` width="${width}" height="${height}"` : ' class="is-unsized"';
+  return `<img src="${escapeAttr(src)}" alt="${escapeAttr(alt.slice(0, 250))}"${sized} loading="lazy" decoding="async">`;
+}
+
+function findImage(n: Node): Node | null {
+  for (const c of n.children) {
+    if (typeof c === 'string') continue;
+    if (c.tag === 'img') return c;
+    const deep = findImage(c);
+    if (deep) return deep;
+  }
+  return null;
+}
+
+/** <figure> block for an allowed image (with an optional caption), or '' when the image is not allowed. */
+function figure(img: Node, caption: Node | null, opts: Opts): string {
+  const tag = safeImage(img);
+  if (!tag) return '';
+  const cap = caption ? trimInline(inlineHtml(caption.children, opts)) : '';
+  return `<figure class="content-figure">${tag}${plain(cap) ? `<figcaption>${cap}</figcaption>` : ''}</figure>`;
+}
 
 /** Serialise inline content (text + allowed inline tags). Block tags inside inline context are flattened to text. */
 function inlineHtml(nodes: Array<Node | string>, opts: Opts): string {
@@ -112,17 +192,22 @@ function inlineHtml(nodes: Array<Node | string>, opts: Opts): string {
     if (n.tag === 'a') {
       let href = safeHref(n.attrs.href || '');
       if (href && opts.resolveLink) href = opts.resolveLink(href);
+      if (href && safeHref(href) === null) href = null; // a resolver must not reintroduce an unsafe value
       if (!href || !plain(inner)) { out += inner; continue; }
       const absolute = /^(https?:)?\/\//i.test(href);
       if (absolute) {
-        let ours = false;
-        try {
-          const host = new URL(href.startsWith('//') ? `https:${href}` : href).hostname;
-          ours = /(?:^|\.)collegedecision\.in$/i.test(host);
-        } catch { ours = false; }
-        // Unwrap external anchors (spam / backlinks). Keep CollegeDecision.in links, marked nofollow ugc.
-        if (!ours) { out += inner; continue; }
-        out += `<a href="${escapeAttr(href)}" target="_blank" rel="nofollow ugc noopener noreferrer">${inner}</a>`;
+        let url: URL | null = null;
+        try { url = new URL(href.startsWith('//') ? `https:${href}` : href); } catch { url = null; }
+        if (!url || !/^https?:$/.test(url.protocol) || url.username || url.password) { out += inner; continue; }
+        if (OWN_HOST.test(url.hostname)) {
+          // Our own pages: a normal internal link (relative, no nofollow, same tab).
+          out += `<a href="${escapeAttr(`${url.pathname}${url.search}${url.hash}` || '/')}">${inner}</a>`;
+        } else if (BLOCKED_LINK_HOST.test(url.hostname)) {
+          out += inner; // aggregator / competitor backlink: keep the words only
+        } else {
+          // Official / reference sites (college website, admission portals): clickable, new tab, nofollow.
+          out += `<a href="${escapeAttr(url.toString())}" target="_blank" rel="${EXTERNAL_LINK_REL}">${inner}</a>`;
+        }
       } else {
         out += `<a href="${escapeAttr(href)}">${inner}</a>`;
       }
@@ -135,7 +220,7 @@ function inlineHtml(nodes: Array<Node | string>, opts: Opts): string {
   return out;
 }
 
-const isBlockish = (n: Node | string) => typeof n !== 'string' && (BLOCK_ALLOWED.has(n.tag) || BLOCK_CONTAINERS.has(n.tag) || n.tag in HEADING_MAP);
+const isBlockish = (n: Node | string) => typeof n !== 'string' && (BLOCK_ALLOWED.has(n.tag) || BLOCK_CONTAINERS.has(n.tag) || n.tag in HEADING_MAP || (n.tag === 'img' && safeImage(n) !== null));
 
 /** Trim leading/trailing whitespace and <br>s of an inline run. */
 function trimInline(s: string) {
@@ -209,6 +294,11 @@ function blocks(nodes: Array<Node | string>, opts: Opts, out: string[]) {
       else out.push(...runToParagraphs(inlineHtml(node.children, opts)));
     } else if (node.tag === 'ul' || node.tag === 'ol') { const l = list(node, opts); if (l) out.push(l); }
     else if (node.tag === 'table') { const t = table(node, opts); if (t) out.push(t); }
+    else if (node.tag === 'img') { const f = figure(node, null, opts); if (f) out.push(f); }
+    else if (node.tag === 'figure' && findImage(node) && safeImage(findImage(node) as Node)) {
+      const caption = node.children.find((c): c is Node => typeof c !== 'string' && c.tag === 'figcaption') || null;
+      out.push(figure(findImage(node) as Node, caption, opts));
+    }
     else if (node.tag === 'li') { const l = list({ tag: 'ul', attrs: {}, children: [node] }, opts); if (l) out.push(l); }
     else if (['tr', 'td', 'th', 'thead', 'tbody', 'tfoot'].includes(node.tag)) { const t = table({ tag: 'table', attrs: {}, children: [node] }, opts); if (t) out.push(t); }
     else blocks(node.children, opts, out);
@@ -369,6 +459,7 @@ export function readableBlocks(html: unknown, options: { headingShift?: number; 
   blocks(parse(source).children, { headingShift: options.headingShift ?? 0, resolveLink: options.resolveLink }, out);
   const result: string[] = [];
   for (const b of out) {
+    if (b.startsWith('<figure')) { result.push(b); continue; }
     const text = plain(b);
     if (!text || /^[\s\u200b\u00a0]*$/.test(text)) continue;
     if (VIDEO_LEFTOVER.test(text) && text.length < 200 && b.startsWith('<p')) continue;
@@ -401,4 +492,34 @@ export function splitLead(blocksList: string[], { min = 600, max = 900, collapse
   const rest = blocksList.slice(i);
   if (plain(rest.join('')).length < 120) return { lead: blocksList.join(''), rest: '' };
   return { lead: blocksList.slice(0, i).join(''), rest: rest.join('') };
+}
+
+/** True when the first rendered block is a heading (the content brings its own section title). */
+export function startsWithHeading(blocksList: string[]): boolean {
+  return /^<h[2-6][\s>]/i.test(blocksList[0] || '');
+}
+
+/**
+ * True when the content has its own heading outline (any h2-h4 block). Then a generic default sub-heading such as
+ * "History and Background" must not be added above it: the intro paragraph belongs to the section title itself.
+ */
+export function hasOwnHeadings(blocksList: string[]): boolean {
+  return blocksList.some((b) => /^<h[2-6][\s>]/i.test(b));
+}
+
+/**
+ * Keep the heading outline valid inside a section whose own title is at `parentLevel` (e.g. 2 for a section h2,
+ * 3 when a default h3 sub-heading is rendered above the content): the first heading is at most parentLevel+1,
+ * a heading never goes more than one level deeper than the one before it, and nothing is above parentLevel+1 or below h4.
+ */
+export function fixHeadingOrder(blocksList: string[], parentLevel: number): string[] {
+  const top = Math.min(4, parentLevel + 1);
+  let prev = parentLevel;
+  return blocksList.map((b) => {
+    const m = /^<h([1-6])>([\s\S]*)<\/h\1>$/i.exec(b);
+    if (!m) return b;
+    const level = Math.min(4, Math.max(top, Math.min(Number(m[1]), prev + 1)));
+    prev = level;
+    return `<h${level}>${m[2]}</h${level}>`;
+  });
 }
