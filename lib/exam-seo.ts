@@ -1016,6 +1016,25 @@ function overrides(year: number, institutes: number, feeRange: string | null): R
         }
       ]
     },
+    aipgmee: {
+      // kw20 g3: "pgmee exam" (#19). AIPGMEE no longer exists; the page explains the switch to NEET-PG.
+      // Facts: NBE NEET-PG 2017 bulletin + PIB 21 Sep 2016 (history); NBEMS notices 22 Jan, 1 Jul, 24 Sep 2026 and NEET-PG 2026 bulletin.
+      intent: 'general',
+      h1: 'PGMEE Exam (AIPGMEE): Now NEET-PG, 2026 Dates & Cut-off',
+      title: 'PGMEE Exam (AIPGMEE) Is Now NEET-PG: 2026 Dates & Cut-off',
+      description: 'PGMEE exam explained: AIPGMEE was replaced by NEET-PG from 2017. NEET-PG 2026 was held on 30 Aug 2026; result 24 Sep. See pattern, dates and cut-off.',
+      keywords: ['pgmee exam', 'AIPGMEE', 'AIPGMEE exam', 'AIPGMEE full form', 'AIPGMEE replaced by NEET PG', 'NEET PG 2026', 'NEET PG 2026 cut off', 'NEET PG exam pattern'],
+      intro: 'AIPGMEE, the PGMEE exam for MD, MS and PG Diploma seats, was last held for the 2016 session. Since 2017, NEET-PG, conducted by NBEMS, is the single entrance for these courses. NEET-PG 2026 was held on 30 August 2026 and its result came on 24 September 2026.',
+      absoluteTitle: true,
+      faqs: [
+        { question: 'Is the PGMEE exam (AIPGMEE) still conducted?', answer: 'No. AIPGMEE was used for the 2014 to 2016 admission sessions. From the 2017 session, NEET-PG became the single entrance exam for MD, MS and PG Diploma courses under the amended Indian Medical Council Act.' },
+        { question: 'What is the full form of AIPGMEE?', answer: 'All India Post Graduate Medical Entrance Examination. It was the national entrance for 50% All India quota MD, MS and PG Diploma seats and for participating states.' },
+        { question: 'Which exam replaced AIPGMEE?', answer: 'NEET-PG, conducted by the National Board of Examinations in Medical Sciences (NBEMS). AIIMS, PGIMER, JIPMER and a few other institutes of national importance admit through INI-CET instead.' },
+        { question: 'When was NEET-PG 2026 held?', answer: 'On 30 August 2026, as a single-shift computer-based test. Candidates at two Jaipur centres hit by a power failure took a re-exam on 5 September 2026. The result was declared on 24 September 2026.' },
+        { question: 'What is the NEET-PG 2026 exam pattern?', answer: 'NEET-PG 2026 had 180 multiple-choice questions in English, to be answered in 3 hours 30 minutes. Scores are out of 720.' },
+        { question: 'What was the NEET-PG 2026 qualifying cut-off?', answer: 'General and EWS: 262 (50th percentile). General PwBD: 244 (45th percentile). SC, ST and OBC, including their PwBD candidates: 226 (40th percentile). All scores are out of 720.' }
+      ]
+    },
     'nid-entrance-exam': {
       // NID DAT 2027 content package (docs/exam-content/nid-dat-2027.md in the backend repo).
       // Facts from NID only (admissions.nid.edu, the Integrated Pathway/B.Des and M.Des Admissions Handbooks 2027-28 published
