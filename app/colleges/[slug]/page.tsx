@@ -20,7 +20,8 @@ import { getLinkResolver } from '../../../lib/internal-link-index';
 import { formatProgrammeDuration, isoProgrammeDuration } from '../../../lib/duration';
 import { plainText, readableLines, PROGRAMME_HEADING_START, isShortText, withFullStop } from '../../../lib/readable-text';
 import { staticImageUrl } from '../../../lib/image';
-import { claimHref, getCollegeVerification, VERIFICATION_POLICY_HREF, type CollegeVerification } from '../../../lib/college-verification';
+import { getCollegeVerification, VERIFICATION_POLICY_HREF, type CollegeVerification } from '../../../lib/college-verification';
+import ClaimProfileButton from '../../../components/ClaimProfileButton';
 import LastUpdatedByline from '../../../components/LastUpdatedByline';
 import { jsonLdAuthor } from '../../../lib/page-byline';
 
@@ -582,7 +583,6 @@ export default async function CollegeProfilePage({ params }: { params: Promise<{
   const { slug } = await params;
   const [profile, cutoffs] = await Promise.all([getCollege(slug), getCollegeCutoffs(slug)]);
   const verification: CollegeVerification = profile ? await getCollegeVerification(slug, profile as unknown as Parameters<typeof getCollegeVerification>[1]) : { verified: false };
-  const claimLink = profile ? claimHref({ slug }) : '';
   if (!profile) notFound();
 
   const name = displayName(profile);
@@ -1009,7 +1009,7 @@ export default async function CollegeProfilePage({ params }: { params: Promise<{
     {!(verification.claimed ?? verification.verified) && <aside className="cp-claim-cta" aria-label="Claim this college profile">
       <Building2 size={20} aria-hidden="true" />
       <div><strong>Do you represent {name}?</strong><p>Claim this profile to verify it and keep courses, fees, admissions and contact details accurate. Every update is reviewed before it is published.</p></div>
-      <div className="cp-claim-cta-actions"><Link prefetch={false} className="button" href={claimLink} rel="nofollow">Claim this profile</Link><Link prefetch={false} href={VERIFICATION_POLICY_HREF}>How verification works</Link></div>
+      <div className="cp-claim-cta-actions"><ClaimProfileButton slug={slug} /><Link prefetch={false} href={VERIFICATION_POLICY_HREF}>How verification works</Link></div>
     </aside>}
     <div className="cp-data-note"><ShieldCheck size={18} aria-hidden="true" /><p><strong>Data note:</strong> Fees, placements, rankings and reviews are recorded evidence and may change by batch, category, role, recruiter mix or academic year. Verify the latest official information before applying.</p></div>
   </div></main>;

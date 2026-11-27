@@ -518,7 +518,7 @@ a.cp-pill:hover { text-decoration: none; border-color: rgba(255, 255, 255, .45);
 .cp-claim-cta strong { color: #0b2447; font-size: 15.5px; }
 .cp-claim-cta p { margin: 4px 0 0; color: #475569; font-size: 14px; line-height: 1.55; }
 .cp-claim-cta-actions { display: flex; flex: 0 0 auto; align-items: center; gap: 14px; margin-left: auto; }
-.cp-claim-cta-actions .button { margin: 0; white-space: nowrap; }
+.cp-claim-cta-actions .button { margin: 0; white-space: nowrap; border: 0; font: inherit; font-weight: 750; cursor: pointer; }
 .cp-claim-cta-actions a:not(.button) { font-size: 13.5px; font-weight: 650; white-space: nowrap; }
 @media (max-width: 760px) {
   .cp-page .cp-claim-cta { flex-direction: column; align-items: flex-start; }
