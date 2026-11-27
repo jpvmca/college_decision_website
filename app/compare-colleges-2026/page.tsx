@@ -28,11 +28,11 @@ async function getLatestComparisonArticles(): Promise<ComparisonArticle[]> {
 }
 
 export const metadata: Metadata = {
-  title: 'Compare Colleges in India 2026: Fees, Courses, Placements & Admission',
+  title: { absolute: 'Compare Colleges in India 2026: Fees, Placements & Admission' },
   description: 'Compare colleges in India in 2026 by courses, fees, location, eligibility, entrance exams, placements and admission routes before creating your shortlist.',
   alternates: { canonical: '/compare-colleges-2026' },
   openGraph: {
-    title: 'Compare Colleges in India 2026: Fees, Courses, Placements & Admission',
+    title: 'Compare Colleges in India 2026: Fees, Placements & Admission',
     description: 'Build a clearer 2026 college shortlist by comparing fees, courses, placements, rankings and admission information.',
     url: `${siteUrl}/compare-colleges-2026`,
     images: [{ url: `${siteUrl}/logo.svg`, width: 188, height: 38, alt: 'College Decision' }]

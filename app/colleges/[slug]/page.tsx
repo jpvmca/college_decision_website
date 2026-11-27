@@ -24,6 +24,7 @@ import { getCollegeVerification, VERIFICATION_POLICY_HREF, type CollegeVerificat
 import ClaimProfileButton from '../../../components/ClaimProfileButton';
 import LastUpdatedByline from '../../../components/LastUpdatedByline';
 import { jsonLdAuthor } from '../../../lib/page-byline';
+import { shortSeoTitle } from '../../../lib/seo-title';
 
 type CollegeProfile = {
   institute: {
@@ -565,10 +566,10 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   const imageUrl = absoluteUrl(profile.institute.logo ? instituteLogoUrl(profile.institute.logo) : '/logo.svg', siteUrl);
   const currentYear = new Date().getFullYear();
   const generated = profileSeo(profile, name, city, currentYear);
-  const title = cleanSeoTitle(profile.seo?.title) || generated.title;
+  const title = shortSeoTitle(cleanSeoTitle(profile.seo?.title) || generated.title);
   const description = String(profile.seo?.description || '').replace(/&rsquo;/g, '’').replace(/&amp;/g, '&').trim() || generated.description;
   return {
-    title,
+    title: { absolute: title },
     description,
     keywords: seoKeywords(profile, city, state),
     alternates: { canonical: `/colleges/${slug}` },

@@ -14,6 +14,7 @@ import { CourseFilterMobileButton, CourseFilterSidebar } from '../../components/
 import HeroPhoto from '../../components/HeroPhoto';
 import HeroStats from '../../components/HeroStats';
 import { staticImageUrl } from '../../lib/image';
+import { fitSeoTitle } from '../../lib/seo-title';
 
 type College = ListedCollege;
 
@@ -28,7 +29,7 @@ export async function generateMetadata(): Promise<Metadata> {
   const baseTitle = 'Colleges in India 2026: Fees, Courses & Placements';
   const description = 'Browse colleges in India by location, type and programmes. Compare fees, admission routes and placements before you shortlist.';
   return {
-    title: baseTitle,
+    title: fitSeoTitle(baseTitle),
     description,
     alternates: { canonical: '/colleges' },
     openGraph: {

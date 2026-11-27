@@ -9,6 +9,7 @@ import { getAdSlot } from '../../lib/ads';
 import HeroPhoto from '../../components/HeroPhoto';
 import HeroStats from '../../components/HeroStats';
 import { staticImageUrl } from '../../lib/image';
+import { fitSeoTitle } from '../../lib/seo-title';
 
 type Course = { id: number; name: string; slug: string; published_slug?: string | null; mode: string | null; image_url: string | null; programme_count: number; institute_count: number; review_count: number | string | null; average_rating: number | string | null };
 type CourseList = { data: Course[]; pagination: { page: number; perPage: number; total: number; totalPages: number } };
@@ -22,7 +23,7 @@ function formatCount(value: number) {
 export async function generateMetadata(): Promise<Metadata> {
   const title = 'Courses in India 2026 – Colleges, Fees & Admissions';
   const description = 'Browse courses in India and see the colleges, active programmes, fees and admission routes connected with each course.';
-  return { title, description, alternates: { canonical: '/courses' }, openGraph: { title, description, type: 'website', images: [{ url: staticImageUrl('/courses-hero.webp'), width: 1200, height: 675, alt: 'Students exploring courses and college options' }] }, robots: { index: true, follow: true } };
+  return { title: fitSeoTitle(title), description, alternates: { canonical: '/courses' }, openGraph: { title, description, type: 'website', images: [{ url: staticImageUrl('/courses-hero.webp'), width: 1200, height: 675, alt: 'Students exploring courses and college options' }] }, robots: { index: true, follow: true } };
 }
 
 export default async function CoursesPage() {

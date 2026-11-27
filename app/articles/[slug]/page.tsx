@@ -17,6 +17,7 @@ import { jsonLdAuthor } from '../../../lib/page-byline';
 import ArticleGuide from '../../../components/ArticleGuide';
 import { getArticleContent } from '../../../lib/article-content';
 import { articleHeadings, articleTokens, defaultArticleIntro, defaultListLead, fillTokens, type ArticleGuideSummary, type ArticleSeoInput } from '../../../lib/article-seo';
+import { shortSeoTitle } from '../../../lib/seo-title';
 
 export const revalidate = 900;
 
@@ -240,22 +241,23 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   if (!article) return { title: 'Article not found', robots: { index: false, follow: false } };
   const seo = getSeoContext(article);
   const pageTitle = (article.metaTitle || article.title).replace(/\s*\|\s*College Decision\s*$/i, '').trim();
+  const seoTitle = shortSeoTitle(pageTitle);
   const canonical = `${getSiteUrl()}/articles/${article.slug}`;
   const description = article.metaDescription
     || ('metaDescription' in seo ? seo.metaDescription : `${pageTitle}: ${seo.intro}`);
   return {
-    title: pageTitle,
+    title: { absolute: seoTitle },
     description,
     alternates: { canonical },
     robots: { index: true, follow: true },
     openGraph: {
       type: 'article',
-      title: pageTitle,
+      title: seoTitle,
       description,
       url: canonical,
       images: [{ url: mediaUrl(article.imageUrl) || staticImageUrl('/og/default.png'), width: 1200, height: 630, alt: article.imageUrl ? pageTitle : 'College Decision' }]
     },
-    twitter: { card: 'summary_large_image', title: pageTitle }
+    twitter: { card: 'summary_large_image', title: seoTitle }
   };
 }
 

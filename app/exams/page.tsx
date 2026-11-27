@@ -11,6 +11,7 @@ import HeroStats from '../../components/HeroStats';
 import LastUpdatedByline from '../../components/LastUpdatedByline';
 import { jsonLdAuthor } from '../../lib/page-byline';
 import { staticImageUrl } from '../../lib/image';
+import { fitSeoTitle } from '../../lib/seo-title';
 
 // Backend listDirectory caps perPage at 30, so the page walks every page and hands the full list to the client.
 const EXAM_BATCH = 30;
@@ -38,7 +39,7 @@ async function loadExamDirectory(): Promise<ExamList> {
 export async function generateMetadata(): Promise<Metadata> {
   const title = 'Entrance Exams in India 2026–27: Dates, Fees & Colleges';
   const description = 'Compare entrance exams in India: next exam dates, registration status, application fees, linked programmes, fee ranges and colleges accepting each exam.';
-  return { title, description, alternates: { canonical: '/exams' }, openGraph: { title, description, type: 'website', images: [{ url: staticImageUrl('/exams-hero.webp'), width: 1200, height: 675, alt: 'Students preparing for college entrance exams' }] }, robots: { index: true, follow: true } };
+  return { title: fitSeoTitle(title), description, alternates: { canonical: '/exams' }, openGraph: { title, description, type: 'website', images: [{ url: staticImageUrl('/exams-hero.webp'), width: 1200, height: 675, alt: 'Students preparing for college entrance exams' }] }, robots: { index: true, follow: true } };
 }
 
 export default async function ExamsPage() {

@@ -2,12 +2,13 @@ import type { Metadata } from 'next';
 import Link from 'next/link';
 import { BadgeCheck, Building2, ClipboardCheck, FileCheck2, MailCheck, ShieldCheck } from 'lucide-react';
 import { CLAIM_HREF, VERIFICATION_POLICY_HREF } from '../../lib/college-verification';
+import { fitSeoTitle } from '../../lib/seo-title';
 
 const title = 'For colleges: claim and verify your college profile';
 const description = 'Colleges and universities listed on CollegeDecision.in can claim their profile, verify it and request updates to courses, fees, admissions and contact details. Every change is reviewed before publishing.';
 
 export const metadata: Metadata = {
-  title,
+  title: fitSeoTitle(title),
   description,
   alternates: { canonical: '/for-colleges' },
   robots: { index: true, follow: true },
