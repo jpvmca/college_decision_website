@@ -1060,11 +1060,11 @@ function overrides(year: number, institutes: number, feeRange: string | null): R
       // 10 Sep 2026 with amendments to 29 Sep 2026, and NID's 2027-28 fee structures), checked on 9 Oct 2026.
       // "CAT" and "Fashion Design" must not auto-link here; the exam name has no "(DAT)" alias so bare "DAT" never links site-wide.
       intent: 'general',
-      h1: 'NID DAT 2027: Exam Date, Registration, Fee & Eligibility',
-      title: 'NID DAT 2027: Exam Date, Registration, Fee & Eligibility',
-      description: 'NID DAT 2027 Prelims is on 20 Dec 2026; apply by 30 Nov at admissions.nid.edu. See the ₹3,000 fee, age limits, Prelims and Mains, seats and NID fees.',
-      keywords: ['NID DAT 2027', 'NID entrance exam 2027', 'NID DAT 2027 exam date', 'NID DAT registration 2027 last date', 'NID application fee', 'NID eligibility', 'NID age limit', 'NID DAT Prelims', 'NID DAT Mains', 'NID integrated M.Des', 'NID fees structure', 'NID M.Des 2027'],
-      intro: 'NID DAT 2027, the National Institute of Design\'s Design Aptitude Test for admissions in 2027-28, is open: apply at admissions.nid.edu by 11:59 pm on 30 November 2026 for the DAT Prelims on Sunday, 20 December 2026. This guide covers dates, fees, eligibility, the Prelims and Mains, seats and NID\'s programme fees, all from NID\'s 2027-28 handbooks.',
+      h1: 'NID DAT 2027: Entrance Exam Dates, Registration, Fee & Eligibility',
+      title: 'NID Entrance Exam Dates 2027: DAT Prelims, Fee & Eligibility',
+      description: 'NID entrance exam dates 2027: apply by 30 Nov 2026, DAT Prelims on 20 Dec 2026, Prelims results Feb/Mar 2027. See the ₹3,000 fee, eligibility and NID fees.',
+      keywords: ['NID entrance exam dates', 'NID DAT 2027', 'NID entrance exam 2027', 'NID DAT 2027 exam date', 'NID DAT registration 2027 last date', 'NID application fee', 'NID eligibility', 'NID age limit', 'NID DAT Prelims', 'NID DAT Mains', 'NID integrated M.Des', 'NID fees structure', 'NID M.Des 2027'],
+      intro: 'The NID entrance exam dates for 2027-28 are out. NID DAT 2027, the National Institute of Design\'s Design Aptitude Test, is open: apply at admissions.nid.edu by 11:59 pm on 30 November 2026 for the DAT Prelims on Sunday, 20 December 2026. This guide covers dates, fees, eligibility, the Prelims and Mains, seats and NID\'s programme fees, all from NID\'s 2027-28 handbooks.',
       ogImage: '/uploads/exams/nid-entrance-exam/nid-dat-2027-og.webp',
       absoluteTitle: true,
       autoLinkExcludeHrefs: ['/exams/cat', '/courses/fashion-design-ug', '/courses/fashion-design-pg'],
