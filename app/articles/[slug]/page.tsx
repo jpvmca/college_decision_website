@@ -261,13 +261,20 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
 
 export default async function ArticleDetailPage({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params;
+  // Start every independent fetch together: on a cold ISR render (e.g. right after a deploy) they used to run one after another.
+  // Each promise gets a no-op catch so an unused one (404 / comparison branch) never raises an unhandled rejection.
+  const linkableEntitiesPromise = getLinkableEntities();
+  const publishedSlugsPromise = getPublishedArticleSlugs();
+  const articleAdFeedPromise = getAdSlot('article_feed');
+  const articleContentPromise = getArticleContent(slug);
+  for (const pending of [linkableEntitiesPromise, publishedSlugsPromise, articleAdFeedPromise, articleContentPromise]) pending.catch(() => undefined);
   const article = await getArticle(slug, 1);
   if (!article) notFound();
   if (article.type === 'college-comparison' && article.collegeA && article.collegeB) {
     if (article.slug !== slug) redirect(`/articles/${article.slug}`);
     const breadcrumbTitle = article.title.replace(/\s*\|\s*College Decision\s*$/, '');
-    const linkableEntities = await getLinkableEntities();
-    const articleContent = await getArticleContent(article.slug);
+    const linkableEntities = await linkableEntitiesPromise;
+    const articleContent = await articleContentPromise;
     const collegeAName = String((article.collegeA as { name?: string } | undefined)?.name || 'College A');
     const collegeBName = String((article.collegeB as { name?: string } | undefined)?.name || 'College B');
     const guideTokens: Record<string, string> = {
@@ -317,11 +324,9 @@ export default async function ArticleDetailPage({ params }: { params: Promise<{ 
       <AdSlot slotKey="article_end" />
     </div></main>;
   }
-  const publishedArticleSlugs = await getPublishedArticleSlugs();
+  const [publishedArticleSlugs, linkableEntities, articleAdFeed] = await Promise.all([publishedSlugsPromise, linkableEntitiesPromise, articleAdFeedPromise]);
   const siteUrl = getSiteUrl();
   const seo = getSeoContext(article);
-  const linkableEntities = await getLinkableEntities();
-  const articleAdFeed = await getAdSlot('article_feed');
   const relatedVisible = relatedGuides
     .filter((guide) => guide.slug !== article.slug && publishedArticleSlugs.includes(guide.slug))
     .slice(0, 3);
@@ -354,7 +359,7 @@ export default async function ArticleDetailPage({ params }: { params: Promise<{ 
       }
     ]
   };
-  const articleContent = await getArticleContent(article.slug);
+  const articleContent = article.slug === slug ? await articleContentPromise : await getArticleContent(article.slug);
   const guideSummary = article.guideSummary || null;
   const seoInput: ArticleSeoInput = {
     type: article.type,
