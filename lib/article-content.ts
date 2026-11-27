@@ -16,6 +16,9 @@ export type ArticleContentSection = {
 export type ArticleContent = {
   slug: string;
   updatedOn?: string;
+  /** Optional per-article <title> and meta description (H1 is unchanged). */
+  metaTitle?: string;
+  metaDescription?: string;
   intro?: string[];
   listLead?: string;
   snapshot?: string[];

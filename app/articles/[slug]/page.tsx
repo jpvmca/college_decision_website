@@ -240,10 +240,11 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   const article = await getArticle(slug, 1);
   if (!article) return { title: 'Article not found', robots: { index: false, follow: false } };
   const seo = getSeoContext(article);
-  const pageTitle = (article.metaTitle || article.title).replace(/\s*\|\s*College Decision\s*$/i, '').trim();
+  const content = await getArticleContent(article.slug);
+  const pageTitle = (content?.metaTitle || article.metaTitle || article.title).replace(/\s*\|\s*College Decision\s*$/i, '').trim();
   const seoTitle = shortSeoTitle(pageTitle);
   const canonical = `${getSiteUrl()}/articles/${article.slug}`;
-  const description = article.metaDescription
+  const description = content?.metaDescription || article.metaDescription
     || ('metaDescription' in seo ? seo.metaDescription : `${pageTitle}: ${seo.intro}`);
   return {
     title: { absolute: seoTitle },

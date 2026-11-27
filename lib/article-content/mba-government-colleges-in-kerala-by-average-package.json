@@ -1,8 +1,8 @@
 {
   "slug": "mba-government-colleges-in-kerala-by-average-package",
-  "updatedOn": "2026-11-24",
+  "updatedOn": "2026-11-27",
   "intro": [
-    "This page lists the best government MBA / PGDM colleges in Kerala by the average packages in our records. We currently link {{count}} programme options at {{colleges}} colleges tagged as public in our file.",
+    "Looking for government colleges for MBA in Kerala? This page ranks the public institutes in our records by average package. We currently link {{count}} programme options at {{colleges}} colleges tagged as public in our file.",
     "IIM Kozhikode and NIT Calicut are the two public institutes on this list. Private and government-aided campuses, including St Aloysius College, Edathua, and St Joseph's College of Engineering and Technology, Kottayam, are no longer tagged as public in our file."
   ],
   "listLead": "IIM Kozhikode appears first on the official 2025 flagship PGP card (mean ₹28.18 LPA, highest ₹81 LPA), followed by NIT Calicut's official MBA figures.",
@@ -21,6 +21,84 @@
         "IIM Kozhikode and NIT Calicut are national public institutes, and they are the colleges tagged as public on this Kerala government MBA list.",
         "St Aloysius College, Edathua, is a privately managed aided college, and St Joseph's College of Engineering and Technology, Palai, is a private self-financing college, so they no longer appear here."
       ]
+    },
+    {
+      "heading": "Other government colleges for MBA in Kerala",
+      "paragraphs": [
+        "Several state and central university departments in Kerala also run MBA programmes. They are not in the ranked list above because our records do not yet hold an average package for them, but they are worth a look if you want a government seat at a lower fee.",
+        "The admission rules below are from each institute's own 2026 notice. Check the 2027 notice before you apply, because tests, weightages and fees can change."
+      ],
+      "table": {
+        "caption": "Government MBA options in Kerala outside the ranked list (2026 admission rules)",
+        "columns": [
+          "Institute",
+          "Who runs it",
+          "Accepted test",
+          "How the rank list is made"
+        ],
+        "rows": [
+          [
+            "School of Management Studies, CUSAT, Kochi",
+            "Cochin University of Science and Technology (state university)",
+            "CAT, CMAT or KMAT",
+            "Test score 70%, interview 20%, Plus Two marks 10%"
+          ],
+          [
+            "Institute of Management in Kerala (IMK), Thiruvananthapuram",
+            "University of Kerala",
+            "KMAT, CMAT or CAT",
+            "Test score 80%, group discussion 10%, interview 10%"
+          ],
+          [
+            "Department of Management Studies, Central University of Kerala, Kasaragod",
+            "Central university",
+            "CUET-PG",
+            "CUET score 80%, group discussion 10%, interview 10%"
+          ],
+          [
+            "Kerala Institute of Tourism and Travel Studies (KITTS), Thiruvananthapuram",
+            "Kerala Tourism; MBA affiliated to University of Kerala",
+            "KMAT or CMAT",
+            "Test score 80%, group discussion 10%, interview 10%"
+          ]
+        ]
+      }
+    },
+    {
+      "heading": "Seats and fees at IMK and KITTS",
+      "paragraphs": [
+        "IMK lists three MBA programmes for the 2026-28 batch. KITTS runs one MBA in Travel and Tourism with a fee of ₹45,000 per semester."
+      ],
+      "table": {
+        "caption": "Source: University of Kerala notification of 13 March 2026; KITTS MBA course page.",
+        "columns": [
+          "Programme",
+          "Seats",
+          "Fee per semester"
+        ],
+        "rows": [
+          [
+            "IMK MBA (General)",
+            "40",
+            "₹17,735 + other university fees"
+          ],
+          [
+            "IMK MBA (Travel and Tourism)",
+            "40",
+            "₹26,250 + other university fees"
+          ],
+          [
+            "IMK MBA (Shipping and Logistics)",
+            "25",
+            "₹26,250 + other university fees"
+          ],
+          [
+            "KITTS MBA (Travel and Tourism)",
+            "Not stated",
+            "₹45,000"
+          ]
+        ]
+      }
     }
   ],
   "compare": {
@@ -52,9 +130,29 @@
     {
       "label": "Best MBA colleges in India",
       "href": "/mba-colleges"
+    },
+    {
+      "label": "CUSAT",
+      "href": "/colleges/cochin-university-of-science-and-technology-kerala-kochi"
+    },
+    {
+      "label": "University of Kerala",
+      "href": "/colleges/university-of-kerala-kerala-thiruvananthapuram"
+    },
+    {
+      "label": "Central University of Kerala",
+      "href": "/colleges/central-university-of-kerala-kerala-kasaragod"
+    },
+    {
+      "label": "KITTS",
+      "href": "/colleges/kerala-institute-of-management-of-tourism-and-travel-studies-kerala-thiruvananthapuram"
     }
   ],
   "faqs": [
+    {
+      "question": "Which are the government colleges for MBA in Kerala?",
+      "answer": "IIM Kozhikode and NIT Calicut are the public institutes ranked on this page. Other government options include the School of Management Studies at CUSAT, IMK at the University of Kerala, the Central University of Kerala and KITTS in Thiruvananthapuram."
+    },
     {
       "question": "How many government MBA colleges in Kerala are on this list?",
       "answer": "Our records link {{count}} programme options at {{colleges}} colleges tagged as public, currently IIM Kozhikode and NIT Calicut."
@@ -76,6 +174,24 @@
     {
       "label": "NIRF 2025 Management ranking",
       "url": "https://www.nirfindia.org/Rankings/2025/ManagementRanking.html"
+    },
+    {
+      "label": "CUSAT SMS MBA admission process",
+      "url": "https://sms.cusat.ac.in/admissions/admission_process/"
+    },
+    {
+      "label": "University of Kerala IMK MBA notification, 13 March 2026",
+      "url": "https://www.keralauniversity.ac.in/pdfs/news/NotificationMBA1773417050.pdf"
+    },
+    {
+      "label": "Central University of Kerala PG programmes 2026",
+      "url": "https://cukeralacuet.samarth.edu.in/pg/index.php/site/programme"
+    },
+    {
+      "label": "KITTS MBA (Travel & Tourism)",
+      "url": "https://www.kittsedu.org/courses/mba-travel-tourism"
     }
-  ]
+  ],
+  "metaTitle": "Government Colleges for MBA in Kerala by Average Package",
+  "metaDescription": "Government colleges for MBA in Kerala: IIM Kozhikode and NIT Calicut by average package, plus CUSAT, IMK, CU Kerala and KITTS with 2026 admission routes."
 }
