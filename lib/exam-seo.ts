@@ -534,11 +534,11 @@ function overrides(year: number, institutes: number, feeRange: string | null): R
       // CLAT 2027 content package (docs/exam-content/clat-2027.md in the backend repo).
       // Facts from consortiumofnlus.ac.in (CLAT 2027 UG/PG instructions, eligibility, question format, syllabus, 22 Jul 2026 press release), checked on 29 Oct 2026.
       intent: 'general',
-      h1: 'CLAT 2027: Exam Date, Eligibility, Pattern, Syllabus & NLU Cutoffs',
-      title: 'CLAT 2027: Exam Date, Eligibility, Pattern, Syllabus, Cutoff',
-      description: 'CLAT 2027 is on 6 December 2026. Check eligibility, the 120-question pattern, syllabus, ₹4,000 fee, counselling and NLU-wise closing ranks for 2024–2026.',
-      keywords: ['CLAT 2027', 'CLAT 2027 exam date', 'CLAT 2027 registration', 'CLAT eligibility', 'CLAT exam pattern', 'CLAT syllabus', 'CLAT cutoff', 'NLU cutoff', 'CLAT counselling', 'CLAT PG 2027'],
-      intro: 'CLAT 2027 will be held on Sunday, 6 December 2026, from 2 PM to 4 PM in offline mode, and applications close on 31 October 2026. This guide covers eligibility, the exam pattern, syllabus, fees, counselling and NLU-wise closing ranks, using official Consortium of NLUs sources.',
+      h1: 'CLAT 2027: Full Form, Exam Date, Eligibility, Pattern & NLU Cutoffs',
+      title: 'CLAT 2027: Full Form, Exam Date, Eligibility & Cutoff',
+      description: 'Full form of CLAT: Common Law Admission Test. CLAT 2027 is on 6 December 2026; see eligibility, the 120-question pattern, syllabus, fee and NLU cutoffs.',
+      keywords: ['CLAT 2027', 'full form of CLAT', 'what is full form of CLAT', 'CLAT full form', 'Common Law Admission Test', 'CLAT 2027 exam date', 'CLAT 2027 registration', 'CLAT eligibility', 'CLAT exam pattern', 'CLAT syllabus', 'CLAT cutoff', 'NLU cutoff', 'CLAT counselling', 'CLAT PG 2027'],
+      intro: 'The full form of CLAT is Common Law Admission Test, the national entrance exam for the 26 member National Law Universities. CLAT 2027 will be held on Sunday, 6 December 2026, from 2 PM to 4 PM in offline mode, and applications close on 31 October 2026. This guide covers eligibility, the exam pattern, syllabus, fees, counselling and NLU-wise closing ranks, using official Consortium of NLUs sources.',
       ogImage: '/uploads/exams/clat/clat-2027-og.webp',
       absoluteTitle: true,
       collegesNote: {
@@ -547,6 +547,10 @@ function overrides(year: number, institutes: number, feeRange: string | null): R
         href: '/exams/clat/cutoff'
       },
       faqs: [
+        {
+          question: 'What is the full form of CLAT?',
+          answer: 'The full form of CLAT is Common Law Admission Test. It is conducted by the Consortium of National Law Universities for five-year integrated law degrees (CLAT UG) and the one-year LL.M. (CLAT PG) at its 26 member NLUs.'
+        },
         {
           question: 'When is CLAT 2027?',
           answer: 'CLAT 2027 is on Sunday, 6 December 2026, from 2:00 PM to 4:00 PM. PwD candidates get time until 4:40 PM. The test is offline (pen and paper).'
@@ -1492,11 +1496,11 @@ function overrides(year: number, institutes: number, feeRange: string | null): R
       // Official sources only: amrita.edu/btech (mirrored at aeee.amrita.edu) and the Amrita B.Tech CSAP Handbook 2026
       // (webfiles.amrita.edu), checked on 12 Oct 2026. AEEE 2027 window (15 Apr - 7 May 2027) is official; other 2027 items are Expected.
       intent: 'general',
-      h1: 'AEEE 2027: Exam Date (Apr–May), Pattern, Fees, CSAP & Slabs',
-      title: 'AEEE 2027: Exam Date (Apr–May), Pattern, Fees, CSAP & Slabs',
-      description: 'AEEE 2027 will be held 15 April – 7 May 2027; applications open November 2026. See the ₹1,300 fee, 100-question pattern, CSAP counselling and fee slabs.',
-      keywords: ['AEEE 2027', 'AEEE exam date 2027', 'Amrita Entrance Exam 2027', 'AEEE registration 2027', 'AEEE application fee', 'AEEE exam pattern', 'AEEE syllabus', 'AEEE eligibility', 'AEEE result', 'Amrita CSAP 2027', 'Amrita B.Tech fees', 'Amrita fee slab', 'AEEE vs JEE Main', 'Amrita B.Tech campuses'],
-      intro: 'AEEE 2027, Amrita Vishwa Vidyapeetham\'s entrance test for B.Tech at its eight engineering campuses, will be held between 15 April and 7 May 2027, with applications opening in November 2026. In 2026 the fee was ₹1,300 and seats were allotted through CSAP on AEEE rank or JEE Main percentile. This guide covers dates, pattern, eligibility, CSAP and fee slabs from official Amrita sources.',
+      h1: 'AEEE 2027: Exam Dates, Syllabus, Pattern, Fees & CSAP',
+      title: 'AEEE 2027: Exam Dates, Syllabus, Pattern, Fees & CSAP',
+      description: 'AEEE 2027 runs 15 April to 7 May 2027. See the Amrita entrance exam 2026 syllabus unit by unit, the 100-question pattern, ₹1,300 fee and CSAP slabs.',
+      keywords: ['AEEE 2027', 'AEEE exam date 2027', 'Amrita Entrance Exam 2027', 'AEEE registration 2027', 'AEEE application fee', 'AEEE exam pattern', 'AEEE syllabus', 'Amrita entrance exam 2026 syllabus', 'AEEE 2026 syllabus', 'AEEE eligibility', 'AEEE result', 'Amrita CSAP 2027', 'Amrita B.Tech fees', 'Amrita fee slab', 'AEEE vs JEE Main', 'Amrita B.Tech campuses'],
+      intro: 'AEEE 2027, Amrita Vishwa Vidyapeetham\'s entrance test for B.Tech at its eight engineering campuses, will be held between 15 April and 7 May 2027, with applications opening in November 2026. In 2026 the fee was ₹1,300 and seats were allotted through CSAP on AEEE rank or JEE Main percentile. This guide covers dates, pattern, the Amrita entrance exam syllabus, eligibility, CSAP and fee slabs from official Amrita sources.',
       ogImage: '/uploads/exams/amrita-entrance-examination-aeee/aeee-2027-og.webp',
       absoluteTitle: true,
       collegesNote: {
@@ -1609,6 +1613,24 @@ function overrides(year: number, institutes: number, feeRange: string | null): R
       ],
       autoLinkExcludeHrefs: ['/courses/mba'],
     },
+    'ap-deecet': {
+      // g2 keyword 'deecet means' (27 Nov 2026). Facts only from the DEECET-2026 notification and information bulletin
+      // (apdeecet.apcfss.in, Department of School Education, AP). Guide body lives in exams.html_content.
+      intent: 'general',
+      h1: 'AP DEECET: What DEECET Means, Eligibility and Exam Pattern',
+      title: 'DEECET Means: AP DEECET Full Form, Eligibility & Pattern',
+      description: 'DEECET means Diploma in Elementary Education Common Entrance Test. See what AP DEECET is, who can apply, the ₹1,000 fee, exam pattern and D.El.Ed seats.',
+      keywords: ['deecet means', 'DEECET full form', 'AP DEECET', 'AP DEECET 2027', 'D.El.Ed entrance Andhra Pradesh', 'AP DEECET eligibility', 'AP DEECET exam pattern', 'AP DEECET application fee', 'DIET admission AP'],
+      intro: 'DEECET means Diploma in Elementary Education Common Entrance Test. AP DEECET is the Andhra Pradesh state test for the two-year D.El.Ed course in Government DIETs and private elementary teacher training institutions, run by the Department of School Education. This page explains the full form, eligibility, fee and exam pattern from the official DEECET-2026 notification.',
+      absoluteTitle: true,
+      faqs: [
+        { question: 'What does DEECET mean?', answer: 'DEECET means Diploma in Elementary Education Common Entrance Test. In Andhra Pradesh it is called AP DEECET and is used for admission to the two-year D.El.Ed course.' },
+        { question: 'Who conducts AP DEECET?', answer: 'The Department of School Education, Government of Andhra Pradesh. The Director of School Education is the chairman of DEECET, and applications are taken on apdeecet.apcfss.in and cse.ap.gov.in.' },
+        { question: 'What is the AP DEECET application fee?', answer: 'The fee in the DEECET-2026 bulletin was ₹1,000, paid online through the payment gateway before filling the application.' },
+        { question: 'What is the eligibility for AP DEECET?', answer: 'Intermediate (Class 12) or equivalent with at least 50% marks (45% for SC, ST and differently-abled candidates), and at least 17 years of age on 1 September of the admission year. Intermediate vocational students are not eligible.' },
+        { question: 'Is DEECET the same as D.El.Ed?', answer: 'No. D.El.Ed is the two-year teacher training course; DEECET is the entrance test used to allot D.El.Ed seats in Andhra Pradesh.' }
+      ],
+    },
     'cusat-cat': {
       // CUSAT CAT 2027 content package (docs/exam-content/cusat-cat-2027.md in the backend repo).
       // Official sources only: admissions.cusat.ac.in (CAT 2026 Prospectus, Fee Structure 2026-27, notices) and cusat.ac.in,
@@ -1616,9 +1638,9 @@ function overrides(year: number, institutes: number, feeRange: string | null): R
       intent: 'general',
       h1: 'CUSAT CAT 2027: Dates, Eligibility, Pattern, Fees, Seats',
       title: 'CUSAT CAT 2027: Dates, Eligibility, Pattern, Fees, Seats',
-      description: 'CUSAT CAT 2027 registration is Expected from late January 2027. See the Test 101 pattern, 50% PCM rule, ₹1,500 fee, seat types and B.Tech seats by campus.',
-      keywords: ['CUSAT CAT 2027', 'CUSAT CAT exam date 2027', 'CUSAT CAT registration 2027', 'CUSAT CAT eligibility', 'CUSAT CAT exam pattern', 'CUSAT CAT syllabus', 'CUSAT CAT application fee', 'CUSAT B.Tech admission 2027', 'CUSAT School of Engineering', 'CUCEK Kuttanad', 'CUSAT CAT rank list', 'CUSAT fee structure'],
-      intro: 'CUSAT CAT 2027 is Cochin University of Science and Technology\'s computer-based test for its own B.Tech, integrated M.Sc., five-year law and most PG programmes. CUSAT has not announced the 2027 dates; registration is Expected from late January 2027 and the test in May 2027. In 2026 registration ran from 27 January to 5 March and the test was held on 9–11 May. This guide uses only official CUSAT sources.',
+      description: 'CUSAT CAT 2027 is Expected in May 2027; the CUSAT entrance exam 2026 date was 9–11 May. See Test 101 pattern, 50% PCM rule, ₹1,500 fee and B.Tech seats.',
+      keywords: ['CUSAT CAT 2027', 'CUSAT CAT exam date 2027', 'cusat entrance exam 2026 date', 'CUSAT CAT 2026 exam date', 'CUSAT CAT registration 2027', 'CUSAT CAT eligibility', 'CUSAT CAT exam pattern', 'CUSAT CAT syllabus', 'CUSAT CAT application fee', 'CUSAT B.Tech admission 2027', 'CUSAT School of Engineering', 'CUCEK Kuttanad', 'CUSAT CAT rank list', 'CUSAT fee structure'],
+      intro: 'CUSAT CAT 2027 is Cochin University of Science and Technology\'s computer-based test for its own B.Tech, integrated M.Sc., five-year law and most PG programmes. CUSAT has not announced the 2027 dates; registration is Expected from late January 2027 and the test in May 2027. In 2026 registration ran from 27 January to 5 March, and the CUSAT entrance exam 2026 date was 9–11 May. This guide uses only official CUSAT sources.',
       ogImage: '/uploads/exams/cusat-cat/cusat-cat-2027-og.webp',
       absoluteTitle: true,
       autoLinkExcludeHrefs: ['/exams/cat', '/courses/mba', '/courses/anm'],
@@ -1628,6 +1650,10 @@ function overrides(year: number, institutes: number, feeRange: string | null): R
         href: 'https://admissions.cusat.ac.in/'
       },
       faqs: [
+        {
+          question: 'What was the CUSAT entrance exam 2026 date?',
+          answer: 'CUSAT CAT 2026 was held as a computer-based test on 9, 10 and 11 May 2026. The B.Tech paper, Test 101, was on 10 and 11 May in two slots (9:30 am – 12:30 pm and 2:30 pm – 5:30 pm). Registration had run from 27 January to 5 March 2026.'
+        },
         {
           question: 'When is CUSAT CAT 2027?',
           answer: 'CUSAT has not announced CAT 2027. In 2026 registration ran from 27 January to 5 March and the computer-based test was held on 9–11 May, with the B.Tech paper (Test 101) on 10–11 May. Registration for 2027 is Expected from late January 2027 and the test in May 2027.'
@@ -1883,11 +1909,11 @@ function overrides(year: number, institutes: number, feeRange: string | null): R
       // KEAM 2026 notifications (dates, scores, rank list, allotment phases) and engineering last-rank lists, phase 2,
       // 2025 and 2026 (cee.kerala.gov.in). Checked 29 Oct 2026. 2027 items are Expected.
       intent: 'general',
-      h1: 'KEAM 2027: Exam Date, Syllabus, Pattern, Eligibility & Cutoff',
-      title: 'KEAM 2027: Exam Date, Pattern, Syllabus & Cutoff',
-      description: 'KEAM 2027 exam date (Expected April), 150-question CBT with +4/−1 marking, 600-point index mark, eligibility, fees, reservation and 2025–2026 CEE last ranks.',
-      keywords: ['KEAM 2027', 'KEAM 2027 exam date', 'KEAM syllabus', 'KEAM exam pattern', 'KEAM eligibility', 'KEAM cutoff', 'KEAM last rank', 'KEAM index mark', 'KEAM application fee', 'KEAM allotment', 'CEE Kerala'],
-      intro: 'KEAM 2027 is not announced yet. CEE Kerala is expected to open the application in January 2027 and hold the engineering CBT in April 2027. This guide covers eligibility, the 150-question pattern, the 600-point index mark, syllabus, reservation codes, allotment and official CEE last ranks for 2025 and 2026.',
+      h1: 'KEAM 2027: What the Exam Is For, Date, Syllabus, Pattern & Cutoff',
+      title: 'KEAM 2027: What Is KEAM For, Exam Date, Pattern & Cutoff',
+      description: 'What is KEAM for? Kerala B.Tech, B.Pharm, B.Arch and MBBS seats. KEAM 2027 date (Expected April), 150-question CBT, 600-point index mark and last ranks.',
+      keywords: ['KEAM 2027', 'KEAM exam for what', 'what is KEAM exam for', 'KEAM full form', 'KEAM 2027 exam date', 'KEAM syllabus', 'KEAM exam pattern', 'KEAM eligibility', 'KEAM cutoff', 'KEAM last rank', 'KEAM index mark', 'KEAM application fee', 'KEAM allotment', 'CEE Kerala'],
+      intro: 'What is KEAM for? The KEAM exam for Kerala admissions decides B.Tech and B.Pharm seats through its own tests, and its application also covers B.Arch (through NATA) and MBBS, BDS and AYUSH (through NEET-UG). KEAM 2027 is not announced yet. CEE Kerala is expected to open the application in January 2027 and hold the engineering CBT in April 2027. This guide covers eligibility, the 150-question pattern, the 600-point index mark, syllabus, reservation codes, allotment and official CEE last ranks for 2025 and 2026.',
       ogImage: '/uploads/exams/keam/keam-2027-og.webp',
       absoluteTitle: true,
       collegesNote: {
@@ -1896,6 +1922,7 @@ function overrides(year: number, institutes: number, feeRange: string | null): R
         href: '/exams/keam/cutoff'
       },
       faqs: [
+        { question: "What is the KEAM exam for?", answer: "KEAM (Kerala Engineering Architecture Medical) is CEE Kerala's entrance and application for professional degree seats in Kerala. Its own tests decide B.Tech and B.Pharm ranks. B.Arch ranks use NATA scores and MBBS, BDS and AYUSH ranks use NEET-UG, but you must still apply through KEAM to get a Kerala seat." },
         { question: "When is KEAM 2027?", answer: "CEE Kerala has not announced KEAM 2027. It is Expected in April 2027, with applications in January 2027. In 2026 applications ran from 5 January to 6 February and the engineering CBT was held from 17 to 22 April." },
         { question: "What is the KEAM exam pattern?", answer: "The engineering test is a computer-based test with 150 multiple-choice questions in 180 minutes: 75 Maths, 45 Physics and 30 Chemistry. Each correct answer earns 4 marks and each wrong one loses 1." },
         { question: "How is the KEAM rank calculated?", answer: "The engineering index mark is out of 600. Half comes from your normalised entrance score and half from normalised Class 12 marks in Maths, Physics and Chemistry in the ratio 5:3:2." },

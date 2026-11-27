@@ -1,56 +1,161 @@
 {
   "slug": "dit-dehradun-vs-quantum-global-btech-engineering-decision-guide",
-  "updatedOn": "24 Nov 2026",
+  "updatedOn": "27 Nov 2026",
+  "metaTitle": "DIT University Fees for B.Tech 4 Years (2026-30 Batch)",
+  "metaDescription": "DIT University fees for B.Tech 4 years (2026-30): ₹16,35,200 for CSE and ₹10,05,700 for core branches (All India), plus ₹10,000 admission fee. Vs Quantum.",
   "intro": [
-    "{{nameA}} in Dehradun and {{nameB}} in Roorkee, Uttarakhand, both offer {{course}}. This page compares recorded fees, placements and ranks from our database, and flags figures that look incomplete or out of date in {{year}}.",
-    "DIT University vs Quantum University is a comparison of two private Uttarakhand universities. DIT has the only 2020 or later placement record on this page, and an older 2022 NIRF Engineering rank of 179."
+    "If you are checking DIT University fees for B.Tech 4 years, start with the official Batch 2026-30 fee PDFs, not older database rows. In the All India category, CSE and the CSE specialisations listed in DIT's CSE fee circular add up to ₹16,35,200 over four years. Core branches such as Civil, Mechanical, Electrical, ECE, Petroleum and Robotics & AI add up to ₹10,05,700. Those figures are the official year-wise academic fees added together. They do not include hostel or the one-time admission charges.",
+    "The UK State category is cheaper because DIT's course pages apply a 25% scholarship on tuition for the Uttarakhand/Himalayan quota. This guide also places Quantum University, Roorkee beside DIT. Quantum's official 2026 circular publishes first-year fees only, so this page does not invent a four-year Quantum total."
   ],
   "sections": [
     {
-      "heading": "DIT University vs Quantum University for B.Tech: which is better in 2026",
+      "heading": "DIT University fees for B.Tech 4 years (Batch 2026-30)",
       "paragraphs": [
-        "Choose DIT University if you want a recorded 2023 placement year and an older NIRF Engineering mention. Our records show a 2023 average of ₹10 lakh and a highest of ₹28 lakh for DIT.",
-        "Choose Quantum University only after you have seen its latest official placement and fee notices. This page has no NIRF Engineering rank for Quantum, and its latest recorded placement year is 2018."
-      ]
+        "DIT publishes separate 2026-30 fee PDFs for CSE specialisations, Information Technology, and core School of Engineering branches. The CSE programme page shows the same first-year figures as the CSE specialisations PDF, so the four-year CSE total below is the one to use when someone asks for DIT University fees for B.Tech 4 years in computer science.",
+        "Year 3 is higher because a ₹25,000 industrial tour charge is built into that year's official annual fee. The totals at the bottom were added by College Decision from those published annual fees."
+      ],
+      "table": {
+        "caption": "Year-wise academic fees for B.Tech CSE and the CSE specialisations listed in DIT's CSE fee PDF, Batch 2026-30. Source: dituniversity.edu.in, BTech-CSE-Fee-Structure-2026.pdf (checked 27 November 2026). Four-year totals added by College Decision.",
+        "columns": [
+          "Year",
+          "All India category",
+          "UK State category"
+        ],
+        "rows": [
+          [
+            "I Year (2026-27)",
+            "₹3,82,600",
+            "₹3,22,826"
+          ],
+          [
+            "II Year (2027-28)",
+            "₹3,89,300",
+            "₹3,26,526"
+          ],
+          [
+            "III Year (2028-29), includes ₹25,000 industrial tour",
+            "₹4,33,900",
+            "₹3,67,976"
+          ],
+          [
+            "IV Year (2029-30)",
+            "₹4,29,400",
+            "₹3,60,176"
+          ],
+          [
+            "Four-year academic total",
+            "₹16,35,200",
+            "₹13,77,504"
+          ]
+        ]
+      }
     },
     {
-      "heading": "Fees: what our records show",
+      "heading": "Four-year academic totals by B.Tech group",
       "paragraphs": [
-        "DIT University's recorded B.Tech tuition on this page varies widely, from about ₹1.30 lakh a year to ₹8.99 lakh a year on one row. The ₹8.99 lakh figure may be a programme total wrongly stored as a year fee, so we do not treat it as confirmed annual tuition.",
-        "Quantum University has recorded year-wise totals around ₹1.10 lakh to ₹1.25 lakh, and tuition around ₹1.30 lakh to ₹1.32 lakh a year. Confirm both official fee circulars before you compare costs, especially any DIT branch that looks unusually expensive."
-      ]
+        "IT sits between CSE and the core engineering branches. Civil, Mechanical and Petroleum specialisations, Electrical Engineering with Electric Vehicle, and ECE with ICT use the same year-wise fees as the core engineering PDF.",
+        "On top of the academic total, DIT charges a ₹10,000 admission fee (non-refundable) and ₹5,000 caution money (refundable) at admission. Hostel is optional: a sharing room is listed at ₹1,59,000 for 10 months (hostel ₹75,000, mess ₹79,500, laundry ₹4,500), plus ₹5,000 refundable hostel security, and transport at ₹22,000. Hostel is not part of the four-year academic totals above.",
+        "Merit scholarships, where awarded, apply only on tuition, cannot exceed 100% of tuition, and cannot be combined. Fees may change if government rules change, so confirm the amount on your fee receipt."
+      ],
+      "table": {
+        "caption": "Four-year academic totals (tuition + academic services + industrial tour) from official year-wise fees, Batch 2026-30. Sources: BTech-CSE-Fee-Structure-2026.pdf, BTech-IT-Fee-Structure-2026.pdf and BTech-Core-Fee-Structure-2026.pdf, dituniversity.edu.in. Totals added by College Decision. Admission fee and hostel are extra.",
+        "columns": [
+          "Programme group",
+          "All India, 4 years",
+          "UK State, 4 years"
+        ],
+        "rows": [
+          [
+            "CSE and listed CSE specialisations",
+            "₹16,35,200",
+            "₹13,77,504"
+          ],
+          [
+            "Information Technology",
+            "₹11,28,900",
+            "₹9,53,600"
+          ],
+          [
+            "Core engineering: Civil, Mechanical, Petroleum, Electrical, ECE, Robotics & AI, and the official specialisations with the same circular",
+            "₹10,05,700",
+            "₹8,49,726"
+          ]
+        ]
+      }
     },
     {
-      "heading": "Placements compared",
+      "heading": "Quantum University first-year B.Tech fees (2026)",
       "paragraphs": [
-        "DIT University's recorded 2023 figures are an average package of ₹10 lakh and a highest package of ₹28 lakh. These are historical outcomes, not a salary promise.",
-        "Quantum University's latest recorded row here is from 2018, with a highest package of ₹10 lakh and no usable average. Because 2018 is older than 2020, this page does not treat it as a current flagship result."
+        "Quantum's official School of Technology circular for 2026 lists first-year fees only. It does not publish year 2 to year 4, so a four-year Quantum total is not shown here.",
+        "On that first-year notice, Quantum is cheaper than DIT's official first year. DIT CSE (All India) is ₹3,82,600 in 2026-27; Quantum B.Tech CS is ₹1,54,500 for Uttarakhand domicile students and ₹1,59,500 for students from outside the state."
+      ],
+      "table": {
+        "caption": "Quantum University, first-year B.Tech fees for 2026, School of Technology circular. Source: quantumuniversity.edu.in/downloads/Fee_Structure/Quantum_School_of_Technology.pdf (checked 27 November 2026). Later years are not printed on this notice.",
+        "columns": [
+          "Programme",
+          "Uttarakhand domicile, first year",
+          "Outside Uttarakhand, first year"
+        ],
+        "rows": [
+          [
+            "B.Tech CS",
+            "₹1,54,500",
+            "₹1,59,500"
+          ],
+          [
+            "B.Tech Mechanical, Civil or EE",
+            "₹1,15,500",
+            "₹1,20,500"
+          ],
+          [
+            "B.Tech (Hons) CSE, all specialisations",
+            "₹1,64,500",
+            "₹1,69,500"
+          ]
+        ]
+      }
+    },
+    {
+      "heading": "Placements: what official pages actually say",
+      "paragraphs": [
+        "DIT's School of Computing placements page lists an average salary of ₹8.1 LPA and a highest compensation of ₹58.60 LPA, along with 150+ companies and 860+ offers. The page does not name the batch year for those headline figures, so treat them as the university's published snapshot, not a salary promise for 2026.",
+        "Older rows in our database had shown a 2023 DIT average of ₹10 lakh and a highest of ₹28 lakh. Those numbers do not match the current official computing placements page, so this guide no longer uses them.",
+        "This page does not have a current official Quantum University placement circular, so no Quantum package is quoted here. Ask Quantum for its latest report if placements are a deciding factor."
       ]
     },
     {
       "heading": "Admission and eligibility",
       "paragraphs": [
-        "Both universities list JEE Main on this page. DIT also lists UK SEE, the Uttarakhand state entrance route.",
-        "Class 12 PCM remains the usual academic requirement. Read the current official admissions page of each university for tests, cut-offs and scholarships."
+        "Quantum's official fee circular is clear on eligibility: Class 12 with Physics and Mathematics, plus one of Chemistry, Biotechnology, Biology or Computer Science/IT, and English. The minimum is 50% in those three subjects, or 55% for B.Tech (Hons) CSE. Admission preference is given to merit in Q-CARE, JEE Main or a state-level entrance exam.",
+        "For DIT, use the university's current admissions pages for tests, cut-offs and scholarships. JEE Main is the usual national route students check, but the offer letter is what counts."
       ]
     },
     {
       "heading": "Location and campus",
       "paragraphs": [
-        "DIT University is in Dehradun. Quantum University is in Roorkee, in the same state but a different city. The daily commute, hill-campus feel and industry access will not be the same.",
-        "If you want to stay in Dehradun, that points toward DIT. If Roorkee is acceptable, still ask Quantum for a recent official placement report."
+        "DIT University is in Dehradun, on Mussoorie-Diversion Road, Village Makkawala, Dehradun, Uttarakhand 248009. Quantum University is at 22 km Milestone, Mandawar, Roorkee–Dehradun Highway (NH-73), Roorkee, Uttarakhand 247667. Both are in Uttarakhand, but they are not in the same city.",
+        "If you want to stay in Dehradun, that points toward DIT. If Roorkee works for you, still compare the official fee circulars above and ask Quantum for a recent placement report."
       ]
     },
     {
       "heading": "Verdict: who should pick which college",
       "paragraphs": [
-        "On the data we hold, DIT University is the stronger documented side: a 2023 placement year and a 2022 NIRF Engineering rank of 179.",
-        "Quantum University may still suit you if its official 2026 fee and placement notices look right, but this page cannot show a current placement record or an NIRF Engineering rank for it.",
-        "Do not budget from DIT's ₹8.99 lakh year row until the university's official circular confirms what that number is."
+        "If the question is simply DIT University fees for B.Tech 4 years, the official 2026-30 academic total is ₹16,35,200 for CSE and ₹10,05,700 for core branches in the All India category, or ₹13,77,504 and ₹8,49,726 in the UK State category, plus the ₹10,000 admission fee.",
+        "Quantum looks clearly cheaper in the first year on its official 2026 circular, but that notice does not give a four-year figure you can put next to DIT's published totals.",
+        "DIT has a documented NIRF Engineering rank of 179 in 2022. Later years should be checked on the current NIRF list, because a 2022 rank is not a 2026 rank. On placements, only DIT's computing page gives official headline packages on this guide, and even those come without a named year.",
+        "Do not budget from the older ₹8.99 lakh 'year fee' that had appeared in our DIT records. That figure does not match any annual fee on the official 2026-30 PDFs."
       ]
     }
   ],
   "links": [
+    {
+      "label": "DIT University, Dehradun college profile",
+      "href": "/colleges/dit-university-uttarakhand-dehradun"
+    },
+    {
+      "label": "Quantum University, Roorkee college profile",
+      "href": "/colleges/quantum-university-uttarakhand-dehradun"
+    },
     {
       "label": "Engineering / B.Tech colleges in Uttarakhand",
       "href": "/engineering-colleges-in-uttarakhand"
@@ -70,34 +175,66 @@
   ],
   "faqs": [
     {
-      "question": "Which is better in 2026, DIT University or Quantum University, for B.Tech?",
-      "answer": "DIT has the stronger record on this page, with 2023 figures of a ₹10 lakh average and a ₹28 lakh highest package, and a 2022 NIRF Engineering rank of 179. Quantum has no NIRF Engineering rank here and no 2020 or later placement row."
+      "question": "What are DIT University fees for B.Tech 4 years?",
+      "answer": "For the official Batch 2026-30 academic fees (tuition, academic services and the industrial tour charge), the four-year total is ₹16,35,200 for CSE and listed CSE specialisations, ₹11,28,900 for IT, and ₹10,05,700 for core engineering branches, in the All India category. UK State category totals are ₹13,77,504, ₹9,53,600 and ₹8,49,726. Add a ₹10,000 admission fee and ₹5,000 refundable caution money at admission. Hostel is extra."
     },
     {
-      "question": "What are the recorded B.Tech fees for DIT vs Quantum University?",
-      "answer": "Quantum's recorded year fees are around ₹1.10 lakh to ₹1.32 lakh. DIT tuition rows range from about ₹1.30 lakh to ₹8.99 lakh a year; the top figure may not be a true annual fee and should be checked on DIT's official circular."
+      "question": "Do DIT University fees for B.Tech 4 years include hostel?",
+      "answer": "No. The four-year totals on this page are academic fees only. DIT's 2026-30 PDFs list a sharing hostel at ₹1,59,000 for 10 months, plus ₹5,000 refundable hostel security, and transport at ₹22,000."
     },
     {
-      "question": "Which exams do DIT and Quantum University accept?",
-      "answer": "Both list JEE Main. DIT also lists UK SEE. Confirm the current official admissions page of each university."
+      "question": "Why is the UK State category cheaper at DIT?",
+      "answer": "DIT's official course pages describe the Uttarakhand/Himalayan State quota as a 25% scholarship on the tuition fee. Academic services and the industrial tour charge stay the same. Only one scholarship can be used, and it cannot exceed 100% of tuition."
+    },
+    {
+      "question": "What are Quantum University's B.Tech fees for 4 years?",
+      "answer": "Quantum's official 2026 School of Technology circular publishes first-year fees only: for B.Tech CS, ₹1,54,500 (Uttarakhand domicile) and ₹1,59,500 (outside the state). This page does not multiply that figure by four, because later years are not on the circular."
     },
     {
       "question": "How do placements compare for DIT and Quantum University?",
-      "answer": "DIT's recorded 2023 average is ₹10 lakh and the highest is ₹28 lakh. Quantum's latest recorded year here is 2018, which this page does not treat as a current flagship result."
+      "answer": "DIT's School of Computing placements page lists an average salary of ₹8.1 LPA and a highest compensation of ₹58.60 LPA, without naming the batch year. This guide does not quote a Quantum package, because no current official Quantum placement circular is cited here."
     },
     {
       "question": "Are DIT University and Quantum University in the same city?",
-      "answer": "No. DIT is in Dehradun. Quantum University is in Roorkee. Both are in Uttarakhand, but the cities are different."
+      "answer": "No. DIT University is in Dehradun. Quantum University is in Roorkee. Both are in Uttarakhand."
+    },
+    {
+      "question": "Which exams do DIT and Quantum University accept?",
+      "answer": "Quantum's official fee circular lists merit in Q-CARE, JEE Main or a state-level entrance exam. For DIT, confirm tests and cut-offs on the university's current admissions pages; JEE Main is the usual national exam students check."
     }
   ],
   "sources": [
     {
-      "label": "NIRF 2025 Engineering ranking",
-      "url": "https://www.nirfindia.org/rankings/2025/EngineeringRanking.html"
+      "label": "DIT University, B.Tech CSE fee structure 2026-30 (PDF)",
+      "url": "https://www.dituniversity.edu.in/assets/frontend/course-structure/BTech-CSE-Fee-Structure-2026.pdf"
     },
     {
-      "label": "JEE Main official site (NTA)",
-      "url": "https://jeemain.nta.nic.in/"
+      "label": "DIT University, B.Tech core engineering fee structure 2026-30 (PDF)",
+      "url": "https://www.dituniversity.edu.in/assets/frontend/course-structure/BTech-Core-Fee-Structure-2026.pdf"
+    },
+    {
+      "label": "DIT University, B.Tech IT fee structure 2026-30 (PDF)",
+      "url": "https://www.dituniversity.edu.in/assets/frontend/course-structure/BTech-IT-Fee-Structure-2026.pdf"
+    },
+    {
+      "label": "DIT University, B.Tech CSE programme page (first-year fee table)",
+      "url": "https://www.dituniversity.edu.in/ug-courses/btech-computer-science-and-engineering"
+    },
+    {
+      "label": "DIT University, programs and fee structure",
+      "url": "https://www.dituniversity.edu.in/admissions/programs-and-fee-structure"
+    },
+    {
+      "label": "DIT University, School of Computing placements",
+      "url": "https://www.dituniversity.edu.in/school/school-of-computing/placements"
+    },
+    {
+      "label": "Quantum University, School of Technology fee circular 2026 (PDF)",
+      "url": "https://quantumuniversity.edu.in/downloads/Fee_Structure/Quantum_School_of_Technology.pdf"
+    },
+    {
+      "label": "NIRF India Rankings 2022 report (Engineering, DIT University rank 179)",
+      "url": "https://www.nirfindia.org/nirfpdfcdn/2022/pdf/Report/IR2022_Report.pdf"
     }
   ]
 }

@@ -1,11 +1,58 @@
 {
   "slug": "chandigarh-group-of-colleges-jhanjeri-cgc-jhanjeri-mohali-vs-chandigarh-group-of-colleges-landran-cgc-landran-mohali-engineering-decision-guide",
-  "updatedOn": "24 Nov 2026",
+  "updatedOn": "27 Nov 2026",
   "intro": [
-    "{{nameA}} and {{nameB}} are private engineering campuses in {{cityA}}, Punjab, and they belong to the same wider college group. This page compares recorded {{course}} fees, placements and ranks from our database and official sites opened in {{year}}.",
-    "CGC Jhanjeri vs CGC Landran is a two-campus choice, not a choice between unrelated brands. The short title repeats the group name; use the campus names in the table when you read fees and placements."
+    "Chandigarh Group of Colleges Jhanjeri (CGC Jhanjeri) and CGC Landran are two separate engineering campuses in Mohali, Punjab, run by the same Chandigarh Educational Society. The big change for 2026 applicants: the Jhanjeri campus became CGC University, Mohali in 2025, while Landran continues as a group of affiliated colleges.",
+    "This guide compares recorded B.Tech fees, placements and ranks for the two campuses from our database and the official sites, so you can see which one fits your branch and budget."
   ],
   "sections": [
+    {
+      "heading": "Chandigarh Group of Colleges Jhanjeri is now CGC University, Mohali",
+      "paragraphs": [
+        "Chandigarh Group of Colleges, Jhanjeri started in 2012 on the Chandigarh–Sirhind Road (State Highway 12A) and earned NAAC A+ with a CGPA of 3.46 while it was a college. Its institutes were affiliated to I.K. Gujral Punjab Technical University (IKGPTU).",
+        "In 2025 the Punjab Assembly passed the C.G.C. University, Mohali Act, and the Jhanjeri campus became a self-financed private university headquartered at Landran–Sirhind Road, Jhanjeri. Students admitted from 2025 onwards get a CGC University degree, so check the admission notice on cgcuniversity.in rather than older IKGPTU-era pages."
+      ],
+      "table": {
+        "caption": "CGC Jhanjeri and CGC Landran at a glance",
+        "columns": [
+          "Detail",
+          "CGC Jhanjeri (now CGC University, Mohali)",
+          "CGC Landran"
+        ],
+        "rows": [
+          [
+            "Started",
+            "2012",
+            "Earlier campus of the group (group roots date to 2001)"
+          ],
+          [
+            "Current status",
+            "Private university under the C.G.C. University, Mohali Act, 2025",
+            "Group of colleges"
+          ],
+          [
+            "Location",
+            "Chandigarh–Sirhind Road (SH-12A), Jhanjeri, Mohali – 140307",
+            "Landran, Mohali"
+          ],
+          [
+            "Run by",
+            "Chandigarh Educational Society",
+            "Chandigarh Educational Society"
+          ],
+          [
+            "Official website",
+            "cgcuniversity.in",
+            "cgc.edu.in"
+          ],
+          [
+            "Recorded B.Tech CSE year fee (our records)",
+            "₹1,28,300 – ₹1,30,300",
+            "₹1,33,300 – ₹1,35,300"
+          ]
+        ]
+      }
+    },
     {
       "heading": "CGC Jhanjeri vs CGC Landran for B.Tech / B.E.: which is better in 2026",
       "paragraphs": [
@@ -77,6 +124,10 @@
   ],
   "faqs": [
     {
+      "question": "Is Chandigarh Group of Colleges Jhanjeri a university now?",
+      "answer": "Yes. The Jhanjeri campus became CGC University, Mohali in 2025 under the C.G.C. University, Mohali Act, 2025. CGC Landran is a separate campus of the same society."
+    },
+    {
       "question": "Are CGC Jhanjeri and CGC Landran the same college?",
       "answer": "They belong to the same wider group but are separate campuses in Mohali. Compare branch, fees and the latest placement report for the campus you would actually join."
     },
@@ -113,6 +164,18 @@
     {
       "label": "NIRF 2025 Engineering ranking",
       "url": "https://www.nirfindia.org/Rankings/2025/EngineeringRanking.html"
+    },
+    {
+      "label": "CGC University, Mohali – Overview",
+      "url": "https://www.cgcuniversity.in/overview"
+    },
+    {
+      "label": "The C.G.C. University, Mohali Bill, 2025 (PRS India)",
+      "url": "https://prsindia.org/files/bills_acts/bills_states/punjab/2025/Bill13of205PB.pdf"
+    },
+    {
+      "label": "CGC Jhanjeri overview",
+      "url": "https://cec.cgc.ac.in/overview"
     }
   ]
 }

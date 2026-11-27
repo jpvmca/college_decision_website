@@ -1,11 +1,68 @@
 {
   "slug": "nmims-mumbai-vs-prin-ln-mba-decision-guide",
-  "updatedOn": "24 Nov 2026",
+  "updatedOn": "27 Nov 2026",
   "intro": [
-    "{{nameA}} and {{nameB}} both sit in {{cityA}}, and this page compares their recorded {{course}} fees, placements, admission routes and campus setting, using our database and official pages we opened in {{year}}.",
-    "NMIMS Mumbai vs Welingkar Mumbai is not a single winner. NMIMS Mumbai holds NIRF 2025 #24 on our records, and Welingkar Mumbai holds NIRF 2025 #75."
+    "NMIMS Mumbai fees for the MBA are ₹13.50 lakh a year, as per NMIMS's official NMAT 2026 admission handout, which puts the two-year programme at roughly ₹27 lakh if the second-year fee stays the same. Welingkar Mumbai's PGDM lists tuition of ₹7 lakh a year in its 2026-28 brochure.",
+    "Both institutes are in {{cityA}}. This page compares their MBA / PGDM fees, placements, admission routes and campus, using official pages and our database checked in {{year}}. NMIMS Mumbai holds NIRF 2025 #24 on our records, and Welingkar Mumbai holds NIRF 2025 #75."
   ],
   "sections": [
+    {
+      "heading": "NMIMS Mumbai MBA fees 2026: programme-wise",
+      "paragraphs": [
+        "NMIMS (SVKM's NMIMS, deemed to be university) charges different fees for each MBA programme and campus. The table below is copied from the fee section of the official NMAT 2026 admission handout. These are first-year, per-annum fees; NMIMS says the fee for the following year will be given in the offer letter."
+      ],
+      "table": {
+        "caption": "NMIMS MBA fees per annum, NMAT 2026 admission handout (nmat.nmims.edu)",
+        "columns": [
+          "Programme",
+          "Campus",
+          "Fee per year"
+        ],
+        "rows": [
+          [
+            "MBA (flagship)",
+            "Mumbai",
+            "₹13,50,000"
+          ],
+          [
+            "MBA Human Resources",
+            "Mumbai",
+            "₹12,75,000"
+          ],
+          [
+            "MBA Business Analytics / MBA Digital Transformation",
+            "Mumbai",
+            "₹11,50,000"
+          ],
+          [
+            "MBA Pharmaceutical Management",
+            "Mumbai",
+            "₹9,00,000"
+          ],
+          [
+            "MBA",
+            "Bengaluru / Hyderabad (Jadcherla) / Navi Mumbai",
+            "₹11,00,000"
+          ],
+          [
+            "MBA",
+            "Indore",
+            "₹10,00,000"
+          ],
+          [
+            "MBA",
+            "Ahmedabad",
+            "₹9,00,000"
+          ]
+        ]
+      },
+      "bullets": [
+        "NMIMS application fee: ₹3,000 (online only), in addition to the NMAT by GMAC registration fee.",
+        "Eligibility for the Mumbai MBA: a bachelor's degree in any discipline with at least 50% aggregate.",
+        "Selection: NMAT score, then a competency test and/or personal interview; NMIMS says there is no management quota for its MBA programmes.",
+        "Hostel and living costs in Mumbai are extra and are not part of the fee above."
+      ]
+    },
     {
       "heading": "NMIMS Mumbai vs Welingkar Mumbai for MBA / PGDM: which is better in 2026",
       "paragraphs": [
@@ -17,8 +74,7 @@
       "heading": "Fees: what our records show, and what the official pages say",
       "paragraphs": [
         "On this page we quote a programme total when we hold a Total Fees record, and we skip short, executive or certificate rows when the picker can tell them apart. Always match the fee to the exact programme you will join.",
-        "NMIMS's official NMAT 2026 admission handout lists the Mumbai MBA at ₹13.50 lakh per annum for 2026-28, and says the 2027-28 year will be intimated in the offer letter.",
-        "Our recorded summary figure for NMIMS Mumbai is ₹41,500 on Post Graduate Diploma in Finance. Use the official circular when the two differ.",
+        "NMIMS Mumbai: ₹13.50 lakh per year for the flagship MBA (official NMAT 2026 handout); the second-year fee is confirmed in the offer letter.",
         "Welingkar's official PGDM 2026-28 brochure lists tuition of ₹7 lakh a year, marked as subject to change.",
         "Our recorded figure for Welingkar Mumbai is ₹5.5 lakh on PGDM E-Biz. Check it against the official notice before you decide."
       ]
@@ -50,7 +106,7 @@
       "heading": "Verdict: who should pick which college",
       "paragraphs": [
         "If ranks and the wider recruiter mix matter most, NMIMS Mumbai is the stronger recorded option on this page, with NIRF 2025 #24 against NIRF 2025 #75.",
-        "Use official fee notices rather than our raw minimums, then decide whether Welingkar Mumbai's recorded ₹5.5 lakh or NMIMS Mumbai's ₹41,500 fits your budget for this MBA / PGDM.",
+        "On official fees, NMIMS Mumbai's MBA (₹13.50 lakh a year) costs almost double Welingkar Mumbai's PGDM tuition (₹7 lakh a year), so decide whether the rank and placement gap is worth that difference for you.",
         "If fees are the only filter, do not use the lowest number in our raw rows. Check each official fee notice for the exact programme and batch you will join."
       ]
     }
@@ -83,6 +139,10 @@
   ],
   "faqs": [
     {
+      "question": "What are NMIMS Mumbai fees for the MBA?",
+      "answer": "The official NMAT 2026 admission handout lists ₹13,50,000 per year for the MBA at NMIMS Mumbai, ₹12,75,000 for MBA HR and ₹11,50,000 for MBA Business Analytics or Digital Transformation. The second-year fee is stated in the offer letter, and hostel costs are extra."
+    },
+    {
       "question": "Which is better in 2026, NMIMS Mumbai or Welingkar Mumbai?",
       "answer": "It depends on the programme you want. NMIMS Mumbai and Welingkar Mumbai differ in more than one way: NMIMS Mumbai holds NIRF 2025 #24 on our records, while Welingkar Mumbai holds NIRF 2025 #75."
     },
@@ -108,6 +168,10 @@
     }
   ],
   "sources": [
+    {
+      "label": "NMIMS NMAT 2026 admission handout (fees)",
+      "url": "https://nmat.nmims.edu/docs/Handout-Admission-NMAT-2026-Final.pdf"
+    },
     {
       "label": "NMIMS NMAT 2026 admission handout (fees)",
       "url": "https://nmat.nmims.edu/docs/Handout_Admission_NMAT_2026_compressed.pdf"
