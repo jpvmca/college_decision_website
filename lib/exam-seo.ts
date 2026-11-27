@@ -1016,6 +1016,25 @@ function overrides(year: number, institutes: number, feeRange: string | null): R
         }
       ]
     },
+    'imu-cet': {
+      // kw20 g3: "how many students appeared for imu cet 2026" (#13). IMU publishes no official appeared count; the ~72,000
+      // figure is from media reports (TOI / FPJ, 15 Jun 2026). Qualified counts are from IMU's UG qualified list (Online CET May 2026).
+      // Pattern, fee and dates: IMU UG & PG admission notice 2026-27.
+      intent: 'general',
+      h1: 'IMU CET 2026: How Many Students Appeared, Qualified & Result',
+      title: 'IMU CET 2026: Students Appeared, Qualified List & Result',
+      description: 'How many students appeared for IMU CET 2026, how many qualified and the official exam pattern, fee and dates. 22,583 candidates made the UG qualified list.',
+      keywords: ['how many students appeared for IMU CET 2026', 'IMU CET 2026 result', 'IMU CET 2026 qualified candidates', 'IMU CET exam pattern', 'IMU CET registration fee', 'IMU CET 2026 exam date'],
+      intro: 'IMU CET 2026 was held on 24 May 2026 and the result came on 14 June. IMU has not published how many candidates appeared; reports put it at about 72,000. Its UG qualified list names 22,583 candidates for B.Tech, B.Sc and DNS seats.',
+      absoluteTitle: true,
+      faqs: [
+        { question: 'How many students appeared for IMU CET 2026?', answer: 'IMU has not released an official appeared count. Media reports on the 14 June 2026 result put the number at about 72,000 candidates, but they do not make clear whether that counts registrations or candidates who sat the test.' },
+        { question: 'How many candidates qualified in IMU CET 2026?', answer: 'IMU\'s UG qualified list for B.Tech, B.Sc and DNS names 22,583 candidates: 20,260 in open competition, 1,297 OBC-NCL, 670 SC, 210 General-EWS and 146 ST. The lowest rank on the list is 27,673.' },
+        { question: 'When was IMU CET 2026 held?', answer: 'On Sunday, 24 May 2026, from 11 am to 2 pm, as a computer-based test. Results and rank cards came out on 14 June 2026.' },
+        { question: 'What is the IMU CET exam pattern?', answer: 'The UG technical paper has 200 multiple-choice questions on English, General Aptitude, Physics, Chemistry and Mathematics at Class 12 level. MBA and M.Tech papers have 120 questions each. Each wrong answer costs 0.25 mark.' },
+        { question: 'What is the IMU CET registration fee?', answer: 'For 2026 it was ₹1,200 for General, General-EWS and OBC-NCL candidates and ₹800 for SC and ST candidates. BBA applicants paid ₹200 (₹140 for SC and ST). The fee is non-refundable.' }
+      ]
+    },
     aipgmee: {
       // kw20 g3: "pgmee exam" (#19). AIPGMEE no longer exists; the page explains the switch to NEET-PG.
       // Facts: NBE NEET-PG 2017 bulletin + PIB 21 Sep 2016 (history); NBEMS notices 22 Jan, 1 Jul, 24 Sep 2026 and NEET-PG 2026 bulletin.
